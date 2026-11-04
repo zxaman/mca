@@ -1,16 +1,84 @@
-# React + Vite
+# MCA Study Companion · Hinglish Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.w
+A single-page study app for MCA exam preparation. Every subject is written in **simple Hinglish**,
+with the **official English definition**, animated SVG diagrams and **6-mark exam questions with
+full answers**.
 
-Currently, two official plugins are available:
+Built with React 19 + Vite. No backend, no database — all content lives in JS data files, so
+adding a topic is just adding an object.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Subjects & content
 
-## React Compiler
+| Subject | Code | Units | Topics | Status |
+|---|---|---|---|---|
+| Business Intelligence | BI | 1 | 8 | Live |
+| Cyber Security | CYS | 2 | 47 | Live |
+| Software Testing & QA | STQA | 2 | 21 | Live |
+| Data Science | DS | 1 | 3 | Live — Unit I |
+| Web Technology | WT | — | — | Coming soon |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Data Science (Unit I — Fundamentals of Data Science)** covers the importance of data science,
+types of data (structured, semi-structured, unstructured) and the four scales of measurement
+(nominal, ordinal, interval, ratio).
 
-## Expanding the ESLint configuration
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 8 (58 total).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run it
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production bundle in dist/
+npm run lint
+```
+
+## Project structure
+
+```
+src/
+├── App.jsx                    # hash router (#/, #/subject/:id, .../topic/:tid, .../exam)
+│                              # + Home, SubjectCard, UnitPage
+├── components/
+│   ├── TopicPage.jsx          # topic reader: renders every section type
+│   ├── ImportantExamQuestions.jsx
+│   ├── Sidebar.jsx            # shared subject → unit → topic navigation
+│   ├── Icons.jsx              # stroke icon set
+│   └── Diagrams.jsx           # <Diagram type="…" /> switch over all diagrams
+│       ├── CyberDiagrams.jsx
+│       ├── SoftwareTestingDiagrams.jsx
+│       └── DataScienceDiagrams.jsx
+├── data/
+│   ├── topics.js              # subjects + units (BI / Cyber / STQA)
+│   ├── dataScience.js         # Data Science units (imported into topics.js)
+│   ├── importantQuestions.js  # curated exam banks (merges subject modules)
+│   └── dataScienceQuestions.js
+└── utils/
+    ├── progress.js            # completed topics in localStorage
+    └── navigation.js          # hash navigation helper
+```
+
+## Content format
+
+A subject lives in `src/data/*.js` and is registered in `topics.js` (`units[subjectId]`).
+
+```js
+{
+  id, number, title, subtitle, icon, accent,
+  englishDefinition,
+  intro,
+  sections: [
+    { type: 'definition', kicker, title, body, body2, chips },
+    { type: 'cards',      kicker, title, cards: [{ icon, title, body }] },
+    { type: 'points',     kicker, title, points: ['…'] },
+    { type: 'diagram',    kicker, title, diagram: 'diagram-type', caption },
+    { type: 'image',      kicker, title, images: [{ src, caption }] },
+    { type: 'example',    kicker, title, body },
+    { type: 'comparison', kicker, title, columns, columnColors, rows: [{ label, values, colors }] },
+    { type: 'recap',      kicker, title, points: ['…'] },
+  ],
+  examQuestions: [{ question, answer /* supports **bold** */ }],
+}
+```
+
+New diagram types are added as exported SVG components and registered in the `Diagram` switch in
+`components/Diagrams.jsx`.

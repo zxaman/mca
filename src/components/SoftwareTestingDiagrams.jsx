@@ -1,5 +1,3 @@
-import React from 'react';
-
 const FONT = "'Segoe UI', system-ui, sans-serif";
 
 // 1. QA vs QC Comparison

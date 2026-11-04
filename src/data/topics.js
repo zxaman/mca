@@ -1,17 +1,21 @@
+import { dataScienceUnits } from './dataScience.js';
+
 export const subjects = [
   {
     "id": "software-testing",
     "name": "Software Testing and Quality Assurance",
     "code": "STQA",
     "color": "#0047ff",
-    "available": true
+    "available": true,
+    "description": "Quality assurance se testing tak — concepts, metrics aur models Hinglish mein"
   },
   {
     "id": "data-science",
     "name": "Data Science",
     "code": "DS",
-    "color": "#0047ff",
-    "available": false
+    "color": "#00d4ff",
+    "available": true,
+    "description": "Data se insight tak ka safar — data types, scales aur analytics, simple Hinglish mein"
   },
   {
     "id": "web-technology",
@@ -26,7 +30,7 @@ export const subjects = [
     "code": "CYS",
     "color": "#0047ff",
     "available": true,
-    "description": "Cyber security ka完整 safar — Hinglish mein simple samjhaaya gaya"
+    "description": "Cyber security ka poora safar — Hinglish mein simple samjhaaya gaya"
   },
   {
     "id": "business-intelligence",
@@ -8749,5 +8753,6 @@ export const units = {
         }
       ]
     }
-  ]
+  ],
+  "data-science": dataScienceUnits
 };
