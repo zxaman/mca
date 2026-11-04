@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { units, subjects } from '../data/topics';
 import { Diagram } from './Diagrams';
 import ExamAnswer from './ExamAnswer';
+import CodeBlock from './CodeBlock';
+import OutputPreview from './OutputPreview';
 import { Icon } from './Icons';
 import { goTo } from '../utils/navigation';
 import { getCompletedTopics, toggleCompletedTopic } from '../utils/progress';
@@ -17,6 +19,9 @@ function SectionRenderer({ section, index }) {
     recap: 'quiz',
     image: 'chart',
     comparison: 'list',
+    code: 'code',
+    output: 'eye',
+    codeoutput: 'code',
   };
   const kickerIcon = icons[section.type] || 'chart';
 
@@ -153,6 +158,64 @@ function SectionRenderer({ section, index }) {
     );
   }
 
+  if (section.type === 'code') {
+    return (
+      <section className="section" style={{ '--i': index }}>
+        <div className="section-kicker"><Icon name={kickerIcon} size={16} /> {section.kicker}</div>
+        <h3>{section.title}</h3>
+        {section.intro && <p className="block-intro">{section.intro}</p>}
+        <CodeBlock
+          code={section.code}
+          language={section.language || 'html'}
+          filename={section.filename}
+          note={section.note}
+        />
+      </section>
+    );
+  }
+
+  if (section.type === 'output') {
+    return (
+      <section className="section" style={{ '--i': index }}>
+        <div className="section-kicker"><Icon name={kickerIcon} size={16} /> {section.kicker}</div>
+        <h3>{section.title}</h3>
+        {section.intro && <p className="block-intro">{section.intro}</p>}
+        <OutputPreview
+          html={section.html}
+          css={section.css}
+          height={section.height || 200}
+          label={section.label || 'Browser output'}
+          caption={section.caption}
+        />
+      </section>
+    );
+  }
+
+  if (section.type === 'codeoutput') {
+    return (
+      <section className="section" style={{ '--i': index }}>
+        <div className="section-kicker"><Icon name={kickerIcon} size={16} /> {section.kicker}</div>
+        <h3>{section.title}</h3>
+        {section.intro && <p className="block-intro">{section.intro}</p>}
+        <div className="code-output-grid">
+          <CodeBlock
+            code={section.code}
+            language={section.language || 'html'}
+            filename={section.filename}
+            note={section.note}
+          />
+          <OutputPreview
+            html={section.html}
+            css={section.css}
+            height={section.height || 220}
+            label={section.label || 'Output'}
+            caption={section.caption}
+          />
+        </div>
+      </section>
+    );
+  }
+
   if (section.type === 'comparison') {
     const rows = section.rows || [];
     const columns = section.columns || [];
@@ -243,6 +306,12 @@ export default function TopicPage({ topicId, subjectId, onBack, onOpenTopic }) {
 
   const isCompleted = completed.has(topicId);
   const diagramCount = topic.sections.filter((section) => section.type === 'diagram').length;
+  const codeCount = topic.sections.filter(
+    (section) => section.type === 'code' || section.type === 'codeoutput',
+  ).length;
+  const outputCount = topic.sections.filter(
+    (section) => section.type === 'output' || section.type === 'codeoutput',
+  ).length;
 
   const handleComplete = () => {
     setCompleted(new Set(toggleCompletedTopic(topicId)));
@@ -294,6 +363,12 @@ export default function TopicPage({ topicId, subjectId, onBack, onOpenTopic }) {
             <div className="topic-hero-stats">
               <span>📖 {topic.sections.length} sections</span>
               <span>🖼️ {diagramCount} {diagramCount === 1 ? 'diagram' : 'diagrams'}</span>
+              {codeCount > 0 && (
+                <span>💻 {codeCount} {codeCount === 1 ? 'code example' : 'code examples'}</span>
+              )}
+              {outputCount > 0 && (
+                <span>▶️ {outputCount} {outputCount === 1 ? 'live output' : 'live outputs'}</span>
+              )}
               <span>🎯 {topic.examQuestions.length} 6-mark exam questions</span>
               {isCompleted && <span className="completed-badge">✓ khatam</span>}
             </div>

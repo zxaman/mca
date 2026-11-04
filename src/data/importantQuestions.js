@@ -5,6 +5,7 @@
 // ============================================================
 
 import { dataScienceImportantQuestions } from './dataScienceQuestions.js';
+import { webTechnologyImportantQuestions } from './webTechnologyQuestions.js';
 
 const baseImportantQuestions = [
   {
@@ -1006,4 +1007,5 @@ Cyber laws wo laws hain jo cyberspace, internet, aur digital technology se relat
 export const importantQuestions = [
   ...baseImportantQuestions,
   ...dataScienceImportantQuestions,
+  ...webTechnologyImportantQuestions,
 ];

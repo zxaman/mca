@@ -14,6 +14,7 @@ const SUBJECT_ICONS = {
   'cyber-security': 'shield',
   'software-testing': 'test',
   'data-science': 'scatter',
+  'web-technology': 'code',
 };
 
 // All topics of a subject, flattened across its units
@@ -172,6 +173,16 @@ function Home() {
       ),
     0,
   );
+  const codeCount = liveSubjects.reduce(
+    (sum, subject) => sum
+      + subjectTopics(subject.id).reduce(
+        (n, topic) => n + (topic.sections || []).filter(
+          (section) => section.type === 'code' || section.type === 'codeoutput',
+        ).length,
+        0,
+      ),
+    0,
+  );
   const doneCount = getCompletedTopics().filter((id) => allTopics.some((topic) => topic.id === id)).length;
   return (
     <div className="home">
@@ -198,6 +209,7 @@ function Home() {
             <span>📚 {liveSubjects.length} Subjects</span>
             <span>📖 {totalUnits} Units · {allTopics.length} Topics</span>
             <span>🖼️ {diagramCount} Animated Diagrams</span>
+            {codeCount > 0 && <span>💻 {codeCount} Code Examples</span>}
             <span>✓ {doneCount} of {allTopics.length} completed</span>
           </div>
         </div>

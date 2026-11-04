@@ -1,4 +1,5 @@
 import { dataScienceUnits } from './dataScience.js';
+import { webTechnologyUnits } from './webTechnology.js';
 
 export const subjects = [
   {
@@ -22,7 +23,8 @@ export const subjects = [
     "name": "Web Technology",
     "code": "WT",
     "color": "#0047ff",
-    "available": false
+    "available": true,
+    "description": "HTML se CSS tak — har concept ka real code aur uska live browser output, simple Hinglish mein"
   },
   {
     "id": "cyber-security",
@@ -8754,5 +8756,6 @@ export const units = {
       ]
     }
   ],
-  "data-science": dataScienceUnits
+  "data-science": dataScienceUnits,
+  "web-technology": webTechnologyUnits
 };

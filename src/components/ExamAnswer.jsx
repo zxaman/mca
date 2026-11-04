@@ -2,6 +2,7 @@
 //  · **bold** markers become <strong>
 //  · markdown-ish pipe tables become real, horizontally scrollable tables
 //    (they used to be printed as raw `| a | b |` text and overflowed on phones)
+//  · ``` fenced blocks become monospace code boxes (used by Web Technology)
 //  · everything else keeps its line breaks
 function Inline({ text }) {
   const parts = text.split('**');
@@ -41,7 +42,17 @@ function parseBlocks(text) {
 
   for (let i = 0; i < lines.length; i += 1) {
     const line = lines[i];
-    if (TABLE_ROW.test(line) && TABLE_SEP.test(lines[i + 1] || '')) {
+    if (/^\s*```/.test(line)) {
+      flush();
+      const code = [];
+      let j = i + 1;
+      while (j < lines.length && !/^\s*```/.test(lines[j])) {
+        code.push(lines[j]);
+        j += 1;
+      }
+      blocks.push({ type: 'code', lines: code });
+      i = j;
+    } else if (TABLE_ROW.test(line) && TABLE_SEP.test(lines[i + 1] || '')) {
       flush();
       const header = splitRow(line);
       const rows = [];
@@ -89,6 +100,13 @@ export default function ExamAnswer({ text }) {
                 </tbody>
               </table>
             </div>
+          );
+        }
+        if (block.type === 'code') {
+          return (
+            <pre className="exam-code" key={`c${i}`}>
+              {block.lines.join('\n')}
+            </pre>
           );
         }
         return (
