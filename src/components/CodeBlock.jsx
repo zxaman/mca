@@ -32,6 +32,129 @@ function tokenizeHtml(line) {
   return out.length ? out : [{ t: line || ' ', c: 'plain' }];
 }
 
+// XML is HTML-like, plus processing instructions (<?xml ?>), declarations
+// (<!ELEMENT ...>) and CDATA sections.
+const XML_TOKEN =
+  /(<!--.*?-->|<!\[CDATA\[.*?\]\]>|<\?.*?\?>|<![A-Z]+|<\/?[a-zA-Z_][\w.:-]*|"[^"]*"|'[^']*'|[a-zA-Z_:][\w.:-]*(?==)|&[a-zA-Z#0-9]+;)/g;
+
+function tokenizeXml(line) {
+  const out = [];
+  let last = 0;
+  let match;
+  XML_TOKEN.lastIndex = 0;
+  while ((match = XML_TOKEN.exec(line)) !== null) {
+    if (match.index > last) out.push({ t: line.slice(last, match.index), c: 'plain' });
+    const tok = match[0];
+    if (tok.startsWith('<!--')) {
+      out.push({ t: tok, c: 'comment' });
+    } else if (tok.startsWith('<![CDATA[')) {
+      out.push({ t: tok, c: 'cdata' });
+    } else if (tok.startsWith('<?')) {
+      out.push({ t: tok, c: 'pi' });
+    } else if (/^<![A-Z]+$/.test(tok)) {
+      out.push({ t: tok, c: 'pi' });
+    } else if (tok.startsWith('<')) {
+      const parts = tok.match(/^(<\/?)(.*)$/);
+      out.push({ t: parts[1], c: 'punct' });
+      out.push({ t: parts[2], c: 'tag' });
+    } else if (tok.startsWith('"') || tok.startsWith("'")) {
+      out.push({ t: tok, c: 'str' });
+    } else if (tok.startsWith('&')) {
+      out.push({ t: tok, c: 'entity' });
+    } else {
+      out.push({ t: tok, c: 'attr' });
+    }
+    last = match.index + tok.length;
+  }
+  if (last < line.length) out.push({ t: line.slice(last), c: 'plain' });
+  return out.length ? out : [{ t: line || ' ', c: 'plain' }];
+}
+
+// DTD files are declaration based: <!ELEMENT note (to,from)>, <!ATTLIST ... #REQUIRED>
+const DTD_TOKEN =
+  /(<!--.*?-->|<!ELEMENT|<!ATTLIST|<!ENTITY|<!NOTATION|#REQUIRED|#IMPLIED|#PCDATA|#FIXED|CDATA|EMPTY|ANY|"[^"]*"|'[^']*')/g;
+
+function tokenizeDtd(line) {
+  const out = [];
+  let last = 0;
+  let match;
+  DTD_TOKEN.lastIndex = 0;
+  while ((match = DTD_TOKEN.exec(line)) !== null) {
+    if (match.index > last) out.push({ t: line.slice(last, match.index), c: 'plain' });
+    const tok = match[0];
+    let cls;
+    if (tok.startsWith('<!--')) cls = 'comment';
+    else if (tok.startsWith('<!')) cls = 'pi';
+    else if (tok.startsWith('#')) cls = 'kw';
+    else if (/^(CDATA|EMPTY|ANY)$/.test(tok)) cls = 'kw';
+    else cls = 'str';
+    out.push({ t: tok, c: cls });
+    last = match.index + tok.length;
+  }
+  if (last < line.length) out.push({ t: line.slice(last), c: 'plain' });
+  return out.length ? out : [{ t: line || ' ', c: 'plain' }];
+}
+
+// JavaScript: keywords, strings (incl. template literals), numbers, comments and
+// library calls. `console.log(...)` gets the call name highlighted as a function.
+const JS_KEYWORDS =
+  'var|let|const|function|return|if|else|switch|case|break|continue|default|for|while|do|typeof|new|this|true|false|null|undefined|class|try|catch|finally|throw|in|of|instanceof|async|await|delete|void|yield';
+const JS_BUILTINS =
+  'console|document|window|alert|confirm|prompt|Math|Date|Number|String|Boolean|Array|Object|JSON|parseInt|parseFloat|isNaN|setTimeout|setInterval|localStorage|sessionStorage|navigator|location|history|fetch|NaN|Infinity';
+
+const JS_TOKEN = new RegExp(
+  '\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/|`[^`]*`|"[^"]*"|\'[^\']*\'|\\b\\d+(?:\\.\\d+)?\\b|\\b(?:' +
+    JS_KEYWORDS +
+    ')\\b|\\b(?:' +
+    JS_BUILTINS +
+    ')\\b|[A-Za-z_$][\\w$]*(?=\\s*\\()',
+  'g',
+);
+
+function tokenizeJs(line) {
+  const out = [];
+  let last = 0;
+  let match;
+  JS_TOKEN.lastIndex = 0;
+  while ((match = JS_TOKEN.exec(line)) !== null) {
+    if (match.index > last) out.push({ t: line.slice(last, match.index), c: 'plain' });
+    const tok = match[0];
+    let cls;
+    if (tok.startsWith('//') || tok.startsWith('/*')) cls = 'comment';
+    else if (tok.startsWith('"') || tok.startsWith("'") || tok.startsWith('`')) cls = 'str';
+    else if (/^\d/.test(tok)) cls = 'num';
+    else if (new RegExp(`^(?:${JS_KEYWORDS})$`).test(tok)) cls = 'kw';
+    else if (new RegExp(`^(?:${JS_BUILTINS})$`).test(tok)) cls = 'builtin';
+    else cls = 'fn';
+    out.push({ t: tok, c: cls });
+    last = match.index + tok.length;
+  }
+  if (last < line.length) out.push({ t: line.slice(last), c: 'plain' });
+  return out.length ? out : [{ t: line || ' ', c: 'plain' }];
+}
+
+// HTML pages that embed a <script> block: markup outside, JavaScript inside.
+function tokenizeMixed(lines) {
+  let inScript = false;
+  return lines.map((line) => {
+    if (!inScript && /<script[\s>]/i.test(line)) {
+      inScript = !/<\/script>/i.test(line);
+      return tokenizeHtml(line);
+    }
+    if (inScript) {
+      if (/<\/script>/i.test(line)) {
+        inScript = false;
+        return tokenizeHtml(line);
+      }
+      const indent = line.match(/^\s*/)[0];
+      const body = line.slice(indent.length);
+      const toks = tokenizeJs(body);
+      return indent ? [{ t: indent, c: 'plain' }, ...toks] : toks;
+    }
+    return tokenizeHtml(line);
+  });
+}
+
 function tokenizeCss(line) {
   const trimmed = line.trim();
   if (!trimmed) return [{ t: ' ', c: 'plain' }];
@@ -65,10 +188,14 @@ function tokenizeCss(line) {
 export default function CodeBlock({ code = '', language = 'html', filename, note }) {
   const [copied, setCopied] = useState(false);
   const lines = useMemo(() => code.replace(/\n$/, '').split('\n'), [code]);
-  const tokens = useMemo(
-    () => lines.map((line) => (language === 'css' ? tokenizeCss(line) : tokenizeHtml(line))),
-    [lines, language],
-  );
+  const tokens = useMemo(() => {
+    const lang = String(language).toLowerCase();
+    if (lang === 'javascript' || lang === 'js') return lines.map((line) => tokenizeJs(line));
+    if (lang === 'css') return lines.map((line) => tokenizeCss(line));
+    if (lang === 'dtd') return lines.map((line) => tokenizeDtd(line));
+    if (['xml', 'xslt', 'xsd', 'svg'].includes(lang)) return lines.map((line) => tokenizeXml(line));
+    return tokenizeMixed(lines);
+  }, [lines, language]);
 
   const copy = async () => {
     try {

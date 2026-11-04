@@ -203,8 +203,7 @@ export const webTechnologyTopicsC = [
 
 <p>Simple image with title tooltip:</p>
 <img src="campus.jpg" alt="College campus"
-     width="220" height="120" title="Main campus">
-</html>`,
+     width="220" height="120" title="Main campus">`,
         html: `<figure style="margin:0 0 12px;">
   <svg width="180" height="110" viewBox="0 0 180 110" role="img" aria-label="MCA department logo"><rect width="180" height="110" rx="10" fill="#0047ff"/><text x="90" y="58" text-anchor="middle" font-size="26" fill="#ffffff" font-family="Arial">MCA</text><text x="90" y="82" text-anchor="middle" font-size="12" fill="#c9d8ff" font-family="Arial">Department of Computer Applications</text></svg>
   <figcaption style="font-size:12px;color:#555;margin-top:4px;">MCA Department — official logo</figcaption>

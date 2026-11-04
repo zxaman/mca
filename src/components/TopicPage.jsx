@@ -183,6 +183,7 @@ function SectionRenderer({ section, index }) {
         <OutputPreview
           html={section.html}
           css={section.css}
+          script={section.script}
           height={section.height || 200}
           label={section.label || 'Browser output'}
           caption={section.caption}
@@ -207,6 +208,7 @@ function SectionRenderer({ section, index }) {
           <OutputPreview
             html={section.html}
             css={section.css}
+            script={section.script}
             height={section.height || 220}
             label={section.label || 'Output'}
             caption={section.caption}
