@@ -598,3 +598,245 @@ export function DSvsFieldsDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Diagram 11 — AI ⊃ ML ⊃ DL and how a model learns
+// ============================================================
+export function MLAIStackDiagram() {
+  const steps = [
+    { n: '1', t: 'Data collect', d: 'history · sensors · logs' },
+    { n: '2', t: 'Clean + features', d: 'missing values, encoding' },
+    { n: '3', t: 'Train / test split', d: '80% seekhne ke liye, 20% test' },
+    { n: '4', t: 'Train the algorithm', d: 'model weights adjust hote hain' },
+    { n: '5', t: 'Evaluate', d: 'accuracy, precision, recall' },
+    { n: '6', t: 'Deploy + monitor', d: 'naya data → model dobara train' },
+  ];
+  return (
+    <svg viewBox="0 0 920 480" className="diagram-svg" role="img" aria-label="Artificial intelligence contains machine learning which contains deep learning, next to the six steps of training a model">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        AI ⊃ Machine Learning ⊃ Deep Learning
+      </text>
+      <text x="460" y="44" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        har Deep Learning ek ML hai · har ML ek AI approach hai · par har AI ML nahi
+      </text>
+
+      <g className="diagram-pop">
+        <rect x="20" y="62" width="450" height="348" rx="16" fill="rgba(255,136,0,0.06)" stroke="#ff8800" strokeWidth="2" />
+        <text x="40" y="90" fill="#ff8800" fontSize="14" fontWeight="800" fontFamily={FONT}>ARTIFICIAL INTELLIGENCE</text>
+        <text x="40" y="108" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>machine ko human-like intelligence dena</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '140ms' }}>
+        <rect x="52" y="126" width="386" height="232" rx="14" fill="rgba(0,212,255,0.07)" stroke="#00d4ff" strokeWidth="1.8" />
+        <text x="70" y="152" fill="#00d4ff" fontSize="12.5" fontWeight="800" fontFamily={FONT}>MACHINE LEARNING</text>
+        <text x="70" y="170" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>data se pattern seekhna, bina explicit rules</text>
+
+        <rect x="84" y="188" width="322" height="132" rx="12" fill="rgba(196,255,0,0.07)" stroke="#c4ff00" strokeWidth="1.6" />
+        <text x="102" y="212" fill="#c4ff00" fontSize="11.5" fontWeight="800" fontFamily={FONT}>DEEP LEARNING</text>
+        <text x="102" y="232" fill="#fff" fontSize="10" fontFamily={FONT}>neural networks, 3+ hidden layers</text>
+        <text x="102" y="252" fill="#fff" fontSize="10" fontFamily={FONT}>images · speech · language · video</text>
+        <text x="102" y="274" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>bahut data + GPU chahiye</text>
+        <text x="102" y="296" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>CNN, RNN, transformers</text>
+
+        <text x="70" y="330" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>ML examples</text>
+        <text x="70" y="346" fill="#fff" fontSize="10" fontFamily={FONT}>spam filter · churn · price · clustering</text>
+      </g>
+
+      <text x="40" y="376" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>AI examples</text>
+      <text x="40" y="394" fill="#fff" fontSize="10" fontFamily={FONT}>self-driving · chatbot · game playing · robotics</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <text x="706" y="86" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>
+          ML model kaise seekhta hai
+        </text>
+        {steps.map((s, i) => {
+          const y = 100 + i * 52;
+          return (
+            <g key={s.n}>
+              <rect x="520" y={y} width="372" height="44" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.35)" strokeWidth="1.2" />
+              <circle cx="546" cy={y + 22} r="13" fill="rgba(196,255,0,0.14)" stroke="#c4ff00" strokeWidth="1.4" />
+              <text x="546" y={y + 26} textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="800" fontFamily={FONT}>{s.n}</text>
+              <text x="570" y={y + 19} fill="#fff" fontSize="11" fontWeight="700" fontFamily={FONT}>{s.t}</text>
+              <text x="570" y={y + 34} fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>{s.d}</text>
+              {i < steps.length - 1 && (
+                <line x1="706" y1={y + 44} x2="706" y2={y + 52} stroke="#00d4ff" strokeWidth="1.4" strokeOpacity="0.6" />
+              )}
+            </g>
+          );
+        })}
+        <text x="706" y="414" textAnchor="middle" fill="#c4ff00" fontSize="9.5" fontFamily={FONT}>
+          evaluate → deploy → monitor · naya data aaye to dobara step 1 (loop)
+        </text>
+      </g>
+
+      <text x="460" y="438" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        Training = data + algorithm + feedback · learning ka matlab model ke numbers (weights) data ke hisaab se badalna
+      </text>
+      <text x="460" y="462" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
+        Exam: nested circle diagram banao (AI &gt; ML &gt; DL), phir 6 steps likho
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 12 — Four roles in a data science team
+// ============================================================
+export function DSRolesDiagram() {
+  const roles = [
+    {
+      name: 'DATA ENGINEER', color: '#2f6fff', tag: 'data ko laata hai',
+      work: ['source → warehouse', 'pipelines + ETL'],
+      skills: ['SQL · Python', 'Spark · Airflow'],
+      output: 'clean, reliable data',
+    },
+    {
+      name: 'DATA ANALYST', color: '#00d4ff', tag: 'kya hua, batata hai',
+      work: ['dashboards + reports', 'trend + KPI analysis'],
+      skills: ['SQL · Excel', 'Power BI · Tableau'],
+      output: 'insight + dashboard',
+    },
+    {
+      name: 'DATA SCIENTIST', color: '#c4ff00', tag: 'kya hoga, predict karta hai',
+      work: ['experiment + model', 'statistics + ML'],
+      skills: ['Python/R · stats', 'scikit-learn · SQL'],
+      output: 'model + recommendation',
+    },
+    {
+      name: 'ML ENGINEER', color: '#ff8800', tag: 'model ko chalata hai',
+      work: ['deploy + serve model', 'monitor + retrain'],
+      skills: ['Python · Docker', 'MLOps · cloud'],
+      output: 'live prediction API',
+    },
+  ];
+  return (
+    <svg viewBox="0 0 920 480" className="diagram-svg" role="img" aria-label="Data engineer, data analyst, data scientist and machine learning engineer roles with their work, skills and output">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Data science team ke chaar roles
+      </text>
+      <text x="460" y="44" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        data → insight → model → production · ek hi project mein chaaron kaam aate hain
+      </text>
+      {roles.map((r, i) => {
+        const x = 20 + i * 226;
+        return (
+          <g key={r.name} className="diagram-pop" style={{ animationDelay: `${80 + i * 120}ms` }}>
+            <rect x={x} y="62" width="200" height="306" rx="12" fill="rgba(255,255,255,0.03)" stroke={r.color} strokeWidth="1.6" strokeOpacity="0.75" />
+            <rect x={x} y="62" width="200" height="52" rx="12" fill={r.color} fillOpacity="0.15" />
+            <text x={x + 100} y="84" textAnchor="middle" fill={r.color} fontSize="11" fontWeight="800" fontFamily={FONT}>{r.name}</text>
+            <text x={x + 100} y="101" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{r.tag}</text>
+
+            <text x={x + 14} y="136" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>KAAM</text>
+            {r.work.map((w, j) => (
+              <text key={w} x={x + 14} y={154 + j * 17} fill="#fff" fontSize="10" fontFamily={FONT}>{w}</text>
+            ))}
+
+            <text x={x + 14} y="198" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>SKILLS</text>
+            {r.skills.map((w, j) => (
+              <text key={w} x={x + 14} y={216 + j * 17} fill="#fff" fontSize="10" fontFamily={FONT}>{w}</text>
+            ))}
+
+            <line x1={x + 14} y1="252" x2={x + 186} y2="252" stroke="rgba(255,255,255,0.1)" />
+            <text x={x + 14} y="272" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>OUTPUT</text>
+            <text x={x + 14} y="291" fill={r.color} fontSize="10" fontWeight="700" fontFamily={FONT}>{r.output}</text>
+
+            <line x1={x + 14} y1="310" x2={x + 186} y2="310" stroke="rgba(255,255,255,0.1)" />
+            <text x={x + 14} y="330" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>SAWAAL</text>
+            <text x={x + 14} y="349" fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>{['kahan se aaya?', 'kya hua?', 'kya hoga?', 'chal kaise raha?'][i]}</text>
+          </g>
+        );
+      })}
+      {[1, 2, 3].map((i) => (
+        <text key={i} x={20 + i * 226 - 13} y="222" textAnchor="middle" fill="#9ab0e0" fontSize="15" fontFamily={FONT}>
+          →
+        </text>
+      ))}
+      <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Chhota team: ek data scientist chaar kaam karta hai · Bada team: roles specialised hote hain
+      </text>
+      <text x="460" y="420" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        Data Engineer banata hai · Data Analyst samajhta hai · Data Scientist model banata hai · ML Engineer chalata hai
+      </text>
+      <text x="460" y="442" textAnchor="middle" fill="#5a6a9e" fontSize="9.5" fontFamily={FONT}>
+        Exam mein table + ek project example (churn) likhna best answer hota hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 13 — Statistics as the foundation of data science
+// ============================================================
+export function StatisticsFoundationDiagram() {
+  // bottom layer first, so the pyramid is drawn widest → narrowest going up
+  const layers = [
+    { label: 'DATA + DOMAIN KNOWLEDGE', sub: 'rows, columns, business meaning', color: '#8f9dc4' },
+    { label: 'DESCRIPTIVE STATISTICS', sub: 'mean · median · σ · IQR', color: '#2f6fff' },
+    { label: 'PROBABILITY & SAMPLING', sub: 'distribution · CLT · Bayes', color: '#00d4ff' },
+    { label: 'INFERENCE & TESTING', sub: 'p-value · confidence interval', color: '#c4ff00' },
+    { label: 'PREDICTION / ML', sub: 'regression · classifiers', color: '#ff8800' },
+  ];
+  const widths = [400, 340, 280, 220, 160];
+  const use = [
+    { stage: 'Cleaning', what: 'outliers aur missing values detect karna (IQR, z-score)' },
+    { stage: 'EDA', what: 'distribution, spread aur correlation dekhna' },
+    { stage: 'Modelling', what: 'regression, assumptions, error ka matlab' },
+    { stage: 'Evaluation', what: 'p-value, confidence interval, A/B test' },
+  ];
+  return (
+    <svg viewBox="0 0 920 480" className="diagram-svg" role="img" aria-label="Statistics as the five layer foundation under data science, with the stages where each part is used">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Mathematical statistics — data science ki neev
+      </text>
+      <text x="460" y="44" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        statistics batati hai ki result bharose ke layak hai ya sirf ittefaq (chance)
+      </text>
+
+      {layers.map((l, i) => {
+        const wb = widths[i];
+        const wt = i === widths.length - 1 ? 124 : widths[i + 1];
+        const yb = 400 - i * 56;
+        const yt = yb - 56;
+        const cx = 230;
+        return (
+          <g key={l.label} className="diagram-pop" style={{ animationDelay: `${80 + i * 90}ms` }}>
+            <polygon
+              points={`${cx - wb / 2},${yb} ${cx + wb / 2},${yb} ${cx + wt / 2},${yt} ${cx - wt / 2},${yt}`}
+              fill={l.color}
+              fillOpacity="0.13"
+              stroke={l.color}
+              strokeWidth="1.6"
+              strokeOpacity="0.8"
+            />
+            <text x={cx} y={yt + 26} textAnchor="middle" fill={l.color} fontSize="10.5" fontWeight="800" fontFamily={FONT}>{l.label}</text>
+            <text x={cx} y={yt + 42} textAnchor="middle" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>{l.sub}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <text x="690" y="86" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>
+          Statistics kahan kaam aati hai
+        </text>
+        {use.map((u, i) => {
+          const y = 104 + i * 74;
+          return (
+            <g key={u.stage}>
+              <rect x="480" y={y} width="400" height="60" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.3)" strokeWidth="1.2" />
+              <rect x="480" y={y} width="4" height="60" rx="2" fill="#00d4ff" />
+              <text x="498" y={y + 24} fill="#fff" fontSize="11" fontWeight="700" fontFamily={FONT}>{u.stage}</text>
+              <text x="498" y={y + 44} fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>{u.what}</text>
+            </g>
+          );
+        })}
+      </g>
+
+      <text x="460" y="440" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontFamily={FONT}>
+        mean μ = Σx / n · standard deviation σ = √(Σ(x − μ)² / n) · z = (x − μ) / σ · p &lt; 0.05 = significant
+      </text>
+      <text x="460" y="462" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
+        ML prediction deta hai, statistics batati hai ki prediction par bharosa kitna karein
+      </text>
+    </svg>
+  );
+}
