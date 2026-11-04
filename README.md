@@ -14,14 +14,20 @@ adding a topic is just adding an object.
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 2 | 21 | Live |
-| Data Science | DS | 1 | 3 | Live — Unit I |
+| Data Science | DS | 1 | 9 | Live — Unit I |
 | Web Technology | WT | — | — | Coming soon |
 
-**Data Science (Unit I — Fundamentals of Data Science)** covers the importance of data science,
-types of data (structured, semi-structured, unstructured) and the four scales of measurement
-(nominal, ordinal, interval, ratio).
+**Data Science (Unit I — Fundamentals of Data Science)** has 9 topics: importance of data science,
+types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
+interval, ratio), data formats (CSV, JSON, XML, SQL tables), big data vs data science, the data
+science life cycle, process models (CRISP-DM, TDSP, SEMMA), applications across 10 domains, and the
+distinction between data science, BI, statistics, ML and AI.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 8 (58 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 16 (66 total).
+
+Mobile-first details: diagrams swipe horizontally inside their card (instead of being clipped),
+answer tables scroll instead of overflowing, comparison tables restack below 820 px with their
+column names, and the topic header buttons wrap on narrow screens.
 
 ## Run it
 

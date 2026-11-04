@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { units, subjects } from '../data/topics';
 import { Diagram } from './Diagrams';
+import ExamAnswer from './ExamAnswer';
 import { Icon } from './Icons';
 import { goTo } from '../utils/navigation';
 import { getCompletedTopics, toggleCompletedTopic } from '../utils/progress';
@@ -178,7 +179,7 @@ function SectionRenderer({ section, index }) {
             <div key={row.label} className="comparison-row" style={{ '--d': `${i * 60}ms` }}>
               <span className="comparison-label">{row.label}</span>
               {(row.values || []).map((v, j) => (
-                <span key={j} className="comparison-value">
+                <span key={j} className="comparison-value" data-col={columns[j] || ''}>
                   <span
                     className="comparison-dot"
                     style={{ background: row.colors?.[j] || section.columnColors?.[j] || '#0047ff' }}
@@ -194,22 +195,6 @@ function SectionRenderer({ section, index }) {
   }
 
   return null;
-}
-
-// Renders formatted exam answer text (supports **bold** markers)
-function ExamAnswer({ text }) {
-  const parts = text.split('**').filter(Boolean);
-  return (
-    <div className="exam-answer">
-      {parts.map((part, i) =>
-        i % 2 === 0 ? (
-          <span key={i}>{part}</span>
-        ) : (
-          <strong key={i}>{part}</strong>
-        )
-      )}
-    </div>
-  );
 }
 
 // ---------- Main TopicPage component ----------

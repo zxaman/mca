@@ -1,23 +1,8 @@
 import { importantQuestions } from '../data/importantQuestions';
 import { subjects } from '../data/topics';
 import { Diagram } from './Diagrams';
+import ExamAnswer from './ExamAnswer';
 import { Icon } from './Icons';
-
-// Renders formatted exam answer text (supports **bold** markers)
-function ExamAnswer({ text }) {
-  const parts = text.split('**').filter(Boolean);
-  return (
-    <div className="exam-answer">
-      {parts.map((part, i) =>
-        i % 2 === 0 ? (
-          <span key={i}>{part}</span>
-        ) : (
-          <strong key={i}>{part}</strong>
-        )
-      )}
-    </div>
-  );
-}
 
 export default function ImportantExamQuestions({ onBack, subjectId = 'business-intelligence' }) {
   const subject = subjects.find((s) => s.id === subjectId);

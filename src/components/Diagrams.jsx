@@ -75,6 +75,12 @@ import {
   DSImpactDiagram,
   DataTypesDiagram,
   MeasurementScalesDiagram,
+  DataFormatsDiagram,
+  BigDataVsDataScienceDiagram,
+  DSLifecycleDiagram,
+  CrispDmDiagram,
+  DSApplicationsDiagram,
+  DSvsFieldsDiagram,
 } from './DataScienceDiagrams';
 
 // ============================================================
@@ -718,6 +724,18 @@ export function Diagram({ type }) {
       return <DataTypesDiagram />;
     case 'measurement-scales':
       return <MeasurementScalesDiagram />;
+    case 'data-formats':
+      return <DataFormatsDiagram />;
+    case 'bigdata-vs-ds':
+      return <BigDataVsDataScienceDiagram />;
+    case 'ds-lifecycle':
+      return <DSLifecycleDiagram />;
+    case 'crisp-dm':
+      return <CrispDmDiagram />;
+    case 'ds-applications':
+      return <DSApplicationsDiagram />;
+    case 'ds-vs-fields':
+      return <DSvsFieldsDiagram />;
     default:
       return null;
   }

@@ -1,3 +1,5 @@
+import { dataScienceExtraTopics } from './dataScienceUnit1b.js';
+
 // ============================================================
 // DATA SCIENCE — Unit I: Fundamentals of Data Science
 // Syllabus covered:
@@ -102,46 +104,17 @@ export const dataScienceUnits = [
               'Chain ye hai: Data (raw events) → Information (clean aur organised) → Insight (pattern ya model) → Decision (action) → Value (revenue ya saving). Data Science beech ke steps — cleaning, modelling aur prediction — ko strong karti hai. Exam answer mein ye 5-step flow likhna bahut scoring hota hai.',
           },
           {
-            type: 'cards',
-            kicker: 'Applications',
-            title: 'Real-World Applications (Domain-wise)',
-            cards: [
-              {
-                icon: 'shield',
-                title: 'Healthcare',
-                body:
-                  'Bimari ka early prediction, X-ray/MRI images se cancer detection (computer vision), drug discovery, aur patient readmission risk scoring. Hospital ka data (unstructured reports + structured billing) dono use hote hain.',
-              },
-              {
-                icon: 'money',
-                title: 'Finance & Banking',
-                body:
-                  'Credit score aur loan default prediction, real-time fraud detection, algorithmic trading, aur UPI transaction risk scoring. RBI-regulated banks mein model explainability bhi zaroori hoti hai.',
-              },
-              {
-                icon: 'dashboard',
-                title: 'Retail & E-commerce',
-                body:
-                  'Demand forecasting, recommendation engine, dynamic pricing, inventory planning aur customer churn prediction. Flipkart/Amazon ka "aapke liye suggested" section isi ka result hai.',
-              },
-              {
-                icon: 'wrench',
-                title: 'Manufacturing',
-                body:
-                  'Predictive maintenance (machine fail hone se pehle alert), sensor data se quality inspection, energy optimization aur supply-chain planning.',
-              },
-              {
-                icon: 'globe',
-                title: 'Transport & Smart Cities',
-                body:
-                  'Traffic prediction, route optimization, ride matching (Ola/Uber), air-quality forecasting aur public-transport crowd prediction.',
-              },
-              {
-                icon: 'layers',
-                title: 'Agriculture',
-                body:
-                  'Crop yield prediction, soil health analysis, satellite images se crop damage detection aur irrigation scheduling. India jaise desh ke liye ye bahut high-impact area hai.',
-              },
+            type: 'points',
+            kicker: 'Quick Look',
+            title: 'Applications (Poora Detail Topic 1.8 Mein)',
+            points: [
+              'Healthcare — disease prediction, medical imaging, drug discovery.',
+              'Finance — credit scoring, real-time fraud detection, algorithmic trading.',
+              'Retail — recommendation engine, demand forecasting, dynamic pricing.',
+              'Manufacturing — predictive maintenance, quality inspection.',
+              'Transport — traffic prediction, route optimisation, ride matching.',
+              'Agriculture — yield prediction, satellite based crop monitoring.',
+              'Har application ka pattern same hai: data → model → decision → value.',
             ],
           },
           {
@@ -483,6 +456,7 @@ export const dataScienceUnits = [
           },
         ],
       },
+      ...dataScienceExtraTopics,
     ],
   },
 ];
