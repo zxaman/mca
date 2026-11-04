@@ -637,3 +637,280 @@ export function FramesDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Diagram 11 — HTML vs XML
+// ============================================================
+export function HtmlVsXmlDiagram() {
+  const rows = [
+    ['Purpose', 'Page dikhana', 'Data carry karna'],
+    ['Tags', 'Fixed (p, h1, table)', 'Khud banate hain (student, marks)'],
+    ['Case', 'Case-insensitive', 'Case-sensitive (Name ≠ name)'],
+    ['Closing tag', 'Optional (@ browser)', 'Zaroori — warna error'],
+    ['Errors', 'Browser ignore karta hai', 'Parser reject kar deta hai'],
+    ['Kis kaam mein', 'Website UI', 'Config, API, feed, storage'],
+  ];
+  return (
+    <svg viewBox="0 0 920 444" className="diagram-svg" role="img" aria-label="HTML compared with XML on purpose, tags, case sensitivity, closing tags and error handling">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        HTML vs XML — dono markup hain, kaam alag
+      </text>
+      <text x="460" y="45" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        HTML page dikhata hai (presentation) · XML data rakhta hai (structure)
+      </text>
+
+      <g className="diagram-pop">
+        <rect x="20" y="64" width="430" height="50" rx="10" fill="rgba(0,212,255,0.14)" stroke="#00d4ff" strokeWidth="1.8" />
+        <text x="235" y="95" textAnchor="middle" fill="#00d4ff" fontSize="13" fontWeight="800" fontFamily={FONT}>HTML</text>
+      </g>
+      <g className="diagram-pop" style={{ animationDelay: '120ms' }}>
+        <rect x="470" y="64" width="430" height="50" rx="10" fill="rgba(196,255,0,0.12)" stroke="#c4ff00" strokeWidth="1.8" />
+        <text x="685" y="95" textAnchor="middle" fill="#c4ff00" fontSize="13" fontWeight="800" fontFamily={FONT}>XML</text>
+      </g>
+
+      {rows.map(([k, a, b], i) => (
+        <g key={k} className="diagram-pop" style={{ animationDelay: `${160 + i * 70}ms` }}>
+          <text x="34" y={144 + i * 46} fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>{k.toUpperCase()}</text>
+          <rect x="20" y={152 + i * 46} width="430" height="26" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.25)" />
+          <text x="36" y={170 + i * 46} fill="#dbe6ff" fontSize="10" fontFamily={FONT}>{a}</text>
+          <rect x="470" y={152 + i * 46} width="430" height="26" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.25)" />
+          <text x="486" y={170 + i * 46} fill="#dbe6ff" fontSize="10" fontFamily={FONT}>{b}</text>
+        </g>
+      ))}
+
+      <text x="460" y="430" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        XML = data + meaning · HTML = data + look · XHTML dono ka mix tha, HTML5 ne usse replace kiya
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 12 — XML document as a tree
+// ============================================================
+export function XmlTreeDiagram() {
+  const leaf = (x, y, w, label, sub, color) => (
+    <g>
+      <rect x={x} y={y} width={w} height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke={color} strokeWidth="1.2" strokeOpacity="0.55" />
+      <text x={x + 12} y={y + 17} fill={color} fontSize="10" fontWeight="700" fontFamily="'Consolas', monospace">{label}</text>
+      <text x={x + 12} y={y + 32} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{sub}</text>
+    </g>
+  );
+  return (
+    <svg viewBox="0 0 920 450" className="diagram-svg" role="img" aria-label="An XML document shown as a tree with prolog, root element, child elements, attributes and text nodes">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        XML document = ek tree
+      </text>
+      <text x="460" y="45" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        ek root · uske andar elements · elements ke andar text, attributes aur comments
+      </text>
+
+      <g className="diagram-pop">
+        <rect x="330" y="62" width="260" height="36" rx="8" fill="rgba(111,178,255,0.14)" stroke="#6fb2ff" strokeWidth="1.4" />
+        <text x="460" y="85" textAnchor="middle" fill="#6fb2ff" fontSize="10.5" fontWeight="700" fontFamily="'Consolas', monospace">
+          &lt;?xml version=&quot;1.0&quot;?&gt;
+        </text>
+        <text x="620" y="85" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>← prolog (optional)</text>
+
+        <rect x="330" y="116" width="260" height="38" rx="8" fill="rgba(196,255,0,0.12)" stroke="#c4ff00" strokeWidth="1.8" />
+        <text x="460" y="141" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="800" fontFamily="'Consolas', monospace">
+          &lt;college&gt; &nbsp;— root element
+        </text>
+      </g>
+
+      <line x1="460" y1="98" x2="460" y2="116" stroke="#9ab0e0" strokeWidth="1.3" strokeOpacity="0.6" />
+      <path d="M 460 154 V 194" fill="none" stroke="#9ab0e0" strokeWidth="1.3" strokeOpacity="0.55" />
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="180" y="194" width="280" height="38" rx="8" fill="rgba(0,212,255,0.1)" stroke="#00d4ff" strokeWidth="1.4" />
+        <text x="320" y="219" textAnchor="middle" fill="#00d4ff" fontSize="10.5" fontWeight="700" fontFamily="'Consolas', monospace">
+          &lt;student id=&quot;1&quot;&gt;
+        </text>
+        <text x="470" y="212" fill="#ff8800" fontSize="9" fontFamily={FONT}>attribute</text>
+        <text x="470" y="224" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>id=&quot;1&quot;</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
+        {leaf(180, 250, 280, '<name>Riya Sharma</name>', 'text node', '#c4ff00')}
+        {leaf(180, 300, 280, '<course>MCA</course>', 'text node', '#c4ff00')}
+        {leaf(180, 350, 280, '<marks>78</marks>', 'text node', '#c4ff00')}
+        <text x="320" y="414" textAnchor="middle" fill="#00d4ff" fontSize="10" fontWeight="700" fontFamily="'Consolas', monospace">&lt;/student&gt;</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="560" y="196" width="320" height="172" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="720" y="220" textAnchor="middle" fill="#fff" fontSize="10.5" fontWeight="800" fontFamily={FONT}>Node types</text>
+        {[
+          ['Element', '<student>', '#00d4ff'],
+          ['Attribute', 'id="1"', '#ff8800'],
+          ['Text', 'Riya Sharma', '#c4ff00'],
+          ['Comment', '<!-- note -->', '#5a6a9e'],
+          ['CDATA', '<![CDATA[ <b> ]]>', '#8fd694'],
+        ].map(([n, ex, c], i) => (
+          <g key={n}>
+            <circle cx="586" cy={248 + i * 24} r="3" fill={c} />
+            <text x="598" y={252 + i * 24} fill={c} fontSize="9.5" fontWeight="700" fontFamily={FONT}>{n}</text>
+            <text x="660" y={252 + i * 24} fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{ex}</text>
+          </g>
+        ))}
+      </g>
+
+      <text x="460" y="436" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Well-formed rules: ek root · tags properly band · case match · attribute quotes mein
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 13 — DTD / XSD validation
+// ============================================================
+export function DtdVsXsdDiagram() {
+  return (
+    <svg viewBox="0 0 920 440" className="diagram-svg" role="img" aria-label="An XML document validated against a DTD or an XML Schema, producing valid or invalid results, with a comparison of DTD and XSD">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        DTD / XML Schema — document valid hai ya nahi
+      </text>
+      <text x="460" y="45" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        well-formed = syntax sahi · valid = grammar (DTD/Schema) ke hisaab se bhi sahi
+      </text>
+
+      <g className="diagram-pop">
+        <rect x="20" y="80" width="200" height="120" rx="12" fill="rgba(0,212,255,0.08)" stroke="#00d4ff" strokeWidth="1.6" />
+        <text x="120" y="106" textAnchor="middle" fill="#00d4ff" fontSize="11" fontWeight="800" fontFamily={FONT}>XML INSTANCE</text>
+        <text x="36" y="130" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;student&gt;</text>
+        <text x="46" y="146" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;name&gt;Riya&lt;/name&gt;</text>
+        <text x="46" y="162" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;marks&gt;78&lt;/marks&gt;</text>
+        <text x="36" y="178" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;/student&gt;</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '140ms' }}>
+        <rect x="290" y="62" width="200" height="72" rx="12" fill="rgba(196,255,0,0.08)" stroke="#c4ff00" strokeWidth="1.6" />
+        <text x="390" y="86" textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="800" fontFamily={FONT}>DTD</text>
+        <text x="390" y="106" textAnchor="middle" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;!ELEMENT student (name, marks)&gt;</text>
+        <text x="390" y="122" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>syntax: non-XML, simple</text>
+
+        <rect x="290" y="148" width="200" height="72" rx="12" fill="rgba(255,136,0,0.08)" stroke="#ff8800" strokeWidth="1.6" />
+        <text x="390" y="172" textAnchor="middle" fill="#ff8800" fontSize="11" fontWeight="800" fontFamily={FONT}>XML SCHEMA (XSD)</text>
+        <text x="390" y="192" textAnchor="middle" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;xs:element name=&quot;student&quot;</text>
+        <text x="390" y="208" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>typed: int, date, minLength</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="540" y="98" width="130" height="86" rx="12" fill="rgba(0,71,255,0.12)" stroke="#2f6fff" strokeWidth="1.6" />
+        <text x="605" y="128" textAnchor="middle" fill="#6fb2ff" fontSize="10.5" fontWeight="800" fontFamily={FONT}>VALIDATOR</text>
+        <text x="605" y="146" textAnchor="middle" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>(parser)</text>
+        <text x="605" y="164" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>structure check</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="720" y="70" width="180" height="56" rx="10" fill="rgba(0,255,136,0.1)" stroke="#00ff88" strokeWidth="1.5" />
+        <text x="810" y="94" textAnchor="middle" fill="#00ff88" fontSize="10.5" fontWeight="800" fontFamily={FONT}>✓ VALID</text>
+        <text x="810" y="112" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>sab elements allowed hain</text>
+
+        <rect x="720" y="156" width="180" height="56" rx="10" fill="rgba(255,95,87,0.12)" stroke="#ff5f57" strokeWidth="1.5" />
+        <text x="810" y="180" textAnchor="middle" fill="#ff5f57" fontSize="10.5" fontWeight="800" fontFamily={FONT}>✗ INVALID</text>
+        <text x="810" y="198" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>galat order / missing / wrong type</text>
+      </g>
+
+      <path d="M 220 120 H 288" fill="none" stroke="#00d4ff" strokeWidth="1.4" strokeOpacity="0.7" />
+      <path d="M 220 160 H 256 V 208 H 288" fill="none" stroke="#00d4ff" strokeWidth="1.4" strokeOpacity="0.7" />
+      <path d="M 490 98 H 538" fill="none" stroke="#c4ff00" strokeWidth="1.4" strokeOpacity="0.7" />
+      <path d="M 490 184 H 514 V 146 H 538" fill="none" stroke="#ff8800" strokeWidth="1.4" strokeOpacity="0.7" />
+      <path d="M 670 128 H 718" fill="none" stroke="#00ff88" strokeWidth="1.5" strokeOpacity="0.8" />
+      <path d="M 670 166 H 700 V 184 H 718" fill="none" stroke="#ff5f57" strokeWidth="1.5" strokeOpacity="0.8" />
+
+      <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
+        <rect x="20" y="250" width="880" height="150" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" />
+        <text x="40" y="274" fill="#fff" fontSize="11" fontWeight="800" fontFamily={FONT}>DTD vs XML Schema</text>
+        {[
+          ['Syntax', 'Non-XML (apni language)', 'XML jaisa (xs: tags)'],
+          ['Data types', 'Nahi — sirf structure', 'Haan — int, date, decimal'],
+          ['Namespaces', 'Nahi', 'Haan, supported'],
+          ['Reusability', 'Kam', 'Import + extend'],
+          ['Constraint', 'Basic (#REQUIRED, #PCDATA)', 'Range, pattern, minLength'],
+        ].map(([k, a, b], i) => (
+          <g key={k}>
+            <text x="40" y={298 + i * 22} fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>{k}</text>
+            <text x="200" y={298 + i * 22} fill="#c4ff00" fontSize="9" fontFamily={FONT}>{a}</text>
+            <text x="520" y={298 + i * 22} fill="#ff8800" fontSize="9" fontFamily={FONT}>{b}</text>
+          </g>
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 14 — XSLT transformation pipeline
+// ============================================================
+export function XsltPipelineDiagram() {
+  return (
+    <svg viewBox="0 0 920 430" className="diagram-svg" role="img" aria-label="An XML source and an XSLT stylesheet going into an XSLT processor, which outputs HTML">
+      <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        XSLT — XML ko HTML mein badalna
+      </text>
+      <text x="460" y="45" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        XML = data · XSLT = rules (template) · processor = machine · output = HTML page
+      </text>
+
+      <g className="diagram-pop">
+        <rect x="20" y="70" width="210" height="120" rx="12" fill="rgba(0,212,255,0.08)" stroke="#00d4ff" strokeWidth="1.6" />
+        <text x="125" y="94" textAnchor="middle" fill="#00d4ff" fontSize="10.5" fontWeight="800" fontFamily={FONT}>books.xml</text>
+        <text x="34" y="116" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;books&gt;</text>
+        <text x="44" y="132" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;book&gt;</text>
+        <text x="54" y="148" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;title&gt;MCA Notes&lt;/title&gt;</text>
+        <text x="54" y="164" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;price&gt;450&lt;/price&gt;</text>
+        <text x="34" y="182" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;/books&gt;</text>
+
+        <rect x="20" y="206" width="210" height="118" rx="12" fill="rgba(196,255,0,0.08)" stroke="#c4ff00" strokeWidth="1.6" />
+        <text x="125" y="230" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="800" fontFamily={FONT}>books.xsl</text>
+        <text x="34" y="252" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;xsl:template match=&quot;/&quot;&gt;</text>
+        <text x="44" y="268" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;h1&gt;Book List&lt;/h1&gt;</text>
+        <text x="44" y="284" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;xsl:for-each select=&quot;book&quot;&gt;</text>
+        <text x="54" y="300" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;xsl:value-of select=&quot;title&quot;/&gt;</text>
+        <text x="34" y="316" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;/xsl:template&gt;</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="300" y="120" width="180" height="132" rx="14" fill="rgba(0,71,255,0.14)" stroke="#2f6fff" strokeWidth="1.8" />
+        <text x="390" y="152" textAnchor="middle" fill="#6fb2ff" fontSize="11" fontWeight="800" fontFamily={FONT}>XSLT</text>
+        <text x="390" y="172" textAnchor="middle" fill="#6fb2ff" fontSize="11" fontWeight="800" fontFamily={FONT}>PROCESSOR</text>
+        <text x="390" y="196" textAnchor="middle" fill="#fff" fontSize="9" fontFamily={FONT}>XPath se match</text>
+        <text x="390" y="212" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>template apply</text>
+        <text x="390" y="232" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>browser / libxslt</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="560" y="96" width="340" height="230" rx="12" fill="#f7f9ff" stroke="#00c46a" strokeWidth="1.6" />
+        <rect x="560" y="96" width="340" height="28" rx="12" fill="#d8f5e6" />
+        <rect x="560" y="112" width="340" height="12" fill="#d8f5e6" />
+        <text x="726" y="115" textAnchor="middle" fill="#0a7d4f" fontSize="9.5" fontWeight="700" fontFamily={FONT}>output.html (browser mein)</text>
+
+        <text x="580" y="156" fill="#12203d" fontSize="15" fontWeight="800" fontFamily={FONT}>Book List</text>
+        <rect x="580" y="168" width="300" height="30" rx="5" fill="#ffffff" stroke="#b9c8e8" />
+        <text x="590" y="188" fill="#22314f" fontSize="9.5" fontFamily={FONT}>MCA Notes — 450</text>
+        <rect x="580" y="204" width="300" height="30" rx="5" fill="#ffffff" stroke="#b9c8e8" />
+        <text x="590" y="224" fill="#22314f" fontSize="9.5" fontFamily={FONT}>Web Technology — 380</text>
+        <rect x="580" y="240" width="300" height="30" rx="5" fill="#ffffff" stroke="#b9c8e8" />
+        <text x="590" y="260" fill="#22314f" fontSize="9.5" fontFamily={FONT}>Data Science — 520</text>
+        <text x="580" y="300" fill="#5b6b8c" fontSize="8.5" fontFamily={FONT}>XML ka data yahan HTML list ban gaya</text>
+      </g>
+
+      <path d="M 230 130 H 298" fill="none" stroke="#00d4ff" strokeWidth="1.5" strokeOpacity="0.8" />
+      <path d="M 230 262 H 266 V 200 H 298" fill="none" stroke="#c4ff00" strokeWidth="1.5" strokeOpacity="0.8" />
+      <path d="M 480 186 H 558" fill="none" stroke="#00ff88" strokeWidth="1.6" strokeOpacity="0.85" />
+      <path d="M 558 186 L 548 181 M 558 186 L 548 191" fill="none" stroke="#00ff88" strokeWidth="1.6" />
+
+      <text x="460" y="356" textAnchor="middle" fill="#c9d8ff" fontSize="9.5" fontFamily="'Consolas', monospace">
+        &lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;books.xsl&quot;?&gt;
+      </text>
+      <text x="460" y="382" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        XSLT = XSL Transformations · XPath se data chunte hain · template output banate hain
+      </text>
+      <text x="460" y="406" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
+        XSL = XSLT + XPath + XSL-FO (printing ke liye) — teeno alag specs hain
+      </text>
+    </svg>
+  );
+}

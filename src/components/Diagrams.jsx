@@ -96,6 +96,10 @@ import {
   CssSelectorsDiagram,
   HtmlVsHtml5Diagram,
   FramesDiagram,
+  HtmlVsXmlDiagram,
+  XmlTreeDiagram,
+  DtdVsXsdDiagram,
+  XsltPipelineDiagram,
 } from './WebDiagrams';
 
 // ============================================================
@@ -777,6 +781,14 @@ export function Diagram({ type }) {
       return <HtmlVsHtml5Diagram />;
     case 'frames-layout':
       return <FramesDiagram />;
+    case 'html-vs-xml':
+      return <HtmlVsXmlDiagram />;
+    case 'xml-tree':
+      return <XmlTreeDiagram />;
+    case 'dtd-vs-xsd':
+      return <DtdVsXsdDiagram />;
+    case 'xslt-pipeline':
+      return <XsltPipelineDiagram />;
     default:
       return null;
   }

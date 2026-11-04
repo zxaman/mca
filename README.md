@@ -15,7 +15,7 @@ adding a topic is just adding an object.
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 2 | 21 | Live |
 | Data Science | DS | 1 | 12 | Live — Unit I |
-| Web Technology | WT | 1 | 15 | Live — Unit I (code + live output) |
+| Web Technology | WT | 1 | 19 | Live — Unit I (code + live output) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -26,14 +26,17 @@ intelligence (AI ⊃ ML ⊃ DL, the three learning types, the 6-step training lo
 science team (data analyst, data scientist, data engineer, ML engineer), and the importance of
 mathematical statistics (descriptive, probability, inference, regression).
 
-**Web Technology (Unit I — HTML and XML)** has 15 topics: introduction to web technology, internet
+**Web Technology (Unit I — HTML and XML)** has 19 topics: introduction to web technology, internet
 and WWW, web servers, website planning and design issues, structure of an HTML document, headings /
 paragraphs / line breaks, colours and fonts, links, frames, lists, tables, images, forms, HTML vs
-HTML5, and CSS (style sheets, three insertion methods, selectors). Every topic ships real code with
-its **live browser output** rendered in a sandboxed iframe, so the code and the result sit side by
-side; concepts that are not visual (architecture, servers, planning, structures) carry an SVG diagram.
+HTML5, CSS (style sheets, three insertion methods, selectors), and the XML half — introduction to
+XML with its features and applications, XML components (elements, attributes, comments, CDATA),
+DTD and XML Schema validation, XML namespaces, and XSLT transformation. Every topic ships real code
+with its **live browser output** rendered in a sandboxed iframe, so the code and the result sit side
+by side; concepts that are not visual (architecture, servers, planning, structures, XML trees,
+validation, transformation pipelines) carry an SVG diagram.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 15 (89 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 22 (96 total).
 
 Mobile-first details: diagrams swipe horizontally inside their card (instead of being clipped),
 answer tables scroll instead of overflowing, comparison tables restack below 820 px with their
@@ -56,18 +59,25 @@ src/
 │                              # + Home, SubjectCard, UnitPage
 ├── components/
 │   ├── TopicPage.jsx          # topic reader: renders every section type
+│   ├── CodeBlock.jsx          # syntax highlighting + copy (html/css/xml/dtd/xsd/xslt)
+│   ├── OutputPreview.jsx      # sandboxed iframe that runs the code's output
+│   ├── ExamAnswer.jsx         # **bold**, pipe tables and fenced code in answers
 │   ├── ImportantExamQuestions.jsx
 │   ├── Sidebar.jsx            # shared subject → unit → topic navigation
 │   ├── Icons.jsx              # stroke icon set
 │   └── Diagrams.jsx           # <Diagram type="…" /> switch over all diagrams
 │       ├── CyberDiagrams.jsx
 │       ├── SoftwareTestingDiagrams.jsx
-│       └── DataScienceDiagrams.jsx
+│       ├── DataScienceDiagrams.jsx
+│       └── WebDiagrams.jsx
 ├── data/
-│   ├── topics.js              # subjects + units (BI / Cyber / STQA)
+│   ├── topics.js              # subjects + units (BI / Cyber / STQA / DS / WT)
 │   ├── dataScience.js         # Data Science units (imported into topics.js)
+│   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
+│   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
-│   └── dataScienceQuestions.js
+│   ├── dataScienceQuestions.js
+│   └── webTechnologyQuestions.js
 └── utils/
     ├── progress.js            # completed topics in localStorage
     └── navigation.js          # hash navigation helper
