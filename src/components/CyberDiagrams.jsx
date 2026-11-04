@@ -1,5 +1,3 @@
-import React from 'react';
-
 // ============================================================
 // Cyber Security Unit 1 — 16 SVG diagrams
 // Theme: midnight black bg, cobalt blue accents, acid lime highlights

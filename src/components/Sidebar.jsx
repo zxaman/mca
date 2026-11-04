@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { subjects, units } from '../data/topics';
 import { Icon } from './Icons';
 import { getCompletedTopics } from '../utils/progress';
-
-// AppSidebar — Compatibility wrapper for TopicPage
-// Returns null since the common sidebar is rendered by App.jsx
-export function AppSidebar({ currentTopicId, onOpenTopic, completed, mobileOpen }) {
-  return null;
-}
 
 export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicId, onNavigate, onClose, mobileOpen }) {
   const [expandedSubjects, setExpandedSubjects] = useState({
@@ -140,7 +134,7 @@ export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicI
       </div>
 
       <div className="sidebar-footer">
-        <span>5 Subjects · All Units & Topics</span>
+        <span>{subjects.length} Subjects · All Units & Topics</span>
       </div>
     </aside>
   );

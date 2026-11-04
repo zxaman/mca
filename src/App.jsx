@@ -1,11 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { subjects, units } from './data/topics';
 import TopicPage from './components/TopicPage';
 import ImportantExamQuestions from './components/ImportantExamQuestions';
 import Sidebar from './components/Sidebar';
 import { Icon } from './components/Icons';
 import { getCompletedTopics } from './utils/progress';
+import { goTo } from './utils/navigation';
 import './App.css';
+
+// Icon shown on each subject card
+const SUBJECT_ICONS = {
+  'business-intelligence': 'chart',
+  'cyber-security': 'shield',
+  'software-testing': 'test',
+  'data-science': 'scatter',
+};
+
+// All topics of a subject, flattened across its units
+function subjectTopics(subjectId) {
+  return (units[subjectId] || []).flatMap((unit) => unit.topics || []);
+}
+
+// Topic ids the student has finished, limited to one subject
+function completedInSubject(subjectId) {
+  const ids = subjectTopics(subjectId).map((topic) => topic.id);
+  return getCompletedTopics().filter((id) => ids.includes(id));
+}
 
 // ---------- Hash router helpers ----------
 function parseRoute() {
@@ -31,7 +51,7 @@ function SubjectCard({ subject }) {
       <article className="subject-card coming-soon" style={{ '--accent': subject.color }}>
         <div className="subject-card-head">
           <span className="subject-card-icon">
-            <Icon name="book" size={32} color="#5a6a9e" />
+            <Icon name={SUBJECT_ICONS[subject.id] || 'book'} size={32} color="#5a6a9e" />
           </span>
           <span className="subject-card-code">{subject.code}</span>
         </div>
@@ -40,13 +60,13 @@ function SubjectCard({ subject }) {
       </article>
     );
   }
-  const biTopics = units['business-intelligence'][0].topics;
-  const doneCount = getCompletedTopics().filter((id) => biTopics.some((t) => t.id === id)).length;
+  const topics = subjectTopics(subject.id);
+  const doneCount = completedInSubject(subject.id).length;
   return (
     <article className="subject-card" style={{ '--accent': subject.color }}>
       <div className="subject-card-head">
         <span className="subject-card-icon">
-          <Icon name="chart" size={32} />
+          <Icon name={SUBJECT_ICONS[subject.id] || 'book'} size={32} />
         </span>
         <span className="subject-card-code">{subject.code}</span>
       </div>
@@ -54,12 +74,12 @@ function SubjectCard({ subject }) {
       <p className="subject-card-desc">{subject.description}</p>
       {doneCount > 0 && (
         <p className="subject-progress">
-          ✓ {doneCount} of {biTopics.length} topics completed
+          ✓ {doneCount} of {topics.length} topics completed
         </p>
       )}
       <button
         className="subject-card-cta"
-        onClick={() => (window.location.hash = `#/subject/${subject.id}`)}
+        onClick={() => goTo(`#/subject/${subject.id}`)}
       >
         Explore Units <Icon name="arrow" size={16} color="#c4ff00" />
       </button>
@@ -72,7 +92,7 @@ function UnitPage({ subject, onBack }) {
   const subjectUnits = units[subject.id] || [];
   const completed = getCompletedTopics();
   const openTopic = (topicId) => {
-    window.location.hash = `#/subject/${subject.id}/topic/${topicId}`;
+    goTo(`#/subject/${subject.id}/topic/${topicId}`);
   };
   return (
     <>
@@ -128,7 +148,7 @@ function UnitPage({ subject, onBack }) {
         <div style={{ marginTop: '32px', textAlign: 'center' }}>
           <button
             className="btn primary exam-cta"
-            onClick={() => window.location.hash = `#/subject/${subject.id}/exam`}
+            onClick={() => goTo(`#/subject/${subject.id}/exam`)}
           >
             <Icon name="quiz" size={20} color="#0a0e1a" />
             🔥 Important 6-Mark Exam Questions
@@ -141,8 +161,18 @@ function UnitPage({ subject, onBack }) {
 
 // ---------- Home ----------
 function Home() {
-  const biTopics = units['business-intelligence'][0].topics;
-  const doneCount = getCompletedTopics().filter((id) => biTopics.some((t) => t.id === id)).length;
+  const liveSubjects = subjects.filter((subject) => subject.available);
+  const totalUnits = liveSubjects.reduce((sum, subject) => sum + (units[subject.id] || []).length, 0);
+  const allTopics = liveSubjects.flatMap((subject) => subjectTopics(subject.id));
+  const diagramCount = liveSubjects.reduce(
+    (sum, subject) => sum
+      + subjectTopics(subject.id).reduce(
+        (n, topic) => n + (topic.sections || []).filter((section) => section.type === 'diagram').length,
+        0,
+      ),
+    0,
+  );
+  const doneCount = getCompletedTopics().filter((id) => allTopics.some((topic) => topic.id === id)).length;
   return (
     <div className="home">
       <div className="bg-orbs">
@@ -157,18 +187,18 @@ function Home() {
             <span className="hero-badge-dot" /> MCA Study Companion
           </div>
           <h1 className="hero-title">
-            Business Intelligence
+            MCA Exam Notes
             <span className="hero-title-accent">Hinglish Mein</span>
           </h1>
           <p className="hero-sub">
-            5 subjects · Unit 1 BI topics — simple Hinglish explanations, official English definitions,
-            animated exam diagrams, real reference images aur 6-mark exam questions.
+            {liveSubjects.length} subjects ke live units — simple Hinglish explanations, official English
+            definitions, animated exam diagrams, real reference images aur 6-mark exam questions.
           </p>
           <div className="hero-meta">
-            <span>📚 5 Subjects</span>
-            <span>📖 Unit 1 · 8 Topics</span>
-            <span>🖼️ 11 Animated Diagrams</span>
-            <span>✓ {doneCount} of {biTopics.length} completed</span>
+            <span>📚 {liveSubjects.length} Subjects</span>
+            <span>📖 {totalUnits} Units · {allTopics.length} Topics</span>
+            <span>🖼️ {diagramCount} Animated Diagrams</span>
+            <span>✓ {doneCount} of {allTopics.length} completed</span>
           </div>
         </div>
       </header>
@@ -202,18 +232,18 @@ export default function App() {
   }, []);
 
   const goHome = () => {
-    window.location.hash = '#/';
+    goTo('#/');
     setSidebarOpen(false);
   };
 
   const openSubject = (subjectId) => {
-    window.location.hash = `#/subject/${subjectId}`;
+    goTo(`#/subject/${subjectId}`);
     setSidebarOpen(false);
   };
 
   const openTopic = (topicId) => {
     const subjectId = route.subjectId || 'business-intelligence';
-    window.location.hash = `#/subject/${subjectId}/topic/${topicId}`;
+    goTo(`#/subject/${subjectId}/topic/${topicId}`);
     setSidebarOpen(false);
   };
 
@@ -225,7 +255,7 @@ export default function App() {
     } else if (level === 'topic') {
       openTopic(extra.topicId);
     } else if (level === 'exam') {
-      window.location.hash = `#/subject/${extra.subjectId}/exam`;
+      goTo(`#/subject/${extra.subjectId}/exam`);
       setSidebarOpen(false);
     }
   };
@@ -286,7 +316,7 @@ export default function App() {
         <nav className="topnav">
           <div className="container nav-inner">
             <span className="brand" onClick={goHome} style={{ cursor: 'pointer', marginLeft: '32px' }}>
-              <span className="brand-dot" /> BI · Hinglish Study
+              <span className="brand-dot" /> MCA · Hinglish Study
             </span>
             <button className="nav-home" onClick={goHome}>Home</button>
           </div>

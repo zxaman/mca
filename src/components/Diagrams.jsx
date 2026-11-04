@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   CyberFrameworkDiagram,
   CyberspaceLayersDiagram,
@@ -70,6 +69,13 @@ import {
   TestPlanAndTestCasesOverviewDiagram,
   DefectManagementOverviewDiagram,
 } from './SoftwareTestingDiagrams';
+
+import {
+  DSVennDiagram,
+  DSImpactDiagram,
+  DataTypesDiagram,
+  MeasurementScalesDiagram,
+} from './DataScienceDiagrams';
 
 // ============================================================
 // Improved, properly-labelled SVG diagrams
@@ -630,8 +636,6 @@ export function Diagram({ type }) {
       return <CyberStalkingDiagram />;
     case 'software-piracy':
       return <SoftwarePiracyDiagram />;
-    case 'cyber-terrorism':
-      return <CyberTerrorismDiagram />;
     case 'phishing':
       return <PhishingDiagram />;
     case 'computer-hacking':
@@ -706,6 +710,14 @@ export function Diagram({ type }) {
       return <TestPlanAndTestCasesOverviewDiagram />;
     case 'defect-management-overview':
       return <DefectManagementOverviewDiagram />;
+    case 'ds-venn':
+      return <DSVennDiagram />;
+    case 'ds-impact':
+      return <DSImpactDiagram />;
+    case 'data-types':
+      return <DataTypesDiagram />;
+    case 'measurement-scales':
+      return <MeasurementScalesDiagram />;
     default:
       return null;
   }

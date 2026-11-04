@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Simple stroke icons for topic cards / component cards
 export function Icon({ name, size = 28, color = '#c4ff00' }) {
   const icons = {
@@ -42,6 +40,43 @@ export function Icon({ name, size = 28, color = '#c4ff00' }) {
     server: 'M3 4h18v6H3zM3 14h18v6H3zM7 7h.01M7 17h.01',
     users: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
     globe: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 0c2.5 2.5 2.5 17.5 0 20M12 2c-2.5 2.5-2.5 17.5 0 20M2 12h20',
+    bookmark: 'M6 3h12v18l-6-4-6 4V3z',
+    chevron: 'M6 9l6 6 6-6',
+    table: 'M3 4h18v16H3zM3 10h18M3 15h18M9 10v10M15 10v10',
+    ruler: 'M3 15L15 3l6 6L9 21zM7 11l2 2M10 8l2 2M13 5l2 2',
+    tag: 'M20 12l-8 8-9-9V3h8l9 9zM7.5 7.5h.01',
+    code: 'M8 6l-5 6 5 6M16 6l5 6-5 6',
+    eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+    network: 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM5 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm14 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM12 9v3m0 0l-5 5m5-5l5 5',
+    flow: 'M3 4h7v5H3zM14 15h7v5h-7zM6.5 9v4a2 2 0 0 0 2 2H14',
+    list: 'M8 6h13M8 12h13M8 18h13M4 6h.01M4 12h.01M4 18h.01',
+    user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-7 9a7 7 0 0 1 14 0',
+    target: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z',
+    calendar: 'M4 5h16v16H4zM4 10h16M8 3v4M16 3v4',
+    money: 'M3 6h18v12H3zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+    trophy: 'M8 4h8v6a4 4 0 0 1-8 0V4zM8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M10 20h4M12 14v6',
+    test: 'M9 3h6M10 3v7L5.5 19.2A1.8 1.8 0 0 0 7 22h10a1.8 1.8 0 0 0 1.5-2.8L14 10V3',
+    doc: 'M6 2h8l4 4v16H6zM14 2v4h4M9 13h6M9 17h6',
+    design: 'M3 21l4-1 11-11-3-3L4 17l-1 4zM14 6l3 3',
+    speed: 'M4 18a8 8 0 1 1 16 0M12 14l4-4',
+    wrench: 'M14 6a4 4 0 0 1 5 5l-9 9-5-5 9-9zM15 5h4v4',
+    expand: 'M4 9V4h5M20 15v5h-5M4 15v5h5M20 9V4h-5',
+    down: 'M12 3v14m-6-6l6 6 6-6M4 21h16',
+    refresh: 'M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4',
+    loop: 'M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3',
+    fish: 'M2 12h11m0 0l-3-3m3 3l-3 3M13 12h9M17 8v8',
+    scatter: 'M4 20V4M4 20h16M8 16h.01M11 9h.01M15 13h.01M18 6h.01',
+    performance: 'M4 18a8 8 0 1 1 16 0M6 12l4 4 3-5 3 3',
+    security: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4zM9 12l2 2 4-4',
+    flag: 'M5 21V3m0 0h9l-1.5 4H21l-2 4 2 4H5',
+    grid: 'M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z',
+    briefcase: 'M3 8h18v12H3zM9 8V5h6v3M3 13h18',
+    tools: 'M3 21l6-6M6 3l3 3-3 3-3-3zM18 3l3 3-3 3-3-3zM10 14l4-4 4 4-4 4z',
+    trends: 'M3 17l6-6 4 4 8-9M15 6h6v6',
+    metrics: 'M4 20V10M10 20V4M16 20v-7M22 20H2',
+    bug: 'M8 8a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V8zM4 10h4M16 10h4M4 16h4M16 16h4M9 4l1 2M15 4l-1 2',
+    alert: 'M12 3l9 16H3l9-16zm0 5v5m0 3v.5',
+    dollar: 'M12 2v20M17 6a4 4 0 0 0-4-2h-2a4 4 0 0 0 0 8h2a4 4 0 0 1 0 8H9a4 4 0 0 1-4-2',
   };
   return (
     <svg

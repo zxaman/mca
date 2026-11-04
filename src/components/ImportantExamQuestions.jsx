@@ -1,5 +1,5 @@
-import React from 'react';
 import { importantQuestions } from '../data/importantQuestions';
+import { subjects } from '../data/topics';
 import { Diagram } from './Diagrams';
 import { Icon } from './Icons';
 
@@ -20,11 +20,23 @@ function ExamAnswer({ text }) {
 }
 
 export default function ImportantExamQuestions({ onBack, subjectId = 'business-intelligence' }) {
-  const isCyber = subjectId === 'cyber-security';
-  const subjectLabel = isCyber ? 'Cyber Security' : 'Business Intelligence';
-  const questions = importantQuestions.filter((q) => q.subjectId === subjectId || (subjectId === 'business-intelligence' && !q.subjectId));
+  const subject = subjects.find((s) => s.id === subjectId);
+  const subjectLabel = subject?.name || 'Business Intelligence';
+  const questions = importantQuestions.filter(
+    (q) => (q.subjectId || 'business-intelligence') === subjectId,
+  );
   const count = questions.length;
   const diagramCount = questions.filter((q) => q.diagram).length;
+
+  // Units covered by this subject's question bank ("1" from topicNumber "1.2" when missing)
+  const unitNumbers = [
+    ...new Set(
+      questions
+        .map((q) => q.unit || q.topicNumber?.split('.')[0])
+        .filter(Boolean),
+    ),
+  ].sort();
+  const unitLabel = unitNumbers.length > 1 ? `Units ${unitNumbers.join(' & ')}` : `Unit ${unitNumbers[0] || '1'}`;
   return (
     <div className="important-exam-page">
       {/* Sticky header */}
@@ -36,10 +48,10 @@ export default function ImportantExamQuestions({ onBack, subjectId = 'business-i
           </button>
           <div className="topic-hero-badge">
             <span className="topic-hero-num">★</span>
-            <span>{subjectLabel} · Unit 1 · Important</span>
+            <span>{subjectLabel} · {unitLabel} · Important</span>
           </div>
           <h1 className="topic-hero-title">Important 6-Mark Exam Questions</h1>
-          <p className="topic-hero-sub">Unit 1 — {count} most important questions with answers + diagrams</p>
+          <p className="topic-hero-sub">{unitLabel} — {count} most important questions with answers + diagrams</p>
           <div className="topic-hero-stats">
             <span>🔥 {count} questions</span>
             <span>🖼️ {diagramCount} diagrams</span>
@@ -51,9 +63,9 @@ export default function ImportantExamQuestions({ onBack, subjectId = 'business-i
       <main className="container">
         <section className="section">
           <div className="section-kicker"><Icon name="quiz" size={16} /> Exam Focus — Most Important</div>
-          <h3>Unit 1 — {count} Most Important 6-Mark Questions 🔥</h3>
+          <h3>{unitLabel} — {count} Most Important 6-Mark Questions 🔥</h3>
           <p className="section-note">
-            Ye questions Unit 1 ke sabse important hain — exam mein aa sakte hain. Har question ka complete answer diya gaya hai — definition, explanation aur diagram reference ke saath. Diagrams bhi embed kiye gaye hain.
+            Ye questions {unitLabel} ke sabse important hain — exam mein aa sakte hain. Har question ka complete answer diya gaya hai — definition, explanation aur diagram reference ke saath. Diagrams bhi embed kiye gaye hain.
           </p>
 
           <div className="exam-list">
@@ -62,7 +74,11 @@ export default function ImportantExamQuestions({ onBack, subjectId = 'business-i
                 <div className="exam-question">
                   <span className="exam-q-num">Q{i + 1}</span>
                   <div className="exam-q-content">
-                    <span className="exam-topic-tag">{q.topicNumber} · {q.topicTitle}</span>
+                    {(q.topicNumber || q.topicTitle) && (
+                      <span className="exam-topic-tag">
+                        {[q.topicNumber, q.topicTitle].filter(Boolean).join(' · ')}
+                      </span>
+                    )}
                     <span className="exam-q-text">{q.question}</span>
                     <span className="exam-importance">{q.importance}</span>
                   </div>

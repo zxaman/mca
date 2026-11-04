@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { units, subjects } from '../data/topics';
-import { AppSidebar } from './Sidebar';
 import { Diagram } from './Diagrams';
 import { Icon } from './Icons';
+import { goTo } from '../utils/navigation';
 import { getCompletedTopics, toggleCompletedTopic } from '../utils/progress';
 
 // ---------- Section renderer ----------
@@ -15,6 +15,7 @@ function SectionRenderer({ section, index }) {
     points: 'check',
     recap: 'quiz',
     image: 'chart',
+    comparison: 'list',
   };
   const kickerIcon = icons[section.type] || 'chart';
 
@@ -24,7 +25,7 @@ function SectionRenderer({ section, index }) {
         <div className="section-kicker"><Icon name={kickerIcon} size={16} /> {section.kicker}</div>
         <h3>{section.title}</h3>
         <div className="definition-card">
-          <p>{section.body}</p>
+          <p>{section.body || section.content}</p>
           {section.body2 && <p className="definition-extra">{section.body2}</p>}
         </div>
         {section.chips && section.chips.length > 0 && (
@@ -48,10 +49,10 @@ function SectionRenderer({ section, index }) {
             section.cards.map((card, i) => (
               <div key={card.title} className="card" style={{ '--d': `${i * 80}ms` }}>
                 <div className="card-icon">
-                  <Icon name={card.icon} size={26} />
+                  <Icon name={card.icon} size={26} color={card.color || '#c4ff00'} />
                 </div>
                 <h4>{card.title}</h4>
-                <p>{card.body}</p>
+                <p>{card.body || card.desc}</p>
               </div>
             ))
           ) : (
@@ -151,6 +152,47 @@ function SectionRenderer({ section, index }) {
     );
   }
 
+  if (section.type === 'comparison') {
+    const rows = section.rows || [];
+    const columns = section.columns || [];
+    return (
+      <section className="section" style={{ '--i': index }}>
+        <div className="section-kicker"><Icon name={kickerIcon} size={16} /> {section.kicker}</div>
+        <h3>{section.title}</h3>
+        <div className="comparison-card">
+          {columns.length > 0 && (
+            <div className="comparison-row comparison-head">
+              <span className="comparison-label" />
+              {columns.map((col, j) => (
+                <span
+                  key={col}
+                  className="comparison-value"
+                  style={{ color: section.columnColors?.[j] || '#c4ff00' }}
+                >
+                  {col}
+                </span>
+              ))}
+            </div>
+          )}
+          {rows.map((row, i) => (
+            <div key={row.label} className="comparison-row" style={{ '--d': `${i * 60}ms` }}>
+              <span className="comparison-label">{row.label}</span>
+              {(row.values || []).map((v, j) => (
+                <span key={j} className="comparison-value">
+                  <span
+                    className="comparison-dot"
+                    style={{ background: row.colors?.[j] || section.columnColors?.[j] || '#0047ff' }}
+                  />
+                  <span>{v}</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return null;
 }
 
@@ -179,11 +221,9 @@ export default function TopicPage({ topicId, subjectId, onBack, onOpenTopic }) {
   const topic = allSubjectTopics.find((t) => t.id === topicId)
     || units['business-intelligence'].flatMap((unit) => unit.topics || []).find((t) => t.id === topicId);
   const [completed, setCompleted] = useState(() => new Set(getCompletedTopics()));
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    setCompleted(new Set(getCompletedTopics()));
     window.scrollTo(0, 0);
   }, [topicId]);
 
@@ -217,40 +257,18 @@ export default function TopicPage({ topicId, subjectId, onBack, onOpenTopic }) {
   const subjectName = subjects.find((s) => s.id === subjectId)?.name || 'Business Intelligence';
 
   const isCompleted = completed.has(topicId);
+  const diagramCount = topic.sections.filter((section) => section.type === 'diagram').length;
 
   const handleComplete = () => {
-    const newCompleted = toggleCompletedTopic(topicId);
-    setCompleted(new Set(newCompleted));
+    setCompleted(new Set(toggleCompletedTopic(topicId)));
   };
 
   return (
     <div className="topic-page">
-      {/* Sidebar (shadcn-style) */}
-      <AppSidebar
-        currentTopicId={topicId}
-        onOpenTopic={(tid) => {
-          onOpenTopic(tid);
-          setMobileOpen(false);
-        }}
-        completed={completed}
-        mobileOpen={mobileOpen}
-      />
-
-      {/* Mobile overlay */}
-      {mobileOpen && (
-        <div className="sidebar-overlay" onClick={() => setMobileOpen(false)} />
-      )}
-
       <div className="topic-main">
         {/* Sticky header with prev/next/mark */}
         <header className="topic-header-sticky">
           <div className="topic-header-inner">
-            <button
-              className="menu-toggle-mobile"
-              onClick={() => setMobileOpen(true)}
-            >
-              <Icon name="menu" size={18} color="#c4ff00" /> Menu
-            </button>
             <button
               className="header-btn"
               disabled={!prevTopic}
@@ -290,7 +308,7 @@ export default function TopicPage({ topicId, subjectId, onBack, onOpenTopic }) {
             <p className="topic-hero-sub">{topic.subtitle}</p>
             <div className="topic-hero-stats">
               <span>📖 {topic.sections.length} sections</span>
-              <span>🖼️ {topic.sections.filter((s) => s.type === 'diagram').length} diagrams</span>
+              <span>🖼️ {diagramCount} {diagramCount === 1 ? 'diagram' : 'diagrams'}</span>
               <span>🎯 {topic.examQuestions.length} 6-mark exam questions</span>
               {isCompleted && <span className="completed-badge">✓ khatam</span>}
             </div>
@@ -354,7 +372,7 @@ export default function TopicPage({ topicId, subjectId, onBack, onOpenTopic }) {
               </div>
               <button
                 className="btn primary"
-                onClick={() => window.location.hash = '#/subject/business-intelligence/exam'}
+                onClick={() => goTo(`#/subject/${subjectId || 'business-intelligence'}/exam`)}
               >
                 Important Qs Dekho <Icon name="arrow" size={16} color="#c4ff00" />
               </button>
