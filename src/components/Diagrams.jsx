@@ -85,6 +85,18 @@ import {
   DSRolesDiagram,
   StatisticsFoundationDiagram,
 } from './DataScienceDiagrams';
+import {
+  WebStackDiagram,
+  InternetVsWwwDiagram,
+  WebServerDiagram,
+  WebsitePlanningDiagram,
+  HtmlStructureDiagram,
+  HtmlElementsDiagram,
+  CssInsertionDiagram,
+  CssSelectorsDiagram,
+  HtmlVsHtml5Diagram,
+  FramesDiagram,
+} from './WebDiagrams';
 
 // ============================================================
 // Improved, properly-labelled SVG diagrams
@@ -745,6 +757,26 @@ export function Diagram({ type }) {
       return <DSRolesDiagram />;
     case 'stats-foundation':
       return <StatisticsFoundationDiagram />;
+    case 'web-stack':
+      return <WebStackDiagram />;
+    case 'internet-www':
+      return <InternetVsWwwDiagram />;
+    case 'web-server':
+      return <WebServerDiagram />;
+    case 'website-planning':
+      return <WebsitePlanningDiagram />;
+    case 'html-structure':
+      return <HtmlStructureDiagram />;
+    case 'html-elements':
+      return <HtmlElementsDiagram />;
+    case 'css-insertion':
+      return <CssInsertionDiagram />;
+    case 'css-selectors':
+      return <CssSelectorsDiagram />;
+    case 'html-vs-html5':
+      return <HtmlVsHtml5Diagram />;
+    case 'frames-layout':
+      return <FramesDiagram />;
     default:
       return null;
   }
