@@ -12,6 +12,7 @@ import { webTechnologyTopicsB } from './webTechnology2.js';
 import { webTechnologyTopicsC } from './webTechnology3.js';
 import { webTechnologyTopicsD } from './webTechnology4.js';
 import { webTechnologyTopicsE } from './webTechnology5.js';
+import { webTechnologyTopicsF } from './webTechnology6.js';
 
 const unit1Topics = [
   // ==========================================================
@@ -793,6 +794,6 @@ export const webTechnologyUnits = [
     id: 'unit-2',
     number: '2',
     name: 'JavaScript',
-    topics: webTechnologyTopicsE,
+    topics: [...webTechnologyTopicsE, ...webTechnologyTopicsF],
   },
 ];

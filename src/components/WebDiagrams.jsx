@@ -1291,3 +1291,629 @@ export function JsFunctionDialogDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Diagram 21 — Cookies: browser ↔ server round trip
+// ============================================================
+export function CookieFlowDiagram() {
+  const attrs = [
+    'name=value (ek cookie)',
+    'expires / max-age',
+    'path=/admin',
+    'domain=.college.edu',
+    'Secure (sirf HTTPS)',
+    'HttpOnly (JS se chhupi)',
+    'SameSite=Strict',
+  ];
+  return (
+    <svg viewBox="0 0 920 412" className="diagram-svg" role="img" aria-label="A cookie is set by the server with Set-Cookie, stored by the browser and sent back on every request, with attributes like expires, path, domain, secure and HttpOnly">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Cookies — browser mein chhota data ka safar
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        server set karta hai · browser store karta hai · har request ke saath wapas jaata hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="88" width="250" height="118" rx="12" fill="rgba(0,212,255,0.1)" stroke="#00d4ff" strokeWidth="1.6" />
+        <text x="145" y="112" textAnchor="middle" fill="#00d4ff" fontSize="11.5" fontWeight="800" fontFamily={FONT}>BROWSER</text>
+        <text x="145" y="136" textAnchor="middle" fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>cookie store (per domain)</text>
+        <text x="145" y="160" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">document.cookie</text>
+        <text x="145" y="180" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>JS se read/write</text>
+        <text x="145" y="196" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>~4 KB per cookie</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="650" y="88" width="250" height="118" rx="12" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="1.6" />
+        <text x="775" y="112" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="800" fontFamily={FONT}>SERVER</text>
+        <text x="775" y="136" textAnchor="middle" fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>session cookie bhejta hai</text>
+        <text x="775" y="160" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">Set-Cookie: id=abc;</text>
+        <text x="775" y="180" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">  max-age=3600; path=/</text>
+        <text x="775" y="196" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>login yahan verify hota hai</text>
+      </g>
+
+      <path d="M 270 118 H 648" fill="none" stroke="#00d4ff" strokeWidth="1.5" strokeOpacity="0.85" />
+      <path d="M 648 118 L 638 113 M 648 118 L 638 123" fill="none" stroke="#00d4ff" strokeWidth="1.5" />
+      <text x="460" y="112" textAnchor="middle" fill="#00d4ff" fontSize="9" fontFamily="'Consolas', monospace">GET /dashboard  Cookie: id=abc</text>
+
+      <path d="M 650 176 H 272" fill="none" stroke="#c4ff00" strokeWidth="1.5" strokeOpacity="0.85" />
+      <path d="M 272 176 L 282 171 M 272 176 L 282 181" fill="none" stroke="#c4ff00" strokeWidth="1.5" />
+      <text x="460" y="170" textAnchor="middle" fill="#c4ff00" fontSize="9" fontFamily="'Consolas', monospace">200 OK  Set-Cookie: id=abc</text>
+
+      <text x="20" y="236" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>COOKIE KE ATTRIBUTES</text>
+      {attrs.map((a, i) => {
+        const col = i % 4;
+        const row = Math.floor(i / 4);
+        const x = 20 + col * 226;
+        const y = 246 + row * 44;
+        return (
+          <g key={a} className="diagram-pop" style={{ animationDelay: `${300 + i * 45}ms` }}>
+            <rect x={x} y={y} width="208" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" />
+            <text x={x + 12} y={y + 22} fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{a}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
+        <rect x="20" y="340" width="880" height="42" rx="9" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.5)" />
+        <text x="36" y="358" fill="#ffb86c" fontSize="9.5" fontWeight="700" fontFamily={FONT}>Dhyan:</text>
+        <text x="36" y="374" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>HttpOnly cookie JS se nahi padhi ja sakti (XSS se bachne ke liye) · Secure cookie sirf HTTPS par jaati hai · cookies har request ke saath jaati hain isliye bhaari data ke liye localStorage better</text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Exam line: cookie = server ka chhota note jo browser har request ke saath wapas laata hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 22 — Event flow: capture → target → bubble
+// ============================================================
+export function EventFlowDiagram() {
+  const nodes = [
+    { t: 'window', c: '#5a6a9e' },
+    { t: 'document', c: '#2f6fff' },
+    { t: 'body', c: '#00d4ff' },
+    { t: 'div#box  ← target', c: '#c4ff00' },
+  ];
+  return (
+    <svg viewBox="0 0 920 420" className="diagram-svg" role="img" aria-label="Event propagation goes down from window to the target during capture and back up during bubbling, with addEventListener on the target handling it">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Event ka safar — capturing ↓ aur bubbling ↑
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        click hua to event root se target tak jaata hai, phir wapas upar
+      </text>
+
+      <text x="120" y="76" textAnchor="middle" fill="#2f6fff" fontSize="9" fontWeight="700" fontFamily={FONT}>CAPTURING (down)</text>
+      <text x="470" y="76" textAnchor="middle" fill="#00ff88" fontSize="9" fontWeight="700" fontFamily={FONT}>BUBBLING (up)</text>
+
+      {nodes.map((n, i) => {
+        const y = 88 + i * 52;
+        return (
+          <g key={n.t} className="diagram-pop" style={{ animationDelay: `${80 + i * 90}ms` }}>
+            <rect x="160" y={y} width="270" height="38" rx="8" fill="rgba(255,255,255,0.03)" stroke={n.c} strokeWidth="1.4" strokeOpacity="0.8" />
+            <text x="295" y={y + 24} textAnchor="middle" fill={n.c} fontSize="9.5" fontFamily="'Consolas', monospace">{n.t}</text>
+            {i < nodes.length - 1 && (
+              <path d={`M 210 ${y + 38} V ${y + 52}`} fill="none" stroke="#2f6fff" strokeWidth="1.4" strokeOpacity="0.75" />
+            )}
+            {i > 0 && (
+              <path d={`M 380 ${y} V ${y - 14}`} fill="none" stroke="#00ff88" strokeWidth="1.4" strokeOpacity="0.75" />
+            )}
+          </g>
+        );
+      })}
+
+      <text x="200" y="308" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>capture listeners (true)</text>
+      <text x="390" y="308" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>bubble listeners (default)</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
+        <rect x="500" y="88" width="400" height="150" rx="10" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.13)" />
+        <text x="516" y="110" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>HANDLER LAGANA</text>
+        <text x="516" y="130" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">box.addEventListener("click", fn);</text>
+        <text x="516" y="150" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">function fn(e) {'{'}</text>
+        <text x="516" y="170" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  e.target      // asli element</text>
+        <text x="516" y="190" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  e.preventDefault()</text>
+        <text x="516" y="210" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  e.stopPropagation()</text>
+        <text x="516" y="228" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{'}'}</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="500" y="250" width="400" height="94" rx="10" fill="rgba(47,111,255,0.09)" stroke="rgba(47,111,255,0.5)" />
+        <text x="516" y="272" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>EVENT OBJECT KE PROPERTIES</text>
+        <text x="516" y="292" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>type (click) · target · currentTarget</text>
+        <text x="516" y="310" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>clientX / clientY · key · preventDefault()</text>
+        <text x="516" y="328" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>mouse, keyboard, form, window, touch events</text>
+      </g>
+
+      <text x="460" y="374" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        bubbling ka fayda: parent par ek listener = saare children handle (event delegation)
+      </text>
+      <text x="460" y="400" textAnchor="middle" fill="#5a6a9e" fontSize="9.5" fontFamily={FONT}>
+        stopPropagation() bubble rokta hai · preventDefault() default action rokta hai — dono alag hain
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 23 — Objects: properties, methods, this
+// ============================================================
+export function JsObjectsDiagram() {
+  return (
+    <svg viewBox="0 0 920 424" className="diagram-svg" role="img" aria-label="A JavaScript object holds properties and methods, accessed with dot or bracket notation, created from an object literal or a constructor function">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Object = properties + methods ka dabba
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        property = data (name: "Riya") · method = function jo object ke andar baithi ho
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="74" width="300" height="196" rx="12" fill="rgba(255,255,255,0.03)" stroke="#00d4ff" strokeWidth="1.6" strokeOpacity="0.8" />
+        <rect x="20" y="74" width="300" height="30" rx="12" fill="rgba(0,212,255,0.16)" />
+        <text x="170" y="95" textAnchor="middle" fill="#00d4ff" fontSize="11" fontWeight="800" fontFamily={FONT}>OBJECT LITERAL</text>
+
+        <text x="36" y="130" fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">const student = {'{'}</text>
+        <text x="36" y="152" fill="#c4ff00" fontSize="9.5" fontFamily="'Consolas', monospace">  name: "Riya",      // property</text>
+        <text x="36" y="174" fill="#c4ff00" fontSize="9.5" fontFamily="'Consolas', monospace">  marks: 78,         // property</text>
+        <text x="36" y="196" fill="#ff8800" fontSize="9.5" fontFamily="'Consolas', monospace">  greet: function () {'{'}    // method</text>
+        <text x="36" y="218" fill="#ff8800" fontSize="9.5" fontFamily="'Consolas', monospace">    return "Hi " + this.name;</text>
+        <text x="36" y="240" fill="#ff8800" fontSize="9.5" fontFamily="'Consolas', monospace">  {'}'}</text>
+        <text x="36" y="260" fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">{'}'};</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
+        <rect x="340" y="74" width="270" height="196" rx="12" fill="rgba(255,255,255,0.03)" stroke="#c4ff00" strokeWidth="1.5" strokeOpacity="0.75" />
+        <rect x="340" y="74" width="270" height="30" rx="12" fill="rgba(196,255,0,0.16)" />
+        <text x="475" y="95" textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="800" fontFamily={FONT}>ACCESS KARNA</text>
+        <text x="356" y="130" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">student.name      // "Riya"</text>
+        <text x="356" y="152" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">student["marks"]   // 78</text>
+        <text x="356" y="174" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">student.greet()   // method call</text>
+        <text x="356" y="196" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">student.city = "Pune"  // add</text>
+        <text x="356" y="218" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">delete student.city    // remove</text>
+        <text x="356" y="240" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Object.keys(student)   // ["name",…]</text>
+        <text x="356" y="256" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>bracket tab kaam aata hai jab key variable ho</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="630" y="74" width="270" height="196" rx="12" fill="rgba(255,255,255,0.03)" stroke="#ff8800" strokeWidth="1.5" strokeOpacity="0.75" />
+        <rect x="630" y="74" width="270" height="30" rx="12" fill="rgba(255,136,0,0.16)" />
+        <text x="765" y="95" textAnchor="middle" fill="#ff8800" fontSize="11" fontWeight="800" fontFamily={FONT}>CONSTRUCTOR + this</text>
+        <text x="646" y="130" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">function Student(n, m) {'{'}</text>
+        <text x="646" y="152" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  this.name = n;</text>
+        <text x="646" y="174" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  this.marks = m;</text>
+        <text x="646" y="196" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{'}'}</text>
+        <text x="646" y="222" fill="#ffb86c" fontSize="9" fontFamily="'Consolas', monospace">let s1 = new Student("Riya", 78);</text>
+        <text x="646" y="248" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>new = naya object banata hai, this usi</text>
+        <text x="646" y="256" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>object ko point karta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="288" width="880" height="86" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="36" y="310" fill="#6fb2ff" fontSize="9.5" fontWeight="800" fontFamily={FONT}>OBJECT KE BUILT-IN HELPERS</text>
+        <text x="36" y="330" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Object.keys(o) · Object.values(o) · Object.entries(o) · Object.assign(target, src) · Object.freeze(o)</text>
+        <text x="36" y="348" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">JSON.stringify(o) → string · JSON.parse(str) → object · hasOwnProperty("name")</text>
+        <text x="36" y="364" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>array aur function bhi object hain — isliye typeof [] "object" deta hai</text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Exam line: object = key : value ka collection; method = object ke andar rakhi function
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 24 — Number properties/methods and Math
+// ============================================================
+export function NumberMathDiagram() {
+  const nums = [
+    ['Number.MAX_VALUE', 'sabse bada number'],
+    ['Number.isInteger(78)', 'true'],
+    ['Number("42")', '42'],
+    ['parseFloat("3.5kg")', '3.5'],
+    ['(78.567).toFixed(2)', '"78.57"'],
+    ['(255).toString(16)', '"ff"'],
+  ];
+  const maths = [
+    ['Math.round(4.6)', '5'],
+    ['Math.ceil(4.1)', '5'],
+    ['Math.floor(4.9)', '4'],
+    ['Math.abs(-7)', '7'],
+    ['Math.max(3, 9, 4)', '9'],
+    ['Math.min(3, 9, 4)', '3'],
+    ['Math.pow(2, 5)', '32'],
+    ['Math.sqrt(81)', '9'],
+    ['Math.random()', '0.xxx'],
+  ];
+  return (
+    <svg viewBox="0 0 920 424" className="diagram-svg" role="img" aria-label="Number object properties and methods on the left, Math object static methods with their results on the right">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Number aur Math — numbers par kaam
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        Number = ek value ka object wrapper · Math = ready-made calculator (object banane ki zaroorat nahi)
+      </text>
+
+      <text x="20" y="76" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>NUMBER — PROPERTIES aur METHODS</text>
+      {nums.map(([k, v], i) => (
+        <g key={k} className="diagram-pop" style={{ animationDelay: `${90 + i * 60}ms` }}>
+          <rect x="20" y={88 + i * 44} width="420" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.35)" />
+          <text x="34" y={110 + i * 44} fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">{k}</text>
+          <text x="426" y={110 + i * 44} textAnchor="end" fill="#00d4ff" fontSize="9" fontFamily={FONT}>{v}</text>
+        </g>
+      ))}
+      <text x="20" y="364" fill="#ff8800" fontSize="8.5" fontFamily={FONT}>
+        NaN = &quot;Not a Number&quot; · 0.1 + 0.2 = 0.30000000000000004 (floating point)
+      </text>
+
+      <text x="480" y="76" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>MATH — 9 SABSE ZYADA POOCHHE JAANE WALE</text>
+      {maths.map(([k, v], i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 480 + col * 146;
+        const y = 88 + row * 62;
+        return (
+          <g key={k} className="diagram-pop" style={{ animationDelay: `${150 + i * 45}ms` }}>
+            <rect x={x} y={y} width="132" height="52" rx="8" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.35)" />
+            <text x={x + 66} y={y + 20} textAnchor="middle" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{k}</text>
+            <text x={x + 66} y={y + 40} textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily="'Consolas', monospace">→ {v}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="480" y="286" width="420" height="88" rx="10" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="496" y="308" fill="#ffb86c" fontSize="9" fontWeight="700" fontFamily={FONT}>RANDOM NUMBER KA FORMULA</text>
+        <text x="496" y="328" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Math.floor(Math.random() * 6) + 1   // 1–6 dice</text>
+        <text x="496" y="348" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Math.floor(Math.random() * 100)     // 0–99</text>
+        <text x="496" y="366" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>Math.random() 0 se 1 se pehle tak hi deta hai — 1 kabhi nahi</text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Math ek static object hai — Math.PI likhte hain, naya Math() nahi banate
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 25 — String indexing and methods
+// ============================================================
+export function StringMethodsDiagram() {
+  const chars = 'MCA Notes'.split('');
+  const rows = [
+    ['s.length', '9 (property, brackets nahi)'],
+    ['s.charAt(0) / s[0]', '"M"'],
+    ['s.indexOf("Notes")', '4'],
+    ['s.slice(0, 3)', '"MCA"'],
+    ['s.substring(4)', '"Notes"'],
+    ['s.replace("Notes", "JS")', '"MCA JS"'],
+    ['s.toUpperCase()', '"MCA NOTES"'],
+    ['s.split(" ")', '["MCA", "Notes"]'],
+    ['s.trim()', 'aage-piche ke space hataata hai'],
+    ['s.includes("MCA")', 'true'],
+  ];
+  return (
+    <svg viewBox="0 0 920 412" className="diagram-svg" role="img" aria-label="A string is indexed character by character and has methods like length, charAt, slice, replace, split and trim">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        String — characters ki chain, index 0 se shuru
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        string immutable hai — method naya string deta hai, purana nahi badalta
+      </text>
+
+      {chars.map((ch, i) => (
+        <g key={`${ch}-${i}`} className="diagram-pop" style={{ animationDelay: `${60 + i * 40}ms` }}>
+          <rect x={30 + i * 46} y="70" width="42" height="38" rx="6" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.5)" />
+          <text x={51 + i * 46} y="95" textAnchor="middle" fill={ch === ' ' ? '#5a6a9e' : '#fff'} fontSize="13" fontFamily="'Consolas', monospace">{ch === ' ' ? '_' : ch}</text>
+          <text x={51 + i * 46} y="122" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>{i}</text>
+        </g>
+      ))}
+      <text x="450" y="122" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>const s = &quot;MCA Notes&quot; → length 9 (_ = space)</text>
+
+      {rows.map(([k, v], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = col === 0 ? 20 : 470;
+        const y = 142 + row * 44;
+        return (
+          <g key={k} className="diagram-pop" style={{ animationDelay: `${220 + i * 45}ms` }}>
+            <rect x={x} y={y} width="430" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+            <text x={x + 12} y={y + 22} fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{k}</text>
+            <text x={x + 418} y={y + 22} textAnchor="end" fill="#c4ff00" fontSize="8.5" fontFamily="'Consolas', monospace">{v}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
+        <rect x="20" y="358" width="880" height="30" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="378" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>
+          slice(1, 3) = index 1 se 2 tak · substring() negative ko 0 maan leta hai · substr(start, length) purana hai — aaj slice() better
+        </text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="9.5" fontWeight="700" fontFamily={FONT}>
+        Template literal: `Hi ${'{'}name{'}'}` — string jodne ka aasan tareeka
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 26 — Array methods: mutate, read, transform
+// ============================================================
+export function ArrayMethodsDiagram() {
+  const cells = [10, 20, 30, 40];
+  const groups = [
+    { t: 'BADALNE WALE (mutate)', c: '#ff8800', rows: ['push(50)   → end mein jodta hai', 'pop()      → end se nikaalta hai', 'unshift(5) → shuru mein jodta hai', 'shift()    → shuru se nikaalta hai', 'splice(1,1)→ beech se hataata hai', 'sort() / reverse()'] },
+    { t: 'PADHNE WALE (read)', c: '#00d4ff', rows: ['length      → 4', 'indexOf(30) → 2', 'includes(20)→ true', 'slice(1, 3) → [20, 30]', 'concat([50])→ naya array', 'join("-")   → "10-20-30-40"'] },
+    { t: 'BADAL KAR NAYA (transform)', c: '#c4ff00', rows: ['map(x => x * 2)   → [20,40,60,80]', 'filter(x => x > 20) → [30,40]', 'reduce((s,x) => s+x, 0) → 100', 'forEach(x => console.log(x))', 'find(x => x > 25) → 30', 'every / some'] },
+  ];
+  return (
+    <svg viewBox="0 0 920 428" className="diagram-svg" role="img" aria-label="An array with index positions and three groups of methods: those that mutate the array, those that read it, and those that return a new array">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Array — ek hi naam se kai values
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        const a = [10, 20, 30, 40];  index 0 se shuru, length 4
+      </text>
+
+      {cells.map((v, i) => (
+        <g key={v} className="diagram-pop" style={{ animationDelay: `${60 + i * 60}ms` }}>
+          <rect x={50 + i * 100} y="66" width="90" height="38" rx="7" fill="rgba(196,255,0,0.1)" stroke="rgba(196,255,0,0.55)" />
+          <text x={95 + i * 100} y="91" textAnchor="middle" fill="#fff" fontSize="12" fontFamily="'Consolas', monospace">{v}</text>
+          <text x={95 + i * 100} y="118" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>index {i}</text>
+        </g>
+      ))}
+      <text x="560" y="91" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>a.length = 4</text>
+
+      {groups.map((g, i) => {
+        const x = 20 + i * 298;
+        return (
+          <g key={g.t} className="diagram-pop" style={{ animationDelay: `${300 + i * 120}ms` }}>
+            <rect x={x} y="136" width="284" height="214" rx="12" fill="rgba(255,255,255,0.03)" stroke={g.c} strokeWidth="1.5" strokeOpacity="0.7" />
+            <rect x={x} y="136" width="284" height="30" rx="12" fill={g.c} fillOpacity="0.15" />
+            <text x={x + 142} y="157" textAnchor="middle" fill={g.c} fontSize="10" fontWeight="800" fontFamily={FONT}>{g.t}</text>
+            {g.rows.map((r, j) => (
+              <text key={r} x={x + 14} y={186 + j * 28} fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{r}</text>
+            ))}
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
+        <rect x="20" y="362" width="880" height="34" rx="8" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="384" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>
+          map / filter / reduce original array ko nahi badalte — naya array (ya value) return karte hain. push / pop / splice original ko badal dete hain.
+        </text>
+      </g>
+
+      <text x="460" y="414" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        typeof [] === &quot;object&quot; — array pehchanne ke liye Array.isArray(a) use karein
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 27 — Date object and the Temporal API
+// ============================================================
+export function DateTemporalDiagram() {
+  const parts = [
+    ['getFullYear()', '2026'],
+    ['getMonth()', '0–11 (Jan = 0!)'],
+    ['getDate()', '1–31 (din)'],
+    ['getDay()', '0–6 (Sun = 0)'],
+    ['getHours()', '0–23'],
+    ['getMinutes()', '0–59'],
+  ];
+  return (
+    <svg viewBox="0 0 920 412" className="diagram-svg" role="img" aria-label="The Date object gives parts of a date through get methods while the newer Temporal API separates date, time and time zone">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Date object aur naya Temporal API
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        Date purana hai (1995 ka design), Temporal uski jagah lene ke liye bana hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="70" width="380" height="52" rx="10" fill="rgba(0,212,255,0.1)" stroke="#00d4ff" strokeWidth="1.5" />
+        <text x="36" y="92" fill="#00d4ff" fontSize="10" fontWeight="700" fontFamily={FONT}>DATE BANANA</text>
+        <text x="36" y="110" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">let d = new Date();          // abhi</text>
+      </g>
+      <text x="36" y="146" fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">new Date(2026, 0, 15)   // 15 Jan 2026</text>
+      <text x="36" y="166" fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">new Date(&quot;2026-01-15&quot;)   // ISO string</text>
+
+      {parts.map(([k, v], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 20 + col * 200;
+        const y = 186 + row * 44;
+        return (
+          <g key={k} className="diagram-pop" style={{ animationDelay: `${160 + i * 50}ms` }}>
+            <rect x={x} y={y} width="190" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.35)" />
+            <text x={x + 10} y={y + 15} fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{k}</text>
+            <text x={x + 10} y={y + 28} fill="#00d4ff" fontSize="8" fontFamily={FONT}>{v}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="330" width="380" height="52" rx="10" fill="rgba(196,255,0,0.09)" stroke="rgba(196,255,0,0.5)" />
+        <text x="36" y="352" fill="#c4ff00" fontSize="9.5" fontWeight="700" fontFamily={FONT}>READABLE FORMAT</text>
+        <text x="36" y="370" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">d.toLocaleDateString(&quot;en-IN&quot;)  // 15/1/2026</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '500ms' }}>
+        <rect x="430" y="70" width="470" height="312" rx="12" fill="rgba(255,255,255,0.03)" stroke="#ff8800" strokeWidth="1.5" strokeOpacity="0.7" />
+        <rect x="430" y="70" width="470" height="30" rx="12" fill="rgba(255,136,0,0.16)" />
+        <text x="665" y="91" textAnchor="middle" fill="#ff8800" fontSize="11" fontWeight="800" fontFamily={FONT}>TEMPORAL API — naya tareeka</text>
+
+        <text x="450" y="124" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Temporal.Now.instant()        // abhi ka time</text>
+        <text x="450" y="148" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Temporal.PlainDate.from(&quot;2026-01-15&quot;)</text>
+        <text x="450" y="172" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Temporal.PlainTime.from(&quot;10:30&quot;)</text>
+        <text x="450" y="196" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Temporal.ZonedDateTime.from(...)</text>
+
+        <text x="450" y="228" fill="#ffb86c" fontSize="9" fontWeight="700" fontFamily={FONT}>DATE KI 3 PROBLEM, TEMPORAL KA JAWAB</text>
+        <text x="450" y="248" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>1. month 0 se shuru hota hai (Jan = 0) → Temporal mein 1 se</text>
+        <text x="450" y="266" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>2. mutable hai (setDate se original badal jaata) → Temporal immutable</text>
+        <text x="450" y="284" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>3. time zone handle karna mushkil → ZonedDateTime alag type</text>
+
+        <rect x="450" y="300" width="430" height="64" rx="8" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.35)" />
+        <text x="464" y="320" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>Exam ke liye: Date hi likhna hai (Temporal abhi sab browsers</text>
+        <text x="464" y="336" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>mein stable nahi hai) — par "kya naya hai" poochhe to ye points</text>
+        <text x="464" y="352" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>likh dein.</text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Trap: new Date().getMonth() January ke liye 0 deta hai — isliye +1 karna padta hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 28 — Async: call stack, queues, event loop
+// ============================================================
+export function AsyncFlowDiagram() {
+  return (
+    <svg viewBox="0 0 920 440" className="diagram-svg" role="img" aria-label="Synchronous code runs on the call stack, setTimeout goes to web APIs and then the task queue, promises go to the microtask queue, and the event loop moves them back to the stack">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Async JavaScript — event loop ka khel
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        JS single-threaded hai — par browser background mein kaam karwa leta hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="70" width="200" height="150" rx="10" fill="rgba(0,212,255,0.1)" stroke="#00d4ff" strokeWidth="1.5" />
+        <text x="120" y="92" textAnchor="middle" fill="#00d4ff" fontSize="10" fontWeight="800" fontFamily={FONT}>CALL STACK</text>
+        <text x="120" y="112" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>ek baar mein ek kaam</text>
+        <text x="34" y="138" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">console.log(&quot;1&quot;)</text>
+        <text x="34" y="158" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">setTimeout(...)</text>
+        <text x="34" y="178" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">console.log(&quot;4&quot;)</text>
+        <text x="120" y="206" textAnchor="middle" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>turant khatam ho jaata hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="250" y="70" width="230" height="150" rx="10" fill="rgba(255,136,0,0.1)" stroke="#ff8800" strokeWidth="1.5" />
+        <text x="365" y="92" textAnchor="middle" fill="#ff8800" fontSize="10" fontWeight="800" fontFamily={FONT}>WEB APIs (browser)</text>
+        <text x="365" y="112" textAnchor="middle" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>timer, fetch, DOM events</text>
+        <text x="264" y="138" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">setTimeout(fn, 2000)</text>
+        <text x="264" y="158" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>2 second gin raha hai…</text>
+        <text x="264" y="180" fill="#ffb86c" fontSize="8.5" fontFamily={FONT}>yahan JS block nahi hoti</text>
+        <text x="365" y="206" textAnchor="middle" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>background mein countdown</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="250" y="240" width="230" height="72" rx="10" fill="rgba(196,255,0,0.09)" stroke="rgba(196,255,0,0.5)" />
+        <text x="365" y="262" textAnchor="middle" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>MICROTASK QUEUE</text>
+        <text x="365" y="280" textAnchor="middle" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>Promise .then / async-await</text>
+        <text x="365" y="298" textAnchor="middle" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>pehle yahi chalta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '330ms' }}>
+        <rect x="250" y="322" width="230" height="72" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.2)" />
+        <text x="365" y="344" textAnchor="middle" fill="#dbe6ff" fontSize="9" fontWeight="700" fontFamily={FONT}>TASK QUEUE (macrotask)</text>
+        <text x="365" y="362" textAnchor="middle" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>setTimeout / setInterval</text>
+        <text x="365" y="380" textAnchor="middle" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>baad mein chalta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="510" y="70" width="390" height="150" rx="10" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.13)" />
+        <text x="526" y="92" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>EVENT LOOP</text>
+        <text x="526" y="112" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>jab stack khaali ho:</text>
+        <text x="526" y="132" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>1. pehle microtask queue khaali karo</text>
+        <text x="526" y="152" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>2. phir ek macrotask uthao</text>
+        <text x="526" y="172" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>3. repeat — yahi event loop hai</text>
+        <text x="526" y="198" fill="#ffb86c" fontSize="8.5" fontFamily={FONT}>isliye promise callback setTimeout se pehle chalta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="510" y="240" width="390" height="154" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="526" y="262" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>OUTPUT KA ORDER (exam favourite)</text>
+        <text x="526" y="284" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">console.log(&quot;1&quot;);</text>
+        <text x="526" y="302" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">setTimeout(() =&gt; console.log(&quot;2&quot;), 0);</text>
+        <text x="526" y="320" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">Promise.resolve().then(() =&gt; console.log(&quot;3&quot;));</text>
+        <text x="526" y="338" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">console.log(&quot;4&quot;);</text>
+        <text x="526" y="362" fill="#00ff88" fontSize="10" fontWeight="800" fontFamily="'Consolas', monospace">Output: 1  4  3  2</text>
+        <text x="526" y="382" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>sync pehle · microtask (promise) · phir macrotask (timeout)</text>
+      </g>
+
+      <text x="460" y="424" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        callback → promise → async/await: teeno async ka hi tareeka, sirf likhne ka andaaz badla
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 29 — Bootstrap: why, how, grid
+// ============================================================
+export function BootstrapDiagram() {
+  return (
+    <svg viewBox="0 0 920 420" className="diagram-svg" role="img" aria-label="Bootstrap gives a responsive 12 column grid, ready components and utility classes, added through a CDN link with two class names">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Bootstrap — ready-made CSS framework
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        HTML likho + Bootstrap ki class lagao → design apne aap
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="72" width="280" height="196" rx="12" fill="rgba(255,255,255,0.03)" stroke="#ff8800" strokeWidth="1.5" strokeOpacity="0.75" />
+        <rect x="20" y="72" width="280" height="30" rx="12" fill="rgba(255,136,0,0.16)" />
+        <text x="160" y="93" textAnchor="middle" fill="#ff8800" fontSize="10.5" fontWeight="800" fontFamily={FONT}>KYUN CHAHIYE</text>
+        <text x="36" y="126" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>1. Responsive grid</text>
+        <text x="36" y="144" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>mobile se desktop tak khud adjust</text>
+        <text x="36" y="170" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>2. Ready components</text>
+        <text x="36" y="188" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>button, navbar, modal, card, table</text>
+        <text x="36" y="214" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>3. Speed + consistency</text>
+        <text x="36" y="232" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>CSS likhne ka time bachta hai</text>
+        <text x="36" y="252" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>browser tested, accessible markup</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
+        <rect x="320" y="72" width="330" height="196" rx="12" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.13)" />
+        <text x="336" y="94" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>KAISE USE KAREIN (CDN)</text>
+        <text x="336" y="114" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">&lt;link href=&quot;bootstrap.min.css&quot;</text>
+        <text x="336" y="128" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">      rel=&quot;stylesheet&quot;&gt;</text>
+        <text x="336" y="148" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">bootstrap.bundle.min.js (optional)</text>
+        <text x="336" y="176" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>Phir class lagao:</text>
+        <text x="336" y="196" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">&lt;div class=&quot;container&quot;&gt;</text>
+        <text x="336" y="212" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  &lt;div class=&quot;row&quot;&gt;</text>
+        <text x="336" y="228" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">    &lt;div class=&quot;col-md-6&quot;&gt;…</text>
+        <text x="336" y="250" fill="#ffb86c" fontSize="7.5" fontFamily={FONT}>npm install bootstrap · ya download karke</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="670" y="72" width="230" height="196" rx="12" fill="rgba(255,255,255,0.03)" stroke="#00d4ff" strokeWidth="1.5" strokeOpacity="0.7" />
+        <rect x="670" y="72" width="230" height="30" rx="12" fill="rgba(0,212,255,0.16)" />
+        <text x="785" y="93" textAnchor="middle" fill="#00d4ff" fontSize="10.5" fontWeight="800" fontFamily={FONT}>12-COLUMN GRID</text>
+        {[0, 1, 2].map((i) => (
+          <g key={i}>
+            <rect x="686" y={116 + i * 46} width="198" height="20" rx="4" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.3)" />
+            <rect x="686" y={116 + i * 46} width={i === 0 ? 99 : i === 1 ? 49 : 148} height="20" rx="4" fill="rgba(196,255,0,0.22)" />
+          </g>
+        ))}
+        <text x="686" y="250" fill="#9ab0e0" fontSize="7" fontFamily="'Consolas', monospace">col-6 → 50%  ·  col-4 → 33%  ·  col-9 → 75%</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="288" width="880" height="62" rx="10" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
+        <text x="36" y="310" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>BREAKPOINTS — ek hi class, har screen par alag behaviour</text>
+        <text x="36" y="332" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">col-12 (mobile)  ·  col-sm-6 (≥576)  ·  col-md-4 (≥768)  ·  col-lg-3 (≥992)  ·  col-xl (≥1200)</text>
+      </g>
+
+      <text x="460" y="378" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Bootstrap = CSS framework · HTML structure wahi rehta hai, sirf class badalti hai
+      </text>
+      <text x="460" y="402" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Version 5 mein jQuery ki zaroorat nahi · responsive + mobile-first by design
+      </text>
+    </svg>
+  );
+}

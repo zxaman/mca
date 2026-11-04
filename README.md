@@ -15,7 +15,7 @@ adding a topic is just adding an object.
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 2 | 21 | Live |
 | Data Science | DS | 1 | 12 | Live — Unit I |
-| Web Technology | WT | 2 | 25 | Live — Unit I (HTML/XML) + Unit II (JavaScript) |
+| Web Technology | WT | 2 | 34 | Live — Unit I (HTML/XML) + Unit II (JavaScript) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -36,16 +36,22 @@ with its **live browser output** rendered in a sandboxed iframe, so the code and
 by side; concepts that are not visual (architecture, servers, planning, structures, XML trees,
 validation, transformation pipelines) carry an SVG diagram.
 
-**Web Technology (Unit II — JavaScript)** has 6 topics: overview of JavaScript (need, applications,
+**Web Technology (Unit II — JavaScript)** has 15 topics: overview of JavaScript (need, applications,
 advantages, limitations), using JS in HTML (embedded, external `.js` with `defer`/`async`, inline
 handlers), variables and data types (`var`/`let`/`const`, the 7 primitives, `typeof`, coercion),
 control structures (`if…else if…else`, `switch…case` with fall-through), loop controls (`for`,
-`while`, `do…while`, `break`/`continue`) and functions with dialog boxes (`alert`, `confirm`,
-`prompt`) and page redirect (`location.href` vs `location.replace`). These previews are **not
-screenshots** — the iframe runs the script with `allow-scripts`, so the counters, tables, grade
-calculator and prompts really execute, and a thrown error is printed inside the preview.
+`while`, `do…while`, `break`/`continue`), functions with dialog boxes (`alert`, `confirm`, `prompt`)
+and page redirect (`location.href` vs `location.replace`), cookies (`document.cookie`, attributes,
+session vs persistent), events (bubbling/capturing, delegation, `preventDefault` vs
+`stopPropagation`), objects (literal, constructor, `this`, `Object.keys`, JSON), Number & Math,
+String methods, Array methods (`push`…`reduce`), Date with the newer Temporal API, and asynchronous
+JavaScript (`setTimeout`, callbacks, promises, `async/await`, the `1 4 3 2` event-loop order). Unit II
+closes with an introduction to **Bootstrap** (need, advantages, CDN setup, 12-column grid).
+These previews are **not screenshots** — the iframe runs the script with `allow-scripts`, so the
+counters, tables, calculators, array operations, live clock and prompts really execute, and a thrown
+error is printed inside the preview.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 30 (104 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 40 (114 total).
 
 Mobile-first details: diagrams swipe horizontally inside their card (instead of being clipped),
 answer tables scroll instead of overflowing, comparison tables restack below 820 px with their
@@ -84,7 +90,7 @@ src/
 │   ├── dataScience.js         # Data Science units (imported into topics.js)
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
-│   ├── webTechnology5.js      # Web Technology Unit II (JavaScript)
+│   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js

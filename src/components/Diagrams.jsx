@@ -106,6 +106,15 @@ import {
   JsControlDiagram,
   JsLoopsDiagram,
   JsFunctionDialogDiagram,
+  CookieFlowDiagram,
+  EventFlowDiagram,
+  JsObjectsDiagram,
+  NumberMathDiagram,
+  StringMethodsDiagram,
+  ArrayMethodsDiagram,
+  DateTemporalDiagram,
+  AsyncFlowDiagram,
+  BootstrapDiagram,
 } from './WebDiagrams';
 
 // ============================================================
@@ -807,6 +816,24 @@ export function Diagram({ type }) {
       return <JsLoopsDiagram />;
     case 'js-function-dialog':
       return <JsFunctionDialogDiagram />;
+    case 'cookies':
+      return <CookieFlowDiagram />;
+    case 'js-events':
+      return <EventFlowDiagram />;
+    case 'js-objects':
+      return <JsObjectsDiagram />;
+    case 'js-number-math':
+      return <NumberMathDiagram />;
+    case 'js-string':
+      return <StringMethodsDiagram />;
+    case 'js-array':
+      return <ArrayMethodsDiagram />;
+    case 'js-date':
+      return <DateTemporalDiagram />;
+    case 'js-async':
+      return <AsyncFlowDiagram />;
+    case 'bootstrap':
+      return <BootstrapDiagram />;
     default:
       return null;
   }
