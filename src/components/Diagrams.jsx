@@ -81,6 +81,9 @@ import {
   CrispDmDiagram,
   DSApplicationsDiagram,
   DSvsFieldsDiagram,
+  MLAIStackDiagram,
+  DSRolesDiagram,
+  StatisticsFoundationDiagram,
 } from './DataScienceDiagrams';
 
 // ============================================================
@@ -736,6 +739,12 @@ export function Diagram({ type }) {
       return <DSApplicationsDiagram />;
     case 'ds-vs-fields':
       return <DSvsFieldsDiagram />;
+    case 'ml-ai-stack':
+      return <MLAIStackDiagram />;
+    case 'ds-roles':
+      return <DSRolesDiagram />;
+    case 'stats-foundation':
+      return <StatisticsFoundationDiagram />;
     default:
       return null;
   }

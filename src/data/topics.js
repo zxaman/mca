@@ -15,7 +15,7 @@ export const subjects = [
     "code": "DS",
     "color": "#00d4ff",
     "available": true,
-    "description": "Data se insight tak ka safar — data types, scales, formats, life cycle aur CRISP-DM, simple Hinglish mein"
+    "description": "Data se insight tak ka safar — data types, scales, formats, life cycle, CRISP-DM, ML/AI, roles aur statistics, simple Hinglish mein"
   },
   {
     "id": "web-technology",
