@@ -2935,3 +2935,7 @@ svg.diagram-svg, svg.diagram-pop {
 .tok-cdata { color: #8fd694; }
 .tok-entity { color: #ffd166; }
 .tok-kw { color: #c4ff00; font-weight: 700; }
+
+.tok-num { color: #ffd166; }
+.tok-fn { color: #6fb2ff; }
+.tok-builtin { color: #ff7ab2; }

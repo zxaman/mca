@@ -11,6 +11,7 @@
 import { webTechnologyTopicsB } from './webTechnology2.js';
 import { webTechnologyTopicsC } from './webTechnology3.js';
 import { webTechnologyTopicsD } from './webTechnology4.js';
+import { webTechnologyTopicsE } from './webTechnology5.js';
 
 const unit1Topics = [
   // ==========================================================
@@ -787,5 +788,11 @@ export const webTechnologyUnits = [
     number: '1',
     name: 'HTML and XML',
     topics: [...unit1Topics, ...webTechnologyTopicsB, ...webTechnologyTopicsC, ...webTechnologyTopicsD],
+  },
+  {
+    id: 'unit-2',
+    number: '2',
+    name: 'JavaScript',
+    topics: webTechnologyTopicsE,
   },
 ];

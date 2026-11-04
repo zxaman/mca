@@ -100,6 +100,12 @@ import {
   XmlTreeDiagram,
   DtdVsXsdDiagram,
   XsltPipelineDiagram,
+  JsRoleDiagram,
+  JsInclusionDiagram,
+  JsTypesDiagram,
+  JsControlDiagram,
+  JsLoopsDiagram,
+  JsFunctionDialogDiagram,
 } from './WebDiagrams';
 
 // ============================================================
@@ -789,6 +795,18 @@ export function Diagram({ type }) {
       return <DtdVsXsdDiagram />;
     case 'xslt-pipeline':
       return <XsltPipelineDiagram />;
+    case 'js-role':
+      return <JsRoleDiagram />;
+    case 'js-inclusion':
+      return <JsInclusionDiagram />;
+    case 'js-types':
+      return <JsTypesDiagram />;
+    case 'js-control':
+      return <JsControlDiagram />;
+    case 'js-loops':
+      return <JsLoopsDiagram />;
+    case 'js-function-dialog':
+      return <JsFunctionDialogDiagram />;
     default:
       return null;
   }

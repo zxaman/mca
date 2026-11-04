@@ -914,3 +914,380 @@ export function XsltPipelineDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Diagram 15 — Where JavaScript fits (structure / style / behaviour)
+// ============================================================
+export function JsRoleDiagram() {
+  const layers = [
+    { t: 'HTML', sub: 'structure', ex: '<h1>MCA</h1>', c: '#00d4ff' },
+    { t: 'CSS', sub: 'presentation', ex: 'h1 { color: blue }', c: '#c4ff00' },
+    { t: 'JAVASCRIPT', sub: 'behaviour', ex: 'onclick = show()', c: '#ff8800' },
+  ];
+  const engine = [
+    { t: 'SOURCE', s: 'script.js', d: 'text file', c: '#00d4ff' },
+    { t: 'PARSER', s: 'tokens → AST', d: 'syntax check', c: '#2f6fff' },
+    { t: 'ENGINE', s: 'V8 / SpiderMonkey', d: 'JIT compile + run', c: '#c4ff00' },
+    { t: 'RESULT', s: 'DOM + console', d: 'page badal jaata hai', c: '#ff8800' },
+  ];
+  return (
+    <svg viewBox="0 0 920 404" className="diagram-svg" role="img" aria-label="HTML gives structure, CSS gives presentation and JavaScript gives behaviour, running inside the browser engine">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        JavaScript kahan fit hota hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        HTML = dhancha · CSS = roop · JavaScript = harkat (behaviour)
+      </text>
+
+      {layers.map((l, i) => {
+        const x = 20 + i * 298;
+        return (
+          <g key={l.t} className="diagram-pop" style={{ animationDelay: `${80 + i * 110}ms` }}>
+            <rect x={x} y="74" width="284" height="96" rx="12" fill="rgba(255,255,255,0.03)" stroke={l.c} strokeWidth="1.6" strokeOpacity="0.8" />
+            <rect x={x} y="74" width="284" height="30" rx="12" fill={l.c} fillOpacity="0.16" />
+            <text x={x + 142} y="95" textAnchor="middle" fill={l.c} fontSize="11.5" fontWeight="800" fontFamily={FONT}>{l.t}</text>
+            <text x={x + 142} y="124" textAnchor="middle" fill="#fff" fontSize="10.5" fontFamily={FONT}>{l.sub}</text>
+            <text x={x + 142} y="150" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily="'Consolas', monospace">{l.ex}</text>
+          </g>
+        );
+      })}
+
+      <text x="460" y="196" textAnchor="middle" fill="#c9d8ff" fontSize="10" fontFamily={FONT}>
+        teeno milke ek interactive page banate hain — JS akela page ka structure nahi badal sakta, DOM ke through badalta hai
+      </text>
+
+      <text x="20" y="224" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>BROWSER KE ANDAR JS KA SAFAR</text>
+      {engine.map((e, i) => {
+        const x = 20 + i * 224;
+        return (
+          <g key={e.t} className="diagram-pop" style={{ animationDelay: `${380 + i * 90}ms` }}>
+            <rect x={x} y="234" width="204" height="76" rx="10" fill="rgba(255,255,255,0.03)" stroke={e.c} strokeWidth="1.4" strokeOpacity="0.7" />
+            <text x={x + 102} y="256" textAnchor="middle" fill={e.c} fontSize="10" fontWeight="800" fontFamily={FONT}>{e.t}</text>
+            <text x={x + 102} y="276" textAnchor="middle" fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">{e.s}</text>
+            <text x={x + 102} y="295" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{e.d}</text>
+            {i < engine.length - 1 && (
+              <text x={x + 214} y="278" textAnchor="middle" fill="#9ab0e0" fontSize="14" fontFamily={FONT}>→</text>
+            )}
+          </g>
+        );
+      })}
+
+      <text x="460" y="342" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        JS = client-side scripting · browser mein chalti hai · server ko har baar nahi bulana padta
+      </text>
+      <text x="460" y="370" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
+        Exam line: HTML structure deta hai, CSS sundar karta hai, JavaScript jaan daalta hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 16 — Three ways to add JS to a page
+// ============================================================
+export function JsInclusionDiagram() {
+  const ways = [
+    { t: 'EMBEDDED (internal)', tag: '<script> inside HTML', lines: ['<script>', '  alert("Hi");', '</script>'], note: 'ek page ke liye theek', c: '#00d4ff' },
+    { t: 'EXTERNAL', tag: '<script src="app.js">', lines: ['<script src="app.js">', '</script>', '// app.js file'], note: 'reuse + caching + clean HTML', c: '#c4ff00' },
+    { t: 'INLINE HANDLER', tag: 'attribute mein JS', lines: ['<button onclick=', '  "show()">Click</button>'], note: 'chhota kaam, aaj avoid', c: '#ff8800' },
+  ];
+  return (
+    <svg viewBox="0 0 920 412" className="diagram-svg" role="img" aria-label="Three ways to include JavaScript in HTML: embedded script block, external script file and inline event handler">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        JS ko HTML mein jodne ke 3 tareeke
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        embedded · external · inline — teeno browser ke liye same JS hai
+      </text>
+
+      {ways.map((w, i) => {
+        const x = 20 + i * 298;
+        return (
+          <g key={w.t} className="diagram-pop" style={{ animationDelay: `${90 + i * 120}ms` }}>
+            <rect x={x} y="74" width="284" height="186" rx="12" fill="rgba(255,255,255,0.03)" stroke={w.c} strokeWidth="1.6" strokeOpacity="0.8" />
+            <rect x={x} y="74" width="284" height="30" rx="12" fill={w.c} fillOpacity="0.16" />
+            <text x={x + 142} y="95" textAnchor="middle" fill={w.c} fontSize="11" fontWeight="800" fontFamily={FONT}>{w.t}</text>
+
+            <rect x={x + 14} y="116" width="256" height="76" rx="7" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.1)" />
+            {w.lines.map((ln, j) => (
+              <text key={ln} x={x + 24} y={138 + j * 20} fill="#c9d8ff" fontSize="9" fontFamily="'Consolas', monospace">{ln}</text>
+            ))}
+            <text x={x + 142} y="216" textAnchor="middle" fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>{w.tag}</text>
+            <text x={x + 142} y="240" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{w.note}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="20" y="278" width="430" height="62" rx="10" fill="rgba(47,111,255,0.1)" stroke="rgba(47,111,255,0.55)" />
+        <text x="40" y="300" fill="#6fb2ff" fontSize="9.5" fontWeight="700" fontFamily={FONT}>defer</text>
+        <text x="40" y="318" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>HTML parse hone ke baad chalega — order safe</text>
+        <text x="40" y="332" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>&lt;script src="app.js" defer&gt;&lt;/script&gt;</text>
+      </g>
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="470" y="278" width="430" height="62" rx="10" fill="rgba(255,136,0,0.1)" stroke="rgba(255,136,0,0.55)" />
+        <text x="490" y="300" fill="#ffb86c" fontSize="9.5" fontWeight="700" fontFamily={FONT}>async</text>
+        <text x="490" y="318" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>jaise download ho turant chalega — order fixed nahi</text>
+        <text x="490" y="332" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>&lt;script src="app.js" async&gt;&lt;/script&gt;</text>
+      </g>
+
+      <text x="460" y="368" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Bade project mein external file hi sahi — HTML clean, JS ek jagah
+      </text>
+      <text x="460" y="392" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
+        inline onclick aaj avoid karte hain — HTML aur JS alag rakhna better hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 17 — var / let / const and data types
+// ============================================================
+export function JsTypesDiagram() {
+  const vars = [
+    { t: 'var', s: 'function scope', r: 'redeclare ✓ · reassign ✓', n: 'purana tarika, hoisting se confusion', c: '#ff8800' },
+    { t: 'let', s: 'block scope', r: 'redeclare ✗ · reassign ✓', n: 'badalne wali value ke liye — default choice', c: '#c4ff00' },
+    { t: 'const', s: 'block scope', r: 'redeclare ✗ · reassign ✗', n: 'ek baar value, phir fix (object ke andar change allowed)', c: '#00d4ff' },
+  ];
+  const types = [
+    ['string', '"Riya"', 'string'],
+    ['number', '78, 3.14', 'number'],
+    ['boolean', 'true / false', 'boolean'],
+    ['undefined', 'let x;', 'undefined'],
+    ['null', 'let y = null', 'object (bug)'],
+    ['object', '{name: "Riya"}', 'object'],
+    ['array', '[1, 2, 3]', 'object'],
+    ['function', 'function f(){}', 'function'],
+  ];
+  return (
+    <svg viewBox="0 0 920 424" className="diagram-svg" role="img" aria-label="var, let and const compared by scope and reassignment, next to the eight common JavaScript data types with their typeof results">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Variables aur data types
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        JavaScript loosely typed hai — variable ka type value se aata hai, typeof se pata chalta hai
+      </text>
+
+      <text x="20" y="76" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>DECLARE KAISE KAREIN</text>
+      {vars.map((v, i) => (
+        <g key={v.t} className="diagram-pop" style={{ animationDelay: `${90 + i * 110}ms` }}>
+          <rect x="20" y={88 + i * 82} width="380" height="70" rx="10" fill="rgba(255,255,255,0.03)" stroke={v.c} strokeWidth="1.5" strokeOpacity="0.75" />
+          <text x="36" y={112 + i * 82} fill={v.c} fontSize="12" fontWeight="800" fontFamily="'Consolas', monospace">{v.t}</text>
+          <text x="92" y={112 + i * 82} fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>{v.s}</text>
+          <text x="36" y={132 + i * 82} fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">{v.r}</text>
+          <text x="36" y={150 + i * 82} fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>{v.n}</text>
+        </g>
+      ))}
+
+      <text x="430" y="76" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>DATA TYPES (typeof ka result)</text>
+      {types.map(([name, ex, tx], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 430 + col * 245;
+        const y = 88 + row * 62;
+        return (
+          <g key={name} className="diagram-pop" style={{ animationDelay: `${200 + i * 45}ms` }}>
+            <rect x={x} y={y} width="225" height="52" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+            <text x={x + 12} y={y + 20} fill="#00d4ff" fontSize="9.5" fontWeight="700" fontFamily="'Consolas', monospace">{name}</text>
+            <text x={x + 12} y={y + 36} fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{ex}</text>
+            <text x={x + 213} y={y + 20} textAnchor="end" fill={tx.includes('bug') ? '#ff8800' : '#c4ff00'} fontSize="8.5" fontFamily={FONT}>{tx}</text>
+          </g>
+        );
+      })}
+
+      <text x="665" y="356" textAnchor="middle" fill="#ff8800" fontSize="9" fontFamily={FONT}>
+        null ka typeof &quot;object&quot; aata hai — JS ka purana bug, exam favourite
+      </text>
+      <text x="460" y="388" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        let = badlegi · const = nahi badlegi · var = purana (avoid)
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 18 — if / else if / else vs switch
+// ============================================================
+export function JsControlDiagram() {
+  const conds = [
+    { q: 'marks >= 90 ?', yes: 'A grade', c: '#00d4ff' },
+    { q: 'marks >= 75 ?', yes: 'B grade', c: '#c4ff00' },
+    { q: 'marks >= 60 ?', yes: 'C grade', c: '#ff8800' },
+  ];
+  return (
+    <svg viewBox="0 0 920 440" className="diagram-svg" role="img" aria-label="if else if else chain of conditions on the left and a switch case with break statements on the right">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Control structures — if…else aur switch
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        dono ek hi kaam karte hain: condition ke hisaab se alag code chalana
+      </text>
+
+      <text x="200" y="76" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>IF … ELSE IF … ELSE</text>
+      {conds.map((c, i) => {
+        const cy = 118 + i * 84;
+        return (
+          <g key={c.q} className="diagram-pop" style={{ animationDelay: `${90 + i * 110}ms` }}>
+            <polygon points={`180,${cy - 26} 320,${cy} 180,${cy + 26} 40,${cy}`} fill="rgba(47,111,255,0.12)" stroke="#2f6fff" strokeWidth="1.4" strokeOpacity="0.8" />
+            <text x="180" y={cy + 4} textAnchor="middle" fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">{c.q}</text>
+            <path d={`M 320 ${cy} H 356`} fill="none" stroke="#00ff88" strokeWidth="1.4" strokeOpacity="0.85" />
+            <text x="336" y={cy - 6} textAnchor="middle" fill="#00ff88" fontSize="8.5" fontFamily={FONT}>T</text>
+            <rect x="356" y={cy - 17} width="96" height="34" rx="7" fill="rgba(0,255,136,0.1)" stroke={c.c} strokeWidth="1.3" />
+            <text x="404" y={cy + 4} textAnchor="middle" fill={c.c} fontSize="9.5" fontWeight="700" fontFamily={FONT}>{c.yes}</text>
+            {i < conds.length - 1 && (
+              <>
+                <path d={`M 180 ${cy + 26} V ${cy + 58}`} fill="none" stroke="#9ab0e0" strokeWidth="1.3" strokeOpacity="0.6" />
+                <text x="188" y={cy + 46} fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>F</text>
+              </>
+            )}
+          </g>
+        );
+      })}
+      <path d="M 180 344 V 372" fill="none" stroke="#9ab0e0" strokeWidth="1.3" strokeOpacity="0.6" />
+      <text x="188" y="362" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>F</text>
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="120" y="372" width="120" height="34" rx="7" fill="rgba(255,68,102,0.12)" stroke="#ff4466" strokeWidth="1.3" />
+        <text x="180" y="393" textAnchor="middle" fill="#ff7a90" fontSize="9.5" fontWeight="700" fontFamily={FONT}>Fail (else)</text>
+      </g>
+
+      <text x="670" y="76" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>SWITCH … CASE</text>
+      <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
+        <rect x="540" y="86" width="260" height="34" rx="8" fill="rgba(255,255,255,0.04)" stroke="#00d4ff" strokeWidth="1.4" />
+        <text x="670" y="108" textAnchor="middle" fill="#00d4ff" fontSize="9.5" fontFamily="'Consolas', monospace">switch (day)</text>
+      </g>
+      <path d="M 527 120 V 250" fill="none" stroke="#9ab0e0" strokeWidth="1.2" strokeOpacity="0.4" />
+      {['case "Mon": … break', 'case "Tue": … break', 'default: …'].map((row, i) => (
+        <g key={row} className="diagram-pop" style={{ animationDelay: `${300 + i * 90}ms` }}>
+          <path d={`M 527 ${143 + i * 48} H 540`} fill="none" stroke="#9ab0e0" strokeWidth="1.2" strokeOpacity="0.4" />
+          <rect x="540" y={126 + i * 48} width="260" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+          <text x="552" y={147 + i * 48} fill={i === 2 ? '#ff8800' : '#dbe6ff'} fontSize="9" fontFamily="'Consolas', monospace">{row}</text>
+          <text x="812" y={147 + i * 48} fill={i === 2 ? '#5a6a9e' : '#00ff88'} fontSize="8.5" fontFamily={FONT}>{i === 2 ? 'optional' : 'break'}</text>
+        </g>
+      ))}
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="540" y="284" width="340" height="86" rx="10" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.5)" />
+        <text x="556" y="306" fill="#ffb86c" fontSize="9.5" fontWeight="700" fontFamily={FONT}>break bhool gaye?</text>
+        <text x="556" y="324" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>fall-through — agla case bhi chal jaayega</text>
+        <text x="556" y="342" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>default tab chalta hai jab koi case match na ho</text>
+        <text x="556" y="360" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>switch sirf == (strict) comparison karta hai</text>
+      </g>
+
+      <text x="460" y="426" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Range check (marks &gt;= 90) → if…else · fixed values (day, colour) → switch
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 19 — for / while / do-while
+// ============================================================
+export function JsLoopsDiagram() {
+  const loops = [
+    { t: 'for', c: '#00d4ff', rows: ['init: let i = 1', 'test: i <= 3', 'body: print(i)', 'update: i++'], note: 'count pata ho to best', min: '0 baar' },
+    { t: 'while', c: '#c4ff00', rows: ['test: i <= 3', 'body: print(i)', 'update: i++', 'init pehle hi'], note: 'condition pehle check', min: '0 baar' },
+    { t: 'do…while', c: '#ff8800', rows: ['body: print(i)', 'update: i++', 'test: i <= 3', 'phir wapas'], note: 'body pehle chalta hai', min: 'kam se kam 1 baar' },
+  ];
+  return (
+    <svg viewBox="0 0 920 412" className="diagram-svg" role="img" aria-label="for loop and while loop test the condition before the body, do-while runs the body at least once before testing">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Loop controls — for · while · do…while
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        teeno repeat karte hain, farak sirf isme hai ki condition kab check hoti hai
+      </text>
+
+      {loops.map((l, i) => {
+        const x = 20 + i * 298;
+        return (
+          <g key={l.t} className="diagram-pop" style={{ animationDelay: `${90 + i * 120}ms` }}>
+            <rect x={x} y="74" width="284" height="216" rx="12" fill="rgba(255,255,255,0.03)" stroke={l.c} strokeWidth="1.6" strokeOpacity="0.8" />
+            <rect x={x} y="74" width="284" height="30" rx="12" fill={l.c} fillOpacity="0.16" />
+            <text x={x + 142} y="95" textAnchor="middle" fill={l.c} fontSize="11.5" fontWeight="800" fontFamily="'Consolas', monospace">{l.t}</text>
+            {l.rows.map((r, j) => (
+              <g key={r}>
+                <rect x={x + 16} y={116 + j * 34} width="252" height="26" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" />
+                <text x={x + 28} y={133 + j * 34} fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{r}</text>
+                <text x={x + 258} y={133 + j * 34} textAnchor="end" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>{j + 1}</text>
+              </g>
+            ))}
+            <text x={x + 142} y="266" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{l.note}</text>
+            <text x={x + 142} y="282" textAnchor="middle" fill={l.c} fontSize="8.5" fontWeight="700" fontFamily={FONT}>chalega: {l.min}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="160" y="306" width="600" height="44" rx="9" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.45)" />
+        <text x="460" y="324" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>same output, teeno se:</text>
+        <text x="460" y="343" textAnchor="middle" fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">1 &nbsp;→&nbsp; 2 &nbsp;→&nbsp; 3 &nbsp;(for (let i = 1; i &lt;= 3; i++))</text>
+      </g>
+
+      <text x="460" y="378" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        break = loop turant khatam · continue = sirf ye iteration chhodo
+      </text>
+      <text x="460" y="400" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
+        while mein update bhool gaye to infinite loop — exam ka common trap
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 20 — Functions, dialog boxes and page redirect
+// ============================================================
+export function JsFunctionDialogDiagram() {
+  const dialogs = [
+    { t: 'alert("Hi")', r: 'sirf OK · kuch return nahi', c: '#00d4ff' },
+    { t: 'confirm("Sure?")', r: 'OK → true · Cancel → false', c: '#c4ff00' },
+    { t: 'prompt("Name?")', r: 'text → string · Cancel → null', c: '#ff8800' },
+  ];
+  return (
+    <svg viewBox="0 0 920 424" className="diagram-svg" role="img" aria-label="Function definition, call and return value, next to alert, confirm and prompt dialog boxes and a page redirect">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Functions · dialog boxes · page redirect
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        function = reusable block · dialog = user se baat · redirect = doosra page kholna
+      </text>
+
+      <text x="230" y="76" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>FUNCTION KA SAFAR</text>
+      {[
+        { t: 'DEFINITION', s: 'function add(a, b) {', d: '  return a + b;  }', c: '#00d4ff' },
+        { t: 'CALL', s: 'let sum = add(2, 3);', d: 'arguments pass hue', c: '#c4ff00' },
+        { t: 'RETURN', s: 'return 5', d: 'caller ko value mili', c: '#ff8800' },
+      ].map((f, i) => (
+        <g key={f.t} className="diagram-pop" style={{ animationDelay: `${90 + i * 120}ms` }}>
+          <rect x="20" y={90 + i * 88} width="420" height="70" rx="10" fill="rgba(255,255,255,0.03)" stroke={f.c} strokeWidth="1.5" strokeOpacity="0.75" />
+          <text x="36" y={112 + i * 88} fill={f.c} fontSize="9.5" fontWeight="800" fontFamily={FONT}>{f.t}</text>
+          <text x="36" y={132 + i * 88} fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">{f.s}</text>
+          <text x="36" y={150 + i * 88} fill="#9ab0e0" fontSize="9" fontFamily="'Consolas', monospace">{f.d}</text>
+        </g>
+      ))}
+      <text x="230" y="174" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>↓</text>
+      <text x="230" y="262" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>↓</text>
+
+      <text x="690" y="76" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>DIALOG BOXES (window ke methods)</text>
+      {dialogs.map((d, i) => (
+        <g key={d.t} className="diagram-pop" style={{ animationDelay: `${240 + i * 100}ms` }}>
+          <rect x="470" y={90 + i * 62} width="430" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke={d.c} strokeWidth="1.3" strokeOpacity="0.7" />
+          <text x="486" y={112 + i * 62} fill={d.c} fontSize="9.5" fontWeight="700" fontFamily="'Consolas', monospace">{d.t}</text>
+          <text x="486" y={130 + i * 62} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{d.r}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="470" y="286" width="430" height="86" rx="10" fill="rgba(255,68,102,0.09)" stroke="rgba(255,68,102,0.5)" />
+        <text x="486" y="308" fill="#ff7a90" fontSize="9.5" fontWeight="800" fontFamily={FONT}>PAGE REDIRECT</text>
+        <text x="486" y="328" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">window.location.href = &quot;dashboard.html&quot;;</text>
+        <text x="486" y="346" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>ya location.replace() — history mein purana page nahi rehta</text>
+        <text x="486" y="362" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>assignment naya page kholta hai, replace() back button hataata hai</text>
+      </g>
+
+      <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        dialog se aaya answer variable mein rakhein: let ok = confirm(&quot;Delete?&quot;);
+      </text>
+    </svg>
+  );
+}
