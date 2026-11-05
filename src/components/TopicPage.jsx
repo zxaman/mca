@@ -4,6 +4,7 @@ import { Diagram } from './Diagrams';
 import ExamAnswer from './ExamAnswer';
 import CodeBlock from './CodeBlock';
 import OutputPreview from './OutputPreview';
+import PhpOutput from './PhpOutput';
 import { Icon } from './Icons';
 import { goTo } from '../utils/navigation';
 import { getCompletedTopics, toggleCompletedTopic } from '../utils/progress';
@@ -205,14 +206,23 @@ function SectionRenderer({ section, index }) {
             filename={section.filename}
             note={section.note}
           />
-          <OutputPreview
-            html={section.html}
-            css={section.css}
-            script={section.script}
-            height={section.height || 220}
-            label={section.label || 'Output'}
-            caption={section.caption}
-          />
+          {section.php ? (
+            <PhpOutput
+              output={section.php}
+              height={section.height || 220}
+              label={section.label || 'PHP output'}
+              caption={section.caption}
+            />
+          ) : (
+            <OutputPreview
+              html={section.html}
+              css={section.css}
+              script={section.script}
+              height={section.height || 220}
+              label={section.label || 'Output'}
+              caption={section.caption}
+            />
+          )}
         </div>
       </section>
     );

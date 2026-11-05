@@ -115,6 +115,15 @@ import {
   DateTemporalDiagram,
   AsyncFlowDiagram,
   BootstrapDiagram,
+  PhpRequestFlowDiagram,
+  PhpVariablesDiagram,
+  PhpOperatorsDiagram,
+  PhpFormFlowDiagram,
+  PhpPrintfDiagram,
+  PhpStringFunctionsDiagram,
+  PhpArrayDiagram,
+  Php2dArrayDiagram,
+  PhpAssocDiagram,
 } from './WebDiagrams';
 
 // ============================================================
@@ -834,6 +843,24 @@ export function Diagram({ type }) {
       return <AsyncFlowDiagram />;
     case 'bootstrap':
       return <BootstrapDiagram />;
+    case 'php-request-flow':
+      return <PhpRequestFlowDiagram />;
+    case 'php-variables':
+      return <PhpVariablesDiagram />;
+    case 'php-operators':
+      return <PhpOperatorsDiagram />;
+    case 'php-form-flow':
+      return <PhpFormFlowDiagram />;
+    case 'php-string-format':
+      return <PhpPrintfDiagram />;
+    case 'php-string-functions':
+      return <PhpStringFunctionsDiagram />;
+    case 'php-arrays':
+      return <PhpArrayDiagram />;
+    case 'php-2d-array':
+      return <Php2dArrayDiagram />;
+    case 'php-assoc':
+      return <PhpAssocDiagram />;
     default:
       return null;
   }

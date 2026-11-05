@@ -1917,3 +1917,628 @@ export function BootstrapDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Diagram 30 — PHP: server-side request flow
+// ============================================================
+export function PhpRequestFlowDiagram() {
+  const chain = [
+    { t: 'BROWSER', s: 'Chrome / Firefox', d: 'form ya link bhejta hai', c: '#00d4ff' },
+    { t: 'WEB SERVER', s: 'Apache / Nginx', d: '.php file maangta hai', c: '#2f6fff' },
+    { t: 'PHP ENGINE', s: 'PHP 8 interpreter', d: 'script chalata hai', c: '#c4ff00' },
+    { t: 'DATABASE', s: 'MySQL / MariaDB', d: 'data deta hai', c: '#ff8800' },
+  ];
+  return (
+    <svg viewBox="0 0 920 432" className="diagram-svg" role="img" aria-label="A browser requests a PHP page, the web server hands it to the PHP interpreter which may query a database, and only the generated HTML is sent back to the browser">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        PHP — server par chalti hai, browser tak sirf HTML pahunchti hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        PHP code user ko kabhi nahi dikhta · output HTML bankar jaata hai
+      </text>
+
+      {chain.map((n, i) => {
+        const x = 20 + i * 224;
+        return (
+          <g key={n.t} className="diagram-pop" style={{ animationDelay: `${80 + i * 100}ms` }}>
+            <rect x={x} y="72" width="200" height="104" rx="11" fill="rgba(255,255,255,0.03)" stroke={n.c} strokeWidth="1.6" strokeOpacity="0.8" />
+            <rect x={x} y="72" width="200" height="28" rx="11" fill={n.c} fillOpacity="0.16" />
+            <text x={x + 100} y="92" textAnchor="middle" fill={n.c} fontSize="10.5" fontWeight="800" fontFamily={FONT}>{n.t}</text>
+            <text x={x + 100} y="122" textAnchor="middle" fill="#fff" fontSize="9.5" fontFamily={FONT}>{n.s}</text>
+            <text x={x + 100} y="144" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{n.d}</text>
+            <text x={x + 100} y="164" textAnchor="middle" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>STEP {i + 1}</text>
+            {i < chain.length - 1 && (
+              <text x={x + 212} y="130" textAnchor="middle" fill="#9ab0e0" fontSize="14" fontFamily={FONT}>→</text>
+            )}
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="20" y="196" width="430" height="96" rx="10" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.45)" />
+        <text x="36" y="216" fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>BROWSER KO YE MILTA HAI — sirf HTML</text>
+        <text x="36" y="240" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;!DOCTYPE html&gt;</text>
+        <text x="36" y="258" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;h1&gt;Hello Riya&lt;/h1&gt;</text>
+        <text x="36" y="276" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>View Source mein PHP ka ek line bhi nahi</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="470" y="196" width="430" height="96" rx="10" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="486" y="216" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>SERVER PAR YE FILE HAI — kabhi nahi bhejti</text>
+        <text x="486" y="240" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">&lt;?php</text>
+        <text x="486" y="258" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  $user = &quot;Riya&quot;;</text>
+        <text x="486" y="276" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">  echo &quot;&lt;h1&gt;Hello $user&lt;/h1&gt;&quot;;</text>
+      </g>
+
+      <path d="M 460 196 V 172" fill="none" stroke="#00ff88" strokeWidth="1.5" strokeOpacity="0.8" />
+      <path d="M 470 300 H 940" fill="none" stroke="none" />
+
+      <g className="diagram-pop" style={{ animationDelay: '680ms' }}>
+        <rect x="20" y="310" width="880" height="46" rx="9" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" />
+        <text x="36" y="330" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>PHP FILE KA DHANCHA</text>
+        <text x="36" y="348" fill="#dbe6ff" fontSize="9" fontFamily="'Consolas', monospace">index.php  →  &lt;?php  ...code...  ?&gt;  ke beech PHP chalti hai · baaki sab HTML seedha bhej diya jaata hai</text>
+      </g>
+
+      <text x="460" y="384" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        PHP = PHP: Hypertext Preprocessor · server-side scripting language
+      </text>
+      <text x="460" y="408" textAnchor="middle" fill="#5a6a9e" fontSize="9.5" fontFamily={FONT}>
+        Exam line: "PHP server par chalti hai aur browser ko sirf HTML output milta hai" — yahi HTML se bada farak hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 31 — PHP variables, types and scope
+// ============================================================
+export function PhpVariablesDiagram() {
+  const types = [
+    ['string', '$name = "Riya";', 'string(5) "Riya"'],
+    ['integer', '$marks = 78;', 'int(78)'],
+    ['float', '$pi = 3.14;', 'float(3.14)'],
+    ['boolean', '$pass = true;', 'bool(true)'],
+    ['array', '$a = [1, 2, 3];', 'array(3)'],
+    ['null', '$x = null;', 'NULL'],
+  ];
+  return (
+    <svg viewBox="0 0 920 424" className="diagram-svg" role="img" aria-label="PHP variable anatomy with the dollar sign and naming rules, the seven data types with var_dump output, and variable scope">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        PHP variables — $ se shuru, type khud lagta hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        ghoshit karne ki zaroorat nahi · assign karte hi variable ban jaata hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="70" width="420" height="76" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(126,231,135,0.5)" />
+        <text x="40" y="116" fill="#7ee787" fontSize="16" fontWeight="800" fontFamily="'Consolas', monospace">$</text>
+        <text x="58" y="116" fill="#fff" fontSize="15" fontFamily="'Consolas', monospace">studentName</text>
+        <text x="204" y="116" fill="#9ab0e0" fontSize="15" fontFamily="'Consolas', monospace">=</text>
+        <text x="226" y="116" fill="#ffb86c" fontSize="15" fontFamily="'Consolas', monospace">&quot;Riya&quot;</text>
+        <text x="300" y="116" fill="#7f8db3" fontSize="15" fontFamily="'Consolas', monospace">;</text>
+        <text x="40" y="136" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>dollar sigil</text>
+        <text x="150" y="136" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>naam (letter/_ se shuru)</text>
+        <text x="300" y="136" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>value + semicolon</text>
+      </g>
+
+      <text x="460" y="172" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>
+        naamo mein a-z, A-Z, 0-9, _ allowed · number se shuru nahi · case-sensitive ($name ≠ $Name)
+      </text>
+
+      <text x="20" y="200" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>DATA TYPES (var_dump ka output)</text>
+      {types.map(([t, code, dump], i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 20 + col * 300;
+        const y = 210 + row * 62;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${180 + i * 60}ms` }}>
+            <rect x={x} y={y} width="286" height="52" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" />
+            <text x={x + 12} y={y + 18} fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>{t}</text>
+            <text x={x + 12} y={y + 33} fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{code}</text>
+            <text x={x + 12} y={y + 46} fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">{dump}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="344" width="880" height="42" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="36" y="362" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>SCOPE</text>
+        <text x="36" y="378" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>
+          local (function ke andar) · global (function ke bahar) · function ke andar global use karne ke liye "global $x;" ya $GLOBALS['x']
+        </text>
+      </g>
+
+      <text x="460" y="408" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Superglobals: $_GET · $_POST · $_REQUEST · $_SERVER · $_SESSION · $_COOKIE · $_FILES
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 32 — PHP operators
+// ============================================================
+export function PhpOperatorsDiagram() {
+  const groups = [
+    { t: 'ARITHMETIC', c: '#00d4ff', rows: ['$a + $b   → jod', '$a - $b   → ghatao', '$a * $b   → guna', '$a / $b   → bhaag', '$a % $b   → remainder', '$a ** $b  → power'] },
+    { t: 'ASSIGNMENT', c: '#c4ff00', rows: ['$a = 5     → set', '$a += 2    → $a = $a + 2', '$a -= 2', '$a *= 2', '$a /= 2', '$s .= "!"  → string jodo'] },
+    { t: 'COMPARISON', c: '#ff8800', rows: ['$a == $b   → value equal', '$a === $b  → value + type', '$a != $b', '$a > $b / < / >=', '$a <=> $b  → -1, 0, 1', '$a ?? $b   → null check'] },
+    { t: 'LOGICAL', c: '#ff7ab2', rows: ['$a && $b   → dono true', '$a || $b   → koi ek true', '!$a        → ulta', '$a and $b  → low priority', '$a or $b', '$a xor $b  → sirf ek true'] },
+    { t: 'INCREMENT', c: '#2f6fff', rows: ['$a++   → baad mein badhao', '++$a   → pehle badhao', '$a--   → baad mein ghatao', '--$a   → pehle ghatao', '', ''] },
+    { t: 'STRING / OTHER', c: '#8fd694', rows: ['$a . $b   → jodo', '$a .= $b  → jod kar rakho', '$c ? $x : $y → ternary', 'isset($a)', 'empty($a)', '@$a  → error chhupao'] },
+  ];
+  return (
+    <svg viewBox="0 0 920 506" className="diagram-svg" role="img" aria-label="Six groups of PHP operators: arithmetic, assignment, comparison, logical, increment and string operators with examples">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        PHP operators — chhe group
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        arithmetic · assignment · comparison · logical · increment · string
+      </text>
+
+      {groups.map((g, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 20 + col * 298;
+        const y = 68 + row * 194;
+        return (
+          <g key={g.t} className="diagram-pop" style={{ animationDelay: `${80 + i * 80}ms` }}>
+            <rect x={x} y={y} width="284" height="170" rx="11" fill="rgba(255,255,255,0.03)" stroke={g.c} strokeWidth="1.5" strokeOpacity="0.7" />
+            <rect x={x} y={y} width="284" height="28" rx="11" fill={g.c} fillOpacity="0.15" />
+            <text x={x + 142} y={y + 19} textAnchor="middle" fill={g.c} fontSize="10" fontWeight="800" fontFamily={FONT}>{g.t}</text>
+            {g.rows.map((r, j) => (
+              r ? <text key={r} x={x + 14} y={y + 52 + j * 20} fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{r}</text> : null
+            ))}
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="20" y="436" width="880" height="34" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="458" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>
+          Trap: "10" == 10 → true (type badal kar compare) · "10" === 10 → false · PHP 8 mein 0 == "apple" ab false hai
+        </text>
+      </g>
+
+      <text x="460" y="492" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        String jodne ke liye + nahi — dot (.) use hota hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 33 — Form input → PHP output (GET vs POST)
+// ============================================================
+export function PhpFormFlowDiagram() {
+  return (
+    <svg viewBox="0 0 920 436" className="diagram-svg" role="img" aria-label="A form sends data by GET in the URL or by POST in the request body, PHP reads it through the GET or POST superglobals, validates it and then prints safe output">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        User input se output tak — GET aur POST
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        form → superglobal → validate → echo/htmlspecialchars → HTML output
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="70" width="270" height="120" rx="10" fill="rgba(255,255,255,0.04)" stroke="#00d4ff" strokeWidth="1.5" />
+        <text x="155" y="92" textAnchor="middle" fill="#00d4ff" fontSize="10" fontWeight="800" fontFamily={FONT}>HTML FORM</text>
+        <text x="36" y="116" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;form action=&quot;welcome.php&quot;</text>
+        <text x="36" y="132" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">      method=&quot;post&quot;&gt;</text>
+        <text x="36" y="152" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">  &lt;input name=&quot;name&quot;&gt;</text>
+        <text x="36" y="168" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">  &lt;input type=&quot;submit&quot;&gt;</text>
+        <text x="36" y="184" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&lt;/form&gt;</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="325" y="70" width="270" height="120" rx="10" fill="rgba(255,255,255,0.04)" stroke="#2f6fff" strokeWidth="1.5" />
+        <text x="460" y="92" textAnchor="middle" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>DATA KAISE JAATA HAI</text>
+        <text x="340" y="116" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>GET</text>
+        <text x="340" y="132" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">URL mein dikhta hai:</text>
+        <text x="340" y="146" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">welcome.php?name=Riya&amp;city=Pune</text>
+        <text x="340" y="166" fill="#ff8800" fontSize="8.5" fontWeight="700" fontFamily={FONT}>POST</text>
+        <text x="340" y="182" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">URL mein nahi — body mein chhupa</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="630" y="70" width="270" height="120" rx="10" fill="rgba(255,255,255,0.04)" stroke="#c4ff00" strokeWidth="1.5" />
+        <text x="765" y="92" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="800" fontFamily={FONT}>PHP MEIN PADHNA</text>
+        <text x="646" y="116" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$_GET[&quot;name&quot;]</text>
+        <text x="646" y="134" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$_POST[&quot;name&quot;]</text>
+        <text x="646" y="152" fill="#9ab0e0" fontSize="8" fontFamily="'Consolas', monospace">$_REQUEST — dono ka mix</text>
+        <text x="646" y="172" fill="#ffb86c" fontSize="8" fontFamily={FONT}>na mile to warning/undefined</text>
+      </g>
+
+      {[290, 595].map((x) => (
+        <text key={x} x={x + 12} y="136" textAnchor="middle" fill="#9ab0e0" fontSize="14" fontFamily={FONT}>→</text>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="20" y="212" width="430" height="130" rx="10" fill={'rgba(255,68,102,0.08)'} stroke="rgba(255,68,102,0.5)" />
+        <text x="36" y="234" fill="#ff7a90" fontSize="9" fontWeight="700" fontFamily={FONT}>GALAT — XSS ka khatra</text>
+        <text x="36" y="258" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">echo &quot;Hello &quot; . $_GET[&quot;name&quot;];</text>
+        <text x="36" y="280" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>user &lt;script&gt;alert(1)&lt;/script&gt; bheje to</text>
+        <text x="36" y="296" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>wo script page mein chal jaayega</text>
+        <text x="36" y="318" fill="#ff7a90" fontSize="8" fontFamily={FONT}>kabhi bhi user input seedha echo na karein</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
+        <rect x="470" y="212" width="430" height="130" rx="10" fill="rgba(0,255,136,0.07)" stroke="rgba(0,255,136,0.45)" />
+        <text x="486" y="234" fill="#00ff88" fontSize="9" fontWeight="700" fontFamily={FONT}>SAHI — escape karke print</text>
+        <text x="486" y="258" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$name = htmlspecialchars($_POST[&quot;name&quot;]);</text>
+        <text x="486" y="278" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">echo &quot;Hello &quot; . $name;</text>
+        <text x="486" y="300" fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>output: Hello &amp;lt;b&amp;gt;Riya&amp;lt;/b&amp;gt;</text>
+        <text x="486" y="318" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>tags text ban jaate hain, chalte nahi</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
+        <rect x="20" y="356" width="880" height="34" rx="8" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="378" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>
+          Validation pehle: isset() / empty() se check karein, phir trim(), phir htmlspecialchars() — aur server par bhi validate karein
+        </text>
+      </g>
+
+      <text x="460" y="418" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        GET = bookmark/share ho sakta, POST = password / sensitive data ke liye · dono par bharosa nahi
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 34 — printf / sprintf format string
+// ============================================================
+export function PhpPrintfDiagram() {
+  const specs = [
+    ['%s', 'string', 'printf("%s", "Riya") → Riya'],
+    ['%d', 'integer', 'printf("%d", 78) → 78'],
+    ['%f', 'float', 'printf("%f", 3.14159) → 3.141590'],
+    ['%.2f', '2 decimals', 'printf("%.2f", 3.14159) → 3.14'],
+    ['%05d', 'pad zero, width 5', 'printf("%05d", 42) → 00042'],
+    ['%-5s|', 'left align', 'printf("%-5s|", "ab") → ab   |'],
+    ['%x / %X', 'hex', 'printf("%x", 255) → ff'],
+    ['%b', 'binary', 'printf("%b", 5) → 101'],
+    ['%%', 'literal %', 'printf("100%%") → 100%'],
+  ];
+  return (
+    <svg viewBox="0 0 920 430" className="diagram-svg" role="img" aria-label="A printf format specifier is broken into its parts, followed by a table of common specifiers with their output">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        String formatting — printf ke format specifiers
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        ek hi format string, uske baad arguments — output ka dhancha aap tay karte hain
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="70" width="880" height="92" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(196,255,0,0.4)" />
+        <text x="120" y="122" textAnchor="middle" fill="#ff7ab2" fontSize="26" fontFamily="'Consolas', monospace">%</text>
+        <text x="180" y="122" textAnchor="middle" fill="#ff8800" fontSize="26" fontFamily="'Consolas', monospace">0</text>
+        <text x="240" y="122" textAnchor="middle" fill="#00d4ff" fontSize="26" fontFamily="'Consolas', monospace">5</text>
+        <text x="290" y="122" textAnchor="middle" fill="#c4ff00" fontSize="26" fontFamily="'Consolas', monospace">.</text>
+        <text x="330" y="122" textAnchor="middle" fill="#c4ff00" fontSize="26" fontFamily="'Consolas', monospace">2</text>
+        <text x="390" y="122" textAnchor="middle" fill="#00ff88" fontSize="26" fontFamily="'Consolas', monospace">f</text>
+
+        <text x="120" y="146" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>start</text>
+        <text x="180" y="146" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>zero pad</text>
+        <text x="240" y="146" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>width 5</text>
+        <text x="310" y="146" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>decimal</text>
+        <text x="390" y="146" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>float</text>
+
+        <text x="560" y="112" fill="#dbe6ff" fontSize="10" fontFamily="'Consolas', monospace">printf(&quot;%05.2f&quot;, 3.14159);</text>
+        <text x="560" y="136" fill="#00ff88" fontSize="11" fontWeight="800" fontFamily="'Consolas', monospace">→ 03.14</text>
+      </g>
+
+      {specs.map(([sp, meaning, ex], i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 20 + col * 298;
+        const y = 180 + row * 56;
+        return (
+          <g key={sp} className="diagram-pop" style={{ animationDelay: `${200 + i * 45}ms` }}>
+            <rect x={x} y={y} width="284" height="46" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+            <text x={x + 12} y={y + 20} fill="#c4ff00" fontSize="11" fontWeight="700" fontFamily="'Consolas', monospace">{sp}</text>
+            <text x={x + 74} y={y + 20} fill="#9ab0e0" fontSize="8.5" fontFamily={FONT}>{meaning}</text>
+            <text x={x + 12} y={y + 36} fill="#dbe6ff" fontSize="7.5" fontFamily="'Consolas', monospace">{ex}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="20" y="356" width="880" height="46" rx="9" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="36" y="376" fill="#ffb86c" fontSize="9" fontWeight="700" fontFamily={FONT}>NUMBER FORMAT</text>
+        <text x="36" y="394" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">
+          number_format(1234567.891, 2, &quot;.&quot;, &quot;,&quot;)  →  1,234,567.89
+        </text>
+      </g>
+
+      <text x="460" y="420" textAnchor="middle" fill="#c4ff00" fontSize="9.5" fontWeight="700" fontFamily={FONT}>
+        printf() seedha print karta hai · sprintf() wahi string return karta hai (baad mein use karne ke liye)
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 35 — PHP string manipulation functions
+// ============================================================
+export function PhpStringFunctionsDiagram() {
+  const rows = [
+    ['strlen($s)', 'length', '19'],
+    ['trim($s)', 'aage-piche space hataayo', '"Hello PHP World"'],
+    ['strtoupper($s)', 'CAPS', '"  HELLO PHP WORLD  "'],
+    ['strtolower($s)', 'chhote', '"  hello php world  "'],
+    ['ucfirst($s)', 'pehla letter bada', '"  Hello PHP World  "'],
+    ['ucwords($s)', 'har word bada', '"  Hello PHP World  "'],
+    ['strpos($s, "PHP")', 'position', '8'],
+    ['substr($s, 2, 5)', 'his sa nikaalo', '"Hello"'],
+    ['str_replace("PHP", "JS", $s)', 'badlo', '"  Hello JS World  "'],
+    ['explode(" ", trim($s))', 'array banao', '["Hello","PHP","World"]'],
+    ['strrev($s)', 'ulta', '"  dlroW PHP olleH  "'],
+    ['str_repeat("ab", 3)', 'dohrao', '"ababab"'],
+  ];
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="A PHP string with its length and index positions, and twelve string library functions with their results">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        PHP string functions — ek string, barah functions
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        sabka input string, output string / number / array — original string kabhi nahi badalti
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="580" height="46" rx="8" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.45)" />
+        <text x="34" y="86" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>$s =</text>
+        <text x="34" y="102" fill="#dbe6ff" fontSize="12" fontFamily="'Consolas', monospace">
+          &quot;  Hello PHP World  &quot;
+        </text>
+        <text x="330" y="102" fill="#7ee787" fontSize="9" fontFamily={FONT}>length = 19 (spaces bhi ginte hain)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="620" y="66" width="280" height="46" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="634" y="86" fill="#ffb86c" fontSize="8.5" fontWeight="700" fontFamily={FONT}>PHP 8 ke naye helpers</text>
+        <text x="634" y="102" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">str_contains · str_starts_with · str_ends_with</text>
+      </g>
+
+      {rows.map(([fn, what, out], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = col === 0 ? 20 : 470;
+        const y = 128 + row * 46;
+        return (
+          <g key={fn} className="diagram-pop" style={{ animationDelay: `${240 + i * 40}ms` }}>
+            <rect x={x} y={y} width="430" height="38" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.13)" />
+            <text x={x + 10} y={y + 16} fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">{fn}</text>
+            <text x={x + 10} y={y + 30} fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>{what}</text>
+            <text x={x + 420} y={y + 22} textAnchor="end" fill="#c4ff00" fontSize="8" fontFamily="'Consolas', monospace">{out}</text>
+          </g>
+        );
+      })}
+
+      <text x="460" y="428" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        explode() string → array · implode() array → string · dono ek saath yaad rakhein
+      </text>
+      <text x="460" y="448" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        substr($s, start, length) — start negative bhi ho sakta hai (aakhir se)
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 36 — Indexed (single-dimensional) arrays
+// ============================================================
+export function PhpArrayDiagram() {
+  const fruits = ['Apple', 'Banana', 'Mango', 'Orange'];
+  return (
+    <svg viewBox="0 0 920 424" className="diagram-svg" role="img" aria-label="A PHP indexed array with keys 0 to 3, its count, and the common functions used to add, remove and loop over elements">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Single-dimensional array — ek naam, kai values, index 0 se
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        $fruits = [&quot;Apple&quot;, &quot;Banana&quot;, &quot;Mango&quot;, &quot;Orange&quot;];
+      </text>
+
+      {fruits.map((f, i) => (
+        <g key={f} className="diagram-pop" style={{ animationDelay: `${70 + i * 70}ms` }}>
+          <rect x={50 + i * 150} y="70" width="132" height="52" rx="9" fill="rgba(196,255,0,0.1)" stroke="rgba(196,255,0,0.55)" />
+          <text x={116 + i * 150} y="100" textAnchor="middle" fill="#fff" fontSize="11.5" fontFamily="'Consolas', monospace">{f}</text>
+          <text x={116 + i * 150} y="140" textAnchor="middle" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>key [{i}]</text>
+        </g>
+      ))}
+      <text x="710" y="100" fill="#00d4ff" fontSize="10" fontFamily="'Consolas', monospace">count($fruits) → 4</text>
+      <text x="710" y="122" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>keys 0,1,2,3 — automatic</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="164" width="430" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="36" y="186" fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>LIKHNA / PADHNA</text>
+        <text x="36" y="208" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$fruits = array(&quot;Apple&quot;, &quot;Banana&quot;);   // purana</text>
+        <text x="36" y="226" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$fruits = [&quot;Apple&quot;, &quot;Banana&quot;];          // naya</text>
+        <text x="36" y="248" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">echo $fruits[0];        // Apple</text>
+        <text x="36" y="266" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$fruits[] = &quot;Grapes&quot;;   // end mein jodo</text>
+        <text x="36" y="288" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">unset($fruits[1]);      // hataao</text>
+        <text x="36" y="306" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>unset ke baad indexes nahi badalte — array_values() se reset</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="470" y="164" width="430" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="486" y="186" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>LOOP AUR FUNCTIONS</text>
+        <text x="486" y="208" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">foreach ($fruits as $f) {'{'} echo $f; {'}'}</text>
+        <text x="486" y="226" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">for ($i = 0; $i &lt; count($fruits); $i++)</text>
+        <text x="486" y="248" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">sort($a) · rsort($a) · array_sum($a)</text>
+        <text x="486" y="266" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">array_push($a, 4) · array_pop($a)</text>
+        <text x="486" y="288" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">in_array(&quot;Mango&quot;, $fruits)  → true</text>
+        <text x="486" y="306" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>print_r() / var_dump() se poora array dekh sakte hain</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="330" width="880" height="34" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="352" fill="#dbe6ff" fontSize="9" fontFamily={FONT}>
+          print_r($fruits) → Array ( [0] =&gt; Apple [1] =&gt; Banana [2] =&gt; Mango [3] =&gt; Orange ) · var_dump() type ke saath dikhata hai
+        </text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Indexed array ke keys 0, 1, 2… hote hain — associative mein keys khud likhte hain
+      </text>
+      <text x="460" y="414" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam line: array = ek variable mein kai values, har value ka ek key
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 37 — Multidimensional arrays
+// ============================================================
+export function Php2dArrayDiagram() {
+  const m = [
+    [78, 82, 90],
+    [65, 70, 72],
+    [88, 91, 95],
+  ];
+  return (
+    <svg viewBox="0 0 920 436" className="diagram-svg" role="img" aria-label="A two dimensional PHP array visualised as rows and columns of marks, read with nested foreach loops and printed as an HTML table">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Multidimensional array — array ke andar array
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        $marks[0][1] =&gt; pehli row, doosra column · matrix, table, records — sab isi se
+      </text>
+
+      <text x="60" y="82" fill="#5a6a9e" fontSize="8.5" fontFamily={FONT}>col →</text>
+      {['C1', 'C2', 'C3'].map((c, j) => (
+        <text key={c} x={140 + j * 74} y="82" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>{c}</text>
+      ))}
+
+      {m.map((row, i) => (
+        <g key={i} className="diagram-pop" style={{ animationDelay: `${80 + i * 90}ms` }}>
+          <text x="92" y={112 + i * 52} textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>row {i}</text>
+          {row.map((v, j) => (
+            <g key={j}>
+              <rect x={102 + j * 74} y={90 + i * 52} width="62" height="36" rx="6" fill="rgba(196,255,0,0.1)" stroke="rgba(196,255,0,0.45)" />
+              <text x={133 + j * 74} y={113 + i * 52} textAnchor="middle" fill="#fff" fontSize="10.5" fontFamily="'Consolas', monospace">{v}</text>
+            </g>
+          ))}
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="360" y="88" width="250" height="150" rx="10" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.13)" />
+        <text x="374" y="108" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>LIKHNA / CODE</text>
+        <text x="374" y="128" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$marks = [</text>
+        <text x="374" y="144" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  [78, 82, 90],</text>
+        <text x="374" y="160" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  [65, 70, 72],</text>
+        <text x="374" y="176" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  [88, 91, 95]</text>
+        <text x="374" y="192" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">];</text>
+        <text x="374" y="212" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">echo $marks[0][1];  // 82</text>
+        <text x="374" y="228" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>pehla index row, doosra column</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '470ms' }}>
+        <rect x="630" y="88" width="270" height="150" rx="10" fill="rgba(47,111,255,0.09)" stroke="rgba(47,111,255,0.5)" />
+        <text x="646" y="108" fill="#6fb2ff" fontSize="8.5" fontWeight="700" fontFamily={FONT}>NESTED LOOP</text>
+        <text x="646" y="128" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">foreach ($marks as $row) {'{'}</text>
+        <text x="646" y="144" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  foreach ($row as $m) {'{'}</text>
+        <text x="646" y="160" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">    echo $m . &quot; &quot;;</text>
+        <text x="646" y="176" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  {'}'}</text>
+        <text x="646" y="192" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  echo &quot;&lt;br&gt;&quot;;</text>
+        <text x="646" y="208" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{'}'}</text>
+        <text x="646" y="228" fill="#9ab0e0" fontSize="7.5" fontFamily={FONT}>bahar wala = rows, andar wala = columns</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '550ms' }}>
+        <rect x="20" y="272" width="880" height="60" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="36" y="294" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>OUTPUT — HTML TABLE</text>
+        <text x="36" y="316" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">
+          &lt;table&gt;&lt;tr&gt;&lt;td&gt;78&lt;/td&gt;&lt;td&gt;82&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt; … rows loop se ban jaati hain
+        </text>
+      </g>
+
+      <text x="460" y="364" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>
+        3D array = array ke andar array ke andar array ($data[0][1][2]) — rarely exam mein, par concept yahi hai
+      </text>
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Multidimensional array = rows aur columns wala data (marks, matrix, timetable)
+      </text>
+      <text x="460" y="416" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        count($marks) → 3 (sirf pehli level) · count($marks, COUNT_RECURSIVE) → 12
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 38 — Associative arrays
+// ============================================================
+export function PhpAssocDiagram() {
+  return (
+    <svg viewBox="0 0 920 432" className="diagram-svg" role="img" aria-label="An associative array maps named keys to values, is looped with foreach using key and value, and can hold records that print as a table">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Associative array — index ki jagah naam wale keys
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        $student = [&quot;name&quot; =&gt; &quot;Riya&quot;, &quot;marks&quot; =&gt; 78];  ·  key =&gt; value
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="70" width="410" height="140" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.45)" />
+        {[
+          ['name', 'Riya'],
+          ['course', 'MCA'],
+          ['marks', '78'],
+          ['city', 'Pune'],
+        ].map(([k, v], i) => (
+          <g key={k}>
+            <text x="36" y={102 + i * 28} fill="#ff9ec4" fontSize="9.5" fontFamily="'Consolas', monospace">&quot;{k}&quot;</text>
+            <text x="120" y={102 + i * 28} fill="#9ab0e0" fontSize="9.5" fontFamily="'Consolas', monospace">=&gt;</text>
+            <text x="150" y={102 + i * 28} fill="#dbe6ff" fontSize="9.5" fontFamily="'Consolas', monospace">
+              {typeof v === 'number' || !isNaN(v) ? v : `"${v}"`}
+            </text>
+          </g>
+        ))}
+        <text x="36" y="196" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>keys string ho sakti hain (indexed array mein 0,1,2 hote hain)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="450" y="70" width="450" height="140" rx="10" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="466" y="92" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>PADHNA AUR LOOP</text>
+        <text x="466" y="114" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">echo $student[&quot;name&quot;];        // Riya</text>
+        <text x="466" y="134" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">$student[&quot;marks&quot;] = 82;       // badla</text>
+        <text x="466" y="154" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">foreach ($student as $k =&gt; $v) {'{'}</text>
+        <text x="466" y="172" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">  echo &quot;$k = $v&lt;br&gt;&quot;;</text>
+        <text x="466" y="190" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{'}'}</text>
+        <text x="466" y="206" fill="#5a6a9e" fontSize="8" fontFamily={FONT}>indexed array mein $k sirf 0,1,2 hota hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="20" y="228" width="560" height="128" rx="10" fill="rgba(255,136,0,0.07)" stroke="rgba(255,136,0,0.45)" />
+        <text x="36" y="250" fill="#ffb86c" fontSize="9" fontWeight="700" fontFamily={FONT}>REAL USE — RECORDS KA ARRAY</text>
+        <text x="36" y="270" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$students = [</text>
+        <text x="36" y="286" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  [&quot;name&quot; =&gt; &quot;Riya&quot;, &quot;marks&quot; =&gt; 78],</text>
+        <text x="36" y="302" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  [&quot;name&quot; =&gt; &quot;Aman&quot;, &quot;marks&quot; =&gt; 82]</text>
+        <text x="36" y="318" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">];</text>
+        <text x="36" y="338" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>foreach ($students as $s) → har record ek row · yahi database ka shape hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="600" y="228" width="300" height="128" rx="10" fill="rgba(47,111,255,0.09)" stroke="rgba(47,111,255,0.5)" />
+        <text x="616" y="250" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>SORTING &amp; HELPERS</text>
+        <text x="616" y="272" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">ksort($a)   // key se sort</text>
+        <text x="616" y="290" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">asort($a)   // value se sort</text>
+        <text x="616" y="308" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">array_keys($a)</text>
+        <text x="616" y="326" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">array_values($a)</text>
+        <text x="616" y="344" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">array_key_exists(&quot;name&quot;, $a)</text>
+      </g>
+
+      <text x="460" y="382" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Associative array = naam se pehchana jaane wala data (&quot;marks&quot; =&gt; 78), index yaad rakhne ki zaroorat nahi
+      </text>
+      <text x="460" y="406" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam line: indexed array mein key number hota hai, associative mein key naam — dono PHP arrays hain
+      </text>
+    </svg>
+  );
+}
