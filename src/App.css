@@ -2247,8 +2247,76 @@ svg.diagram-svg, svg.diagram-pop {
   text-overflow: ellipsis;
 }
 
+.sidebar-subject-row {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-subject-row .sidebar-subject-btn {
+  width: auto;
+  flex: 1;
+  min-width: 0;
+  padding-right: 4px;
+}
+
+.sidebar-subject-caret {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 36px;
+  margin-right: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebar-subject-caret:hover {
+  background: rgba(100, 130, 255, 0.12);
+}
+
+.sidebar-subject-caret svg {
+  transform: rotate(-90deg);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sidebar-subject-caret.open svg {
+  transform: rotate(0deg);
+}
+
+/* ---------- Sliding collapse (units list + topics list) ---------- */
+
+.sidebar-slide {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.24s ease,
+    visibility 0s linear 0.34s;
+}
+
+.sidebar-slide.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease 0.05s,
+    visibility 0s linear 0s;
+}
+
+.sidebar-slide-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .sidebar-units {
   padding-left: 20px;
+  border-left: 1px solid rgba(100, 130, 255, 0.12);
+  margin-left: 20px;
 }
 
 .sidebar-unit {
@@ -2260,18 +2328,19 @@ svg.diagram-svg, svg.diagram-pop {
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px 12px;
   background: transparent;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
   color: #6a7589;
-  font-size: 13px;
+  font-size: 12.5px;
   transition: all 0.2s;
   text-align: left;
 }
 
 .sidebar-unit-btn:hover {
-  background: rgba(100, 130, 255, 0.06);
+  background: rgba(100, 130, 255, 0.08);
   color: #fff;
 }
 
@@ -2279,61 +2348,53 @@ svg.diagram-svg, svg.diagram-pop {
   color: #c4ff00;
 }
 
+.sidebar-unit.open .sidebar-unit-btn {
+  background: rgba(100, 130, 255, 0.08);
+  color: #fff;
+}
+
 .sidebar-unit-num {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  color: #0047ff;
-  background: rgba(0, 71, 255, 0.08);
+  color: #6f8dff;
+  background: rgba(0, 71, 255, 0.12);
   padding: 2px 6px;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .sidebar-unit-name {
   flex: 1;
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .sidebar-unit-count {
-  font-size: 11px;
+  font-size: 10px;
   color: #4a5570;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1px 6px;
 }
 
-.sidebar-dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 100%;
-  padding: 8px 16px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #4a5570;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 0.2s;
-  text-align: left;
+.sidebar-unit-caret {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: rotate(-90deg);
 }
 
-.sidebar-dropdown-toggle:hover {
-  color: #c4ff00;
+.sidebar-unit-caret.open {
+  transform: rotate(0deg);
 }
 
-.sidebar-topics-dropdown {
-  padding-left: 24px;
-  margin-bottom: 8px;
-  max-height: 600px;
-  overflow-y: auto;
-}
-
-.sidebar-topics-dropdown::-webkit-scrollbar {
-  width: 4px;
-}
-
-.sidebar-topics-dropdown::-webkit-scrollbar-thumb {
-  background: rgba(100, 130, 255, 0.3);
-  border-radius: 2px;
+.sidebar-topics {
+  padding-left: 10px;
+  margin-bottom: 6px;
+  border-left: 1px dashed rgba(100, 130, 255, 0.14);
 }
 
 .sidebar-topic {
@@ -2341,24 +2402,45 @@ svg.diagram-svg, svg.diagram-pop {
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 7px 10px;
   background: transparent;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
   color: #6a7589;
-  font-size: 12px;
-  transition: all 0.2s;
+  font-size: 11.5px;
+  line-height: 1.35;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
   text-align: left;
 }
 
+/* each topic slides in from the left, staggered */
+.sidebar-slide.open .sidebar-topic {
+  animation: sidebarTopicIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes sidebarTopicIn {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .sidebar-topic:hover {
-  background: rgba(100, 130, 255, 0.06);
+  background: rgba(100, 130, 255, 0.1);
   color: #fff;
+  transform: translateX(2px);
 }
 
 .sidebar-topic.active {
-  background: rgba(196, 255, 0, 0.08);
+  background: rgba(196, 255, 0, 0.1);
   color: #c4ff00;
+  box-shadow: inset 2px 0 0 #c4ff00;
 }
 
 .sidebar-topic.done .sidebar-topic-check {
@@ -2368,20 +2450,34 @@ svg.diagram-svg, svg.diagram-pop {
 .sidebar-topic-num {
   font-size: 10px;
   font-weight: 700;
-  color: #0047ff;
-  min-width: 30px;
+  color: #6f8dff;
+  min-width: 26px;
+  white-space: nowrap;
+}
+
+.sidebar-topic.active .sidebar-topic-num {
+  color: #c4ff00;
 }
 
 .sidebar-topic-title {
   flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .sidebar-topic-check {
   color: #00ff88;
-  font-size: 12px;
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-slide,
+  .sidebar-subject-caret svg,
+  .sidebar-unit-caret {
+    transition: none;
+  }
+  .sidebar-slide.open .sidebar-topic {
+    animation: none;
+  }
 }
 
 .sidebar-exam-btn {
