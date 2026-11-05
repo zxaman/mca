@@ -2030,3 +2030,1853 @@ export function OlapVsOltpDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Data Science Unit III — Diagram 1 · Applications of classification
+// ============================================================
+export function ClassificationAppsDiagram() {
+  const domains = [
+    ['SPAM FILTER', 'from, subject, links, keywords', 'spam / not spam', '#00d4ff'],
+    ['FRAUD DETECTION', 'amount, time, city, device', 'fraud / genuine', '#ff0080'],
+    ['MEDICAL DIAGNOSIS', 'scan, age, BP, lab values', 'disease / healthy', '#00ff88'],
+    ['CREDIT SCORING', 'income, CIBIL, EMI ratio', 'default / safe', '#ff8800'],
+    ['CHURN PREDICTION', 'tenure, usage, complaints', 'churn / stay', '#aa00ff'],
+    ['SENTIMENT ANALYSIS', 'review text, ratings', 'positive / negative', '#ffd166'],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Applications of classification: a supervised pipeline that maps input features through a classifier to a discrete label, used in spam, fraud, medical, credit, churn and sentiment problems">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Applications of Classification
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        Features andar, discrete label bahar — bas yahi classification hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="240" height="64" rx="9" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.45)" />
+        <text x="140" y="86" textAnchor="middle" fill="#00d4ff" fontSize="9.8" fontWeight="800" fontFamily={FONT}>1 · INPUT FEATURES (X)</text>
+        <text x="140" y="104" textAnchor="middle" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>age · income · pixels · words</text>
+        <text x="140" y="119" textAnchor="middle" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>numerical + categorical</text>
+
+        <rect x="280" y="64" width="240" height="64" rx="9" fill="rgba(196,255,0,0.08)" stroke="rgba(196,255,0,0.45)" />
+        <text x="400" y="86" textAnchor="middle" fill="#c4ff00" fontSize="9.8" fontWeight="800" fontFamily={FONT}>2 · CLASSIFIER (model)</text>
+        <text x="400" y="104" textAnchor="middle" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>logistic · tree · SVM · KNN · NB</text>
+        <text x="400" y="119" textAnchor="middle" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>decision boundary seekhta hai</text>
+
+        <rect x="540" y="64" width="240" height="64" rx="9" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.45)" />
+        <text x="660" y="86" textAnchor="middle" fill="#00ff88" fontSize="9.8" fontWeight="800" fontFamily={FONT}>3 · DISCRETE LABEL (Y)</text>
+        <text x="660" y="104" textAnchor="middle" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>spam · fraud · disease · churn</text>
+        <text x="660" y="119" textAnchor="middle" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>category, not a number</text>
+
+        <path d="M262 96 L276 96 M270 91 L276 96 L270 101" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <path d="M522 96 L536 96 M530 91 L536 96 L530 101" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <text x="400" y="146" textAnchor="middle" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          training data = features + correct labels  →  supervised learning
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
+        {domains.map(([name, feat, out, color], i) => {
+          const col = i % 2;
+          const row = Math.floor(i / 2);
+          const x = 20 + col * 390;
+          const y = 166 + row * 96;
+          return (
+            <g key={name}>
+              <rect x={x} y={y} width="370" height="82" rx="9" fill="rgba(255,255,255,0.03)" stroke={`${color}66`} />
+              <rect x={x} y={y} width="4" height="82" rx="2" fill={color} />
+              <text x={x + 16} y={y + 20} fill={color} fontSize="9.6" fontWeight="800" fontFamily={FONT}>{name}</text>
+              <text x={x + 16} y={y + 40} fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>features:</text>
+              <text x={x + 70} y={y + 40} fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>{feat}</text>
+              <text x={x + 16} y={y + 58} fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>classes:</text>
+              <text x={x + 70} y={y + 58} fill={color} fontSize="8.4" fontWeight="700" fontFamily={FONT}>{out}</text>
+              <text x={x + 16} y={y + 74} fill="#7d8db3" fontSize="7.6" fontFamily={FONT}>
+                {['precision + recall important', 'imbalanced data, cost of FN high', 'recall sabse important', 'FP aur FN dono ki cost', 'probabilities se offer bhejo', 'F1 + confusion matrix'][i]}
+              </text>
+            </g>
+          );
+        })}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="458" width="760" height="44" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.35)" />
+        <text x="34" y="476" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Types: binary (2 classes) · multi-class (3+, exclusive) · multi-label (kai labels ek saath)
+        </text>
+        <text x="34" y="492" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Exam tip: har application mein features, classes aur benefit likho — 4 se 5 examples kaafi hote hain
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 2 · Types of machine learning
+// ============================================================
+export function MLTypesDiagram() {
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Three types of machine learning: supervised with labelled data, unsupervised with unlabelled data, and reinforcement learning with reward from an environment, plus semi-supervised and self-supervised variants">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Machine Learning ke Types
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        Data mein label hai ya nahi — yahi teeno types ka farak hai
+      </text>
+
+      {[
+        {
+          x: 20, color: '#00d4ff', title: '1 · SUPERVISED', sub: 'labelled data (X + Y)',
+          lines: [
+            ['Data', 'har row ke saath correct answer'],
+            ['Kaam', 'classification + regression'],
+            ['Algo', 'logistic, tree, SVM, KNN, NB'],
+            ['Example', 'spam, churn, price predict'],
+            ['Metric', 'accuracy, F1, RMSE, R2'],
+          ],
+        },
+        {
+          x: 280, color: '#00ff88', title: '2 · UNSUPERVISED', sub: 'sirf data (X)',
+          lines: [
+            ['Data', 'koi label nahi hota'],
+            ['Kaam', 'clustering, association, PCA'],
+            ['Algo', 'K-means, DBSCAN, Apriori'],
+            ['Example', 'segmentation, basket analysis'],
+            ['Metric', 'silhouette, within-cluster SSE'],
+          ],
+        },
+        {
+          x: 540, color: '#ff8800', title: '3 · REINFORCEMENT', sub: 'reward se seekhna',
+          lines: [
+            ['Data', 'environment se interaction'],
+            ['Kaam', 'policy seekhna (state to action)'],
+            ['Algo', 'Q-learning, DQN, PPO'],
+            ['Example', 'game AI, robot, self-driving'],
+            ['Metric', 'average reward, regret'],
+          ],
+        },
+      ].map(({ x, color, title, sub, lines }) => (
+        <g key={title} className="diagram-pop" style={{ animationDelay: '100ms' }}>
+          <rect x={x} y="64" width="240" height="250" rx="10" fill="rgba(255,255,255,0.03)" stroke={`${color}66`} />
+          <rect x={x} y="64" width="240" height="30" rx="10" fill={`${color}1f`} />
+          <text x={x + 120} y="84" textAnchor="middle" fill={color} fontSize="10" fontWeight="800" fontFamily={FONT}>{title}</text>
+          <text x={x + 120} y="112" textAnchor="middle" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>{sub}</text>
+          <line x1={x + 16} y1="120" x2={x + 224} y2="120" stroke="rgba(255,255,255,0.12)" />
+          {lines.map(([k, v], i) => (
+            <g key={k}>
+              <text x={x + 16} y={142 + i * 32} fill={color} fontSize="8.2" fontWeight="700" fontFamily={FONT}>{k}</text>
+              <text x={x + 16} y={158 + i * 32} fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>{v}</text>
+            </g>
+          ))}
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="20" y="330" width="500" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
+        <text x="34" y="350" fill="#6fb2ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>DATA SE TYPE KAISE DECIDE KAREIN</text>
+        <text x="34" y="372" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>labels available?  haan → SUPERVISED  (classification ya regression chuno)</text>
+        <text x="34" y="392" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>labels nahi, sirf data?  → UNSUPERVISED  (clusters, rules, components)</text>
+        <text x="34" y="412" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>action lena hai aur reward milta hai?  → REINFORCEMENT (policy)</text>
+        <text x="34" y="432" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>thoda labelled + bahut unlabelled → semi-supervised</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="540" y="330" width="240" height="112" rx="9" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.4)" />
+        <text x="554" y="350" fill="#ff8800" fontSize="9.6" fontWeight="800" fontFamily={FONT}>RL KA LOOP</text>
+        <text x="554" y="372" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>agent → action → environment</text>
+        <text x="554" y="390" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>environment → state + reward</text>
+        <text x="554" y="408" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>agent policy update karta hai</text>
+        <text x="554" y="428" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>explore vs exploit · delayed reward</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="20" y="454" width="760" height="46" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="472" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Extra types: semi-supervised (thoda labelled) · self-supervised (LLM pre-training) · transfer learning (fine-tune)
+        </text>
+        <text x="34" y="490" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Exam line: supervised = teacher ke saath, unsupervised = bina teacher, reinforcement = reward se
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 3 · Linear regression
+// ============================================================
+export function LinearRegressionDiagram() {
+  const pts = [
+    [1, 2.2], [2, 4.1], [3, 4.8], [4, 4.2],
+  ];
+  const sx = (x) => 80 + (x - 0.5) * 66;
+  const sy = (y) => 360 - (y - 1) * 52;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Linear regression: a best fit line through scatter points, residual distances, the equation Y equals 2 plus 0.7 X, the OLS formulas and the assumptions of the model">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Linear Regression — best fit line
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        Y = b0 + b1X — squared galti sabse kam karne wali line
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="410" height="330" rx="9" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.35)" />
+        <line x1="80" y1="360" x2="400" y2="360" stroke="rgba(255,255,255,0.35)" />
+        <line x1="80" y1="360" x2="80" y2="100" stroke="rgba(255,255,255,0.35)" />
+        <text x="400" y="380" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>X (experience years)</text>
+        <text x="72" y="104" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>Y (salary)</text>
+
+        <line x1={sx(0.6)} y1={sy(2 + 0.7 * 0.6)} x2={sx(4.4)} y2={sy(2 + 0.7 * 4.4)}
+          stroke="#00ff88" strokeWidth="2.4" />
+        <text x="396" y="292" textAnchor="end" fill="#00ff88" fontSize="9.2" fontWeight="700" fontFamily={FONT}>
+          Y = 2 + 0.7X
+        </text>
+
+        {pts.map(([x, y]) => {
+          const py = sy(y);
+          const ly = sy(2 + 0.7 * x);
+          return (
+            <g key={x}>
+              <line x1={sx(x)} y1={py} x2={sx(x)} y2={ly} stroke="#ff7a90" strokeDasharray="3 3" strokeWidth="1.2" />
+              <circle cx={sx(x)} cy={py} r="4.4" fill="#00d4ff" stroke="#0b1020" strokeWidth="1.2" />
+            </g>
+          );
+        })}
+        <text x="96" y="142" fill="#ff7a90" fontSize="8.4" fontFamily={FONT}>— — residual (y − yhat)</text>
+        <text x="96" y="124" fill="#00d4ff" fontSize="8.4" fontFamily={FONT}>● actual data point</text>
+        <text x="34" y="86" fill="#9ab0e0" fontSize="8.6" fontFamily={FONT}>OLS: b1 = Σ(x−xbar)(y−ybar) / Σ(x−xbar)² · b0 = ybar − b1·xbar</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
+        <rect x="450" y="64" width="330" height="104" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="464" y="84" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>MODEL</text>
+        <text x="464" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>simple: Y = b0 + b1X</text>
+        <text x="464" y="122" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>multiple: Y = b0 + b1X1 + … + bnXn</text>
+        <text x="464" y="140" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>b1 = slope (X ek unit badhe to Y kitna badhe)</text>
+        <text x="464" y="156" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>b0 = intercept (X = 0 par Y ki value)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="450" y="180" width="330" height="98" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="464" y="200" fill="#00d4ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>COST AUR TRAINING</text>
+        <text x="464" y="220" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>MSE J = (1/n) Σ (yi − yhat_i)²</text>
+        <text x="464" y="240" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>gradient descent: b ← b − α·∂J/∂b</text>
+        <text x="464" y="258" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>closed form: theta = (X^TX)^-1X^TY</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="450" y="290" width="330" height="104" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="464" y="310" fill="#ff8800" fontSize="9.6" fontWeight="800" fontFamily={FONT}>ASSUMPTIONS</text>
+        <text x="464" y="330" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>linearity · independence of errors</text>
+        <text x="464" y="348" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>homoscedasticity · normal residuals</text>
+        <text x="464" y="366" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>no multicollinearity (VIF 5–10)</text>
+        <text x="464" y="384" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>evaluation: R², adjusted R², RMSE</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="408" width="760" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="428" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>SOLVED EXAMPLE (X = 1,2,3,4 · Y = 2,4,5,4)</text>
+        <text x="34" y="448" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>xbar = 2.5, ybar = 3.75 · Σ(x−xbar)(y−ybar) = 3.5 · Σ(x−xbar)² = 5.0</text>
+        <text x="34" y="466" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>b1 = 3.5 / 5.0 = 0.7 · b0 = 3.75 − 0.7(2.5) = 2.0 → Y = 2 + 0.7X</text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>X = 5 par prediction = 5.5 · output continuous hai, isliye metric R²/RMSE hota hai, accuracy nahi</text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 4 · Logistic regression
+// ============================================================
+export function LogisticRegressionDiagram() {
+  const pts = Array.from({ length: 49 }, (_, i) => {
+    const z = -6 + (i * 12) / 48;
+    const p = 1 / (1 + Math.exp(-z));
+    return [60 + ((z + 6) / 12) * 330, 350 - p * 240];
+  });
+  const path = pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Logistic regression: linear score z passed through the sigmoid function to give a probability between 0 and 1, the 0.5 threshold, log odds form and the log loss objective">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Logistic Regression — sigmoid se probability
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        score z → sigmoid → probability p → 0.5 threshold → class
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="336" rx="9" fill="rgba(255,136,0,0.04)" stroke="rgba(255,136,0,0.35)" />
+        <line x1="60" y1="350" x2="400" y2="350" stroke="rgba(255,255,255,0.35)" />
+        <line x1="60" y1="350" x2="60" y2="96" stroke="rgba(255,255,255,0.35)" />
+        <text x="400" y="370" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>linear score z = b0 + b1X</text>
+        <text x="52" y="100" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>p</text>
+        <text x="48" y="356" textAnchor="end" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>0</text>
+        <text x="48" y="116" textAnchor="end" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>1</text>
+
+        <line x1="60" y1={350 - 0.5 * 240} x2="400" y2={350 - 0.5 * 240} stroke="rgba(255,122,144,0.6)" strokeDasharray="4 4" />
+        <text x="396" y={350 - 0.5 * 240 - 6} textAnchor="end" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>threshold 0.5</text>
+        <path d={path} stroke="#ff8800" strokeWidth="2.6" fill="none" />
+        <text x="104" y="150" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>p = 1 / (1 + e^-z)</text>
+
+        <circle cx={60 + (7 / 12) * 330} cy={350 - (1 / (1 + Math.exp(-1))) * 240} r="4.4" fill="#00ff88" />
+        <line x1={60 + (7 / 12) * 330} y1={350 - 0.731 * 240} x2={60 + (7 / 12) * 330} y2="350" stroke="rgba(0,255,136,0.5)" strokeDasharray="3 3" />
+        <text x={60 + (7 / 12) * 330 + 8} y={350 - 0.731 * 240 + 4} fill="#00ff88" fontSize="8.2" fontFamily={FONT}>z = 1 → p = 0.731</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="84" fill="#00d4ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>EQUATIONS</text>
+        <text x="474" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>z = b0 + b1X1 + … + bnXn</text>
+        <text x="474" y="122" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>p = 1 / (1 + e^-z)</text>
+        <text x="474" y="140" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>log-odds: ln(p/(1−p)) = z</text>
+        <text x="474" y="158" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>e^b1 = odds ratio (X ek unit par)</text>
+        <text x="474" y="174" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>p ≥ 0.5 → class 1, warna class 0</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="460" y="196" width="320" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="474" y="216" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>SIGMOID READY RECKONER</text>
+        <text x="474" y="236" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>z = −2 → 0.12 · z = −1 → 0.27</text>
+        <text x="474" y="254" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>z = 0 → 0.50 · z = 1 → 0.73 · z = 2 → 0.88</text>
+        <text x="474" y="274" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>curve S-shaped, output always 0 se 1</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="460" y="300" width="320" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="474" y="320" fill="#ff7a90" fontSize="9.6" fontWeight="800" fontFamily={FONT}>LOG LOSS (CROSS-ENTROPY)</text>
+        <text x="474" y="340" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>J = −(1/n) Σ [ y·log p + (1−y)·log(1−p) ]</text>
+        <text x="474" y="360" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>galat confident prediction par penalty bahut badi</text>
+        <text x="474" y="378" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>multi-class ke liye softmax regression</text>
+        <text x="474" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>L1/L2 regularisation se overfitting control</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="412" width="760" height="88" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>SOLVED EXAMPLE — default risk model</text>
+        <text x="34" y="452" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>z = −3 + 0.05 × income · income 80,000 → z = −3 + 4 = 1</text>
+        <text x="34" y="470" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>p = 1/(1 + e^-1) = 0.731 → 0.731 greater than 0.5 → predict default = Yes (73% risk)</text>
+        <text x="34" y="490" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>threshold 0.35 karo to recall badhega · linear boundary only, isliye non-linear data par tree/SVM better</text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 5 · Naive Bayes
+// ============================================================
+export function NaiveBayesDiagram() {
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Naive Bayes classifier: Bayes theorem split into prior, likelihood and posterior, the conditional independence assumption, the spam example computation and the Gaussian, multinomial and Bernoulli variants">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Naive Bayes — Bayes theorem se classification
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        prior × likelihood = posterior — bas isi ko compare karna hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="56" rx="9" fill="rgba(170,0,255,0.08)" stroke="rgba(170,0,255,0.45)" />
+        <text x="400" y="88" textAnchor="middle" fill="#c08bff" fontSize="11" fontWeight="800" fontFamily={FONT}>
+          P(C | X) = P(X | C) × P(C) / P(X)
+        </text>
+        <text x="400" y="108" textAnchor="middle" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          posterior · likelihood · prior · evidence — evidence sab classes ke liye same, isliye compare mein chhod do
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="20" y="132" width="240" height="112" rx="9" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="34" y="152" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>1 · PRIOR  P(C)</text>
+        <text x="34" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>training data mein class ka share</text>
+        <text x="34" y="192" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(spam) = 0.4</text>
+        <text x="34" y="210" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(ham) = 0.6</text>
+        <text x="34" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>sirf counting se nikalta hai</text>
+
+        <rect x="280" y="132" width="240" height="112" rx="9" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.4)" />
+        <text x="294" y="152" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>2 · LIKELIHOOD  P(X|C)</text>
+        <text x="294" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>us class mein features kitne common</text>
+        <text x="294" y="192" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(free | spam) = 0.6</text>
+        <text x="294" y="210" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(free | ham) = 0.05</text>
+        <text x="294" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>independent maan kar multiply</text>
+
+        <rect x="540" y="132" width="240" height="112" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
+        <text x="554" y="152" fill="#00ff88" fontSize="9.4" fontWeight="800" fontFamily={FONT}>3 · POSTERIOR  P(C|X)</text>
+        <text x="554" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>spam: 0.4 × 0.6 = 0.24</text>
+        <text x="554" y="190" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>ham: 0.6 × 0.05 = 0.03</text>
+        <text x="554" y="208" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>0.24/0.27 = 0.889 spam</text>
+        <text x="554" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>max posterior wali class jeet gayi</text>
+
+        <path d="M262 188 L274 188 M268 183 L274 188 L268 193" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <path d="M522 188 L534 188 M528 183 L534 188 L528 193" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="20" y="258" width="370" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="34" y="278" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>NAIVE ASSUMPTION — conditional independence</text>
+        <text x="34" y="298" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(X | C) = P(x1|C) × P(x2|C) × … × P(xn|C)</text>
+        <text x="34" y="318" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>features ko aapas mein independent maan liya</text>
+        <text x="34" y="336" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>real data mein galat, phir bhi text par kaam karta hai</text>
+        <text x="34" y="358" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Multi-word example</text>
+        <text x="34" y="376" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(free|spam) × P(offer|spam) × P(spam) …</text>
+        <text x="34" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>practice mein log probabilities ka sum (underflow se bacho)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="410" y="258" width="370" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
+        <text x="424" y="278" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>TEEN VARIANTS</text>
+        <text x="424" y="300" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Gaussian</text>
+        <text x="500" y="300" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>continuous features, normal distribution</text>
+        <text x="424" y="322" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Multinomial</text>
+        <text x="500" y="322" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>word counts, TF-IDF — text ka favourite</text>
+        <text x="424" y="344" fill="#ff8800" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Bernoulli</text>
+        <text x="500" y="344" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>binary presence — word hai ya nahi</text>
+        <text x="424" y="370" fill="#ffd166" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Laplace smoothing</text>
+        <text x="424" y="388" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>(count + 1) / (total + k) — zero frequency fix</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Pros: super fast, kam data par bhi chalta hai, multi-class natural, text ke liye best baseline
+        </text>
+        <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Cons: independence assumption unrealistic, zero-frequency problem, probabilities poorly calibrated
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Applications: spam filter, sentiment analysis, news categorisation, language detection, medical baseline
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 6 · K nearest neighbour
+// ============================================================
+export function KnnDiagram() {
+  const query = [232, 236];
+  const cats = [[150, 250], [186, 296], [196, 214], [120, 198]];
+  const dogs = [[318, 132], [352, 196], [292, 122]];
+  const near = [[196, 214], [150, 250], [292, 122]];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K nearest neighbour: query point with k equals 3 nearest neighbours voting, distance formulas, choice of k and the curse of dimensionality">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        K-Nearest Neighbor — paas wale bolte hain
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        k nearest points ki majority vote — koi training nahi, sirf distance
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="336" rx="9" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.35)" />
+        <circle cx={query[0]} cy={query[1]} r="86" fill="rgba(196,255,0,0.05)" stroke="rgba(196,255,0,0.45)" strokeDasharray="5 4" />
+        <text x={query[0] + 90} y={query[1] - 78} fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>radius → k = 3</text>
+
+        {near.map(([x, y]) => (
+          <line key={`${x}-${y}`} x1={query[0]} y1={query[1]} x2={x} y2={y} stroke="rgba(196,255,0,0.5)" strokeWidth="1.2" strokeDasharray="3 3" />
+        ))}
+        {cats.map(([x, y]) => (
+          <g key={`c${x}`}>
+            <circle cx={x} cy={y} r="7" fill="#00d4ff" stroke="#0b1020" strokeWidth="1.2" />
+            <circle cx={x} cy={y} r="7" fill="none" stroke="#00d4ff" strokeWidth="0.6" />
+          </g>
+        ))}
+        {dogs.map(([x, y]) => (
+          <rect key={`d${x}`} x={x - 6} y={y - 6} width="13" height="13" rx="2" fill="#ff0080" stroke="#0b1020" strokeWidth="1.2" />
+        ))}
+
+        <circle cx={query[0]} cy={query[1]} r="9" fill="#c4ff00" />
+        <text x={query[0] + 12} y={query[1] - 10} fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>? query point</text>
+
+        <text x="40" y="98" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● class A (cat)</text>
+        <text x="160" y="98" fill="#ff0080" fontSize="8.6" fontWeight="700" fontFamily={FONT}>■ class B (dog)</text>
+
+        <rect x="40" y="352" width="400" height="34" rx="6" fill="rgba(196,255,0,0.08)" stroke="rgba(196,255,0,0.4)" />
+        <text x="52" y="373" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>
+          3 nearest: 2 cat + 1 dog  →  majority vote  →  CAT
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
+        <rect x="480" y="64" width="300" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="494" y="84" fill="#00ff88" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DISTANCE MEASURES</text>
+        <text x="494" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Euclidean: √Σ (xi − yi)²</text>
+        <text x="494" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Manhattan: Σ |xi − yi|</text>
+        <text x="494" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Minkowski: (Σ|xi−yi|^p)^(1/p)</text>
+        <text x="494" y="158" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>text ke liye Hamming ya cosine</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="480" y="182" width="300" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="494" y="202" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>K KA CHOICE</text>
+        <text x="494" y="222" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>k = 1 → overfit, noise follow</text>
+        <text x="494" y="240" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>k badha → smooth, underfit</text>
+        <text x="494" y="258" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>odd rakho (tie se bacho)</text>
+        <text x="494" y="276" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>rule of thumb k ≈ √n, CV se best k</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="480" y="306" width="300" height="102" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="494" y="326" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
+        <text x="494" y="346" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>feature scaling compulsory hai</text>
+        <text x="494" y="364" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>curse of dimensionality — PCA karo</text>
+        <text x="494" y="382" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>predict cost O(n·d) per query</text>
+        <text x="494" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>lazy learner — training instant, memory heavy</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Pros: simple, no training, non-linear boundary, multi-class seedha, regression (neighbours ka mean) bhi
+        </text>
+        <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Cons: prediction slow, poora data memory mein, scaling zaroori, high dimension par fail
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Applications: digit recognition, image retrieval, recommendation, credit risk, missing value imputation
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 7 · Decision tree
+// ============================================================
+export function DecisionTreeDiagram() {
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Decision tree for the play tennis dataset: root Outlook with Sunny, Overcast and Rain branches, humidity and wind tests, leaves with yes and no classes, entropy and information gain formulas">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Decision Tree — sawaal poochte hue class tak
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        entropy / information gain se best split chuno
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="500" height="336" rx="9" fill="rgba(255,0,128,0.04)" stroke="rgba(255,0,128,0.3)" />
+
+        <rect x="185" y="76" width="150" height="34" rx="7" fill="rgba(255,0,128,0.15)" stroke="#ff0080" />
+        <text x="260" y="98" textAnchor="middle" fill="#ff7ab2" fontSize="9.2" fontWeight="800" fontFamily={FONT}>OUTLOOK?</text>
+        <text x="356" y="90" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>root node</text>
+
+        {[
+          ['Sunny', 104, 210],
+          ['Overcast', 250, 210],
+          ['Rain', 416, 210],
+        ].map(([label, x, y]) => (
+          <g key={label}>
+            <line x1="260" y1="110" x2={x} y2={y - 34} stroke="rgba(255,255,255,0.3)" strokeWidth="1.2" />
+            <rect x={x - 70} y={y - 34} width="140" height="30" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.25)" />
+            <text x={x} y={y - 14} textAnchor="middle" fill="#dbe6ff" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+              {label === 'Overcast' ? 'Overcast → YES' : `${label} branch`}
+            </text>
+          </g>
+        ))}
+
+        <rect x="29" y="228" width="150" height="32" rx="6" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.55)" />
+        <text x="104" y="249" textAnchor="middle" fill="#00d4ff" fontSize="8.8" fontWeight="700" fontFamily={FONT}>HUMIDITY?</text>
+        <line x1="104" y1="176" x2="104" y2="228" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+
+        <rect x="356" y="228" width="150" height="32" rx="6" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.55)" />
+        <text x="431" y="249" textAnchor="middle" fill="#00d4ff" fontSize="8.8" fontWeight="700" fontFamily={FONT}>WIND?</text>
+        <line x1="416" y1="176" x2="416" y2="228" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+
+        {[
+          ['High → NO', 29, 296, '#ff7a90'],
+          ['Normal → YES', 29, 342, '#00ff88'],
+          ['Strong → NO', 360, 296, '#ff7a90'],
+          ['Weak → YES', 360, 342, '#00ff88'],
+        ].map(([label, x, y, color]) => (
+          <g key={label}>
+            <line x1={x + 75} y1={y - 26} x2={x + 75} y2={y} stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+            <rect x={x} y={y} width="150" height="30" rx="15" fill={`${color}1f`} stroke={`${color}99`} />
+            <text x={x + 75} y={y + 20} textAnchor="middle" fill={color} fontSize="8.8" fontWeight="700" fontFamily={FONT}>{label}</text>
+          </g>
+        ))}
+
+        <text x="34" y="392" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          leaf = class · internal node = attribute test · branch = test ka outcome
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="540" y="64" width="240" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="554" y="84" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>SPLIT MEASURES</text>
+        <text x="554" y="104" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Entropy H = −Σ pi·log2 pi</text>
+        <text x="554" y="122" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>IG = H(S) − Σ (|Sv|/|S|)·H(Sv)</text>
+        <text x="554" y="140" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Gini = 1 − Σ pi²</text>
+        <text x="554" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Gain ratio = IG / SplitInfo</text>
+        <text x="554" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>0 = pure node, 1 = 50-50 mix</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="540" y="196" width="240" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="554" y="216" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>PLAY TENNIS NUMBERS</text>
+        <text x="554" y="236" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>parent: 9 yes / 5 no → H = 0.940</text>
+        <text x="554" y="254" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outlook child H = 0.693</text>
+        <text x="554" y="272" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>IG = 0.940 − 0.693 = 0.247</text>
+        <text x="554" y="292" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>sabse zyada gain = root node</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="540" y="314" width="240" height="86" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="554" y="334" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>ALGORITHMS</text>
+        <text x="554" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>ID3 — information gain</text>
+        <text x="554" y="370" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>C4.5 — gain ratio, continuous</text>
+        <text x="554" y="388" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>CART — Gini, binary, regression</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Pros: interpretable rules, no scaling, mixed data, feature importance, non-linear
+        </text>
+        <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Cons: overfits, unstable, greedy split, axis-parallel boundary only
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Fix: pre-pruning (max depth) · post-pruning (cost complexity) · random forest / boosting
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 8 · Support vector machine
+// ============================================================
+export function SvmDiagram() {
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Support vector machine: maximum margin hyperplane separating two classes, support vectors on the margin, soft margin parameter C, kernel trick and hinge loss">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Support Vector Machine — maximum margin
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        boundary se sabse door line chuno — margin jitni badi, generalisation utna achha
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="430" height="336" rx="9" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.3)" />
+
+        <polygon points="90,224 370,104 370,172 90,292" fill="rgba(196,255,0,0.06)" />
+
+        <line x1="90" y1="258" x2="370" y2="138" stroke="#c4ff00" strokeWidth="2.4" />
+        <line x1="90" y1="224" x2="370" y2="104" stroke="#00ff88" strokeWidth="1.2" strokeDasharray="6 4" />
+        <line x1="90" y1="292" x2="370" y2="172" stroke="#00ff88" strokeWidth="1.2" strokeDasharray="6 4" />
+
+        <text x="300" y="126" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>hyperplane: w·x + b = 0</text>
+        <text x="300" y="98" textAnchor="end" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>margin 2/|w|</text>
+        <line x1="150" y1="150" x2="150" y2="228" stroke="#00ff88" strokeWidth="1" />
+        <path d="M146 154 L150 148 L154 154 M146 224 L150 230 L154 224" stroke="#00ff88" strokeWidth="1" fill="none" />
+
+        {[[116, 172], [160, 150], [196, 200]].map(([x, y]) => (
+          <circle key={`p${x}`} cx={x} cy={y} r="5.6" fill="#00d4ff" stroke="#0b1020" strokeWidth="1.1" />
+        ))}
+        {[[236, 268], [280, 244], [312, 214]].map(([x, y]) => (
+          <rect key={`n${x}`} x={x - 5} y={y - 5} width="11" height="11" rx="2" fill="#ff0080" stroke="#0b1020" strokeWidth="1.1" />
+        ))}
+
+        <circle cx="160" cy="150" r="10" fill="none" stroke="#c4ff00" strokeWidth="1.6" />
+        <circle cx="196" cy="200" r="10" fill="none" stroke="#c4ff00" strokeWidth="1.6" />
+        <circle cx="236" cy="268" r="10" fill="none" stroke="#c4ff00" strokeWidth="1.6" />
+
+        <text x="40" y="98" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● class +1</text>
+        <text x="150" y="98" fill="#ff0080" fontSize="8.6" fontWeight="700" fontFamily={FONT}>■ class −1</text>
+        <text x="40" y="330" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>◯ support vectors — margin par baithe points</text>
+        <text x="40" y="350" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>baaki points hata do to bhi hyperplane same rehta hai</text>
+        <text x="40" y="376" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>objective: min |w|²/2  →  margin 2/|w| maximise</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="470" y="64" width="310" height="128" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="484" y="84" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>KERNEL TRICK</text>
+        <text x="484" y="102" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>K(xi, xj) = φ(xi)·φ(xj)</text>
+        <text x="484" y="122" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>linear: xi·xj → simple, text</text>
+        <text x="484" y="140" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>polynomial: (γ xi·xj + r)^d</text>
+        <text x="484" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>RBF: exp(−γ|xi − xj|²) → default</text>
+        <text x="484" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>mapping explicitly compute nahi hoti</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="470" y="204" width="310" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="484" y="224" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>SOFT MARGIN AUR C</text>
+        <text x="484" y="242" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>min |w|²/2 + C·Σξ</text>
+        <text x="484" y="260" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bada C → strict, overfit risk</text>
+        <text x="484" y="278" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>chhota C → tolerant, smooth</text>
+        <text x="484" y="298" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>loss = hinge max(0, 1 − y·f(x))</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="470" y="322" width="310" height="78" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="484" y="342" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
+        <text x="484" y="360" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>scaling zaroori · large data par slow</text>
+        <text x="484" y="378" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>probability ke liye Platt scaling</text>
+        <text x="484" y="394" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>multi-class: one-vs-rest ya one-vs-one</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Pros: high-dimensional data par best, max-margin generalisation, kernel se non-linear, memory efficient
+        </text>
+        <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Cons: training slow on large data, C aur γ tuning, interpretability kam, probability output nahi
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Applications: text classification, face detection, handwriting, gene expression, one-class anomaly detection
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 9 · Confusion matrix
+// ============================================================
+export function ConfusionMatrixDiagram() {
+  const cells = [
+    { x: 165, y: 126, label: 'TP', value: '40', note: 'sahi positive', color: '#00ff88' },
+    { x: 295, y: 126, label: 'FN', value: '10', note: 'miss (Type II)', color: '#ff7a90' },
+    { x: 165, y: 210, label: 'FP', value: '5', note: 'false alarm (Type I)', color: '#ff8800' },
+    { x: 295, y: 210, label: 'TN', value: '45', note: 'sahi negative', color: '#00d4ff' },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Confusion matrix 2 by 2 with true positive 40, false negative 10, false positive 5 and true negative 45, the metrics derived from it and the meaning of type one and type two errors">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Confusion Matrix — galti ka poora hisaab
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        rows = actual class · columns = predicted class
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="460" height="336" rx="9" fill="rgba(255,136,0,0.04)" stroke="rgba(255,136,0,0.3)" />
+
+        <text x="230" y="96" textAnchor="middle" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>PREDICTED POSITIVE</text>
+        <text x="360" y="96" textAnchor="middle" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>PREDICTED NEGATIVE</text>
+        <text x="100" y="170" textAnchor="middle" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>ACTUAL</text>
+        <text x="100" y="186" textAnchor="middle" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>POSITIVE</text>
+        <text x="100" y="262" textAnchor="middle" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>ACTUAL</text>
+        <text x="100" y="278" textAnchor="middle" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>NEGATIVE</text>
+
+        {cells.map(({ x, y, label, value, note, color }) => (
+          <g key={label}>
+            <rect x={x} y={y} width="130" height="84" rx="8" fill={`${color}1a`} stroke={`${color}88`} />
+            <text x={x + 14} y={y + 22} fill={color} fontSize="10.4" fontWeight="800" fontFamily={FONT}>{label}</text>
+            <text x={x + 116} y={y + 40} textAnchor="end" fill={color} fontSize="22" fontWeight="800" fontFamily={FONT}>{value}</text>
+            <text x={x + 14} y={y + 64} fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>{note}</text>
+          </g>
+        ))}
+
+        <text x="34" y="322" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Total = 40 + 10 + 5 + 45 = 100 patients · actual positive = 50, actual negative = 50</text>
+        <text x="34" y="344" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Type I error = FP (false alarm) · Type II error = FN (miss)</text>
+        <text x="34" y="366" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Multi-class problem mein matrix k × k ban jaati hai — diagonal sahi predictions</text>
+        <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Sirf accuracy likhna adhura answer hai — matrix ke saath precision/recall likho</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="500" y="64" width="280" height="336" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="514" y="84" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>ISSE NIKALNE WALE METRICS</text>
+        {[
+          ['Accuracy', '(TP+TN)/N = 85/100', '0.850'],
+          ['Precision', 'TP/(TP+FP) = 40/45', '0.889'],
+          ['Recall', 'TP/(TP+FN) = 40/50', '0.800'],
+          ['Specificity', 'TN/(TN+FP) = 45/50', '0.900'],
+          ['F1 score', '2PR/(P+R)', '0.842'],
+          ['Error rate', '(FP+FN)/N = 15/100', '0.150'],
+        ].map(([name, formula, value], i) => (
+          <g key={name}>
+            <text x="514" y={110 + i * 40} fill="#00d4ff" fontSize="8.8" fontWeight="700" fontFamily={FONT}>{name}</text>
+            <text x="514" y={124 + i * 40} fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>{formula}</text>
+            <text x="764" y={122 + i * 40} textAnchor="end" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>{value}</text>
+          </g>
+        ))}
+        <line x1="514" y1="366" x2="766" y2="366" stroke="rgba(255,255,255,0.12)" />
+        <text x="514" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>recall 0.80 = 10 patients chhoot gaye</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#ff8800" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Type I (FP): healthy ko bimaru bolna, genuine mail ko spam mark karna, genuine transaction ko fraud bolna
+        </text>
+        <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Type II (FN): bimari chhootna, spam inbox mein aana, fraud pakda na jaana — usually zyada mehnga
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Threshold ghatao to FN kam FP zyada (recall up) · threshold badhao to FP kam FN zyada (precision up)
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 10 · Accuracy, precision, recall, F1
+// ============================================================
+export function ClassificationMetricsDiagram() {
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Accuracy, precision, recall and F1 formulas with the 100 patient example, the precision recall trade-off curve and the accuracy paradox on imbalanced data">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Accuracy · Precision · Recall · F1
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        imbalanced data par accuracy jhooth bolti hai — precision aur recall dekho
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        {[
+          { x: 20, y: 64, color: '#00d4ff', name: 'ACCURACY', formula: '(TP + TN) / N', note: 'overall sahi · balanced data ke liye', value: '0.850' },
+          { x: 400, y: 64, color: '#00ff88', name: 'PRECISION', formula: 'TP / (TP + FP)', note: 'positive bola, sach tha? FP kam', value: '0.889' },
+          { x: 20, y: 156, color: '#ff8800', name: 'RECALL', formula: 'TP / (TP + FN)', note: 'jo positive the, pakde? FN kam', value: '0.800' },
+          { x: 400, y: 156, color: '#aa00ff', name: 'F1 SCORE', formula: '2PR / (P + R)', note: 'harmonic mean · imbalance-safe', value: '0.842' },
+        ].map(({ x, y, color, name, formula, note, value }) => (
+          <g key={name}>
+            <rect x={x} y={y} width="380" height="80" rx="9" fill={`${color}12`} stroke={`${color}66`} />
+            <text x={x + 16} y={y + 22} fill={color} fontSize="9.6" fontWeight="800" fontFamily={FONT}>{name}</text>
+            <text x={x + 364} y={y + 22} textAnchor="end" fill={color} fontSize="10" fontWeight="800" fontFamily={FONT}>{value}</text>
+            <text x={x + 16} y={y + 44} fill="#dbe6ff" fontSize="9" fontFamily={FONT}>{formula}</text>
+            <text x={x + 16} y={y + 64} fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>{note}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="20" y="252" width="380" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <text x="34" y="272" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>ACCURACY PARADOX</text>
+        <text x="34" y="292" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1000 records: 990 negative, 10 positive</text>
+        <text x="34" y="310" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>model bole sab negative → TP 0, FP 0, FN 10, TN 990</text>
+        <text x="34" y="330" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>accuracy = 990/1000 = 99%</text>
+        <text x="34" y="348" fill="#ff7a90" fontSize="8.4" fontWeight="700" fontFamily={FONT}>recall = 0/10 = 0% · F1 = 0 · model useless</text>
+        <text x="34" y="370" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>fix: class weights, SMOTE, threshold tuning</text>
+        <text x="34" y="390" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>report: F1, recall, PR-AUC — accuracy nahi</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="420" y="252" width="360" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(170,0,255,0.4)" />
+        <text x="434" y="272" fill="#c08bff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>PRECISION vs RECALL TRADE-OFF</text>
+        <line x1="470" y1="376" x2="740" y2="376" stroke="rgba(255,255,255,0.3)" />
+        <line x1="470" y1="376" x2="470" y2="292" stroke="rgba(255,255,255,0.3)" />
+        <path d="M470 300 L740 368" stroke="rgba(196,255,0,0.85)" strokeWidth="2.2" fill="none" />
+        <text x="740" y="392" textAnchor="end" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>recall →</text>
+        <text x="462" y="292" textAnchor="end" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>precision</text>
+        <circle cx="500" cy="306" r="4" fill="#00ff88" />
+        <rect x="508" y="292" width="160" height="14" rx="3" fill="#0b1020" opacity="0.82" />
+        <text x="512" y="303" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>threshold 0.8 → high precision</text>
+        <circle cx="700" cy="360" r="4" fill="#ff8800" />
+        <rect x="556" y="322" width="140" height="14" rx="3" fill="#0b1020" opacity="0.82" />
+        <text x="690" y="333" textAnchor="end" fill="#ff8800" fontSize="7.8" fontFamily={FONT}>threshold 0.3 → high recall</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Spam filter → precision (genuine mail spam na bane) · Cancer screening → recall (bimari chhoote na)
+        </text>
+        <text x="34" y="464" fill="#dbe6ff" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          F-beta: β = 2 recall-heavy · β = 0.5 precision-heavy · multi-class: macro / micro / weighted average
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Example values: TP 40, FP 5, FN 10, TN 45 → accuracy 0.85, precision 0.889, recall 0.80, F1 0.842
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 11 · ROC curve and AUC
+// ============================================================
+export function RocAucDiagram() {
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="ROC curve plotting true positive rate against false positive rate at all thresholds, shaded area under the curve of 0.92, a threshold table and the interpretation scale of AUC values">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        ROC Curve aur AUC — threshold ka graph
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        TPR (recall) vs FPR (1 − specificity), har threshold par
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="336" rx="9" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.3)" />
+        <line x1="80" y1="360" x2="400" y2="360" stroke="rgba(255,255,255,0.35)" />
+        <line x1="80" y1="360" x2="80" y2="94" stroke="rgba(255,255,255,0.35)" />
+        <text x="400" y="380" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>FPR = FP/(FP+TN)</text>
+        <text x="74" y="100" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>TPR</text>
+        <text x="74" y="366" textAnchor="end" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>0</text>
+        <text x="74" y="114" textAnchor="end" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>1</text>
+
+        <path d="M80 360 L380 110" stroke="rgba(255,255,255,0.3)" strokeDasharray="5 5" />
+        <text x="300" y="238" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>random (AUC 0.5)</text>
+
+        <path d="M80 360 L80 210 L140 160 L200 110 L380 110 L380 360 Z" fill="rgba(0,255,136,0.14)" stroke="none" />
+        <path d="M80 360 L80 210 L140 160 L200 110 L380 110" stroke="#00ff88" strokeWidth="2.4" fill="none" />
+
+        <text x="230" y="270" fill="#00ff88" fontSize="12" fontWeight="800" fontFamily={FONT}>AUC = 0.92</text>
+        <text x="230" y="288" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>excellent model</text>
+
+        <circle cx="80" cy="210" r="3.6" fill="#00d4ff" />
+        <text x="92" y="206" fill="#00d4ff" fontSize="7.8" fontFamily={FONT}>0.65 → TPR 0.6, FPR 0.0</text>
+        <circle cx="140" cy="160" r="3.6" fill="#00d4ff" />
+        <text x="152" y="182" fill="#00d4ff" fontSize="7.8" fontFamily={FONT}>0.50 → TPR 0.8, FPR 0.2</text>
+        <circle cx="200" cy="110" r="3.6" fill="#00d4ff" />
+        <text x="212" y="104" fill="#00d4ff" fontSize="7.8" fontFamily={FONT}>0.40 → TPR 1.0, FPR 0.4</text>
+
+        <text x="96" y="336" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>top-left corner = perfect classifier</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="460" y="64" width="320" height="132" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="474" y="84" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>THRESHOLD TABLE</text>
+        <text x="474" y="104" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>threshold</text>
+        <text x="576" y="104" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>TP / FN</text>
+        <text x="656" y="104" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>FP / TN</text>
+        <text x="730" y="104" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>TPR</text>
+        <text x="768" y="104" textAnchor="end" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>FPR</text>
+        {[
+          ['0.65', '3 / 2', '0 / 5', '0.6', '0.0'],
+          ['0.50', '4 / 1', '1 / 4', '0.8', '0.2'],
+          ['0.40', '5 / 0', '2 / 3', '1.0', '0.4'],
+          ['0.30', '5 / 0', '3 / 2', '1.0', '0.6'],
+        ].map(([t, a, b, tpr, fpr], i) => (
+          <g key={t}>
+            <text x="474" y={124 + i * 18} fill="#00d4ff" fontSize="8.2" fontWeight="700" fontFamily={FONT}>{t}</text>
+            <text x="576" y={124 + i * 18} fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>{a}</text>
+            <text x="656" y={124 + i * 18} fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>{b}</text>
+            <text x="730" y={124 + i * 18} fill="#00ff88" fontSize="8.2" fontFamily={FONT}>{tpr}</text>
+            <text x="768" y={124 + i * 18} textAnchor="end" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>{fpr}</text>
+          </g>
+        ))}
+        <text x="474" y="190" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>
+          {'positive scores 0.90 0.80 0.70 0.60 0.40 · negative 0.55 0.45 0.35 0.25 0.15'}
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="460" y="208" width="320" height="192" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
+        <text x="474" y="228" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>AUC KA MATLAB</text>
+        {[
+          ['0.50', 'random guess — useless', '#ff7a90'],
+          ['0.60–0.70', 'weak signal', '#ffd166'],
+          ['0.70–0.80', 'acceptable (common)', '#00d4ff'],
+          ['0.80–0.90', 'excellent', '#00ff88'],
+          ['0.90–1.00', 'outstanding / leakage check', '#c4ff00'],
+        ].map(([v, d, c], i) => (
+          <g key={v}>
+            <text x="474" y={250 + i * 20} fill={c} fontSize="8.4" fontWeight="700" fontFamily={FONT}>{v}</text>
+            <text x="544" y={250 + i * 20} fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+        <line x1="474" y1="352" x2="766" y2="352" stroke="rgba(255,255,255,0.12)" />
+        <text x="474" y="370" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>AUC = random positive ko random negative se</text>
+        <text x="474" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>upar rank karne ki probability</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          AUC threshold-free hai aur class balance se invariant — isliye do models compare karna aasan
+        </text>
+        <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Extreme imbalance (fraud 0.5%) par ROC optimist dikhta hai — tab PR curve / PR-AUC better
+        </text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Deploy karte waqt threshold business cost se chuno — max F1 ya target precision par max recall
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit III — Diagram 12 · Regression metrics
+// ============================================================
+export function RegressionMetricsDiagram() {
+  const bars = [
+    { x: 90, actual: 3, pred: 2, res: '+1' },
+    { x: 190, actual: 5, pred: 5, res: '0' },
+    { x: 290, actual: 7, pred: 9, res: '−2' },
+  ];
+  const sy = (v) => 340 - v * 28;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Regression metrics: actual versus predicted bars with residuals, formulas of MAE, MSE, RMSE and R squared, the computed example and guidance about which metric to choose">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        MAE · MSE · RMSE · R² — regression ki galti
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        MAE/RMSE batate hain kitni galti · R² batata hai kitna fit
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="344" rx="9" fill="rgba(255,0,128,0.04)" stroke="rgba(255,0,128,0.3)" />
+        <line x1="50" y1="340" x2="410" y2="340" stroke="rgba(255,255,255,0.35)" />
+        <line x1="50" y1="340" x2="50" y2="100" stroke="rgba(255,255,255,0.35)" />
+        <text x="44" y="106" textAnchor="end" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>y</text>
+
+        {bars.map(({ x, actual, pred, res }) => (
+          <g key={x}>
+            <rect x={x} y={sy(actual)} width="34" height={actual * 28} rx="3" fill="rgba(0,212,255,0.55)" stroke="#00d4ff" strokeWidth="0.8" />
+            <rect x={x + 38} y={sy(pred)} width="34" height={pred * 28} rx="3" fill="rgba(255,136,0,0.55)" stroke="#ff8800" strokeWidth="0.8" />
+            <text x={x + 17} y={sy(actual) - 6} textAnchor="middle" fill="#00d4ff" fontSize="8.2" fontWeight="700" fontFamily={FONT}>{actual}</text>
+            <text x={x + 55} y={sy(pred) - 6} textAnchor="middle" fill="#ff8800" fontSize="8.2" fontWeight="700" fontFamily={FONT}>{pred}</text>
+            <text x={x + 36} y="362" textAnchor="middle" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>{`obs ${x === 90 ? 1 : x === 190 ? 2 : 3}`}</text>
+            <text x={x + 36} y="378" textAnchor="middle" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>{`residual ${res}`}</text>
+          </g>
+        ))}
+
+        <text x="40" y="92" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>■ actual y</text>
+        <text x="130" y="92" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>■ predicted yhat</text>
+        <text x="250" y="92" fill="#ff7a90" fontSize="8.4" fontWeight="700" fontFamily={FONT}>residual = y − yhat</text>
+        <text x="44" y="398" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>actual 3, 5, 7 · predicted 2, 5, 9 · residuals +1, 0, −2</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="166" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="474" y="84" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>FORMULAE</text>
+        <text x="474" y="106" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>MAE</text>
+        <text x="516" y="106" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>(1/n) Σ |yi − yhat_i| → 1.000</text>
+        <text x="474" y="128" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>MSE</text>
+        <text x="516" y="128" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>(1/n) Σ (yi − yhat_i)² → 1.667</text>
+        <text x="474" y="150" fill="#ff8800" fontSize="8.6" fontWeight="700" fontFamily={FONT}>RMSE</text>
+        <text x="516" y="150" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>√MSE → 1.291</text>
+        <text x="474" y="172" fill="#aa00ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>R²</text>
+        <text x="506" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1 − SSres/SStot = 1 − 5/8 → 0.375</text>
+        <text x="474" y="196" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>adjusted R² = 1 − (1−R²)(n−1)/(n−p−1)</text>
+        <text x="474" y="216" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>MAPE = (100/n) Σ |(yi − yhat_i)/yi| %</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="460" y="242" width="320" height="158" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
+        <text x="474" y="262" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>KAUNSA METRIC CHUNEIN</text>
+        <text x="474" y="284" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>MAE</text>
+        <text x="522" y="284" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>har galti barabar, outliers soft</text>
+        <text x="474" y="306" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>RMSE</text>
+        <text x="522" y="306" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bade errors mehnge, same unit</text>
+        <text x="474" y="328" fill="#aa00ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>R²</text>
+        <text x="506" y="328" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>baseline (mean) se kitna better</text>
+        <text x="474" y="350" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Adj R²</text>
+        <text x="530" y="350" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>extra useless features ka penalty</text>
+        <text x="474" y="372" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>R² negative bhi ho sakta hai (test data)</text>
+        <text x="474" y="388" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>RMSE hamesha ≥ MAE</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="412" width="760" height="88" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>INTERPRETATION — solved example</text>
+        <text x="34" y="452" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>MAE 1.0 → average 1 unit ki galti · RMSE 1.29 → bade error (−2) ka extra weight</text>
+        <text x="34" y="470" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>R² 0.375 → variance ka 37.5% explain hua, 62.5% abhi bhi unexplained</text>
+        <text x="34" y="490" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Classification metrics (accuracy/F1) yahan nahi chalte — yahan MAE, RMSE, R² likho</text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 1 · Distance based models
+// ============================================================
+export function DistanceModelsDiagram() {
+  const A = [170, 262];
+  const B = [350, 142];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Distance based models: Euclidean straight line, Manhattan stepped path and the cosine angle between two vectors, with formulas for Euclidean, Manhattan, Minkowski, Hamming and cosine similarity">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Distance Based Models
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        do points kitne paas hain — yahi clustering aur KNN ka base hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="330" rx="9" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.3)" />
+        <line x1="110" y1="320" x2="410" y2="320" stroke="rgba(255,255,255,0.3)" />
+        <line x1="110" y1="320" x2="110" y2="98" stroke="rgba(255,255,255,0.3)" />
+        <text x="404" y="336" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>feature 1</text>
+        <text x="102" y="104" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>feature 2</text>
+
+        <line x1="110" y1="320" x2={A[0]} y2={A[1]} stroke="rgba(111,178,255,0.6)" strokeWidth="1.6" />
+        <line x1="110" y1="320" x2={B[0]} y2={B[1]} stroke="rgba(111,178,255,0.6)" strokeWidth="1.6" />
+        <path d="M170 320 A60 60 0 0 0 136 272" fill="none" stroke="#c4ff00" strokeWidth="1.3" />
+        <text x="176" y="300" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>θ = 8°</text>
+
+        <line x1={A[0]} y1={A[1]} x2={B[0]} y2={B[1]} stroke="#00ff88" strokeWidth="2" />
+        <path d={`M${A[0]} ${A[1]} H${B[0]} V${B[1]}`} fill="none" stroke="#ff8800" strokeWidth="1.6" strokeDasharray="5 4" />
+        <circle cx={A[0]} cy={A[1]} r="5" fill="#00d4ff" />
+        <circle cx={B[0]} cy={B[1]} r="5" fill="#00d4ff" />
+        <text x={A[0] + 10} y={A[1] + 24} fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>A (1, 2)</text>
+        <text x={B[0] + 8} y={B[1] - 6} fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>B (4, 6)</text>
+
+        <text x="212" y="180" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Euclidean = 5</text>
+        <text x="244" y="286" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Manhattan = 7</text>
+        <text x="134" y="126" fill="#6fb2ff" fontSize="8.2" fontFamily={FONT}>cos θ = 0.992 (vectors almost same direction)</text>
+
+        <text x="34" y="356" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          green = seedhi doori · orange = axis ke saath chalti doori · θ = dono vectors ka angle
+        </text>
+        <text x="34" y="376" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          cosine angle dekhta hai, magnitude nahi — isliye text ke liye best
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="474" y="84" fill="#00ff88" fontSize="9.4" fontWeight="800" fontFamily={FONT}>FORMULAS</text>
+        <text x="474" y="106" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Euclidean (L2)</text>
+        <text x="474" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>d = √Σ (xi − yi)²</text>
+        <text x="474" y="142" fill="#ff8800" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Manhattan (L1)</text>
+        <text x="474" y="158" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>d = Σ |xi − yi|</text>
+        <text x="474" y="178" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Minkowski (Lp)</text>
+        <text x="474" y="194" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>d = (Σ |xi − yi|^p)^(1/p) · p=1 L1 · p=2 L2</text>
+
+        <rect x="460" y="226" width="320" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(170,0,255,0.4)" />
+        <text x="474" y="246" fill="#c08bff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>HAMMING</text>
+        <text x="474" y="266" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1011101 vs 1001001 → alag positions 3 aur 6</text>
+        <text x="474" y="284" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>distance = 2 (normalised 2/7 = 0.29)</text>
+        <text x="474" y="304" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>equal length strings, binary, one-hot, DNA</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="460" y="334" width="320" height="128" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="354" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>COSINE SIMILARITY</text>
+        <text x="474" y="374" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cos θ = (A·B) / (|A| · |B|)</text>
+        <text x="474" y="392" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cosine distance = 1 − cos θ</text>
+        <text x="474" y="412" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>A·B = 16, |A| = 2.236, |B| = 7.211 → 0.992</text>
+        <text x="474" y="432" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>text, TF-IDF, embeddings, recommender</text>
+        <text x="474" y="450" fill="#ffd166" fontSize="8" fontFamily={FONT}>metric: d ≥ 0 · d=0 same · symmetric · triangle</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="420" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="34" y="432" fill="#ff7a90" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Dhyan: scaling se pehle distance ka koi matlab nahi
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          salary 30,000 vs 31,000 poore distance ko kha jaayegi — z-score/min-max zaroori
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 2 · K-means
+// ============================================================
+export function KMeansDiagram() {
+  const c1 = [134, 230];
+  const c2 = [338, 252];
+  const pts = [
+    [110, 180], [140, 280], [190, 215], [95, 245],
+    [300, 180], [360, 300], [380, 240], [310, 290],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K-means clustering: points assigned to two centroids, the assign and update loop, WCSS objective and a solved one dimensional example">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        K-Means — assign aur update ka loop
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        centroid = members ka mean · objective = WCSS minimise
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="330" rx="9" fill="rgba(255,0,128,0.04)" stroke="rgba(255,0,128,0.3)" />
+
+        {pts.map(([x, y], i) => {
+          const near = i < 4 ? c1 : c2;
+          const color = i < 4 ? '#00d4ff' : '#ff0080';
+          return (
+            <g key={i}>
+              <line x1={x} y1={y} x2={near[0]} y2={near[1]} stroke={`${color}44`} strokeWidth="1" strokeDasharray="3 3" />
+              <circle cx={x} cy={y} r="5.4" fill={color} />
+            </g>
+          );
+        })}
+
+        <g stroke="#c4ff00" strokeWidth="2.2">
+          <line x1={c1[0] - 8} y1={c1[1] - 8} x2={c1[0] + 8} y2={c1[1] + 8} />
+          <line x1={c1[0] + 8} y1={c1[1] - 8} x2={c1[0] - 8} y2={c1[1] + 8} />
+          <line x1={c2[0] - 8} y1={c2[1] - 8} x2={c2[0] + 8} y2={c2[1] + 8} />
+          <line x1={c2[0] + 8} y1={c2[1] - 8} x2={c2[0] - 8} y2={c2[1] + 8} />
+        </g>
+        <text x={c1[0] - 22} y={c1[1] - 10} textAnchor="middle" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>μ1</text>
+        <text x={c2[0] + 20} y={c2[1] - 10} textAnchor="middle" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>μ2</text>
+
+        <text x="40" y="92" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● cluster 1</text>
+        <text x="140" y="92" fill="#ff0080" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● cluster 2</text>
+        <text x="250" y="92" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>✕ centroid</text>
+
+        <rect x="40" y="340" width="380" height="38" rx="6" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
+        <text x="52" y="358" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Step 1: point → nearest centroid   →   Step 2: centroid = mean
+        </text>
+        <text x="52" y="372" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Step 3: repeat till assignments stable (ya max iterations)
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="474" y="84" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>OBJECTIVE — WCSS</text>
+        <text x="474" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>J = Σk Σ(x∈Ck) ||x − μk||²</text>
+        <text x="474" y="124" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>kam WCSS = tight clusters (inertia)</text>
+        <text x="474" y="144" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>k badhao to WCSS hamesha girega</text>
+        <text x="474" y="166" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>complexity O(n · k · d · iterations)</text>
+
+        <rect x="460" y="196" width="320" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="216" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>SOLVED EXAMPLE (1-D, k = 2)</text>
+        <text x="474" y="236" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>points: 1, 2, 3, 10, 11, 12</text>
+        <text x="474" y="254" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>centroids → (1+2+3)/3 = 2 · (10+11+12)/3 = 11</text>
+        <text x="474" y="272" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>WCSS = 1 + 0 + 1 + 1 + 0 + 1 = 4</text>
+        <text x="474" y="292" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>assignments same → converged</text>
+
+        <rect x="460" y="314" width="320" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="474" y="334" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
+        <text x="474" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>k pehle dena padta hai (elbow se chuno)</text>
+        <text x="474" y="370" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers mean ko khinch lete hain</text>
+        <text x="474" y="386" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>sirf spherical clusters par theek</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Fixes: k-means++ initialisation · n_init = 10 · scaling · elbow/silhouette se k · outliers hatao
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Local optimum par atak sakta hai — kai baar alag init se chala kar sabse kam WCSS wala result rakho
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 3 · K-medoid (PAM)
+// ============================================================
+export function KMedoidDiagram() {
+  const X = { 1: 90, 2: 130, 3: 170, 10: 320, 11: 360, 12: 400, 100: 700 };
+  const yA = 164;
+  const yB = 268;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K-medoid versus k-means on one dimensional data with an outlier: the k-means mean is pulled to 33.25 by the outlier while the medoid stays on real data points, plus the BUILD and SWAP phases of PAM">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        K-Medoid (PAM) — medoid vs centroid
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        medoid = actual data point · centroid = mean · isliye outlier par medoid jeetta hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="336" rx="9" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.3)" />
+        <text x="34" y="92" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          DATA: 1, 2, 3, 10, 11, 12 (+ outlier 100)
+        </text>
+
+        <text x="34" y="128" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>K-MEANS (centroid = mean)</text>
+        <line x1="60" y1="182" x2="760" y2="182" stroke="rgba(255,255,255,0.14)" />
+        {[1, 2, 3, 10, 11, 12].map((v) => (
+          <g key={`a${v}`}>
+            <circle cx={X[v]} cy={yA} r="5" fill="#00d4ff" />
+            <text x={X[v]} y="204" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{v}</text>
+          </g>
+        ))}
+        <circle cx={X[100]} cy={yA} r="5" fill="#ff7a90" />
+        <text x={X[100]} y="204" textAnchor="middle" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>100</text>
+
+        <g stroke="#c4ff00" strokeWidth="2.2">
+          <line x1={X[2] - 7} y1={yA - 7} x2={X[2] + 7} y2={yA + 7} />
+          <line x1={X[2] + 7} y1={yA - 7} x2={X[2] - 7} y2={yA + 7} />
+        </g>
+        <text x={X[2] + 6} y={yA - 13} fill="#c4ff00" fontSize="8.2" fontWeight="700" fontFamily={FONT}>μ = 2</text>
+
+        <g stroke="#ff8800" strokeWidth="2.2">
+          <line x1="462" y1={yA - 7} x2="476" y2={yA + 7} />
+          <line x1="476" y1={yA - 7} x2="462" y2={yA + 7} />
+        </g>
+        <text x="470" y={yA - 14} textAnchor="middle" fill="#ff8800" fontSize="8.2" fontWeight="700" fontFamily={FONT}>μ = 33.25</text>
+        <text x="516" y={yA - 14} fill="#ff8800" fontSize="7.8" fontFamily={FONT}>outlier ne mean khinch liya</text>
+
+        <text x="512" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>gap</text>
+        <text x="512" y="196" fill="rgba(255,255,255,0.3)" fontSize="7.8" fontFamily={FONT}>....</text>
+
+        <text x="34" y="240" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>K-MEDOID (actual data point)</text>
+        <line x1="60" y1="286" x2="760" y2="286" stroke="rgba(255,255,255,0.14)" />
+        {[1, 2, 3, 10, 11, 12].map((v) => (
+          <g key={`b${v}`}>
+            <circle cx={X[v]} cy={yB} r="5" fill="#00ff88" />
+            <text x={X[v]} y="308" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{v}</text>
+          </g>
+        ))}
+        <circle cx={X[100]} cy={yB} r="5" fill="#ff7a90" />
+        <text x={X[100]} y="308" textAnchor="middle" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>100</text>
+
+        {[2, 11].map((v) => (
+          <g key={`m${v}`}>
+            <circle cx={X[v]} cy={yB} r="10" fill="none" stroke="#c4ff00" strokeWidth="1.6" />
+            <text x={X[v]} y={yB - 16} textAnchor="middle" fill="#c4ff00" fontSize="8.2" fontWeight="700" fontFamily={FONT}>{`medoid ${v}`}</text>
+          </g>
+        ))}
+        <text x="470" y={yB + 26} textAnchor="middle" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>medoid nahi hila — 11 hi rehta hai</text>
+
+        <rect x="34" y="326" width="732" height="58" rx="8" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.35)" />
+        <text x="48" y="346" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Cost (objective)</text>
+        <text x="48" y="366" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Cost = Σ distance(x, medoid) · medoid wo point jiski cluster ke baaki sabhi points se total dissimilarity sabse kam
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="412" width="370" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <text x="34" y="432" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>PAM PHASES</text>
+        <text x="34" y="452" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>BUILD</text>
+        <text x="92" y="452" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>greedy initial medoids (cost sabse kam)</text>
+        <text x="34" y="472" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>SWAP</text>
+        <text x="92" y="472" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>medoid ↔ non-medoid, cost kam ho to accept</text>
+        <text x="34" y="494" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>O(k(n−k)²) per iter · CLARA/CLARANS se speed up</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="412" width="370" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="424" y="432" fill="#ff7a90" fontSize="9.2" fontWeight="800" fontFamily={FONT}>K-MEANS vs K-MEDOID</text>
+        <text x="424" y="452" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>representative: mean centroid vs actual point</text>
+        <text x="424" y="470" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers: sensitive vs robust</text>
+        <text x="424" y="488" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>speed: fast vs slow · output: numbers vs records</text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 4 · Hierarchical clustering
+// ============================================================
+export function HierarchicalDiagram() {
+  const baseY = 350;
+  const hy = (h) => baseY - h * 45;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Agglomerative hierarchical clustering dendrogram for points 1, 2, 4 and 9 with merge heights 1, 2 and 5, a cut at height 3 giving two clusters, plus linkage methods and divisive clustering">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Hierarchical Clustering — dendrogram
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        agglomerative: har point alag → paas wale milte jao · k pehle se dene ki zaroorat nahi
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="336" rx="9" fill="rgba(255,136,0,0.04)" stroke="rgba(255,136,0,0.3)" />
+        <line x1="60" y1={baseY} x2="440" y2={baseY} stroke="rgba(255,255,255,0.3)" />
+        <line x1="60" y1={baseY} x2="60" y2="96" stroke="rgba(255,255,255,0.3)" />
+
+        {[1, 2, 3, 4, 5].map((h) => (
+          <g key={h}>
+            <line x1="56" y1={hy(h)} x2="60" y2={hy(h)} stroke="rgba(255,255,255,0.3)" />
+            <text x="52" y={hy(h) + 3} textAnchor="end" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>{h}</text>
+          </g>
+        ))}
+        <text x="52" y="90" textAnchor="end" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>height</text>
+
+        {/* leaves */}
+        {[[110, '1', 1], [170, '2', 1], [250, '4', 2], [380, '9', 5]].map(([x, label, h]) => (
+          <g key={label}>
+            <line x1={x} y1={baseY} x2={x} y2={hy(h)} stroke="#00d4ff" strokeWidth="1.6" />
+            <circle cx={x} cy={baseY} r="3.4" fill="#00d4ff" />
+            <text x={x} y={baseY + 16} textAnchor="middle" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>{label}</text>
+          </g>
+        ))}
+
+        {/* merge 1: {1,2} at h=1 */}
+        <line x1="110" y1={hy(1)} x2="170" y2={hy(1)} stroke="#00ff88" strokeWidth="2" />
+        <line x1="140" y1={hy(1)} x2="140" y2={hy(2)} stroke="#00ff88" strokeWidth="2" />
+        <text x="196" y={hy(1) + 4} fill="#00ff88" fontSize="7.8" fontFamily={FONT}>merge {`{1,2}`} at h = 1</text>
+
+        {/* merge 2: {1,2}+4 at h=2 */}
+        <line x1="140" y1={hy(2)} x2="250" y2={hy(2)} stroke="#c4ff00" strokeWidth="2" />
+        <line x1="195" y1={hy(2)} x2="195" y2={hy(5)} stroke="#c4ff00" strokeWidth="2" />
+        <text x="262" y={hy(2) + 4} fill="#c4ff00" fontSize="7.8" fontFamily={FONT}>merge with 4 at h = 2</text>
+
+        {/* merge 3: all at h=5 */}
+        <line x1="195" y1={hy(5)} x2="380" y2={hy(5)} stroke="#ff8800" strokeWidth="2" />
+        <text x="288" y={hy(5) - 8} textAnchor="middle" fill="#ff8800" fontSize="7.8" fontFamily={FONT}>all merged at h = 5</text>
+
+        {/* cut */}
+        <line x1="60" y1={hy(3)} x2="440" y2={hy(3)} stroke="rgba(255,122,144,0.85)" strokeWidth="1.2" strokeDasharray="6 4" />
+        <text x="470" y={hy(3) - 8} fill="#ff7a90" fontSize="8" fontFamily={FONT}>cut at h = 3 → clusters [1,2,4] aur [9]</text>
+
+        <text x="34" y="380" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          cut jis height par lagao, utne hi clusters milte hain — yahi hierarchical ka fayda hai
+        </text>
+        <text x="34" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          height = us merge par dono clusters ke beech ki distance
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="480" y="64" width="300" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DO TAREEKE</text>
+        <text x="494" y="104" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Agglomerative</text>
+        <text x="494" y="120" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bottom-up: n clusters → merge → 1</text>
+        <text x="494" y="142" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Divisive</text>
+        <text x="494" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>top-down: 1 cluster → split (DIANA)</text>
+        <text x="494" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>divisive mehnga — saare splits dekhne padte hain</text>
+
+        <rect x="480" y="196" width="300" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="494" y="216" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>LINKAGE METHODS</text>
+        <text x="494" y="236" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>single — sabse paas (min) · chain banti hai</text>
+        <text x="494" y="254" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>complete — sabse door (max) · compact</text>
+        <text x="494" y="272" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>average — saare pairs ka average</text>
+        <text x="494" y="290" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Ward — WCSS increase minimum (best)</text>
+
+        <rect x="480" y="320" width="300" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="494" y="340" fill="#ff7a90" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
+        <text x="494" y="358" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>O(n²) memory, O(n³) time — bade data par slow</text>
+        <text x="494" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>merge undo nahi hota (greedy)</text>
+        <text x="494" y="394" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers single-link par chain bana dete hain</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Pros: k ki zaroorat nahi · poora hierarchy dikhta hai · deterministic result
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Example: 1, 2, 4, 9 → merges at heights 1 ({`{1,2}`}), 2 ({`{1,2,4}`}), 5 (sab)
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 5 · Elbow method
+// ============================================================
+export function ElbowMethodDiagram() {
+  const data = [[1, 500], [2, 250], [3, 120], [4, 100], [5, 90], [6, 82]];
+  const px = (k) => 90 + (k - 1) * 54;
+  const py = (w) => 340 - w * 0.4;
+  const path = data.map(([k, w], i) => `${i === 0 ? 'M' : 'L'}${px(k)} ${py(w)}`).join(' ');
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Elbow method: line chart of WCSS against the number of clusters k with the elbow at k equals 3 highlighted, plus the silhouette coefficient formula and other internal validation metrics">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Elbow Method — best k kaise chunein
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        WCSS vs k plot karo — curve ke jis bend par girti hai, wahi k
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="336" rx="9" fill="rgba(170,0,255,0.04)" stroke="rgba(170,0,255,0.3)" />
+        <line x1="90" y1="340" x2="430" y2="340" stroke="rgba(255,255,255,0.3)" />
+        <line x1="90" y1="340" x2="90" y2="96" stroke="rgba(255,255,255,0.3)" />
+        <text x="424" y="356" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>k (clusters)</text>
+        <text x="84" y="102" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>WCSS</text>
+
+        <path d={path} stroke="#c08bff" strokeWidth="2.4" fill="none" />
+        {data.map(([k, w]) => (
+          <g key={k}>
+            <circle cx={px(k)} cy={py(w)} r="4.4" fill="#c08bff" />
+            <text x={k === 3 ? px(k) - 16 : px(k)} y={k === 3 ? py(w) + 18 : py(w) - 10} textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{w}</text>
+            <text x={px(k)} y="356" textAnchor="middle" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>{k}</text>
+          </g>
+        ))}
+
+        <circle cx={px(3)} cy={py(120)} r="9" fill="none" stroke="#c4ff00" strokeWidth="1.8" />
+        <line x1={px(3)} y1={py(120)} x2={px(3)} y2="340" stroke="rgba(196,255,0,0.5)" strokeDasharray="4 4" />
+        <text x={px(3) + 14} y={py(120) - 14} fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>elbow → k = 3</text>
+
+        <text x="106" y="150" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>500 → 250 → 120 → 100 → 90 → 82</text>
+        <text x="106" y="166" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>drops: 250, 130, 20, 10, 8</text>
+
+        <text x="34" y="382" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          k badhane par WCSS hamesha girti hai — isliye "sabse kam WCSS" wala k galat hai
+        </text>
+        <text x="34" y="396" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          elbow ke baad fayda kam, complexity zyada — wahan ruk jao
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="480" y="64" width="300" height="140" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>SILHOUETTE SCORE</text>
+        <text x="494" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>a = apne cluster se average distance</text>
+        <text x="494" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>b = nearest doosre cluster se distance</text>
+        <text x="494" y="142" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>s = (b − a) / max(a, b)</text>
+        <text x="494" y="164" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>+1 apne cluster mein · 0 boundary · −1 galat</text>
+        <text x="494" y="184" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>average &gt; 0.5 = strong structure</text>
+
+        <rect x="480" y="216" width="300" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="494" y="236" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DOOSRE METRICS</text>
+        <text x="494" y="256" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Davies-Bouldin — kam achha</text>
+        <text x="494" y="274" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Calinski-Harabasz — zyada achha</text>
+        <text x="494" y="292" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>gap statistic — model comparison</text>
+        <text x="494" y="308" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>external: purity, ARI, NMI (labels chahiye)</text>
+
+        <rect x="480" y="328" width="300" height="72" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="494" y="348" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>BEND AMBIGUOUS HO TO</text>
+        <text x="494" y="366" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>silhouette score dekho (max wala k)</text>
+        <text x="494" y="384" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>business/domain sense + stability check</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Steps: scale data → k = 1…10 par k-means → har k ka WCSS note → plot → elbow par ruk jao → silhouette se verify
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Clustering unsupervised hai, isliye "accuracy" nahi hoti — internal measures (elbow, silhouette) hi sahara hain
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 6 · Market basket analysis
+// ============================================================
+export function MarketBasketDiagram() {
+  const baskets = [
+    ['T1', 'bread · milk'],
+    ['T2', 'bread · diaper · beer · eggs'],
+    ['T3', 'milk · diaper · beer · cola'],
+    ['T4', 'bread · milk · diaper · beer'],
+    ['T5', 'bread · milk · diaper · cola'],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Market basket analysis: five grocery transactions, an association rule diaper implies beer with support 60 percent and confidence 75 percent, the two mining phases and the business actions they enable">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Market Basket Analysis — jo saath bikta hai
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        transaction data se association rule: X → Y ("X kharidne wala Y bhi")
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="290" rx="9" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.3)" />
+        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TRANSACTIONS (N = 5 baskets)</text>
+        {baskets.map(([id, items], i) => (
+          <g key={id}>
+            <rect x="34" y={98 + i * 44} width="392" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" />
+            <text x="48" y={119 + i * 44} fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>{id}</text>
+            <text x="86" y={119 + i * 44} fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>{items}</text>
+          </g>
+        ))}
+        <text x="34" y="342" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          itemset = items ka group · support count = jitni baskets mein aaya
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="130" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="474" y="84" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>RULE: diaper → beer</text>
+        <text x="474" y="106" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>support = 3/5 = 60% (kitna common)</text>
+        <text x="474" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>confidence = 3/4 = 75% (kitna reliable)</text>
+        <text x="474" y="142" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>lift = 0.75/0.60 = 1.25 (positive)</text>
+        <text x="474" y="162" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>yaani diaper wale 75% baskets mein beer bhi</text>
+        <text x="474" y="180" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
+
+        <rect x="460" y="206" width="320" height="148" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="474" y="226" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>BUSINESS MEIN KYA KAREIN</text>
+        <text x="474" y="246" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>cross-sell / combo offer (basket value up)</text>
+        <text x="474" y="264" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>store layout — saath bikne wale paas-paas</text>
+        <text x="474" y="282" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bundling aur pricing decisions</text>
+        <text x="474" y="300" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>recommendation engine ("ye bhi dekha")</text>
+        <text x="474" y="318" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>catalog design, dead combos hatana</text>
+        <text x="474" y="340" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>retail ke alawa insurance fraud, medical patterns</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="366" width="760" height="104" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.35)" />
+        <text x="34" y="386" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING KE 2 PHASES</text>
+        <rect x="34" y="396" width="330" height="52" rx="7" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.4)" />
+        <text x="48" y="414" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>1 · FREQUENT ITEMSETS</text>
+        <text x="48" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>support ≥ minsup wale itemsets (Apriori/FP-Growth)</text>
+        <path d="M372 422 L404 422 M398 417 L404 422 L398 427" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <rect x="416" y="396" width="348" height="52" rx="7" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.4)" />
+        <text x="430" y="414" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>2 · RULE GENERATION</text>
+        <text x="430" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>confidence ≥ minconf wale rules (X → Y splits)</text>
+        <text x="34" y="462" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Phases alag kyun: itemset space 2^m hota hai — pehle support se prune, phir confidence se rules filter</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="474" width="760" height="30" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.25)" />
+        <text x="34" y="494" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Exam line: market basket analysis association rules se pata karta hai ki kaun se items saath purchase hote hain
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 7 · Apriori
+// ============================================================
+export function AprioriDiagram() {
+  const l1 = [['bread', 4], ['milk', 4], ['diaper', 4], ['beer', 3], ['cola', 2]];
+  const l2 = [
+    ['bread,milk', 3], ['bread,diaper', 3], ['diaper,milk', 3], ['diaper,beer', 3],
+    ['beer,bread', 2], ['beer,milk', 2], ['cola,diaper', 2], ['cola,milk', 2],
+  ];
+  const l3 = [
+    ['bread,diaper,milk', 2], ['beer,bread,diaper', 2], ['beer,diaper,milk', 2], ['cola,diaper,milk', 2],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Apriori algorithm level by level flow: frequent one itemsets, eight frequent pairs, four frequent triples, then stop, with the downward closure property and rule generation">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Apriori — level-wise frequent itemsets
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        5 transactions · minsup = 40% (2 transactions) · har level par ek scan
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="470" height="352" rx="9" fill="rgba(255,0,128,0.04)" stroke="rgba(255,0,128,0.28)" />
+
+        <text x="34" y="86" fill="#00d4ff" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L1 — frequent 1-itemsets (5)</text>
+        {l1.map(([name, c], i) => (
+          <g key={name}>
+            <rect x={30 + i * 90} y="94" width="82" height="26" rx="6" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.45)" />
+            <text x={30 + i * 90 + 41} y="111" textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{`${name} ${c}`}</text>
+          </g>
+        ))}
+        <text x="34" y="134" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>eggs = 1 → minsup se kam, hat gaya</text>
+
+        <path d="M255 142 L255 156 M250 150 L255 156 L260 150" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <text x="266" y="154" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>join + prune → count</text>
+
+        <text x="34" y="176" fill="#00ff88" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L2 — frequent pairs (8)</text>
+        {l2.map(([name, c], i) => (
+          <g key={name}>
+            <rect x={30 + (i % 4) * 114} y={184 + Math.floor(i / 4) * 32} width="106" height="26" rx="6" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.4)" />
+            <text x={30 + (i % 4) * 114 + 53} y={201 + Math.floor(i / 4) * 32} textAnchor="middle" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{`{${name}} ${c}`}</text>
+          </g>
+        ))}
+
+        <path d="M255 250 L255 264 M250 258 L255 264 L260 258" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <text x="266" y="262" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>subset prune: {`{beer,bread,milk}`} ka support 1 → out</text>
+
+        <text x="34" y="286" fill="#c4ff00" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L3 — frequent triples (4)</text>
+        {l3.map(([name, c], i) => (
+          <g key={name}>
+            <rect x={30 + (i % 2) * 226} y={294 + Math.floor(i / 2) * 34} width="218" height="28" rx="6" fill="rgba(196,255,0,0.08)" stroke="rgba(196,255,0,0.4)" />
+            <text x={30 + (i % 2) * 226 + 109} y={312 + Math.floor(i / 2) * 34} textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{`{${name}} ${c}`}</text>
+          </g>
+        ))}
+
+        <text x="34" y="376" fill="#ff7a90" fontSize="8.4" fontWeight="700" fontFamily={FONT}>
+          L4 khaali — {`{beer,bread,diaper,milk}`} ka subset {`{beer,bread,milk}`} frequent nahi tha → STOP
+        </text>
+        <text x="34" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Total scans: k + 1 (yahan 4) — isliye I/O heavy</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="510" y="64" width="270" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="524" y="84" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DOWNWARD CLOSURE</text>
+        <text x="524" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Agar itemset infrequent hai,</text>
+        <text x="524" y="120" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>uske saare supersets bhi infrequent.</text>
+        <text x="524" y="142" fill="#ff7a90" fontSize="8" fontFamily={FONT}>{`{milk,cola} infrequent`}</text>
+        <text x="524" y="158" fill="#ff7a90" fontSize="8" fontFamily={FONT}>→ {`{milk,cola,chips}`} bhi infrequent</text>
+        <text x="524" y="180" fill="#00ff88" fontSize="8" fontFamily={FONT}>frequent → saare subsets frequent</text>
+        <text x="524" y="200" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>yahi anti-monotone property hai</text>
+
+        <rect x="510" y="226" width="270" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="524" y="246" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>STEPS</text>
+        <text x="524" y="266" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>1 · count items → L1 (minsup)</text>
+        <text x="524" y="284" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>2 · join L(k−1) → Ck candidates</text>
+        <text x="524" y="302" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>3 · subset prune (downward closure)</text>
+        <text x="524" y="320" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>4 · count → Lk · repeat</text>
+
+        <rect x="510" y="344" width="270" height="72" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="524" y="364" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>RULES (minconf 60%)</text>
+        <text x="524" y="382" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread∧milk → diaper = 2/3 = 67%</text>
+        <text x="524" y="400" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread → milk∧diaper = 2/4 = 50% (out)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="428" width="760" height="66" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="448" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Pros: simple, complete, downward closure se search space chhota
+        </text>
+        <text x="34" y="466" fill="#ff7a90" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Cons: k+1 database scans, candidate explosion (dense data par bahut slow)
+        </text>
+        <text x="34" y="484" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Fix: FP-Growth (2 scans, koi candidate nahi) · Eclat (vertical tidsets) · partition/sampling
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 8 · FP-Growth
+// ============================================================
+export function FpGrowthDiagram() {
+  const tree = [
+    'root',
+    '+- bread:4',
+    '|  +- milk:3',
+    '|  |  +- diaper:2',
+    '|  |     +- beer:1',
+    '|  |     +- cola:1',
+    '|  +- diaper:1',
+    '|     +- beer:1',
+    '+- milk:1',
+    '   +- diaper:1',
+    '      +- beer:1',
+    '         +- cola:1',
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="FP-Growth: FP-tree built in two scans with item counts, header table ordering and conditional pattern base mining for the item cola">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        FP-Growth — FP-tree se bina candidate mining
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        sirf 2 database scans · koi candidate generation nahi
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="330" rx="9" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.3)" />
+        <text x="34" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>FP-TREE (minsup = 2)</text>
+        {tree.map((line, i) => (
+          <text key={i} x="36" y={108 + i * 21} fill={i === 0 ? '#c4ff00' : '#dbe6ff'} fontSize="8.8" fontFamily="'Consolas', monospace">
+            {line}
+          </text>
+        ))}
+        <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          common prefixes share hote hain → data compress ho jaata hai
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="480" y="64" width="300" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="494" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>HEADER TABLE</text>
+        <text x="494" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread 4 · milk 4 · diaper 4 · beer 3 · cola 2</text>
+        <text x="494" y="122" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>descending frequency order mein</text>
+        <text x="494" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>har item se uske saare nodes link hote hain</text>
+        <text x="494" y="162" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>eggs (1) pehle hi hata diya gaya</text>
+
+        <rect x="480" y="196" width="300" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="494" y="216" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>CONSTRUCTION (2 scans)</text>
+        <text x="494" y="236" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 1 → counts + order</text>
+        <text x="494" y="254" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 2 → har transaction order mein insert</text>
+        <text x="494" y="272" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>common prefix share → node count badhta hai</text>
+        <text x="494" y="288" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>koi candidate set nahi banti</text>
+
+        <rect x="480" y="308" width="300" height="86" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="494" y="328" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING (cola se shuru)</text>
+        <text x="494" y="346" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>prefix paths: {`{bread,milk,diaper}:1`}</text>
+        <text x="494" y="362" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>aur {`{milk,diaper,beer}:1`}</text>
+        <text x="494" y="380" fill="#00ff88" fontSize="8" fontFamily={FONT}>minsup 2 → {`{cola,milk,diaper}`} sup 2</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="406" width="760" height="88" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="426" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>APRIORI vs FP-GROWTH</text>
+        <text x="34" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          scans: k+1 vs 2 · candidates: haan vs nahi · data: transaction list vs compressed tree
+        </text>
+        <text x="34" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          speed: dense data par FP-Growth kaafi fast · memory: tree zyada leti hai · implementation: Apriori aasan
+        </text>
+        <text x="34" y="482" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Limit: incremental update mushkil (tree rebuild) · Apriori chhote/sparse data ke liye theek
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 9 · Support and confidence
+// ============================================================
+export function SupportConfidenceDiagram() {
+  const cols = ['bread', 'milk', 'diaper', 'beer', 'cola'];
+  const rows = [
+    ['T1', [1, 1, 0, 0, 0]],
+    ['T2', [1, 0, 1, 1, 0]],
+    ['T3', [0, 1, 1, 1, 1]],
+    ['T4', [1, 1, 1, 1, 0]],
+    ['T5', [1, 1, 1, 0, 1]],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Support and confidence: transaction item grid highlighting diaper and beer, formulas for support, confidence and lift, with the computed values and interpretation scale of lift">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Support aur Confidence — rule ka score
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        support = kitna common · confidence = kitna reliable · lift = asli correlation
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="332" rx="9" fill="rgba(255,136,0,0.04)" stroke="rgba(255,136,0,0.28)" />
+        <text x="34" y="86" fill="#ff8800" fontSize="8.8" fontWeight="800" fontFamily={FONT}>5 TRANSACTIONS × 5 ITEMS</text>
+
+        {cols.map((c, j) => (
+          <text key={c} x={132 + j * 58} y="108" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{c}</text>
+        ))}
+        {rows.map(([id, cells], i) => (
+          <g key={id}>
+            <text x="96" y={128 + i * 26} fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{id}</text>
+            {cells.map((v, j) => (
+              <rect
+                key={j}
+                x={110 + j * 58}
+                y={114 + i * 26}
+                width="44"
+                height="18"
+                rx="3"
+                fill={v ? 'rgba(0,255,136,0.28)' : 'rgba(255,255,255,0.03)'}
+                stroke={v ? 'rgba(0,255,136,0.6)' : 'rgba(255,255,255,0.1)'}
+              />
+            ))}
+          </g>
+        ))}
+        <text x="34" y="278" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>green = item basket mein hai</text>
+        <text x="200" y="278" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>diaper: 4 · beer: 3 · diaper+beer: 3</text>
+
+        <rect x="34" y="292" width="392" height="42" rx="7" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.4)" />
+        <text x="46" y="310" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>support(diaper → beer) = 3/5 = 0.60</text>
+        <text x="46" y="326" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>dono saath 3 baskets mein — rule 60% data par lagu</text>
+
+        <rect x="34" y="342" width="392" height="42" rx="7" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
+        <text x="46" y="360" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>confidence = 3/4 = 0.75</text>
+        <text x="46" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>diaper wale 4 baskets mein se 3 mein beer bhi aaya</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="126" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>FORMULAS</text>
+        <text x="474" y="106" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>support</text>
+        <text x="474" y="122" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>count(X ∪ Y) / N = P(X ∪ Y)</text>
+        <text x="474" y="142" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>confidence</text>
+        <text x="474" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>count(X ∪ Y) / count(X) = P(Y | X)</text>
+        <text x="474" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
+
+        <rect x="460" y="202" width="320" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,0,128,0.4)" />
+        <text x="474" y="222" fill="#ff7ab2" fontSize="9" fontWeight="800" fontFamily={FONT}>LIFT — confidence ka dhokha pakdo</text>
+        <text x="474" y="240" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>lift = confidence / support(Y)</text>
+        <line x1="486" y1="266" x2="756" y2="266" stroke="rgba(255,255,255,0.25)" />
+        <line x1="620" y1="260" x2="620" y2="272" stroke="#fff" strokeWidth="1.4" />
+        <text x="620" y="286" textAnchor="middle" fill="#fff" fontSize="7.6" fontFamily={FONT}>= 1 independent</text>
+        <text x="486" y="286" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>less than 1 negative</text>
+        <text x="756" y="286" textAnchor="end" fill="#00ff88" fontSize="7.6" fontFamily={FONT}>greater than 1 positive</text>
+        <text x="474" y="300" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>diaper → beer: 0.75/0.60 = 1.25 (positive)</text>
+
+        <rect x="460" y="318" width="320" height="82" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <text x="474" y="338" fill="#ffd166" fontSize="9" fontWeight="800" fontFamily={FONT}>THRESHOLDS</text>
+        <text x="474" y="356" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>support ≥ minsup · confidence ≥ minconf</text>
+        <text x="474" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>dono pass → strong rule</text>
+        <text x="474" y="392" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>minsup kam → rules ki explosion</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="410" width="760" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="430" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          bread → milk: support 0.60 · confidence 0.75 · lift 0.94 → milk waise bhi 80% baskets mein (rule useless)
+        </text>
+        <text x="34" y="450" fill="#ff8800" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          diaper → beer: support 0.60 · confidence 0.75 · lift 1.25 → asli positive association
+        </text>
+        <text x="34" y="470" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Aage: leverage = P(X∪Y) − P(X)P(Y) · conviction = (1 − support(Y))/(1 − confidence)
+        </text>
+      </g>
+    </svg>
+  );
+}

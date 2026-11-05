@@ -140,6 +140,27 @@ import {
   StarSchemaDiagram,
   SnowflakeSchemaDiagram,
   OlapVsOltpDiagram,
+  ClassificationAppsDiagram,
+  MLTypesDiagram,
+  LinearRegressionDiagram,
+  LogisticRegressionDiagram,
+  NaiveBayesDiagram,
+  KnnDiagram,
+  DecisionTreeDiagram,
+  SvmDiagram,
+  ConfusionMatrixDiagram,
+  ClassificationMetricsDiagram,
+  RocAucDiagram,
+  RegressionMetricsDiagram,
+  DistanceModelsDiagram,
+  KMeansDiagram,
+  KMedoidDiagram,
+  HierarchicalDiagram,
+  ElbowMethodDiagram,
+  MarketBasketDiagram,
+  AprioriDiagram,
+  FpGrowthDiagram,
+  SupportConfidenceDiagram,
 } from './DataScienceDiagrams';
 import {
   WebStackDiagram,
@@ -875,6 +896,48 @@ export function Diagram({ type }) {
       return <SnowflakeSchemaDiagram />;
     case 'ds-olap-oltp':
       return <OlapVsOltpDiagram />;
+    case 'ds3-applications':
+      return <ClassificationAppsDiagram />;
+    case 'ds3-ml-types':
+      return <MLTypesDiagram />;
+    case 'ds3-linear-reg':
+      return <LinearRegressionDiagram />;
+    case 'ds3-logistic-reg':
+      return <LogisticRegressionDiagram />;
+    case 'ds3-naive-bayes':
+      return <NaiveBayesDiagram />;
+    case 'ds3-knn':
+      return <KnnDiagram />;
+    case 'ds3-decision-tree':
+      return <DecisionTreeDiagram />;
+    case 'ds3-svm':
+      return <SvmDiagram />;
+    case 'ds3-confusion-matrix':
+      return <ConfusionMatrixDiagram />;
+    case 'ds3-metrics-prf':
+      return <ClassificationMetricsDiagram />;
+    case 'ds3-roc-auc':
+      return <RocAucDiagram />;
+    case 'ds3-regression-metrics':
+      return <RegressionMetricsDiagram />;
+    case 'ds4-distances':
+      return <DistanceModelsDiagram />;
+    case 'ds4-kmeans':
+      return <KMeansDiagram />;
+    case 'ds4-kmedoid':
+      return <KMedoidDiagram />;
+    case 'ds4-hierarchical':
+      return <HierarchicalDiagram />;
+    case 'ds4-elbow':
+      return <ElbowMethodDiagram />;
+    case 'ds4-market-basket':
+      return <MarketBasketDiagram />;
+    case 'ds4-apriori':
+      return <AprioriDiagram />;
+    case 'ds4-fpgrowth':
+      return <FpGrowthDiagram />;
+    case 'ds4-support-confidence':
+      return <SupportConfidenceDiagram />;
     case 'web-stack':
       return <WebStackDiagram />;
     case 'internet-www':
