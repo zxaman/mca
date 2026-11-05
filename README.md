@@ -13,7 +13,7 @@ adding a topic is just adding an object.
 |---|---|---|---|---|
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
-| Software Testing & QA | STQA | 4 | 47 | Live |
+| Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 1 | 12 | Live — Unit I |
 | Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
@@ -104,7 +104,27 @@ PHP cannot execute in a browser, so these topics never fake a live preview: each
 beside a **`php 8.3 · server output`** panel that shows the exact stdout the interpreter produces,
 with the caveat stated in the panel itself.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 34 · Data Science 24 · Web Technology 88 (188 total).
+**Software Testing & QA (Unit V — Software Test Automation)** has 17 topics. *Foundations:*
+introduction to automation (pipeline, test pyramid, when to automate vs when not to), skills needed
+for automation (programming, DOM/locators, framework design, Git, CI/CD, API + DB, debugging, domain
+thinking), scope of automation (frequency, stability, criticality, ROI with a break-even calculation),
+design and architecture for automation (layered design — data → scripts → page objects → utilities →
+driver/runner — plus linear, modular, data driven, keyword driven, hybrid and BDD, and the Page Object
+Model), requirements for a test tool (8 criteria, pilot evaluation, total cost of ownership), and
+challenges in automation (flaky tests with the `0.99^100 ≈ 37%` math, maintenance, cost, dynamic
+elements, skill gap, false confidence). *Process:* bug tracking and debugging (defect life cycle,
+5-part bug report, logs/breakpoints/binary search/`git bisect`/layer isolation), manual vs automated
+testing (8-point table and the right mix), UI automation tools (Cypress in-browser, TestCafe proxy
+based with no WebDriver, Protractor legacy Angular), and three automation case studies (e-commerce,
+banking, SaaS) with measured results. *Selenium:* introduction and the 2004→2021 history (Core → IDE
+→ RC → Grid → WebDriver merge → Selenium 3 → Selenium 4), the tool suite (IDE, WebDriver, Grid,
+Manager, language bindings, legacy RC), Selenium IDE (record & playback, `.side`, assert vs verify,
+why not for production), Selenium RC (JS-injection architecture and why it was removed), Selenium
+WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent waits), Selenium Grid
+(hub/router + nodes, capabilities, parallel test design) and test design considerations
+(independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
+
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 24 · Web Technology 88 (205 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -148,6 +168,7 @@ src/
 │   ├── dataScience.js         # Data Science units (imported into topics.js)
 │   ├── softwareTesting3.js    # STQA Unit III (Software Testing Techniques)
 │   ├── softwareTesting4.js    # STQA Unit IV (Testing Strategies)
+│   ├── softwareTesting5.js    # STQA Unit V (Software Test Automation)
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)

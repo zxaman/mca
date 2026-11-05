@@ -3689,3 +3689,1147 @@ export function DatabaseTestingDiagram() {
     </svg>
   );
 }
+
+// 49. Introduction to automation testing
+export function AutomationIntroDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Test automation pipeline from test case to script, tool, execution and report, with the test pyramid showing automation priority">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Test automation — insaan ki jagah tool test chalata hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        script ek baar likho, jitni baar chahiye chalao — fast, repeatable, regression ka sahara
+      </text>
+
+      {[
+        ['TEST CASE', 'manual steps define', '#6fb2ff'],
+        ['SCRIPT', 'code mein likho', '#00d4ff'],
+        ['TOOL', 'browser driver chalao', '#c4ff00'],
+        ['EXECUTE', 'CI par ya schedule', '#ff8800'],
+        ['REPORT', 'pass/fail + screenshot', '#00ff88'],
+      ].map(([t, d, c], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 70}ms` }}>
+          <rect x={20 + i * 180} y="70" width="160" height="58" rx="9" fill="rgba(255,255,255,0.04)" stroke={c} strokeWidth="1.5" />
+          <text x={100 + i * 180} y="94" textAnchor="middle" fill={c} fontSize="9" fontWeight="800" fontFamily={FONT}>{t}</text>
+          <text x={100 + i * 180} y="112" textAnchor="middle" fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
+        </g>
+      ))}
+      <g stroke="#5a6a9e" strokeWidth="1.4">
+        {[0, 1, 2, 3].map((i) => <line key={i} x1={180 + i * 180} y1="99" x2={192 + i * 180} y2="99" />)}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="150" width="440" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="170" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>TEST PYRAMID — kya pehle automate karein</text>
+        <polygon points="240,182 300,228 180,228" fill="rgba(255,122,144,0.2)" stroke="#ff7a90" />
+        <text x="240" y="213" textAnchor="middle" fill="#ff7a90" fontSize="7" fontFamily={FONT}>UI (kam)</text>
+        <polygon points="180,230 300,230 330,272 150,272" fill="rgba(255,136,0,0.18)" stroke="#ff8800" />
+        <text x="240" y="256" textAnchor="middle" fill="#ff8800" fontSize="7" fontFamily={FONT}>API / service</text>
+        <polygon points="150,274 330,274 360,296 120,296" fill="rgba(0,255,136,0.16)" stroke="#00ff88" />
+        <text x="240" y="288" textAnchor="middle" fill="#00ff88" fontSize="7" fontFamily={FONT}>unit (sabse zyada)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="480" y="150" width="420" height="150" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="494" y="170" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>AUTOMATION KAB</text>
+        <text x="494" y="192" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ Baar-baar chalne wale (regression, smoke)</text>
+        <text x="494" y="210" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ Boring, repetitive, high volume data entry</text>
+        <text x="494" y="228" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ 24x7, multi-browser, multi-device runs</text>
+        <text x="494" y="250" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>✗ Ek baar chalta test, exploratory, usability</text>
+        <text x="494" y="268" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>✗ Jaldi badalne wala UI (script tootti hai)</text>
+        <text x="494" y="288" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>ROI = bacha hua manual time − script banana + maintain</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="20" y="318" width="880" height="50" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="338" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>AUTOMATION ≠ 100% REPLACEMENT</text>
+        <text x="34" y="356" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Automation repeatable check karta hai · insaan exploration, judgement aur naye risk dhoondhta hai — dono saath chalte hain
+        </text>
+      </g>
+
+      <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Automation ka asli fayda test chhoti nahi — feedback fast hota hai (minutes mein, days mein nahi)
+      </text>
+      <text x="460" y="424" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Tools: Selenium, Cypress, Playwright, TestCafe, Protractor (legacy), Appium, RestAssured
+      </text>
+      <text x="460" y="450" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: test automation tool ke through predefined test cases bina manual intervention chalana hai
+      </text>
+    </svg>
+  );
+}
+
+// 50. Skills needed for automation
+export function AutomationSkillsDiagram() {
+  return (
+    <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Skills needed for test automation: programming, locators and DOM, framework design, version control, CI CD, API and database, debugging, plus domain and analytical thinking">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Automation ke liye skills — coding + testing soch, dono chahiye
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        tester jo code likh sakta hai, aur developer jo test design samajhta hai — best automation engineer
+      </text>
+
+      {[
+        ['PROGRAMMING', 'Java / Python / JS · OOP, loops, functions, exceptions', '#6fb2ff', 40, 96],
+        ['LOCATORS & DOM', 'HTML, CSS selector, XPath, shadow DOM, iframe', '#00d4ff', 40, 160],
+        ['FRAMEWORK DESIGN', 'POM, data driven, keyword, hybrid, reporting', '#c4ff00', 40, 224],
+        ['VERSION CONTROL', 'Git branch, commit, merge, code review', '#00ff88', 40, 288],
+      ].map(([t, d, c, x, y], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 70}ms` }}>
+          <rect x={x} y={y} width="420" height="54" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.4" strokeOpacity="0.55" />
+          <text x={x + 14} y={y + 20} fill={c} fontSize="8.6" fontWeight="800" fontFamily={FONT}>{t}</text>
+          <text x={x + 14} y={y + 38} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
+        </g>
+      ))}
+
+      {[
+        ['CI / CD', 'Jenkins, GitHub Actions, pipeline config, Docker', '#ff8800', 480, 96],
+        ['API & DATABASE', 'Postman, REST, SQL, JSON, authentication', '#ff7ab2', 480, 160],
+        ['DEBUGGING', 'logs, screenshot, trace, flaky test analysis', '#aa88ff', 480, 224],
+        ['DOMAIN + ANALYTICAL', 'business flow, risk, test design, ROI', '#ffd166', 480, 288],
+      ].map(([t, d, c, x, y], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${360 + i * 70}ms` }}>
+          <rect x={x} y={y} width="420" height="54" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.4" strokeOpacity="0.55" />
+          <text x={x + 14} y={y + 20} fill={c} fontSize="8.6" fontWeight="800" fontFamily={FONT}>{t}</text>
+          <text x={x + 14} y={y + 38} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
+        <rect x="40" y="352" width="860" height="48" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="54" y="370" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>SABSE ZAROORI 3</text>
+        <text x="54" y="388" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          1. ek programming language (depth) · 2. locator strategy (UI ka map) · 3. debugging patience — flaky test ka root cause dhoondhna
+        </text>
+      </g>
+
+      <text x="460" y="424" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Tool seekhna aasan hai, soch seekhna mushkil — isliye test design aur domain knowledge pehle
+      </text>
+      <text x="460" y="448" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: automation tester ko programming, tool knowledge, framework design aur analytical skills chahiye
+      </text>
+    </svg>
+  );
+}
+
+// 51. Scope of automation
+export function AutomationScopeDiagram() {
+  return (
+    <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Scope of automation: what should be automated such as regression, smoke, data driven and API tests, versus what should stay manual such as exploratory, usability and one time tests">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Automation ka scope — sab kuch automate nahi hota
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        ROI, stability aur repeatability dekh kar decide karo — warna suite bojh ban jaati hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="430" height="196" rx="10" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
+        <text x="34" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>AUTOMATE KARO</text>
+        {[
+          'Regression suite — baar-baar chalti hai',
+          'Smoke / sanity — har build par 15 min',
+          'Data driven cases — 1000 rows, same steps',
+          'API aur database validation',
+          'Cross-browser matrix (grid par)',
+          'Performance / load scripts',
+          'Long end-to-end business flows',
+        ].map((t, i) => (
+          <text key={t} x="34" y={110 + i * 20} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>✓ {t}</text>
+        ))}
+        <text x="34" y="256" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Criteria: repeatable + stable UI + measurable output</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="470" y="66" width="430" height="196" rx="10" fill="rgba(255,122,144,0.07)" stroke="rgba(255,122,144,0.45)" />
+        <text x="484" y="86" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>MANUAL HI RAKHO</text>
+        {[
+          'Exploratory aur ad hoc testing',
+          'Usability aur accessibility judgement',
+          'Ek baar chalta test (one-time)',
+          'Jaldi badalne wala UI / prototype',
+          'Naya feature ka pehla round',
+          'Complex visual design check',
+          'Emotional / UX feedback',
+        ].map((t, i) => (
+          <text key={t} x="484" y={110 + i * 20} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>✗ {t}</text>
+        ))}
+        <text x="484" y="256" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Criteria: insaan ka judgement, ek baar ka kaam</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="278" width="880" height="70" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="298" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DECISION KE 5 SAWAAL</text>
+        <text x="34" y="318" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>
+          1. Test kitni baar chalega? · 2. Steps stable hain? · 3. Expected result measurable hai? · 4. Manual time bachega? · 5. Tool + skill available hai?
+        </text>
+        <text x="34" y="336" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>
+          Teen se zyada "haan" = automation candidate · "nahi" = manual rakho, warna maintenance ka bojh
+        </text>
+      </g>
+
+      <text x="460" y="382" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Scope = kya automate karna hai + kitna (percentage) + kab tak (sprint mein kab)
+      </text>
+      <text x="460" y="406" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Automation scope test plan mein likho — warna team "sab automate" karne chali jaati hai
+      </text>
+      <text x="460" y="434" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: automation scope stable, repetitive aur high-ROI test cases tak seemit hota hai
+      </text>
+    </svg>
+  );
+}
+
+// 52. Design and architecture for automation
+export function AutomationArchitectureDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Automation framework architecture layers: test data, test scripts, page objects, utilities, driver and runner, with data driven, keyword driven, hybrid and page object model designs">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Automation framework — layered design, ek baar banao baar-baar use karo
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        scripts + data + page objects + utilities + reporting — sab alag layer mein
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="450" height="230" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="800" fontFamily={FONT}>LAYERED ARCHITECTURE</text>
+        {[
+          ['TEST DATA', 'Excel / JSON / CSV / DB', '#c4ff00', 96],
+          ['TEST SCRIPTS', 'business steps, assertions', '#00d4ff', 130],
+          ['PAGE OBJECTS', 'locators + page methods', '#6fb2ff', 164],
+          ['UTILITIES', 'wait, log, config, screenshot', '#ff8800', 198],
+          ['DRIVER / RUNNER', 'WebDriver, browser, CI', '#ff7a90', 232],
+        ].map(([t, d, c, y]) => (
+          <g key={t}>
+            <rect x="34" y={y} width="422" height="30" rx="6" fill="rgba(255,255,255,0.04)" stroke={c} strokeOpacity="0.5" />
+            <text x="46" y={y + 19} fill={c} fontSize="8" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x="196" y={y + 19} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+        <text x="34" y="282" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Upar ka layer neeche wale par depend karta hai — ulta nahi</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="490" y="66" width="410" height="230" rx="10" fill="rgba(47,111,255,0.07)" stroke="rgba(47,111,255,0.4)" />
+        <text x="504" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>FRAMEWORK KE PRAKAAR</text>
+        {[
+          ['Linear / record-play', 'simple, ek script ek test'],
+          ['Modular', 'module wise alag script'],
+          ['Data driven', 'ek script, kai data sets'],
+          ['Keyword driven', 'action words (login, click)'],
+          ['Hybrid', 'data + keyword + POM mix'],
+          ['BDD', 'Given-When-Then (Cucumber)'],
+        ].map(([t, d], i) => (
+          <g key={t}>
+            <text x="504" y={110 + i * 26} fill="#c4ff00" fontSize="7.9" fontWeight="700" fontFamily={FONT}>{t}</text>
+            <text x="648" y={110 + i * 26} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+        <text x="504" y="272" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Aaj kal hybrid + POM sabse common</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="312" width="880" height="52" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="332" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>PAGE OBJECT MODEL (POM)</text>
+        <text x="34" y="350" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Har page ka ek class: locators + methods (login(), addToCart()) — UI badle to sirf ek file badalti hai, saare scripts safe
+        </text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Achha framework: reusable, maintainable, readable aur report-friendly
+      </text>
+      <text x="460" y="416" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Config bahar rakho — URL, browser, credentials environment variable se (hard-code nahi)
+      </text>
+      <text x="460" y="444" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: automation architecture mein test scripts, data, page objects aur utility layer alag rakhi jaati hain
+      </text>
+    </svg>
+  );
+}
+
+// 53. Requirements for a test tool
+export function TestToolRequirementsDiagram() {
+  return (
+    <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Requirements for selecting a test automation tool: platform and browser support, scripting, object identification, reporting, integration, cost, support and scalability">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Test tool kaise chunein — 8 requirements
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        tool sasta nahi hota — license, training aur maintenance ka total cost dekho
+      </text>
+
+      {[
+        ['1. PLATFORM SUPPORT', 'OS, browser, mobile, desktop, API', '#6fb2ff', 'Chrome/Firefox/Safari, Windows/Linux'],
+        ['2. SCRIPTING', 'language, IDE, debugging, reuse', '#00d4ff', 'Java/Python/JS, record + code'],
+        ['3. OBJECT IDENTIFICATION', 'locator, object repository, dynamic element', '#c4ff00', 'CSS/XPath, auto-heal, iframe'],
+        ['4. REPORTING', 'pass/fail, screenshot, log, dashboard', '#00ff88', 'HTML report, Allure, JUnit XML'],
+        ['5. INTEGRATION', 'CI/CD, test management, defect tracker', '#ff8800', 'Jenkins, JIRA, GitHub, Docker'],
+        ['6. DATA & PARAMETERISATION', 'external data, loops, environment config', '#ff7ab2', 'Excel/JSON, env variables'],
+        ['7. COST & LICENSE', 'license, training, hardware, support', '#aa88ff', 'open source vs enterprise'],
+        ['8. SCALABILITY & SUPPORT', 'parallel run, grid, vendor help, community', '#ffd166', 'Selenium Grid, cloud farm'],
+      ].map(([t, d, c, ex], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 20 + col * 450;
+        const y = 66 + row * 62;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 60}ms` }}>
+            <rect x={x} y={y} width="430" height="54" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.3" strokeOpacity="0.5" />
+            <text x={x + 14} y={y + 19} fill={c} fontSize="8.2" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 14} y={y + 34} fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>{d}</text>
+            <text x={x + 14} y={y + 47} fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>{ex}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="20" y="322" width="880" height="52" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="342" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>EVALUATION KA TAREEKA</text>
+        <text x="34" y="360" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Ek chhota pilot project (5–10 real test cases) par 2–3 tool try karo — demo se zyada sach pilot batata hai
+        </text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Tool ki list lambi nahi, fit zaroori — team skill aur product tech stack se match kare
+      </text>
+      <text x="460" y="426" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Total cost of ownership = license + training + script maintenance + CI infrastructure
+      </text>
+      <text x="460" y="452" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: tool selection platform support, scripting, reporting, integration aur cost par depend karta hai
+      </text>
+    </svg>
+  );
+}
+
+// 54. Challenges in automation
+export function AutomationChallengesDiagram() {
+  return (
+    <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Challenges in automation: flaky tests, high maintenance, initial cost, dynamic elements, skill gap, environment and data issues, and false confidence from green reports">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Automation ke challenges — suite likhna aasan, sambhalna mushkil
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        flaky test, maintenance, cost, dynamic UI, skill gap, environment — inhi se suite marta hai
+      </text>
+
+      {[
+        ['FLAKY TESTS', 'same code par kabhi pass, kabhi fail', 'root cause: timing, network, shared data', '#ff7a90'],
+        ['MAINTENANCE', 'UI badla to 50 scripts toot gayi', 'POM + stable locator se kam karo', '#ff8800'],
+        ['INITIAL COST', 'setup, script, training ka time', 'ROI 3–6 run ke baad dikhta hai', '#c4ff00'],
+        ['DYNAMIC ELEMENTS', 'id har load par badalta hai', 'data-testid, relative XPath use karo', '#00ff88'],
+        ['SKILL GAP', 'tester ko coding nahi aati', 'training + pairing, developer support', '#6fb2ff'],
+        ['ENVIRONMENT & DATA', 'test data khatam, env down, shared DB', 'seeded data, docker, isolated env', '#00d4ff'],
+        ['FALSE CONFIDENCE', 'sab green par bug production mein', 'assertion + negative cases + exploratory', '#aa88ff'],
+        ['SLOW SUITE', 'poori suite 6 ghante chalti hai', 'parallel, smoke-first, sharding', '#ffd166'],
+      ].map(([t, d, fix, c], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 20 + col * 450;
+        const y = 66 + row * 62;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 60}ms` }}>
+            <rect x={x} y={y} width="430" height="54" rx="9" fill="rgba(255,122,144,0.05)" stroke={c} strokeWidth="1.3" strokeOpacity="0.5" />
+            <text x={x + 14} y={y + 19} fill={c} fontSize="8.2" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 14} y={y + 34} fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>{d}</text>
+            <text x={x + 14} y={y + 47} fill="#00ff88" fontSize="6.8" fontFamily={FONT}>fix: {fix}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
+        <rect x="20" y="322" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="342" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>FLAKY TEST KA MATH</text>
+        <text x="34" y="360" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          100 tests × 99% reliability = 37% chance poora suite green hoga — isliye flaky test sabse bada dushman hai
+        </text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Automation failure ka #1 reason tool nahi — maintenance aur test design hai
+      </text>
+      <text x="460" y="426" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Flaky test ko quarantine karo, fix karo ya delete karo — ignore mat karo
+      </text>
+      <text x="460" y="452" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: automation challenges mein maintenance, cost, flakiness, dynamic UI aur skill gap shaamil hain
+      </text>
+    </svg>
+  );
+}
+
+// 55. Bug tracking and debugging
+export function BugTrackingDebuggingDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Tracking a bug from failure to defect log, triage and fix, plus debugging techniques: logs, reproduction, breakpoints, binary search and root cause analysis">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Bug tracking aur debugging — fail se fix tak ka raasta
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        pehle bug ko record karo, phir root cause dhoondho — dono alag kaam hain
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="880" height="104" rx="10" fill="rgba(255,122,144,0.05)" stroke="rgba(255,122,144,0.4)" />
+        <text x="34" y="86" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>BUG TRACKING CYCLE</text>
+        {[
+          ['DETECT', 'test fail / user report', '#ff7a90'],
+          ['LOG', 'JIRA: title, steps, expected, actual', '#ff8800'],
+          ['TRIAGE', 'severity + priority', '#c4ff00'],
+          ['ASSIGN', 'developer ko', '#00ff88'],
+          ['FIX', 'code change + unit test', '#00d4ff'],
+          ['RETEST', 'wahi case + regression', '#aa88ff'],
+          ['CLOSE', 'verify + record', '#6fb2ff'],
+        ].map(([t, d, c], i) => (
+          <g key={t}>
+            <rect x={34 + i * 122} y="96" width="112" height="56" rx="7" fill="rgba(255,255,255,0.04)" stroke={c} strokeOpacity="0.55" />
+            <text x={90 + i * 122} y="116" textAnchor="middle" fill={c} fontSize="7.8" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={90 + i * 122} y="136" textAnchor="middle" fill="#dbe6ff" fontSize="6.4" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+        <g stroke="#5a6a9e" strokeWidth="1.2">
+          {[0, 1, 2, 3, 4, 5].map((i) => <line key={i} x1={148 + i * 122} y1="124" x2={154 + i * 122} y2="124" />)}
+        </g>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="20" y="186" width="430" height="170" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="206" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DEBUGGING TECHNIQUES</text>
+        {[
+          'Logs padho — stack trace, assertion, timestamp',
+          'Reproduce karo — minimum steps, same data',
+          'Breakpoint / step-through (IDE debugger)',
+          'Binary search — kab se fail ho raha hai',
+          'git bisect — kaunsa commit toda',
+          'Isolate — API se UI tak layer by layer',
+        ].map((t, i) => (
+          <text key={t} x="34" y={230 + i * 20} fill="#dbe6ff" fontSize="7.7" fontFamily={FONT}>• {t}</text>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="470" y="186" width="430" height="170" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="484" y="206" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>ACHHE BUG REPORT KE 5 HISS</text>
+        <text x="484" y="230" fill="#dbe6ff" fontSize="7.7" fontFamily={FONT}>1. Title — ek line mein problem</text>
+        <text x="484" y="250" fill="#dbe6ff" fontSize="7.7" fontFamily={FONT}>2. Steps to reproduce — numbered, minimal</text>
+        <text x="484" y="270" fill="#dbe6ff" fontSize="7.7" fontFamily={FONT}>3. Expected vs actual result</text>
+        <text x="484" y="290" fill="#dbe6ff" fontSize="7.7" fontFamily={FONT}>4. Environment — build, browser, OS, data</text>
+        <text x="484" y="310" fill="#dbe6ff" fontSize="7.7" fontFamily={FONT}>5. Evidence — screenshot, log, HAR, video</text>
+        <text x="484" y="336" fill="#ff8800" fontSize="7.2" fontFamily={FONT}>Automation fail par screenshot + log attach = half debugging done</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="372" width="880" height="30" rx="8" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="392" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          Root cause vs symptom: "button nahi dikha" symptom hai — wajah ho sakti hai API slow, CSS, ya permission
+        </text>
+      </g>
+
+      <text x="460" y="432" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Bug tracker defect ka record rakhta hai, debugging uska karan dhoondhta hai
+      </text>
+      <text x="460" y="456" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: bug tracking se defect life cycle track hota hai aur debugging se root cause milta hai
+      </text>
+    </svg>
+  );
+}
+
+// 56. Manual vs automation testing
+export function ManualVsAutomationDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Manual testing versus automated testing compared across execution, speed, cost, accuracy, coverage, regression, exploratory ability and best use cases">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Manual vs Automated testing — dono ki apni jagah
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        manual = insaan ka judgement · automation = machine ki speed aur repeatability
+      </text>
+
+      <rect x="20" y="66" width="420" height="34" rx="8" fill="rgba(255,136,0,0.14)" stroke="rgba(255,136,0,0.5)" />
+      <text x="230" y="88" textAnchor="middle" fill="#ff8800" fontSize="9.5" fontWeight="800" fontFamily={FONT}>MANUAL TESTING</text>
+      <rect x="470" y="66" width="430" height="34" rx="8" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.5)" />
+      <text x="685" y="88" textAnchor="middle" fill="#00d4ff" fontSize="9.5" fontWeight="800" fontFamily={FONT}>AUTOMATED TESTING</text>
+
+      {[
+        ['Kaun chalata', 'tester haath se', 'tool script se'],
+        ['Speed', 'slow, ek-ek step', 'seconds mein 100 tests'],
+        ['Initial cost', 'kam (koi script nahi)', 'zyada (script + tool)'],
+        ['Long-term cost', 'baar-baar mehnga', 'kam (reuse hota hai)'],
+        ['Accuracy', 'human error possible', 'consistent, same steps'],
+        ['Exploration', 'naye defect dhoondhta hai', 'sirf likha hua check karta'],
+        ['Regression', 'boring, skip hota hai', 'best fit — har build par'],
+        ['Kab best', 'naya feature, UX, ad hoc', 'stable feature, repeat run'],
+      ].map(([k, m, a], i) => (
+        <g key={k} className="diagram-pop" style={{ animationDelay: `${120 + i * 50}ms` }}>
+          <rect x="20" y={108 + i * 28} width="880" height="26" rx="4" fill={i % 2 ? 'rgba(255,255,255,0.025)' : 'rgba(255,255,255,0.05)'} />
+          <text x="34" y={125 + i * 28} fill="#9ab0e0" fontSize="7.6" fontWeight="700" fontFamily={FONT}>{k}</text>
+          <text x="196" y={125 + i * 28} fill="#ffe0c2" fontSize="7.6" fontFamily={FONT}>{m}</text>
+          <text x="484" y={125 + i * 28} fill="#c8ecff" fontSize="7.6" fontFamily={FONT}>{a}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '580ms' }}>
+        <rect x="20" y="342" width="880" height="52" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="362" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>SAHI MIX</text>
+        <text x="34" y="380" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Manual — exploratory, usability, naya feature ka pehla round · Automation — smoke, regression, data driven, cross-browser, API
+        </text>
+      </g>
+
+      <text x="460" y="422" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Automation manual testing ko replace nahi karti — repetitive kaam usse leti hai
+      </text>
+      <text x="460" y="448" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: manual testing insaan ke judgement par, automated testing tool aur script par depend karti hai
+      </text>
+    </svg>
+  );
+}
+
+// 57. UI automation tools — Cypress, TestCafe, Protractor
+export function UiToolsComparisonDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Comparison of modern UI automation tools Cypress, TestCafe and Protractor: language, architecture, browser support and status">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        UI automation tools — Cypress, TestCafe, Protractor
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        teeno browser mein chalti hain, par architecture aur language alag — isliye fit alag
+      </text>
+
+      {[
+        {
+          name: 'CYPRESS', color: '#00ff88', tag: 'most popular',
+          rows: ['Language: JavaScript / TypeScript', 'Runs inside browser + Node', 'No WebDriver — direct DOM', 'Auto-wait, time travel, video', 'Chrome, Edge, Firefox (WebKit limited)', 'Parallel via Cypress Cloud'],
+        },
+        {
+          name: 'TESTCAFE', color: '#00d4ff', tag: 'no WebDriver',
+          rows: ['Language: JavaScript / TypeScript', 'Node proxy injects script', 'No WebDriver dependency', 'Any browser incl. remote/cloud', 'Built-in parallel + reporters', 'Good for iframe / cross-browser'],
+        },
+        {
+          name: 'PROTRACTOR', color: '#ff8800', tag: 'deprecated (2017+)',
+          rows: ['Language: JavaScript (Angular)', 'Built on WebDriverJS', 'Made for Angular apps', 'Automatic wait for Angular', 'Sunset: Angular dropped support', 'Migrate to Cypress/Playwright'],
+        },
+      ].map((tool, i) => (
+        <g key={tool.name} className="diagram-pop" style={{ animationDelay: `${80 + i * 120}ms` }}>
+          <rect x={20 + i * 300} y="66" width="280" height="240" rx="10" fill="rgba(255,255,255,0.03)" stroke={tool.color} strokeWidth="1.5" strokeOpacity="0.6" />
+          <text x={34 + i * 300} y="88" fill={tool.color} fontSize="11" fontWeight="800" fontFamily={FONT}>{tool.name}</text>
+          <text x={34 + i * 300} y="104" fill="#9ab0e0" fontSize="7" fontFamily={FONT}>{tool.tag}</text>
+          {tool.rows.map((r, j) => (
+            <text key={r} x={34 + i * 300} y={128 + j * 26} fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>• {r}</text>
+          ))}
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="20" y="322" width="430" height="76" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="342" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>WEBDRIVER vs NO-WEBDRIVER</text>
+        <text x="34" y="362" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver (Selenium, Protractor): browser ke bahar se remote control</text>
+        <text x="34" y="380" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>In-browser (Cypress) / proxy (TestCafe): page ke andar chalta hai — fast, par multi-tab limited</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
+        <rect x="470" y="322" width="430" height="76" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="484" y="342" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>KAUN SA CHUNEIN</text>
+        <text x="484" y="362" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>SPA + JS team → Cypress / Playwright</text>
+        <text x="484" y="380" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Cross-browser + remote browsers → TestCafe · Legacy Angular → Protractor (migrate)</text>
+      </g>
+
+      <text x="460" y="428" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Tool ki popularity nahi, team ki language aur browser matrix dekho
+      </text>
+      <text x="460" y="452" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: Cypress in-browser, TestCafe proxy based, Protractor Angular ke liye WebDriverJS based hai
+      </text>
+    </svg>
+  );
+}
+
+// 58. Case studies of automation testing
+export function AutomationCaseStudiesDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Automation case studies: e-commerce regression suite, banking cross-browser, SaaS CI pipeline, showing problem, approach, tools and result">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Automation case studies — problem se result tak
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        real project ke numbers se hi automation ka ROI samajh aata hai
+      </text>
+
+      {[
+        {
+          title: 'E-COMMERCE', color: '#00ff88',
+          problem: 'Har release par 300 regression cases manual — 5 din',
+          approach: 'Smoke + checkout flow + API layer automate',
+          tools: 'Selenium + TestNG + Jenkins',
+          result: 'Regression 8 ghante, release weekly se daily',
+          roi: 'payback: 3 release (~1 quarter)',
+        },
+        {
+          title: 'BANKING PORTAL', color: '#00d4ff',
+          problem: '5 browsers × 4 resolutions manual check',
+          approach: 'Data driven suite + grid parallel',
+          tools: 'Selenium Grid + Docker + Allure',
+          result: '240 combinations 40 min mein, defect 60% jaldi',
+          roi: 'payback: 4 months, grid cost cover',
+        },
+        {
+          title: 'SAAS DASHBOARD', color: '#c4ff00',
+          problem: 'Bug production mein, sprint end par pata chalta',
+          approach: 'Har PR par API + critical UI tests',
+          tools: 'Cypress + GitHub Actions',
+          result: 'Feedback 4 ghante se 9 minute, flaky 3%',
+          roi: 'payback: 2 sprints, bug cost 5x kam',
+        },
+      ].map((c, i) => (
+        <g key={c.title} className="diagram-pop" style={{ animationDelay: `${80 + i * 140}ms` }}>
+          <rect x={20 + i * 300} y="66" width="280" height="212" rx="10" fill="rgba(255,255,255,0.03)" stroke={c.color} strokeWidth="1.4" strokeOpacity="0.55" />
+          <text x={34 + i * 300} y="88" fill={c.color} fontSize="9.5" fontWeight="800" fontFamily={FONT}>{c.title}</text>
+          <text x={34 + i * 300} y="110" fill="#ff7a90" fontSize="7" fontWeight="700" fontFamily={FONT}>PROBLEM</text>
+          <text x={34 + i * 300} y="124" fill="#dbe6ff" fontSize="7.1" fontFamily={FONT}>{c.problem}</text>
+          <text x={34 + i * 300} y="146" fill="#c4ff00" fontSize="7" fontWeight="700" fontFamily={FONT}>APPROACH</text>
+          <text x={34 + i * 300} y="160" fill="#dbe6ff" fontSize="7.1" fontFamily={FONT}>{c.approach}</text>
+          <text x={34 + i * 300} y="182" fill="#9ab0e0" fontSize="7" fontWeight="700" fontFamily={FONT}>TOOLS</text>
+          <text x={34 + i * 300} y="196" fill="#dbe6ff" fontSize="7.1" fontFamily={FONT}>{c.tools}</text>
+          <text x={34 + i * 300} y="218" fill="#6fb2ff" fontSize="7" fontWeight="700" fontFamily={FONT}>RESULT</text>
+          <text x={34 + i * 300} y="232" fill="#dbe6ff" fontSize="7.1" fontFamily={FONT}>{c.result}</text>
+          <rect x={34 + i * 300} y="246" width="252" height="20" rx="4" fill={c.color} fillOpacity="0.12" />
+          <text x={160 + i * 300} y="260" textAnchor="middle" fill={c.color} fontSize="6.8" fontFamily={FONT}>{c.roi}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="294" width="880" height="72" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="314" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>CASE STUDY MEIN KYA LIKHEIN</text>
+        <text x="34" y="334" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>
+          1. Context — product, team size, release cycle · 2. Problem — manual effort, defect leak · 3. Approach — kya automate kiya, framework
+        </text>
+        <text x="34" y="352" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>
+          4. Tools + infrastructure · 5. Result — numbers (time, defect, coverage) · 6. Lessons — kya galat hua, kya dobara karenge
+        </text>
+      </g>
+
+      <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Case study ka jaadu "number" hai — "automation se achha hua" nahi, "5 din se 8 ghante" likho
+      </text>
+      <text x="460" y="424" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam mein apne project ka example do — college project ya internship ka bhi chalega
+      </text>
+      <text x="460" y="450" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: automation case study problem, approach, tool, result aur lessons se banti hai
+      </text>
+    </svg>
+  );
+}
+
+// 59. Selenium introduction and history
+export function SeleniumIntroDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="History of the Selenium project from 2004 Selenium Core through RC, WebDriver merge in 2011, Grid, IDE and Selenium 4 to the present">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Selenium — browser automation ka sabse purana aur popular tool
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        open source, cross-browser, multiple languages — 2004 se aaj tak
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="880" height="90" rx="10" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.35)" />
+        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>SELENIUM KYA HAI</text>
+        <text x="34" y="108" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Browser ko program se control karne ka free (open source) suite — click, type, navigate, assert.
+        </text>
+        <text x="34" y="126" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Language bindings: Java, Python, C#, Ruby, JavaScript, Kotlin · Browser: Chrome, Firefox, Edge, Safari
+        </text>
+        <text x="34" y="146" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>
+          Note: Selenium sirf web UI automate karta hai — mobile ke liye Appium, desktop ke liye WinAppDriver (alag projects)
+        </text>
+      </g>
+
+      <line x1="40" y1="212" x2="880" y2="212" stroke="#5a6a9e" strokeWidth="2" />
+      {[
+        ['2004', 'Selenium Core', 'Jason Huggins, ThoughtWorks — JS test runner', 70],
+        ['2006', 'Selenium IDE', 'Firefox plugin, record & playback', 250],
+        ['2007', 'Selenium RC', 'remote control server, any language', 430],
+        ['2008', 'Selenium Grid', 'parallel runs on many machines', 610],
+        ['2011', 'Selenium 2.0', 'WebDriver + RC merge (Simon Stewart)', 790],
+      ].map(([yr, name, desc, x], i) => (
+        <g key={yr} className="diagram-pop" style={{ animationDelay: `${160 + i * 80}ms` }}>
+          <circle cx={x} cy="212" r="6" fill="#c4ff00" />
+          <text x={x} y="196" textAnchor="middle" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>{yr}</text>
+          <text x={x} y="234" textAnchor="middle" fill="#fff" fontSize="7.8" fontWeight="700" fontFamily={FONT}>{name}</text>
+          <text x={i === 0 ? 30 : i === 4 ? 890 : x} y="248" textAnchor={i === 0 ? 'start' : i === 4 ? 'end' : 'middle'} fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>{desc}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="20" y="266" width="430" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="286" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>2016 KE BAAD</text>
+        <text x="34" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2016 — Selenium 3: WebDriver W3C standard, RC hataya</text>
+        <text x="34" y="328" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2021 — Selenium 4: W3C protocol, relative locators,</text>
+        <text x="34" y="348" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>CDP, new Grid, IDE revival</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
+        <rect x="470" y="266" width="430" height="100" rx="9" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.4)" />
+        <text x="484" y="286" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>NAAM KA RAHASYA</text>
+        <text x="484" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Ek time par Mercury (Mercury Interactive) ka product tha —</text>
+        <text x="484" y="328" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>mercuree ke saamne selenium (chemical) rakha gaya,</text>
+        <text x="484" y="348" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>jokes ke liye "Selenium" naam popular ho gaya</text>
+      </g>
+
+      <text x="460" y="388" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Selenium project ka safar: Core → IDE → RC → Grid → WebDriver (2.0) → Selenium 3 → Selenium 4
+      </text>
+      <text x="460" y="414" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Aaj WebDriver + Grid + IDE teeno mil kar Selenium suite banate hain
+      </text>
+      <text x="460" y="442" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: Selenium 2004 mein Jason Huggins ne Selenium Core se shuru kiya, 2011 mein WebDriver merge hua
+      </text>
+    </svg>
+  );
+}
+
+// 60. Selenium tool suite
+export function SeleniumSuiteDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="The Selenium tool suite: IDE for record and playback, WebDriver for coding, Grid for parallel and distributed runs, plus Selenium Manager and language bindings">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Selenium ka tool suite — chaar tools, ek family
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        IDE (record) + WebDriver (code) + Grid (parallel) + Manager (driver setup)
+      </text>
+
+      {[
+        ['SELENIUM IDE', '#c4ff00', 'Browser extension', ['Record & playback', 'No coding needed', '.side file save', 'Quick smoke / learning']],
+        ['SELENIUM WEBDRIVER', '#00d4ff', 'The main library', ['Code se browser control', 'Java/Python/JS/C#', 'Real browser, real user flow', 'Framework + CI ke saath']],
+        ['SELENIUM GRID', '#00ff88', 'Distributed runner', ['Parallel execution', 'Multi browser + OS', 'Hub + Node model', 'Cloud / docker farm']],
+        ['SELENIUM MANAGER', '#ff8800', 'Driver manager', ['Driver auto download', 'Browser version match', 'Selenium 4.6+ built-in', 'No manual setup']],
+      ].map(([name, c, sub, pts], i) => (
+        <g key={name} className="diagram-pop" style={{ animationDelay: `${80 + i * 110}ms` }}>
+          <rect x={20 + i * 226} y="66" width="206" height="182" rx="10" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.4" strokeOpacity="0.55" />
+          <text x={123 + i * 226} y="88" textAnchor="middle" fill={c} fontSize="8.4" fontWeight="800" fontFamily={FONT}>{name}</text>
+          <text x={123 + i * 226} y="102" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>{sub}</text>
+          {pts.map((p, j) => (
+            <text key={p} x={34 + i * 226} y={128 + j * 28} fill="#dbe6ff" fontSize="7" fontFamily={FONT}>• {p}</text>
+          ))}
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
+        <rect x="20" y="264" width="430" height="96" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="284" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>LANGUAGE BINDINGS</text>
+        <text x="34" y="304" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Official: Java, Python, C#, Ruby, JavaScript, Kotlin</text>
+        <text x="34" y="322" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Sab same WebDriver protocol bolte hain — test logic same</text>
+        <text x="34" y="342" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Community: PHP, Perl, Go (unofficial bindings)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="470" y="264" width="430" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="484" y="284" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>RC KA KYA HUA</text>
+        <text x="484" y="304" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Selenium RC (2007–2016) deprecated hai — Selenium 3 se hataya</text>
+        <text x="484" y="322" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Kaam WebDriver karta hai, grid Grid karta hai, record IDE</text>
+        <text x="484" y="342" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Interview favorite: RC vs WebDriver ka farak poochha jaata hai</text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Suite = IDE (seekho) → WebDriver (banao) → Grid (scale karo) → Manager (setup bhool jao)
+      </text>
+      <text x="460" y="418" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Assertion library aur reporting Selenium ke saath alag aate hain — TestNG/JUnit, pytest, Mocha
+      </text>
+      <text x="460" y="446" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: Selenium suite mein IDE, RC (legacy), WebDriver, Grid aur Selenium Manager shaamil hain
+      </text>
+    </svg>
+  );
+}
+
+// 61. Selenium IDE
+export function SeleniumIdeDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium IDE: a browser extension that records user actions as commands such as open, click and assert, replays them, and saves suites as .side files, with limitations">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Selenium IDE — record karo, replay karo, code baad mein
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        browser extension · no programming · seekhne aur quick smoke ke liye best
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="450" height="176" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="8.6" fontWeight="800" fontFamily={FONT}>IDE WINDOW (sample)</text>
+        <rect x="34" y="96" width="422" height="22" rx="4" fill="rgba(196,255,0,0.12)" stroke="rgba(196,255,0,0.4)" />
+        <text x="42" y="111" fill="#c4ff00" fontSize="7" fontFamily={FONT}>▶ Run  ⏸ Pause  ⏭ Step  ● Record  ≡ Suite</text>
+        <line x1="34" y1="126" x2="456" y2="126" stroke="rgba(255,255,255,0.15)" />
+        {[
+          ['command', 'target', 'value'],
+          ['open', '/login', ''],
+          ['type', 'id=email', 'riya@mail.com'],
+          ['type', 'id=password', 'Secret@123'],
+          ['click', 'css=button[type=submit]', ''],
+          ['assert text', 'css=h1', 'Dashboard'],
+        ].map(([a, b, c], i) => (
+          <g key={a + b}>
+            <text x="42" y={140 + i * 15} fill={i === 0 ? '#9ab0e0' : '#7ee787'} fontSize="6.8" fontFamily="'Consolas', monospace">{a}</text>
+            <text x="130" y={140 + i * 15} fill={i === 0 ? '#9ab0e0' : '#dbe6ff'} fontSize="6.8" fontFamily="'Consolas', monospace">{b}</text>
+            <text x="310" y={140 + i * 15} fill={i === 0 ? '#9ab0e0' : '#ffd166'} fontSize="6.8" fontFamily="'Consolas', monospace">{c}</text>
+          </g>
+        ))}
+        <text x="34" y="234" fill="#9ab0e0" fontSize="7" fontFamily={FONT}>Green = pass · Red = fail · yellow = skipped</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="490" y="66" width="410" height="176" rx="10" fill="rgba(196,255,0,0.05)" stroke="rgba(196,255,0,0.35)" />
+        <text x="504" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>KAISE USE KAREIN</text>
+        <text x="504" y="110" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>1. Extension install karo (Chrome / Firefox / Edge)</text>
+        <text x="504" y="130" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2. Record dabao, user jaise click karo</text>
+        <text x="504" y="150" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>3. Har action command ban jaata hai</text>
+        <text x="504" y="170" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>4. Playback — fast/slow, step by step debug</text>
+        <text x="504" y="190" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>5. Suite mein cases jodo, .side file export</text>
+        <text x="504" y="210" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>6. Code export — Java / Python / JS</text>
+        <text x="504" y="230" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Selenium 4 IDE: control flow (if/while), runner CLI</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="258" width="430" height="110" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
+        <text x="34" y="278" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>FAYDE</text>
+        <text x="34" y="298" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Coding nahi chahiye — manual tester turant shuru</text>
+        <text x="34" y="316" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Bug reproduce karne ka fast tareeka</text>
+        <text x="34" y="334" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Selenium commands samajhne ka best tool</text>
+        <text x="34" y="352" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Recorded steps ko code mein export kar sakte hain</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="470" y="258" width="430" height="110" rx="9" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
+        <text x="484" y="278" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>LIMITATIONS</text>
+        <text x="484" y="298" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Script brittle — UI badla to recorded steps toot</text>
+        <text x="484" y="316" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Branching, looping aur data driven kamzor</text>
+        <text x="484" y="334" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Cross-browser scale nahi, CI integration limited</text>
+        <text x="484" y="352" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Real framework ka replacement nahi — sirf entry point</text>
+      </g>
+
+      <text x="460" y="394" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        IDE se seekho, WebDriver se banao — record & playback production framework nahi banta
+      </text>
+      <text x="460" y="420" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        .side file JSON-based hoti hai — git mein rakh sakte hain, CI se CLI se chala sakte hain
+      </text>
+      <text x="460" y="448" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: Selenium IDE ek record & playback tool hai jo browser extension ke roop mein chalta hai
+      </text>
+    </svg>
+  );
+}
+
+// 62. Selenium RC
+export function SeleniumRcDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium RC architecture: test code calls the RC server over HTTP which injects JavaScript into the browser, and the reasons RC was replaced by WebDriver">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Selenium RC — purana tareeka: server browser mein JavaScript inject karta tha
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        2007–2016 · any language support ka hero · Selenium 3 se remove
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="80" width="180" height="80" rx="9" fill="rgba(47,111,255,0.12)" stroke="#6fb2ff" strokeWidth="1.5" />
+        <text x="110" y="106" textAnchor="middle" fill="#6fb2ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>TEST CODE</text>
+        <text x="110" y="124" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>Java / Python / PHP</text>
+        <text x="110" y="140" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>Selenium RC client library</text>
+      </g>
+      <text x="212" y="122" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="232" y="74" width="200" height="92" rx="9" fill="rgba(196,255,0,0.08)" stroke="#c4ff00" strokeWidth="1.5" />
+        <text x="332" y="98" textAnchor="middle" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RC SERVER</text>
+        <text x="332" y="116" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>Java jar (selenium-server)</text>
+        <text x="332" y="132" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>launcher browser khodta hai</text>
+        <text x="332" y="150" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>HTTP proxy + JS inj</text>
+      </g>
+      <text x="444" y="122" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="464" y="80" width="180" height="80" rx="9" fill="rgba(255,136,0,0.1)" stroke="#ff8800" strokeWidth="1.5" />
+        <text x="554" y="104" textAnchor="middle" fill="#ff8800" fontSize="8.6" fontWeight="800" fontFamily={FONT}>BROWSER</text>
+        <text x="554" y="122" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>javascript injected</text>
+        <text x="554" y="138" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>same-origin window</text>
+      </g>
+      <text x="656" y="122" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="676" y="80" width="224" height="80" rx="9" fill="rgba(0,255,136,0.08)" stroke="#00ff88" strokeWidth="1.5" />
+        <text x="788" y="104" textAnchor="middle" fill="#00ff88" fontSize="8.6" fontWeight="800" fontFamily={FONT}>AUT (application)</text>
+        <text x="788" y="122" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>page load, click, type</text>
+        <text x="788" y="138" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>result RC server ko wapas</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="20" y="180" width="430" height="150" rx="10" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
+        <text x="34" y="200" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>RC KI PROBLEMS</text>
+        <text x="34" y="222" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>JavaScript injection — speed slow, browser version se tooti</text>
+        <text x="34" y="240" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Same origin policy — proxy server ki zaroorat</text>
+        <text x="34" y="258" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Headless / native events support kamzor</text>
+        <text x="34" y="276" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Actual user ke jaisa browser control nahi</text>
+        <text x="34" y="294" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Stability issue — alert, upload, file download par problem</text>
+        <text x="34" y="316" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Isi liye WebDriver ne RC ko replace kiya (2011 merge)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="470" y="180" width="430" height="150" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="484" y="200" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>RC vs WEBDRIVER (short)</text>
+        <text x="484" y="222" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — server ke through JS injection</text>
+        <text x="484" y="240" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver — browser ka native automation API</text>
+        <text x="484" y="258" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — HTTP proxy chahiye</text>
+        <text x="484" y="276" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver — direct driver binary (chromedriver)</text>
+        <text x="484" y="296" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — speed slow, flaky · WebDriver — fast, stable</text>
+        <text x="484" y="316" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Aaj RC sirf exam ke liye — project mein use na karein</text>
+      </g>
+
+      <text x="460" y="360" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        RC ka contribution: kisi bhi language se browser control — WebDriver ne wahi kaam behtar kiya
+      </text>
+      <text x="460" y="386" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Selenium 3 (2016) mein RC officially deprecated, Selenium 4 mein poora hataya gaya
+      </text>
+      <text x="460" y="412" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: Selenium RC ek server tha jo JavaScript inject karke browser ko control karta tha
+      </text>
+      <text x="460" y="440" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Architecture yaad rakho: test code → RC server → browser → application
+      </text>
+    </svg>
+  );
+}
+
+// 63. Selenium WebDriver
+export function SeleniumWebDriverDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium WebDriver architecture: test code uses language bindings, sends W3C JSON commands to the browser driver binary, which controls the real browser; with locators, waits and actions">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Selenium WebDriver — real browser ko native tareeke se control karta hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        code → binding → driver binary → browser · koi JS injection nahi, koi proxy nahi
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        {[
+          ['TEST CODE', 'Java / Python / JS', '#6fb2ff', 20, 196],
+          ['LANGUAGE BINDING', 'selenium-webdriver lib', '#00d4ff', 238, 196],
+          ['W3C JSON PROTOCOL', 'HTTP commands', '#c4ff00', 456, 196],
+          ['BROWSER DRIVER', 'chromedriver / geckodriver', '#ff8800', 674, 226],
+        ].map(([t, d, c, x, w]) => (
+          <g key={t}>
+            <rect x={x} y="80" width={w} height="56" rx="8" fill="rgba(255,255,255,0.04)" stroke={c} strokeWidth="1.4" strokeOpacity="0.6" />
+            <text x={x + w / 2} y="102" textAnchor="middle" fill={c} fontSize="7.6" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + w / 2} y="120" textAnchor="middle" fill="#dbe6ff" fontSize="6.6" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+        <rect x="20" y="152" width="880" height="44" rx="8" fill="rgba(0,255,136,0.1)" stroke="#00ff88" strokeWidth="1.5" />
+        <text x="460" y="172" textAnchor="middle" fill="#00ff88" fontSize="8.6" fontWeight="800" fontFamily={FONT}>REAL BROWSER</text>
+        <text x="460" y="188" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>Chrome · Firefox · Edge · Safari — actual user jaisa behaviour</text>
+        <g stroke="#5a6a9e" strokeWidth="1.4">
+          <line x1="216" y1="108" x2="236" y2="108" />
+          <line x1="434" y1="108" x2="454" y2="108" />
+          <line x1="652" y1="108" x2="672" y2="108" />
+          <line x1="787" y1="138" x2="787" y2="150" />
+        </g>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="20" y="212" width="290" height="146" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="232" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>BASIC COMMANDS</text>
+        {[
+          'driver.get(url)',
+          'findElement(By.id(…))',
+          '.click() / .sendKeys()',
+          '.getText() / .getAttribute()',
+          'driver.quit()',
+        ].map((t, i) => (
+          <text key={t} x="34" y={254 + i * 20} fill="#7ee787" fontSize="7.2" fontFamily="'Consolas', monospace">{t}</text>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="324" y="212" width="290" height="146" rx="9" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="338" y="232" fill="#00d4ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>LOCATORS — 8 TYPES</text>
+        <text x="338" y="254" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>id · name · className · tagName</text>
+        <text x="338" y="272" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>linkText · partialLinkText</text>
+        <text x="338" y="290" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>cssSelector · xpath (relative best)</text>
+        <text x="338" y="312" fill="#00ff88" fontSize="7.2" fontFamily={FONT}>Priority: id → css → relative xpath</text>
+        <text x="338" y="332" fill="#ff7a90" fontSize="7.2" fontFamily={FONT}>Avoid: absolute xpath, dynamic id, index</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
+        <rect x="628" y="212" width="272" height="146" rx="9" fill="rgba(255,136,0,0.07)" stroke="rgba(255,136,0,0.45)" />
+        <text x="642" y="232" fill="#ff8800" fontSize="8.6" fontWeight="800" fontFamily={FONT}>WAITS (flaky fix)</text>
+        <text x="642" y="254" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>Implicit wait — global timeout</text>
+        <text x="642" y="272" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>Explicit wait — condition par wait</text>
+        <text x="642" y="290" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>Fluent wait — polling interval</text>
+        <text x="642" y="312" fill="#00ff88" fontSize="7.2" fontFamily={FONT}>ExpectedConditions: visibility, clickable</text>
+        <text x="642" y="332" fill="#ff7a90" fontSize="7.2" fontFamily={FONT}>Thread.sleep() kabhi nahi</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="372" width="880" height="30" rx="8" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="392" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          Advanced: Actions (hover, drag-drop), JavaScriptExecutor, alerts, iframe, window/tab switch, file upload, screenshots
+        </text>
+      </g>
+
+      <text x="460" y="428" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        WebDriver browser ko "remote control" karta hai — driver binary HTTP par commands leta hai
+      </text>
+      <text x="460" y="454" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: WebDriver W3C protocol se browser driver ke through real browser control karta hai
+      </text>
+    </svg>
+  );
+}
+
+// 64. Selenium Grid
+export function SeleniumGridDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium Grid hub and node architecture for parallel cross browser execution, with capabilities matching and a 4 parallel runs example">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Selenium Grid — ek test, kai machine, parallel run
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        Hub requests leta hai, Node browser deta hai — capabilities se matching hoti hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="330" y="72" width="260" height="70" rx="10" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="1.6" />
+        <text x="460" y="96" textAnchor="middle" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>HUB (Selenium 3) / ROUTER (Selenium 4)</text>
+        <text x="460" y="114" textAnchor="middle" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>test requests queue karta hai</text>
+        <text x="460" y="130" textAnchor="middle" fill="#9ab0e0" fontSize="7" fontFamily={FONT}>capabilities match karke node chunta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="20" y="72" width="250" height="70" rx="9" fill="rgba(47,111,255,0.1)" stroke="#6fb2ff" strokeWidth="1.4" />
+        <text x="145" y="94" textAnchor="middle" fill="#6fb2ff" fontSize="8.4" fontWeight="800" fontFamily={FONT}>TEST SUITE</text>
+        <text x="145" y="112" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>TestNG / JUnit / pytest</text>
+        <text x="145" y="128" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>parallel = methods / classes</text>
+      </g>
+      <line x1="272" y1="107" x2="326" y2="107" stroke="#5a6a9e" strokeWidth="1.5" />
+
+      {[
+        ['NODE 1', 'Chrome · Windows 11', '#00d4ff', 60, 190],
+        ['NODE 2', 'Firefox · Ubuntu', '#00ff88', 250, 190],
+        ['NODE 3', 'Safari · macOS', '#ff8800', 440, 190],
+        ['NODE 4', 'Edge · Windows 11', '#ff7ab2', 630, 190],
+      ].map(([n, b, c, x, y], i) => (
+        <g key={n} className="diagram-pop" style={{ animationDelay: `${240 + i * 70}ms` }}>
+          <rect x={x} y={y} width="180" height="54" rx="8" fill="rgba(255,255,255,0.04)" stroke={c} strokeOpacity="0.6" strokeWidth="1.3" />
+          <text x={x + 90} y={y + 20} textAnchor="middle" fill={c} fontSize="8" fontWeight="800" fontFamily={FONT}>{n}</text>
+          <text x={x + 90} y={y + 38} textAnchor="middle" fill="#dbe6ff" fontSize="6.8" fontFamily={FONT}>{b}</text>
+        </g>
+      ))}
+      <g stroke="#5a6a9e" strokeWidth="1.3">
+        <line x1="460" y1="142" x2="460" y2="170" />
+        <line x1="150" y1="170" x2="720" y2="170" />
+        {[150, 340, 530, 720].map((x) => (
+          <line key={x} x1={x} y1="170" x2={x} y2="188" />
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="20" y="266" width="430" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="286" fill="#c4ff00" fontSize="8.8" fontWeight="800" fontFamily={FONT}>CAPABILITIES (DesiredCapabilities)</text>
+        <text x="34" y="306" fill="#7ee787" fontSize="7.2" fontFamily="'Consolas', monospace">{'{ browserName: "chrome",'}</text>
+        <text x="34" y="322" fill="#7ee787" fontSize="7.2" fontFamily="'Consolas', monospace">{'  platformName: "Windows 11",'}</text>
+        <text x="34" y="338" fill="#7ee787" fontSize="7.2" fontFamily="'Consolas', monospace">{'  "browserVersion": "latest" }'}</text>
+        <text x="34" y="352" fill="#9ab0e0" fontSize="6.9" fontFamily={FONT}>Options (Selenium 4): ChromeOptions, FirefoxOptions</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="470" y="266" width="430" height="92" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
+        <text x="484" y="286" fill="#00ff88" fontSize="8.8" fontWeight="800" fontFamily={FONT}>PARALLEL KA FAYDA</text>
+        <text x="484" y="306" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>4 browsers × 100 tests · sequential 40 min → parallel 12 min</text>
+        <text x="484" y="324" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>Cross-browser matrix ek hi run mein cover</text>
+        <text x="484" y="342" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>Docker: selenium/hub, selenium/node-chrome images</text>
+        <text x="484" y="356" fill="#9ab0e0" fontSize="6.9" fontFamily={FONT}>Cloud grids: BrowserStack, Sauce Labs, LambdaTest</text>
+      </g>
+
+      <text x="460" y="386" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Grid = horizontal scaling — machine jodo, suite fast karo (test parallel-safe hone chahiye)
+      </text>
+      <text x="460" y="410" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Shared data conflict, port limit aur test order dependency parallel ka dushman hai
+      </text>
+      <text x="460" y="438" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: Selenium Grid hub-node architecture se parallel aur distributed testing deta hai
+      </text>
+    </svg>
+  );
+}
+
+// 65. Test design considerations
+export function TestDesignConsiderationsDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Test design considerations for automation: independent atomic tests, stable locators, data handling, waits, reusable page objects, assertions, naming and test pyramid balance">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Test design considerations — achha test likhne ka tareeka
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        automation ka 80% dard galat design se aata hai, tool se nahi
+      </text>
+
+      {[
+        ['INDEPENDENT TESTS', 'koi test doosre par depend na kare', 'test 3 akela bhi chale', '#6fb2ff'],
+        ['ATOMIC & FOCUSED', 'ek test = ek behaviour', 'fail hone par wajah saaf', '#00d4ff'],
+        ['STABLE LOCATORS', 'data-testid, id, relative xpath', 'index/absolute xpath nahi', '#c4ff00'],
+        ['WAITS, NOT SLEEP', 'explicit wait on condition', 'flaky test khatam', '#00ff88'],
+        ['TEST DATA STRATEGY', 'factory / seed / API setup', 'DB shared state nahi', '#ff8800'],
+        ['PAGE OBJECT MODEL', 'locators ek jagah', 'UI change = 1 file', '#ff7ab2'],
+        ['MEANINGFUL ASSERTIONS', 'sirf click nahi — verify karo', 'status, text, db row', '#aa88ff'],
+        ['NAMING & REPORTING', 'intent batane wala naam', 'fail par screenshot + log', '#ffd166'],
+      ].map(([t, d, why, c], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 20 + col * 450;
+        const y = 66 + row * 60;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 60}ms` }}>
+            <rect x={x} y={y} width="430" height="52" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.3" strokeOpacity="0.5" />
+            <text x={x + 14} y={y + 18} fill={c} fontSize="8.2" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 14} y={y + 33} fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>{d}</text>
+            <text x={x + 14} y={y + 46} fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>why: {why}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="20" y="310" width="880" height="66" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="330" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>DIRTY TEST KA EXAMPLE</text>
+        <text x="34" y="348" fill="#ff7a90" fontSize="7.6" fontFamily="FONT">✗ test1 user banata hai → test2 usi user par login karta hai (order dependency, akela fail)</text>
+        <text x="34" y="364" fill="#00ff88" fontSize="7.6" fontFamily="FONT">✓ har test apna user API se banaye (beforeEach), phir login kare — akela bhi pass</text>
+      </g>
+
+      <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Test ka naam aisa ho ki fail dekh kar hi pata chale kya toota — "login test 2" nahi
+      </text>
+      <text x="460" y="426" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Smoke tests pehle, phir critical path, phir detailed UI — pyramid ka balance rakho
+      </text>
+      <text x="460" y="454" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: automation test design mein independence, locator strategy, waits, data aur reporting dekhi jaati hai
+      </text>
+    </svg>
+  );
+}

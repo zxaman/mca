@@ -94,6 +94,23 @@ import {
   ObjectOrientedTestingDiagram,
   WebAppTestingDiagram,
   DatabaseTestingDiagram,
+  AutomationIntroDiagram,
+  AutomationSkillsDiagram,
+  AutomationScopeDiagram,
+  AutomationArchitectureDiagram,
+  TestToolRequirementsDiagram,
+  AutomationChallengesDiagram,
+  BugTrackingDebuggingDiagram,
+  ManualVsAutomationDiagram,
+  UiToolsComparisonDiagram,
+  AutomationCaseStudiesDiagram,
+  SeleniumIntroDiagram,
+  SeleniumSuiteDiagram,
+  SeleniumIdeDiagram,
+  SeleniumRcDiagram,
+  SeleniumWebDriverDiagram,
+  SeleniumGridDiagram,
+  TestDesignConsiderationsDiagram,
 } from './SoftwareTestingDiagrams';
 
 import {
@@ -963,6 +980,40 @@ export function Diagram({ type }) {
       return <WebAppTestingDiagram />;
     case 'st4-database':
       return <DatabaseTestingDiagram />;
+    case 'st5-automation-intro':
+      return <AutomationIntroDiagram />;
+    case 'st5-automation-skills':
+      return <AutomationSkillsDiagram />;
+    case 'st5-automation-scope':
+      return <AutomationScopeDiagram />;
+    case 'st5-automation-architecture':
+      return <AutomationArchitectureDiagram />;
+    case 'st5-test-tool-requirements':
+      return <TestToolRequirementsDiagram />;
+    case 'st5-automation-challenges':
+      return <AutomationChallengesDiagram />;
+    case 'st5-bug-debugging':
+      return <BugTrackingDebuggingDiagram />;
+    case 'st5-manual-vs-automation':
+      return <ManualVsAutomationDiagram />;
+    case 'st5-ui-tools':
+      return <UiToolsComparisonDiagram />;
+    case 'st5-case-studies':
+      return <AutomationCaseStudiesDiagram />;
+    case 'st5-selenium-intro':
+      return <SeleniumIntroDiagram />;
+    case 'st5-selenium-suite':
+      return <SeleniumSuiteDiagram />;
+    case 'st5-selenium-ide':
+      return <SeleniumIdeDiagram />;
+    case 'st5-selenium-rc':
+      return <SeleniumRcDiagram />;
+    case 'st5-selenium-webdriver':
+      return <SeleniumWebDriverDiagram />;
+    case 'st5-selenium-grid':
+      return <SeleniumGridDiagram />;
+    case 'st5-test-design':
+      return <TestDesignConsiderationsDiagram />;
     default:
       return null;
   }
