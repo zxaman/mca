@@ -140,6 +140,18 @@ import {
   StarSchemaDiagram,
   SnowflakeSchemaDiagram,
   OlapVsOltpDiagram,
+  ClassificationAppsDiagram,
+  MLTypesDiagram,
+  LinearRegressionDiagram,
+  LogisticRegressionDiagram,
+  NaiveBayesDiagram,
+  KnnDiagram,
+  DecisionTreeDiagram,
+  SvmDiagram,
+  ConfusionMatrixDiagram,
+  ClassificationMetricsDiagram,
+  RocAucDiagram,
+  RegressionMetricsDiagram,
 } from './DataScienceDiagrams';
 import {
   WebStackDiagram,
@@ -875,6 +887,30 @@ export function Diagram({ type }) {
       return <SnowflakeSchemaDiagram />;
     case 'ds-olap-oltp':
       return <OlapVsOltpDiagram />;
+    case 'ds3-applications':
+      return <ClassificationAppsDiagram />;
+    case 'ds3-ml-types':
+      return <MLTypesDiagram />;
+    case 'ds3-linear-reg':
+      return <LinearRegressionDiagram />;
+    case 'ds3-logistic-reg':
+      return <LogisticRegressionDiagram />;
+    case 'ds3-naive-bayes':
+      return <NaiveBayesDiagram />;
+    case 'ds3-knn':
+      return <KnnDiagram />;
+    case 'ds3-decision-tree':
+      return <DecisionTreeDiagram />;
+    case 'ds3-svm':
+      return <SvmDiagram />;
+    case 'ds3-confusion-matrix':
+      return <ConfusionMatrixDiagram />;
+    case 'ds3-metrics-prf':
+      return <ClassificationMetricsDiagram />;
+    case 'ds3-roc-auc':
+      return <RocAucDiagram />;
+    case 'ds3-regression-metrics':
+      return <RegressionMetricsDiagram />;
     case 'web-stack':
       return <WebStackDiagram />;
     case 'internet-www':
