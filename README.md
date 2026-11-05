@@ -12,7 +12,7 @@ adding a topic is just adding an object.
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
 | Business Intelligence | BI | 1 | 8 | Live |
-| Cyber Security | CYS | 3 | 61 | Live — Unit I (Introduction) + Unit II (Cybercrimes & Hacking) + Unit III (Cyber Forensics) |
+| Cyber Security | CYS | 4 | 71 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
 | Web Technology | WT | 5 | 76 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) + Unit V (AngularJS & Next.js) |
@@ -203,6 +203,28 @@ YARA). *E-mail:* e-mail protocols and header forensics (SMTP/POP3/IMAP ports, th
 mail bombing, stalking, insider leakage) with the investigation checklist and Indian legal provisions.
 Each topic carries an animated SVG diagram and three six-mark questions with full answers.
 
+**Cyber Security (Unit IV — Digital Forensics)** has 10 topics in three groups. *Foundations:* introduction to
+digital forensics (definition, objectives, branches, the 1980s→2020s evolution and the golden rules), cyber
+forensics vs digital forensics (umbrella discipline vs cybercrime branch, with non-cyber use cases such as
+fraud, HR, e-discovery and accident reconstruction), the role of digital forensics and its environment (first
+responder, examiner, lab/quality manager, incident responder, legal counsel, expert witness and custodian
+inside an accredited, isolated, access-controlled laboratory) and forensic software and hardware (write
+blockers, duplicators, workstations, mobile extraction kits, Faraday bags, ESD handling, imaging and analysis
+software, container formats E01/AFF4/dd, and tool-selection criteria). *Evidence handling:* properties of
+digital evidence (latent, fragile, volatile, duplicable, voluminous, time-sensitive, trans-border plus the
+ISO/IEC 27037 quality properties — accuracy, availability, completeness, granularity, reliability — and
+authenticity, integrity, relevance, legality) and recovering and preserving digital evidence (write blocking,
+imaging, sealing, Faraday isolation, legal hold; metadata-based recovery, file carving, unallocated and slack
+space, snapshots, database log replay, memory carving, and recovery limits such as SSD TRIM). *Tools and
+practice:* advanced forensic tools (commercial suites, mobile, memory, timeline/triage, network, carving,
+cloud and malware/AI families, plus super-timelines, hash-set de-duplication and link analysis), selecting and
+analyzing digital evidence (relevance, materiality, reliability, proportionality, data reduction, hypothesis
+testing and bias control), validating the evidence (tool validation via NIST CFTT, process verification by
+hashing and dual-tool parsing, evidence validation, and legal admissibility under Section 65B and Daubert) and
+forensic technology and practices (ISO/IEC 27037/27041/27042/27043, ISO 17025, NIST SP 800-86/101, SWGDE,
+ACPO, RFC 3227, lab quality management, emerging cloud/remote/IoT/blockchain/AI technology and ethics). Each
+topic carries an animated SVG diagram and three six-mark questions with full answers.
+
 **Software Testing & QA (Unit IV — Testing Strategies)** has 13 topics in three groups. *Testing
 levels:* integration testing (big bang, top-down with stubs, bottom-up with drivers, sandwich) and
 system & acceptance testing (UAT, alpha, beta, contractual, regulatory, operational). *Testing
@@ -254,7 +276,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 60 · STQA 51 · Data Science 70 · Web Technology 121 (312 total).
+Curated exam-question banks: BI 10 · Cyber Security 80 · STQA 51 · Data Science 70 · Web Technology 121 (332 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -291,6 +313,7 @@ src/
 │   └── Diagrams.jsx           # <Diagram type="…" /> switch over all diagrams
 │       ├── CyberDiagrams.jsx  # Cyber Security Units I-II
 │       ├── CyberForensicsDiagrams.jsx  # Cyber Security Unit III (Cyber Forensics)
+│       ├── DigitalForensicsDiagrams.jsx  # Cyber Security Unit IV (Digital Forensics)
 │       ├── SoftwareTestingDiagrams.jsx
 │       ├── DataScienceDiagrams.jsx
 │       └── WebDiagrams.jsx
@@ -310,6 +333,7 @@ src/
 │   ├── webTechnology7.js / 8  # Web Technology Unit III (PHP — 3.1 to 3.8)
 │   ├── webTechnology9.js / 10 # Web Technology Unit III (PHP — 3.9 to 3.16)
 │   ├── cyberForensics.js      # Cyber Security Unit III (Cyber Forensics)
+│   ├── digitalForensics.js    # Cyber Security Unit IV (Digital Forensics)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js
