@@ -1489,6 +1489,607 @@ If the loop is not closed, the organisation has a **reporting culture** (reports
     importance: '⭐⭐⭐⭐',
   },
   // ============================================================
+  // Business Intelligence Unit 5 - Data visualization and BI tools
+  // ============================================================
+  {
+    id: 'q60',
+    unit: '5',
+    topicNumber: '5.1',
+    topicTitle: 'Introduction to Data Visualization',
+    question: `Define data visualization. Explain its need, benefits and the role of visual encoding in analytics.`,
+    answer: `**Data visualization:** the graphical representation of data using visual elements - position, length, area, angle, colour, shape - so that patterns, trends and exceptions become perceptible to a human being quickly.
+
+**Pipeline:** data -> visual encoding -> perception -> insight -> decision. The encoding is the design step; perception is the human step.
+
+**Why visualization is needed**
+1. **Volume** - a table of ten thousand rows cannot be read; a chart shows the pattern at once.
+2. **Speed** - position and length are processed pre-attentively, in roughly 200 milliseconds, before conscious reading.
+3. **Exceptions** - outliers stand out visually instead of hiding in rows.
+4. **Comparison** - target versus actual, period versus period, segment versus segment is a visual judgement.
+5. **Memory and communication** - visuals are remembered and travel better than tables in a meeting.
+6. **Shared truth** - one chart with one definition reduces debate about whose spreadsheet is correct.
+
+**Encoding ranking (Cleveland and McGill)** - most accurate first: position on a common scale, position on a non-aligned scale, length, angle and slope, area, volume, colour hue and intensity. Design implication: important numbers get position, decoration never gets position.
+
+**Benefits in business:** faster monitoring, early anomaly detection, self-service access for non-technical users, better alignment in reviews, and lower manual reporting effort.
+
+**Limits:** visualization supports judgement, it does not replace it; a beautiful chart on bad data is still a wrong decision.
+
+**Diagram:** Refer to the introduction to data visualization diagram.`,
+    diagram: 'vz-intro',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q61',
+    unit: '5',
+    topicNumber: '5.1',
+    topicTitle: 'Introduction to Data Visualization',
+    question: `Explain static versus interactive visualization and describe the main categories of visual representation.`,
+    answer: `**Static vs interactive**
+- **Static** - a fixed image: PDF chart, printed board report, exported PNG. Cheap, portable, print-friendly, but the reader cannot change the question.
+- **Interactive** - the reader filters, drills and compares live: dashboard, web report, cross-filtering, tooltips, what-if parameters. Higher build effort and needs a semantic model, but answers ad-hoc questions and shortens the path to a decision.
+- **Animated and real-time** - time-lapse of a KPI, live operational monitoring with auto-refresh.
+
+**Main categories of visual representation**
+1. **Comparison** - bar chart, sorted bar, bullet chart with target.
+2. **Trend over time** - line chart, column chart, area chart, sparkline.
+3. **Composition** - stacked bar, treemap, pie only for two or three slices, waterfall for contribution.
+4. **Distribution** - histogram, box plot, violin plot.
+5. **Relationship** - scatter plot with trend line, bubble chart, correlation heat map.
+6. **Geographic** - choropleth map, symbol map, flow map.
+7. **Hierarchical** - tree map, sunburst, decomposition tree.
+8. **Textual and tabular** - table, matrix, KPI tile, conditional formatting.
+
+**Selection rule:** write the question first, look at the shape of the data second, then choose the chart. One chart answers one question.
+
+**Diagram:** Refer to the introduction to data visualization diagram.`,
+    diagram: 'vz-intro',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q62',
+    unit: '5',
+    topicNumber: '5.2',
+    topicTitle: 'Principles of Effective Data Visualization',
+    question: `Explain the principles of effective data visualization.`,
+    answer: `1. **Accuracy** - honest scales; bar charts start at zero; no 3D or perspective distortion.
+2. **Clarity** - one message per chart; the title states the answer, not the topic ("West 12 percent behind target", not "Regional sales").
+3. **High data-ink ratio** - maximise ink that carries data; remove gridlines, borders, shadows, gradients and redundant legends.
+4. **Gestalt grouping** - proximity, enclosure, alignment and similarity create groups; use them instead of boxes everywhere.
+5. **Right encoding** - position for the most important comparison; length for magnitude; colour for grouping or exception, sparingly.
+6. **Comparison and context** - every number with a target, last period or benchmark; a bare number is not a visual argument.
+7. **Colour discipline** - a maximum of five to seven colours; sequential palette for magnitude, diverging for deviation from a midpoint; contrast checked.
+8. **Accessibility** - colour-blind safe palettes, never colour alone to carry meaning (add label, icon or pattern), readable font size, keyboard-friendly.
+9. **Honesty** - no truncated axis, no cherry-picked period, no dual axis implying false correlation, no percentage without a denominator.
+10. **Action orientation** - the visual is tied to a decision, an owner and a next step.
+
+**Checklist before publishing:** axis labelled with units, zero baseline, sorted categories, sample size and period shown, source and refresh time visible, takeaway in one line.
+
+**Diagram:** Refer to the principles of effective data visualization diagram.`,
+    diagram: 'vz-principles',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q63',
+    unit: '5',
+    topicNumber: '5.2',
+    topicTitle: 'Principles of Effective Data Visualization',
+    question: `How can a chart mislead the viewer? Explain the common distortions and the safeguards against them.`,
+    answer: `**Common distortions**
+1. **Truncated y-axis** - a bar chart starting at 80 makes a two percent difference look like a doubling.
+2. **Inconsistent scales** - two panels of a comparison chart drawn on different ranges.
+3. **Area and volume for linear quantities** - a bubble twice the diameter carries four times the area, so the value is over-read.
+4. **Cherry-picked window** - the start date chosen to flatter the trend.
+5. **Dual axes** - unrelated series overlaid so a coincidence looks like causation.
+6. **3D charts** - perspective distorts near and far bars.
+7. **Aggregation hiding the detail** - Simpson's paradox: the total rises while every segment falls.
+8. **Rainbow colour for ordered data** - no perceptual ordering, so magnitude is unreadable.
+9. **Percentage without denominator** - "up 50 percent" from two cases to three.
+10. **Missing sample size, period or source.**
+
+**Safeguards**
+- Zero baseline for bars; clear axis label with unit; explicit scale breaks if unavoidable.
+- Show period, sample size, source and refresh time on the visual.
+- Same scale across comparison panels.
+- Provide a detail table or drill-through for verification.
+- Peer review of charts and a governance-owned metric definition sheet.
+- Accessibility test: greyscale print and colour-blind simulation.
+- Publish annotated insight ("driver: three SKUs out of stock"), not only the picture.
+
+**Exam point:** misleading charts are rarely a tool problem; they are a requirement and review problem.
+
+**Diagram:** Refer to the principles of effective data visualization diagram.`,
+    diagram: 'vz-principles',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q64',
+    unit: '5',
+    topicNumber: '5.3',
+    topicTitle: 'Types of Charts and Visual Representations',
+    question: `Explain the different types of charts used in data visualization and the questions each one answers.`,
+    answer: `| Question | Chart | Note |
+|---|---|---|
+| Compare categories | Bar (sorted) | zero baseline, longest label on horizontal bars |
+| Show trend over time | Line / column | line for continuous time, column for discrete periods |
+| Cumulative volume | Area chart | stacked area for composition over time |
+| Part of a whole | Stacked bar, treemap | pie only for two or three slices |
+| Distribution | Histogram, box plot | histogram shows the shape of the frequency |
+| Relationship | Scatter + trend line | bubble adds a third measure via size |
+| Deviation from target | Bullet, diverging bar | ideal for variance and RAG |
+| Contribution to change | Waterfall | start, increments, decrements, end |
+| Geography | Choropleth, symbol map | normalise by area or population |
+| Hierarchy | Treemap, sunburst, decomposition tree | drill from category to SKU |
+| Single value | KPI tile with sparkline | value plus delta plus micro-trend |
+| Exact lookup | Table or matrix | precision, not pattern |
+
+**Chart-specific cautions**
+- Pie: unreadable beyond three slices; the eye cannot compare angles accurately.
+- Line: categories on a line chart imply a continuity that does not exist.
+- Scatter: correlation is not causation; always show the fit and the outliers.
+- Map: large regions dominate attention even when their values are small.
+
+**Rule:** one chart, one question; if two questions are needed, use two charts or a small multiple.
+
+**Diagram:** Refer to the types of charts and visual representations diagram.`,
+    diagram: 'vz-charts',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q65',
+    unit: '5',
+    topicNumber: '5.3',
+    topicTitle: 'Types of Charts and Visual Representations',
+    question: `What are the common mistakes in chart selection and design, and how should a chart be chosen for a given analysis?`,
+    answer: `**A selection procedure**
+1. Write the question in one sentence - compare, trend, composition, distribution, relationship, geography or flow.
+2. Identify the data types - categorical, ordinal, temporal, continuous, geographic.
+3. Count the categories and series - more than five series suggests small multiples or top-N plus "others".
+4. Check the audience and medium - screen, print, mobile, presentation.
+5. Choose the encoding with the highest accuracy for the most important comparison - position first.
+6. Annotate the insight and add comparison context (target, last period).
+
+**Common mistakes**
+1. Pie chart with ten slices; 3D pie with shadows.
+2. Line chart for unordered categories.
+3. Truncated axis creating drama out of a small difference.
+4. Rainbow palette for ordered data; red-green used as the only signal.
+5. Dual axes implying a relationship that does not exist.
+6. Too many series on one chart; no sort order; no labels on long categorical bars.
+7. A table where a chart would show the pattern, or a chart where exact values matter.
+8. Chartjunk - gradients, gridlines, logos, decorative icons competing with data.
+9. No title takeaway and no comparison baseline.
+10. Sizing that breaks on mobile or in print.
+
+**Practical:** when in doubt between two charts, choose the one that lets a reader answer the question with less mental arithmetic.
+
+**Diagram:** Refer to the types of charts and visual representations diagram.`,
+    diagram: 'vz-charts',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q66',
+    unit: '5',
+    topicNumber: '5.4',
+    topicTitle: 'Dashboard Design Principles',
+    question: `What is a dashboard? Explain the principles of effective dashboard design.`,
+    answer: `**Dashboard:** a single screen that answers a defined set of questions for a defined audience at a defined cadence - a monitoring instrument rather than a report dump.
+
+**Design principles**
+1. **Audience and purpose first** - who reads it, what decision they take, how often.
+2. **KPI hierarchy** - five to nine KPIs on the first screen, the most important top-left because the eye starts there.
+3. **Layout bands** - header (title, period, global filters, refresh time), KPI band (value plus delta plus sparkline), trend and comparison band, detail table with drill-through, alert rail.
+4. **Consistent grid** - twelve columns, 16-pixel margins, limited fonts and two or three text sizes.
+5. **Comparison, not bare numbers** - target, previous period and benchmark on every tile.
+6. **Colour discipline** - one accent colour, red-amber-green used sparingly and never as the only encoding.
+7. **Global filters in one place** - date range, region, category; page-level filters kept to a minimum.
+8. **Performance** - aggregates, extract or import model, query folding, indexed filters; target under five seconds.
+9. **Trust signals** - data refresh timestamp, source system, owner and a link to metric definitions.
+10. **Accessibility and mobile** - contrast, font size, colour-blind safe, responsive single-column layout.
+
+**Anti-patterns:** forty charts on one page, rainbow colours, no target line, no filter state visible, no refresh timestamp, and a dashboard that needs training to read.
+
+**Diagram:** Refer to the dashboard design principles diagram.`,
+    diagram: 'vz-dashboard',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q67',
+    unit: '5',
+    topicNumber: '5.4',
+    topicTitle: 'Dashboard Design Principles',
+    question: `Differentiate between a dashboard, a report and a scorecard. Discuss layout and performance considerations.`,
+    answer: `| Point | Dashboard | Report | Scorecard |
+|---|---|---|---|
+| Purpose | monitor now | analyse why | track goals |
+| Screen | one screen | many pages | one screen, few KPIs |
+| Audience | operations, managers | analysts | management, board |
+| Content | KPI plus trends | tables, detail, narrative | KPI against target with RAG |
+| Interactivity | filters, drill-down | deep drill, export | status only |
+| Cadence | daily or real time | ad-hoc or periodic | monthly or quarterly |
+
+**Layout considerations**
+- Twelve-column grid with consistent gutters; the most important KPI top-left.
+- Reading pattern: F or Z; bands from summary to detail.
+- Group related visuals inside one card (Gestalt proximity and enclosure).
+- White space is a design element - clutter destroys glanceability.
+- Mobile variant: single column, KPI tiles stacked, filters collapsed.
+
+**Performance considerations**
+- Pre-aggregate and use summary tables; avoid row-level queries on a dashboard page.
+- Import or extract mode for speed, direct query only where freshness demands it.
+- Query folding, indexed filter columns and partition pruning.
+- Limit visuals per page - every visual is a query - and use bookmarks instead of extra pages.
+- Incremental refresh so the nightly load stays small.
+- Set a performance budget (page load under five seconds) and profile with the tool's performance analyser.
+
+**Trust and adoption:** refresh timestamp, definitions, owner, subscriptions and alerting, training and usage metrics after go-live.
+
+**Diagram:** Refer to the dashboard design principles diagram.`,
+    diagram: 'vz-dashboard',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q68',
+    unit: '5',
+    topicNumber: '5.5',
+    topicTitle: 'Interactive Reporting and Visual Analytics',
+    question: `What is interactive reporting? Explain its features, enablers and benefits in visual analytics.`,
+    answer: `**Interactive reporting:** a reporting interface in which the reader explores the data directly - filtering, drilling, comparing, hovering and testing scenarios - without requesting a new report.
+
+**Features**
+1. **Slicers and filters** - date range, region, product, channel.
+2. **Drill-down and drill-up** - through a hierarchy such as year to quarter to month, or category to subcategory.
+3. **Drill-through** - from an aggregate to the underlying source rows.
+4. **Cross-filtering and linked brushing** - a selection in one visual filters the others.
+5. **Tooltips** - exact value, formula and definition on hover.
+6. **What-if parameters** - adjust price, discount or headcount and see the KPI recalculate.
+7. **Sorting, top-N, search and bookmarks.**
+8. **Export, subscribe and threshold alerts.**
+
+**Visual analytics layer on top:** trend lines and forecasts, anomaly detection, clustering and segmentation, small multiples, decomposition trees and correlation views.
+
+**Technical enablers:** a semantic layer with conformed dimensions so a filter means the same thing everywhere, pre-aggregated data for one to two second response, an in-memory or query-folding engine, a governed metric catalogue and row-level security enforced at query time.
+
+**Benefits:** self-service analytics, fewer IT requests, faster hypothesis testing, discovery of anomalies, and a shorter path from question to decision.
+
+**Design caution:** interactivity is judged by whether it shortens the path to a decision, not by the number of controls on the page.
+
+**Diagram:** Refer to the interactive reporting and visual analytics diagram.`,
+    diagram: 'vz-interactive',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q69',
+    unit: '5',
+    topicNumber: '5.5',
+    topicTitle: 'Interactive Reporting and Visual Analytics',
+    question: `Explain cross-filtering, drill-down and drill-through. Discuss the design considerations and risks of interactive dashboards.`,
+    answer: `**Cross-filtering (linked brushing):** selecting a mark in one visual filters the other visuals - click "West" in the region chart and every other chart shows West. Requires conformed dimensions so the selection means the same thing everywhere.
+
+**Drill-down:** moving within one visual along a hierarchy - year to quarter to month, or category to subcategory - so values disaggregate.
+
+**Drill-through:** opening a separate detail page filtered to the selected aggregate - from total sales of Rs 92 lakh to the 4,820 invoice rows. Used for audit and verification.
+
+| Point | Cross-filter | Drill-down | Drill-through |
+|---|---|---|---|
+| Scope | other visuals | same visual | new detail view |
+| Result | filtered view | finer granularity | row-level data |
+| Use | compare segments | root cause | audit, verification |
+
+**Design considerations**
+- Drill path should mirror the decision path: overview, filter, detail, action, with breadcrumbs and an easy way back.
+- Filters limited to three or five, global filters at the top, and the filter state always visible in the header.
+- Response time of one to two seconds; aggregates and query folding.
+- Metric definitions available in the tooltip; accessibility and touch support; export, subscribe and alerts.
+
+**Risks**
+1. **Filter overload** - the reader cannot tell what is applied.
+2. **Hidden state** - two viewers see different numbers and debate the data.
+3. **Performance collapse** - eight queries per click.
+4. **Headline hidden** - the main message is lost behind interactivity.
+5. **False precision** - row-level noise dominates the discussion.
+6. **Governance gap** - self-service creates shadow metrics.
+
+**Mitigation:** metric catalogue, default views, performance budget, training and usage analytics.
+
+**Diagram:** Refer to the interactive reporting and visual analytics diagram.`,
+    diagram: 'vz-interactive',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q70',
+    unit: '5',
+    topicNumber: '5.6',
+    topicTitle: 'Introduction to Business Intelligence Tools (Power BI / Tableau)',
+    question: `Compare Power BI and Tableau as business intelligence tools.`,
+    answer: `| Point | Power BI | Tableau |
+|---|---|---|
+| Vendor | Microsoft | Salesforce (Tableau) |
+| Data preparation | Power Query (M) | Tableau Prep |
+| Engine | VertiPaq in-memory, Tabular model | VizQL with Hyper extracts or live connection |
+| Calculations | DAX measures with filter context | calculated fields and LOD expressions |
+| Interaction model | model-first, governed shared dataset | visual-first, drag-and-drop exploration |
+| Visualisation strength | fast development, Office integration | exploration depth, chart craft |
+| Publishing | Power BI Service, workspaces, Fabric | Tableau Server / Cloud |
+| Security | row-level security, workspace roles, sensitivity labels | user filters, row-level security |
+| Cost | lower, bundled with Microsoft 365 | higher per seat |
+| Best fit | enterprise governed reporting | analyst-led ad-hoc analysis |
+
+**Common ground:** both connect to warehouses and cloud sources, build a semantic layer, publish dashboards, support scheduled refresh, security, mobile and embedding, and follow the same pipeline - connect, model, visualize, publish, govern.
+
+**Selection factors:** existing stack, total cost of ownership, data volume and refresh needs, analysis depth required, governance and central semantic models, skills (DAX versus VizQL), deployment mode, embedding and the partner ecosystem.
+
+**Typical outcome:** hybrid - Power BI for governed enterprise reporting, Tableau for analyst-led exploration, both reading the same warehouse so numbers reconcile.
+
+**Diagram:** Refer to the introduction to BI tools diagram.`,
+    diagram: 'vz-tools',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q71',
+    unit: '5',
+    topicNumber: '5.6',
+    topicTitle: 'Introduction to Business Intelligence Tools (Power BI / Tableau)',
+    question: `Explain the typical architecture and workflow of a BI tool, and the criteria for selecting one for an organisation.`,
+    answer: `**Architecture layers**
+1. **Connectivity** - connectors for databases, cloud warehouses, files, APIs; import versus direct query.
+2. **Preparation** - Power Query or Tableau Prep for cleaning, typing, joins and conformed keys.
+3. **Semantic model** - tables, relationships, hierarchies, measures, a marked date table; star schema recommended.
+4. **Presentation** - report pages, visuals, layout grid, formatting, interactions and tooltips.
+5. **Distribution** - workspaces or server, apps, subscriptions, embedding, mobile.
+6. **Security and governance** - row-level security, roles, gateway, refresh schedules, certification, lineage, usage metrics.
+
+**Workflow**
+1. Requirement brief - audience, decisions, KPIs and formulas, cadence.
+2. Connect and shape the data.
+3. Model - star schema, relationships, date table, measures.
+4. Build visuals top-down - layout, KPI tiles, trends, detail.
+5. Add interactivity - slicers, drill-down, drill-through, bookmarks.
+6. Validate - reconcile totals, edge cases, row-level security test, performance profile.
+7. Publish and schedule refresh through the gateway.
+8. Govern - certify the dataset, publish definitions, monitor usage and iterate.
+
+**Selection criteria**
+- Existing ecosystem and licensing (for example a Microsoft 365 estate favours Power BI on cost).
+- Total cost - per-seat licences versus capacity, plus gateway, server and training.
+- Data volume, refresh needs and gateway constraints.
+- Required analysis depth - heavy ad-hoc exploration favours Tableau.
+- Governance needs - certified shared semantic models and row-level security.
+- Skills available and the hiring market.
+- Deployment, embedding and mobile requirements.
+
+**Recommended approach:** pilot the same dataset in both tools, measure time-to-dashboard, load performance, governance effort and user satisfaction, then decide.
+
+**Diagram:** Refer to the introduction to BI tools diagram.`,
+    diagram: 'vz-tools',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q72',
+    unit: '5',
+    topicNumber: '5.7',
+    topicTitle: 'Creating Dashboards and Visual Reports Using BI Tools',
+    question: `Explain the step-by-step process of creating a dashboard and visual report in a BI tool.`,
+    answer: `**1. Requirement brief** - audience, decisions, five to nine KPIs with exact formulas, refresh cadence, security needs.
+**2. Connect** - choose the source; decide import versus direct query on freshness and volume.
+**3. Prepare** - profile, clean, fix types, conform keys, deduplicate (Power Query or Tableau Prep).
+**4. Model** - star schema; fact table at a declared grain; conformed dimensions; marked date table; one-to-many relationships.
+**5. Measures** - base measures, time intelligence (YTD, MTD, previous year), ratios with safe division (DIVIDE); no hard-coded filters.
+**6. Layout** - twelve-column grid; header with title, period, global filters and refresh timestamp; KPI band; trend band; detail band.
+**7. Interactivity** - slicers, drill-down, drill-through, cross-filter, tooltips, bookmarks.
+**8. Validate** - reconcile every KPI with source totals, test no-data and negative edge cases, test row-level security with a restricted user, profile performance.
+**9. Publish** - dev, test and production workspaces; permissions by role; gateway; scheduled or incremental refresh; sensitivity labels.
+**10. Govern** - certify the dataset, add subscriptions and alerts, monitor usage, publish the metric definition sheet, name an owner and iterate.
+
+**Example:** dealer performance page - fact_sales at invoice-line grain; dim_dealer, dim_product, dim_date, dim_region; measures Sales, Target, Achievement %, PY Sales; five KPI tiles with sparklines; month trend versus previous year; region bar with a target line; dealer table with drill-through to invoices.
+
+**Deliverables:** the report, a certified dataset, a definition sheet, an owner and a refresh schedule.
+
+**Diagram:** Refer to the creating dashboards and visual reports diagram.`,
+    diagram: 'vz-build',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q73',
+    unit: '5',
+    topicNumber: '5.7',
+    topicTitle: 'Creating Dashboards and Visual Reports Using BI Tools',
+    question: `What are the common mistakes in building BI dashboards, and describe the validation, publishing and governance activities.`,
+    answer: `**Common mistakes and fixes**
+1. **Flat single-table model** - use a star schema with conformed dimensions.
+2. **Too many calculated columns** - use measures and DAX.
+3. **Hard-coded filters** - use slicers and filter context.
+4. **Missing date table** - add a marked, dedicated date table for time intelligence.
+5. **Wrong grain or double counting** - declare the grain and test with a known transaction.
+6. **Too many visuals per page** - six to ten visuals, split pages, use bookmarks.
+7. **No validation** - reconcile every KPI with the source.
+8. **Row-level security not tested** - test with a restricted real user.
+9. **Performance ignored** - aggregates, incremental refresh, query folding, performance analyser.
+10. **No documentation and no adoption plan** - definition sheet, owner, training, subscriptions.
+
+**Validation**
+- Reconciliation of totals with the warehouse; grain test on a known transaction.
+- Edge cases - no data, zero, negative values, future dates, null dimension keys.
+- Row-level security test with a restricted account.
+- Performance profile and a page load target of five seconds.
+- User acceptance sign-off on definitions and numbers.
+
+**Publishing**
+- Workspace structure of development, test and production; role-based permissions.
+- On-premises gateway; scheduled or incremental refresh; sensitivity labels and export control; mobile layout.
+- Subscriptions and threshold alerts for the reporting cadence.
+
+**Governance**
+- Dataset certification and endorsement so users trust it; lineage and impact analysis.
+- Metric catalogue with definitions and owners; change management and deployment pipelines.
+- Usage metrics to find unused reports and retire them.
+
+**Diagram:** Refer to the creating dashboards and visual reports diagram.`,
+    diagram: 'vz-build',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q74',
+    unit: '5',
+    topicNumber: '5.8',
+    topicTitle: 'Role of Visualization in Business Decision Making',
+    question: `Explain the role of data visualization in business decision making.`,
+    answer: `**Core idea:** decisions are made by humans under time pressure, and visual encoding uses the fastest channels of perception - position, length and colour are processed pre-attentively.
+
+**Four decision jobs**
+1. **Monitoring** - are we on track? KPI against target, trend, threshold alerts.
+2. **Diagnosis** - why did it change? Drill-down, segment comparison, decomposition tree.
+3. **Prioritisation** - where is the biggest gap? Pareto, sorted bars, heat map.
+4. **Communication** - alignment and action: a simple chart plus a narrative plus an owner.
+
+**How visualization improves decisions**
+- **Speed** - thousands of rows become a pattern judged at a glance, cutting decision latency from weeks to a day.
+- **Quality** - exceptions and anomalies surface early; fewer reversals after the decision.
+- **Shared truth** - one number and one definition; the meeting debates the decision, not the spreadsheet.
+- **Accountability** - a KPI with an owner and a refresh time creates ownership.
+- **Accessibility** - non-technical users act on data without SQL.
+
+**How the value is measured:** decision cycle time, detection time for anomalies, share of alerts acted upon, active users, self-service queries and manual reporting hours saved.
+
+**Limits:** visualization supports judgement, it does not replace it; truncated axes, cherry-picked periods and correlation presented as causation can actively mislead, so charts need review and definitions.
+
+**Diagram:** Refer to the role of visualization in business decision making diagram.`,
+    diagram: 'vz-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q75',
+    unit: '5',
+    topicNumber: '5.8',
+    topicTitle: 'Role of Visualization in Business Decision Making',
+    question: `How can visualization mislead decision makers? Discuss safeguards and illustrate with a business example of reduced decision cycle time.`,
+    answer: `**Ways visualization misleads**
+1. Truncated y-axis exaggerating a small difference.
+2. Inconsistent scales across panels of a comparison.
+3. Area or volume used for linear values.
+4. Cherry-picked period or start date.
+5. Dual axes implying a correlation that does not exist.
+6. 3D and decorative effects distorting proportions.
+7. Aggregation hiding the detail (Simpson's paradox).
+8. Percentage without a denominator; missing sample size.
+9. Colour misuse and inaccessible palettes.
+10. Correlation presented as causation.
+
+**Safeguards**
+- Zero baseline for bars, labelled axes with units, honest scales.
+- Period, sample size, source and refresh time always visible.
+- Detail tables and drill-through for verification.
+- Peer review of charts and governed metric definitions.
+- Colour-blind and greyscale checks; annotation of the insight.
+
+**Business example - stock-out control**
+- Before: 300-row Excel report every Monday, six hours of analysis, stock-outs detected after three weeks.
+- After: daily dashboard with a stock-cover KPI in days, RAG status, SKU heat map and an alert below seven days of cover.
+- Decision flow: amber alert, plant drill-down, top ten SKUs, reorder trigger same day.
+- Result: detection from three weeks to one day, lost sales from 4.2 percent to 1.1 percent, one agreed definition.
+
+**Lesson:** the value of visualization is not in the pixels but in the reduction of decision latency and the elimination of argument about the number.
+
+**Diagram:** Refer to the role of visualization in business decision making diagram.`,
+    diagram: 'vz-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q76',
+    unit: '5',
+    topicNumber: '5.9',
+    topicTitle: 'AI-Assisted Data Visualization and Use of LLMs for Automated Dashboard Generation and Natural Language Reporting',
+    question: `Explain AI-assisted data visualization. Discuss the role of LLMs in automated dashboard generation and natural language reporting.`,
+    answer: `**AI-assisted visualization:** the use of machine learning and large language models across the visualization lifecycle - chart recommendation, layout generation, narrative writing, anomaly detection, forecasting and natural language querying.
+
+**Use cases**
+1. **Chart recommendation** - data type and intent determine the suggested visual.
+2. **Automated dashboard generation** - a prompt produces a first draft of layout, KPI tiles and measures.
+3. **Natural language reporting (Q&A)** - a plain-language question returns a query, a visual and an explanation.
+4. **Auto narrative** - executive summary of movements and drivers.
+5. **Anomaly detection and explanation** - unusual spikes flagged and described.
+6. **Forecasting** with confidence bands.
+7. **Data preparation assistance** - type detection, cleaning suggestions, join keys.
+
+**LLM pipeline:** question, intent and entity extraction (metric, dimension, filter, comparison), grounding against the semantic model through text-to-query or text-to-DAX, execution on governed metrics, visual selection, explanatory narrative, and human review before publishing.
+
+**Benefits:** access for non-technical users, minutes instead of days for a first draft, analyst time freed for analysis, exec-friendly summaries.
+
+**Risks:** hallucinated values, ambiguous questions, wrong joins and double counting, prompt injection, exposure of sensitive data, biased chart choice, weak auditability and over-trust.
+
+**Guardrails:** ground on certified metrics rather than free-form SQL, show the generated query and filters, require human review, enforce row-level security and exclude personal data, log every prompt and result, and maintain a known-answer evaluation set.
+
+**Exam line:** AI accelerates the analyst; accountability for the number still sits with a named owner.
+
+**Diagram:** Refer to the AI-assisted data visualization diagram.`,
+    diagram: 'vz-ai',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q77',
+    unit: '5',
+    topicNumber: '5.9',
+    topicTitle: 'AI-Assisted Data Visualization and Use of LLMs for Automated Dashboard Generation and Natural Language Reporting',
+    question: `What are the risks and challenges of using LLMs for reporting? Compare traditional BI with AI-assisted BI and discuss the guardrails required.`,
+    answer: `**Risks**
+1. **Hallucination** - an invented value or an invented metric that does not exist in the model.
+2. **Ambiguity** - "best region" could mean sales, growth, margin or retention.
+3. **Wrong joins and double counting** - misunderstanding the grain.
+4. **Prompt injection** - crafted text in the data or question altering behaviour.
+5. **Data leakage and PII exposure** through casual questions.
+6. **Bias** - auto-selected charts and narratives that frame the story one way.
+7. **Weak auditability** - reconstructing which query produced a number.
+8. **Over-trust** - numbers used without verification.
+9. **Cost and latency** per LLM call.
+10. **Drift** - model or data changes alter answers silently.
+
+**Traditional versus AI-assisted BI**
+
+| Point | Traditional BI | AI-assisted BI |
+|---|---|---|
+| Builder | analyst or IT | business user plus AI assist |
+| Interface | drag and drop, DAX, SQL | natural language, prompts |
+| Speed to first cut | hours to days | minutes |
+| Control | explicit and auditable | needs guardrails and logging |
+| Main risk | model errors, IT backlog | hallucination, ambiguity |
+| Best for | governed enterprise reporting | exploration, exec summaries |
+
+**Guardrails**
+- Semantic-layer grounding: query only certified measures and fields, never free-form SQL.
+- Show the working - generated query, filters and metric definition.
+- Human review before publishing an AI-generated dashboard or number.
+- Row-level security enforced at query time; personal data fields excluded.
+- Logging and audit of prompt, query, result and user.
+- Known-answer evaluation set with regression tests.
+- Clarifying questions and refusal when the question is ambiguous.
+- Published policy on where AI may be used and where it may not (statutory reporting).
+
+**Conclusion:** the sound architecture is hybrid - a governed semantic model as the single source of truth, AI as the natural language interface on top, and human accountability for anything published.
+
+**Diagram:** Refer to the AI-assisted data visualization diagram.`,
+    diagram: 'vz-ai',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  // ============================================================
   // Cyber Security Unit 1 — 17 Most Important 6-Mark Questions
   // ============================================================
   {

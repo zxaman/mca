@@ -11,7 +11,7 @@ adding a topic is just adding an object.
 
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
-| Business Intelligence | BI | 4 | 37 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) + Unit III (Multidimensional Modeling & OLAP) + Unit IV (Business Analytics and Temporal Data) |
+| Business Intelligence | BI | 5 | 46 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) + Unit III (Multidimensional Modeling & OLAP) + Unit IV (Business Analytics and Temporal Data) + Unit V (Data Visualization and BI Tools) |
 | Cyber Security | CYS | 5 | 83 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) + Unit V (Social Engineering) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
@@ -69,6 +69,28 @@ data analysis (MTD/QTD/YTD, YoY, moving averages, rolling 12 months, CAGR, seaso
 semi-additive and partial-period traps) and trend analysis with historical tracking (trend lines, Holt-Winters,
 MAPE/MAE/RMSE, append-only facts, audit history, storage tiers and restatement). Each topic carries an
 animated SVG diagram and three six-mark questions with full answers.
+
+**Business Intelligence (Unit V — Data Visualization and BI Tools)** has 9 topics in three groups.
+*Foundations:* introduction to data visualization (the data, encode, perceive, insight, decision pipeline,
+why volume and perception demand visuals, Cleveland and McGill's encoding ranking, and business use cases),
+principles of effective data visualization (accuracy, clarity, data-ink ratio, Gestalt grouping, colour
+discipline, accessibility and honesty, plus the nine ways a chart misleads and the publish checklist) and
+types of charts (a question-to-chart chooser matrix across comparison, trend, composition, distribution,
+relationship, geography and flow, with pie, line, scatter, waterfall and map cautions). *Dashboards:*
+dashboard design principles (audience first, five to nine KPIs, the twelve-column blueprint with header,
+KPI, trend and detail bands, comparison on every tile, colour discipline and the five-second load rule),
+interactive reporting and visual analytics (slicers, drill-down, drill-through, cross-filtering, tooltips,
+what-if parameters, the analytics layer of forecasts and anomaly detection, and the conformed-dimension
+enablers) and creating dashboards and visual reports in BI tools (the nine-step build from requirement brief
+through data preparation, star-schema model, measures, layout, interactivity, validation, publishing and
+governance, with the validation checklist and the common build mistakes). *Tools and decisions:*
+introduction to BI tools (Power BI's Power Query, VertiPaq and DAX against Tableau's VizQL, Hyper extracts and
+LOD expressions, plus the selection criteria), the role of visualization in business decision making (the
+monitoring, diagnosis, prioritisation and communication jobs, cycle-time value measurement and the misleading
+practices to avoid) and AI-assisted data visualization with LLMs (natural language reporting, automated
+dashboard drafts, the question, intent, ground, query, visual, review pipeline, the hallucination and
+ambiguity risks and the grounding and human-review guardrails). Each topic carries an animated SVG diagram and
+three six-mark questions with full answers.
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -355,7 +377,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 59 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (401 total).
+Curated exam-question banks: BI 77 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (419 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a

@@ -336,6 +336,18 @@ import {
   TdTrendDiagram,
 } from './BiAnalyticsDiagrams';
 
+import {
+  VzIntroDiagram,
+  VzPrinciplesDiagram,
+  VzChartsDiagram,
+  VzDashboardDiagram,
+  VzInteractiveDiagram,
+  VzToolsDiagram,
+  VzBuildDiagram,
+  VzDecisionDiagram,
+  VzAiDiagram,
+} from './BiVisualizationDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1447,6 +1459,24 @@ export function Diagram({ type }) {
       return <TdTimeAnalysisDiagram />;
     case 'td-trend':
       return <TdTrendDiagram />;
+    case 'vz-intro':
+      return <VzIntroDiagram />;
+    case 'vz-principles':
+      return <VzPrinciplesDiagram />;
+    case 'vz-charts':
+      return <VzChartsDiagram />;
+    case 'vz-dashboard':
+      return <VzDashboardDiagram />;
+    case 'vz-interactive':
+      return <VzInteractiveDiagram />;
+    case 'vz-tools':
+      return <VzToolsDiagram />;
+    case 'vz-build':
+      return <VzBuildDiagram />;
+    case 'vz-decision':
+      return <VzDecisionDiagram />;
+    case 'vz-ai':
+      return <VzAiDiagram />;
     default:
       return null;
   }
