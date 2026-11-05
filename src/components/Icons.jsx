@@ -39,6 +39,7 @@ export function Icon({ name, size = 28, color = '#c4ff00' }) {
     lock: 'M6 10V8a6 6 0 1 1 12 0v2m2 0H4m16 0h-2m-2 4h6v6H4v-6h6z',
     server: 'M3 4h18v6H3zM3 14h18v6H3zM7 7h.01M7 17h.01',
     users: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+    monitor: 'M3 4h18v12H3zM9 20h6M12 16v4',
     globe: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 0c2.5 2.5 2.5 17.5 0 20M12 2c-2.5 2.5-2.5 17.5 0 20M2 12h20',
     bookmark: 'M6 3h12v18l-6-4-6 4V3z',
     chevron: 'M6 9l6 6 6-6',

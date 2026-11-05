@@ -3,30 +3,68 @@ import { subjects, units } from '../data/topics';
 import { Icon } from './Icons';
 import { getCompletedTopics } from '../utils/progress';
 
-export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicId, onNavigate, onClose, mobileOpen }) {
-  // Only the subject you are actually inside is expanded; on the home page
-  // nothing is expanded (and nothing is highlighted).
-  const [expandedSubjects, setExpandedSubjects] = useState(
-    currentSubjectId ? { [currentSubjectId]: true } : {},
+// Which unit holds a given topic (used to auto-open the right unit)
+function unitOfTopic(subjectId, topicId) {
+  if (!topicId) return null;
+  const found = (units[subjectId] || []).find((unit) => (unit.topics || []).some((t) => t.id === topicId));
+  return found ? found.id : null;
+}
+
+// Sliding container: animates height with grid-template-rows (0fr -> 1fr)
+function Slide({ open, children }) {
+  return (
+    <div className={`sidebar-slide ${open ? 'open' : ''}`} aria-hidden={!open}>
+      <div className="sidebar-slide-inner">{children}</div>
+    </div>
   );
-  const [unitDropdown, setUnitDropdown] = useState(null);
+}
+
+export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicId, onNavigate, onClose, mobileOpen }) {
+  // Explicit user choices only — anything not set here falls back to the
+  // current route, so the sidebar always mirrors the page you are on.
+  const [expandedSubjects, setExpandedSubjects] = useState({});
+  const [openUnits, setOpenUnits] = useState({});
   const completed = getCompletedTopics();
+  const routeUnitId = currentUnitId || unitOfTopic(currentSubjectId, currentTopicId);
 
-  const toggleSubject = (subjectId) => {
-    setExpandedSubjects((prev) => ({
-      ...prev,
-      [subjectId]: !prev[subjectId],
-    }));
-  };
+  const isSubjectOpen = (subjectId) => (
+    expandedSubjects[subjectId] !== undefined
+      ? expandedSubjects[subjectId]
+      : currentSubjectId === subjectId
+  );
 
-  const toggleUnit = (subjectId, unitId) => {
+  const isUnitOpen = (subjectId, unitId) => {
     const key = `${subjectId}-${unitId}`;
-    setUnitDropdown((prev) => (prev === key ? null : key));
+    if (openUnits[key] !== undefined) return openUnits[key];
+    return currentSubjectId === subjectId && routeUnitId === unitId;
   };
 
   const handleNavigate = (level, extra) => {
     onNavigate(level, extra);
     if (onClose) onClose();
+  };
+
+  // Subject header click = go to that subject page + open its unit list
+  const openSubject = (subjectId) => {
+    setExpandedSubjects((prev) => ({ ...prev, [subjectId]: true }));
+    handleNavigate('units', { subjectId });
+  };
+
+  const toggleSubject = (subjectId) => {
+    setExpandedSubjects((prev) => ({ ...prev, [subjectId]: !isSubjectOpen(subjectId) }));
+  };
+
+  // Accordion inside a subject: only one unit's topic list stays open
+  const toggleUnit = (subjectId, unitId) => {
+    const next = isUnitOpen(subjectId, unitId);
+    setOpenUnits((prev) => {
+      const copy = { ...prev };
+      (units[subjectId] || []).forEach((unit) => {
+        copy[`${subjectId}-${unit.id}`] = false;
+      });
+      copy[`${subjectId}-${unitId}`] = !next;
+      return copy;
+    });
   };
 
   return (
@@ -51,56 +89,59 @@ export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicI
             <span className="sidebar-home-hint">all subjects</span>
           </button>
           <div className="sidebar-section-title">Subjects</div>
+
           {subjects.map((subject) => {
             const subjectUnits = units[subject.id] || [];
-            const isExpanded = expandedSubjects[subject.id];
+            const subjectOpen = isSubjectOpen(subject.id);
             const isActive = currentSubjectId === subject.id;
 
             return (
-              <div key={subject.id} className={`sidebar-subject ${isActive ? 'active' : ''}`}>
-                <button
-                  className="sidebar-subject-btn"
-                  onClick={() => {
-                    toggleSubject(subject.id);
-                    handleNavigate('units', { subjectId: subject.id });
-                  }}
-                >
-                  <Icon name="book" size={18} color={subject.color} />
-                  <span className="sidebar-subject-code">{subject.code}</span>
-                  <span className="sidebar-subject-name">{subject.name}</span>
-                  <Icon name="chevron" size={14} color="#666" />
-                </button>
+              <div key={subject.id} className={`sidebar-subject ${isActive ? 'active' : ''} ${subjectOpen ? 'open' : ''}`}>
+                <div className="sidebar-subject-row">
+                  <button
+                    className="sidebar-subject-btn"
+                    onClick={() => openSubject(subject.id)}
+                    title={`Open ${subject.name}`}
+                  >
+                    <Icon name="book" size={18} color={subject.color} />
+                    <span className="sidebar-subject-code">{subject.code}</span>
+                    <span className="sidebar-subject-name">{subject.name}</span>
+                  </button>
+                  <button
+                    className={`sidebar-subject-caret ${subjectOpen ? 'open' : ''}`}
+                    onClick={() => toggleSubject(subject.id)}
+                    aria-expanded={subjectOpen}
+                    aria-label={`${subjectOpen ? 'Hide' : 'Show'} units of ${subject.name}`}
+                  >
+                    <Icon name="chevron" size={14} color={subjectOpen ? '#c4ff00' : '#666'} />
+                  </button>
+                </div>
 
-                {isExpanded && subjectUnits.length > 0 && (
+                <Slide open={subjectOpen && subjectUnits.length > 0}>
                   <div className="sidebar-units">
                     {subjectUnits.map((unit) => {
-                      const isUnitActive = currentUnitId === unit.id;
+                      const isUnitActive = isActive && routeUnitId === unit.id;
+                      const topicsOpen = isUnitOpen(subject.id, unit.id);
                       const topicsCount = unit.topics.length;
 
                       return (
-                        <div key={unit.id} className={`sidebar-unit ${isUnitActive ? 'active' : ''}`}>
+                        <div key={unit.id} className={`sidebar-unit ${isUnitActive ? 'active' : ''} ${topicsOpen ? 'open' : ''}`}>
                           <button
                             className="sidebar-unit-btn"
-                            onClick={() => handleNavigate('units', { subjectId: subject.id })}
+                            onClick={() => toggleUnit(subject.id, unit.id)}
+                            aria-expanded={topicsOpen}
                           >
                             <span className="sidebar-unit-num">Unit {unit.number}</span>
                             <span className="sidebar-unit-name">{unit.name}</span>
-                            <span className="sidebar-unit-count">{topicsCount} topics</span>
+                            <span className="sidebar-unit-count">{topicsCount}</span>
+                            <span className={`sidebar-unit-caret ${topicsOpen ? 'open' : ''}`}>
+                              <Icon name="chevron" size={12} color={topicsOpen ? '#c4ff00' : '#4a5570'} />
+                            </span>
                           </button>
 
-                          {/* Dropdown for topics */}
-                          <button
-                            className="sidebar-dropdown-toggle"
-                            onClick={() => toggleUnit(subject.id, unit.id)}
-                            aria-expanded={unitDropdown === `${subject.id}-${unit.id}`}
-                          >
-                            {unitDropdown === `${subject.id}-${unit.id}` ? '▼' : '▼'}
-                            Show Topics
-                          </button>
-
-                          {unitDropdown === `${subject.id}-${unit.id}` && (
-                            <div className="sidebar-topics-dropdown">
-                              {unit.topics.map((topic) => {
+                          <Slide open={topicsOpen}>
+                            <div className="sidebar-topics">
+                              {unit.topics.map((topic, index) => {
                                 const isDone = completed.includes(topic.id);
                                 const isTopicActive = currentTopicId === topic.id;
 
@@ -108,6 +149,7 @@ export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicI
                                   <button
                                     key={topic.id}
                                     className={`sidebar-topic ${isTopicActive ? 'active' : ''} ${isDone ? 'done' : ''}`}
+                                    style={{ '--d': `${Math.min(index, 12) * 28}ms` }}
                                     onClick={() => handleNavigate('topic', { subjectId: subject.id, topicId: topic.id })}
                                   >
                                     <span className="sidebar-topic-num">{topic.number}</span>
@@ -117,12 +159,12 @@ export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicI
                                 );
                               })}
                             </div>
-                          )}
+                          </Slide>
                         </div>
                       );
                     })}
                   </div>
-                )}
+                </Slide>
               </div>
             );
           })}

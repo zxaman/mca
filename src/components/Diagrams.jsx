@@ -161,6 +161,18 @@ import {
   AprioriDiagram,
   FpGrowthDiagram,
   SupportConfidenceDiagram,
+  VisualizationPipelineDiagram,
+  VisualizationChallengesDiagram,
+  DashboardTypesDiagram,
+  DashboardEvolutionDiagram,
+  DashboardDesignDiagram,
+  DisplayMediaDiagram,
+  ChartsBasicDiagram,
+  ChartsAdvancedDiagram,
+  ChartsSpecialDiagram,
+  VisualizationToolsDiagram,
+  ReinforcementLearningDiagram,
+  GenerativeDeepXaiDiagram,
 } from './DataScienceDiagrams';
 import {
   WebStackDiagram,
@@ -938,6 +950,30 @@ export function Diagram({ type }) {
       return <FpGrowthDiagram />;
     case 'ds4-support-confidence':
       return <SupportConfidenceDiagram />;
+    case 'ds5-visualization-intro':
+      return <VisualizationPipelineDiagram />;
+    case 'ds5-challenges':
+      return <VisualizationChallengesDiagram />;
+    case 'ds5-dashboard-types':
+      return <DashboardTypesDiagram />;
+    case 'ds5-dashboard-evolution':
+      return <DashboardEvolutionDiagram />;
+    case 'ds5-dashboard-design':
+      return <DashboardDesignDiagram />;
+    case 'ds5-display-media':
+      return <DisplayMediaDiagram />;
+    case 'ds5-charts-basic':
+      return <ChartsBasicDiagram />;
+    case 'ds5-charts-advanced':
+      return <ChartsAdvancedDiagram />;
+    case 'ds5-charts-special':
+      return <ChartsSpecialDiagram />;
+    case 'ds5-tools':
+      return <VisualizationToolsDiagram />;
+    case 'ds5-reinforcement-learning':
+      return <ReinforcementLearningDiagram />;
+    case 'ds5-generative-deep-xai':
+      return <GenerativeDeepXaiDiagram />;
     case 'web-stack':
       return <WebStackDiagram />;
     case 'internet-www':

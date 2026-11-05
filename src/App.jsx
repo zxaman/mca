@@ -269,10 +269,13 @@ export default function App() {
     setSidebarOpen(false);
   };
 
-  const openTopic = (topicId) => {
-    const subjectId = route.subjectId || 'business-intelligence';
-    goTo(`#/subject/${subjectId}/topic/${topicId}`);
+  // `subjectId` aata hai sidebar se — warna kisi doosre subject ka topic kholne par
+  // URL galat subject ke saath ban jaata tha (aur topic page BI par fallback kar deta tha).
+  const openTopic = (topicId, subjectId) => {
+    const targetSubject = subjectId || route.subjectId || 'business-intelligence';
+    goTo(`#/subject/${targetSubject}/topic/${topicId}`);
     setSidebarOpen(false);
+    window.scrollTo(0, 0);
   };
 
   const navigate = (level, extra) => {
@@ -281,7 +284,7 @@ export default function App() {
     } else if (level === 'units') {
       openSubject(extra.subjectId);
     } else if (level === 'topic') {
-      openTopic(extra.topicId);
+      openTopic(extra.topicId, extra.subjectId);
     } else if (level === 'exam') {
       goTo(`#/subject/${extra.subjectId}/exam`);
       setSidebarOpen(false);
@@ -289,6 +292,11 @@ export default function App() {
   };
 
   const subject = route.level === 'units' ? subjects.find((s) => s.id === route.subjectId) : null;
+
+  // Which unit the open topic belongs to (sidebar highlight + auto-open)
+  const currentUnit = (units[route.subjectId] || []).find(
+    (unit) => (unit.topics || []).some((topic) => topic.id === route.topicId),
+  );
 
   const renderContent = () => {
     if (route.level === 'exam') {
@@ -304,7 +312,7 @@ export default function App() {
           topicId={route.topicId}
           subjectId={route.subjectId}
           onBack={() => openSubject(route.subjectId || 'business-intelligence')}
-          onOpenTopic={openTopic}
+          onOpenTopic={(topicId) => openTopic(topicId, route.subjectId)}
         />
       );
     } else if (route.level === 'units' && subject) {
@@ -327,7 +335,7 @@ export default function App() {
       {/* Sidebar - Common across ALL pages */}
       <Sidebar
         currentSubjectId={route.subjectId}
-        currentUnitId={route.unitId}
+        currentUnitId={currentUnit ? currentUnit.id : null}
         currentTopicId={route.topicId}
         onNavigate={navigate}
         onClose={() => setSidebarOpen(false)}
