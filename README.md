@@ -13,7 +13,7 @@ adding a topic is just adding an object.
 |---|---|---|---|---|
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
-| Software Testing & QA | STQA | 3 | 34 | Live |
+| Software Testing & QA | STQA | 4 | 47 | Live |
 | Data Science | DS | 1 | 12 | Live — Unit I |
 | Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
@@ -73,6 +73,20 @@ sessions (`setcookie`/`$_COOKIE` vs `session_start()`/`$_SESSION`, the login→l
 handling and validation (pipeline, validation rules, sticky forms, POST/Redirect/GET), and an
 introduction to **CodeIgniter** (MVC, request flow, controller/model/view, folder structure).
 
+**Software Testing & QA (Unit IV — Testing Strategies)** has 13 topics in three groups. *Testing
+levels:* integration testing (big bang, top-down with stubs, bottom-up with drivers, sandwich) and
+system & acceptance testing (UAT, alpha, beta, contractual, regulatory, operational). *Testing
+approaches:* scenario testing (end-to-end user journeys), performance testing (load, stress, spike,
+endurance, volume, scalability and the response-time vs users knee curve), regression testing
+(smoke → retest → regression, retest-all / selective / prioritised) and ad hoc testing (exploratory
+sessions, error guessing, monkey and gorilla testing). *Specialised testing:* usability &
+accessibility (ISO 9241-11 plus WCAG POUR at levels A/AA/AAA), GUI testing (layout, controls,
+navigation, validation, visual regression), validation testing (verification vs validation),
+specification based testing (decision tables, cause-effect, state models, grammar), testing object
+oriented software (encapsulation, inheritance, polymorphism, MM paths, class levels), testing web
+based applications (3 tiers, 8 dimensions) and database testing (schema, constraints, triggers,
+ACID, data integrity, migration).
+
 **Software Testing & QA (Unit III — Software Testing Techniques)** has 13 topics in two halves.
 *White-box:* static testing (human reviews — informal, walkthrough, technical review, Fagan
 inspection — and tool based static analysis: linters, style checkers, SAST, metrics), structural
@@ -90,7 +104,7 @@ PHP cannot execute in a browser, so these topics never fake a live preview: each
 beside a **`php 8.3 · server output`** panel that shows the exact stdout the interpreter produces,
 with the caveat stated in the panel itself.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 21 · Data Science 24 · Web Technology 88 (175 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 34 · Data Science 24 · Web Technology 88 (188 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -133,6 +147,7 @@ src/
 │   ├── topics.js              # subjects + units (BI / Cyber / STQA / DS / WT)
 │   ├── dataScience.js         # Data Science units (imported into topics.js)
 │   ├── softwareTesting3.js    # STQA Unit III (Software Testing Techniques)
+│   ├── softwareTesting4.js    # STQA Unit IV (Testing Strategies)
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)

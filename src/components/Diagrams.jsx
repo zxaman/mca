@@ -81,6 +81,19 @@ import {
   CompatibilityTestingDiagram,
   DocumentationTestingDiagram,
   DomainTestingDiagram,
+  IntegrationTestingDiagram,
+  SystemAcceptanceTestingDiagram,
+  ScenarioTestingDiagram,
+  PerformanceTestingDiagram,
+  RegressionTestingDiagram,
+  AdHocTestingDiagram,
+  UsabilityAccessibilityDiagram,
+  GuiTestingDiagram,
+  ValidationTestingDiagram,
+  SpecificationBasedTestingDiagram,
+  ObjectOrientedTestingDiagram,
+  WebAppTestingDiagram,
+  DatabaseTestingDiagram,
 } from './SoftwareTestingDiagrams';
 
 import {
@@ -924,6 +937,32 @@ export function Diagram({ type }) {
       return <DocumentationTestingDiagram />;
     case 'st3-domain':
       return <DomainTestingDiagram />;
+    case 'st4-integration':
+      return <IntegrationTestingDiagram />;
+    case 'st4-system-acceptance':
+      return <SystemAcceptanceTestingDiagram />;
+    case 'st4-scenario':
+      return <ScenarioTestingDiagram />;
+    case 'st4-performance':
+      return <PerformanceTestingDiagram />;
+    case 'st4-regression':
+      return <RegressionTestingDiagram />;
+    case 'st4-adhoc':
+      return <AdHocTestingDiagram />;
+    case 'st4-usability-accessibility':
+      return <UsabilityAccessibilityDiagram />;
+    case 'st4-gui':
+      return <GuiTestingDiagram />;
+    case 'st4-validation':
+      return <ValidationTestingDiagram />;
+    case 'st4-spec-based':
+      return <SpecificationBasedTestingDiagram />;
+    case 'st4-oo':
+      return <ObjectOrientedTestingDiagram />;
+    case 'st4-web':
+      return <WebAppTestingDiagram />;
+    case 'st4-database':
+      return <DatabaseTestingDiagram />;
     default:
       return null;
   }
