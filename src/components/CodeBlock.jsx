@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 // tokens across lines (all examples in this subject are formatted that way).
 
 const HTML_TOKEN =
-  /(<!--.*?-->|<!DOCTYPE[^>]*>|<\/?[a-zA-Z][\w-]*|"[^"]*"|'[^']*'|[a-zA-Z-]+(?==))/g;
+  /(<!--.*?-->|<!DOCTYPE[^>]*>|<\/?[a-zA-Z][\w:-]*|"[^"]*"|'[^']*'|[a-zA-Z-]+(?==))/g;
 
 function tokenizeHtml(line) {
   const out = [];
@@ -190,6 +190,44 @@ function tokenizePhp(line) {
   return out.length ? out : [{ t: line || ' ', c: 'plain' }];
 }
 
+// C# / ASP.NET code-behind: keywords, attributes, strings, comments.
+const CS_KEYWORDS =
+  'abstract|add|as|async|await|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|' +
+  'default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|get|' +
+  'goto|if|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|' +
+  'override|params|private|protected|public|readonly|ref|remove|return|sbyte|sealed|set|short|sizeof|' +
+  'stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|' +
+  'using|var|virtual|void|volatile|while|yield';
+
+const CS_KEYWORD_SET = new Set(CS_KEYWORDS.split('|'));
+
+const CS_TOKEN = new RegExp(
+  '\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/|@?"[^"]*"|\'[^\']*\'|\\b\\d+(?:\\.\\d+)?\\b' +
+    '|\\b(?:' + CS_KEYWORDS + ')\\b|[A-Za-z_]\\w*(?=\\s*\\()',
+  'g',
+);
+
+function tokenizeCsharp(line) {
+  const out = [];
+  let last = 0;
+  let match;
+  CS_TOKEN.lastIndex = 0;
+  while ((match = CS_TOKEN.exec(line)) !== null) {
+    if (match.index > last) out.push({ t: line.slice(last, match.index), c: 'plain' });
+    const tok = match[0];
+    let cls;
+    if (tok.startsWith('//') || tok.startsWith('/*')) cls = 'comment';
+    else if (tok.startsWith('"') || tok.startsWith('@"') || tok.startsWith("'")) cls = 'str';
+    else if (/^\d/.test(tok)) cls = 'num';
+    else if (CS_KEYWORD_SET.has(tok)) cls = 'kw';
+    else cls = 'fn';
+    out.push({ t: tok, c: cls });
+    last = match.index + tok.length;
+  }
+  if (last < line.length) out.push({ t: line.slice(last), c: 'plain' });
+  return out.length ? out : [{ t: line || ' ', c: 'plain' }];
+}
+
 function tokenizeCss(line) {
   const trimmed = line.trim();
   if (!trimmed) return [{ t: ' ', c: 'plain' }];
@@ -227,9 +265,11 @@ export default function CodeBlock({ code = '', language = 'html', filename, note
     const lang = String(language).toLowerCase();
     if (lang === 'php') return lines.map((line) => tokenizePhp(line));
     if (lang === 'javascript' || lang === 'js') return lines.map((line) => tokenizeJs(line));
+    if (lang === 'csharp' || lang === 'c#' || lang === 'cs') return lines.map((line) => tokenizeCsharp(line));
     if (lang === 'css') return lines.map((line) => tokenizeCss(line));
     if (lang === 'dtd') return lines.map((line) => tokenizeDtd(line));
     if (['xml', 'xslt', 'xsd', 'svg'].includes(lang)) return lines.map((line) => tokenizeXml(line));
+    if (lang === 'aspx' || lang === 'asp' || lang === 'html') return tokenizeMixed(lines);
     return tokenizeMixed(lines);
   }, [lines, language]);
 

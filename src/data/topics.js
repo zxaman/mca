@@ -27,7 +27,7 @@ export const subjects = [
     "code": "WT",
     "color": "#0047ff",
     "available": true,
-    "description": "HTML se CSS tak — har concept ka real code aur uska live browser output, simple Hinglish mein"
+    "description": "HTML se ASP.NET tak — har concept ka real code, live output aur diagram, simple Hinglish mein"
   },
   {
     "id": "cyber-security",

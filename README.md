@@ -15,7 +15,7 @@ adding a topic is just adding an object.
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
-| Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
+| Web Technology | WT | 4 | 64 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -141,6 +141,28 @@ vs interfaces, the four pillars), file handling (`fopen` modes, `fwrite`/`fgets`
 sessions (`setcookie`/`$_COOKIE` vs `session_start()`/`$_SESSION`, the login→logout cycle), forms
 handling and validation (pipeline, validation rules, sticky forms, POST/Redirect/GET), and an
 introduction to **CodeIgniter** (MVC, request flow, controller/model/view, folder structure).
+
+**Web Technology (Unit IV — ASP.NET)** has 14 topics: what ASP.NET is (compiled server-side
+framework, the browser → IIS → ASP.NET worker → Page object request path and the features that
+separate it from classic ASP), environment setup (Visual Studio, the Web Forms template, IIS
+Express, the project tree and `Web.config`), Web Forms (`@Page` directive, `.aspx` + code-behind,
+postback and `IsPostBack`, `AutoPostBack` and cross-page posting, Web Forms vs MVC), the page life
+cycle (PreInit → Init → PreLoad → Load → control events → PreRender → SaveState → Render → Unload,
+with the first-request vs postback difference and the bugs each stage explains), the six families of
+server controls (HTML, Web, validation, data, user `.ascx`, custom compiled controls), state
+management (client-side vs server-side and a five-way comparison table), view state (the
+`__VIEWSTATE` round trip, MAC/encryption, the size problem and `EnableViewState`/`ViewStateMode`/
+`SessionPageStatePersister` fixes), session and application state (per-user vs global,
+`Lock`/`UnLock`, InProc/StateServer/SQL Server modes), cookies and query strings (`Set-Cookie`,
+`Request.QueryString`, `HttpOnly`/`Secure`, injection and validation), `Response.Redirect` vs
+`Server.Transfer` vs `Server.Execute` (round trips, URL, data passing, `ThreadAbortException`),
+ADO.NET (Connection → Command → DataReader / DataAdapter → DataSet, connected vs disconnected),
+database connectivity (the six steps, INSERT/SELECT with `SqlParameter`, GridView binding and a
+worked SQL-injection fix), validation controls (RequiredField, Range, Compare, RegularExpression,
+Custom, `ValidationSummary`, `ValidationGroup`, why `Page.IsValid` still matters) and basic security
+(authentication vs authorisation, Windows/Forms/Passport/None, forms authentication config and
+`RedirectFromLoginPage`, the CIA goals, and SQL injection / XSS / CSRF / hijacking defences).
+Each topic carries an animated SVG diagram and three six-mark questions with full answers.
 
 **Software Testing & QA (Unit IV — Testing Strategies)** has 13 topics in three groups. *Testing
 levels:* integration testing (big bang, top-down with stubs, bottom-up with drivers, sandwich) and
