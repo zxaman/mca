@@ -1,6 +1,7 @@
 import { dataScienceUnits } from './dataScience.js';
 import { webTechnologyUnits } from './webTechnology.js';
 import { cyberForensicsUnit } from './cyberForensics.js';
+import { digitalForensicsUnit } from './digitalForensics.js';
 import { softwareTestingUnit3Topics } from './softwareTesting3.js';
 import { softwareTestingUnit4Topics } from './softwareTesting4.js';
 import { softwareTestingUnit5Topics } from './softwareTesting5.js';
@@ -36,7 +37,7 @@ export const subjects = [
     "code": "CYS",
     "color": "#0047ff",
     "available": true,
-    "description": "Cyber security se cyber forensics tak — attacks, laws aur investigation, simple Hinglish mein"
+    "description": "Cyber security se digital forensics tak — attacks, laws, investigation aur evidence, simple Hinglish mein"
   },
   {
     "id": "business-intelligence",
@@ -5805,7 +5806,8 @@ export const units = {
         }
       ]
     },
-    cyberForensicsUnit
+    cyberForensicsUnit,
+    digitalForensicsUnit
   ],
   "software-testing": [
     {

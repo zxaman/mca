@@ -270,6 +270,18 @@ import {
   EmailProtocolsDiagram,
   EmailCrimeDiagram,
 } from './CyberForensicsDiagrams';
+import {
+  DigitalForensicsIntroDiagram,
+  CyberVsDigitalForensicsDiagram,
+  ForensicsRoleEnvironmentDiagram,
+  ForensicHardwareSoftwareDiagram,
+  DigitalEvidencePropertiesDiagram,
+  RecoveringPreservingEvidenceDiagram,
+  AdvancedForensicToolsDiagram,
+  SelectingAnalyzingEvidenceDiagram,
+  ValidatingEvidenceDiagram,
+  ForensicTechnologyPracticesDiagram,
+} from './DigitalForensicsDiagrams';
 
 // ============================================================
 // Improved, properly-labelled SVG diagrams
@@ -1280,6 +1292,26 @@ export function Diagram({ type }) {
       return <EmailProtocolsDiagram />;
     case 'cf-emailcrime':
       return <EmailCrimeDiagram />;
+    case 'df-intro':
+      return <DigitalForensicsIntroDiagram />;
+    case 'df-vs-cyber':
+      return <CyberVsDigitalForensicsDiagram />;
+    case 'df-role':
+      return <ForensicsRoleEnvironmentDiagram />;
+    case 'df-hw-sw':
+      return <ForensicHardwareSoftwareDiagram />;
+    case 'df-properties':
+      return <DigitalEvidencePropertiesDiagram />;
+    case 'df-recover':
+      return <RecoveringPreservingEvidenceDiagram />;
+    case 'df-tools':
+      return <AdvancedForensicToolsDiagram />;
+    case 'df-select':
+      return <SelectingAnalyzingEvidenceDiagram />;
+    case 'df-validate':
+      return <ValidatingEvidenceDiagram />;
+    case 'df-tech':
+      return <ForensicTechnologyPracticesDiagram />;
     default:
       return null;
   }

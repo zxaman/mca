@@ -1841,6 +1841,626 @@ rule Example_Ransom {
     importance: '⭐⭐⭐',
   },
 // ========================================================
+  // Cyber Security Unit 4 — Digital Forensics
+  // ========================================================
+  {
+    id: 'cq61',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.1',
+    question: `Define digital forensics and explain its objectives, branches and evolution.`,
+    answer: `**Definition:** Digital forensics digital evidence ko scientifically identify, collect, preserve, examine, analyse aur report karne ki discipline hai — taki court ya formal process us par bharosa kar sake.
+
+**Objectives:**
+1. **Reconstruct** — kya hua, kab, kaise.
+2. **Attribute** — kisne kiya (user/device/IP).
+3. **Prove** — admissible evidence (hash + custody + 65B).
+4. **Exonerate** — nirdosh ko bachana.
+5. **Root cause + prevention** — control fail kyun hua.
+
+**Branches:**
+
+| Branch | Focus |
+|---|---|
+| Disk | file system, registry, deleted data |
+| Network | PCAP, flow, logs |
+| Mobile | extraction, SQLite, GPS |
+| Memory | processes, keys, injection |
+| Cloud | audit logs, tenant export |
+| Database/e-mail | transaction logs, headers |
+| IoT/vehicle | device logs, telematics |
+
+**Evolution:**
+- **1980s:** computer forensics, standalone PCs.
+- **1990s:** network/internet cases, IOCE, ACPO guide.
+- **2000s:** NIST SP 800-86, ISO 27037, NIST CFTT, ISO 17025.
+- **2010s:** mobile, memory, cloud, IoT.
+- **2020s:** automation, AI triage, remote acquisition, DFIR platforms.
+
+**Rules:** original untouched, hash integrity, chain of custody, documentation, reproducibility, legality.
+
+**Diagram:** Refer to the Digital forensics — scope, history aur rules diagram.`,
+    diagram: 'df-intro',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq62',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.1',
+    question: `Explain the digital forensics process and mention the standards used at each stage.`,
+    answer: `**Process (NIST SP 800-86 / ISO 27037 aligned):**
+
+| Stage | Kya hota hai | Standard / control |
+|---|---|---|
+| Identification | incident, scope, authority | ISO 27037, 27043 |
+| Preservation | write block, seal, Faraday | ISO 27037 |
+| Acquisition | image, RAM, mobile extraction, hash | NIST CFTT tools |
+| Examination | artefacts extract | ISO 27042 |
+| Analysis | timeline, correlation | ISO 27042 |
+| Documentation | notes, tool versions, custody | ISO 17025 |
+| Reporting | findings + testimony | 65B, Daubert |
+
+**Kaun se standards kya kehte hain:**
+- **NIST SP 800-86** — forensics ko incident response mein integrate karna.
+- **ISO/IEC 27037** — evidence identify/collect/acquire/preserve.
+- **ISO/IEC 27041/27042/27043** — method assurance, analysis, process.
+- **ISO/IEC 17025** — lab competence.
+- **RFC 3227** — order of volatility.
+- **IT Act 2000 s.65B** — electronic record certificate.
+
+**Golden thread:** har stage ka output next stage ka input hai — aur har stage documented.
+
+**Diagram:** Refer to the Digital forensics — scope, history aur rules diagram.`,
+    diagram: 'df-intro',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq63',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.2',
+    question: `Differentiate cyber forensics and digital forensics with examples.`,
+    answer: `**Cyber forensics:** sirf cyber offences par lagne wala branch. **Digital forensics:** umbrella discipline — kisi bhi digital device/data ka examination.
+
+| Point | Cyber forensics | Digital forensics |
+|---|---|---|
+| Scope | cybercrime | all digital evidence |
+| Crime | hacking, malware, phishing, breach | fraud, HR, civil, accident, tax |
+| Evidence | logs, PCAP, malware, web/DB | disk, mobile, media, IoT, e-discovery |
+| Law | IT Act 66/66C/66D + BNS | Evidence/BSA law + civil + IT Act 65B |
+| Stakeholder | cyber cell, CERT-In, SOC | police, civil court, HR, insurance |
+| Tools | Zeek, Wireshark, Volatility, YARA | EnCase, FTK, Autopsy, Cellebrite, Axiom |
+| Output | cybercrime report | court/disciplinary report |
+
+**Examples:**
+- **Cyber forensic:** server intrusion — access log, webshell, C2 beacon.
+- **Digital forensic (non-cyber):** accident case mein vehicle ECU speed data.
+
+**Common:** methodology, tools, hashing, chain of custody, ISO 27037, 65B.
+
+**Exam line:** "Har cyber forensic investigation digital forensics hai, par ulta zaroori nahi."
+
+**Diagram:** Refer to the Cyber forensics vs digital forensics — scope map diagram.`,
+    diagram: 'df-vs-cyber',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq64',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.2',
+    question: `Explain the role of digital forensics in civil, corporate and non-cyber investigations.`,
+    answer: `Digital forensics jahan bhi digital data evidence ban sakta hai, wahan lagti hai.
+
+**1. Corporate disciplinary / HR**
+- Data exfiltration (USB history, cloud sync), policy violation, harassment mails.
+- Output: HR action ke liye report.
+
+**2. Civil disputes and e-discovery**
+- Contract mails, document versions, IP theft, vendor dispute.
+- Metadata (author, revision) aur timeline decisive.
+
+**3. Fraud and financial investigation**
+- Fake invoices, manipulated spreadsheets, benami accounts.
+- File ka edit history + mail trail.
+
+**4. Insurance and accident**
+- Vehicle ECU/infotainment, dashcam, GPS, phone location.
+- Speed/brake data se claim verify.
+
+**5. Missing person / death investigation**
+- CDR, GPS, social media, CCTV DVR recovery.
+
+**6. Regulatory and compliance**
+- Access logs, retention proof, DPDP/privacy compliance evidence.
+
+**Cherry on top:** in cases mein malware ya network attack involved nahi hota — focus **artefact + timeline + authorisation** par hota hai.
+
+**Diagram:** Refer to the Cyber forensics vs digital forensics — scope map diagram.`,
+    diagram: 'df-vs-cyber',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq65',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.3',
+    question: `Explain the roles of personnel involved in a digital forensic investigation.`,
+    answer: `Forensic investigation team effort hai — har role ka defined kaam.
+
+| Role | Responsibility |
+|---|---|
+| First responder | scene secure, device state document, volatile data preserve, seal |
+| Forensic examiner | image acquire, artefacts examine, timeline, report |
+| Lab / quality manager | SOP, ISO 17025 accreditation, competency, audits |
+| Incident responder | attack contain + evidence preserve |
+| Legal counsel | scope, authorisation, admissibility |
+| Expert witness | court testimony, cross-examination |
+| Evidence custodian | chain of custody, storage log, access control |
+
+**Separation of duties:** examiner aur custodian alag — tampering ka risk kam, independence bani rehti hai.
+
+**Skills required:** file systems, OS internals, network, mobile, law, report writing, testimony.
+
+**Documentation:** har role apna action record kare — date/time, kya kiya, tool version — reproducibility ke liye.
+
+**Diagram:** Refer to the Forensic roles aur lab environment diagram.`,
+    diagram: 'df-role',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq66',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.3',
+    question: `Describe the laboratory environment required for digital forensics.`,
+    answer: `Environment evidence ko **defensible** banata hai.
+
+**1. Physical**
+- Controlled access, CCTV, visitor log, locked evidence room.
+- Fire/flood protection, ESD-safe area, Faraday bags.
+
+**2. Technical**
+- Dedicated forensic workstations + **hardware write blockers**.
+- Imaging + hashing tools; isolated analysis network (production se koi path nahi).
+- Malware lab: snapshot VMs, host-only network, INetSim.
+
+**3. Evidence storage**
+- Sealed, tagged, air-gapped/encrypted, access log, retention policy.
+
+**4. Quality**
+- SOP, tool validation records (NIST CFTT), competency, proficiency testing.
+- **ISO/IEC 17025** accreditation, internal audits.
+
+**5. Legal/ethical**
+- Authorisation, privacy (DPDP), impartiality, confidentiality, 65B process.
+
+**6. Organisational**
+- Budget, trained staff, escalation path, legal hold.
+
+**Common failures:** shared analyst laptops, internet-connected analysis machines, unsealed evidence.
+
+**Diagram:** Refer to the Forensic roles aur lab environment diagram.`,
+    diagram: 'df-role',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq67',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.4',
+    question: `Explain forensic hardware with examples and its importance.`,
+    answer: `Forensic hardware evidence ko bina badle padhne ke liye zaroori hai.
+
+1. **Write blocker** — read-only access; hardware blockers (Tableau, CRU, WiebeTech) courtroom preferred, software blockers OS-dependent.
+2. **Forensic duplicator** — parallel cloning with built-in hash (Logicube, Tableau TD3).
+3. **Forensic workstation** — high RAM/CPU, dedicated write-blocked ports, sirf forensic tools.
+4. **Mobile extraction kit** — Cellebrite UFED, Oxygen, Magnet; logical/file-system/physical extraction.
+5. **Faraday bag/shield** — mobile ko network se isolate (remote wipe se bachav).
+6. **ESD protection** — mat, wrist strap, anti-static bags.
+7. **Verified blank media + tamper-evident seals.**
+8. **Hash/verification devices** — SHA-256/MD5 checks.
+
+**Importance:**
+- Integrity + authenticity (original unchanged).
+- Hash validation possible.
+- Court defensibility ("process ne data modify nahi kiya").
+- Metadata safety (\`$LogFile\`, access time).
+
+**Document:** serial number, firmware version, use time — chain of custody ka hissa.
+
+**Diagram:** Refer to the Forensic software aur hardware stack diagram.`,
+    diagram: 'df-hw-sw',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq68',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.4',
+    question: `Explain forensic software categories, container formats and tool selection criteria.`,
+    answer: `**Categories:**
+
+| Category | Purpose | Examples |
+|---|---|---|
+| Imaging | image + hash | FTK Imager, EnCase, Guymager, dd |
+| Suites | artefact + report | Autopsy, FTK, X-Ways, Nuix |
+| Memory | RAM analysis | Volatility 3, Rekall, DumpIt |
+| Timeline | super-timeline | Plaso, Timesketch |
+| Network | PCAP/flow | Wireshark, Zeek, NetworkMiner |
+| Recovery | deleted data | PhotoRec, Scalpel, TestDisk |
+| Malware | static/dynamic | Ghidra, IDA, CAPA, YARA |
+
+**Container formats:**
+- **E01** — compression + metadata + embedded hash (widely accepted).
+- **AFF4** — open, scalable, cloud-friendly.
+- **raw/dd** — simple, no metadata (hash separately).
+- **L01** — logical evidence file.
+
+**Selection criteria:**
+1. Validated (NIST CFTT report / internal test).
+2. Licensed and legally usable.
+3. Supports required file systems, devices, formats.
+4. Hashing + audit log + read-only enforcement.
+5. Reproducible output.
+6. Court-friendly reporting.
+7. Cost, training, support.
+
+**Diagram:** Refer to the Forensic software aur hardware stack diagram.`,
+    diagram: 'df-hw-sw',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq69',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.5',
+    question: `Explain the technical properties of digital evidence.`,
+    answer: `Technical properties evidence ke behaviour ko describe karti hain.
+
+1. **Latent** — naked eye se nahi dikhti; tools se interpret (hex, parsers).
+2. **Fragile** — ek mount/boot/write se timestamps aur journals badal jaate hain.
+3. **Volatile** — RAM, swap, network state, encryption keys; power off = gone.
+4. **Duplicable** — bit-stream image exact copy; original sealed reh sakta hai.
+5. **Voluminous** — TB-scale data, millions of events; triage zaroori.
+6. **Time-sensitive** — log rotation, overwrite, retention expiry.
+7. **Trans-border** — cloud data doosre jurisdiction mein.
+
+**Implications:**
+- Fragile → write blocker + image.
+- Volatile → order of volatility (RAM first).
+- Duplicable → original preserved, copy par analysis.
+- Voluminous → hash sets + filters.
+- Time-sensitive → immediate collection + retention policy.
+- Trans-border → legal process / MLAT.
+
+**Exam line:** "Har property ek control demand karti hai — property aur control ki jodi yaad rakho."
+
+**Diagram:** Refer to the Properties of digital evidence diagram.`,
+    diagram: 'df-properties',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq70',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.5',
+    question: `Explain the evidentiary properties of digital evidence and how each is proved.`,
+    answer: `Evidentiary properties decide karti hain ki evidence court mein kitni usable hai (ISO/IEC 27037).
+
+| Property | Meaning | Kaise prove |
+|---|---|---|
+| Accuracy | data sahi capture | validated tools, no truncation |
+| Availability | evidence available rahe | preservation + indexing |
+| Completeness | poora relevant data | full image, exculpatory search |
+| Granularity | detail level | raw image + carving |
+| Reliability | process sound + repeatable | SOP + peer review |
+| Authenticity | source verified | hash, serial, logs, custody |
+| Integrity | unchanged | hash match, write blocker |
+| Relevance | case se juda | case theory linkage |
+| Legality | authorised | warrant/consent, privacy |
+
+**Proof toolkit:** SHA-256 hash at acquisition + verification, chain of custody form, write-blocker log, sealed exhibits, validated tool reports, 65B certificate.
+
+**Kyun important:** defence inhi properties par attack karti hai — ek weak property poore case ko challenge kar deti hai.
+
+**Diagram:** Refer to the Properties of digital evidence diagram.`,
+    diagram: 'df-properties',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq71',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.6',
+    question: `Explain the methods used to recover deleted digital evidence.`,
+    answer: `Deleted data file system ke behaviour par depend karta hai.
+
+1. **Metadata-based recovery** — NTFS \`$MFT\` "not in use", FAT \`E5\` entry, ext4 inode link count 0. Tools: Autopsy, FTK, TestDisk.
+2. **File carving** — header/footer signature se rebuild (\`%PDF\`, \`PK\`, JFIF). Tools: PhotoRec, Scalpel, Foremost.
+3. **Unallocated and slack space** — free clusters + last block waste.
+4. **Recycle bin/trash** — \`$Recycle.Bin\`, \`~/.local/share/Trash\`.
+5. **Shadow copies/snapshots** — VSS, APFS, LVM.
+6. **Database log replay** — binlog/WAL/redo.
+7. **Memory carving** — RAM dump se in-memory files/keys.
+8. **Backup/log restore** — SIEM, backup catalog.
+
+**Limitations:** SSD TRIM, encryption, secure wipe, overwrite, physical damage.
+
+**Rule:** recovery copy par karo, original untouched; har attempt document karo; fail hone par alternative evidence dhoondho.
+
+**Diagram:** Refer to the Recovering aur preserving digital evidence diagram.`,
+    diagram: 'df-recover',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq72',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.6',
+    question: `Explain how digital evidence is preserved from seizure to court.`,
+    answer: `**1. Seizure:** document device state (photo, serial, screen), seal + label, authority check.
+**2. Power decision:** running system → RAM first; warna power off + image.
+**3. Write protection:** hardware write blocker; original kabhi mount na karo; mobile Faraday mein.
+**4. Acquisition:** bit-stream image (E01/AFF4) + SHA-256; verification hash match.
+**5. Copies:** working + archive, alag locations, both sealed.
+**6. Storage:** controlled temperature/humidity, ESD-safe, locked room, access log.
+**7. Chain of custody:** har transfer signed (from, to, date, time, seal status).
+**8. Legal controls:** legal hold, authorisation, privacy, 65B certificate.
+**9. Documentation:** notes, tool versions, hash log, photographs.
+**10. Disposal:** retention ke baad authorised disposal, recorded.
+
+**Common mistakes:** original par kaam, hash na lena, unsealed storage, custody gap.
+
+**Diagram:** Refer to the Recovering aur preserving digital evidence diagram.`,
+    diagram: 'df-recover',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq73',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.7',
+    question: `Explain the categories of advanced forensic tools with examples.`,
+    answer: `| Category | Purpose | Examples |
+|---|---|---|
+| Commercial suites | disk + review + report | EnCase, FTK, X-Ways, Nuix, Belkasoft |
+| Mobile | extraction + app parsing | Cellebrite UFED/PA, AXIOM, Oxygen |
+| Memory | RAM analysis | Volatility 3, Rekall, WinPmem |
+| Timeline/triage | super-timeline, endpoints | Plaso, Timesketch, KAPE, Velociraptor |
+| Network | PCAP/flow | Zeek, Wireshark, Arkime |
+| Carving | deleted/embedded | bulk_extractor, PhotoRec |
+| Cloud | SaaS/IaaS | AXIOM Cloud, Cellebrite Cloud, CloudTrail |
+| Malware/AI | analysis + triage | Ghidra, CAPA, YARA, ML review |
+
+**Advanced capabilities:** multi-source ingestion, super-timeline, hash-set de-duplication, entity/link analysis, keyword/regex/YARA search, ML triage, collaboration, audit logs.
+
+**Rule:** validated (NIST CFTT), licensed, version documented, reproducible.
+
+**Diagram:** Refer to the Advanced forensic tools — capability map diagram.`,
+    diagram: 'df-tools',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq74',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.7',
+    question: `Compare commercial and open-source forensic tools and explain when to use each.`,
+    answer: `| Point | Commercial | Open source |
+|---|---|---|
+| Examples | EnCase, FTK, X-Ways, Nuix, AXIOM | Autopsy, Volatility, Plaso, Zeek, Ghidra |
+| Cost | high licence | free |
+| Support | vendor + training | community |
+| Court acceptance | documented validation | accepted, validation record needed |
+| Integration | end-to-end | specialised separate tools |
+| Extensibility | plugins | Python modules, custom parsers |
+| Transparency | closed | auditable |
+
+**Commercial kab:** bade criminal cases, multi-format end-to-end workflow, team collaboration, vendor support aur court acceptance chahiye.
+
+**Open source kab:** budget-constrained labs, training/research, deep specialised work (memory, timeline, network, malware), custom automation.
+
+**Best practice:** hybrid — primary commercial + cross-verification open source (dual-tool verification).
+
+**Diagram:** Refer to the Advanced forensic tools — capability map diagram.`,
+    diagram: 'df-tools',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq75',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.8',
+    question: `Explain the criteria and techniques for selecting relevant digital evidence.`,
+    answer: `**Criteria:**
+
+| Criterion | Question |
+|---|---|
+| Relevance | case facts se juda hai? |
+| Materiality | outcome badal sakta hai? |
+| Reliability | source trustworthy hai? |
+| Proportionality | effort vs value? |
+| Legal scope | warrant/policy ke andar? |
+
+**Techniques (data reduction):**
+1. Hash sets (NSRL) — known-good files exclude.
+2. Date/time window — incident period, UTC normalized.
+3. Custodian/account filter.
+4. Keyword + regex.
+5. File-type/extension filter.
+6. Communication participants.
+7. Deduplication.
+8. Anomaly (renamed, encrypted, stego).
+
+**Documentation:** query, filter, tool version, kab chalaya, kya exclude kiya aur kyun.
+
+**Prioritisation:** hot/warm/cold buckets for deep analysis.
+
+**Exam line:** undocumented selection court mein challenge hota hai.
+
+**Diagram:** Refer to the Selecting aur analyzing digital evidence diagram.`,
+    diagram: 'df-select',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq76',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.8',
+    question: `Explain how digital evidence is analysed and how findings are built.`,
+    answer: `1. **Artefact verification** — file, timestamp, owner, source independently confirm.
+2. **Timeline** — Plaso/Autopsy super-timeline, gaps aur sequence.
+3. **Correlation** — disk + memory + network + cloud + mobile.
+4. **Hypothesis testing** — competing explanations (accidental, authorised, innocent) formally test.
+5. **Anti-forensic check** — timestamp mismatch, missing logs, wipe artefacts.
+6. **Impact quantification** — records, data volume, financial loss, users affected.
+7. **Attribution** — account, IP, device, session.
+8. **Documentation** — chain of reasoning (artefact → inference → conclusion) + limitations.
+9. **Peer review** — independent examiner.
+10. **Reporting** — findings, evidence table, timeline, 65B.
+
+**Bias controls:** falsification, corroboration, dual-tool, automation spot-checks, blind review.
+
+**Exam line:** "Finding tab valid hai jab wo galat sabit ho sakti ho aur test pass kar jaye."
+
+**Diagram:** Refer to the Selecting aur analyzing digital evidence diagram.`,
+    diagram: 'df-select',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq77',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.9',
+    question: `Explain the layers of validation of digital evidence.`,
+    answer: `**1. Tool validation**
+- NIST CFTT reports, internal known-answer tests, regression after upgrade.
+- Version/firmware records, licence validity.
+
+**2. Process verification**
+- Hash recompute + match (acquisition, verification, working copy).
+- Dual-tool parsing of critical artefacts.
+- Write-blocker log, SOP compliance, contemporaneous notes.
+- Second examiner review.
+
+**3. Evidence validation**
+- Serial/IMEI, exhibit number, seal intact.
+- Custody unbroken, timestamps consistent.
+- Independent corroboration.
+
+**4. Legal admissibility**
+- India: **Section 65B** certificate (device, regular course, proper working).
+- US: **Daubert** — testability, error rate, peer review, general acceptance.
+- Expert qualification + methodology annexure.
+
+**Invalidation factors:** hash mismatch, custody gap, unvalidated tool, undocumented steps, unauthorised acquisition.
+
+**Diagram:** Refer to the Validating the evidence — 4 layers diagram.`,
+    diagram: 'df-validate',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq78',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.9',
+    question: `Differentiate validation and verification in digital forensics with examples.`,
+    answer: `| Point | Validation | Verification |
+|---|---|---|
+| Question | tool sahi result deta hai? | is case mein step sahi hua? |
+| Level | general (tool/process) | case-specific |
+| Timing | use se pehle + upgrade ke baad | har acquisition/analysis |
+| Evidence | NIST CFTT, known-answer test | hash match, logs, dual-tool |
+| Owner | lab/quality manager | examiner |
+| Output | validation report | verification log |
+
+**Validation example:** test disk jiska hash pehle se pata hai → image banao → hash match → tool validated.
+
+**Verification example:** case ki disk ka image → hash original se match → verified.
+
+**Analogy:** validation = scale calibrate karna; verification = us par aaj ka weight check karna.
+
+**Dono zaroori:** court pehle tool ki reliability (validation) aur phir is case ke process (verification) par sawaal karti hai.
+
+**Diagram:** Refer to the Validating the evidence — 4 layers diagram.`,
+    diagram: 'df-validate',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq79',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.10',
+    question: `Explain the standards governing digital forensics.`,
+    answer: `| Standard | Coverage |
+|---|---|
+| ISO/IEC 27037 | evidence identify, collect, acquire, preserve |
+| ISO/IEC 27041 | method assurance |
+| ISO/IEC 27042 | analysis and interpretation |
+| ISO/IEC 27043 | investigation principles/process |
+| ISO/IEC 17025 | lab competence and accreditation |
+| NIST SP 800-86 | forensics in incident response |
+| NIST SP 800-101 | mobile forensics |
+| SWGDE / ACPO | best practice guides |
+| RFC 3227 | order of volatility |
+| IT Act 2000 s.65B | electronic record certificate (India) |
+
+**Standard ka fayda:**
+1. Court acceptance aur credibility.
+2. Repeatable process across examiners.
+3. Lab accreditation aur audit pass.
+4. Tool validation discipline.
+5. Clear roles aur documentation.
+
+**Practices jo standards se aate hain:** SOP, validation, competency, peer review, audit, exhibit management, lab security.
+
+**Diagram:** Refer to the Forensic technology aur practices diagram.`,
+    diagram: 'df-tech',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq80',
+    unit: '4',
+    subjectId: 'cyber-security',
+    topicNumber: '4.10',
+    question: `Discuss emerging technologies in digital forensics and the challenges they create.`,
+    answer: `1. **Cloud/SaaS forensics** — CloudTrail, M365 audit, Workspace audit; challenges: jurisdiction, provider cooperation, retention.
+2. **Remote/live acquisition at scale** — Velociraptor, KAPE, EDR; challenges: integrity, bandwidth, authorisation.
+3. **Memory + container/K8s** — RAM, ephemeral pods, serverless; challenges: short-lived artefacts.
+4. **IoT, vehicle, drone** — telematics, ECU/CAN, flight logs; challenges: proprietary formats, no standard tools.
+5. **Blockchain tracing** — wallet clustering, exchange records; challenges: pseudonymity, cross-border.
+6. **AI/ML in DFIR** — triage, clustering, OCR; challenges: explainability, bias, validation, human oversight.
+7. **Automation/DFIR platforms** — playbooks, pipelines; challenges: pipeline drift, unvalidated scripts.
+
+**Common response:** new tech par bhi wahi purane rules — validation, documentation, legality, reproducibility.
+
+**Diagram:** Refer to the Forensic technology aur practices diagram.`,
+    diagram: 'df-tech',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+// ========================================================
   // Software Testing Unit 1 — Fundamentals of Software Quality Assurance
   // ========================================================
   {
