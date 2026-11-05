@@ -127,6 +127,19 @@ import {
   MLAIStackDiagram,
   DSRolesDiagram,
   StatisticsFoundationDiagram,
+  PreprocessingOverviewDiagram,
+  PreprocessingNeedDiagram,
+  DataCleaningDiagram,
+  DataIntegrationDiagram,
+  DataTransformationDiagram,
+  DataReductionDiagram,
+  DataWarehouseIntroDiagram,
+  WarehouseArchitectureDiagram,
+  EtlProcessDiagram,
+  FactDimensionDiagram,
+  StarSchemaDiagram,
+  SnowflakeSchemaDiagram,
+  OlapVsOltpDiagram,
 } from './DataScienceDiagrams';
 import {
   WebStackDiagram,
@@ -836,6 +849,32 @@ export function Diagram({ type }) {
       return <DSRolesDiagram />;
     case 'stats-foundation':
       return <StatisticsFoundationDiagram />;
+    case 'ds-preprocessing':
+      return <PreprocessingOverviewDiagram />;
+    case 'ds-preprocessing-need':
+      return <PreprocessingNeedDiagram />;
+    case 'ds-cleaning':
+      return <DataCleaningDiagram />;
+    case 'ds-integration':
+      return <DataIntegrationDiagram />;
+    case 'ds-transformation':
+      return <DataTransformationDiagram />;
+    case 'ds-reduction':
+      return <DataReductionDiagram />;
+    case 'ds-dw-intro':
+      return <DataWarehouseIntroDiagram />;
+    case 'ds-dw-architecture':
+      return <WarehouseArchitectureDiagram />;
+    case 'ds-etl':
+      return <EtlProcessDiagram />;
+    case 'ds-fact-dim':
+      return <FactDimensionDiagram />;
+    case 'ds-star-schema':
+      return <StarSchemaDiagram />;
+    case 'ds-snowflake-schema':
+      return <SnowflakeSchemaDiagram />;
+    case 'ds-olap-oltp':
+      return <OlapVsOltpDiagram />;
     case 'web-stack':
       return <WebStackDiagram />;
     case 'internet-www':

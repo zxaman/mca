@@ -1,5 +1,6 @@
 import { dataScienceExtraTopics } from './dataScienceUnit1b.js';
 import { dataScienceFinalTopics } from './dataScienceUnit1c.js';
+import { dataScienceUnit2Topics } from './dataScience2.js';
 
 // ============================================================
 // DATA SCIENCE — Unit I: Fundamentals of Data Science
@@ -460,5 +461,11 @@ export const dataScienceUnits = [
       ...dataScienceExtraTopics,
       ...dataScienceFinalTopics,
     ],
+  },
+  {
+    id: 'unit-2',
+    number: '2',
+    name: 'Data Pre-processing and Data Warehouse',
+    topics: dataScienceUnit2Topics,
   },
 ];

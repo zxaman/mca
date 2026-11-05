@@ -14,7 +14,7 @@ adding a topic is just adding an object.
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 5 | 64 | Live |
-| Data Science | DS | 1 | 12 | Live — Unit I |
+| Data Science | DS | 2 | 25 | Live — Units I–II |
 | Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
@@ -25,6 +25,25 @@ distinction between data science, BI, statistics, ML and AI, machine learning & 
 intelligence (AI ⊃ ML ⊃ DL, the three learning types, the 6-step training loop), roles in a data
 science team (data analyst, data scientist, data engineer, ML engineer), and the importance of
 mathematical statistics (descriptive, probability, inference, regression).
+
+**Data Science (Unit II — Data Pre-processing and Data Warehouse)** has 13 topics in two halves.
+*Pre-processing:* introduction to data pre-processing (the four techniques, why analysts spend 60–80%
+of their time here, GIGO), the need for pre-processing (incomplete, noisy, inconsistent and redundant
+data and the chain reaction from wrong input to wrong decision), data cleaning (missing-value
+imputation, noise handling by binning/regression/clustering, the IQR and z-score outlier rules,
+duplicates and standardisation), data integration (schema matching, entity resolution, redundancy
+via correlation and chi-square, value conflicts and lineage), data transformation (min-max and
+z-score formulas, decimal scaling, one-hot vs label encoding, discretisation and concept hierarchies,
+smoothing, aggregation and attribute construction) and data reduction (feature selection vs PCA,
+sampling and numerosity reduction, lossless/lossy compression and leakage care). *Warehouse:* data
+warehouse and its characteristics (Inmon's subject-oriented, integrated, time-variant and
+non-volatile model, with an OLTP comparison), the three-tier warehouse architecture (sources,
+staging, ETL, central warehouse, metadata, data marts, BI tools, top-down vs bottom-up), the ETL
+process (full/incremental/CDC extraction, transformation rules, load strategies, SCD types 1–3,
+ETL vs ELT and data-quality checks), fact and dimension tables (measures vs context, grain, fact
+types), the star schema, the snowflake schema (normalised dimensions and the star-vs-snowflake
+trade-off) and OLAP vs OLTP (the eight-point comparison, the five OLAP operations roll-up,
+drill-down, slice, dice and pivot, and ROLAP/MOLAP/HOLAP).
 
 **Web Technology (Unit I — HTML and XML)** has 19 topics: introduction to web technology, internet
 and WWW, web servers, website planning and design issues, structure of an HTML document, headings /
@@ -124,7 +143,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 24 · Web Technology 88 (205 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 37 · Web Technology 88 (218 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -170,6 +189,7 @@ src/
 │   ├── softwareTesting4.js    # STQA Unit IV (Testing Strategies)
 │   ├── softwareTesting5.js    # STQA Unit V (Software Test Automation)
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
+│   ├── dataScience2.js        # Data Science Unit II (pre-processing + warehouse)
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
 │   ├── webTechnology7.js / 8  # Web Technology Unit III (PHP — 3.1 to 3.8)
