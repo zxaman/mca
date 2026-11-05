@@ -68,6 +68,19 @@ import {
   SoftwareTestingBasicsOverviewDiagram,
   TestPlanAndTestCasesOverviewDiagram,
   DefectManagementOverviewDiagram,
+  StaticTestingDiagram,
+  StructuralTestingDiagram,
+  CodeCoverageDiagram,
+  CyclomaticComplexityDiagram,
+  MutationTestingDiagram,
+  RequirementBasedTestingDiagram,
+  PositiveNegativeTestingDiagram,
+  BoundaryValueDiagram,
+  EquivalencePartitioningDiagram,
+  StateGraphTestingDiagram,
+  CompatibilityTestingDiagram,
+  DocumentationTestingDiagram,
+  DomainTestingDiagram,
 } from './SoftwareTestingDiagrams';
 
 import {
@@ -885,6 +898,32 @@ export function Diagram({ type }) {
       return <PhpFormValidationDiagram />;
     case 'codeigniter-mvc':
       return <CodeIgniterMvcDiagram />;
+    case 'st3-static':
+      return <StaticTestingDiagram />;
+    case 'st3-structural':
+      return <StructuralTestingDiagram />;
+    case 'st3-coverage':
+      return <CodeCoverageDiagram />;
+    case 'st3-complexity':
+      return <CyclomaticComplexityDiagram />;
+    case 'st3-mutation':
+      return <MutationTestingDiagram />;
+    case 'st3-requirement':
+      return <RequirementBasedTestingDiagram />;
+    case 'st3-positive-negative':
+      return <PositiveNegativeTestingDiagram />;
+    case 'st3-bva':
+      return <BoundaryValueDiagram />;
+    case 'st3-equivalence':
+      return <EquivalencePartitioningDiagram />;
+    case 'st3-state-graph':
+      return <StateGraphTestingDiagram />;
+    case 'st3-compatibility':
+      return <CompatibilityTestingDiagram />;
+    case 'st3-documentation':
+      return <DocumentationTestingDiagram />;
+    case 'st3-domain':
+      return <DomainTestingDiagram />;
     default:
       return null;
   }

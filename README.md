@@ -13,7 +13,7 @@ adding a topic is just adding an object.
 |---|---|---|---|---|
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
-| Software Testing & QA | STQA | 2 | 21 | Live |
+| Software Testing & QA | STQA | 3 | 34 | Live |
 | Data Science | DS | 1 | 12 | Live — Unit I |
 | Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
@@ -73,11 +73,24 @@ sessions (`setcookie`/`$_COOKIE` vs `session_start()`/`$_SESSION`, the login→l
 handling and validation (pipeline, validation rules, sticky forms, POST/Redirect/GET), and an
 introduction to **CodeIgniter** (MVC, request flow, controller/model/view, folder structure).
 
+**Software Testing & QA (Unit III — Software Testing Techniques)** has 13 topics in two halves.
+*White-box:* static testing (human reviews — informal, walkthrough, technical review, Fagan
+inspection — and tool based static analysis: linters, style checkers, SAST, metrics), structural
+testing at unit level (independent paths, stubs/drivers, AAA), code coverage (statement → branch →
+condition → path → MC/DC, coverage % formula, why 100% is not bug-free), code complexity (cyclomatic
+complexity `V(G) = E − N + 2P`, basis path testing, Halstead, cognitive complexity) and mutation
+testing (mutants, killed/survived/equivalent, mutation score). *Black-box:* requirement based
+testing with the RTM, positive vs negative testing, boundary value analysis (`a−1, a, a+1, nominal,
+b−1, b, b+1`), equivalence partitioning, state transition / graph based testing (state, transition
+and path coverage plus invalid transitions), compatibility testing (backward/forward, cross-browser,
+device, network, matrix), user documentation testing (accuracy, completeness, clarity, consistency,
+usability, currency) and domain testing with its closure, shift, missing and extra boundary errors.
+
 PHP cannot execute in a browser, so these topics never fake a live preview: each one ships the code
 beside a **`php 8.3 · server output`** panel that shows the exact stdout the interpreter produces,
 with the caveat stated in the panel itself.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 88 (162 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 21 · Data Science 24 · Web Technology 88 (175 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -119,6 +132,7 @@ src/
 ├── data/
 │   ├── topics.js              # subjects + units (BI / Cyber / STQA / DS / WT)
 │   ├── dataScience.js         # Data Science units (imported into topics.js)
+│   ├── softwareTesting3.js    # STQA Unit III (Software Testing Techniques)
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
