@@ -3880,3 +3880,1091 @@ export function SupportConfidenceDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Data Science — Unit V diagrams (part 1 of 3)
+// ============================================================
+
+// 5.1 — visualization pipeline + channel accuracy
+export function VisualizationPipelineDiagram() {
+  const stages = [
+    { x: 36, title: 'RAW DATA', sub: ['rows, columns', 'types, units'], color: '#8a95ad', note: 'clean + aggregate' },
+    { x: 215, title: 'ENCODING', sub: ['mark + channel', 'position, length'], color: '#00d4ff', note: 'chart type chuno' },
+    { x: 394, title: 'PERCEPTION', sub: ['eye + brain', '250 ms pre-attentive'], color: '#c4ff00', note: 'Gestalt + colour' },
+    { x: 573, title: 'INSIGHT', sub: ['pattern, outlier', 'decision'], color: '#00ff88', note: 'explore, phir explain' },
+  ];
+  const channels = [
+    { label: 'position (common scale)', w: 240, v: 'sabse accurate' },
+    { label: 'position (non-aligned)', w: 205, v: '' },
+    { label: 'length', w: 175, v: 'bar chart' },
+    { label: 'angle / slope', w: 140, v: 'pie chart' },
+    { label: 'area', w: 105, v: 'bubble / treemap' },
+    { label: 'colour hue', w: 70, v: 'sirf category' },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data visualization pipeline from raw data through encoding and perception to insight, plus the accuracy ranking of visual channels">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Data Visualization — pipeline aur encodings
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        data → encoding → perception → insight · aankh position aur length sabse achhe se padhti hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="146" rx="9" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.28)" />
+        {stages.map((s, i) => (
+          <g key={s.title}>
+            <rect x={s.x} y="88" width="170" height="72" rx="8" fill="rgba(255,255,255,0.04)" stroke={s.color} strokeOpacity="0.55" />
+            <text x={s.x + 85} y="110" textAnchor="middle" fill={s.color} fontSize="10.5" fontWeight="800" fontFamily={FONT}>{s.title}</text>
+            <text x={s.x + 85} y="126" textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{s.sub[0]}</text>
+            <text x={s.x + 85} y="139" textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{s.sub[1]}</text>
+            <text x={s.x + 85} y="180" textAnchor="middle" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>{s.note}</text>
+            {i < 3 && (
+              <g stroke="#c4ff00" strokeWidth="1.6">
+                <line x1={s.x + 174} y1="124" x2={s.x + 200} y2="124" />
+                <line x1={s.x + 195} y1="120" x2={s.x + 200} y2="124" />
+                <line x1={s.x + 195} y1="128" x2={s.x + 200} y2="124" />
+              </g>
+            )}
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="222" width="760" height="166" rx="9" fill="rgba(196,255,0,0.04)" stroke="rgba(196,255,0,0.25)" />
+        <text x="34" y="242" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>
+          CHANNEL ACCURACY — Cleveland &amp; McGill ranking
+        </text>
+        {channels.map((c, i) => (
+          <g key={c.label}>
+            <text x="34" y={264 + i * 20} fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{c.label}</text>
+            <rect x="214" y={256 + i * 20} width={c.w} height="11" rx="3" fill={i < 2 ? '#c4ff00' : i < 4 ? '#00d4ff' : '#ff8800'} opacity="0.75" />
+            <text x={222 + c.w} y={264 + i * 20} fill="#8a95ad" fontSize="7.6" fontFamily={FONT}>{c.v}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="20" y="400" width="760" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="422" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>TEEN SABAK</text>
+        <text x="34" y="444" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Anscombe: chaar datasets ka r = 0.816 same, shapes bilkul alag → pehle plot karo
+        </text>
+        <text x="34" y="464" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Pre-attentive: colour aur size 250 ms mein dikhte hain → exception highlight, baaki grey
+        </text>
+        <text x="34" y="484" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Data-ink ratio: 3-D, shadow, gradient = chartjunk — hata do
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.2 — challenges: truncated axis, pie overload, overplotting, rainbow scale
+export function VisualizationChallengesDiagram() {
+  const badBars = [
+    { v: '99', h: 26 },
+    { v: '100', h: 44 },
+    { v: '101', h: 62 },
+  ];
+  const dots = [];
+  for (let i = 0; i < 46; i += 1) {
+    const a = (i * 2.399) % 6.283;
+    const r = 6 + ((i * 37) % 46);
+    dots.push([170 + r * Math.cos(a), 309 + r * 0.6 * Math.sin(a)]);
+  }
+  const rainbow = ['#ff0044', '#ff7a00', '#ffd400', '#7dff00', '#00ff88', '#00d4ff', '#0047ff', '#aa00ff'];
+  const sequential = ['#d9ecff', '#b3d6ff', '#8cc0ff', '#66aaff', '#4094ff', '#1a7eff', '#0064d9', '#004799'];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Four common visualization challenges: truncated axis, too many pie slices, overplotting and rainbow colour scale, with their fixes">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Challenges — char sabse aam galtiyan
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        numbers sahi, message galat · har problem ka ek standard fix
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="370" height="156" rx="8" fill="rgba(255,122,144,0.05)" stroke="rgba(255,122,144,0.3)" />
+        <text x="34" y="84" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>1 · TRUNCATED Y-AXIS</text>
+        <line x1="56" y1="196" x2="214" y2="196" stroke="rgba(255,255,255,0.25)" />
+        {badBars.map((b, i) => (
+          <g key={b.v}>
+            <rect x={62 + i * 50} y={196 - b.h} width="30" height={b.h} rx="2" fill="#ff7a90" opacity="0.85" />
+            <text x={77 + i * 50} y={190 - b.h} textAnchor="middle" fill="#ff7a90" fontSize="7.6" fontWeight="700" fontFamily={FONT}>{b.v}</text>
+          </g>
+        ))}
+        <text x="228" y="182" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>axis 98 se</text>
+        <text x="228" y="194" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>2x farq lagta hai</text>
+        <text x="34" y="212" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: zero baseline + honest label</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="410" y="64" width="370" height="156" rx="8" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.3)" />
+        <text x="424" y="84" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>2 · 12-SLICE PIE</text>
+        {rainbow.concat(['#ff4d88', '#88ff00', '#00aaff', '#ffaa00']).map((c, i) => {
+          const a0 = (i / 12) * Math.PI * 2 - Math.PI / 2;
+          const a1 = ((i + 1) / 12) * Math.PI * 2 - Math.PI / 2;
+          const r = 48;
+          const cx = 500;
+          const cy = 142;
+          const x0 = cx + r * Math.cos(a0);
+          const y0 = cy + r * Math.sin(a0);
+          const x1 = cx + r * Math.cos(a1);
+          const y1 = cy + r * Math.sin(a1);
+          return (
+            <path key={c} d={`M${cx} ${cy} L${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1} Z`} fill={rainbow[i % 8]} opacity="0.65" stroke="#0b0f1a" strokeWidth="0.8" />
+          );
+        })}
+        <text x="566" y="132" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>12 slices: koi</text>
+        <text x="566" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>comparison nahi</text>
+        <text x="566" y="160" fill="#ff8800" fontSize="7.6" fontFamily={FONT}>labels bhi overlap</text>
+        <text x="424" y="212" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: sorted horizontal bar chart</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="232" width="370" height="156" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.3)" />
+        <text x="34" y="252" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>3 · OVERPLOTTING</text>
+        <rect x="60" y="266" width="220" height="86" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" />
+        {dots.map(([x, y], i) => (
+          <circle key={i} cx={x} cy={y} r="3.2" fill="#00d4ff" opacity="0.35" />
+        ))}
+        <text x="292" y="296" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>sab points</text>
+        <text x="292" y="308" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>ek jagah →</text>
+        <text x="292" y="320" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>trend nahi</text>
+        <text x="292" y="332" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>dikhta</text>
+        <text x="34" y="376" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: alpha, jitter, hexbin, sampling, facets</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="232" width="370" height="156" rx="8" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.3)" />
+        <text x="424" y="252" fill="#aa00ff" fontSize="9" fontWeight="800" fontFamily={FONT}>4 · RAINBOW vs SEQUENTIAL</text>
+        <text x="424" y="272" fill="#ff7a90" fontSize="8" fontFamily={FONT}>rainbow (jet) — false boundaries</text>
+        {rainbow.map((c, i) => (
+          <rect key={'r' + c} x={424 + i * 42} y="280" width="40" height="20" fill={c} opacity="0.85" />
+        ))}
+        <text x="424" y="322" fill="#00ff88" fontSize="8" fontFamily={FONT}>sequential / viridis — ordered</text>
+        {sequential.map((c, i) => (
+          <rect key={'s' + c} x={424 + i * 42} y="330" width="40" height="20" fill={c} opacity="0.9" />
+        ))}
+        <text x="424" y="376" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: sequential single-hue + colourblind-safe palette</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="400" width="760" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="422" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>FIX KIT</text>
+        <text x="34" y="444" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          zero baseline · sorted bars · max 5–6 pie slices · alpha / hexbin · viridis · colour + label (redundant encoding)
+        </text>
+        <text x="34" y="464" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Simpson&apos;s paradox: aggregate aur grouped view dono dikhao — warna confounding variable chhup jaata hai
+        </text>
+        <text x="34" y="484" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Ethics: baseline, aggregation aur axis range jaan-boojh kar badalna = misleading visualization
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.3 — dashboard types
+export function DashboardTypesDiagram() {
+  const types = [
+    {
+      name: 'OPERATIONAL', color: '#00d4ff', audience: 'supervisors, staff',
+      refresh: 'seconds – minutes', horizon: 'real time',
+      lines: ['call queue', 'server health', 'delivery status'], action: 'fix now',
+    },
+    {
+      name: 'TACTICAL', color: '#00ff88', audience: 'department managers',
+      refresh: 'daily – weekly', horizon: 'days – weeks',
+      lines: ['sales vs target', 'SLA compliance', 'campaign spend'], action: 'adjust plan',
+    },
+    {
+      name: 'STRATEGIC', color: '#ff8800', audience: 'executives, board',
+      refresh: 'monthly – quarterly', horizon: 'months – years',
+      lines: ['revenue growth', 'market share', 'NPS, ESG'], action: 'set strategy',
+    },
+    {
+      name: 'ANALYTICAL', color: '#aa00ff', audience: 'analysts',
+      refresh: 'on demand', horizon: 'any',
+      lines: ['churn root cause', 'drill-down', 'cohort view'], action: 'explain why',
+    },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Four dashboard types: operational, tactical, strategic and analytical with their audience, refresh rate, examples and action">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Dashboard — chaar types
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        type decide hota hai audience + time horizon se · ek screen, 5-second rule
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        {types.map((t, i) => {
+          const x = 24 + i * 192;
+          return (
+            <g key={t.name}>
+              <rect x={x} y="70" width="176" height="196" rx="9" fill="rgba(255,255,255,0.035)" stroke={t.color} strokeOpacity="0.45" />
+              <rect x={x} y="70" width="176" height="26" rx="9" fill={t.color} fillOpacity="0.16" />
+              <text x={x + 88} y="88" textAnchor="middle" fill={t.color} fontSize="9.4" fontWeight="800" fontFamily={FONT}>{t.name}</text>
+              <text x={x + 10} y="114" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>audience</text>
+              <text x={x + 10} y="126" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{t.audience}</text>
+              <text x={x + 10} y="144" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>refresh</text>
+              <text x={x + 10} y="156" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{t.refresh}</text>
+              <text x={x + 10} y="174" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>horizon</text>
+              <text x={x + 10} y="186" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{t.horizon}</text>
+              <line x1={x + 10} y1="196" x2={x + 166} y2="196" stroke="rgba(255,255,255,0.1)" />
+              {t.lines.map((l, j) => (
+                <text key={l} x={x + 10} y={212 + j * 12} fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>· {l}</text>
+              ))}
+              <text x={x + 10} y="256" fill={t.color} fontSize="7.8" fontWeight="700" fontFamily={FONT}>action: {t.action}</text>
+            </g>
+          );
+        })}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="24" y="278" width="752" height="46" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.22)" />
+        <text x="36" y="298" fill="#00d4ff" fontSize="8" fontWeight="700" fontFamily={FONT}>TIME HORIZON</text>
+        <line x1="140" y1="304" x2="700" y2="304" stroke="rgba(255,255,255,0.2)" />
+        <line x1="694" y1="300" x2="700" y2="304" stroke="rgba(255,255,255,0.4)" />
+        <line x1="694" y1="308" x2="700" y2="304" stroke="rgba(255,255,255,0.4)" />
+        <text x="140" y="318" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>real time</text>
+        <text x="380" y="318" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>days – weeks</text>
+        <text x="640" y="318" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>months – years</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="24" y="334" width="752" height="62" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="36" y="354" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>COMPONENTS</text>
+        <text x="36" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          KPI cards (actual vs target) · trend charts · comparisons · filters · alerts / thresholds · drill-down · timestamp
+        </text>
+        <text x="36" y="388" fill="#8a95ad" fontSize="7.8" fontFamily={FONT}>
+          rule: 5–7 KPIs, ek screen, no scroll — sab kuch dikhana dashboard ka sabse bada mistake hai
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="24" y="406" width="752" height="90" rx="9" fill="rgba(196,255,0,0.04)" stroke="rgba(196,255,0,0.25)" />
+        <text x="36" y="426" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>DASHBOARD vs REPORT vs SCORECARD</text>
+        <text x="36" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          dashboard = monitor (kya ho raha hai) · report = detail (poora record) · scorecard = KPI vs target (accountability)
+        </text>
+        <text x="36" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          teeno ek hi data model (star schema) se bante hain, delivery format alag hota hai
+        </text>
+        <text x="36" y="484" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>
+          Definition (Few): most important information, single screen, monitored at a glance
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.4 — dashboard evolution timeline
+export function DashboardEvolutionDiagram() {
+  const gens = [
+    { x: 104, era: '1980s', name: 'Gen 1 · EIS', tech: ['mainframe batch', 'static green screen'], color: '#8a95ad', who: 'executives' },
+    { x: 244, era: '1990s', name: 'Gen 2 · BI + OLAP', tech: ['cubes, star schema', 'scheduled reports'], color: '#00d4ff', who: 'managers' },
+    { x: 384, era: '2000s', name: 'Gen 3 · Self-service', tech: ['Tableau, Qlik', 'in-memory, drag-drop'], color: '#00ff88', who: 'analysts' },
+    { x: 524, era: '2010s', name: 'Gen 4 · Cloud + real time', tech: ['cloud, mobile', 'streaming, embedded'], color: '#ff8800', who: 'all employees' },
+    { x: 664, era: '2020s', name: 'Gen 5 · AI-augmented', tech: ['natural language', 'auto insights, Copilot'], color: '#aa00ff', who: 'employees + customers' },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Evolution of dashboards across five generations from executive information systems to AI-augmented analytics">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Dashboard evolution — paanch generation
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        audience badhi, latency ghati: nightly batch → real time → predictive
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="152" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.12)" />
+        <line x1="52" y1="186" x2="748" y2="186" stroke="rgba(255,255,255,0.22)" strokeWidth="2" />
+        <line x1="742" y1="181" x2="748" y2="186" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
+        <line x1="742" y1="191" x2="748" y2="186" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
+        {gens.map((g) => (
+          <g key={g.name}>
+            <circle cx={g.x} cy="186" r="7" fill={g.color} stroke="#0b0f1a" strokeWidth="2" />
+            <text x={g.x} y="110" textAnchor="middle" fill="#dbe6ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>{g.name}</text>
+            <text x={g.x} y="126" textAnchor="middle" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>{g.tech[0]}</text>
+            <text x={g.x} y="138" textAnchor="middle" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>{g.tech[1]}</text>
+            <line x1={g.x} y1="146" x2={g.x} y2="174" stroke={g.color} strokeOpacity="0.4" strokeDasharray="2 3" />
+            <text x={g.x} y="170" textAnchor="middle" fill={g.color} fontSize="10" fontWeight="800" fontFamily={FONT}>{g.era}</text>
+            <text x={g.x} y="206" textAnchor="middle" fill={g.color} fontSize="7.6" fontFamily={FONT}>{g.who}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="228" width="760" height="46" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.22)" />
+        <text x="34" y="248" fill="#00d4ff" fontSize="8" fontWeight="700" fontFamily={FONT}>LATENCY</text>
+        <text x="120" y="248" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>nightly batch</text>
+        <text x="226" y="248" fill="#8a95ad" fontSize="8" fontFamily={FONT}>→ daily</text>
+        <text x="300" y="248" fill="#8a95ad" fontSize="8" fontFamily={FONT}>→ on demand</text>
+        <text x="392" y="248" fill="#8a95ad" fontSize="8" fontFamily={FONT}>→ real time</text>
+        <text x="478" y="248" fill="#8a95ad" fontSize="8" fontFamily={FONT}>→ predictive</text>
+        <text x="34" y="266" fill="#8a95ad" fontSize="7.6" fontFamily={FONT}>
+          built by: IT only → IT + BI team → business user → business + governance → business + AI assistant
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="20" y="284" width="760" height="216" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="306" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>EVOLUTION KE DRIVERS</text>
+        <text x="34" y="330" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>in-memory computing → live filter aur drill-down (VizQL + Hyper, VertiPaq)</text>
+        <text x="34" y="356" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cloud → kisi bhi device se access, elastic compute, SaaS BI</text>
+        <text x="34" y="382" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>mobile + UX → 10-foot wallboard se 5-inch phone tak same insight</text>
+        <text x="34" y="408" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>streaming (Kafka / IoT) → real-time ops dashboards</text>
+        <text x="34" y="434" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>machine learning + LLM → auto insights, anomaly alerts, natural language BI</text>
+        <text x="34" y="460" fill="#ff8800" fontSize="8.4" fontFamily={FONT}>governance → metric / semantic layer, catalogue, certified datasets</text>
+        <text x="34" y="486" fill="#8a95ad" fontSize="8" fontFamily={FONT}>net result: audience wide hui aur decision ka time ghata</text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.5 — dashboard layout wireframe
+export function DashboardDesignDiagram() {
+  const kpis = [
+    { label: 'Revenue', value: '42.0L', delta: '-6%', bad: true },
+    { label: 'Orders', value: '1,240', delta: '+4%', bad: false },
+    { label: 'Conv.', value: '18%', delta: '-2pp', bad: true },
+    { label: 'Churn', value: '2.1%', delta: '+0.3', bad: true },
+  ];
+  const rules = [
+    ['1', 'KPI row: 4–6 headline numbers', 'actual vs target, one glance'],
+    ['2', 'Most important metric top-left', 'F-pattern reading order'],
+    ['3', 'Trend chart: line + target', 'annotate spikes'],
+    ['4', 'Comparison: sorted bar', 'max 5–7 bars'],
+    ['5', 'Detail on demand', 'table / tooltip / drill-down'],
+    ['6', 'Filters + timestamp + source', 'data freshness visible'],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Dashboard layout wireframe with KPI cards, trend chart, comparison chart and drill-down table, plus design rules">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Dashboard design — layout wireframe
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        5-second rule: purpose, status aur exception ek nazar mein
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="560" height="330" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <rect x="20" y="64" width="560" height="26" rx="10" fill="rgba(255,255,255,0.05)" />
+        <text x="34" y="81" fill="#dbe6ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Sales overview — Q3</text>
+        <text x="566" y="81" textAnchor="end" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>last 30 days · region: all · refresh 09:15</text>
+
+        {kpis.map((k, i) => {
+          const x = 32 + i * 136;
+          return (
+            <g key={k.label}>
+              <rect x={x} y="100" width="126" height="48" rx="6" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.25)" />
+              <text x={x + 8} y="114" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>{k.label}</text>
+              <text x={x + 8} y="130" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>{k.value}</text>
+              <text x={x + 8} y="142" fill={k.bad ? '#ff7a90' : '#00ff88'} fontSize="7.4" fontWeight="700" fontFamily={FONT}>{k.delta} vs target</text>
+            </g>
+          );
+        })}
+
+        <rect x="32" y="158" width="300" height="126" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" />
+        <text x="42" y="172" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Revenue trend (line)</text>
+        <polyline
+          points="48,262 76,246 104,252 132,232 160,240 188,214 216,224 244,204 272,212 300,190 322,196"
+          fill="none" stroke="#00d4ff" strokeWidth="2"
+        />
+        <polyline points="48,250 322,208" fill="none" stroke="#ff8800" strokeWidth="1.2" strokeDasharray="4 3" />
+        <text x="252" y="200" fill="#ff8800" fontSize="7" fontFamily={FONT}>target</text>
+
+        <rect x="344" y="158" width="224" height="126" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" />
+        <text x="354" y="172" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Top products (sorted bar)</text>
+        {[58, 46, 34, 24, 15].map((h, i) => (
+          <rect key={h} x={360 + i * 40} y={262 - h} width="26" height={h} rx="2" fill="#00ff88" opacity="0.7" />
+        ))}
+        <line x1="356" y1="264" x2="562" y2="264" stroke="rgba(255,255,255,0.18)" />
+
+        <rect x="32" y="292" width="536" height="88" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" />
+        <text x="42" y="306" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Details on demand — click KPI se drill-down table</text>
+        {[0, 1, 2].map((r) => (
+          <g key={r}>
+            <line x1="42" y1={318 + r * 18} x2="558" y2={318 + r * 18} stroke="rgba(255,255,255,0.08)" />
+            <rect x="46" y={322 + r * 18} width="150" height="6" rx="2" fill="rgba(155,176,224,0.35)" />
+            <rect x="210" y={322 + r * 18} width="80" height="6" rx="2" fill="rgba(155,176,224,0.22)" />
+            <rect x="300" y={322 + r * 18} width="110" height="6" rx="2" fill="rgba(155,176,224,0.22)" />
+          </g>
+        ))}
+
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
+        <rect x="592" y="64" width="188" height="330" rx="9" fill="rgba(196,255,0,0.04)" stroke="rgba(196,255,0,0.25)" />
+        <text x="604" y="84" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>DESIGN RULES</text>
+        {rules.map(([n, l1, l2], i) => (
+          <g key={n}>
+            <text x="604" y={106 + i * 46} fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>{n}</text>
+            <text x="618" y={106 + i * 46} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{l1}</text>
+            <text x="618" y={118 + i * 46} fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>{l2}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="406" width="760" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="426" fill="#00ff88" fontSize="8.6" fontWeight="800" fontFamily={FONT}>GESTALT + COLOUR</text>
+        <text x="34" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          proximity · similarity · enclosure · connection → grouping bina border ke
+        </text>
+        <text x="34" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          grey base + ek accent colour (exception) · colourblind-safe · 3 font sizes · numbers right-aligned
+        </text>
+        <text x="34" y="484" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>
+          avoid: 3-D pie, gauges, dual axis, chartjunk, 20 KPIs, undefined KPI
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.6 — display media
+export function DisplayMediaDiagram() {
+  const devices = [
+    { name: 'WALLBOARD', x: 34, y: 88, w: 210, h: 120, color: '#ff8800', l1: '1080p / 4K · 3–5 m away', l2: '4–6 KPIs · font 24–36 px · no interaction' },
+    { name: 'DESKTOP', x: 268, y: 96, w: 170, h: 108, color: '#00d4ff', l1: '1920 × 1080 · 60 cm', l2: '10+ charts · hover, drill-down' },
+    { name: 'TABLET', x: 470, y: 92, w: 96, h: 120, color: '#00ff88', l1: '768–1024 px · touch', l2: 'tap ≥ 44 px · swipe views' },
+    { name: 'PHONE', x: 596, y: 92, w: 74, h: 124, color: '#aa00ff', l1: '360–430 px · 25 cm', l2: 'KPI cards · 1 chart/screen' },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Display media for dashboards: wallboard, desktop, tablet and phone with their resolution, viewing distance and design rules">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Display media — har screen ke apne rules
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        resolution + viewing distance + input method decide karte hain layout aur font size
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="192" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.1)" />
+        {devices.map((d) => (
+          <g key={d.name}>
+            <rect x={d.x} y={d.y} width={d.w} height={d.h} rx="7" fill="rgba(255,255,255,0.04)" stroke={d.color} strokeOpacity="0.6" strokeWidth="1.6" />
+            <rect x={d.x + 8} y={d.y + 8} width={d.w - 16} height={d.h - 16} rx="4" fill={d.color} fillOpacity="0.1" />
+            <text x={d.x + d.w / 2} y={d.y + d.h / 2 - 4} textAnchor="middle" fill={d.color} fontSize="9" fontWeight="800" fontFamily={FONT}>{d.name}</text>
+            <text x={d.x + d.w / 2} y={d.y + d.h / 2 + 10} textAnchor="middle" fill="#8a95ad" fontSize="7" fontFamily={FONT}>dashboard</text>
+            <text x={d.x + d.w / 2} y="232" textAnchor="middle" fill="#dbe6ff" fontSize="7.6" fontWeight="700" fontFamily={FONT}>{d.l1}</text>
+            <text x={d.x + d.w / 2} y="244" textAnchor="middle" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>{d.l2}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="270" width="370" height="118" rx="8" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.28)" />
+        <text x="34" y="290" fill="#ff8800" fontSize="8.6" fontWeight="800" fontFamily={FONT}>WALLBOARD = 10-FOOT UI</text>
+        <text x="34" y="310" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>4–6 metrics, high contrast, no scroll, auto-rotate 15–30 s</text>
+        <text x="34" y="328" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>colour sirf status ke liye · remote se control</text>
+        <text x="34" y="346" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>ops floor, NOC/SOC, plant output, sales floor</text>
+        <text x="34" y="368" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>test: 3 m se padho — na aaye to font badhao</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="270" width="370" height="118" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.28)" />
+        <text x="424" y="290" fill="#00d4ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RESPONSIVE vs ADAPTIVE</text>
+        <text x="424" y="310" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>responsive: layout reflow (content same)</text>
+        <text x="424" y="328" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>adaptive: content badalta hai (mobile par 3 KPI)</text>
+        <text x="424" y="346" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>touch target ≥ 44 px · contrast ≥ 4.5:1</text>
+        <text x="424" y="368" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>print / PDF: light theme, timestamp, pagination</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="400" width="760" height="98" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="420" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>MEDIA CHOOSE KARNE KE FACTORS</text>
+        <text x="34" y="440" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          resolution / pixel density · physical size + viewing distance · ambient light (glare) · input method (mouse / touch / remote)
+        </text>
+        <text x="34" y="458" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          interactivity · accessibility — ek data model, teen layouts (desktop, mobile, wallboard)
+        </text>
+        <text x="34" y="478" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          aur: projector (meeting room), print/PDF, embedded app, email digest, digital signage, voice / AR
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.7 — basic charts
+export function ChartsBasicDiagram() {
+  const pies = [
+    { v: 38, c: '#00d4ff' },
+    { v: 26, c: '#00ff88' },
+    { v: 18, c: '#ff8800' },
+    { v: 12, c: '#aa00ff' },
+    { v: 6, c: '#ff7a90' },
+  ];
+  let start = -Math.PI / 2;
+  const slices = pies.map((p) => {
+    const a0 = start;
+    const a1 = start + (p.v / 100) * Math.PI * 2;
+    start = a1;
+    return { ...p, a0, a1 };
+  });
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Basic charts: bar graph, stacked bar chart, pie chart and doughnut chart with when to use each">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Basic charts — bar, stacked bar, pie, doughnut
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        comparison → bar · composition → stacked bar · part-to-whole snapshot → pie / doughnut
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="370" height="156" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.3)" />
+        <text x="34" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>BAR GRAPH — comparison</text>
+        <line x1="40" y1="196" x2="300" y2="196" stroke="rgba(255,255,255,0.22)" />
+        {[70, 56, 40, 26, 14].map((h, i) => (
+          <g key={h}>
+            <rect x={44 + i * 50} y={196 - h} width="32" height={h} rx="2" fill="#00d4ff" opacity="0.8" />
+            <text x={60 + i * 50} y={190 - h} textAnchor="middle" fill="#9ab0e0" fontSize="7" fontFamily={FONT}>{h * 10}</text>
+          </g>
+        ))}
+        <text x="318" y="120" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>sorted,</text>
+        <text x="318" y="132" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>zero baseline</text>
+        <text x="318" y="148" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>length = value</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="410" y="64" width="370" height="156" rx="8" fill="rgba(0,255,136,0.05)" stroke="rgba(0,255,136,0.3)" />
+        <text x="424" y="84" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>STACKED BAR — total + mix</text>
+        <line x1="430" y1="196" x2="620" y2="196" stroke="rgba(255,255,255,0.22)" />
+        {[[38, 20, 14], [44, 18, 16], [32, 24, 10], [50, 14, 8]].map((seg, i) => {
+          let y = 196;
+          const colors = ['#00d4ff', '#00ff88', '#ff8800'];
+          return (
+            <g key={i}>
+              {seg.map((h, j) => {
+                y -= h;
+                return <rect key={j} x={438 + i * 46} y={y} width="34" height={h} fill={colors[j]} opacity="0.78" />;
+              })}
+            </g>
+          );
+        })}
+        <text x="632" y="120" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>total + segments</text>
+        <text x="632" y="132" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>100% version =</text>
+        <text x="632" y="144" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>sirf proportion</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="232" width="370" height="156" rx="8" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.3)" />
+        <text x="34" y="252" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>PIE — part-to-whole (max 5–6)</text>
+        {slices.map((s) => {
+          const r = 52;
+          const cx = 130;
+          const cy = 322;
+          const x0 = cx + r * Math.cos(s.a0);
+          const y0 = cy + r * Math.sin(s.a0);
+          const x1 = cx + r * Math.cos(s.a1);
+          const y1 = cy + r * Math.sin(s.a1);
+          return (
+            <path key={s.c} d={`M${cx} ${cy} L${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1} Z`} fill={s.c} opacity="0.75" stroke="#0b0f1a" strokeWidth="1" />
+          );
+        })}
+        {slices.map((s, i) => {
+          const mid = (s.a0 + s.a1) / 2;
+          return (
+            <text key={'t' + i} x={130 + 34 * Math.cos(mid)} y={324 + 34 * Math.sin(mid)} textAnchor="middle" fill="#0b0f1a" fontSize="7.2" fontWeight="800" fontFamily={FONT}>{s.v}%</text>
+          );
+        })}
+        <text x="222" y="296" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>angle padhna</text>
+        <text x="222" y="308" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>mushkil → ranking</text>
+        <text x="222" y="320" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>ke liye bar better</text>
+        <text x="222" y="342" fill="#ff7a90" fontSize="7.2" fontFamily={FONT}>3-D pie = distort</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="232" width="370" height="156" rx="8" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.3)" />
+        <text x="424" y="252" fill="#aa00ff" fontSize="9" fontWeight="800" fontFamily={FONT}>DOUGHNUT — centre KPI</text>
+        {slices.map((s) => {
+          const r = 52;
+          const cx = 520;
+          const cy = 322;
+          const x0 = cx + r * Math.cos(s.a0);
+          const y0 = cy + r * Math.sin(s.a0);
+          const x1 = cx + r * Math.cos(s.a1);
+          const y1 = cy + r * Math.sin(s.a1);
+          return (
+            <path key={s.c} d={`M${cx} ${cy} L${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1} Z`} fill={s.c} opacity="0.72" stroke="#0b0f1a" strokeWidth="1" />
+          );
+        })}
+        <circle cx="520" cy="322" r="26" fill="#0b0f1a" />
+        <text x="520" y="320" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="800" fontFamily={FONT}>62%</text>
+        <text x="520" y="332" textAnchor="middle" fill="#8a95ad" fontSize="6.6" fontFamily={FONT}>top 2</text>
+        <text x="612" y="296" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>beech mein total</text>
+        <text x="612" y="308" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>ya headline %</text>
+        <text x="612" y="324" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>pie ke same</text>
+        <text x="612" y="336" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>rules lagu</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RULES</text>
+        <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          sort karo · zero baseline · value labels end par · ek accent colour · max 5–7 categorical colours
+        </text>
+        <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          bar vs pie test: agar slices ko rank karna hai ya chhota farq dikhana hai → bar chart
+        </text>
+        <text x="34" y="482" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          stacked bar mein sirf neeche wala segment compare hota hai — middle segments ke liye 100% stacked ya small multiples
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.8 — advanced charts
+export function ChartsAdvancedDiagram() {
+  const linePts = '48,186 82,170 116,176 150,152 184,160 218,132 252,140 286,118 320,124';
+  const heat = [
+    [0.2, 0.35, 0.5, 0.65, 0.8, 0.6],
+    [0.3, 0.5, 0.7, 0.9, 0.7, 0.45],
+    [0.45, 0.65, 0.85, 1.0, 0.75, 0.5],
+    [0.25, 0.4, 0.6, 0.8, 0.55, 0.35],
+    [0.15, 0.3, 0.45, 0.6, 0.4, 0.25],
+  ];
+  const heatColor = (v) => `rgb(${Math.round(18 + 44 * v)}, ${Math.round(58 + 112 * v)}, ${Math.round(108 + 147 * v)})`;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Advanced charts: line chart for trend, stacked area chart for composition over time, treemap for hierarchy and heatmap for matrix patterns">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Advanced charts — line, area, treemap, heatmap
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        trend → line · volume / mix → area · hierarchy → treemap · 2-D pattern → heatmap
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="370" height="156" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.3)" />
+        <text x="34" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>LINE — trend over time</text>
+        <line x1="40" y1="196" x2="330" y2="196" stroke="rgba(255,255,255,0.2)" />
+        <polyline points={linePts} fill="none" stroke="#00d4ff" strokeWidth="2.2" />
+        <polyline points="48,196 82,188 116,184 150,178 184,172 218,164 252,158 286,150 320,144" fill="none" stroke="#ff8800" strokeWidth="1.2" strokeDasharray="4 3" />
+        <rect x="40" y="112" width="14" height="3" fill="#00d4ff" />
+        <text x="58" y="116" fill="#8a95ad" fontSize="7" fontFamily={FONT}>actual</text>
+        <rect x="96" y="112" width="14" height="3" fill="#ff8800" />
+        <text x="114" y="116" fill="#8a95ad" fontSize="7" fontFamily={FONT}>target</text>
+        <text x="40" y="212" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>continuous time, 4–5 series max, gaps chhodo</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="410" y="64" width="370" height="156" rx="8" fill="rgba(0,255,136,0.05)" stroke="rgba(0,255,136,0.3)" />
+        <text x="424" y="84" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>STACKED AREA — mix over time</text>
+        <polygon points="434,196 470,180 506,172 542,160 578,150 614,140 650,134 686,126 722,120 722,196" fill="#00d4ff" opacity="0.5" />
+        <polygon points="434,196 470,190 506,184 542,176 578,168 614,160 650,154 686,148 722,142 722,196" fill="#00ff88" opacity="0.5" />
+        <polygon points="434,196 470,194 506,192 542,188 578,186 614,182 650,180 686,176 722,174 722,196" fill="#ff8800" opacity="0.5" />
+        <text x="434" y="212" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>total + composition; andar ka series compare karna mushkil</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="232" width="370" height="156" rx="8" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.3)" />
+        <text x="34" y="252" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>TREEMAP — hierarchy, area = value</text>
+        <rect x="34" y="266" width="180" height="96" rx="3" fill="#00d4ff" opacity="0.6" />
+        <text x="44" y="284" fill="#0b0f1a" fontSize="8" fontWeight="800" fontFamily={FONT}>Electronics 38%</text>
+        <rect x="220" y="266" width="100" height="56" rx="3" fill="#00ff88" opacity="0.6" />
+        <text x="228" y="284" fill="#0b0f1a" fontSize="7.4" fontWeight="700" fontFamily={FONT}>Home 21%</text>
+        <rect x="220" y="326" width="100" height="36" rx="3" fill="#ff8800" opacity="0.6" />
+        <text x="228" y="344" fill="#0b0f1a" fontSize="7.4" fontWeight="700" fontFamily={FONT}>Fashion 14%</text>
+        <rect x="326" y="266" width="50" height="48" rx="3" fill="#aa00ff" opacity="0.6" />
+        <rect x="326" y="318" width="50" height="44" rx="3" fill="#ff7a90" opacity="0.6" />
+        <text x="34" y="376" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>20+ categories, bada hissa turant dikhta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="232" width="370" height="156" rx="8" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.3)" />
+        <text x="424" y="252" fill="#aa00ff" fontSize="9" fontWeight="800" fontFamily={FONT}>HEATMAP — matrix pattern</text>
+        {heat.map((row, r) => row.map((v, c) => (
+          <rect key={`${r}-${c}`} x={430 + c * 34} y={260 + r * 17} width="32" height="15" rx="2" fill={heatColor(v)} />
+        )))}
+        <text x="430" y="368" fill="#8a95ad" fontSize="7" fontFamily={FONT}>day × hour traffic</text>
+        <text x="536" y="368" fill="#8a95ad" fontSize="7" fontFamily={FONT}>low</text>
+        <rect x="558" y="360" width="14" height="8" fill={heatColor(0.15)} />
+        <rect x="574" y="360" width="14" height="8" fill={heatColor(0.55)} />
+        <rect x="590" y="360" width="14" height="8" fill={heatColor(1)} />
+        <text x="610" y="368" fill="#8a95ad" fontSize="7" fontFamily={FONT}>high (sequential scale)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RULES</text>
+        <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          line: direct labels, spaghetti avoid (small multiples), index karo jab scale alag ho
+        </text>
+        <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          treemap: squarified layout, area ratio aankh se mushkil → exact value ke liye bar chart
+        </text>
+        <text x="34" y="482" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          heatmap: sequential / diverging scale, viridis, rainbow nahi; bins report karo
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science — Unit V diagrams (part 3 of 3)
+// ============================================================
+
+// 5.9 — waterfall, scatter, histogram, box plot
+export function ChartsSpecialDiagram() {
+  const wf = [
+    { x: 44, top: 122, h: 70, color: '#8a95ad', tag: '100', label: 'Open' },
+    { x: 92, top: 101, h: 21, color: '#00ff88', tag: '+30', label: 'new' },
+    { x: 140, top: 101, h: 8.4, color: '#ff7a90', tag: '-12', label: 'churn' },
+    { x: 188, top: 103.8, h: 5.6, color: '#00ff88', tag: '+8', label: 'upsell' },
+    { x: 236, top: 103.8, h: 4.2, color: '#ff7a90', tag: '-6', label: 'disc' },
+    { x: 284, top: 108, h: 84, color: '#00d4ff', tag: '120', label: 'Close' },
+  ];
+  const scatter = [
+    [40, 150], [52, 142], [60, 148], [70, 132], [80, 138], [92, 126],
+    [100, 130], [112, 118], [122, 124], [132, 110], [144, 116], [154, 104],
+    [164, 108], [176, 96], [186, 102], [198, 88], [210, 94], [224, 82],
+  ];
+  const bins = [
+    { label: '10–15', count: 4 },
+    { label: '15–20', count: 8 },
+    { label: '20–25', count: 4 },
+    { label: '25–30', count: 2 },
+    { label: '30–35', count: 2 },
+  ];
+  const bx = (v) => 430 + (v - 5) * 4.14;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Special purpose charts: waterfall for contribution, scatter plot for correlation, histogram for distribution and box plot with five number summary">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Special charts — waterfall, scatter, histogram, box plot
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        contribution → waterfall · correlation → scatter · distribution → histogram · outliers → box plot
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="370" height="156" rx="8" fill="rgba(0,255,136,0.05)" stroke="rgba(0,255,136,0.3)" />
+        <text x="34" y="84" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>WATERFALL — revenue bridge</text>
+        <line x1="40" y1="192" x2="330" y2="192" stroke="rgba(255,255,255,0.2)" />
+        {wf.map((b, i) => (
+          <g key={b.label + i}>
+            <rect x={b.x} y={b.top} width="30" height={b.h} rx="2" fill={b.color} opacity="0.85" />
+            <text x={b.x + 15} y={b.top - 3} textAnchor="middle" fill={b.color} fontSize="7" fontWeight="700" fontFamily={FONT}>{b.tag}</text>
+            <text x={b.x + 15} y="204" textAnchor="middle" fill="#8a95ad" fontSize="6.8" fontFamily={FONT}>{b.label}</text>
+            {i > 0 && i < wf.length - 1 && (
+              <line x1={b.x - 18} y1={b.top} x2={b.x} y2={b.top} stroke="rgba(255,255,255,0.18)" strokeDasharray="2 2" />
+            )}
+          </g>
+        ))}
+        <line x1="276" y1="108" x2="284" y2="108" stroke="rgba(255,255,255,0.18)" strokeDasharray="2 2" />
+        <text x="40" y="218" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>totals baseline se · changes floating · 100 + 30 − 12 + 8 − 6 = 120</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="410" y="64" width="370" height="156" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.3)" />
+        <text x="424" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>SCATTER — correlation</text>
+        <line x1="430" y1="182" x2="700" y2="182" stroke="rgba(255,255,255,0.2)" />
+        <line x1="430" y1="96" x2="430" y2="182" stroke="rgba(255,255,255,0.2)" />
+        {scatter.map(([x, y], i) => (
+          <circle key={i} cx={430 + x} cy={y + 24} r="3" fill="#00d4ff" opacity="0.7" />
+        ))}
+        <line x1="442" y1="176" x2="676" y2="102" stroke="#ff8800" strokeWidth="1.4" strokeDasharray="5 3" />
+        <text x="436" y="112" fill="#ff8800" fontSize="7" fontFamily={FONT}>trendline, r = 0.86</text>
+        <text x="424" y="208" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>position x–y · cluster, outlier · correlation ≠ causation</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="232" width="370" height="156" rx="8" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.3)" />
+        <text x="34" y="252" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>HISTOGRAM — distribution (20 orders)</text>
+        <line x1="40" y1="356" x2="330" y2="356" stroke="rgba(255,255,255,0.2)" />
+        {bins.map((b, i) => {
+          const h = b.count * 8.6;
+          return (
+            <g key={b.label}>
+              <rect x={46 + i * 54} y={356 - h} width="52" height={h} fill="#ff8800" opacity="0.72" />
+              <text x={72 + i * 54} y={352 - h} textAnchor="middle" fill="#ffd9a0" fontSize="7" fontFamily={FONT}>{b.count}</text>
+              <text x={72 + i * 54} y="368" textAnchor="middle" fill="#8a95ad" fontSize="6.6" fontFamily={FONT}>{b.label}</text>
+            </g>
+          );
+        })}
+        <text x="34" y="384" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Sturges k = 1 + 3.322 log n → 5 bins, width 5 · roughly symmetric</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="232" width="370" height="156" rx="8" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.3)" />
+        <text x="424" y="252" fill="#aa00ff" fontSize="9" fontWeight="800" fontFamily={FONT}>BOX PLOT — five numbers</text>
+        <line x1="424" y1="320" x2="762" y2="320" stroke="rgba(255,255,255,0.2)" />
+        <line x1={bx(12)} y1="320" x2={bx(32)} y2="320" stroke="#aa00ff" strokeWidth="1.2" />
+        <line x1={bx(12)} y1="306" x2={bx(12)} y2="334" stroke="#aa00ff" strokeWidth="1.6" />
+        <line x1={bx(32)} y1="306" x2={bx(32)} y2="334" stroke="#aa00ff" strokeWidth="1.6" />
+        <rect x={bx(18)} y="300" width={bx(30) - bx(18)} height="40" rx="3" fill="#aa00ff" opacity="0.28" stroke="#aa00ff" />
+        <line x1={bx(23.5)} y1="300" x2={bx(23.5)} y2="340" stroke="#fff" strokeWidth="1.8" />
+        <circle cx={bx(65)} cy="320" r="3.6" fill="#ff7a90" />
+        <text x={bx(65)} y="308" textAnchor="middle" fill="#ff7a90" fontSize="7" fontFamily={FONT}>65 outlier</text>
+        <text x={bx(12)} y="348" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>12</text>
+        <text x={bx(18)} y="292" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>Q1 18</text>
+        <text x={bx(23.5)} y="352" textAnchor="middle" fill="#fff" fontSize="6.8" fontFamily={FONT}>23.5</text>
+        <text x={bx(30)} y="292" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>Q3 30</text>
+        <text x={bx(38)} y="348" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>32</text>
+        <text x="424" y="372" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>IQR 12 · fences 0 aur 48 · 65 &gt; 48 → outlier</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
+        <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>KAB KAUNSA</text>
+        <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          number kaise bana → waterfall · do variables ka rishta → scatter · shape/spread → histogram · outlier + groups
+          → box plot
+        </text>
+        <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          histogram vs bar chart: bins continuous aur touch karte hain · scatter par alpha/hexbin (overplotting)
+        </text>
+        <text x="34" y="482" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          box plot shape nahi dikhata (bimodal chhup jaata hai) — histogram / violin ke saath use karo
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.10 — Tableau vs Power BI
+export function VisualizationToolsDiagram() {
+  const left = [
+    ['Engine', 'VizQL + Hyper'],
+    ['Data prep', 'Tableau Prep'],
+    ['Calculation', 'calculated fields, LOD'],
+    ['Cost', 'higher (~$75/user/mo)'],
+    ['Best for', 'visual exploration, aesthetics'],
+    ['Deploy', 'Desktop / Server / Cloud'],
+  ];
+  const right = [
+    ['Engine', 'VertiPaq (in-memory)'],
+    ['Data prep', 'Power Query (M)'],
+    ['Calculation', 'DAX measures'],
+    ['Cost', 'lower (Pro ~$10/user/mo)'],
+    ['Best for', 'Microsoft ecosystem, model'],
+    ['Deploy', 'Desktop / Service / Mobile'],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Comparison of Tableau and Power BI: engine, data preparation, calculation language, cost, strengths and deployment">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Tableau vs Power BI
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        VizQL + Hyper vs VertiPaq + DAX · dono self-service BI, choice ecosystem aur budget se
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="360" height="256" rx="9" fill="rgba(255,136,0,0.06)" stroke="rgba(255,136,0,0.4)" />
+        <text x="200" y="90" textAnchor="middle" fill="#ff8800" fontSize="13" fontWeight="800" fontFamily={FONT}>TABLEAU</text>
+        <text x="200" y="106" textAnchor="middle" fill="#8a95ad" fontSize="7.6" fontFamily={FONT}>Salesforce</text>
+        {left.map(([k, v], i) => (
+          <g key={k}>
+            <text x="36" y={130 + i * 30} fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>{k}</text>
+            <text x="36" y={142 + i * 30} fill="#dbe6ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>{v}</text>
+            {i < left.length - 1 && <line x1="36" y1={148 + i * 30} x2="364" y2={148 + i * 30} stroke="rgba(255,255,255,0.07)" />}
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="420" y="64" width="360" height="256" rx="9" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="600" y="90" textAnchor="middle" fill="#00d4ff" fontSize="13" fontWeight="800" fontFamily={FONT}>POWER BI</text>
+        <text x="600" y="106" textAnchor="middle" fill="#8a95ad" fontSize="7.6" fontFamily={FONT}>Microsoft</text>
+        {right.map(([k, v], i) => (
+          <g key={k}>
+            <text x="436" y={130 + i * 30} fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>{k}</text>
+            <text x="436" y={142 + i * 30} fill="#dbe6ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>{v}</text>
+            {i < right.length - 1 && <line x1="436" y1={148 + i * 30} x2="764" y2={148 + i * 30} stroke="rgba(255,255,255,0.07)" />}
+          </g>
+        ))}
+        <circle cx="400" cy="192" r="17" fill="#0b0f1a" stroke="rgba(255,255,255,0.25)" />
+        <text x="400" y="196" textAnchor="middle" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>vs</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
+        <rect x="20" y="332" width="760" height="70" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="352" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>CHOICE</text>
+        <text x="34" y="372" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          Microsoft shop (Excel / Azure / Fabric / Teams) + budget + governance → Power BI
+        </text>
+        <text x="34" y="390" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          deep ad-hoc visual exploration, design-heavy dashboards, mixed sources → Tableau
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="20" y="414" width="760" height="84" rx="9" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.25)" />
+        <text x="34" y="434" fill="#aa00ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>BAKI TOOLS</text>
+        <text x="34" y="454" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          Qlik Sense (associative engine) · Looker / Looker Studio (LookML) · Apache Superset, Metabase (open source) · Excel
+        </text>
+        <text x="34" y="472" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          code libraries: Matplotlib · Seaborn · Plotly · Altair · D3.js · ECharts
+        </text>
+        <text x="34" y="490" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          selection: data volume, skill, cost (TCO), governance, deployment, mobile, support
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.11 — reinforcement learning loop
+export function ReinforcementLearningDiagram() {
+  const types = [
+    { title: 'MODEL', items: ['model-free — Q-learning, SARSA', 'model-based — planning, AlphaZero'] },
+    { title: 'LEARNING', items: ['value-based — Q, DQN', 'policy-based — REINFORCE, PPO', 'actor-critic — A3C, SAC'] },
+    { title: 'POLICY DATA', items: ['on-policy — SARSA', 'off-policy — Q-learning, DQN', 'bandit — single state'] },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Reinforcement learning loop between agent and environment with state, action and reward, plus the types of reinforcement learning and the Q-learning update rule">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Reinforcement learning — agent aur environment ka loop
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        trial and error se seekhna: state → action → reward → update → repeat
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="176" rx="9" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.28)" />
+        <rect x="70" y="118" width="180" height="70" rx="10" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="1.6" />
+        <text x="160" y="146" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="800" fontFamily={FONT}>AGENT</text>
+        <text x="160" y="162" textAnchor="middle" fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>policy (state → action)</text>
+        <text x="160" y="174" textAnchor="middle" fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>value function, update rule</text>
+
+        <rect x="550" y="118" width="180" height="70" rx="10" fill="rgba(0,212,255,0.1)" stroke="#00d4ff" strokeWidth="1.6" />
+        <text x="640" y="146" textAnchor="middle" fill="#00d4ff" fontSize="11.5" fontWeight="800" fontFamily={FONT}>ENVIRONMENT</text>
+        <text x="640" y="162" textAnchor="middle" fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>state s, dynamics</text>
+        <text x="640" y="174" textAnchor="middle" fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>game, road, market, user</text>
+
+        <path d="M250 128 C330 96 470 96 550 128" fill="none" stroke="#00ff88" strokeWidth="1.8" />
+        <polygon points="550,128 541,121 543,131" fill="#00ff88" />
+        <text x="400" y="100" textAnchor="middle" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>action a</text>
+
+        <path d="M550 178 C470 210 330 210 250 178" fill="none" stroke="#ff8800" strokeWidth="1.8" />
+        <polygon points="250,178 259,171 257,181" fill="#ff8800" />
+        <text x="400" y="216" textAnchor="middle" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>reward r + next state s&apos;</text>
+
+        <text x="160" y="226" textAnchor="middle" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>step 1–2: observe, act</text>
+        <text x="640" y="226" textAnchor="middle" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>step 3: transition + reward</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        {types.map((g, i) => {
+          const x = 30 + i * 252;
+          return (
+            <g key={g.title}>
+              <rect x={x} y="252" width="236" height="76" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+              <text x={x + 12} y="270" fill="#c4ff00" fontSize="8" fontWeight="800" fontFamily={FONT}>{g.title}</text>
+              {g.items.map((it, j) => (
+                <text key={it} x={x + 12} y={286 + j * 13} fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>· {it}</text>
+              ))}
+            </g>
+          );
+        })}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="30" y="340" width="740" height="46" rx="8" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.3)" />
+        <text x="44" y="360" fill="#c4ff00" fontSize="8" fontWeight="800" fontFamily={FONT}>Q-LEARNING UPDATE (model-free, off-policy)</text>
+        <text x="44" y="376" fill="#fff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Q(s,a) ← Q(s,a) + alpha [ r + gamma · max Q(s&apos;,a&apos;) − Q(s,a) ]
+        </text>
+        <text x="470" y="376" fill="#8a95ad" fontSize="7.4" fontFamily={FONT}>alpha = learning rate · gamma = discount (future weight)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="398" width="760" height="100" rx="9" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.25)" />
+        <text x="34" y="418" fill="#ff8800" fontSize="8.6" fontWeight="800" fontFamily={FONT}>EXPLORATION vs EXPLOITATION</text>
+        <text x="34" y="438" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          explore = naya action try karo (seekhne ke liye) · exploit = best known action (reward ke liye)
+        </text>
+        <text x="34" y="456" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          strategies: epsilon-greedy · softmax · UCB · Thompson sampling · optimistic initialisation
+        </text>
+        <text x="34" y="476" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          applications: AlphaGo · robotics · data-centre cooling · recommendation · RLHF for LLMs
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// 5.12 — generative, deep learning, XAI
+export function GenerativeDeepXaiDiagram() {
+  const cols = [
+    {
+      x: 20, color: '#aa00ff', title: 'GENERATIVE',
+      sub: 'P(X) seekhta hai', items: ['GAN — generator vs discriminator', 'VAE — encoder, latent, KL loss', 'Diffusion — noise se image', 'GPT / transformers — next token', 'use: image, text, synthetic data'],
+    },
+    {
+      x: 278, color: '#00d4ff', title: 'DEEP LEARNING',
+      sub: 'layers + backprop', items: ['ANN / MLP — tabular', 'CNN — images (conv + pool)', 'RNN / LSTM — sequence', 'Transformer — self-attention', 'training: loss, Adam, dropout, GPU'],
+    },
+    {
+      x: 536, color: '#00ff88', title: 'EXPLAINABLE AI',
+      sub: 'black box kholo', items: ['LIME — local surrogate', 'SHAP — Shapley values', 'Grad-CAM — image saliency', 'PDP, permutation importance', 'counterfactual: "kya badle to?"'],
+    },
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Three pillars of modern AI: generative learning models, deep learning architectures and explainable AI techniques">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Generative learning · Deep learning · XAI
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        naya data banao → deep network se seekho → aur insaan ko samjhao
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        {cols.map((c) => (
+          <g key={c.title}>
+            <rect x={c.x} y="64" width="244" height="236" rx="9" fill="rgba(255,255,255,0.035)" stroke={c.color} strokeOpacity="0.45" />
+            <rect x={c.x} y="64" width="244" height="30" rx="9" fill={c.color} fillOpacity="0.16" />
+            <text x={c.x + 122} y="84" textAnchor="middle" fill={c.color} fontSize="10.5" fontWeight="800" fontFamily={FONT}>{c.title}</text>
+            <text x={c.x + 122} y="110" textAnchor="middle" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>{c.sub}</text>
+            {c.items.map((it, i) => (
+              <g key={it}>
+                <circle cx={c.x + 16} cy={132 + i * 34} r="2.4" fill={c.color} />
+                <text x={c.x + 26} y={135 + i * 34} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{it}</text>
+              </g>
+            ))}
+          </g>
+        ))}
+        <text x="400" y="314" textAnchor="middle" fill="#8a95ad" fontSize="7.6" fontFamily={FONT}>
+          generative = discriminative (P(Y|X)) se zyada seekhta hai, isliye zyada data chahiye
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
+        <rect x="20" y="322" width="760" height="70" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="342" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>XAI KYUN ZAROORI</text>
+        <text x="34" y="362" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          trust · debugging · bias detection · GDPR "right to explanation" / EU AI Act · safety aur accountability
+        </text>
+        <text x="34" y="380" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          trade-off: interpretable model samajhna easy par kam accurate · deep model accurate par opaque — XAI beech ka raasta
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
+        <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.25)" />
+        <text x="34" y="424" fill="#aa00ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>GENERATIVE vs DISCRIMINATIVE</text>
+        <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          generative: P(X) ya P(X,Y) · naya sample bana sakta hai · GAN, VAE, diffusion, GPT
+        </text>
+        <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          discriminative: sirf P(Y|X) · classification/prediction · logistic regression, SVM, CNN classifier
+        </text>
+        <text x="34" y="482" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
+          risk: deepfake aur misuse · XAI explanation bhi approximation hai — stability aur faithfulness test karo
+        </text>
+      </g>
+    </svg>
+  );
+}

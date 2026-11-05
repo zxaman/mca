@@ -14,7 +14,7 @@ adding a topic is just adding an object.
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 5 | 64 | Live |
-| Data Science | DS | 4 | 46 | Live — Units I–IV |
+| Data Science | DS | 5 | 58 | Live — Units I–V |
 | Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
@@ -76,6 +76,24 @@ generation at minconf 60%), FP-Growth (header table, FP-tree construction from t
 pattern bases, mining the cola branch, and a point-by-point comparison with Apriori) and support,
 confidence, lift, leverage and conviction with the diaper → beer (lift 1.25) versus bread → milk
 (lift 0.94) example.
+
+**Data Science (Unit V — Data Visualization and Emerging Trends)** has 12 topics. It opens with
+data visualization (the definition, the data → encoding → perception → insight pipeline, marks and
+channels, the Cleveland–McGill accuracy ranking, pre-attentive attributes, the data-ink ratio and
+Anscombe's quartet with its identical r = 0.816) and the challenges of visualization (data, perceptual
+and design problems — truncated axes, 12-slice pies, overplotting, rainbow scales, Simpson's paradox and
+the standard fix for each). Four dashboard topics follow: the definition and four types (operational,
+tactical, strategic, analytical), the five-generation evolution from EIS to AI-augmented analytics,
+design principles (five-second rule, Shneiderman's mantra, hierarchy, Gestalt, colour discipline) and
+display media (desktop, wallboard's 10-foot UI, tablet, phone, projector, print, responsive vs adaptive).
+The twelve graph types are grouped into three topics — bar / stacked bar / pie / doughnut, line / area /
+treemap / heatmap, and waterfall / scatter / histogram / box plot with solved examples (a 100 → 120
+waterfall bridge, Sturges' five bins, and the box plot of 12 … 65 with Q1 18, Q3 30, IQR 12 and 65 as an
+outlier). The unit closes with Tableau vs Power BI (VizQL + Hyper vs VertiPaq + DAX, cost and fit),
+reinforcement learning (agent, environment, state, action, reward, policy, value; the learning loop; the
+Q-learning update; model-free vs model-based, value vs policy vs actor-critic, on- vs off-policy) and an
+introduction to generative learning (GAN, VAE, diffusion, transformers), deep learning (CNN, RNN/LSTM,
+Transformer) and explainable AI (LIME, SHAP, Grad-CAM, counterfactuals).
 
 **Web Technology (Unit I — HTML and XML)** has 19 topics: introduction to web technology, internet
 and WWW, web servers, website planning and design issues, structure of an HTML document, headings /
@@ -175,7 +193,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 58 · Web Technology 88 (239 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 70 · Web Technology 88 (251 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -224,6 +242,7 @@ src/
 │   ├── dataScience2.js        # Data Science Unit II (pre-processing + warehouse)
 │   ├── dataScience3.js        # Data Science Unit III (classification)
 │   ├── dataScience4.js        # Data Science Unit IV (clustering + association rules)
+│   ├── dataScience5.js        # Data Science Unit V (visualization + emerging trends)
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
 │   ├── webTechnology7.js / 8  # Web Technology Unit III (PHP — 3.1 to 3.8)
