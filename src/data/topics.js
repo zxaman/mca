@@ -27,7 +27,7 @@ export const subjects = [
     "code": "WT",
     "color": "#0047ff",
     "available": true,
-    "description": "HTML se ASP.NET tak — har concept ka real code, live output aur diagram, simple Hinglish mein"
+    "description": "HTML se AngularJS aur Next.js tak — har concept ka code, output aur diagram, simple Hinglish mein"
   },
   {
     "id": "cyber-security",
