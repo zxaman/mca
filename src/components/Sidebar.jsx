@@ -4,9 +4,11 @@ import { Icon } from './Icons';
 import { getCompletedTopics } from '../utils/progress';
 
 export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicId, onNavigate, onClose, mobileOpen }) {
-  const [expandedSubjects, setExpandedSubjects] = useState({
-    [currentSubjectId]: true,
-  });
+  // Only the subject you are actually inside is expanded; on the home page
+  // nothing is expanded (and nothing is highlighted).
+  const [expandedSubjects, setExpandedSubjects] = useState(
+    currentSubjectId ? { [currentSubjectId]: true } : {},
+  );
   const [unitDropdown, setUnitDropdown] = useState(null);
   const completed = getCompletedTopics();
 
@@ -40,6 +42,14 @@ export default function Sidebar({ currentSubjectId, currentUnitId, currentTopicI
 
       <div className="sidebar-content">
         <div className="sidebar-section">
+          <button
+            className={`sidebar-home-btn ${!currentSubjectId ? 'active' : ''}`}
+            onClick={() => handleNavigate('home')}
+          >
+            <Icon name="globe" size={18} color={!currentSubjectId ? '#c4ff00' : '#8a95ad'} />
+            <span>Home</span>
+            <span className="sidebar-home-hint">all subjects</span>
+          </button>
           <div className="sidebar-section-title">Subjects</div>
           {subjects.map((subject) => {
             const subjectUnits = units[subject.id] || [];

@@ -124,6 +124,14 @@ import {
   PhpArrayDiagram,
   Php2dArrayDiagram,
   PhpAssocDiagram,
+  PhpArrayFunctionsDiagram,
+  PhpDateTimeDiagram,
+  PhpFunctionsDiagram,
+  PhpOopDiagram,
+  PhpFileHandlingDiagram,
+  PhpSessionDiagram,
+  PhpFormValidationDiagram,
+  CodeIgniterMvcDiagram,
 } from './WebDiagrams';
 
 // ============================================================
@@ -861,6 +869,22 @@ export function Diagram({ type }) {
       return <Php2dArrayDiagram />;
     case 'php-assoc':
       return <PhpAssocDiagram />;
+    case 'php-array-functions':
+      return <PhpArrayFunctionsDiagram />;
+    case 'php-date-time':
+      return <PhpDateTimeDiagram />;
+    case 'php-functions':
+      return <PhpFunctionsDiagram />;
+    case 'php-oop':
+      return <PhpOopDiagram />;
+    case 'php-file-handling':
+      return <PhpFileHandlingDiagram />;
+    case 'php-session':
+      return <PhpSessionDiagram />;
+    case 'php-form-validation':
+      return <PhpFormValidationDiagram />;
+    case 'codeigniter-mvc':
+      return <CodeIgniterMvcDiagram />;
     default:
       return null;
   }

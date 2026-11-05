@@ -2542,3 +2542,654 @@ export function PhpAssocDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Diagram 39 — Array library functions (3.9)
+// ============================================================
+export function PhpArrayFunctionsDiagram() {
+  const groups = [
+    { t: 'JODNA / HATANA', c: '#00d4ff', rows: ['array_push($a, $v)', 'array_unshift($a, $v)', 'array_pop($a)', 'array_shift($a)', 'unset($a[1])'] },
+    { t: 'SORT KARNA', c: '#c4ff00', rows: ['sort($a)   rsort($a)', 'asort($a)  arsort($a)', 'ksort($a)  krsort($a)', 'usort($a, $fn)', 'array_reverse($a)'] },
+    { t: 'DHOONDHNA', c: '#ff8800', rows: ['in_array($v, $a)', 'array_search($v, $a)', 'array_key_exists($k, $a)', 'array_keys($a)', 'array_values($a)'] },
+    { t: 'KAATNA / JODNA', c: '#ff7ab2', rows: ['array_slice($a, 1, 2)', 'array_splice($a, 1, 1)', 'array_merge($a, $b)', 'array_combine($k, $v)', 'array_chunk($a, 2)'] },
+    { t: 'HISAAB', c: '#2f6fff', rows: ['count($a)', 'array_sum($a)', 'array_product($a)', 'array_unique($a)', 'max($a)  min($a)'] },
+    { t: 'CALLBACK KE SAATH', c: '#7ee787', rows: ['array_map(fn($x) => $x * 2, $a)', 'array_filter($a, $fn)', 'array_reduce($a, $fn, 0)', 'array_walk($a, $fn)', 'array_column($rows, "name")'] },
+  ];
+  return (
+    <svg viewBox="0 0 920 520" className="diagram-svg" role="img" aria-label="Six groups of PHP array library functions: adding and removing, sorting, searching, slicing and merging, aggregates, and callback functions">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Array library functions — kaam ke hisaab se chhe group
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        sab built-in · koi original array badalta hai, koi naya return karta hai
+      </text>
+
+      {groups.map((g, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 20 + col * 298;
+        const y = 66 + row * 190;
+        return (
+          <g key={g.t} className="diagram-pop" style={{ animationDelay: `${80 + i * 70}ms` }}>
+            <rect x={x} y={y} width="284" height="174" rx="11" fill="rgba(255,255,255,0.03)" stroke={g.c} strokeWidth="1.5" strokeOpacity="0.7" />
+            <rect x={x} y={y} width="284" height="26" rx="11" fill={g.c} fillOpacity="0.15" />
+            <text x={x + 142} y={y + 18} textAnchor="middle" fill={g.c} fontSize="9.5" fontWeight="800" fontFamily={FONT}>{g.t}</text>
+            {g.rows.map((r, j) => (
+              <text key={r} x={x + 12} y={y + 46 + j * 25} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{r}</text>
+            ))}
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="452" width="880" height="28" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="470" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          sort()/rsort() keys reset karte hain · asort()/ksort() keys bachate hain · in_array() true/false, array_search() position
+        </text>
+      </g>
+
+      <text x="460" y="504" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        array_map() naya array deta hai · array_walk() original par kaam karta hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 40 — Date and time (3.10)
+// ============================================================
+export function PhpDateTimeDiagram() {
+  const specs = [
+    ['d', '05', 'din, 2 digit'],
+    ['D', 'Wed', 'din ka naam'],
+    ['m', '11', 'mahina, 2 digit'],
+    ['M', 'Nov', 'mahine ka naam'],
+    ['Y', '2026', 'saal, 4 digit'],
+    ['H', '14', 'ghanta, 24-hour'],
+    ['i', '07', 'minute'],
+    ['s', '42', 'second'],
+    ['l', 'Thursday', 'poora din'],
+    ['U', '1793867862', 'unix timestamp'],
+  ];
+  return (
+    <svg viewBox="0 0 920 506" className="diagram-svg" role="img" aria-label="PHP date and time: a unix timestamp converted by date() into a formatted string, the common format characters, and helpers like mktime, strtotime and the DateTime class">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Date aur Time — timestamp se formatted date tak
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        server ki ghadi · timezone · date() · mktime() · strtotime() · DateTime
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="270" height="58" rx="9" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.5)" />
+        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>UNIX TIMESTAMP</text>
+        <text x="34" y="104" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">1793867862</text>
+        <text x="34" y="118" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>1 Jan 1970 se seconds (UTC)</text>
+      </g>
+
+      <text x="300" y="100" textAnchor="middle" fill="#9ab0e0" fontSize="14" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="325" y="66" width="270" height="58" rx="9" fill="rgba(196,255,0,0.08)" stroke="rgba(196,255,0,0.5)" />
+        <text x="339" y="86" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>date(FORMAT, TIMESTAMP)</text>
+        <text x="339" y="104" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">date(&quot;d-m-Y H:i&quot;)</text>
+        <text x="339" y="118" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>timestamp optional — default abhi</text>
+      </g>
+
+      <text x="605" y="100" textAnchor="middle" fill="#9ab0e0" fontSize="14" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="630" y="66" width="270" height="58" rx="9" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.45)" />
+        <text x="644" y="86" fill="#00ff88" fontSize="9" fontWeight="700" fontFamily={FONT}>FORMATTED STRING</text>
+        <text x="644" y="106" fill="#fff" fontSize="11" fontFamily="'Consolas', monospace">05-11-2026 14:07:42</text>
+        <text x="644" y="118" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>yahi page par print hota hai</text>
+      </g>
+
+      <text x="20" y="150" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>FORMAT CHARACTERS — 05-11-2026 14:07:42:42 Thursday</text>
+
+      {specs.map(([c, val, what], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = col === 0 ? 20 : 470;
+        const y = 160 + row * 34;
+        return (
+          <g key={c} className="diagram-pop" style={{ animationDelay: `${300 + i * 30}ms` }}>
+            <rect x={x} y={y} width="430" height="27" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" />
+            <text x={x + 10} y={y + 18} fill="#7ee787" fontSize="8.5" fontFamily="'Consolas', monospace">{c}</text>
+            <text x={x + 42} y={y + 18} fill="#c4ff00" fontSize="8.5" fontFamily="'Consolas', monospace">{val}</text>
+            <text x={x + 150} y={y + 18} fill="#9ab0e0" fontSize="8" fontFamily={FONT}>{what}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
+        <rect x="20" y="336" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="356" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>BANANE KE TAREEKE</text>
+        <text x="34" y="374" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">time()  ·  mktime(0,0,0,11,5,2026)  ·  strtotime(&quot;+1 week&quot;)  ·  new DateTime(&quot;now&quot;, new DateTimeZone(&quot;Asia/Kolkata&quot;))</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
+        <rect x="20" y="398" width="880" height="34" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="420" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Timezone pehle set karein: date_default_timezone_set(&quot;Asia/Kolkata&quot;) — warna server ki UTC time dikhegi
+        </text>
+      </g>
+
+      <text x="460" y="458" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        date() string deta hai · timestamp ek number hai — dono ko alag samjhein
+      </text>
+      <text x="460" y="482" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam line: date(&quot;d-m-Y&quot;) → 05-11-2026 · date(&quot;D, d M Y&quot;) → Wed, 05 Nov 2026
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 41 — Functions and user-defined functions (3.11)
+// ============================================================
+export function PhpFunctionsDiagram() {
+  return (
+    <svg viewBox="0 0 920 512" className="diagram-svg" role="img" aria-label="Anatomy of a PHP user defined function: keyword, name, parameters with defaults, return type and body, the four kinds of functions, and the call stack with its own scope">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Function — ek naam, ek kaam, baar-baar use
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        declare ek baar · call jitni baar chahein · code repeat nahi
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="62" width="880" height="96" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="36" y="80" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>keyword</text>
+        <text x="196" y="80" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>naam</text>
+        <text x="300" y="80" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>parameter + default</text>
+        <text x="520" y="80" fill="#5a6a9e" fontSize="7.5" fontFamily={FONT}>return type</text>
+        <text x="36" y="104" fill="#dbe6ff" fontSize="11" fontFamily="'Consolas', monospace">
+          function greet(string $name = &quot;Riya&quot;): string {'{'}
+        </text>
+        <text x="36" y="128" fill="#dbe6ff" fontSize="11" fontFamily="'Consolas', monospace">
+          &nbsp;&nbsp;return &quot;Hello &quot; . $name;   {'}'}
+        </text>
+        <text x="36" y="150" fill="#7ee787" fontSize="8.5" fontFamily="'Consolas', monospace">greet(&quot;Aman&quot;)  →  &quot;Hello Aman&quot;</text>
+      </g>
+
+      <text x="20" y="182" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>CHAAR PRAKAAR</text>
+
+      {[
+        ['BUILT-IN', '#00d4ff', ['strlen(), count()', 'date(), printf()', 'PHP ke saath aate hain', 'declare nahi karne padte']],
+        ['USER-DEFINED', '#c4ff00', ['function myFunc() {}', 'aap khud likhte hain', 'naam se call hota hai', 'code reuse + readable']],
+        ['PARAMETER / DEFAULT', '#ff8800', ['function add($a, $b = 0)', 'default value optional', 'call: add(5) → 5', 'add(5, 3) → 8']],
+        ['VARIADIC / CLOSURE', '#7ee787', ['function sum(...$n)', 'sum(1,2,3) → 6', '$f = function ($x) {};', 'fn($x) => $x * 2']],
+      ].map(([t, c, rows], i) => {
+        const x = 20 + i * 226;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${180 + i * 80}ms` }}>
+            <rect x={x} y="194" width="212" height="118" rx="10" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.4" strokeOpacity="0.65" />
+            <text x={x + 12} y="212" fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+            {rows.map((r, j) => (
+              <text key={r} x={x + 12} y={232 + j * 19} fill="#dbe6ff" fontSize="7.8" fontFamily="'Consolas', monospace">{r}</text>
+            ))}
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="20" y="326" width="430" height="96" rx="10" fill="rgba(255,122,178,0.07)" stroke="rgba(255,122,178,0.45)" />
+        <text x="36" y="346" fill="#ff7ab2" fontSize="9" fontWeight="700" fontFamily={FONT}>CALL STACK</text>
+        <text x="36" y="366" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">main()  →  total()  →  tax()</text>
+        <text x="36" y="386" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>return value wapas upar jaati hai</text>
+        <text x="36" y="406" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>har function ka apna scope hota hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '590ms' }}>
+        <rect x="470" y="326" width="430" height="96" rx="10" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
+        <text x="486" y="346" fill="#00ff88" fontSize="9" fontWeight="700" fontFamily={FONT}>SCOPE KA RULE</text>
+        <text x="486" y="366" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Bahar ka variable andar nahi dikhta</text>
+        <text x="486" y="384" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">global $x;   // ya parameter se bhejein</text>
+        <text x="486" y="404" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>return ke bina function null deta hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '650ms' }}>
+        <rect x="20" y="434" width="880" height="30" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="454" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Fayde: code reuse · testing aasan · readable · ek jagah badlo, har call par asar
+        </text>
+      </g>
+
+      <text x="460" y="492" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Function = input (parameters) → kaam → output (return value)
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 42 — OOP in PHP (3.12)
+// ============================================================
+export function PhpOopDiagram() {
+  return (
+    <svg viewBox="0 0 920 496" className="diagram-svg" role="img" aria-label="Object oriented PHP: a class as a blueprint producing objects, properties and methods, the constructor, access modifiers, and the four pillars of OOP">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        OOP — class ek blueprint, object usse bani cheez
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        properties (data) + methods (kaam) ek capsule mein
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="330" height="150" rx="11" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.55)" />
+        <text x="36" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>CLASS STUDENT</text>
+        <text x="36" y="108" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">class Student {'{'}</text>
+        <text x="36" y="124" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">  public $name;</text>
+        <text x="36" y="140" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">  private $marks;</text>
+        <text x="36" y="156" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  function __construct($n, $m) {'{'}</text>
+        <text x="36" y="172" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">    $this-&gt;name = $n; {'}'}</text>
+        <text x="36" y="188" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">  function avg() {'{'} return 83; {'}'}</text>
+        <text x="36" y="204" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{'}'}</text>
+      </g>
+
+      <text x="360" y="146" textAnchor="middle" fill="#9ab0e0" fontSize="14" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="382" y="66" width="240" height="66" rx="10" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.5)" />
+        <text x="396" y="86" fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>OBJECT 1</text>
+        <text x="396" y="104" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$s = new Student(&quot;Riya&quot;, 82);</text>
+        <text x="396" y="120" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>$s-&gt;name → Riya</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '250ms' }}>
+        <rect x="382" y="150" width="240" height="66" rx="10" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.5)" />
+        <text x="396" y="170" fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>OBJECT 2</text>
+        <text x="396" y="188" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$t = new Student(&quot;Aman&quot;, 92);</text>
+        <text x="396" y="204" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>$t-&gt;avg() → 92</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="646" y="66" width="254" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="660" y="86" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>ACCESS MODIFIERS</text>
+        <text x="660" y="108" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>public — har jagah</text>
+        <text x="660" y="126" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>protected — class + child</text>
+        <text x="660" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>private — sirf usi class mein</text>
+        <text x="660" y="168" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">$this — current object</text>
+        <text x="660" y="186" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">parent::__construct()</text>
+        <text x="660" y="204" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">self::  static::  parent::</text>
+      </g>
+
+      <text x="20" y="238" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>CHAAR PILLARS</text>
+
+      {[
+        ['ENCAPSULATION', '#c4ff00', 'data + method ek jagah', 'private + getter/setter'],
+        ['INHERITANCE', '#00d4ff', 'class Child extends Parent', 'code reuse'],
+        ['POLYMORPHISM', '#ff8800', 'same method, alag behaviour', 'override / interface'],
+        ['ABSTRACTION', '#ff7ab2', 'zaroori cheez dikhao', 'abstract class, interface'],
+      ].map(([t, c, l1, l2], i) => {
+        const x = 20 + i * 226;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${400 + i * 70}ms` }}>
+            <rect x={x} y="250" width="212" height="84" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.4" strokeOpacity="0.6" />
+            <text x={x + 12} y="270" fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 12} y="292" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{l1}</text>
+            <text x={x + 12} y="312" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>{l2}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
+        <rect x="20" y="350" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="370" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>PHP OOP KE KEYWORDS</text>
+        <text x="34" y="388" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">class · object · __construct · __destruct · extends · interface · abstract · static · final · trait · namespace</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
+        <rect x="20" y="412" width="880" height="34" rx="8" fill="rgba(0,255,136,0.07)" stroke="rgba(0,255,136,0.4)" />
+        <text x="34" y="434" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          static method bina object call hota hai (Student::count()) · trait code share karta hai bina inheritance ke
+        </text>
+      </g>
+
+      <text x="460" y="472" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Class = blueprint · Object = us blueprint se bani asli cheez
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 43 — File handling (3.13)
+// ============================================================
+export function PhpFileHandlingDiagram() {
+  const modes = [
+    ['r', 'read only', 'file exist karni chahiye'],
+    ['r+', 'read + write', 'pointer shuru mein'],
+    ['w', 'write only', 'purana data delete, nayi file banti'],
+    ['w+', 'read + write', 'purana data delete'],
+    ['a', 'append', 'end mein jodta hai, purana bacha'],
+    ['a+', 'read + append', 'end mein jodta hai'],
+    ['x', 'write only', 'nayi file; pehle se ho to error'],
+  ];
+  return (
+    <svg viewBox="0 0 920 494" className="diagram-svg" role="img" aria-label="PHP file handling: fopen with a mode, then fwrite or fread, then fclose, the file modes table, shortcut functions, and a file upload flow">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        File handling — kholo, likho/padho, band karo
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        fopen(mode) → fwrite / fread → fclose · mode galat ho to data ud sakta hai
+      </text>
+
+      {[
+        ['1. fopen()', '#00d4ff', ['$f = fopen("notes.txt", "a");', 'mode batata hai kaam kya hai']],
+        ['2. fwrite() / fread()', '#c4ff00', ['fwrite($f, "Hello");', 'fgets($f) ek line padhta hai']],
+        ['3. fclose()', '#00ff88', ['fclose($f);', 'file handle band karna zaroori']],
+      ].map(([t, c, lines], i) => {
+        const x = 20 + i * 302;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 90}ms` }}>
+            <rect x={x} y="66" width="284" height="76" rx="10" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.5" strokeOpacity="0.65" />
+            <text x={x + 14} y="86" fill={c} fontSize="9" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 14} y="106" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{lines[0]}</text>
+            <text x={x + 14} y="126" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>{lines[1]}</text>
+          </g>
+        );
+      })}
+      {[313, 615].map((x) => (
+        <text key={x} x={x} y="108" textAnchor="middle" fill="#9ab0e0" fontSize="20" fontFamily={FONT}>→</text>
+      ))}
+
+      <text x="20" y="164" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>FILE MODES</text>
+
+      {modes.map(([m, what, note], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = col === 0 ? 20 : 470;
+        const y = 174 + row * 32;
+        return (
+          <g key={m} className="diagram-pop" style={{ animationDelay: `${340 + i * 35}ms` }}>
+            <rect x={x} y={y} width="430" height="26" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" />
+            <text x={x + 12} y={y + 18} fill="#7ee787" fontSize="9" fontWeight="700" fontFamily="'Consolas', monospace">{m}</text>
+            <text x={x + 46} y={y + 18} fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{what}</text>
+            <text x={x + 168} y={y + 18} fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>{note}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="20" y="306" width="430" height="86" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="326" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>SHORTCUT FUNCTIONS</text>
+        <text x="34" y="346" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">file_get_contents() · file_put_contents()</text>
+        <text x="34" y="364" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">file() · file_exists() · filesize() · unlink()</text>
+        <text x="34" y="382" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>chhoti file ke liye ek line kaafi hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
+        <rect x="470" y="306" width="430" height="86" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="484" y="326" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>UPLOAD KA FLOW</text>
+        <text x="484" y="346" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$_FILES[&quot;doc&quot;][&quot;tmp_name&quot;]</text>
+        <text x="484" y="364" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">move_uploaded_file($tmp, $dest)</text>
+        <text x="484" y="382" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>size + extension + MIME check karein</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '720ms' }}>
+        <rect x="20" y="406" width="880" height="32" rx="8" fill="rgba(255,68,102,0.08)" stroke="rgba(255,68,102,0.45)" />
+        <text x="34" y="427" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Dhyan: &quot;w&quot; mode purana poora data mita deta hai — jodna ho to &quot;a&quot; use karein; 777 permission kabhi na dein
+        </text>
+      </g>
+
+      <text x="460" y="464" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Har file operation ke baad fclose() — warna dusra script file na khol paaye
+      </text>
+      <text x="460" y="484" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam line: fopen() file kholta hai, fwrite() likhta hai, fclose() band karta hai
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 44 — Cookies and sessions (3.14)
+// ============================================================
+export function PhpSessionDiagram() {
+  return (
+    <svg viewBox="0 0 920 508" className="diagram-svg" role="img" aria-label="Cookies versus sessions in PHP: a cookie keeps small data in the browser while a session keeps data on the server and only sends a session id, with the login and logout flow">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Cookie vs Session — data kahan rehta hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        cookie = browser mein chhota data · session = server par data, browser mein sirf id
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="430" height="132" rx="11" fill="rgba(255,136,0,0.06)" stroke="rgba(255,136,0,0.5)" />
+        <text x="36" y="86" fill="#ff8800" fontSize="9.5" fontWeight="800" fontFamily={FONT}>COOKIE</text>
+        <text x="36" y="108" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">setcookie(&quot;user&quot;, &quot;Riya&quot;, time()+3600);</text>
+        <text x="36" y="126" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">echo $_COOKIE[&quot;user&quot;];</text>
+        <text x="36" y="146" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Data browser mein rehta hai — user dekh sakta hai</text>
+        <text x="36" y="162" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Limit ~4 KB · har request ke saath jaata hai</text>
+        <text x="36" y="182" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Hataana: setcookie(&quot;user&quot;, &quot;&quot;, time()-3600);</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="470" y="66" width="430" height="132" rx="11" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.5)" />
+        <text x="486" y="86" fill="#00ff88" fontSize="9.5" fontWeight="800" fontFamily={FONT}>SESSION</text>
+        <text x="486" y="108" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">session_start();</text>
+        <text x="486" y="126" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$_SESSION[&quot;user&quot;] = &quot;Riya&quot;;</text>
+        <text x="486" y="146" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Data server par file mein · browser ke paas sirf PHPSESSID</text>
+        <text x="486" y="162" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Limit nahi · user data nahi dekh sakta</text>
+        <text x="486" y="182" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Hataana: session_unset(); session_destroy();</text>
+      </g>
+
+      <text x="20" y="222" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>LOGIN SE LOGOUT TAK</text>
+
+      {[
+        ['LOGIN', '#00d4ff', ['user + password POST', 'verify (password_verify)']],
+        ['session_start();', '#2f6fff', ['session id banti hai', 'PHPSESSID cookie browser ko']],
+        ['$_SESSION["user"]', '#c4ff00', ['server par sess_abc123 file', 'data wahan safe rehta hai']],
+        ['AGLA REQUEST', '#ff8800', ['browser PHPSESSID bhejta hai', 'PHP data wapas load karta hai']],
+        ['LOGOUT', '#ff7ab2', ['session_unset()', 'session_destroy() + cookie delete']],
+      ].map(([t, c, lines], i) => {
+        const x = 20 + i * 180;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${260 + i * 80}ms` }}>
+            <rect x={x} y="234" width="168" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.5" strokeOpacity="0.65" />
+            <text x={x + 12} y="254" textAnchor="start" fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 12} y="278" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>{lines[0]}</text>
+            <text x={x + 12} y="296" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>{lines[1]}</text>
+          </g>
+        );
+      })}
+      {[189, 369, 549, 729].map((x) => (
+        <text key={x} x={x} y="288" textAnchor="middle" fill="#9ab0e0" fontSize="13" fontFamily={FONT}>→</text>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
+        <rect x="20" y="346" width="880" height="52" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="366" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>COOKIE vs SESSION — EXAM TABLE</text>
+        <text x="34" y="384" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Data kahan: browser / server · Size: 4 KB / no limit · Security: kam / zyada · Expiry: user set karta / browser band hote hi khatam
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '720ms' }}>
+        <rect x="20" y="408" width="880" height="34" rx="8" fill="rgba(255,68,102,0.08)" stroke="rgba(255,68,102,0.45)" />
+        <text x="34" y="430" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          session_start() hamesha sabse pehle — HTML ya koi bhi output aane se pehle (warna &quot;headers already sent&quot;)
+        </text>
+      </g>
+
+      <text x="460" y="468" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Login system = session · &quot;Remember me&quot; = cookie · dono saath use hote hain
+      </text>
+      <text x="460" y="492" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Password kabhi cookie/session mein plain store na karein — sirf user id ya hash
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 45 — Form handling and validation (3.15)
+// ============================================================
+export function PhpFormValidationDiagram() {
+  return (
+    <svg viewBox="0 0 920 500" className="diagram-svg" role="img" aria-label="PHP form handling and validation pipeline: the submitted POST data is checked with required, type, format and length rules, errors are collected and shown back on a sticky form, and only valid data reaches the database">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Form handling aur validation — ek pipeline
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        submit → $_POST → check → error? → wapas form (sticky) ya success → database
+      </text>
+
+      {[
+        ['1. FORM', '#00d4ff', ['method="post"', 'required fields']],
+        ['2. $_POST', '#2f6fff', ['name attribute = key', '$_SERVER["REQUEST_METHOD"]']],
+        ['3. VALIDATE', '#c4ff00', ['isset / empty / trim', 'filter_var / preg_match']],
+        ['4. ERROR?', '#ff8800', ['$errors[] mein jama', 'form dobara dikhao']],
+        ['5. SAVE', '#00ff88', ['DB insert / mail', 'header("Location: ...")']],
+      ].map(([t, c, lines], i) => {
+        const x = 20 + i * 180;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 80}ms` }}>
+            <rect x={x} y="70" width="168" height="86" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.5" strokeOpacity="0.65" />
+            <text x={x + 12} y="90" fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 12} y="112" fill="#dbe6ff" fontSize="7.6" fontFamily="'Consolas', monospace">{lines[0]}</text>
+            <text x={x + 12} y="130" fill="#dbe6ff" fontSize="7.6" fontFamily="'Consolas', monospace">{lines[1]}</text>
+            <text x={x + 12} y="146" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}> </text>
+          </g>
+        );
+      })}
+      {[189, 369, 549, 729].map((x) => (
+        <text key={x} x={x} y="118" textAnchor="middle" fill="#9ab0e0" fontSize="13" fontFamily={FONT}>→</text>
+      ))}
+
+      <text x="20" y="186" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>VALIDATION KE RULES</text>
+
+      {[
+        ['required', 'if (empty($name))', '$errors[] = "Name required";'],
+        ['email', 'filter_var($email, FILTER_VALIDATE_EMAIL)', 'galat → false'],
+        ['number', 'filter_var($age, FILTER_VALIDATE_INT)', 'galat → false'],
+        ['length', 'strlen($name) >= 3', 'chhota naam reject'],
+        ['pattern', 'preg_match("/^[6-9]\\d{9}$/", $phone)', 'mobile number'],
+        ['safe output', 'htmlspecialchars($name, ENT_QUOTES)', 'XSS se bachav'],
+      ].map(([t, code, note], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = col === 0 ? 20 : 470;
+        const y = 196 + row * 40;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${420 + i * 50}ms` }}>
+            <rect x={x} y={y} width="430" height="32" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" />
+            <text x={x + 10} y={y + 14} fill="#c4ff00" fontSize="8" fontWeight="700" fontFamily={FONT}>{t}</text>
+            <text x={x + 10} y={y + 26} fill="#7ee787" fontSize="7.6" fontFamily="'Consolas', monospace">{code}</text>
+            <text x={x + 420} y={y + 24} textAnchor="end" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>{note}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
+        <rect x="20" y="322" width="430" height="76" rx="9" fill="rgba(255,68,102,0.07)" stroke="rgba(255,68,102,0.45)" />
+        <text x="34" y="342" fill="#ff7a90" fontSize="9" fontWeight="700" fontFamily={FONT}>STICKY FORM — galti par data na khoye</text>
+        <text x="34" y="362" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">value="&lt;?= htmlspecialchars($_POST[&quot;name&quot;] ?? &quot;&quot;) ?&gt;"</text>
+        <text x="34" y="382" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>error message field ke neeche dikhayein</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '820ms' }}>
+        <rect x="470" y="322" width="430" height="76" rx="9" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.45)" />
+        <text x="484" y="342" fill="#00d4ff" fontSize="9" fontWeight="700" fontFamily={FONT}>CLIENT vs SERVER</text>
+        <text x="484" y="362" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>JS validation — turant, par bypass ho sakti</text>
+        <text x="484" y="380" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>PHP validation — asli, server par compulsory</text>
+        <text x="484" y="394" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>dono lagayein: UX + security</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '880ms' }}>
+        <rect x="20" y="412" width="880" height="32" rx="8" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="433" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Validation ka order: presence → type → format → length → range · phir hi database ko bhejein
+        </text>
+      </g>
+
+      <text x="460" y="472" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Valid form hi database tak jaata hai — invalid data par error wapas form mein
+      </text>
+      <text x="460" y="490" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam line: form handling = $_POST padhna, validation = data check karna, escaping = safe print karna
+      </text>
+    </svg>
+  );
+}
+
+// ============================================================
+// Diagram 46 — CodeIgniter MVC (3.16)
+// ============================================================
+export function CodeIgniterMvcDiagram() {
+  return (
+    <svg viewBox="0 0 920 486" className="diagram-svg" role="img" aria-label="CodeIgniter request flow: index.php front controller, router, controller, model, database, view, and the response going back to the browser, with the folder structure">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        CodeIgniter — MVC framework ka request flow
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        ek URL → router → controller → model (database) → view → HTML response
+      </text>
+
+      {[
+        ['BROWSER', '#00d4ff', ['site.com/students', 'GET request']],
+        ['index.php', '#2f6fff', ['front controller', 'sab request yahan aati']],
+        ['ROUTER', '#c4ff00', ['routes.php dekhta', 'controller + method chunta']],
+        ['CONTROLLER', '#ff8800', ['Students::index()', 'logic ka manager']],
+      ].map(([t, c, lines], i) => {
+        const x = 20 + i * 226;
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 80}ms` }}>
+            <rect x={x} y="70" width="212" height="84" rx="9" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.5" strokeOpacity="0.65" />
+            <text x={x + 12} y="90" fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={x + 12} y="112" fill="#dbe6ff" fontSize="7.8" fontFamily="'Consolas', monospace">{lines[0]}</text>
+            <text x={x + 12} y="130" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{lines[1]}</text>
+          </g>
+        );
+      })}
+      {[233, 459, 685].map((x) => (
+        <text key={x} x={x} y="116" textAnchor="middle" fill="#9ab0e0" fontSize="13" fontFamily={FONT}>→</text>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="176" width="430" height="118" rx="10" fill="rgba(255,122,178,0.06)" stroke="rgba(255,122,178,0.45)" />
+        <text x="34" y="196" fill="#ff7ab2" fontSize="9" fontWeight="800" fontFamily={FONT}>MODEL + DATABASE</text>
+        <text x="34" y="218" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">$data = $this-&gt;studentModel-&gt;all();</text>
+        <text x="34" y="238" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Model sirf data ka kaam karta hai — query, insert, update</text>
+        <text x="34" y="256" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Controller mein SQL nahi likhna chahiye</text>
+        <text x="34" y="276" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">MySQL / PostgreSQL / SQLite</text>
+      </g>
+
+      <text x="462" y="232" textAnchor="middle" fill="#9ab0e0" fontSize="13" fontFamily={FONT}>↔</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '500ms' }}>
+        <rect x="470" y="176" width="430" height="118" rx="10" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.45)" />
+        <text x="484" y="196" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>VIEW — sirf dikhane ka kaam</text>
+        <text x="484" y="218" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">return view(&quot;students/index&quot;, $data);</text>
+        <text x="484" y="238" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>HTML + PHP ka template, data echo karta hai</text>
+        <text x="484" y="256" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>yahan business logic nahi likhni chahiye</text>
+        <text x="484" y="276" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">app/Views/students/index.php</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '580ms' }}>
+        <rect x="20" y="308" width="880" height="62" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="328" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>FOLDER STRUCTURE (CodeIgniter 4)</text>
+        <text x="34" y="348" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">app/Controllers  ·  app/Models  ·  app/Views  ·  app/Config/Routes.php  ·  app/Config/Database.php  ·  public/index.php</text>
+        <text x="34" y="362" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>public/ hi web root hota hai — baaki folders bahar se access nahi hote</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
+        <rect x="20" y="384" width="880" height="34" rx="8" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="406" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          CodeIgniter 4 install: composer create-project codeigniter4/appstarter project-name · lightweight + fast
+        </text>
+      </g>
+
+      <text x="460" y="444" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        MVC = Model (data) · View (dikhana) · Controller (beech ka manager)
+      </text>
+      <text x="460" y="468" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Fayde: code clean, testing aasan, team mein kaam baantna aasan
+      </text>
+    </svg>
+  );
+}
