@@ -809,7 +809,7 @@ export function OlOperationsDiagram() {
         <text x={44} y={472} fill={C.yellow} fontSize="8" fontFamily={FONT}>- dice se naya chhota sub-cube</text>
       </OpPanel>
 
-      <OpPanel x={320} y={278} title="5. PIVOT (ROTATE)" sub="rows aur columns swap" color={C.purple} delay={380}>
+      <OpPanel x={320} y={278} title="5. PIVOT (ROTATION)" sub="rows aur columns swap" color={C.purple} delay={380}>
         <g>
           <rect x={344} y={330} width={104} height={72} rx="7" fill="rgba(170,0,255,0.06)" stroke={C.purple} strokeWidth="1.2" strokeOpacity="0.7" />
           <text x={396} y={344} textAnchor="middle" fill={C.purple} fontSize="7.4" fontFamily={FONT}>rows: product</text>

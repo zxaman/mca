@@ -1742,7 +1742,7 @@ export const biOlapTopics = [
         "title": "Operations kya karte hain",
         "kicker": "Definition",
         "body": "OLAP operations cube par **navigation** karne ke tools hain — numbers badalte nahi, **view** badalta hai (pivot mein), ya **aggregation level** badalta hai (roll-up/drill-down).",
-        "body2": "Yaad rakhne ka simple rule: **Roll-up = zoom out, Drill-down = zoom in, Slice = ek page, Dice = chhota box, Pivot = page ghumao.**",
+        "body2": "Yaad rakhne ka simple rule: **Roll-up = zoom out, Drill-down = zoom in, Slice = ek page, Dice = chhota box, Pivot (rotation) = page ghumao.**",
         "chips": [
           "roll-up",
           "drill-down",
@@ -1779,8 +1779,8 @@ export const biOlapTopics = [
           },
           {
             "icon": "refresh",
-            "title": "Pivot / rotate",
-            "body": "Rows <-> columns swap; dimension axis change; values same."
+            "title": "Pivot (rotation)",
+            "body": "Rows <-> columns swap; dimension axis change; values same. Isliye ise rotation ya rotate bhi kehte hain."
           },
           {
             "icon": "arrow",
@@ -1851,7 +1851,7 @@ export const biOlapTopics = [
         "type": "example",
         "title": "Ek hi cube, paanch operations",
         "kicker": "Example",
-        "body": "Base cell: (Product = Running Shoes, Month = Mar-2024, City = Pune) = Sales 4,80,000. **Roll-up:** (Footwear, Q1-2024, Maharashtra) = 92,00,000. **Drill-down:** (Running Shoes -> SKU-U9, Week 12, Pune-Kothrud store) = 38,000. **Slice:** sirf `Channel = Online` par poora cube. **Dice:** {Footwear, Apparel} x {Jan, Feb, Mar 2024} x {Pune, Mumbai}. **Pivot:** category rows se columns mein — trend dekhne ke liye. Values nahi badle, sirf nazariya."
+        "body": "Base cell: (Product = Running Shoes, Month = Mar-2024, City = Pune) = Sales 4,80,000. **Roll-up:** (Footwear, Q1-2024, Maharashtra) = 92,00,000. **Drill-down:** (Running Shoes -> SKU-U9, Week 12, Pune-Kothrud store) = 38,000. **Slice:** sirf `Channel = Online` par poora cube. **Dice:** {Footwear, Apparel} x {Jan, Feb, Mar 2024} x {Pune, Mumbai}. **Pivot (rotation):** category rows se columns mein — trend dekhne ke liye. Values nahi badle, sirf nazariya."
       },
       {
         "type": "points",
@@ -1860,7 +1860,7 @@ export const biOlapTopics = [
         "points": [
           "**Roll-up** = aggregation upar; **Drill-down** = detail neeche (inverse operations).",
           "**Slice** = ek dimension fix; **Dice** = multiple dimensions par restriction.",
-          "**Pivot** = presentation change, data change nahi.",
+          "**Pivot (rotation)** = presentation change (rows <-> columns), data change nahi.",
           "**Drill-through** = aggregate se raw rows tak (audit ke liye zaroori).",
           "**Drill-across** = conformed dimensions par do facts compare.",
           "Operations ka purpose: **self-service exploration** bina SQL."
@@ -1871,7 +1871,7 @@ export const biOlapTopics = [
         "title": "OLAP operations",
         "kicker": "Diagram (Exam Ke Liye)",
         "diagram": "ol-operations",
-        "caption": "One cube with roll-up and drill-down along the time hierarchy, slice on a single year, dice across product and city ranges, and pivot swapping rows and columns"
+        "caption": "One cube with roll-up and drill-down along the time hierarchy, slice on a single year, dice across product and city ranges, and pivot (rotation) swapping rows and columns"
       },
       {
         "type": "recap",
@@ -1882,15 +1882,15 @@ export const biOlapTopics = [
           "**Drill-down:** year -> quarter -> SKU.",
           "**Slice:** ek dimension, ek member.",
           "**Dice:** multiple dimensions par sets/ranges.",
-          "**Pivot:** rows <-> columns, values same.",
+          "**Pivot (rotation):** rows <-> columns, values same.",
           "**Exam line:** paanch operations, ek hi cube."
         ]
       }
     ],
     "examQuestions": [
       {
-        "question": "Explain the OLAP operations: roll-up, drill-down, slice, dice and pivot.",
-        "answer": "OLAP operations cube par navigate karne ke primitives hain.\n\n**1. Roll-up (consolidation)**\n- Higher hierarchy level par aggregate.\n- Month -> Quarter -> Year; City -> State -> Region.\n- Dimension drop bhi ho sakta hai (country hata do -> total).\n- Result: fewer rows, bigger numbers.\n\n**2. Drill-down**\n- Roll-up ka inverse — finer level ya extra dimension.\n- Year -> Quarter -> Month -> Day; Category -> Sub-category -> SKU.\n- Question: \"is number ke peeche kaun hai?\"\n\n**3. Slice**\n- Ek dimension ko ek member par fix karke sub-cube lena.\n- Example: sirf `Year = 2024`, ya sirf `Region = West`.\n\n**4. Dice**\n- Do ya zyada dimensions par sets/ranges fix karna.\n- Example: 2023-2024, {Footwear, Apparel}, {Pune, Mumbai}.\n\n**5. Pivot (rotate)**\n- Rows aur columns swap, ya dimension doosre axis par.\n- Values same rehte hain — sirf presentation badalti hai.\n\n**Related:** drill-through (raw rows), drill-across (do facts, conformed dimensions), top-n ranking.\n\n**Diagram:** Refer to the OLAP operations diagram."
+        "question": "Explain the OLAP operations: roll-up, drill-down, slice, dice and pivot (rotation).",
+        "answer": "OLAP operations cube par navigate karne ke primitives hain.\n\n**1. Roll-up (consolidation)**\n- Higher hierarchy level par aggregate.\n- Month -> Quarter -> Year; City -> State -> Region.\n- Dimension drop bhi ho sakta hai (country hata do -> total).\n- Result: fewer rows, bigger numbers.\n\n**2. Drill-down**\n- Roll-up ka inverse — finer level ya extra dimension.\n- Year -> Quarter -> Month -> Day; Category -> Sub-category -> SKU.\n- Question: \"is number ke peeche kaun hai?\"\n\n**3. Slice**\n- Ek dimension ko ek member par fix karke sub-cube lena.\n- Example: sirf `Year = 2024`, ya sirf `Region = West`.\n\n**4. Dice**\n- Do ya zyada dimensions par sets/ranges fix karna.\n- Example: 2023-2024, {Footwear, Apparel}, {Pune, Mumbai}.\n\n**5. Pivot (rotation, also called rotate)**\n- Rows aur columns swap, ya dimension doosre axis par.\n- Axes ghumte hain, isliye ise **rotation** bhi kehte hain; values same rehti hain - sirf presentation badalti hai.\n\n**Related:** drill-through (raw rows), drill-across (do facts, conformed dimensions), top-n ranking.\n\n**Diagram:** Refer to the OLAP operations diagram."
       },
       {
         "question": "Differentiate roll-up and drill-down with examples. What is the role of hierarchies?",

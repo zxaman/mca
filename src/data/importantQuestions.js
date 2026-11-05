@@ -844,7 +844,7 @@ LLMs GenAI ka subtype hai jo language ko samajh aur generate karti hai. Ye bade 
     unit: '3',
     topicNumber: '3.10',
     topicTitle: 'OLAP Operations',
-    question: `Explain the basic OLAP operations: roll-up, drill-down, slice, dice and pivot, with examples.`,
+    question: `Explain the basic OLAP operations: roll-up, drill-down, slice, dice and pivot (rotation), with examples.`,
     answer: `**1. Roll-up (consolidation)** - move **up** a hierarchy, replacing a fine level with a coarser one and aggregating the measures. Example: monthly sales - quarter - year. Result: fewer cells, higher-level totals.
 
 **2. Drill-down** - the inverse: move **down** a hierarchy to reveal detail, or add a new dimension. Example: year - quarter - month - day, to find which month caused the drop. Drill-through further jumps from a cube cell to the source invoice rows.
@@ -853,7 +853,7 @@ LLMs GenAI ka subtype hai jo language ko samajh aur generate karti hai. Ye bade 
 
 **4. Dice** - select a **range or list of values on two or more** dimensions, producing a smaller sub-cube. Example: products in (Aata, Soap) AND cities in (Pune, Mumbai) AND quarters in (Q1, Q2).
 
-**5. Pivot (rotate)** - **swap the axes** of the presentation - product on rows becomes product on columns - without changing any value or performing aggregation. Purely a presentation operation.
+**5. Pivot (rotation, also called rotate)** - **swap the axes** of the presentation - product on rows becomes product on columns - without changing any value or performing aggregation. Axes ghumte hain, isliye ise **rotation** bhi kehte hain - purely a presentation operation.
 
 **Difference table**
 | Operation | Direction | Values change? | Data volume |
