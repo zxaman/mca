@@ -18,6 +18,7 @@ import { webTechnologyTopicsH } from './webTechnology8.js';
 import { webTechnologyTopicsI } from './webTechnology9.js';
 import { webTechnologyTopicsJ } from './webTechnology10.js';
 import { webTechnologyTopicsK } from './webTechnology11.js';
+import { webTechnologyTopicsL } from './webTechnology12.js';
 
 const unit1Topics = [
   // ==========================================================
@@ -812,5 +813,11 @@ export const webTechnologyUnits = [
     number: '4',
     name: 'ASP.NET',
     topics: [...webTechnologyTopicsK],
+  },
+  {
+    id: 'unit-5',
+    number: '5',
+    name: 'AngularJS and Next.js',
+    topics: [...webTechnologyTopicsL],
   },
 ];

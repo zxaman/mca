@@ -240,6 +240,21 @@ import {
   SecurityDiagram,
 } from './AspNetDiagrams';
 
+import {
+  JsFrameworksDiagram,
+  AngularOverviewDiagram,
+  AngularFeaturesDiagram,
+  AngularAdvantagesDiagram,
+  AngularMvcDiagram,
+  AngularApplicationsDiagram,
+  AngularExpressionsDiagram,
+  AngularModulesDiagram,
+  AngularFormsDiagram,
+  AngularValidationDiagram,
+  NextjsOverviewDiagram,
+  NextjsFeaturesDiagram,
+} from './AngularDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1111,6 +1126,30 @@ export function Diagram({ type }) {
       return <ValidationDiagram />;
     case 'wt4-security':
       return <SecurityDiagram />;
+    case 'wt5-frameworks':
+      return <JsFrameworksDiagram />;
+    case 'wt5-overview':
+      return <AngularOverviewDiagram />;
+    case 'wt5-features':
+      return <AngularFeaturesDiagram />;
+    case 'wt5-advantages':
+      return <AngularAdvantagesDiagram />;
+    case 'wt5-mvc':
+      return <AngularMvcDiagram />;
+    case 'wt5-applications':
+      return <AngularApplicationsDiagram />;
+    case 'wt5-expressions':
+      return <AngularExpressionsDiagram />;
+    case 'wt5-modules':
+      return <AngularModulesDiagram />;
+    case 'wt5-forms':
+      return <AngularFormsDiagram />;
+    case 'wt5-validation':
+      return <AngularValidationDiagram />;
+    case 'wt5-nextjs':
+      return <NextjsOverviewDiagram />;
+    case 'wt5-nextjs-features':
+      return <NextjsFeaturesDiagram />;
     case 'st3-static':
       return <StaticTestingDiagram />;
     case 'st3-structural':

@@ -15,7 +15,7 @@ adding a topic is just adding an object.
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
-| Web Technology | WT | 4 | 64 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) |
+| Web Technology | WT | 5 | 76 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) + Unit V (AngularJS & Next.js) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -163,6 +163,24 @@ Custom, `ValidationSummary`, `ValidationGroup`, why `Page.IsValid` still matters
 (authentication vs authorisation, Windows/Forms/Passport/None, forms authentication config and
 `RedirectFromLoginPage`, the CIA goals, and SQL injection / XSS / CSRF / hijacking defences).
 Each topic carries an animated SVG diagram and three six-mark questions with full answers.
+
+**Web Technology (Unit V — AngularJS and Next.js)** has 12 topics: what a JavaScript framework is (library
+vs framework and inversion of control, the six framework families, and the 2006→Next.js timeline), an
+overview of AngularJS (Google's 2010 framework, `ng-app` bootstrap → module → `$injector` → controller +
+`$scope` → digest, and AngularJS vs Angular 2+), its features (`ng-model` binding, directives,
+expressions, modules, controllers, services and DI, filters, `ngRoute`, validation, testing), its
+advantages with a matching set of limitations (EOL December 2021, digest performance, two-way binding
+data flow, migration is a rewrite), the MVC/MVVM architecture and the `$scope` ViewModel, the
+applications where it fits (dashboards, CRM/ERP, e-commerce, data entry, real-time, Ionic hybrid apps),
+expressions and directives (`{{ }}` rules, filters, `ng-bind`/`ng-cloak`, the four directive families,
+custom directives with `restrict`/`scope`/`link`), modules and controllers (`angular.module`,
+`ng-controller`, `controller as vm`, child scopes, DI array notation), form handling with two-way data
+binding (`$valid`/`$dirty`/`$touched`/`$submitted`, `ng-submit`, `$setPristine`), validation directives
+(`required`, `ng-minlength`, `ng-pattern`, `type="email"`, `min`/`max`, `ng-required`, `ngMessages`,
+custom and async validators) and an introduction to **Next.js** (why React needs it, SSR/SSG/ISR/CSR,
+file-based routing, App Router with React Server Components, API routes, image/font optimisation,
+metadata for SEO and middleware). Each topic carries an animated SVG diagram and three six-mark
+questions with full answers.
 
 **Software Testing & QA (Unit IV — Testing Strategies)** has 13 topics in three groups. *Testing
 levels:* integration testing (big bang, top-down with stubs, bottom-up with drivers, sandwich) and
