@@ -298,6 +298,56 @@ import {
   SocialEngineeringTargetsDiagram,
 } from './SocialEngineeringDiagrams';
 
+import {
+  BwOltpVsOlapDiagram,
+  BwCharacteristicsDiagram,
+  BwArchitectureDiagram,
+  BwEtlDiagram,
+  BwCleaningDiagram,
+  BwIntegrationDiagram,
+  BwMetadataDiagram,
+  BwDataQualityDiagram,
+  BwAiPrepDiagram,
+} from './BiWarehouseDiagrams';
+
+import {
+  OlMultidimDiagram,
+  OlFactDimDiagram,
+  OlMeasuresDiagram,
+  OlStarSchemaDiagram,
+  OlSnowflakeDiagram,
+  OlStarVsSnowDiagram,
+  OlOlapArchDiagram,
+  OlOlapTypesDiagram,
+  OlCubeDiagram,
+  OlOperationsDiagram,
+  OlVsOltpDiagram,
+  OlAppsDiagram,
+} from './BiOlapDiagrams';
+
+import {
+  TdMetricsDiagram,
+  TdKpiDecisionDiagram,
+  TdPerformanceDiagram,
+  TdTemporalDiagram,
+  TdBitemporalDiagram,
+  TdAttributesDiagram,
+  TdTimeAnalysisDiagram,
+  TdTrendDiagram,
+} from './BiAnalyticsDiagrams';
+
+import {
+  VzIntroDiagram,
+  VzPrinciplesDiagram,
+  VzChartsDiagram,
+  VzDashboardDiagram,
+  VzInteractiveDiagram,
+  VzToolsDiagram,
+  VzBuildDiagram,
+  VzDecisionDiagram,
+  VzAiDiagram,
+} from './BiVisualizationDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1351,6 +1401,82 @@ export function Diagram({ type }) {
       return <PreventingInsiderThreatsDiagram />;
     case 'se-targets':
       return <SocialEngineeringTargetsDiagram />;
+    case 'bw-oltp-olap':
+      return <BwOltpVsOlapDiagram />;
+    case 'bw-characteristics':
+      return <BwCharacteristicsDiagram />;
+    case 'bw-architecture':
+      return <BwArchitectureDiagram />;
+    case 'bw-etl':
+      return <BwEtlDiagram />;
+    case 'bw-cleaning':
+      return <BwCleaningDiagram />;
+    case 'bw-integration':
+      return <BwIntegrationDiagram />;
+    case 'bw-metadata':
+      return <BwMetadataDiagram />;
+    case 'bw-dq':
+      return <BwDataQualityDiagram />;
+    case 'bw-ai-etl':
+      return <BwAiPrepDiagram />;
+    case 'ol-multidim':
+      return <OlMultidimDiagram />;
+    case 'ol-fact-dim':
+      return <OlFactDimDiagram />;
+    case 'ol-measures':
+      return <OlMeasuresDiagram />;
+    case 'ol-star':
+      return <OlStarSchemaDiagram />;
+    case 'ol-snowflake':
+      return <OlSnowflakeDiagram />;
+    case 'ol-star-vs-snow':
+      return <OlStarVsSnowDiagram />;
+    case 'ol-olap-arch':
+      return <OlOlapArchDiagram />;
+    case 'ol-olap-types':
+      return <OlOlapTypesDiagram />;
+    case 'ol-cube':
+      return <OlCubeDiagram />;
+    case 'ol-operations':
+      return <OlOperationsDiagram />;
+    case 'ol-vs-oltp':
+      return <OlVsOltpDiagram />;
+    case 'ol-apps':
+      return <OlAppsDiagram />;
+    case 'td-metrics':
+      return <TdMetricsDiagram />;
+    case 'td-kpi-decision':
+      return <TdKpiDecisionDiagram />;
+    case 'td-performance':
+      return <TdPerformanceDiagram />;
+    case 'td-temporal':
+      return <TdTemporalDiagram />;
+    case 'td-bitemporal':
+      return <TdBitemporalDiagram />;
+    case 'td-attributes':
+      return <TdAttributesDiagram />;
+    case 'td-time-analysis':
+      return <TdTimeAnalysisDiagram />;
+    case 'td-trend':
+      return <TdTrendDiagram />;
+    case 'vz-intro':
+      return <VzIntroDiagram />;
+    case 'vz-principles':
+      return <VzPrinciplesDiagram />;
+    case 'vz-charts':
+      return <VzChartsDiagram />;
+    case 'vz-dashboard':
+      return <VzDashboardDiagram />;
+    case 'vz-interactive':
+      return <VzInteractiveDiagram />;
+    case 'vz-tools':
+      return <VzToolsDiagram />;
+    case 'vz-build':
+      return <VzBuildDiagram />;
+    case 'vz-decision':
+      return <VzDecisionDiagram />;
+    case 'vz-ai':
+      return <VzAiDiagram />;
     default:
       return null;
   }

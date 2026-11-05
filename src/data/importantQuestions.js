@@ -274,6 +274,1821 @@ LLMs GenAI ka subtype hai jo language ko samajh aur generate karti hai. Ye bade 
     image: null,
     importance: '⭐⭐',
   },
+  // ========================================================
+  // Business Intelligence Unit 2 — Data Warehousing and Data Preparation
+  // ========================================================
+  {
+    id: 'q11',
+    unit: '2',
+    topicNumber: '2.1',
+    topicTitle: 'Operational Databases vs Data Warehouses',
+    question: `Differentiate between operational databases and data warehouses. Why is a separate warehouse needed?`,
+    answer: `Dono ka purpose alag hai: ek business chalata hai, doosra business ko samajhne mein help karta hai.\n\n| Point | Operational database (OLTP) | Data warehouse (OLAP) |\n|---|---|---|\n| Purpose | day-to-day transactions | analysis aur decision support |\n| Workload | many small read-write | few large read-only |\n| Response time | milliseconds | seconds to minutes |\n| Schema | normalized (3NF) | denormalized (star/snowflake) |\n| Data | current, detailed | historical, summarized |\n| Operations | INSERT/UPDATE/DELETE | bulk load + SELECT |\n| Size | GB | TB to PB |\n| Users | clerks, applications | analysts, managers, BI tools |\n| Indexing | B-tree | bitmap, columnar, partition |\n\n**Separate warehouse kyun:**\n1. Performance isolation (heavy query production ko slow na kare).\n2. Historical depth (trend, YoY ke liye saalon ka data).\n3. Integration (ERP, CRM, POS ka data ek model mein).\n4. Analysis-friendly star schema.\n5. Governance (read-only access, masking, RLS).\n6. Non-volatile snapshot se reproducible reports.\n\n**Diagram:** Refer to the Operational database vs data warehouse — OLTP vs OLAP diagram.`,
+    diagram: 'bw-oltp-olap',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q12',
+    unit: '2',
+    topicNumber: '2.1',
+    topicTitle: 'Operational Databases vs Data Warehouses',
+    question: `Explain OLTP and OLAP workloads with examples and the role of ETL between them.`,
+    answer: `**OLTP (transaction processing):**\n- Chhoti, fast, concurrent transactions; ACID; row-level locking.\n- Example: bank transfer, e-commerce order, hospital billing.\n\n**OLAP (analytical processing):**\n- Badi, complex, read-only aggregation queries.\n- Example: "quarter-wise region-wise product margin", campaign ROI, student performance trend.\n\n**ETL ka role:**\n- OLTP sources se extract (full / incremental / CDC).\n- Staging mein clean + standardise + dedupe.\n- Star schema (fact + dimensions) mein load.\n- Result: OLAP-ready, history-rich, consistent data.\n\n**Kyun ek hi system par dono nahi:**\n- Lock contention aur slow transactions.\n- Schema conflict (3NF vs star).\n- Security aur governance mix ho jaate hain.\n\n**Rule of thumb:** OLTP = "abhi kya hua", OLAP = "pattern kya hai".\n\n**Diagram:** Refer to the Operational database vs data warehouse — OLTP vs OLAP diagram.`,
+    diagram: 'bw-oltp-olap',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q13',
+    unit: '2',
+    topicNumber: '2.2',
+    topicTitle: 'Characteristics of Data Warehouses',
+    question: `Explain the characteristics of a data warehouse (Inmon).`,
+    answer: `Inmon ke **chaar characteristics (SITN):**\n\n**1. Subject-oriented**\n- Business subject ke around design: customer, product, sales, finance.\n- Application-oriented nahi — isliye cross-subject analysis possible.\n\n**2. Integrated**\n- Heterogeneous sources ka data consistent banaya jaata hai.\n- Naming, coding (M/Male/1), units, formats, semantics standard.\n- Result: one customer, one truth.\n\n**3. Time-variant**\n- Har record ke saath time dimension; snapshots aur effective dates.\n- 5-10 saal ka history — trend, YoY, seasonality.\n\n**4. Non-volatile**\n- Bulk load, users update/delete nahi karte.\n- Stable snapshot se repeated queries same answer deti hain.\n\n**Additional practical properties:**\n5. Summarized + granular (multi-level aggregation).\n6. Metadata-driven (dictionary, glossary, lineage).\n7. Read-optimised (star joins, bitmap/columnar, partitions).\n8. Secure and auditable (RLS, masking, logs).\n9. Scheduled refresh (ETL windows, CDC, freshness SLA).\n\n**Diagram:** Refer to the Data warehouse characteristics — SITN diagram.`,
+    diagram: 'bw-characteristics',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q14',
+    unit: '2',
+    topicNumber: '2.2',
+    topicTitle: 'Characteristics of Data Warehouses',
+    question: `Explain "integrated" and "non-volatile" with examples, and why warehouse building is mostly a data effort.`,
+    answer: `**Integrated:**\n- Sources: ERP 'cust_no', CRM 'customer_id', POS phone.\n- Fixes: naming, coding ('M'/'Male'/'1' → 'GENDER_M'), units (kg/g, INR/USD), formats ('12-05-2024' → '20240512'), semantics ("revenue" gross ya net).\n- Result: same customer ek 'customer_key' par merge, lifetime value sahi.\n\n**Non-volatile:**\n- Data bulk load se aata hai; user sirf SELECT karta hai.\n- Correction = naya load/snapshot; purana record preserve.\n- Fayda: reproducibility — 2023 ka number baad mein nahi badalta (audit safe).\n- Contrast: OLTP volatile hai, warehouse stable.\n\n**Kyun ye data effort hai:**\n1. 60-80% time integration + cleansing mein jaata hai.\n2. Source profiling, mapping, conflict resolution chahiye.\n3. Data quality rules aur exception handling zaroori.\n4. Historical codes badalte hain → slowly changing dimensions.\n5. Governance (metadata, ownership, access) ke bina trust nahi.\n\n**Diagram:** Refer to the Data warehouse characteristics — SITN diagram.`,
+    diagram: 'bw-characteristics',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q15',
+    unit: '2',
+    topicNumber: '2.3',
+    topicTitle: 'Data Warehouse Architecture (Three-Tier)',
+    question: `Explain the three-tier architecture of a data warehouse with a neat diagram.`,
+    answer: `**1. Bottom tier — data warehouse database server**\n- Warehouse DB (star/snowflake schema).\n- Back-end ETL: extract, clean, transform, load.\n- Staging area + metadata repository + scheduler.\n\n**2. Middle tier — OLAP server**\n- Multidimensional view: slice, dice, drill-down, roll-up, pivot.\n- **ROLAP** (SQL over star schema), **MOLAP** (pre-built cube), **HOLAP** (both).\n\n**3. Top tier — front-end client layer**\n- Query & reporting, dashboards, spreadsheets.\n- Ad-hoc analysis, data mining, alerts, natural-language Q&A.\n\n**Supporting components:** staging area, data marts (dependent/independent), metadata repository, scheduler, security and semantic layer.\n\n**Data flow:** sources → staging → ETL → warehouse → OLAP server → BI tools → users.\n\n**Why three-tier:** independent scaling, better performance, multiple front-ends, centralised security and semantics.\n\n**Diagram:** Refer to the Data warehouse — three-tier architecture diagram.`,
+    diagram: 'bw-architecture',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q16',
+    unit: '2',
+    topicNumber: '2.3',
+    topicTitle: 'Data Warehouse Architecture (Three-Tier)',
+    question: `Compare ROLAP, MOLAP and HOLAP, and two-tier vs three-tier architecture.`,
+    answer: `**ROLAP vs MOLAP vs HOLAP:**\n\n| Point | ROLAP | MOLAP | HOLAP |\n|---|---|---|---|\n| Data | relational star | pre-built cube | both |\n| Aggregate speed | medium | fastest | fast |\n| Storage | low | high | balanced |\n| Detail drill | excellent | limited | good |\n| Freshness | near real-time | cube refresh | mixed |\n| Best for | large detail, ad-hoc | fixed KPI dashboards | hybrid estate |\n\n**Two-tier vs three-tier:**\n\n| Point | Two-tier | Three-tier |\n|---|---|---|\n| Layers | DB + client | DB + OLAP server + client |\n| Aggregation | client/DB | middle tier |\n| Scalability | limited | independent per tier |\n| Concurrency | DB contention | server managed |\n| Security | split | centralised |\n| Suits | small department DW | enterprise BI |\n\n**Choice:** fixed dashboards + speed → MOLAP; large detail + freshness → ROLAP; mixed → HOLAP; enterprise → three-tier.\n\n**Diagram:** Refer to the Data warehouse — three-tier architecture diagram.`,
+    diagram: 'bw-architecture',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q17',
+    unit: '2',
+    topicNumber: '2.4',
+    topicTitle: 'ETL Process: Extraction, Transformation and Loading',
+    question: `Explain the ETL process in detail with examples of each stage.`,
+    answer: `**1. Extraction**\n- Sources: operational DB, files (CSV/XML/JSON), APIs, logs, third-party.\n- Full extract (initial load) vs incremental ('modified_date > watermark') vs **CDC**.\n- Raw data staging area mein — source dobara read nahi.\n\n**2. Transformation**\n- Cleaning: nulls, invalid values, whitespace, encoding.\n- Standardisation: date, unit, currency, codes.\n- Deduplication + entity resolution → golden record.\n- Business rules: margin = revenue - cost, tax, age bucket.\n- Aggregation/pivot, surrogate keys, lookup joins.\n- **SCD** handling (Type 1 overwrite, Type 2 history, Type 3 previous).\n- Reconciliation control totals.\n\n**3. Loading**\n- Full refresh (small dims), append (facts), MERGE/upsert (dims).\n- Bulk load utilities for speed.\n- Validation: row counts, totals, null checks.\n- Error handling: reject table, alert, retry.\n- Audit log: load id, rows in/out/rejected, duration.\n\n**Design principles:** idempotent, restartable, watermark-driven, reconciled, monitored with freshness SLA, documented in metadata.\n\n**Diagram:** Refer to the ETL — extract, transform, load diagram.`,
+    diagram: 'bw-etl',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q18',
+    unit: '2',
+    topicNumber: '2.4',
+    topicTitle: 'ETL Process: Extraction, Transformation and Loading',
+    question: `Differentiate ETL and ELT. How are quality errors handled inside an ETL pipeline?`,
+    answer: `**ETL vs ELT:**\n\n| Point | ETL | ELT |\n|---|---|---|\n| Order | transform then load | load raw, transform in warehouse |\n| Engine | separate ETL server | warehouse SQL engine |\n| Raw data | not stored in warehouse | preserved in raw layer |\n| Reprocessing | re-extract from source | re-transform from raw |\n| Best for | on-prem, strict governance | cloud columnar, big data |\n| Weakness | heavy ETL infrastructure | raw-layer cost and PII governance |\n\n**Quality error handling:**\n1. **Layer checks** — file present, row count, schema; type/range/referential; key uniqueness and totals.\n2. **Reject table** — bad rows with reason code; pipeline continues.\n3. **Thresholds** — X% rejects cross ho to fail + alert.\n4. **Checkpoint/restart** — last good key se resume.\n5. **Idempotent MERGE** — duplicate run se corruption nahi.\n6. **Reprocess/backfill** — fix karke dobara load.\n7. **Audit + reconciliation** — source total vs target total, zero-row alert.\n8. **Root cause** — source system mein validation add karwao.\n\n**Diagram:** Refer to the ETL — extract, transform, load diagram.`,
+    diagram: 'bw-etl',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q19',
+    unit: '2',
+    topicNumber: '2.5',
+    topicTitle: 'Data Cleaning Techniques',
+    question: `Explain data cleaning techniques used in data warehousing.`,
+    answer: `Data cleaning raw data ke defects correct karti hai.\n\n**1. Profiling** — null %, distinct, min/max, pattern, duplicates (measure first).\n**2. Missing values** — delete row/column, mean/median/mode, regression/KNN, business default + flag.\n**3. Duplicates** — exact match + fuzzy (Levenshtein, Jaro-Winkler, Soundex, blocking) → golden record.\n**4. Outliers** — z-score (>3), IQR (1.5x), Mahalanobis, isolation forest; error ho to fix, genuine ho to retain.\n**5. Standardisation** — date, units, currency, codes, casing, whitespace.\n**6. Parsing/validation** — type cast, regex (email, phone, pincode), range, referential integrity.\n**7. Text cleaning** — control characters, encoding, HTML entities, name/address parsing.\n**8. Governance** — rule log, before/after metrics, source root-cause fix.\n\n**Example:** customer master mein 'city' 22 variants → mapping table se 1 standard value; 4% duplicates → fuzzy match + survivor rules; future 'dob' reject rule.\n\n**Diagram:** Refer to the Data cleaning techniques — defect se fix tak diagram.`,
+    diagram: 'bw-cleaning',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q20',
+    unit: '2',
+    topicNumber: '2.5',
+    topicTitle: 'Data Cleaning Techniques',
+    question: `How are missing values and outliers handled? What precautions are necessary?`,
+    answer: `**Missing values:**\n\n| Method | When |\n|---|---|\n| Delete row | very few rows, key field missing |\n| Delete column | >60-70% null |\n| Mean/median | numeric (median if skewed) |\n| Mode | categorical |\n| Regression / KNN | correlated fields available |\n| Business default + flag | process default known |\n\n**Precautions:** missingness pattern dekho (MCAR/MAR/MNAR); imputed value ko **flag** karo; missing ko zero se replace karna often galat.\n\n**Outliers:**\n- Detection: z-score, IQR, Mahalanobis, isolation forest, business rules.\n- Decision: **error** (negative quantity, future date) → fix/reject; **genuine** (festive spike, large B2B order) → retain.\n- Handling: reject table with reason code, capping/winsorising, expert review.\n\n**Precautions:** remove karne se mean/variance badalta hai; documented rule + reason code; domain expert confirmation; before/after stats report.\n\n**Diagram:** Refer to the Data cleaning techniques — defect se fix tak diagram.`,
+    diagram: 'bw-cleaning',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q21',
+    unit: '2',
+    topicNumber: '2.6',
+    topicTitle: 'Data Integration from Heterogeneous Sources',
+    question: `Explain data integration from heterogeneous sources with its levels and challenges.`,
+    answer: `**Definition:** Alag systems (ERP, CRM, POS, logs, APIs) ka data ek consistent, queryable view mein laana.\n\n**Heterogeneity ke chaar level:**\n1. **System** — Oracle, SAP, MongoDB, flat files.\n2. **Syntactic** — encoding, delimiter, date format, JSON/CSV/XML.\n3. **Schematic** — structure, keys, granularity, normalization.\n4. **Semantic** — "revenue" gross ya net, "active customer" ki definition.\n\n**Approaches:** ETL, ELT, EAI/API, data virtualisation, data lake/lakehouse, MDM.\n\n**Steps:** profile sources → canonical model → schema mapping → transformation rules → entity resolution → conflict resolution → surrogate keys → CDC + monitoring.\n\n**Challenges:** semantic mismatch, missing/duplicate keys, different refresh cycles, volume, poor quality, PII governance, schema drift.\n\n**Diagram:** Refer to the Data integration from heterogeneous sources diagram.`,
+    diagram: 'bw-integration',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q22',
+    unit: '2',
+    topicNumber: '2.6',
+    topicTitle: 'Data Integration from Heterogeneous Sources',
+    question: `How are entity resolution and conflict resolution performed during integration?`,
+    answer: `**Entity resolution (same entity pehchanna):**\n1. **Blocking** — candidate pairs (same pincode/phone prefix).\n2. **Exact match** — key, email, phone.\n3. **Fuzzy match** — Levenshtein, Jaro-Winkler, phonetic (Soundex), token-based addresses.\n4. **Score + threshold** — match / no-match / manual review.\n5. **Golden record** — survivor rules: most recent, most complete, source priority.\n\n**Conflict resolution (kaunsa value sahi):**\n1. Source precedence (core banking > CRM for accounts).\n2. Recency (latest update).\n3. Completeness (non-null preferred).\n4. Trust score (historically accurate source).\n5. Business rule (finance official source).\n6. Manual override with audit log.\n\n**Governance:** owner for unresolved conflicts, SLA, decision log, versioned survivorship rules.\n\n**Example:** address CRM se (naya), PAN ERP se (authoritative).\n\n**Diagram:** Refer to the Data integration from heterogeneous sources diagram.`,
+    diagram: 'bw-integration',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q23',
+    unit: '2',
+    topicNumber: '2.7',
+    topicTitle: 'Metadata: Types and Importance',
+    question: `Define metadata. Explain its types with examples.`,
+    answer: `**Definition:** Metadata data ke baare mein data hai — kya hai, kahan se aaya, kaise transform hua, kaun owner, kaise use karein.\n\n**1. Technical (structural)**\n- Tables, columns, types, keys, indexes, partitions, file formats, storage path.\n- Example: 'fact_sales.amount' → DECIMAL(12,2), partitioned by month.\n\n**2. Business (semantic)**\n- Business names, definitions, calculations, hierarchies, report specs, glossary.\n- Example: "Net Revenue" = gross - returns - discounts.\n\n**3. Operational (administrative)**\n- ETL logs, row counts, refresh timestamps, DQ scores, access logs, lineage, versions.\n- Example: 'load_sales_2024_05_12' → 1,84,203 rows, 12 rejected, status SUCCESS.\n\n**4. (Optional) Descriptive / discovery**\n- Tags, keywords, popularity, owner contact, sample queries.\n\n**Where it lives:** metadata repository / data catalogue, business glossary, ETL repository, DB catalog views.\n\n**Diagram:** Refer to the Metadata — data ke baare mein data diagram.`,
+    diagram: 'bw-metadata',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q24',
+    unit: '2',
+    topicNumber: '2.7',
+    topicTitle: 'Metadata: Types and Importance',
+    question: `Why is metadata important? Explain metadata management and data lineage.`,
+    answer: `**Importance:**\n1. Discoverability — analyst ko table/column milta hai.\n2. Understanding — definition ke bina KPI galat interpret hota hai.\n3. Impact analysis — schema change se kaunse reports tootenge.\n4. Lineage/audit — regulator ko data ka raasta dikhana.\n5. Consistency — ek KPI ka ek definition (glossary).\n6. Quality monitoring — freshness, row counts, DQ score.\n7. Security — PII classification, retention, access policy.\n8. Productivity — onboarding fast, tribal knowledge kam.\n\n**Metadata management:**\n- Central repository/catalogue + automated harvesting (DB, ETL, BI tools).\n- Business glossary with owner approval.\n- Lineage graph (table- and column-level).\n- Governance (owner, steward, classification), versioning.\n\n**Data lineage:**\n- Source → staging → transform → fact/dim → semantic → report.\n- Forward vs backward; table vs column level.\n- Kaise: ETL mapping parse, SQL parse, logs, tools (DataHub, Collibra, dbt docs).\n- Fayde: debugging, impact analysis, audit, trust.\n\n**Diagram:** Refer to the Metadata — data ke baare mein data diagram.`,
+    diagram: 'bw-metadata',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q25',
+    unit: '2',
+    topicNumber: '2.8',
+    topicTitle: 'Data Quality: Concepts and Challenges',
+    question: `Define data quality. Explain its dimensions with examples.`,
+    answer: `**Definition:** Data quality data ki wo degree hai jisse data apne intended use ke liye fit hota hai.\n\n| Dimension | Matlab | Failure example |\n|---|---|---|\n| Accuracy | value reality se match | galat phone number |\n| Completeness | required data present | missing pincode |\n| Consistency | systems agree | finance 3.9 Cr vs sales 4.2 Cr |\n| Timeliness | current and on time | T+3 data T+1 report |\n| Validity | format/range rules | future dob, negative qty |\n| Uniqueness | no duplicates | ek customer 3 rows |\n| Integrity | relations valid | order ka customer missing |\n| Interpretability | definition clear | revenue gross ya net |\n\n**Measurement:** profiling + rule-based checks → DQ score + exception report.\n\n**Improvement:** critical data elements, rules at source, cleanse + quarantine, monitor dashboard, owner/steward governance.\n\n**Diagram:** Refer to the Data quality — dimensions, challenges aur lifecycle diagram.`,
+    diagram: 'bw-dq',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q26',
+    unit: '2',
+    topicNumber: '2.8',
+    topicTitle: 'Data Quality: Concepts and Challenges',
+    question: `Discuss the challenges in maintaining data quality and the data quality lifecycle.`,
+    answer: `**Challenges:**\n1. Heterogeneous sources — alag format, code, definition.\n2. Manual entry — typos, shortcuts, nulls.\n3. Missing upstream validation.\n4. Late detection — problem report ke time pata chalti hai.\n5. Warehouse-side cleansing temporary.\n6. Ownership gap — "data kiski" ka answer nahi.\n7. Volume & velocity — bade/streaming data par rules mehnge.\n8. Changing definitions — glossary update nahi hota.\n9. Privacy constraints — PII review limited.\n10. No measurement — DQ score/SLA nahi to problem invisible.\n\n**Lifecycle:**\n1. **Define** — critical data elements + rules.\n2. **Assess** — profile, baseline metrics.\n3. **Cleanse** — fix, quarantine, backfill.\n4. **Monitor** — automated checks, DQ dashboard, alerts.\n5. **Govern** — owner + steward, issue log, root cause, policy.\n\n**Measurement:** completeness %, validity %, uniqueness %, freshness vs SLA, referential pass %, weighted DQ score.\n\n**Diagram:** Refer to the Data quality — dimensions, challenges aur lifecycle diagram.`,
+    diagram: 'bw-dq',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'q27',
+    unit: '2',
+    topicNumber: '2.9',
+    topicTitle: 'Role of AI and LLMs in Data Preparation',
+    question: `Explain the role of AI and LLMs in data preparation, cleaning and automated ETL.`,
+    answer: `**AI touchpoints:**\n1. **Profiling** — table/column clustering, key and join suggestion, distribution anomalies.\n2. **Mapping** — source-to-target suggestions + transformation logic from names, samples, docs.\n3. **Cleaning** — fuzzy dedupe, entity resolution, imputation, name/address parsing, anomaly detection.\n4. **Document extraction** — invoice, contract, email, scanned form → structured JSON (OCR + LLM).\n5. **Code generation** — ETL scripts, SQL, tests, documentation.\n6. **Pipeline agents** — failure diagnosis, retry, backfill, data contract checks.\n\n**Benefits:** setup speed, unstructured coverage, better anomaly detection, lower skill barrier.\n\n**Risks:** hallucination, non-determinism, privacy, prompt injection, bias, drift, cost, weak explainability.\n\n**Controls:** human-in-the-loop approval, validation layer, masking/private endpoints, versioned prompts and models, eval dataset, drift alerts, audit log.\n\n**Conclusion:** AI accelerate karta hai; governance decide karti hai ki output par bharosa karein ya nahi.\n\n**Diagram:** Refer to the AI aur LLMs in data preparation diagram.`,
+    diagram: 'bw-ai-etl',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  // ============================================================
+  // Business Intelligence Unit 3 - Multidimensional modelling + OLAP
+  // ============================================================
+  {
+    id: 'q28',
+    unit: '3',
+    topicNumber: '3.1',
+    topicTitle: 'Multidimensional Data Model',
+    question: `Explain the multidimensional data model used in OLAP systems. Discuss its basic elements with a suitable diagram.`,
+    answer: `**Definition:** A multidimensional data model represents data as a **cube** (hypercube) in which each dimension is an axis and each point of intersection - a **cell** - stores one or more numeric measures. Instead of flat rows and columns, the analyst thinks in terms of "sales by product by time by store", which is exactly how business questions are asked.
+
+**Basic elements:**
+1. **Dimension** - an axis of analysis (product, time, location, customer, promotion).
+2. **Dimension member** - one value on an axis (Aata 5kg, Q3 FY25, Pune).
+3. **Hierarchy** - levels inside a dimension along which aggregation moves: category - subcategory - item; year - quarter - month - day; region - state - city - store.
+4. **Level** - one step of a hierarchy.
+5. **Measure** - the numeric value stored in the cell (sales, quantity, cost, margin).
+6. **Cell** - one member per dimension, holding the measures.
+7. **Cube** - the collection of all cells; 3 dimensions look like a box, more dimensions are still called a cube.
+
+**Why it is needed:** a relational table forces repeated multi-table joins and GROUP BY for every question; a multidimensional model stores the same facts with dimensions arranged as axes, so slicing, dicing and drill-down become direct navigation instead of query writing.
+
+**Modelling steps:** (1) decide the grain, (2) identify dimensions and their hierarchies, (3) identify additive measures, (4) store as star schema (ROLAP) or as a pre-built array (MOLAP).
+
+**Diagram:** Refer to the multidimensional data model diagram.`,
+    diagram: 'ol-multidim',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q29',
+    unit: '3',
+    topicNumber: '3.1',
+    topicTitle: 'Multidimensional Data Model',
+    question: `Compare the relational (entity-relationship) model with the multidimensional model for analytical data.`,
+    answer: `| Point | Relational model | Multidimensional model |
+|---|---|---|
+| Unit of storage | row in a table | cell in a cube |
+| User's view | tables and joins | dimensions and measures |
+| Query language | SQL with GROUP BY | MDX, drag-drop pivot, cube navigation |
+| Aggregation | computed at query time | pre-computed aggregates |
+| Navigation | ad-hoc joins | roll-up, drill-down, slice, dice, pivot |
+| Speed | depends on query and indexes | fast for consistent summary questions |
+| Flexibility | high, any new question possible | strongest when dimensions are stable |
+| Storage | compact, normalized | aggregates increase storage |
+| Best for | OLTP and detailed audit | OLAP, dashboards, trend analysis |
+
+**Explanation:** The relational model is a **general-purpose** model - it can store anything but forces the query writer to construct joins and groupings. The multidimensional model is a **purpose-built** analytical model: dimensions are fixed in advance and aggregates are pre-computed, which is why a dashboard answers in one second what a SQL query may take minutes to compute.
+
+**Trade-off:** fixed dimensions make the cube fast but rigid. If the business suddenly wants "sales by weather", the cube must be rebuilt, while in a relational star schema the new dimension can simply be added.
+
+**Practical reality:** Both are used together - data is stored relationally (star schema) and exposed multidimensionally (OLAP cube) by the OLAP server.
+
+**Diagram:** Refer to the multidimensional data model diagram.`,
+    diagram: 'ol-multidim',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q30',
+    unit: '3',
+    topicNumber: '3.2',
+    topicTitle: 'Fact Tables and Dimension Tables',
+    question: `Differentiate between fact tables and dimension tables. Explain the structure of each with an example.`,
+    answer: `**Fact table:** stores the **measurable business events**. One row = one event at the declared grain (one line item, one visit, one month-end snapshot). It contains foreign keys to each dimension plus numeric measures, and almost no descriptive text. It is **long and narrow** - millions of rows, few columns.
+
+**Dimension table:** stores the **descriptive context**. One row = one entity (a product, a store, a customer, a day). It contains a surrogate key, a natural key and descriptive attributes, and it is **short and wide** - thousands of rows, many columns.
+
+| Point | Fact table | Dimension table |
+|---|---|---|
+| Content | keys + numeric measures | attributes + descriptive text |
+| Size | very large, narrow | small, wide |
+| Rows represent | an event or snapshot | an entity |
+| Keys | FK to every dimension | surrogate PK + natural key |
+| Changes | append-only, immutable | slowly changing (SCD) |
+| Used for | aggregation (SUM, AVG) | filtering, grouping, labelling |
+
+**Example:**
+- fact_sales (product_key, date_key, store_key, customer_key, qty, sales, cost, margin) - 4 dimensions, 4 measures.
+- dim_product (product_key, sku, item_name, brand, subcategory, category) - descriptive levels.
+
+**Rule of thumb:** if a column is a number you want to add up, it belongs in the fact table; if it is a label you might use in a filter or a row heading, it belongs in a dimension table.
+
+**Grain first:** always declare the grain before choosing dimensions, otherwise measures get double counted.
+
+**Diagram:** Refer to the fact and dimension tables diagram.`,
+    diagram: 'ol-fact-dim',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q31',
+    unit: '3',
+    topicNumber: '3.2',
+    topicTitle: 'Fact Tables and Dimension Tables',
+    question: `Explain the types of fact tables and the types of dimension tables with examples.`,
+    answer: `**A. Types of fact tables**
+1. **Transaction fact** - one row per event, the most granular (one invoice line). Best for detailed analysis.
+2. **Periodic snapshot fact** - one row per entity per period, e.g. month-end inventory on hand. Measures are semi-additive.
+3. **Accumulating snapshot fact** - one row per process instance with multiple dates (order date, ship date, delivery date) that are updated as the order progresses - used for cycle-time analysis.
+4. **Factless fact** - no numeric measure at all; the event's existence is the fact (student attended a lecture, product on promotion). Counted with COUNT.
+
+**B. Types of dimension tables**
+1. **Conformed dimension** - the same dimension reused across multiple facts, so results are comparable ("single version of truth").
+2. **Role-playing dimension** - one dimension serving several roles in the same fact (date as order date, ship date, delivery date), accessed through views or aliases.
+3. **Junk dimension** - collection of small, unrelated flags (is_gift, is_return, payment_channel) combined into one dimension to avoid key clutter.
+4. **Degenerate dimension** - a key stored in the fact table itself because it needs no attributes (invoice number, ticket number).
+5. **Slowly changing dimension (SCD)**
+   - Type 1: overwrite the old value (no history),
+   - Type 2: add a new row with version and effective dates (full history, preferred for reporting),
+   - Type 3: add a "previous value" column (limited history).
+
+**Diagram:** Refer to the fact and dimension tables diagram.`,
+    diagram: 'ol-fact-dim',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q32',
+    unit: '3',
+    topicNumber: '3.3',
+    topicTitle: 'Measures and Dimensions',
+    question: `What are measures? Explain additive, semi-additive and non-additive measures with examples.`,
+    answer: `**Measure:** a numeric fact that the business wants to quantify and aggregate - sales amount, quantity sold, cost, margin, balance, headcount.
+
+**Classification by aggregation behaviour**
+
+1. **Additive** - can be summed along **every** dimension.
+   - Examples: sales amount, quantity sold, discount given, units returned.
+   - SUM(sales) is correct across product, store, time and customer.
+
+2. **Semi-additive** - can be summed along some dimensions but **not along time**.
+   - Examples: closing stock on hand, account balance, headcount, room occupancy.
+   - Adding January and February stock gives an imaginary number; the correct measure is the last value, average, or max over the period.
+
+3. **Non-additive** - cannot be summed along any dimension.
+   - Examples: ratios such as margin %, growth %, average order value, unit price, KPI index.
+   - Correct method: aggregate the numerator and denominator separately, then divide.
+
+**Why this matters:** summing a non-additive measure produces the classic "average of averages" error. AVG(margin_pct) of three stores is not the company margin if the stores have different sales volumes.
+
+**Design rule:** store the additive components (revenue, cost) and compute the ratio at query time rather than storing margin %.
+
+**Dimensions on the other side:** the dimension answers "by what"; the measure answers "how much". A cell is therefore "measure value for one member of each dimension".
+
+**Diagram:** Refer to the measures and dimensions diagram.`,
+    diagram: 'ol-measures',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q33',
+    unit: '3',
+    topicNumber: '3.3',
+    topicTitle: 'Measures and Dimensions',
+    question: `Design a dimensional model (star schema) for a retail chain selling grocery products across stores. State the grain, dimensions and measures.`,
+    answer: `**Business question:** "How much did we sell, by product, by store, by month, and at what margin?"
+
+**1. Grain (declared first):** one row per **invoice line item per store per day**. Finest grain keeps every other aggregation possible.
+
+**2. Fact table fact_sales**
+- Foreign keys: product_key, date_key, store_key, customer_key, promotion_key
+- Measures: quantity, gross_sales, discount, net_sales, cost, margin (margin % computed, not stored)
+
+**3. Dimensions**
+| Dimension | Key attributes | Hierarchy |
+|---|---|---|
+| dim_product | SKU, item name, brand, pack size | category - subcategory - brand - item |
+| dim_date | date, month, quarter, year, fiscal period, holiday flag | year - quarter - month - day |
+| dim_store | store name, format, city, state | region - state - city - store |
+| dim_customer | name, segment, loyalty tier | segment - tier - customer |
+| dim_promotion | campaign, media, discount %, start and end date | campaign type - campaign |
+
+**4. Measures classification:** net_sales, quantity, cost are additive; margin %, average basket size are non-additive; stock-on-hand in an inventory snapshot would be semi-additive.
+
+**5. Why star, not snowflake:** five flat dimension tables cost one join each, the model is easy for BI tools, and dimension row counts are modest. Only dim_product may be selectively snowflaked if category data is shared.
+
+**6. Expected query:** SELECT d.year, p.category, SUM(f.net_sales) FROM fact_sales f JOIN dim_product p ... JOIN dim_date d ... GROUP BY 1,2 - four joins, answered from pre-aggregates in an OLAP cube.
+
+**Diagram:** Refer to the star schema diagram.`,
+    diagram: 'ol-star',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q34',
+    unit: '3',
+    topicNumber: '3.4',
+    topicTitle: 'Star Schema',
+    question: `Explain the star schema. Discuss its components, advantages and disadvantages with an example.`,
+    answer: `**Definition:** A star schema is a dimensional model in which **one central fact table** is joined to a set of **denormalized dimension tables** arranged like a star. Each dimension is a single table holding all of its hierarchy levels.
+
+**Components**
+1. **Fact table** - foreign keys to all dimensions + numeric measures at the declared grain.
+2. **Dimension tables** - flat, denormalized, containing descriptive attributes and hierarchy levels.
+3. **Surrogate keys** - simple integer keys replacing natural keys, so dimension history (SCD type 2) can be tracked.
+4. **Star join** - every dimension joins the fact directly on one key.
+
+**Example:** fact_sales(product_key, date_key, store_key, customer_key, qty, sales, cost, margin) with dim_product holding category and subcategory in the same table (not in separate normalized tables).
+
+**Advantages**
+- Simple for analysts and BI tools - one join per dimension.
+- Fast query response: fewer joins, better use of bitmap indexes and pre-aggregates.
+- Denormalization is acceptable in read-mostly warehouses; no update anomalies in practice.
+- Easy to understand and to extend with a new dimension.
+
+**Disadvantages**
+- Data redundancy inside dimensions (category name repeated for every item).
+- More storage than a normalized model.
+- A hierarchy change requires updating many rows.
+- Very large dimensions (millions of customers) can make the star heavy.
+
+**When to use:** most data marts, dashboards, and any model where query speed matters more than storage.
+
+**Diagram:** Refer to the star schema diagram.`,
+    diagram: 'ol-star',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q35',
+    unit: '3',
+    topicNumber: '3.5',
+    topicTitle: 'Snowflake Schema',
+    question: `Explain the snowflake schema. How is a star schema converted into a snowflake? Discuss advantages and disadvantages.`,
+    answer: `**Definition:** A snowflake schema is a star schema whose **dimension tables are normalized** into multiple related tables. The fact table stays the same; each dimension hierarchy is split into its own level table, so the diagram branches like a snowflake.
+
+**Structure:** fact_sales joins dim_product, which joins dim_subcategory, which joins dim_category; and dim_store joins dim_city, dim_state, dim_region.
+
+**Conversion steps (star to snowflake)**
+1. Pick a dimension with repeated values, e.g. dim_product containing category, subcategory.
+2. Create a new table for each repeated level: dim_category(category_id, category_name, department).
+3. Replace the descriptive columns in dim_product with a foreign key category_id.
+4. Repeat for every hierarchy: product, geography, date.
+5. Add foreign key constraints and re-point the ETL mapping.
+
+**Advantages**
+- Removes redundancy: a category name is stored once.
+- Saves storage for large dimensions.
+- Cleaner updates - changing a category name touches one row.
+- Conformed, reusable hierarchy tables across marts.
+
+**Disadvantages**
+- More joins: fact - store - city - state - region is four joins for one dimension.
+- Slower queries, complex SQL, harder for business users.
+- BI tools need a semantic layer to hide the complexity.
+- Over-normalization is the classic tuning problem in warehouses.
+
+**Practical use:** snowflaking is applied **selectively** - only to large or shared dimensions; small dimensions stay flat.
+
+**Diagram:** Refer to the snowflake schema diagram.`,
+    diagram: 'ol-snowflake',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q36',
+    unit: '3',
+    topicNumber: '3.6',
+    topicTitle: 'Star vs Snowflake Schema',
+    question: `Compare star schema and snowflake schema on at least eight points. Which one should be used and when?`,
+    answer: `| Point | Star schema | Snowflake schema |
+|---|---|---|
+| Structure | fact + flat dimensions | fact + normalized dimension levels |
+| Number of tables | fewer | more |
+| Joins per query | one per dimension | several per dimension |
+| Query speed | faster | slower |
+| Storage | higher (redundancy) | lower (no repetition) |
+| Normal form | denormalized (2NF/3NF dims) | normalized (3NF) |
+| Complexity for users | simple, self-explanatory | complex, needs semantic layer |
+| ETL complexity | simpler loads | more tables and key lookups |
+| Update anomaly | possible in dimensions | minimized |
+| Maintenance | easy to extend | hierarchy changes are clean |
+| Cube build | faster | slower |
+| Typical use | data marts, dashboards, BI tools | enterprise warehouse, shared hierarchies |
+
+**Choose star when:** query speed is the priority, the team is small, dimensions are moderate (thousands of rows), and the BI tool relies on simple star joins.
+
+**Choose snowflake when:** storage is a constraint, hierarchies are large (product, geography with lakhs of members), or the same dimension is reused across many marts and must be maintained in one place.
+
+**Hybrid (most common in practice):** a **star** core with **selective snowflaking** of the two or three biggest dimensions, plus a **galaxy schema** when several fact tables share conformed dimensions.
+
+**Exam one-liner:** star schema optimizes **reads**, snowflake schema optimizes **storage and consistency**.
+
+**Diagram:** Refer to the star vs snowflake schema diagram.`,
+    diagram: 'ol-star-vs-snow',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q37',
+    unit: '3',
+    topicNumber: '3.7',
+    topicTitle: 'Introduction to OLAP and its Architecture',
+    question: `Define OLAP. Explain the FASMI test and the three-tier architecture of an OLAP system.`,
+    answer: `**Definition:** OLAP (Online Analytical Processing) is a technology that lets analysts **view and analyse multidimensional data interactively**, with fast responses to aggregation, drill-down and comparison queries over large historical volumes. It sits on top of the data warehouse and serves the "why and what if", not the day-to-day "what happened now".
+
+**FASMI test (Pendse/OLAP Council)**
+- **F**ast - answers in about 1-5 seconds even for large data.
+- **A**nalysis - supports business logic and statistics, not just listing.
+- **S**hared - multi-user concurrency, security, and controlled access.
+- **M**ultidimensional - a true dimensional view with hierarchies.
+- **I**nformation - delivers all the data and derived information a decision needs.
+
+**Architecture (three tiers)**
+1. **Data tier** - source systems (ERP, CRM, POS, flat files) loaded through ETL into a data warehouse or data marts using star/snowflake schemas.
+2. **OLAP server tier** - the analytical engine: aggregation and summary tables, cube cache, MDX/SQL query processor, metadata repository (cube definitions, hierarchies, security) and scheduler for refresh.
+3. **Presentation tier** - client tools: Excel PivotTable, Power BI, Tableau, web dashboards, mobile apps; they send MDX/drag-drop requests and render charts, pivots and drill paths.
+
+**Data flow:** sources - ETL - warehouse - OLAP server (aggregate + cache) - client report. Security and metadata are cross-cutting, applied on each layer.
+
+**Diagram:** Refer to the OLAP introduction and architecture diagram.`,
+    diagram: 'ol-olap-arch',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q38',
+    unit: '3',
+    topicNumber: '3.8',
+    topicTitle: 'Types of OLAP Systems',
+    question: `Explain ROLAP, MOLAP and HOLAP with their advantages and disadvantages.`,
+    answer: `**1. ROLAP (Relational OLAP)**
+- The OLAP engine works directly on the **relational star/snowflake schema** in an RDBMS or MPP database.
+- Aggregates are handled by summary tables, materialized views, bitmap indexes and SQL generation.
+- *Advantages:* no data duplication, handles very large volumes, near real-time freshness, full drill-down to detail, standard SQL tools.
+- *Disadvantages:* slower for heavy ad-hoc aggregation unless summary tables are tuned; performance depends on the DBA.
+
+**2. MOLAP (Multidimensional OLAP)**
+- Data is loaded into a **proprietary multidimensional array (cube)** with pre-computed aggregates and bitmap/compressed sparse storage.
+- *Advantages:* fastest response (sub-second), strong support for complex calculations and time series, ideal for slicing and dicing.
+- *Disadvantages:* cube build time and storage cost, cube size limit, batch refresh so data can be stale, detail rows often left out.
+
+**3. HOLAP (Hybrid OLAP)**
+- **Combines both:** summary aggregates live in a cube (MOLAP) while the detail rows stay relational (ROLAP); the engine decides which store answers a query.
+- *Advantages:* fast summaries plus full drill-through detail, balanced storage.
+- *Disadvantages:* two-tier design, complex maintenance and tuning, consistency between cube and detail must be managed.
+
+**Other variants:** DOLAP (desktop, offline cube), WOLAP (web-based), RTOLAP (real-time/streaming updates for fraud and operations).
+
+**Selection:** detail and freshness - ROLAP; speed - MOLAP; both - HOLAP. Sparse dimensions with huge combination counts usually favour ROLAP.
+
+**Diagram:** Refer to the types of OLAP systems diagram.`,
+    diagram: 'ol-olap-types',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q39',
+    unit: '3',
+    topicNumber: '3.9',
+    topicTitle: 'OLAP Cube Concept',
+    question: `Explain the concept of an OLAP cube. Discuss sparsity and the techniques to manage it.`,
+    answer: `**Definition:** An OLAP cube is a multidimensional structure that stores measure values for **every combination of dimension members**. With three dimensions it looks like a box with length, width and height; with more dimensions it is a hypercube, but the name "cube" stays. Each cell address is one member per dimension, and the cell content is the measure set (sales, quantity, margin).
+
+**Components:** dimensions and hierarchies, measures, cells, aggregates, and the metadata that defines them.
+
+**Aggregation levels:** a cube stores not only base cells but also pre-computed roll-ups (day - week - month - quarter - year). This is why a "year total" is instant - it is a stored cell, not a scan.
+
+**Sparsity problem:** the number of possible cells is the product of dimension member counts. Example: 3,000 products x 400 stores x 1,100 days x 2 channels = **2.64 arab (2.64 billion) possible cells**, but the combinations that actually occur in sales are only about **4 crore** - roughly **1.5% dense**, meaning 98.5% of the cube is empty. Storing all cells wastes storage and slows loading.
+
+**Techniques to manage sparsity**
+1. Store only **non-empty cells** (sparse array with an offset/index map).
+2. **Bitmap indexes** per dimension member to locate matching cells.
+3. **Partitioning** the cube by time or region so only the changed partition is rebuilt.
+4. **Aggregate-only** cubes - keep detail in the relational store (HOLAP).
+5. **Dimension pruning** - drop dimensions nobody queries.
+
+**Cube vs relational table:** array with pre-computed cells and sub-second response versus rows with query-time GROUP BY and flexible detail.
+
+**Diagram:** Refer to the OLAP cube concept diagram.`,
+    diagram: 'ol-cube',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q40',
+    unit: '3',
+    topicNumber: '3.10',
+    topicTitle: 'OLAP Operations',
+    question: `Explain the basic OLAP operations: roll-up, drill-down, slice, dice and pivot (rotation), with examples.`,
+    answer: `**1. Roll-up (consolidation)** - move **up** a hierarchy, replacing a fine level with a coarser one and aggregating the measures. Example: monthly sales - quarter - year. Result: fewer cells, higher-level totals.
+
+**2. Drill-down** - the inverse: move **down** a hierarchy to reveal detail, or add a new dimension. Example: year - quarter - month - day, to find which month caused the drop. Drill-through further jumps from a cube cell to the source invoice rows.
+
+**3. Slice** - fix **one** dimension to a single value, producing a sub-cube of the remaining dimensions. Example: time = FY 2024 gives a product x store x customer plane.
+
+**4. Dice** - select a **range or list of values on two or more** dimensions, producing a smaller sub-cube. Example: products in (Aata, Soap) AND cities in (Pune, Mumbai) AND quarters in (Q1, Q2).
+
+**5. Pivot (rotation, also called rotate)** - **swap the axes** of the presentation - product on rows becomes product on columns - without changing any value or performing aggregation. Axes ghumte hain, isliye ise **rotation** bhi kehte hain - purely a presentation operation.
+
+**Difference table**
+| Operation | Direction | Values change? | Data volume |
+|---|---|---|---|
+| Roll-up | up the hierarchy | yes, aggregated | decreases |
+| Drill-down | down the hierarchy | yes, disaggregated | increases |
+| Slice | one dimension fixed | no | decreases |
+| Dice | multi-dimension range | no | decreases |
+| Pivot | presentation only | no | same |
+
+**Use in business:** roll-up for management summaries, drill-down for root-cause, slice/dice for segment comparison, pivot for reporting layout, drill-through for audit.
+
+**Diagram:** Refer to the OLAP operations diagram.`,
+    diagram: 'ol-operations',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q41',
+    unit: '3',
+    topicNumber: '3.11',
+    topicTitle: 'OLAP vs OLTP Systems',
+    question: `Differentiate between OLTP and OLAP systems. Why are they kept as separate systems?`,
+    answer: `| Point | OLTP | OLAP |
+|---|---|---|
+| Purpose | run the business | analyse the business |
+| Users | clerks, applications | analysts, managers |
+| Workload | many short read-write transactions | few long read-only queries |
+| Queries | INSERT/UPDATE/DELETE | SELECT with GROUP BY / MDX |
+| Data | current, detailed | historical, summarized |
+| Schema | normalized (3NF) | star / snowflake |
+| Size | GB | TB to PB |
+| Indexing | B-tree on keys | bitmap, columnar, partitioning |
+| Response | milliseconds | seconds to minutes |
+| Concurrency | thousands of users | tens of heavy queries |
+| Metric | TPS and latency | scan throughput |
+| Backup | point-in-time critical | periodic reload possible |
+
+**Why separate systems**
+1. **Performance isolation** - an analytical scan of lakhs of rows would lock tables and slow billing.
+2. **Different schema needs** - 3NF for safe updates, star for fast reads.
+3. **Historical depth** - OLTP keeps current state, OLAP keeps multi-year history.
+4. **Integration** - many sources must be cleansed and conformed before analysis.
+5. **Governance** - analysts need read-only, masked, row-level-secured access.
+6. **Reproducibility** - a non-volatile snapshot means two reports show the same number.
+
+**Link:** ETL (batch) or CDC (streaming) moves data from OLTP to OLAP; never backwards. **HTAP** systems (row store + column store in memory) attempt both in one engine but remain an exception.
+
+**Diagram:** Refer to the OLAP vs OLTP systems diagram.`,
+    diagram: 'ol-vs-oltp',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q42',
+    unit: '3',
+    topicNumber: '3.12',
+    topicTitle: 'Applications of OLAP in Business Analysis',
+    question: `Discuss the applications of OLAP in business analysis. What are its benefits and limitations?`,
+    answer: `**Applications**
+1. **Retail and sales** - sales, margin and footfall by store, product and week; assortment and pricing decisions; promotion effectiveness.
+2. **Finance** - revenue vs budget variance by cost centre, ledger and period; profitability and cost analysis; consolidation reporting.
+3. **Supply chain** - fill rate, stock on hand, lead time by warehouse, supplier and item; reorder and safety-stock planning.
+4. **HR / workforce** - headcount, attrition and cost by department, grade, location and month; hiring and retention planning.
+5. **Banking** - balances, NPA percentage and transaction value by branch, product and segment; risk and cross-sell.
+6. **Telecom** - ARPU, churn and data usage by circle, plan and month; retention offers.
+7. **Healthcare** - bed occupancy, cost per case, readmission by hospital, speciality and payer; capacity planning.
+8. **Education** - marks, attendance and dropout by course, batch and term; remedial action.
+9. **Manufacturing** - OEE, rejection and downtime by plant, line, shift and machine; maintenance planning.
+
+**Common analytical patterns:** trend over time, contribution by dimension, exception and outlier detection, what-if and budget-vs-actual comparison, ranking and ABC analysis.
+
+**Benefits**
+- Fast interactive multi-dimensional analysis without writing SQL.
+- Self-service access for business users; reduced load on the IT team.
+- Trend and exception detection from years of history.
+- Single version of truth through conformed dimensions.
+- Supports planning, forecasting and target tracking.
+
+**Limitations**
+- Cube build cost and refresh latency - data is as fresh as the last load.
+- Schema rigidity: new dimensions require remodelling and rebuild.
+- Storage growth from aggregates; sparsity must be managed.
+- Depends on clean ETL and good data quality - garbage in, garbage out.
+- Not suited to row-level transactional detail or real-time alerting.
+- Requires governance: access control, masking and metric definitions.
+
+**Diagram:** Refer to the applications of OLAP in business analysis diagram.`,
+    diagram: 'ol-apps',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  // ============================================================
+  // Business Intelligence Unit 4 - Business analytics + temporal data
+  // ============================================================
+  {
+    id: 'q43',
+    unit: '4',
+    topicNumber: '4.1',
+    topicTitle: 'Business Metrics and Key Performance Indicators (KPIs)',
+    question: `Define business metrics and KPIs. Differentiate between them and explain the characteristics of a good KPI.`,
+    answer: `**Business metric:** a quantifiable measure that tracks the status of a business process. It describes activity - orders shipped, tickets closed, page views - without judging good or bad.
+
+**KPI (Key Performance Indicator):** a metric tied to a strategic objective, with a **target**, a **time frame** and an **owner**, used by management to evaluate success - order fill rate 98 percent this quarter, churn below 5 percent annually.
+
+| Point | Metric | KPI |
+|---|---|---|
+| Purpose | describe activity | evaluate performance |
+| Target | optional | mandatory (target + thresholds) |
+| Count | many per process | 2-5 per function |
+| Audience | team, operations | management, board |
+| Decision link | indirect | direct action trigger |
+
+**Characteristics of a good KPI (SMART plus):**
+1. Specific - measures one clear process.
+2. Measurable - exact formula and single data source.
+3. Achievable - realistic target with baseline.
+4. Relevant - traced to a strategic objective.
+5. Time-bound - daily, weekly or monthly cadence.
+6. Owned - one accountable person, not a committee.
+7. Actionable - a defined action when it turns red.
+8. Comparable - shown against target, last period and benchmark.
+
+**Example:** "4 lakh website visits" is a metric; "conversion rate 18 percent against a target of 20 percent, owned by the e-commerce head" is a KPI.
+
+**Diagram:** Refer to the business metrics and KPIs diagram.`,
+    diagram: 'td-metrics',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q44',
+    unit: '4',
+    topicNumber: '4.1',
+    topicTitle: 'Business Metrics and Key Performance Indicators (KPIs)',
+    question: `Explain the types and hierarchy of KPIs in an organisation with examples.`,
+    answer: `**Hierarchy by management level**
+- **Strategic KPIs** (board, CXO, quarterly to annual): revenue growth, EBITDA margin, market share, customer retention.
+- **Tactical KPIs** (department head, monthly): conversion rate, inventory turns, cost per hire, on-time delivery.
+- **Operational metrics** (team, daily to weekly): orders per day, average handling time, stock-out count, downtime minutes.
+
+**Types by behaviour**
+- **Leading indicators** - predict the future and allow action now: pipeline value, trial signups, website traffic, demo requests.
+- **Lagging indicators** - confirm the outcome but arrive late: revenue, profit, churn, NPS.
+- **Financial** - revenue, cost, margin, ROI, working capital.
+- **Non-financial** - quality defects, safety incidents, satisfaction, engagement, innovation.
+- **Efficiency vs effectiveness** - cost per order (efficiency) versus fill rate (effectiveness).
+
+**Why the mix matters:** a dashboard with only lagging financial KPIs tells you the year is bad in December. A dashboard with only leading indicators never proves the outcome. Balanced sets combine both, plus financial and non-financial, which is exactly the logic of the balanced scorecard.
+
+**Cascade example:** company churn under 5 percent (strategic) leads to marketing CAC under Rs 900 (tactical) leads to first-response time under 4 hours (operational).
+
+**Diagram:** Refer to the business metrics and KPIs diagram.`,
+    diagram: 'td-metrics',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q45',
+    unit: '4',
+    topicNumber: '4.2',
+    topicTitle: 'Importance of KPIs in Organizational Decision Making',
+    question: `Explain the importance of KPIs in organizational decision making with the decision loop.`,
+    answer: `**Importance**
+1. **Strategy to measurement** - abstract goals become numbers with targets.
+2. **Alignment** - every function's KPI traces to the company objective.
+3. **Accountability** - named owner plus target makes responsibility explicit.
+4. **Early warning** - threshold breaches trigger corrective action while the problem is small.
+5. **Resource allocation** - budget and manpower move to the KPI gap.
+6. **Objective appraisal** - incentives and reviews use the same numbers.
+7. **Risk monitoring** - fraud rate, default percentage, safety incidents.
+8. **Communication** - one consistent story for the board, investors and regulators.
+
+**Decision loop (5 steps)**
+1. **Measure** - current value, target and trend from the dashboard.
+2. **Compare** - against target, previous period and benchmark.
+3. **Diagnose** - drill-down by dimension to find the root cause.
+4. **Act** - the owner takes a specific corrective action.
+5. **Re-measure** - next cycle verifies whether the action worked.
+
+If the loop is not closed, the organisation has a **reporting culture** (reports are produced, decisions are not) instead of a **performance culture**.
+
+**Example:** churn 5.8 percent against a 5 percent target, diagnosed to circle-B network downtime, fixed with a tower upgrade, re-measured at 5.1 percent.
+
+**Diagram:** Refer to the KPIs and organizational decision making diagram.`,
+    diagram: 'td-kpi-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q46',
+    unit: '4',
+    topicNumber: '4.2',
+    topicTitle: 'Importance of KPIs in Organizational Decision Making',
+    question: `Discuss the risks and limitations of KPI-driven management and how to mitigate them.`,
+    answer: `**Risks**
+1. **Tunnel vision** - one dominant KPI makes other dimensions invisible (cut cost, quality falls).
+2. **Gaming** - the metric is optimised, not the outcome (tickets closed without solving).
+3. **Measure proliferation** - sixty KPIs mean no focus.
+4. **Lagging-only sets** - churn is visible only after the customer has left.
+5. **Arbitrary targets** - targets without a baseline destroy motivation.
+6. **Data quality** - a wrong number drives a wrong decision.
+7. **Short-termism** - quarterly KPIs starve long-term investment.
+8. **Local optimisation** - department KPIs conflict (sales discounts versus margin).
+
+**Mitigations**
+- **Balanced scorecard** - financial, customer, internal process, learning and growth together.
+- **Leading plus lagging** mix, and non-financial alongside financial.
+- **KPI governance** - one definition, one owner, documented formula, versioned metric layer.
+- **Cadence and review** - weekly operations, monthly business, quarterly board.
+- **Sunset rule** - retire KPIs that no longer change behaviour.
+- **Qualitative context** - dashboards carry an explanation, not only a colour.
+- **Audit and validation** - reconcile KPI values with the source system.
+
+**Exam point:** KPIs are a tool, not a truth; without governance they invert into target-fixation.
+
+**Diagram:** Refer to the KPIs and organizational decision making diagram.`,
+    diagram: 'td-kpi-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q47',
+    unit: '4',
+    topicNumber: '4.3',
+    topicTitle: 'Performance Measurement and Analytical Reporting',
+    question: `What is performance measurement? Explain the balanced scorecard and its four perspectives.`,
+    answer: `**Performance measurement:** the systematic process of defining measures, collecting data, comparing actual results with targets or standards, and communicating the outcome so that management can act.
+
+**Balanced scorecard (Kaplan and Norton)** balances four perspectives so that financial results are explained by their drivers:
+
+1. **Financial** - revenue growth, gross margin, ROI, cost ratio. Question: how do we look to shareholders?
+2. **Customer** - NPS, churn, satisfaction, on-time delivery. Question: how do customers see us?
+3. **Internal business process** - cycle time, defect rate, fill rate, downtime. Question: which processes must we excel at?
+4. **Learning and growth** - training hours, attrition, engagement, innovation. Question: can we keep improving?
+
+**Cause and effect chain:** learning and growth improves processes, better processes delight customers, delighted customers produce financial results. This is why a single financial KPI is not enough.
+
+**For each perspective define:** objective, measure, target, initiative and owner.
+
+**Benefits:** balance of short and long term, leading and lagging, financial and non-financial; strategy becomes measurable; communication improves.
+
+**Limitations:** measure design effort, lag in feedback, risk of sticking to stale measures, and difficulty proving the causal chain.
+
+**Diagram:** Refer to the performance measurement and analytical reporting diagram.`,
+    diagram: 'td-performance',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q48',
+    unit: '4',
+    topicNumber: '4.3',
+    topicTitle: 'Performance Measurement and Analytical Reporting',
+    question: `Explain the types of analytical reporting in BI and the design principles of an effective report.`,
+    answer: `**By management layer**
+- **Operational** - team, daily or real time, row-level detail: stock-out list, dispatch status, queue depth.
+- **Tactical** - department head, weekly or monthly, aggregated: category margin, SLA compliance, variance report.
+- **Strategic** - CXO and board, quarterly or annual, summarised with trends: scorecard, forecast, market share.
+
+**By format**
+- **Dashboard** - KPIs on one screen, glanceable.
+- **Scorecard** - KPI against target with red-amber-green status.
+- **Variance report** - actual versus budget or forecast with explanation.
+- **Exception or alert report** - only the outliers.
+- **Ad-hoc and self-service** - analyst builds the question.
+- **Statutory or regulatory** - fixed format with audit trail.
+
+**Design principles of an effective report**
+1. **Decision-first layout** - the "so what" at the top, supporting numbers below.
+2. **Single definition** - every report draws from one metric layer.
+3. **Comparison** - target, previous period and benchmark together.
+4. **Exception highlighting** - colour only where the eye must go.
+5. **Visual hierarchy** - KPI tile, then trend, then table, then detail.
+6. **Drill-down path** - aggregate to row level in two clicks.
+7. **Right grain** - as much detail as the audience needs, no more.
+8. **Performance and trust** - loads in seconds, shows data source, refresh time and cutoff.
+
+**Diagram:** Refer to the performance measurement and analytical reporting diagram.`,
+    diagram: 'td-performance',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q49',
+    unit: '4',
+    topicNumber: '4.3',
+    topicTitle: 'Performance Measurement and Analytical Reporting',
+    question: `What is variance analysis? Explain volume, price and mix variance with an example.`,
+    answer: `**Variance analysis** quantifies the gap between actual and planned performance and decomposes it into causes, so that corrective action is specific.
+
+**Components of a sales variance**
+1. **Volume variance** = (actual quantity - planned quantity) x standard price.
+2. **Price variance** = (actual price - standard price) x actual quantity.
+3. **Mix variance** = effect of a change in the product or customer mix.
+
+**Example**
+- Plan: 5,000 units x Rs 200 = Rs 10,00,000.
+- Actual: 4,600 units x Rs 200 = Rs 9,20,000.
+- **Volume variance** = -400 x 200 = **-Rs 80,000**.
+- **Price variance** = 0.
+- **Mix variance** = premium share fell from 25 to 22 percent (-Rs 12,000), offset by lower discount (+Rs 12,000).
+- **Total** = **-Rs 80,000 (8 percent unfavourable)**.
+
+**Interpretation:** the shortfall is a volume problem, not a pricing problem - twelve SKUs were out of stock. The action therefore belongs to supply chain, not to sales pricing.
+
+**Reporting format:** one-page variance report with the decomposition, drill-down by region, an owner and an action date.
+
+**Why it matters:** "sales are down" is an observation; "volume down 400 units due to stock-outs in twelve SKUs" is a decision input.
+
+**Diagram:** Refer to the performance measurement and analytical reporting diagram.`,
+    diagram: 'td-performance',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q50',
+    unit: '4',
+    topicNumber: '4.4',
+    topicTitle: 'Introduction to Temporal Data',
+    question: `What is temporal data? Explain its types with examples and why BI systems need it.`,
+    answer: `**Temporal data** is data whose correctness is tied to time: every value is associated with the period during which it was true.
+
+**Types**
+1. **Snapshot (non-temporal)** - current state only. Question: what is the price now?
+2. **Valid-time** - the period the fact was true in the real world. Question: what was the price in March?
+3. **Transaction-time** - the period the assertion was stored in the database. Question: what did we believe in March?
+4. **Bitemporal** - both together. Question: for March, what is considered correct today?
+
+**Examples in a warehouse:** the fact table event date (event time), dim_product effective dates (valid time), and load_ts or audit history (transaction time).
+
+**Why BI needs it**
+- **Historical reporting** - year-over-year and trend analysis require period-accurate data.
+- **Late-arriving data** - the order belongs to March even if it was loaded in April.
+- **Restatement** - corrections must be explainable to auditors and regulators.
+- **Reproducibility** - a report published last quarter must be regenerable exactly.
+- **Slowly changing dimensions** - the attribute version must match the fact date.
+- **Audit and dispute resolution** - prove what was known and when.
+
+**Challenges:** late facts, late dimensions, time zones and DST, fiscal versus calendar periods, retention, idempotent loads.
+
+**Diagram:** Refer to the temporal data introduction diagram.`,
+    diagram: 'td-temporal',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q51',
+    unit: '4',
+    topicNumber: '4.4',
+    topicTitle: 'Introduction to Temporal Data',
+    question: `Discuss the challenges of handling temporal data in a BI system and the techniques used to solve them.`,
+    answer: `**Challenges and solutions**
+
+1. **Late-arriving facts** - order dated 28 March, loaded 3 April. Solution: report on event date, backfill into the correct period partition, idempotent upsert on natural key plus date.
+2. **Late-arriving dimensions** - the fact arrives before its dimension. Solution: inferred (placeholder) member that is updated later, or lookup by the fact's event date.
+3. **Corrections and restatement** - previously published numbers change. Solution: bitemporal storage, frozen period-end snapshots, audit log, published restatement note.
+4. **Slowly changing attributes** - which product category applies to an old sale? Solution: SCD type 2 with effective dates and a half-open range join.
+5. **Time zones and daylight saving** - the day boundary shifts. Solution: store UTC, convert at presentation, keep source time zone metadata.
+6. **Fiscal versus calendar periods** - April to March financial year. Solution: both sets of columns in the date dimension.
+7. **Grain mismatch** - daily facts with monthly dimensions. Solution: explicit grain and aggregation rules per measure.
+8. **Retention and cost** - how much history stays online. Solution: hot, warm and cold tiers with a documented retention policy.
+9. **Duplicate counting on re-run** - Solution: batch_id, deduplication key, reconciliation counts and amounts.
+10. **Ambiguous questions** - "as of" means valid time or transaction time? Solution: documented semantics per report.
+
+**Diagram:** Refer to the temporal data introduction diagram.`,
+    diagram: 'td-temporal',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q52',
+    unit: '4',
+    topicNumber: '4.5',
+    topicTitle: 'Valid Time and Transaction Time',
+    question: `Differentiate between valid time and transaction time with examples. What is bitemporal data?`,
+    answer: `**Valid time** - the period during which the fact was true in the real world; business-owned and can be corrected. Example: price Rs 100 valid from 1 January to 31 March.
+
+**Transaction time** - the period during which the assertion existed in the database; system-owned and immutable. Example: the row was inserted 4 January and superseded 5 April.
+
+| Point | Valid time | Transaction time |
+|---|---|---|
+| Meaning | real-world validity | database record period |
+| Owner | business or user | system or DBMS |
+| Can change | yes, via correction | never, append-only |
+| Columns | valid_from, valid_to | txn_from, txn_to |
+| Question | what was the price in March? | what did we believe in March? |
+| BI mapping | SCD type 2 | audit columns and history table |
+
+**Bitemporal data:** stores both, with four columns - valid_from, valid_to, txn_from, txn_to - and answers three queries:
+- **Current** - today's truth (open transaction row).
+- **As-of** - what we believed on a given date (restatement evidence).
+- **As-was** - what was actually true for a period, using today's knowledge.
+
+**Example:** Rs 110 was valid from 1 April and entered on 5 April; on 10 May a correction revealed Rs 100 for 1-15 April. Current shows Rs 100, as-of 20 April shows Rs 110 (the belief then), as-was 1 April shows Rs 100.
+
+**Diagram:** Refer to the valid time and transaction time diagram.`,
+    diagram: 'td-bitemporal',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q53',
+    unit: '4',
+    topicNumber: '4.5',
+    topicTitle: 'Valid Time and Transaction Time',
+    question: `How are valid time and transaction time implemented in a data warehouse for audit and restatement?`,
+    answer: `**Valid time implementation**
+- SCD type 2 dimension with effective_from, effective_to, is_current and version.
+- Fact tables keep the event date; attribute versions are attached by a range join.
+- Late-arriving dimension handled by inferred members or date-based lookup.
+
+**Transaction time implementation**
+- Audit columns: load_ts, update_ts, batch_id, source_file, record_hash.
+- Append-only history table with before and after images.
+- SQL:2011 system-time temporal tables, or a CDC stream feeding an audit store.
+
+**Bitemporal implementation**
+- Four columns: valid_from, valid_to, txn_from, txn_to.
+- Three query templates: current, as-of, as-was.
+
+**Restatement process**
+1. Reconcile source against warehouse to detect the correction.
+2. Reproduce the original report from the as-of view.
+3. Apply the correction as a new transaction version with corrected valid time.
+4. Run impact analysis - which reports and KPIs change.
+5. Publish the restated report with a note stating old value, new value and reason.
+
+**Governance**
+- Transaction time immutable; no destructive updates.
+- Retention and purge policy aligned to tax, legal and privacy requirements.
+- Access log on historical data.
+- Documented metric version so changes are attributable.
+
+**Diagram:** Refer to the valid time and transaction time diagram.`,
+    diagram: 'td-bitemporal',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q54',
+    unit: '4',
+    topicNumber: '4.6',
+    topicTitle: 'Temporal Attributes and Timestamps',
+    question: `What are temporal attributes? Explain the important temporal attributes and design rules used in a warehouse.`,
+    answer: `**Temporal attributes** are the columns that record when a row is valid, when it was loaded and when it changed.
+
+**Important attributes**
+1. **valid_from / valid_to** - validity of a dimension row; open-ended rows use a 9999-12-31 sentinel.
+2. **event_date / posting_date** - the business date of a fact, used for reporting.
+3. **load_ts / update_ts** - when ETL inserted or modified the row.
+4. **batch_id / source_file** - lineage and reprocessing.
+5. **record_version / is_current** - SCD type 2 versioning.
+6. **deleted_flag** - soft delete so history is not destroyed.
+7. **prev_value / effective_date** - SCD type 3 previous-value tracking.
+8. **time_zone / utc_offset** - source time zone metadata.
+
+**Design rules**
+- Store timestamps in **UTC**, convert at presentation.
+- Declare the **grain** - second or day - and never mix.
+- Use **half-open intervals** [valid_from, valid_to) so no overlap or gap.
+- Prefer a **sentinel end date** over NULL for open rows.
+- One uniform **load_ts per batch**, not row-by-row CURRENT_TIMESTAMP.
+- **Never overwrite history** without an audit record.
+- Keep **fiscal and calendar** columns in the date dimension.
+- Make loads **idempotent** with deduplication keys.
+
+**Usage:** range join attaches the correct attribute version to each fact; as-of queries answer audit questions.
+
+**Diagram:** Refer to the temporal attributes and timestamps diagram.`,
+    diagram: 'td-attributes',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q55',
+    unit: '4',
+    topicNumber: '4.6',
+    topicTitle: 'Temporal Attributes and Timestamps',
+    question: `Explain slowly changing dimensions type 1, 2 and 3 with examples. Which one should be used when?`,
+    answer: `**SCD** tracks how a dimension attribute changes over time.
+
+**Type 1 - overwrite**
+- The old value is replaced; no history.
+- Example: correcting a customer name spelling.
+- Pros: simple, minimal storage. Cons: history lost, past reports change silently.
+
+**Type 2 - versioned row (recommended for analytics)**
+- Insert a new row, close the previous row with valid_to, set is_current and version.
+- Example: product category changes from Grocery to Staples; old sales stay in Grocery, new sales in Staples.
+- Pros: complete history and accurate trends. Cons: more storage, range joins required.
+
+**Type 3 - previous value column**
+- One column keeps the old value (prev_category) plus effective_date.
+- Example: region reorganisation before-after comparison.
+- Pros: simple comparison. Cons: only one step of history.
+
+| Point | Type 1 | Type 2 | Type 3 |
+|---|---|---|---|
+| Method | overwrite | versioned row | previous column |
+| History | none | full | one step |
+| Columns | same | valid_from, valid_to, is_current | prev_value |
+| Use | typo fix | audit and trend | limited comparison |
+
+**Selection:** type 2 when history matters for reporting or audit; type 1 for pure error correction; type 3 for a one-step before-after. Hybrid types 4 and 6 are used when many attributes change or when current and history must sit side by side.
+
+**Diagram:** Refer to the temporal attributes and timestamps diagram.`,
+    diagram: 'td-attributes',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q56',
+    unit: '4',
+    topicNumber: '4.7',
+    topicTitle: 'Time-based Data Analysis',
+    question: `Explain time-based data analysis. Discuss MTD, YTD, YoY, moving average and CAGR with examples.`,
+    answer: `**Time-based data analysis** aggregates and compares measures along the time dimension to reveal trend, growth and seasonality.
+
+1. **MTD / QTD / YTD** - cumulative total from the start of the period. Example: YTD sales from April to 5 November are Rs 3.2 crore.
+2. **Period-over-period (MoM)** - (current - previous) / previous x 100.
+3. **YoY** - compare the same period last year; seasonality cancels out. Example: 1-5 November Rs 12 lakh against Rs 10 lakh last year = +20 percent.
+4. **Moving average** - average of the last N periods to smooth noise (7-day, 3-month).
+5. **Rolling 12 months** - the safe comparison when the year is incomplete.
+6. **CAGR** - (end / start)^(1/n) - 1. Example: Rs 2.9 crore to Rs 4.6 crore in three years = 16.6 percent.
+7. **Seasonal index** - period value / overall average; 1.8 means 80 percent above a normal month.
+
+**Supporting structure:** a date dimension with fiscal periods, week numbers, holiday flags and working-day index, so calculations live in data rather than ad-hoc SQL.
+
+**Pitfalls:** summing semi-additive measures, comparing a partial period with a full one, ignoring working days and holidays, and omitting the data cutoff.
+
+**Diagram:** Refer to the time-based data analysis diagram.`,
+    diagram: 'td-time-analysis',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q57',
+    unit: '4',
+    topicNumber: '4.7',
+    topicTitle: 'Time-based Data Analysis',
+    question: `Discuss seasonality and trend in time-based BI. How are the two separated, and what are the common aggregation traps?`,
+    answer: `**Trend** is the long-term direction of a series; **seasonality** is a pattern that repeats within a fixed period (festival peak, monsoon dip); **residual** is the irregular, event-driven noise.
+
+**Separating trend from seasonality**
+1. **Year-over-year comparison** - the same month last year cancels the seasonal effect.
+2. **Seasonal index** - period value divided by the overall average; index 1.8 means 80 percent above normal.
+3. **Decomposition** - additive or multiplicative: value = trend + seasonal + residual.
+4. **12-month moving average** - smooths the seasonality and leaves the trend.
+5. **STL or regression** - advanced statistical separation.
+
+**Why it matters:** inventory build-up before the peak, seasonal staffing, month-wise targets from seasonal indices, and anomaly detection when the residual jumps.
+
+**Common aggregation traps**
+1. **Semi-additive measures summed over time** - stock, balance and headcount must use period-end, last value or average.
+2. **Non-additive ratios averaged** - margin percentage must be recomputed from summed numerator and denominator.
+3. **Partial period versus full period** - five days against thirty days always looks like a decline.
+4. **Working days ignored** - 22 days against 26 days is not comparable.
+5. **Nested periods added** - month and quarter summed together double counts.
+6. **Late data without a refresh window** - month-end figures keep changing.
+7. **Time zone shift** - the day boundary moves.
+8. **CAGR misuse** - meaningless when the start value is negative or the period is very short.
+
+**Diagram:** Refer to the time-based data analysis diagram.`,
+    diagram: 'td-time-analysis',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q58',
+    unit: '4',
+    topicNumber: '4.8',
+    topicTitle: 'Trend Analysis and Historical Data Tracking in BI Systems',
+    question: `What is trend analysis? Explain the techniques used and the accuracy measures for forecasting.`,
+    answer: `**Trend analysis** identifies the direction and rate of change of a measure over time, separating signal from noise and projecting the near future.
+
+**Techniques**
+1. **Trend line or regression** - linear or exponential fit; the slope gives the change per period.
+2. **Moving average** - smooths short-term noise (3-month, 12-month).
+3. **Exponential smoothing / EWMA** - recent periods weighted more heavily.
+4. **Holt-Winters** - level, trend and seasonality, the standard simple method for seasonal data.
+5. **Growth rate and CAGR** - short-term and long-term comparison.
+6. **YoY comparison** - removes seasonality.
+7. **Control charts and anomaly detection** - values beyond two or three standard deviations are signals.
+8. **Driver-based models** - forecast a measure from its business drivers.
+
+**Accuracy measures (on a hold-out period)**
+- **MAPE** - mean absolute percentage error, scale-free and easy to explain.
+- **MAE** - mean absolute error, in the units of the measure.
+- **RMSE** - root mean squared error, penalises large misses.
+- Always compare with a **naive baseline** (last period or same period last year).
+
+**Practice:** publish a point forecast with a confidence range and a data cutoff, monitor actual versus forecast monthly, and refresh the model when the error trend rises.
+
+**Diagram:** Refer to the trend analysis and historical data tracking diagram.`,
+    diagram: 'td-trend',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q59',
+    unit: '4',
+    topicNumber: '4.8',
+    topicTitle: 'Trend Analysis and Historical Data Tracking in BI Systems',
+    question: `Explain historical data tracking in a BI system. What are its requirements, and how is restatement handled?`,
+    answer: `**Historical data tracking** keeps history complete, consistent, versioned and auditable.
+
+**Requirements**
+1. **Append-only facts** keyed by event date.
+2. **SCD type 2 dimensions** with effective dates.
+3. **Audit columns** - load_ts, update_ts, batch_id, source, record hash.
+4. **Immutable transaction history** - proof of what was reported when.
+5. **Partitioned storage and archival tiers** - hot 90 days, warm two years, cold seven years.
+6. **Retention and purge policy** - aligned to tax, legal and privacy requirements.
+7. **Reproducible snapshots** - period-end frozen copies so an old report regenerates exactly.
+8. **Reconciliation** - source against warehouse counts and amounts.
+9. **Documented restatement policy.**
+
+**Restatement handling**
+- Detect the correction through reconciliation or a late-arriving feed.
+- Reproduce the original figure from the **as-of** view.
+- Apply the correction as a new transaction version with corrected valid time.
+- Run impact analysis for the affected reports and KPIs.
+- Publish the restated report with a note: old value, new value, reason and date.
+
+**Example:** April churn was reported at 6.0 percent; eight late cancellations were backfilled; as-was becomes 5.9 percent while as-of 1 May still returns 6.0 percent.
+
+**Benefits:** trustworthy trends, audit and compliance, dispute resolution, better forecast baselines, and confidence in dashboards.
+
+**Diagram:** Refer to the trend analysis and historical data tracking diagram.`,
+    diagram: 'td-trend',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  // ============================================================
+  // Business Intelligence Unit 5 - Data visualization and BI tools
+  // ============================================================
+  {
+    id: 'q60',
+    unit: '5',
+    topicNumber: '5.1',
+    topicTitle: 'Introduction to Data Visualization',
+    question: `Define data visualization. Explain its need, benefits and the role of visual encoding in analytics.`,
+    answer: `**Data visualization:** the graphical representation of data using visual elements - position, length, area, angle, colour, shape - so that patterns, trends and exceptions become perceptible to a human being quickly.
+
+**Pipeline:** data -> visual encoding -> perception -> insight -> decision. The encoding is the design step; perception is the human step.
+
+**Why visualization is needed**
+1. **Volume** - a table of ten thousand rows cannot be read; a chart shows the pattern at once.
+2. **Speed** - position and length are processed pre-attentively, in roughly 200 milliseconds, before conscious reading.
+3. **Exceptions** - outliers stand out visually instead of hiding in rows.
+4. **Comparison** - target versus actual, period versus period, segment versus segment is a visual judgement.
+5. **Memory and communication** - visuals are remembered and travel better than tables in a meeting.
+6. **Shared truth** - one chart with one definition reduces debate about whose spreadsheet is correct.
+
+**Encoding ranking (Cleveland and McGill)** - most accurate first: position on a common scale, position on a non-aligned scale, length, angle and slope, area, volume, colour hue and intensity. Design implication: important numbers get position, decoration never gets position.
+
+**Benefits in business:** faster monitoring, early anomaly detection, self-service access for non-technical users, better alignment in reviews, and lower manual reporting effort.
+
+**Limits:** visualization supports judgement, it does not replace it; a beautiful chart on bad data is still a wrong decision.
+
+**Diagram:** Refer to the introduction to data visualization diagram.`,
+    diagram: 'vz-intro',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q61',
+    unit: '5',
+    topicNumber: '5.1',
+    topicTitle: 'Introduction to Data Visualization',
+    question: `Explain static versus interactive visualization and describe the main categories of visual representation.`,
+    answer: `**Static vs interactive**
+- **Static** - a fixed image: PDF chart, printed board report, exported PNG. Cheap, portable, print-friendly, but the reader cannot change the question.
+- **Interactive** - the reader filters, drills and compares live: dashboard, web report, cross-filtering, tooltips, what-if parameters. Higher build effort and needs a semantic model, but answers ad-hoc questions and shortens the path to a decision.
+- **Animated and real-time** - time-lapse of a KPI, live operational monitoring with auto-refresh.
+
+**Main categories of visual representation**
+1. **Comparison** - bar chart, sorted bar, bullet chart with target.
+2. **Trend over time** - line chart, column chart, area chart, sparkline.
+3. **Composition** - stacked bar, treemap, pie only for two or three slices, waterfall for contribution.
+4. **Distribution** - histogram, box plot, violin plot.
+5. **Relationship** - scatter plot with trend line, bubble chart, correlation heat map.
+6. **Geographic** - choropleth map, symbol map, flow map.
+7. **Hierarchical** - tree map, sunburst, decomposition tree.
+8. **Textual and tabular** - table, matrix, KPI tile, conditional formatting.
+
+**Selection rule:** write the question first, look at the shape of the data second, then choose the chart. One chart answers one question.
+
+**Diagram:** Refer to the introduction to data visualization diagram.`,
+    diagram: 'vz-intro',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q62',
+    unit: '5',
+    topicNumber: '5.2',
+    topicTitle: 'Principles of Effective Data Visualization',
+    question: `Explain the principles of effective data visualization.`,
+    answer: `1. **Accuracy** - honest scales; bar charts start at zero; no 3D or perspective distortion.
+2. **Clarity** - one message per chart; the title states the answer, not the topic ("West 12 percent behind target", not "Regional sales").
+3. **High data-ink ratio** - maximise ink that carries data; remove gridlines, borders, shadows, gradients and redundant legends.
+4. **Gestalt grouping** - proximity, enclosure, alignment and similarity create groups; use them instead of boxes everywhere.
+5. **Right encoding** - position for the most important comparison; length for magnitude; colour for grouping or exception, sparingly.
+6. **Comparison and context** - every number with a target, last period or benchmark; a bare number is not a visual argument.
+7. **Colour discipline** - a maximum of five to seven colours; sequential palette for magnitude, diverging for deviation from a midpoint; contrast checked.
+8. **Accessibility** - colour-blind safe palettes, never colour alone to carry meaning (add label, icon or pattern), readable font size, keyboard-friendly.
+9. **Honesty** - no truncated axis, no cherry-picked period, no dual axis implying false correlation, no percentage without a denominator.
+10. **Action orientation** - the visual is tied to a decision, an owner and a next step.
+
+**Checklist before publishing:** axis labelled with units, zero baseline, sorted categories, sample size and period shown, source and refresh time visible, takeaway in one line.
+
+**Diagram:** Refer to the principles of effective data visualization diagram.`,
+    diagram: 'vz-principles',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q63',
+    unit: '5',
+    topicNumber: '5.2',
+    topicTitle: 'Principles of Effective Data Visualization',
+    question: `How can a chart mislead the viewer? Explain the common distortions and the safeguards against them.`,
+    answer: `**Common distortions**
+1. **Truncated y-axis** - a bar chart starting at 80 makes a two percent difference look like a doubling.
+2. **Inconsistent scales** - two panels of a comparison chart drawn on different ranges.
+3. **Area and volume for linear quantities** - a bubble twice the diameter carries four times the area, so the value is over-read.
+4. **Cherry-picked window** - the start date chosen to flatter the trend.
+5. **Dual axes** - unrelated series overlaid so a coincidence looks like causation.
+6. **3D charts** - perspective distorts near and far bars.
+7. **Aggregation hiding the detail** - Simpson's paradox: the total rises while every segment falls.
+8. **Rainbow colour for ordered data** - no perceptual ordering, so magnitude is unreadable.
+9. **Percentage without denominator** - "up 50 percent" from two cases to three.
+10. **Missing sample size, period or source.**
+
+**Safeguards**
+- Zero baseline for bars; clear axis label with unit; explicit scale breaks if unavoidable.
+- Show period, sample size, source and refresh time on the visual.
+- Same scale across comparison panels.
+- Provide a detail table or drill-through for verification.
+- Peer review of charts and a governance-owned metric definition sheet.
+- Accessibility test: greyscale print and colour-blind simulation.
+- Publish annotated insight ("driver: three SKUs out of stock"), not only the picture.
+
+**Exam point:** misleading charts are rarely a tool problem; they are a requirement and review problem.
+
+**Diagram:** Refer to the principles of effective data visualization diagram.`,
+    diagram: 'vz-principles',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q64',
+    unit: '5',
+    topicNumber: '5.3',
+    topicTitle: 'Types of Charts and Visual Representations',
+    question: `Explain the different types of charts used in data visualization and the questions each one answers.`,
+    answer: `| Question | Chart | Note |
+|---|---|---|
+| Compare categories | Bar (sorted) | zero baseline, longest label on horizontal bars |
+| Show trend over time | Line / column | line for continuous time, column for discrete periods |
+| Cumulative volume | Area chart | stacked area for composition over time |
+| Part of a whole | Stacked bar, treemap | pie only for two or three slices |
+| Distribution | Histogram, box plot | histogram shows the shape of the frequency |
+| Relationship | Scatter + trend line | bubble adds a third measure via size |
+| Deviation from target | Bullet, diverging bar | ideal for variance and RAG |
+| Contribution to change | Waterfall | start, increments, decrements, end |
+| Geography | Choropleth, symbol map | normalise by area or population |
+| Hierarchy | Treemap, sunburst, decomposition tree | drill from category to SKU |
+| Single value | KPI tile with sparkline | value plus delta plus micro-trend |
+| Exact lookup | Table or matrix | precision, not pattern |
+
+**Chart-specific cautions**
+- Pie: unreadable beyond three slices; the eye cannot compare angles accurately.
+- Line: categories on a line chart imply a continuity that does not exist.
+- Scatter: correlation is not causation; always show the fit and the outliers.
+- Map: large regions dominate attention even when their values are small.
+
+**Rule:** one chart, one question; if two questions are needed, use two charts or a small multiple.
+
+**Diagram:** Refer to the types of charts and visual representations diagram.`,
+    diagram: 'vz-charts',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q65',
+    unit: '5',
+    topicNumber: '5.3',
+    topicTitle: 'Types of Charts and Visual Representations',
+    question: `What are the common mistakes in chart selection and design, and how should a chart be chosen for a given analysis?`,
+    answer: `**A selection procedure**
+1. Write the question in one sentence - compare, trend, composition, distribution, relationship, geography or flow.
+2. Identify the data types - categorical, ordinal, temporal, continuous, geographic.
+3. Count the categories and series - more than five series suggests small multiples or top-N plus "others".
+4. Check the audience and medium - screen, print, mobile, presentation.
+5. Choose the encoding with the highest accuracy for the most important comparison - position first.
+6. Annotate the insight and add comparison context (target, last period).
+
+**Common mistakes**
+1. Pie chart with ten slices; 3D pie with shadows.
+2. Line chart for unordered categories.
+3. Truncated axis creating drama out of a small difference.
+4. Rainbow palette for ordered data; red-green used as the only signal.
+5. Dual axes implying a relationship that does not exist.
+6. Too many series on one chart; no sort order; no labels on long categorical bars.
+7. A table where a chart would show the pattern, or a chart where exact values matter.
+8. Chartjunk - gradients, gridlines, logos, decorative icons competing with data.
+9. No title takeaway and no comparison baseline.
+10. Sizing that breaks on mobile or in print.
+
+**Practical:** when in doubt between two charts, choose the one that lets a reader answer the question with less mental arithmetic.
+
+**Diagram:** Refer to the types of charts and visual representations diagram.`,
+    diagram: 'vz-charts',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q66',
+    unit: '5',
+    topicNumber: '5.4',
+    topicTitle: 'Dashboard Design Principles',
+    question: `What is a dashboard? Explain the principles of effective dashboard design.`,
+    answer: `**Dashboard:** a single screen that answers a defined set of questions for a defined audience at a defined cadence - a monitoring instrument rather than a report dump.
+
+**Design principles**
+1. **Audience and purpose first** - who reads it, what decision they take, how often.
+2. **KPI hierarchy** - five to nine KPIs on the first screen, the most important top-left because the eye starts there.
+3. **Layout bands** - header (title, period, global filters, refresh time), KPI band (value plus delta plus sparkline), trend and comparison band, detail table with drill-through, alert rail.
+4. **Consistent grid** - twelve columns, 16-pixel margins, limited fonts and two or three text sizes.
+5. **Comparison, not bare numbers** - target, previous period and benchmark on every tile.
+6. **Colour discipline** - one accent colour, red-amber-green used sparingly and never as the only encoding.
+7. **Global filters in one place** - date range, region, category; page-level filters kept to a minimum.
+8. **Performance** - aggregates, extract or import model, query folding, indexed filters; target under five seconds.
+9. **Trust signals** - data refresh timestamp, source system, owner and a link to metric definitions.
+10. **Accessibility and mobile** - contrast, font size, colour-blind safe, responsive single-column layout.
+
+**Anti-patterns:** forty charts on one page, rainbow colours, no target line, no filter state visible, no refresh timestamp, and a dashboard that needs training to read.
+
+**Diagram:** Refer to the dashboard design principles diagram.`,
+    diagram: 'vz-dashboard',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q67',
+    unit: '5',
+    topicNumber: '5.4',
+    topicTitle: 'Dashboard Design Principles',
+    question: `Differentiate between a dashboard, a report and a scorecard. Discuss layout and performance considerations.`,
+    answer: `| Point | Dashboard | Report | Scorecard |
+|---|---|---|---|
+| Purpose | monitor now | analyse why | track goals |
+| Screen | one screen | many pages | one screen, few KPIs |
+| Audience | operations, managers | analysts | management, board |
+| Content | KPI plus trends | tables, detail, narrative | KPI against target with RAG |
+| Interactivity | filters, drill-down | deep drill, export | status only |
+| Cadence | daily or real time | ad-hoc or periodic | monthly or quarterly |
+
+**Layout considerations**
+- Twelve-column grid with consistent gutters; the most important KPI top-left.
+- Reading pattern: F or Z; bands from summary to detail.
+- Group related visuals inside one card (Gestalt proximity and enclosure).
+- White space is a design element - clutter destroys glanceability.
+- Mobile variant: single column, KPI tiles stacked, filters collapsed.
+
+**Performance considerations**
+- Pre-aggregate and use summary tables; avoid row-level queries on a dashboard page.
+- Import or extract mode for speed, direct query only where freshness demands it.
+- Query folding, indexed filter columns and partition pruning.
+- Limit visuals per page - every visual is a query - and use bookmarks instead of extra pages.
+- Incremental refresh so the nightly load stays small.
+- Set a performance budget (page load under five seconds) and profile with the tool's performance analyser.
+
+**Trust and adoption:** refresh timestamp, definitions, owner, subscriptions and alerting, training and usage metrics after go-live.
+
+**Diagram:** Refer to the dashboard design principles diagram.`,
+    diagram: 'vz-dashboard',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q68',
+    unit: '5',
+    topicNumber: '5.5',
+    topicTitle: 'Interactive Reporting and Visual Analytics',
+    question: `What is interactive reporting? Explain its features, enablers and benefits in visual analytics.`,
+    answer: `**Interactive reporting:** a reporting interface in which the reader explores the data directly - filtering, drilling, comparing, hovering and testing scenarios - without requesting a new report.
+
+**Features**
+1. **Slicers and filters** - date range, region, product, channel.
+2. **Drill-down and drill-up** - through a hierarchy such as year to quarter to month, or category to subcategory.
+3. **Drill-through** - from an aggregate to the underlying source rows.
+4. **Cross-filtering and linked brushing** - a selection in one visual filters the others.
+5. **Tooltips** - exact value, formula and definition on hover.
+6. **What-if parameters** - adjust price, discount or headcount and see the KPI recalculate.
+7. **Sorting, top-N, search and bookmarks.**
+8. **Export, subscribe and threshold alerts.**
+
+**Visual analytics layer on top:** trend lines and forecasts, anomaly detection, clustering and segmentation, small multiples, decomposition trees and correlation views.
+
+**Technical enablers:** a semantic layer with conformed dimensions so a filter means the same thing everywhere, pre-aggregated data for one to two second response, an in-memory or query-folding engine, a governed metric catalogue and row-level security enforced at query time.
+
+**Benefits:** self-service analytics, fewer IT requests, faster hypothesis testing, discovery of anomalies, and a shorter path from question to decision.
+
+**Design caution:** interactivity is judged by whether it shortens the path to a decision, not by the number of controls on the page.
+
+**Diagram:** Refer to the interactive reporting and visual analytics diagram.`,
+    diagram: 'vz-interactive',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q69',
+    unit: '5',
+    topicNumber: '5.5',
+    topicTitle: 'Interactive Reporting and Visual Analytics',
+    question: `Explain cross-filtering, drill-down and drill-through. Discuss the design considerations and risks of interactive dashboards.`,
+    answer: `**Cross-filtering (linked brushing):** selecting a mark in one visual filters the other visuals - click "West" in the region chart and every other chart shows West. Requires conformed dimensions so the selection means the same thing everywhere.
+
+**Drill-down:** moving within one visual along a hierarchy - year to quarter to month, or category to subcategory - so values disaggregate.
+
+**Drill-through:** opening a separate detail page filtered to the selected aggregate - from total sales of Rs 92 lakh to the 4,820 invoice rows. Used for audit and verification.
+
+| Point | Cross-filter | Drill-down | Drill-through |
+|---|---|---|---|
+| Scope | other visuals | same visual | new detail view |
+| Result | filtered view | finer granularity | row-level data |
+| Use | compare segments | root cause | audit, verification |
+
+**Design considerations**
+- Drill path should mirror the decision path: overview, filter, detail, action, with breadcrumbs and an easy way back.
+- Filters limited to three or five, global filters at the top, and the filter state always visible in the header.
+- Response time of one to two seconds; aggregates and query folding.
+- Metric definitions available in the tooltip; accessibility and touch support; export, subscribe and alerts.
+
+**Risks**
+1. **Filter overload** - the reader cannot tell what is applied.
+2. **Hidden state** - two viewers see different numbers and debate the data.
+3. **Performance collapse** - eight queries per click.
+4. **Headline hidden** - the main message is lost behind interactivity.
+5. **False precision** - row-level noise dominates the discussion.
+6. **Governance gap** - self-service creates shadow metrics.
+
+**Mitigation:** metric catalogue, default views, performance budget, training and usage analytics.
+
+**Diagram:** Refer to the interactive reporting and visual analytics diagram.`,
+    diagram: 'vz-interactive',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q70',
+    unit: '5',
+    topicNumber: '5.6',
+    topicTitle: 'Introduction to Business Intelligence Tools (Power BI / Tableau)',
+    question: `Compare Power BI and Tableau as business intelligence tools.`,
+    answer: `| Point | Power BI | Tableau |
+|---|---|---|
+| Vendor | Microsoft | Salesforce (Tableau) |
+| Data preparation | Power Query (M) | Tableau Prep |
+| Engine | VertiPaq in-memory, Tabular model | VizQL with Hyper extracts or live connection |
+| Calculations | DAX measures with filter context | calculated fields and LOD expressions |
+| Interaction model | model-first, governed shared dataset | visual-first, drag-and-drop exploration |
+| Visualisation strength | fast development, Office integration | exploration depth, chart craft |
+| Publishing | Power BI Service, workspaces, Fabric | Tableau Server / Cloud |
+| Security | row-level security, workspace roles, sensitivity labels | user filters, row-level security |
+| Cost | lower, bundled with Microsoft 365 | higher per seat |
+| Best fit | enterprise governed reporting | analyst-led ad-hoc analysis |
+
+**Common ground:** both connect to warehouses and cloud sources, build a semantic layer, publish dashboards, support scheduled refresh, security, mobile and embedding, and follow the same pipeline - connect, model, visualize, publish, govern.
+
+**Selection factors:** existing stack, total cost of ownership, data volume and refresh needs, analysis depth required, governance and central semantic models, skills (DAX versus VizQL), deployment mode, embedding and the partner ecosystem.
+
+**Typical outcome:** hybrid - Power BI for governed enterprise reporting, Tableau for analyst-led exploration, both reading the same warehouse so numbers reconcile.
+
+**Diagram:** Refer to the introduction to BI tools diagram.`,
+    diagram: 'vz-tools',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q71',
+    unit: '5',
+    topicNumber: '5.6',
+    topicTitle: 'Introduction to Business Intelligence Tools (Power BI / Tableau)',
+    question: `Explain the typical architecture and workflow of a BI tool, and the criteria for selecting one for an organisation.`,
+    answer: `**Architecture layers**
+1. **Connectivity** - connectors for databases, cloud warehouses, files, APIs; import versus direct query.
+2. **Preparation** - Power Query or Tableau Prep for cleaning, typing, joins and conformed keys.
+3. **Semantic model** - tables, relationships, hierarchies, measures, a marked date table; star schema recommended.
+4. **Presentation** - report pages, visuals, layout grid, formatting, interactions and tooltips.
+5. **Distribution** - workspaces or server, apps, subscriptions, embedding, mobile.
+6. **Security and governance** - row-level security, roles, gateway, refresh schedules, certification, lineage, usage metrics.
+
+**Workflow**
+1. Requirement brief - audience, decisions, KPIs and formulas, cadence.
+2. Connect and shape the data.
+3. Model - star schema, relationships, date table, measures.
+4. Build visuals top-down - layout, KPI tiles, trends, detail.
+5. Add interactivity - slicers, drill-down, drill-through, bookmarks.
+6. Validate - reconcile totals, edge cases, row-level security test, performance profile.
+7. Publish and schedule refresh through the gateway.
+8. Govern - certify the dataset, publish definitions, monitor usage and iterate.
+
+**Selection criteria**
+- Existing ecosystem and licensing (for example a Microsoft 365 estate favours Power BI on cost).
+- Total cost - per-seat licences versus capacity, plus gateway, server and training.
+- Data volume, refresh needs and gateway constraints.
+- Required analysis depth - heavy ad-hoc exploration favours Tableau.
+- Governance needs - certified shared semantic models and row-level security.
+- Skills available and the hiring market.
+- Deployment, embedding and mobile requirements.
+
+**Recommended approach:** pilot the same dataset in both tools, measure time-to-dashboard, load performance, governance effort and user satisfaction, then decide.
+
+**Diagram:** Refer to the introduction to BI tools diagram.`,
+    diagram: 'vz-tools',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q72',
+    unit: '5',
+    topicNumber: '5.7',
+    topicTitle: 'Creating Dashboards and Visual Reports Using BI Tools',
+    question: `Explain the step-by-step process of creating a dashboard and visual report in a BI tool.`,
+    answer: `**1. Requirement brief** - audience, decisions, five to nine KPIs with exact formulas, refresh cadence, security needs.
+**2. Connect** - choose the source; decide import versus direct query on freshness and volume.
+**3. Prepare** - profile, clean, fix types, conform keys, deduplicate (Power Query or Tableau Prep).
+**4. Model** - star schema; fact table at a declared grain; conformed dimensions; marked date table; one-to-many relationships.
+**5. Measures** - base measures, time intelligence (YTD, MTD, previous year), ratios with safe division (DIVIDE); no hard-coded filters.
+**6. Layout** - twelve-column grid; header with title, period, global filters and refresh timestamp; KPI band; trend band; detail band.
+**7. Interactivity** - slicers, drill-down, drill-through, cross-filter, tooltips, bookmarks.
+**8. Validate** - reconcile every KPI with source totals, test no-data and negative edge cases, test row-level security with a restricted user, profile performance.
+**9. Publish** - dev, test and production workspaces; permissions by role; gateway; scheduled or incremental refresh; sensitivity labels.
+**10. Govern** - certify the dataset, add subscriptions and alerts, monitor usage, publish the metric definition sheet, name an owner and iterate.
+
+**Example:** dealer performance page - fact_sales at invoice-line grain; dim_dealer, dim_product, dim_date, dim_region; measures Sales, Target, Achievement %, PY Sales; five KPI tiles with sparklines; month trend versus previous year; region bar with a target line; dealer table with drill-through to invoices.
+
+**Deliverables:** the report, a certified dataset, a definition sheet, an owner and a refresh schedule.
+
+**Diagram:** Refer to the creating dashboards and visual reports diagram.`,
+    diagram: 'vz-build',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q73',
+    unit: '5',
+    topicNumber: '5.7',
+    topicTitle: 'Creating Dashboards and Visual Reports Using BI Tools',
+    question: `What are the common mistakes in building BI dashboards, and describe the validation, publishing and governance activities.`,
+    answer: `**Common mistakes and fixes**
+1. **Flat single-table model** - use a star schema with conformed dimensions.
+2. **Too many calculated columns** - use measures and DAX.
+3. **Hard-coded filters** - use slicers and filter context.
+4. **Missing date table** - add a marked, dedicated date table for time intelligence.
+5. **Wrong grain or double counting** - declare the grain and test with a known transaction.
+6. **Too many visuals per page** - six to ten visuals, split pages, use bookmarks.
+7. **No validation** - reconcile every KPI with the source.
+8. **Row-level security not tested** - test with a restricted real user.
+9. **Performance ignored** - aggregates, incremental refresh, query folding, performance analyser.
+10. **No documentation and no adoption plan** - definition sheet, owner, training, subscriptions.
+
+**Validation**
+- Reconciliation of totals with the warehouse; grain test on a known transaction.
+- Edge cases - no data, zero, negative values, future dates, null dimension keys.
+- Row-level security test with a restricted account.
+- Performance profile and a page load target of five seconds.
+- User acceptance sign-off on definitions and numbers.
+
+**Publishing**
+- Workspace structure of development, test and production; role-based permissions.
+- On-premises gateway; scheduled or incremental refresh; sensitivity labels and export control; mobile layout.
+- Subscriptions and threshold alerts for the reporting cadence.
+
+**Governance**
+- Dataset certification and endorsement so users trust it; lineage and impact analysis.
+- Metric catalogue with definitions and owners; change management and deployment pipelines.
+- Usage metrics to find unused reports and retire them.
+
+**Diagram:** Refer to the creating dashboards and visual reports diagram.`,
+    diagram: 'vz-build',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q74',
+    unit: '5',
+    topicNumber: '5.8',
+    topicTitle: 'Role of Visualization in Business Decision Making',
+    question: `Explain the role of data visualization in business decision making.`,
+    answer: `**Core idea:** decisions are made by humans under time pressure, and visual encoding uses the fastest channels of perception - position, length and colour are processed pre-attentively.
+
+**Four decision jobs**
+1. **Monitoring** - are we on track? KPI against target, trend, threshold alerts.
+2. **Diagnosis** - why did it change? Drill-down, segment comparison, decomposition tree.
+3. **Prioritisation** - where is the biggest gap? Pareto, sorted bars, heat map.
+4. **Communication** - alignment and action: a simple chart plus a narrative plus an owner.
+
+**How visualization improves decisions**
+- **Speed** - thousands of rows become a pattern judged at a glance, cutting decision latency from weeks to a day.
+- **Quality** - exceptions and anomalies surface early; fewer reversals after the decision.
+- **Shared truth** - one number and one definition; the meeting debates the decision, not the spreadsheet.
+- **Accountability** - a KPI with an owner and a refresh time creates ownership.
+- **Accessibility** - non-technical users act on data without SQL.
+
+**How the value is measured:** decision cycle time, detection time for anomalies, share of alerts acted upon, active users, self-service queries and manual reporting hours saved.
+
+**Limits:** visualization supports judgement, it does not replace it; truncated axes, cherry-picked periods and correlation presented as causation can actively mislead, so charts need review and definitions.
+
+**Diagram:** Refer to the role of visualization in business decision making diagram.`,
+    diagram: 'vz-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q75',
+    unit: '5',
+    topicNumber: '5.8',
+    topicTitle: 'Role of Visualization in Business Decision Making',
+    question: `How can visualization mislead decision makers? Discuss safeguards and illustrate with a business example of reduced decision cycle time.`,
+    answer: `**Ways visualization misleads**
+1. Truncated y-axis exaggerating a small difference.
+2. Inconsistent scales across panels of a comparison.
+3. Area or volume used for linear values.
+4. Cherry-picked period or start date.
+5. Dual axes implying a correlation that does not exist.
+6. 3D and decorative effects distorting proportions.
+7. Aggregation hiding the detail (Simpson's paradox).
+8. Percentage without a denominator; missing sample size.
+9. Colour misuse and inaccessible palettes.
+10. Correlation presented as causation.
+
+**Safeguards**
+- Zero baseline for bars, labelled axes with units, honest scales.
+- Period, sample size, source and refresh time always visible.
+- Detail tables and drill-through for verification.
+- Peer review of charts and governed metric definitions.
+- Colour-blind and greyscale checks; annotation of the insight.
+
+**Business example - stock-out control**
+- Before: 300-row Excel report every Monday, six hours of analysis, stock-outs detected after three weeks.
+- After: daily dashboard with a stock-cover KPI in days, RAG status, SKU heat map and an alert below seven days of cover.
+- Decision flow: amber alert, plant drill-down, top ten SKUs, reorder trigger same day.
+- Result: detection from three weeks to one day, lost sales from 4.2 percent to 1.1 percent, one agreed definition.
+
+**Lesson:** the value of visualization is not in the pixels but in the reduction of decision latency and the elimination of argument about the number.
+
+**Diagram:** Refer to the role of visualization in business decision making diagram.`,
+    diagram: 'vz-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q76',
+    unit: '5',
+    topicNumber: '5.9',
+    topicTitle: 'AI-Assisted Data Visualization and Use of LLMs for Automated Dashboard Generation and Natural Language Reporting',
+    question: `Explain AI-assisted data visualization. Discuss the role of LLMs in automated dashboard generation and natural language reporting.`,
+    answer: `**AI-assisted visualization:** the use of machine learning and large language models across the visualization lifecycle - chart recommendation, layout generation, narrative writing, anomaly detection, forecasting and natural language querying.
+
+**Use cases**
+1. **Chart recommendation** - data type and intent determine the suggested visual.
+2. **Automated dashboard generation** - a prompt produces a first draft of layout, KPI tiles and measures.
+3. **Natural language reporting (Q&A)** - a plain-language question returns a query, a visual and an explanation.
+4. **Auto narrative** - executive summary of movements and drivers.
+5. **Anomaly detection and explanation** - unusual spikes flagged and described.
+6. **Forecasting** with confidence bands.
+7. **Data preparation assistance** - type detection, cleaning suggestions, join keys.
+
+**LLM pipeline:** question, intent and entity extraction (metric, dimension, filter, comparison), grounding against the semantic model through text-to-query or text-to-DAX, execution on governed metrics, visual selection, explanatory narrative, and human review before publishing.
+
+**Benefits:** access for non-technical users, minutes instead of days for a first draft, analyst time freed for analysis, exec-friendly summaries.
+
+**Risks:** hallucinated values, ambiguous questions, wrong joins and double counting, prompt injection, exposure of sensitive data, biased chart choice, weak auditability and over-trust.
+
+**Guardrails:** ground on certified metrics rather than free-form SQL, show the generated query and filters, require human review, enforce row-level security and exclude personal data, log every prompt and result, and maintain a known-answer evaluation set.
+
+**Exam line:** AI accelerates the analyst; accountability for the number still sits with a named owner.
+
+**Diagram:** Refer to the AI-assisted data visualization diagram.`,
+    diagram: 'vz-ai',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q77',
+    unit: '5',
+    topicNumber: '5.9',
+    topicTitle: 'AI-Assisted Data Visualization and Use of LLMs for Automated Dashboard Generation and Natural Language Reporting',
+    question: `What are the risks and challenges of using LLMs for reporting? Compare traditional BI with AI-assisted BI and discuss the guardrails required.`,
+    answer: `**Risks**
+1. **Hallucination** - an invented value or an invented metric that does not exist in the model.
+2. **Ambiguity** - "best region" could mean sales, growth, margin or retention.
+3. **Wrong joins and double counting** - misunderstanding the grain.
+4. **Prompt injection** - crafted text in the data or question altering behaviour.
+5. **Data leakage and PII exposure** through casual questions.
+6. **Bias** - auto-selected charts and narratives that frame the story one way.
+7. **Weak auditability** - reconstructing which query produced a number.
+8. **Over-trust** - numbers used without verification.
+9. **Cost and latency** per LLM call.
+10. **Drift** - model or data changes alter answers silently.
+
+**Traditional versus AI-assisted BI**
+
+| Point | Traditional BI | AI-assisted BI |
+|---|---|---|
+| Builder | analyst or IT | business user plus AI assist |
+| Interface | drag and drop, DAX, SQL | natural language, prompts |
+| Speed to first cut | hours to days | minutes |
+| Control | explicit and auditable | needs guardrails and logging |
+| Main risk | model errors, IT backlog | hallucination, ambiguity |
+| Best for | governed enterprise reporting | exploration, exec summaries |
+
+**Guardrails**
+- Semantic-layer grounding: query only certified measures and fields, never free-form SQL.
+- Show the working - generated query, filters and metric definition.
+- Human review before publishing an AI-generated dashboard or number.
+- Row-level security enforced at query time; personal data fields excluded.
+- Logging and audit of prompt, query, result and user.
+- Known-answer evaluation set with regression tests.
+- Clarifying questions and refusal when the question is ambiguous.
+- Published policy on where AI may be used and where it may not (statutory reporting).
+
+**Conclusion:** the sound architecture is hybrid - a governed semantic model as the single source of truth, AI as the natural language interface on top, and human accountability for anything published.
+
+**Diagram:** Refer to the AI-assisted data visualization diagram.`,
+    diagram: 'vz-ai',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
   // ============================================================
   // Cyber Security Unit 1 — 17 Most Important 6-Mark Questions
   // ============================================================
