@@ -223,6 +223,23 @@ import {
   CodeIgniterMvcDiagram,
 } from './WebDiagrams';
 
+import {
+  AspNetRequestDiagram,
+  AspNetSetupDiagram,
+  WebFormsDiagram,
+  PageLifecycleDiagram,
+  ServerControlsDiagram,
+  StateManagementDiagram,
+  ViewStateDiagram,
+  SessionApplicationDiagram,
+  CookiesQueryStringDiagram,
+  RedirectTransferDiagram,
+  AdoNetDiagram,
+  DbConnectivityDiagram,
+  ValidationDiagram,
+  SecurityDiagram,
+} from './AspNetDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1066,6 +1083,34 @@ export function Diagram({ type }) {
       return <PhpFormValidationDiagram />;
     case 'codeigniter-mvc':
       return <CodeIgniterMvcDiagram />;
+    case 'wt4-intro':
+      return <AspNetRequestDiagram />;
+    case 'wt4-setup':
+      return <AspNetSetupDiagram />;
+    case 'wt4-webforms':
+      return <WebFormsDiagram />;
+    case 'wt4-lifecycle':
+      return <PageLifecycleDiagram />;
+    case 'wt4-controls':
+      return <ServerControlsDiagram />;
+    case 'wt4-state':
+      return <StateManagementDiagram />;
+    case 'wt4-viewstate':
+      return <ViewStateDiagram />;
+    case 'wt4-session':
+      return <SessionApplicationDiagram />;
+    case 'wt4-cookies':
+      return <CookiesQueryStringDiagram />;
+    case 'wt4-transfer':
+      return <RedirectTransferDiagram />;
+    case 'wt4-adonet':
+      return <AdoNetDiagram />;
+    case 'wt4-dbconnect':
+      return <DbConnectivityDiagram />;
+    case 'wt4-validation':
+      return <ValidationDiagram />;
+    case 'wt4-security':
+      return <SecurityDiagram />;
     case 'st3-static':
       return <StaticTestingDiagram />;
     case 'st3-structural':

@@ -211,6 +211,8 @@ function SectionRenderer({ section, index }) {
               output={section.php}
               height={section.height || 220}
               label={section.label || 'PHP output'}
+              hint={section.outputHint}
+              note={section.outputNote}
               caption={section.caption}
             />
           ) : (
