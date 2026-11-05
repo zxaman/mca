@@ -1,5 +1,6 @@
 import { dataScienceUnits } from './dataScience.js';
 import { webTechnologyUnits } from './webTechnology.js';
+import { softwareTestingUnit3Topics } from './softwareTesting3.js';
 
 export const subjects = [
   {
@@ -8754,6 +8755,12 @@ export const units = {
   ]
         }
       ]
+    },
+    {
+      "id": "unit-3",
+      "number": "3",
+      "name": "Software Testing Techniques",
+      "topics": softwareTestingUnit3Topics
     }
   ],
   "data-science": dataScienceUnits,

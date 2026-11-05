@@ -1727,3 +1727,1001 @@ export function DefectManagementOverviewDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// UNIT III — Software Testing Techniques (diagrams)
+// ============================================================
+
+// 23. Static testing — reviews by humans vs static analysis tools
+export function StaticTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Static testing without executing code: human based reviews such as walkthrough, technical review and inspection, and tool based static analysis such as linters and SAST scanners">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Static testing — code chalaye bina defect dhoondhna
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        documents, design aur code ko padhkar / tool se check karna — execution nahi hoti
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="430" height="34" rx="8" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.5)" />
+        <text x="235" y="88" textAnchor="middle" fill="#00d4ff" fontSize="10" fontWeight="800" fontFamily={FONT}>
+          1. HUMAN BASED — REVIEWS
+        </text>
+      </g>
+      <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
+        <rect x="470" y="66" width="430" height="34" rx="8" fill="rgba(196,255,0,0.12)" stroke="rgba(196,255,0,0.5)" />
+        <text x="685" y="88" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="800" fontFamily={FONT}>
+          2. TOOL BASED — STATIC ANALYSIS
+        </text>
+      </g>
+
+      {[
+        ['INFORMAL REVIEW', 'team member ko dikhana', 'sabse sasta, koi record nahi'],
+        ['WALKTHROUGH', 'author khud code samjhata hai', 'learning + early feedback'],
+        ['TECHNICAL REVIEW', 'peers design/code check karte', 'documented findings'],
+        ['INSPECTION', 'formal 6-step process (Fagan)', 'moderator, scribe, checklist'],
+      ].map(([t, l1, l2], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${220 + i * 70}ms` }}>
+          <rect x="20" y={112 + i * 62} width="430" height="54" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+          <text x="34" y={132 + i * 62} fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>{t}</text>
+          <text x="34" y={146 + i * 62} fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{l1}</text>
+          <text x="34" y={158 + i * 62} fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{l2}</text>
+        </g>
+      ))}
+
+      {[
+        ['LINTER / COMPILER', 'syntax, unused variable, warning', 'ESLint, Checkstyle, gcc -Wall'],
+        ['STYLE CHECKER', 'coding standard follow hua?', 'PMD, SonarQube rules'],
+        ['SAST (security)', 'injection, XSS, hard-coded secret', 'SonarQube, Snyk, Fortify'],
+        ['METRICS / COMPLEXITY', 'function bada, nesting gehri', 'cyclomatic, duplication, dead code'],
+      ].map(([t, l1, l2], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${300 + i * 70}ms` }}>
+          <rect x="470" y={112 + i * 62} width="430" height="54" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+          <text x="484" y={132 + i * 62} fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>{t}</text>
+          <text x="484" y={146 + i * 62} fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{l1}</text>
+          <text x="484" y={158 + i * 62} fill="#9ab0e0" fontSize="7.6" fontFamily="'Consolas', monospace">{l2}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="20" y="372" width="880" height="34" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="394" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Review ke roles: author · moderator · scribe · reviewers — inspection mein entry, planning, kick-off, preparation, meeting, rework, follow-up
+        </text>
+      </g>
+
+      <text x="460" y="428" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Defect jitni jaldi mile, utna sasta — static testing requirement phase mein hi kaam karti hai
+      </text>
+      <text x="460" y="450" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Limit: runtime behaviour aur performance nahi pakad sakti — isliye dynamic testing bhi zaroori
+      </text>
+    </svg>
+  );
+}
+
+// 24. Structural / unit testing
+export function StructuralTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Structural testing: the internal code of a function is analysed and each independent path is exercised by a unit test, with stubs and drivers used for isolation">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Structural testing — code ke andar ka structure test karo
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        white-box / glass-box · unit level · paths, branches aur conditions se test case banate hain
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="380" height="188" rx="10" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.16)" />
+        <text x="34" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>CODE (function discount)</text>
+        {[
+          'function discount($amt, $member) {',
+          '  if ($amt >= 5000) {',
+          '    $d = 0.10;',
+          '  } else {',
+          '    $d = 0.05;',
+          '  }',
+          '  if ($member) $d += 0.02;',
+          '  return $amt * $d;',
+          '}',
+        ].map((line, i) => (
+          <text key={i} x="34" y={110 + i * 16} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{line}</text>
+        ))}
+      </g>
+
+      <text x="410" y="160" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="432" y="66" width="468" height="188" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="446" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TEEN INDEPENDENT PATHS = TEEN TEST CASES</text>
+        {[
+          ['P1', '$amt=6000, member=false', 'd=0.10 → 600'],
+          ['P2', '$amt=2000, member=false', 'd=0.05 → 100'],
+          ['P3', '$amt=2000, member=true', 'd=0.07 → 140'],
+        ].map(([p, input, out], i) => (
+          <g key={p}>
+            <text x="446" y={112 + i * 34} fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>{p}</text>
+            <text x="470" y={112 + i * 34} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{input}</text>
+            <text x="470" y={126 + i * 34} fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">expected: {out}</text>
+          </g>
+        ))}
+        <text x="446" y="228" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>
+          Har branch kam se kam ek baar chale — yahi branch coverage hai
+        </text>
+        <text x="446" y="244" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>
+          Assertion fail ho to defect, pass ho to path sahi
+        </text>
+      </g>
+
+      <text x="20" y="278" fill="#5a6a9e" fontSize="8.5" fontWeight="700" fontFamily={FONT}>UNIT TEST KE COMPONENTS</text>
+
+      {[
+        ['ARRANGE', 'input, mock/stub tayyar', 'setup'],
+        ['ACT', 'function call karo', 'ek behaviour'],
+        ['ASSERT', 'expected vs actual', 'pass/fail'],
+        ['ISOLATE', 'stub (neeche ka), driver (upar ka)', 'dependency hatao'],
+      ].map(([t, l1, l2], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${420 + i * 70}ms` }}>
+          <rect x={20 + i * 226} y="290" width="212" height="66" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+          <text x={32 + i * 226} y="310" fill="#c4ff00" fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+          <text x={32 + i * 226} y="328" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{l1}</text>
+          <text x={32 + i * 226} y="344" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>{l2}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
+        <rect x="20" y="372" width="880" height="30" rx="8" fill="rgba(255,136,0,0.09)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="392" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Tools: JUnit (Java) · PHPUnit · pytest · Jest · NUnit — developer khud likhta hai, CI par har commit par chalta hai
+        </text>
+      </g>
+
+      <text x="460" y="432" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Structure pata ho to code ki har branch test kar sakte hain — par missing requirement nahi milegi
+      </text>
+    </svg>
+  );
+}
+
+// 25. Code coverage
+export function CodeCoverageDiagram() {
+  const bars = [
+    ['Statement (line)', 92, '#00ff88'],
+    ['Branch / decision', 78, '#c4ff00'],
+    ['Condition', 65, '#ff8800'],
+    ['Path', 40, '#ff7a90'],
+    ['MC/DC', 55, '#00d4ff'],
+  ];
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="Code coverage types shown as bars: statement, branch, condition, path and MC/DC coverage, with the coverage formula and the rule that coverage is necessary but not sufficient">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Code coverage — test suite ne code ka kitna hissa chalaya
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        coverage % = (covered items ÷ total items) × 100 · white-box metric
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="560" height="252" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>SAME TEST SUITE, ALAG COVERAGE</text>
+        {bars.map(([name, pct, color], i) => {
+          const y = 106 + i * 42;
+          return (
+            <g key={name} className="diagram-pop" style={{ animationDelay: `${160 + i * 90}ms` }}>
+              <text x="34" y={y + 12} fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>{name}</text>
+              <rect x="170" y={y} width="330" height="16" rx="8" fill="rgba(255,255,255,0.07)" />
+              <rect x="170" y={y} width={330 * pct / 100} height="16" rx="8" fill={color} fillOpacity="0.8" />
+              <text x="512" y={y + 12} fill={color} fontSize="9" fontWeight="700" fontFamily="'Consolas', monospace">{pct}%</text>
+            </g>
+          );
+        })}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="600" y="66" width="300" height="252" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="614" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>KAUN KYA MAAPTA HAI</text>
+        {[
+          ['Statement', 'har line chali?'],
+          ['Branch', 'har if/else dono taraf?'],
+          ['Condition', '&& / || ki har value?'],
+          ['Path', 'shuru se end tak har raasta?'],
+          ['Function', 'har function call hua?'],
+          ['MC/DC', 'har condition akela effect?'],
+        ].map(([t, d], i) => (
+          <g key={t}>
+            <text x="614" y={108 + i * 24} fill="#c4ff00" fontSize="7.8" fontWeight="700" fontFamily={FONT}>{t}</text>
+            <text x="668" y={108 + i * 24} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+        <text x="614" y="266" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Tools: JaCoCo, Istanbul/nyc, coverage.py, gcov</text>
+        <text x="614" y="282" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Report: HTML + line-by-line highlight</text>
+        <text x="614" y="298" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Target: 70–90% branch (project ke hisaab se)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="334" width="880" height="34" rx="8" fill="rgba(255,68,102,0.08)" stroke="rgba(255,68,102,0.45)" />
+        <text x="34" y="356" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Trap: 100% statement coverage ka matlab "bug-free" nahi — requirement hi missing ho sakti hai, ya output galat ho sakta hai
+        </text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Coverage = kitna chala · Test quality = kitna sahi pakda (mutation testing se pata chalta hai)
+      </text>
+      <text x="460" y="416" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Exam line: statement &lt; branch &lt; condition &lt; path — jitna gehra, utne zyada test cases
+      </text>
+    </svg>
+  );
+}
+
+// 26. Cyclomatic complexity
+export function CyclomaticComplexityDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Cyclomatic complexity: a control flow graph with seven edges and six nodes giving V(G) equals three, the formula, and the complexity thresholds with testing implications">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Cyclomatic complexity — V(G) = independent paths ki ginti
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        V(G) = E − N + 2P · ya "decision points + 1" · kam se kam itne test case chahiye
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="420" height="230" rx="10" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>CONTROL FLOW GRAPH</text>
+        <defs>
+          <marker id="cc-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#5a6a9e" />
+          </marker>
+        </defs>
+        {[
+          ['1', 70, 120],
+          ['2', 70, 158],
+          ['3', 190, 158],
+          ['4', 190, 228],
+          ['5', 330, 104],
+          ['6', 330, 228],
+        ].map(([n, x, y], i) => (
+          <g key={n} className="diagram-pop" style={{ animationDelay: `${160 + i * 60}ms` }}>
+            <circle cx={x} cy={y} r="14" fill="rgba(47,111,255,0.25)" stroke="#6fb2ff" strokeWidth="1.4" />
+            <text x={x} y={y + 4} textAnchor="middle" fill="#fff" fontSize="9" fontWeight="700" fontFamily={FONT}>{n}</text>
+          </g>
+        ))}
+        <g stroke="#5a6a9e" strokeWidth="1.5" markerEnd="url(#cc-arrow)">
+          <line x1="70" y1="134" x2="70" y2="143" />
+          <line x1="84" y1="158" x2="175" y2="158" />
+          <line x1="78" y1="145" x2="317" y2="109" />
+          <line x1="190" y1="172" x2="190" y2="213" />
+          <line x1="204" y1="228" x2="315" y2="228" />
+          <line x1="330" y1="118" x2="330" y2="213" />
+          <path d="M 204 228 C 248 228 248 158 205 158" fill="none" />
+        </g>
+        <text x="126" y="151" fill="#00ff88" fontSize="7.5" fontFamily={FONT}>valid</text>
+        <text x="212" y="118" fill="#ff7a90" fontSize="7.5" fontFamily={FONT}>invalid</text>
+        <text x="252" y="196" fill="#ff8800" fontSize="7.5" fontFamily={FONT}>retry</text>
+        <text x="254" y="221" fill="#00ff88" fontSize="7.5" fontFamily={FONT}>pass</text>
+        <text x="34" y="270" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">nodes N = 6 · edges E = 7 → V(G) = 7 − 6 + 2 = 3</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
+        <rect x="460" y="66" width="440" height="106" rx="10" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="474" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>FORMULA</text>
+        <text x="474" y="108" fill="#fff" fontSize="11" fontFamily="'Consolas', monospace">V(G) = E − N + 2P</text>
+        <text x="474" y="126" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>E = edges, N = nodes, P = connected components (aksar 1)</text>
+        <text x="474" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Doosra tareeka: V(G) = decision points + 1</text>
+        <text x="474" y="162" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Graph ke regions gino — wo bhi V(G) ke barabar hote hain</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="460" y="186" width="440" height="110" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="474" y="206" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>THRESHOLD — TESTING PAR ASAR</text>
+        {[
+          ['1 – 10', 'simple, risk kam', '#00ff88'],
+          ['11 – 20', 'moderate, test badhao', '#c4ff00'],
+          ['21 – 50', 'complex, refactor socho', '#ff8800'],
+          ['50+', 'untestable — todo', '#ff7a90'],
+        ].map(([r, m, c], i) => (
+          <g key={r}>
+            <text x="474" y={228 + i * 18} fill={c} fontSize="8" fontWeight="700" fontFamily="'Consolas', monospace">{r}</text>
+            <text x="536" y={228 + i * 18} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{m}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
+        <rect x="20" y="310" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="330" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>DOOSRE COMPLEXITY METRICS</text>
+        <text x="34" y="348" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Halstead (volume, difficulty, effort) · LOC · nesting depth · cognitive complexity · maintainability index · duplication
+        </text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Complexity zyada = test cases zyada + defect ka risk zyada
+      </text>
+      <text x="460" y="416" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        V(G) = 3 ka matlab: kam se kam 3 independent path test karo (basis path testing)
+      </text>
+      <text x="460" y="440" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Kam karne ke tareeke: chhote functions, early return, deep nesting hatao, extract method
+      </text>
+    </svg>
+  );
+}
+
+// 27. Mutation testing
+export function MutationTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 468" className="diagram-svg" role="img" aria-label="Mutation testing: small changes called mutants are injected into the code and the test suite is run, killing some mutants while others survive, and the mutation score is computed">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Mutation testing — test suite kitni strong hai, wahi maapta hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        code mein jaan-boojh kar chhoti galti daalo → test chalao → pakdi gayi ya bach gayi?
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="330" height="96" rx="10" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.16)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>ORIGINAL CODE</text>
+        <text x="34" y="108" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">function isAdult($age) {'{'}</text>
+        <text x="34" y="124" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">  return $age &gt;= 18;</text>
+        <text x="34" y="140" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">{'}'}</text>
+        <text x="34" y="156" fill="#7ee787" fontSize="8" fontFamily={FONT}>tests: isAdult(20)=true, isAdult(10)=false</text>
+      </g>
+
+      <text x="360" y="118" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="380" y="66" width="250" height="96" rx="10" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="394" y="86" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>MUTANT BANAYA</text>
+        <text x="394" y="108" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">&gt;=  →  &gt;</text>
+        <text x="394" y="126" fill="#dbe6ff" fontSize="8.5" fontFamily="'Consolas', monospace">return $age &gt; 18;</text>
+        <text x="394" y="148" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>sirf ek operator badla</text>
+      </g>
+
+      <text x="642" y="118" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
+        <rect x="662" y="66" width="238" height="96" rx="10" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.45)" />
+        <text x="676" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>TEST CHALAYA</text>
+        <text x="676" y="108" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>isAdult(20) → true (wahi)</text>
+        <text x="676" y="126" fill="#ff7a90" fontSize="8" fontFamily={FONT}>18 par farak: mutant bach gaya</text>
+        <text x="676" y="146" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>test suite weak hai → case add karo</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="180" width="430" height="164" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="200" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>MUTATION OPERATORS</text>
+        {[
+          'arithmetic:  + → -   * → /',
+          'relational:  > → >=   == → !=',
+          'logical:     && → ||   ! hatao',
+          'constant:    18 → 17 / 0',
+          'statement delete / return value badlo',
+        ].map((t, i) => (
+          <text key={t} x="34" y={222 + i * 20} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{t}</text>
+        ))}
+        <text x="34" y="332" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>
+          Tools: PIT (Java) · Stryker (JS/TS) · mutmut (Python) · Infection (PHP)
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="470" y="180" width="430" height="164" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="484" y="200" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>NATEEJA</text>
+        <text x="484" y="222" fill="#00ff88" fontSize="8.5" fontFamily={FONT}>KILLED — test fail hua → mutant mara (accha)</text>
+        <text x="484" y="242" fill="#ff7a90" fontSize="8.5" fontFamily={FONT}>SURVIVED — test pass hua → suite weak</text>
+        <text x="484" y="262" fill="#ff8800" fontSize="8.5" fontFamily={FONT}>EQUIVALENT — behaviour same, maar nahi sakte</text>
+        <text x="484" y="290" fill="#fff" fontSize="9.5" fontFamily="'Consolas', monospace">
+          score = killed ÷ (total − equivalent) × 100
+        </text>
+        <text x="484" y="310" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">= 82 ÷ (90 − 2) × 100 = 93.2%</text>
+        <text x="484" y="332" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Cost bachane ke liye: selective operators, sampling</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
+        <rect x="20" y="358" width="880" height="34" rx="8" fill="rgba(255,68,102,0.08)" stroke="rgba(255,68,102,0.45)" />
+        <text x="34" y="380" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Mutation testing mehnga hai: har mutant par poori test suite chalti hai — isliye bade projects mein nightly build par
+        </text>
+      </g>
+
+      <text x="460" y="418" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Coverage batata hai "kitna chala", mutation batata hai "test ne kitna pakda"
+      </text>
+      <text x="460" y="442" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Survived mutant = aapke test suite ka hole — wahan test case add karein
+      </text>
+    </svg>
+  );
+}
+
+// 28. Requirement based testing
+export function RequirementBasedTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="Requirement based testing: each requirement in the SRS is turned into test cases, executed, and tracked in a requirement traceability matrix">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Requirement based testing — SRS se test case, aur RTM se trace
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        black-box · har requirement ke liye kam se kam ek test · kuch bhi untested na rahe
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="240" height="176" rx="10" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.45)" />
+        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>1. SRS PADHO</text>
+        {[
+          'R1: user login kar sake',
+          'R2: password 8+ chars',
+          'R3: 3 galat try par lock',
+          'R4: "forgot password" link',
+        ].map((r, i) => (
+          <text key={r} x="34" y={110 + i * 22} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{r}</text>
+        ))}
+        <text x="34" y="212" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Ambiguous? pehle requirement clarify karo</text>
+        <text x="34" y="228" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Testable? "fast" jaise shabd accept nahi</text>
+      </g>
+
+      <text x="270" y="150" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="290" y="66" width="270" height="176" rx="10" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="304" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>2. TEST CASES BANAO</text>
+        {[
+          'TC1 → R1 (valid login)',
+          'TC2 → R1 (wrong password)',
+          'TC3 → R2 (7 chars reject)',
+          'TC4 → R2 (8 chars accept)',
+          'TC5 → R3 (3rd fail = lock)',
+          'TC6 → R4 (link mail bheje)',
+        ].map((t, i) => (
+          <text key={t} x="304" y={110 + i * 20} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{t}</text>
+        ))}
+      </g>
+
+      <text x="570" y="150" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
+        <rect x="590" y="66" width="310" height="176" rx="10" fill="rgba(0,255,136,0.07)" stroke="rgba(0,255,136,0.45)" />
+        <text x="604" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>3. RTM (traceability matrix)</text>
+        <line x1="604" y1="96" x2="886" y2="96" stroke="rgba(255,255,255,0.2)" />
+        {[
+          ['R1', 'TC1, TC2', 'PASS'],
+          ['R2', 'TC3, TC4', 'PASS'],
+          ['R3', 'TC5', 'FAIL'],
+          ['R4', 'TC6', 'NOT RUN'],
+        ].map(([r, tc, st], i) => (
+          <g key={r}>
+            <text x="604" y={118 + i * 24} fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>{r}</text>
+            <text x="640" y={118 + i * 24} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{tc}</text>
+            <text x="790" y={118 + i * 24} fill={st === 'PASS' ? '#00ff88' : st === 'FAIL' ? '#ff7a90' : '#ff8800'} fontSize="8" fontWeight="700" fontFamily={FONT}>{st}</text>
+          </g>
+        ))}
+        <text x="604" y="228" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Requirement coverage = tested ÷ total × 100</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
+        <rect x="20" y="256" width="880" height="52" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="276" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>ANDAR KAUNSI TECHNIQUE?</text>
+        <text x="34" y="294" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          functional requirement → EP + BVA + decision table · use case → use case testing · non-functional → performance/security test
+        </text>
+      </g>
+
+      <text x="460" y="338" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Har requirement ka test hona chahiye — RTM "kya bacha hai" turant dikha deta hai
+      </text>
+      <text x="460" y="362" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Requirement testing ka fayda: specification ke against verify, audit aur compliance aasan
+      </text>
+      <text x="460" y="386" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Limit: requirement hi galat ho to test pass hoke bhi product galat hoga
+      </text>
+      <text x="460" y="418" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: requirement based testing mein test cases SRS se derive hote hain, code se nahi
+      </text>
+    </svg>
+  );
+}
+
+// 29. Positive vs negative testing
+export function PositiveNegativeTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 440" className="diagram-svg" role="img" aria-label="Positive testing uses valid input and expects the feature to work, negative testing uses invalid input like empty, wrong format or out of range values and expects graceful errors, both are needed">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Positive vs Negative testing — sahi input aur galat input
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        positive = feature chalta hai? · negative = galat data par system sambhalta hai?
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="430" height="212" rx="10" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.45)" />
+        <text x="34" y="86" fill="#00ff88" fontSize="9.5" fontWeight="800" fontFamily={FONT}>POSITIVE TESTING (valid data)</text>
+        {[
+          ['age = 25', 'registration ho jaaye'],
+          ['email = riya@mail.com', 'welcome mail jaaye'],
+          ['amount = 500', 'payment successful'],
+          ['file = report.pdf (1 MB)', 'upload ho jaaye'],
+        ].map(([inp, out], i) => (
+          <g key={inp}>
+            <text x="34" y={112 + i * 26} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{inp}</text>
+            <text x="230" y={112 + i * 26} fill="#00ff88" fontSize="7.8" fontFamily={FONT}>→ {out}</text>
+          </g>
+        ))}
+        <text x="34" y="226" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Expected: feature requirement ke hisaab se chale</text>
+        <text x="34" y="246" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Happy path — pehle yahi likha jaata hai</text>
+        <text x="34" y="266" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Confidence: "system kya kar sakta hai"</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
+        <rect x="470" y="66" width="430" height="212" rx="10" fill="rgba(255,68,102,0.07)" stroke="rgba(255,68,102,0.45)" />
+        <text x="484" y="86" fill="#ff7a90" fontSize="9.5" fontWeight="800" fontFamily={FONT}>NEGATIVE TESTING (invalid data)</text>
+        {[
+          ['age = 0 / -5 / abc', 'error message, crash nahi'],
+          ['email = riya@ / blank', 'validation fail'],
+          ['amount = 99999999', 'limit error'],
+          ['file = virus.exe (10 MB)', 'reject + message'],
+        ].map(([inp, out], i) => (
+          <g key={inp}>
+            <text x="484" y={112 + i * 26} fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">{inp}</text>
+            <text x="680" y={112 + i * 26} fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>→ {out}</text>
+          </g>
+        ))}
+        <text x="484" y="226" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Expected: graceful error, data corrupt na ho</text>
+        <text x="484" y="246" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Security bhi: SQL injection, XSS, huge input</text>
+        <text x="484" y="266" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Confidence: "galat use par system safe hai"</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
+        <rect x="20" y="292" width="880" height="30" rx="8" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
+        <text x="34" y="312" fill="#dbe6ff" fontSize="8.5" fontFamily={FONT}>
+          Dono zaroori: sirf positive → system nazuk · sirf negative → feature kaam karta hai ya nahi pata nahi chalta
+        </text>
+      </g>
+
+      <text x="460" y="348" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Negative testing = robustness testing ka hissa · "destructive testing" se alag hai
+      </text>
+      <text x="460" y="372" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Suite bade hone par negative cases positive se zyada ho jaate hain
+      </text>
+      <text x="460" y="402" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: positive testing valid input, negative testing invalid input — dono milkar functional + robustness cover karte hain
+      </text>
+    </svg>
+  );
+}
+
+// 30. Boundary value analysis
+export function BoundaryValueDiagram() {
+  const pts = [
+    { x: 120, label: 'min−1', val: '17', kind: 'invalid' },
+    { x: 220, label: 'min', val: '18', kind: 'boundary' },
+    { x: 300, label: 'min+1', val: '19', kind: 'valid' },
+    { x: 470, label: 'nominal', val: '35', kind: 'valid' },
+    { x: 640, label: 'max−1', val: '59', kind: 'valid' },
+    { x: 720, label: 'max', val: '60', kind: 'boundary' },
+    { x: 800, label: 'max+1', val: '61', kind: 'invalid' },
+  ];
+  const color = { invalid: '#ff7a90', boundary: '#ff8800', valid: '#00ff88' };
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="Boundary value analysis for the valid range 18 to 60, testing just below, on and just above each boundary instead of wasting tests in the middle of the range">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Boundary Value Analysis — defect boundary par chhupta hai
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        valid range 18 se 60 → test 17, 18, 19 … 59, 60, 61 (off-by-one yahin pakadta hai)
+      </text>
+
+      <line x1="60" y1="140" x2="860" y2="140" stroke="#5a6a9e" strokeWidth="2" />
+      <g className="diagram-pop" style={{ animationDelay: '100ms' }}>
+        <rect x="60" y="128" width="160" height="24" fill="rgba(255,122,144,0.18)" />
+        <rect x="220" y="128" width="500" height="24" fill="rgba(0,255,136,0.12)" />
+        <rect x="720" y="128" width="140" height="24" fill="rgba(255,122,144,0.18)" />
+      </g>
+
+      {pts.map((p, i) => (
+        <g key={p.label} className="diagram-pop" style={{ animationDelay: `${180 + i * 70}ms` }}>
+          <line x1={p.x} y1="128" x2={p.x} y2="156" stroke={color[p.kind]} strokeWidth="2" />
+          <circle cx={p.x} cy="140" r="5" fill={color[p.kind]} />
+          <text x={p.x} y="112" textAnchor="middle" fill={color[p.kind]} fontSize="9" fontWeight="800" fontFamily={FONT}>{p.val}</text>
+          <text x={p.x} y="174" textAnchor="middle" fill="#9ab0e0" fontSize="7.5" fontFamily={FONT}>{p.label}</text>
+        </g>
+      ))}
+
+      <text x="140" y="198" textAnchor="middle" fill="#ff7a90" fontSize="8" fontFamily={FONT}>invalid</text>
+      <text x="470" y="198" textAnchor="middle" fill="#00ff88" fontSize="8" fontFamily={FONT}>valid (ek representative value)</text>
+      <text x="790" y="198" textAnchor="middle" fill="#ff7a90" fontSize="8" fontFamily={FONT}>invalid</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="20" y="256" width="430" height="106" rx="9" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.4)" />
+        <text x="34" y="276" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>RANGE a ≤ x ≤ b KE LIYE 6 VALUES</text>
+        <text x="34" y="298" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">a−1, a, a+1,  b−1, b, b+1</text>
+        <text x="34" y="320" fill="#dbe6ff" fontSize="8" fontFamily="'Consolas', monospace">+ ek nominal value (beech ka)</text>
+        <text x="34" y="342" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>2-value BVA: sirf a−1, a, b, b+1</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
+        <rect x="470" y="256" width="430" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="484" y="276" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>KAHAN LAGAYEIN</text>
+        <text x="484" y="298" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>age limit, quantity, price range</text>
+        <text x="484" y="316" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>string length, array index, date range</text>
+        <text x="484" y="334" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>loop counter, timeout, file size</text>
+        <text x="484" y="352" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>EP ke saath mila kar best result</text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Kyun: developer boundary par &lt; ya &lt;= galat likhta hai — 17/18/19 yahi pakadta hai
+      </text>
+      <text x="460" y="416" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: BVA mein boundary ke "min−1, min, min+1, max−1, max, max+1" values test hote hain
+      </text>
+    </svg>
+  );
+}
+
+// 31. Equivalence partitioning
+export function EquivalencePartitioningDiagram() {
+  const parts = [
+    { x: 40, w: 214, t: 'INVALID (too low)', c: '#ff7a90', val: '10', note: 'error message' },
+    { x: 262, w: 330, t: 'VALID 18–60', c: '#00ff88', val: '35', note: 'registration ho' },
+    { x: 600, w: 236, t: 'INVALID (too high)', c: '#ff7a90', val: '70', note: 'error message' },
+  ];
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="Equivalence partitioning splits the input domain into valid and invalid classes and tests one representative value per class instead of every possible value">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Equivalence Partitioning — poora domain classes mein baanto
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        ek class ka har value same behave karega — isliye ek representative kaafi hai
+      </text>
+
+      <text x="20" y="82" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>INPUT DOMAIN (age field)</text>
+
+      {parts.map((p, i) => (
+        <g key={p.t} className="diagram-pop" style={{ animationDelay: `${120 + i * 110}ms` }}>
+          <rect x={p.x} y="94" width={p.w} height="76" rx="8" fill={p.c} fillOpacity="0.1" stroke={p.c} strokeWidth="1.6" />
+          <text x={p.x + p.w / 2} y="116" textAnchor="middle" fill={p.c} fontSize="9" fontWeight="800" fontFamily={FONT}>{p.t}</text>
+          <text x={p.x + p.w / 2} y="140" textAnchor="middle" fill="#fff" fontSize="13" fontFamily="'Consolas', monospace">{p.val}</text>
+          <text x={p.x + p.w / 2} y="158" textAnchor="middle" fill="#9ab0e0" fontSize="7.5" fontFamily={FONT}>→ {p.note}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
+        <rect x="20" y="192" width="880" height="58" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="212" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>CLASSES KAISE BANAYEIN</text>
+        <text x="34" y="232" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          range 18–60 → 1 valid + 2 invalid · specific value → 1 valid + 2 invalid · boolean → 2 classes · set/list → 1 valid + 1 invalid
+        </text>
+        <text x="34" y="246" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Valid class = "positive" test, invalid class = "negative" test</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
+        <rect x="20" y="266" width="430" height="90" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
+        <text x="34" y="286" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>FAYDA</text>
+        <text x="34" y="306" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Har value test karne ki zaroorat nahi</text>
+        <text x="34" y="324" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Test cases 90% kam, coverage same</text>
+        <text x="34" y="342" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>BVA ke saath combine karo</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
+        <rect x="470" y="266" width="430" height="90" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="484" y="286" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>LIMIT</text>
+        <text x="484" y="306" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Class galat bani to test bhi galat</text>
+        <text x="484" y="324" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Boundary ka defect miss ho sakta hai</text>
+        <text x="484" y="342" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Isliye BVA ke saath use karein</text>
+      </g>
+
+      <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        EP = kaunse class hain · BVA = us class ke kinare kaunse value
+      </text>
+      <text x="460" y="416" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: EP mein poore input domain ko valid/invalid classes mein baant kar ek-ek representative test karte hain
+      </text>
+    </svg>
+  );
+}
+
+// 32. State transition / graph based testing
+export function StateGraphTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="State transition testing models an ATM as states and events: idle, card inserted, pin correct, menu, dispense, with invalid transitions such as three wrong pins returning to idle">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        State / Graph based testing — system ko states aur events mein dekho
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        har state, har valid transition aur har invalid transition cover karo
+      </text>
+
+      <defs>
+        <marker id="sg-grey" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#5a6a9e" />
+        </marker>
+        <marker id="sg-red" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#ff7a90" />
+        </marker>
+        <marker id="sg-green" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#00ff88" />
+        </marker>
+      </defs>
+
+      <g stroke="#5a6a9e" strokeWidth="1.6" markerEnd="url(#sg-grey)">
+        <line x1="162" y1="180" x2="244" y2="180" />
+        <line x1="352" y1="180" x2="434" y2="180" />
+        <line x1="542" y1="180" x2="624" y2="180" />
+      </g>
+      <text x="203" y="172" textAnchor="middle" fill="#9ab0e0" fontSize="7.5" fontFamily={FONT}>insert card</text>
+      <text x="393" y="172" textAnchor="middle" fill="#9ab0e0" fontSize="7.5" fontFamily={FONT}>correct PIN</text>
+      <text x="583" y="172" textAnchor="middle" fill="#9ab0e0" fontSize="7.5" fontFamily={FONT}>choose option</text>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <path d="M 490 154 C 460 96 140 96 112 152" fill="none" stroke="#ff7a90" strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#sg-red)" />
+        <text x="300" y="86" textAnchor="middle" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>3x galat PIN → wapas IDLE (invalid transition)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <line x1="680" y1="206" x2="680" y2="248" stroke="#00ff88" strokeWidth="1.6" markerEnd="url(#sg-green)" />
+        <text x="692" y="232" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>withdraw</text>
+        <path d="M 628 296 H 110 V 212" fill="none" stroke="#5a6a9e" strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#sg-grey)" />
+        <text x="370" y="288" textAnchor="middle" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>eject card → IDLE</text>
+      </g>
+
+      {[
+        ['IDLE', 110, 180],
+        ['CARD IN', 300, 180],
+        ['PIN OK', 490, 180],
+        ['MENU', 680, 180],
+        ['DISPENSE', 680, 278],
+      ].map(([t, x, y], i) => (
+        <g key={t} className="diagram-pop" style={{ animationDelay: `${140 + i * 70}ms` }}>
+          <rect x={x - 52} y={y - 26} width="104" height="52" rx="10" fill="rgba(47,111,255,0.14)" stroke="#6fb2ff" strokeWidth="1.4" />
+          <text x={x} y={y + 4} textAnchor="middle" fill="#fff" fontSize="8.5" fontWeight="700" fontFamily={FONT}>{t}</text>
+        </g>
+      ))}
+
+      <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
+        <rect x="20" y="340" width="430" height="82" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="360" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>COVERAGE CRITERIA</text>
+        <text x="34" y="380" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>State coverage — har state ek baar</text>
+        <text x="34" y="398" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Transition coverage — har arrow ek baar</text>
+        <text x="34" y="414" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Path coverage — shuru se end tak har raasta</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="470" y="340" width="430" height="82" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="484" y="360" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>GRAPH BASED TESTING</text>
+        <text x="484" y="380" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Model graph banao: node = step, edge = flow</text>
+        <text x="484" y="398" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Node / edge / path coverage se test derive karo</text>
+        <text x="484" y="414" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>CFG, use case graph, decision graph, state table</text>
+      </g>
+
+      <text x="460" y="448" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Invalid transition bhi test karein — "PIN OK" se seedha "DISPENSE" nahi ho sakta
+      </text>
+    </svg>
+  );
+}
+
+// 33. Compatibility testing
+export function CompatibilityTestingDiagram() {
+  const cells = [
+    ['Windows 11', true, true, true, false],
+    ['macOS 15', true, true, true, true],
+    ['Ubuntu 24', true, false, true, false],
+    ['Android 15', true, false, true, false],
+    ['iOS 18', false, false, true, false],
+  ];
+  return (
+    <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Compatibility testing matrix of operating systems and browsers, with the types of compatibility testing: backward, forward, cross browser, cross platform, device and network">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Compatibility testing — har environment par chalta hai?
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        OS · browser · device · hardware · network · database · language — matrix bana kar test karo
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="470" height="212" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>COMPATIBILITY MATRIX (sample)</text>
+        {['Chrome', 'Firefox', 'Safari', 'Edge'].map((b, j) => (
+          <text key={b} x={200 + j * 66} y="112" textAnchor="middle" fill="#c4ff00" fontSize="7.8" fontWeight="700" fontFamily={FONT}>{b}</text>
+        ))}
+        {cells.map(([os, ...vals], i) => (
+          <g key={os}>
+            <text x="34" y={140 + i * 28} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{os}</text>
+            {vals.map((v, j) => (
+              <text
+                key={j}
+                x={200 + j * 66}
+                y={140 + i * 28}
+                textAnchor="middle"
+                fill={v ? '#00ff88' : '#ff7a90'}
+                fontSize="10"
+                fontWeight="700"
+                fontFamily={FONT}
+              >
+                {v ? '✓' : '✗'}
+              </text>
+            ))}
+          </g>
+        ))}
+        <text x="34" y="270" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Nateeja: matrix hi "supported combinations" ka document hai</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="510" y="66" width="390" height="212" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
+        <text x="524" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>COMPATIBILITY KE PRAKAAR</text>
+        {[
+          ['Backward', 'purane version / file format ke saath'],
+          ['Forward', 'naye version / browser ke saath'],
+          ['Cross-browser', 'Chrome, Firefox, Safari, Edge'],
+          ['Cross-platform', 'Windows, macOS, Linux, Android, iOS'],
+          ['Device', 'screen size, resolution, touch'],
+          ['Hardware', 'RAM, GPU, printer'],
+          ['Network', '2G, 4G, Wi-Fi, offline'],
+          ['Data / DB', 'MySQL, PostgreSQL, CSV import'],
+        ].map(([t, d], i) => (
+          <g key={t}>
+            <text x="524" y={110 + i * 21} fill="#c4ff00" fontSize="7.8" fontWeight="700" fontFamily={FONT}>{t}</text>
+            <text x="616" y={110 + i * 21} fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>{d}</text>
+          </g>
+        ))}
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="294" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="314" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>KAISE KAREIN</text>
+        <text x="34" y="332" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Manual checklist · Selenium Grid · cloud device farm (BrowserStack, Sauce Labs) · VM/Docker snapshot · responsive mode
+        </text>
+      </g>
+
+      <text x="460" y="376" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Sab combination test karna impossible — risk ke hisaab se top 5–10 combinations chunein
+      </text>
+      <text x="460" y="400" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Compatibility ≠ performance: yahan "chalta hai ya nahi" dekhte hain, "kitna tez" nahi
+      </text>
+      <text x="460" y="428" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: compatibility testing alag-alag environment par software ke behaviour ko verify karti hai
+      </text>
+    </svg>
+  );
+}
+
+// 34. User documentation testing
+export function DocumentationTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="User documentation testing checks manuals, help files and installation guides for accuracy, completeness, clarity, consistency, usability and currency against the actual software">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        User documentation testing — manual sach bolta hai?
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        jo document user ke saath jaata hai, wo software ke actual behaviour se match kare
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="270" height="196" rx="10" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.4)" />
+        <text x="34" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>KAUNSE DOCUMENTS</text>
+        {[
+          'User manual / guide',
+          'Installation & config guide',
+          'Online help / tooltips',
+          'FAQ aur troubleshooting',
+          'Release notes / changelog',
+          'API reference (developer docs)',
+          'Tutorials / video script',
+        ].map((t, i) => (
+          <text key={t} x="34" y={110 + i * 22} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• {t}</text>
+        ))}
+      </g>
+
+      <text x="302" y="170" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
+
+      {[
+        ['ACCURACY', '#00d4ff', 'Har step sach mein chalta hai?', 'screenshot current hai?'],
+        ['COMPLETENESS', '#c4ff00', 'Har feature documented?', 'error message explain hua?'],
+        ['CLARITY', '#ff8800', 'Simple language, chhote steps', 'jargon kam, example zyada'],
+        ['CONSISTENCY', '#ff7ab2', 'UI ke shabdon se match', 'version number same'],
+        ['USABILITY', '#00ff88', 'Naya user follow kar paya?', 'index / search kaam karta?'],
+        ['CURRENCY', '#8f9dc4', 'Latest build ke hisaab se', 'purane steps hataye?'],
+      ].map(([t, c, l1, l2], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        return (
+          <g key={t} className="diagram-pop" style={{ animationDelay: `${200 + i * 70}ms` }}>
+            <rect x={320 + col * 292} y={90 + row * 58} width="278" height="50" rx="8" fill="rgba(255,255,255,0.03)" stroke={c} strokeWidth="1.3" strokeOpacity="0.55" />
+            <text x={332 + col * 292} y={108 + row * 58} fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{t}</text>
+            <text x={332 + col * 292} y={122 + row * 58} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{l1}</text>
+            <text x={332 + col * 292} y={134 + row * 58} fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>{l2}</text>
+          </g>
+        );
+      })}
+
+      <g className="diagram-pop" style={{ animationDelay: '680ms' }}>
+        <rect x="20" y="280" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="34" y="300" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>KAUN KARTA HAI</text>
+        <text x="34" y="318" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          Technical writer + tester + ek "naya user" — manual le kar software use karo, jahan phanso wahan defect
+        </text>
+      </g>
+
+      <text x="460" y="360" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Galat manual bhi ek defect hai — support tickets badhate hain, product kharab lagta hai
+      </text>
+      <text x="460" y="384" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Testing ke tareeke: walkthrough, checklist, doc review, usability test, link/screenshot check
+      </text>
+      <text x="460" y="412" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: user documentation testing usability aur accuracy ke liye document ko product ke saath verify karti hai
+      </text>
+    </svg>
+  );
+}
+
+// 35. Domain testing
+export function DomainTestingDiagram() {
+  return (
+    <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="Domain testing divides the complete input domain of a variable into sub domains, then picks representative values in the middle and boundary values at the edges, including output domain checks">
+      <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
+        Domain testing — input domain ko chhote hisson mein tod kar test karo
+      </text>
+      <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
+        value ka domain important hai, code ka path nahi — EP + BVA ka theoretical base
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="66" width="430" height="184" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>INPUT DOMAIN (variable: quantity 1–100)</text>
+        {[
+          ['D1', 'less than 1', 'invalid', '#ff7a90', 34, 112],
+          ['D2', '1 se 100', 'valid', '#00ff88', 160, 150],
+          ['D3', '100 se zyada', 'invalid', '#ff7a90', 324, 112],
+        ].map(([d, r, kind, c, x, w], i) => (
+          <g key={d} className="diagram-pop" style={{ animationDelay: `${160 + i * 90}ms` }}>
+            <rect x={x} y="104" width={w} height="66" rx="8" fill={c} fillOpacity="0.1" stroke={c} />
+            <text x={x + w / 2} y="124" textAnchor="middle" fill={c} fontSize="8.5" fontWeight="800" fontFamily={FONT}>{d}</text>
+            <text x={x + w / 2} y="142" textAnchor="middle" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{r}</text>
+            <text x={x + w / 2} y="158" textAnchor="middle" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>{kind}</text>
+          </g>
+        ))}
+        <text x="34" y="192" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">values: 0 · 1 · 2 · 50 · 99 · 100 · 101</text>
+        <text x="34" y="212" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Beech ki values skip — kinare aur ek nominal</text>
+        <text x="34" y="232" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Har sub-domain se kam se kam ek test</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="470" y="66" width="430" height="184" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
+        <text x="484" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>DOMAIN TESTING KE 2 STEP</text>
+        <text x="484" y="110" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>1. Domain analyse karo</text>
+        <text x="484" y="128" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Kaunse variables? Unki valid range kya?</text>
+        <text x="484" y="144" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Kaunse constraints ek doosre par depend karte?</text>
+        <text x="484" y="168" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>2. Test values chuno</text>
+        <text x="484" y="186" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Har sub-domain se ek nominal value</text>
+        <text x="484" y="202" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Aur har boundary ke dono taraf ki value</text>
+        <text x="484" y="226" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">output domain bhi: 0 se 10000 ka bill</text>
+        <text x="484" y="242" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>invalid output = defect (galat total, overflow)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
+        <rect x="20" y="266" width="880" height="52" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
+        <text x="34" y="286" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>DOMAIN ERRORS KE PRAKAAR</text>
+        <text x="34" y="304" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
+          closure error (boundary off-by-one) · shift error (poora boundary khisak gaya) · missing boundary / extra boundary
+        </text>
+      </g>
+
+      <text x="460" y="346" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Domain testing = EP (kaunse hisse) + BVA (us hisse ke kinare) ka combined model
+      </text>
+      <text x="460" y="370" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
+        Black-box hai — code dekhe bina, sirf input/output domain dekh kar test design
+      </text>
+      <text x="460" y="398" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
+        Exam line: domain testing mein input domain ke sub-domains aur boundaries se test values chuni jaati hain
+      </text>
+    </svg>
+  );
+}
