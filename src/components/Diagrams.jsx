@@ -283,6 +283,21 @@ import {
   ForensicTechnologyPracticesDiagram,
 } from './DigitalForensicsDiagrams';
 
+import {
+  SocialEngineeringIntroDiagram,
+  SocialEngineeringEvolutionDiagram,
+  SocialEngineeringCategoriesDiagram,
+  SocialEngineeringPhasesDiagram,
+  SocialEngineeringSpiralDiagram,
+  SocialEngineeringVendorsDiagram,
+  AdvancedSocialEngineeringDiagram,
+  PhishingAttackDiagram,
+  InsiderAttackDiagram,
+  IdentityTheftDiagram,
+  PreventingInsiderThreatsDiagram,
+  SocialEngineeringTargetsDiagram,
+} from './SocialEngineeringDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1312,6 +1327,30 @@ export function Diagram({ type }) {
       return <ValidatingEvidenceDiagram />;
     case 'df-tech':
       return <ForensicTechnologyPracticesDiagram />;
+    case 'se-intro':
+      return <SocialEngineeringIntroDiagram />;
+    case 'se-evolution':
+      return <SocialEngineeringEvolutionDiagram />;
+    case 'se-categories':
+      return <SocialEngineeringCategoriesDiagram />;
+    case 'se-phases':
+      return <SocialEngineeringPhasesDiagram />;
+    case 'se-spiral':
+      return <SocialEngineeringSpiralDiagram />;
+    case 'se-vendors':
+      return <SocialEngineeringVendorsDiagram />;
+    case 'se-advanced':
+      return <AdvancedSocialEngineeringDiagram />;
+    case 'se-phishing':
+      return <PhishingAttackDiagram />;
+    case 'se-insider':
+      return <InsiderAttackDiagram />;
+    case 'se-identity':
+      return <IdentityTheftDiagram />;
+    case 'se-prevent':
+      return <PreventingInsiderThreatsDiagram />;
+    case 'se-targets':
+      return <SocialEngineeringTargetsDiagram />;
     default:
       return null;
   }
