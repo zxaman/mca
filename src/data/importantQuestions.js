@@ -917,6 +917,930 @@ Cyber laws wo laws hain jo cyberspace, internet, aur digital technology se relat
     importance: '⭐⭐⭐',
   },
 // ========================================================
+  // Cyber Security Unit 3 — Cyber Forensics
+  // ========================================================
+  {
+    id: 'cq33',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.1',
+    question: `Define cyber forensics. Explain its objectives, branches and legal principles.`,
+    answer: `**Definition:** Cyber forensics (digital forensics) digital evidence ko scientifically identify, preserve, examine, analyse aur legally present karne ki process hai — taki court ya management us par bharosa kar sake.
+
+**Objectives:**
+1. **What happened** — incident reconstruction.
+2. **Who did it** — attribution (account, IP, device).
+3. **How** — attack vector aur technique.
+4. **Impact** — kaunsa data/asset affected.
+5. **Evidence** — admissible proof.
+6. **Prevention** — root cause aur control improvement.
+
+**Branches:**
+
+| Branch | Kya dekhti hai |
+|---|---|
+| Computer/disk | files, $MFT, registry, deleted data |
+| Memory | RAM processes, keys, malware |
+| Network | PCAP, NetFlow, IDS logs |
+| Mobile | SQLite, chats, GPS |
+| Database | transaction logs, audit trail |
+| Cloud/e-mail | provider logs, mailbox headers |
+
+**Principles:**
+- **Locard's exchange principle** — har contact ka digital nishaan.
+- **Preservation** — write blocker, original untouched.
+- **Integrity** — MD5/SHA-256 hash match.
+- **Chain of custody** — documented aur signed.
+- **Order of volatility** — RAM pehle, disk baad mein (RFC 3227).
+- **Reproducibility** — same evidence, same result.
+
+**Legal (India):** IT Act 2000 **Section 65B** certificate, authorised access, privacy compliance (DPDP Act).
+
+**Diagram:** Refer to the Cyber forensics scope aur rules diagram.`,
+    diagram: 'cf-intro',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq34',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.1',
+    question: `Differentiate cyber forensics from incident response and ethical hacking.`,
+    answer: `Teeno security field ke alag kaam hain — goal, timing aur output alag hai.
+
+| Point | Cyber forensics | Incident response | Ethical hacking |
+|---|---|---|---|
+| Goal | sach sabit karna | attack rokna + recovery | vulnerability dhoondhna |
+| Timing | post-incident | incident ke dauraan | proactive |
+| Output | court-ready report | contained system + RCA | vulnerability report |
+| Evidence | hash + chain of custody | logs, partial | proof-of-concept |
+| Legal | IT Act 65B | internal policy | authorisation letter |
+| Tools | FTK, Autopsy, Volatility | EDR, SIEM, firewall | Nmap, Burp, Metasploit |
+
+**Kaise saath chalte hain:**
+1. IDS/EDR alert → IR team active hoti hai.
+2. IR system isolate karti hai, par **memory aur disk preserve** karti hai.
+3. Forensic team image/RAM dump leti hai.
+4. Forensics timeline aur attribution deti hai.
+5. IR recovery karti hai; forensics report likhti hai.
+
+**Exam line:** "IR system bachata hai, forensics sach bachata hai, ethical hacking attack hi hone se pehle rokta hai."
+
+**Diagram:** Refer to the Cyber forensics scope aur rules diagram.`,
+    diagram: 'cf-intro',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq35',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.2',
+    question: `Explain the cyber forensics investigation process with phases, standards and documentation.`,
+    answer: `Investigation ek documented aur repeatable process follow karti hai.
+
+**Phases:**
+1. **Identification** — incident detect, scope, legal authority.
+2. **Preservation** — scene secure, photography, labels, power policy.
+3. **Acquisition** — write blocker se image, RAM dump, network capture, hash.
+4. **Examination** — file system, logs, registry, browser, deleted files extract.
+5. **Analysis** — timeline, correlation, attacker vs user activity.
+6. **Documentation** — contemporaneous notes, tool version, hash, custodian.
+7. **Reporting** — findings, methodology, limitations, expert testimony.
+
+**Standards:** NIST SP 800-86 (forensics in IR), ISO/IEC 27037 (evidence handling), RFC 3227 (volatility order), IT Act 65B (certificate).
+
+**Documentation essentials:**
+
+| Item | Example |
+|---|---|
+| Case/exhibit number | CF-2026-014 / EX-03 |
+| Tool + version | FTK Imager 4.7, Volatility 3.2 |
+| Hash | SHA-256 of image |
+| Custody | collector, recipient, date, seal |
+
+**Golden rules:** original untouched, copy par analysis, hash verify, notes same day, chain of custody unbroken.
+
+**Diagram:** Refer to the Investigation process diagram.`,
+    diagram: 'cf-process',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq36',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.2',
+    question: `What is the order of volatility? Compare live and dead acquisition.`,
+    answer: `**Order of volatility (RFC 3227):** sabse jaldi mitne wala data pehle collect karo.
+
+| Priority | Data |
+|---|---|
+| 1 | CPU registers, cache, RAM |
+| 2 | swap/pagefile, network state |
+| 3 | temp files, memory logs |
+| 4 | disk (files, $MFT, registry) |
+| 5 | remote logs, backups |
+| 6 | printouts, archival media |
+
+**Live acquisition:**
+- System chal raha hai — RAM, processes, connections, encryption keys.
+- Tools: DumpIt, LiME, Volatility, \`netstat\`, EDR telemetry.
+- Risk: evidence badal sakta hai, malware dekh sakta hai.
+- Best: ransomware, active intrusion, production server.
+
+**Dead/static acquisition:**
+- System off ya disk nikaal kar write blocker se image.
+- Tools: FTK Imager, EnCase, \`dd\`, Guymager.
+- Risk: RAM aur keys kho jaate hain.
+- Best: seized laptop/disk, legal seizure.
+
+**Exam line:** "Pehle wo collect karo jo sabse pehle khatam hoga — aur har step ka hash lo."
+
+**Diagram:** Refer to the Investigation process diagram.`,
+    diagram: 'cf-process',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq37',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.3',
+    question: `Define digital evidence. Explain its types, properties and admissibility criteria.`,
+    answer: `**Definition:** Digital evidence koi bhi digital form ka probative data hai — files, metadata, logs, packets, DB rows, memory, e-mail.
+
+**Types:**
+
+| Type | Examples |
+|---|---|
+| File system | files, $MFT, slack space, deleted entries |
+| Metadata | EXIF, document author |
+| Logs | Event Log, auth.log, access log |
+| Network | PCAP, NetFlow, DNS |
+| Database | rows, binlog, audit trail |
+| Memory | processes, keys, connections |
+| Mobile/cloud | SQLite, audit logs |
+
+**Properties:** latent (tools chahiye), fragile (easily altered), volatile (RAM), duplicable (bit-stream copy), time-sensitive (log rotation), cross-border.
+
+**Admissibility (ACPO):**
+1. **Authentic** — source proven (hash, custody).
+2. **Complete** — exculpatory bhi.
+3. **Reliable** — tested tools, reproducible.
+4. **Believable** — defensible findings.
+5. **Relevant** — case se juda.
+6. **Legally obtained** — warrant/consent.
+
+**India:** Section 65B certificate — device regular use, working condition, normal course of activity.
+
+**Diagram:** Refer to the Digital evidence handling diagram.`,
+    diagram: 'cf-evidence',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq38',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.3',
+    question: `Explain the handling of digital evidence from seizure to court presentation.`,
+    answer: `**Step 1 — Seizure:** device document karo (photo, serial, screen state), seal + label, legal authority check.
+
+**Step 2 — Preservation:** original write-protected, anti-static bag, controlled storage, limited access.
+
+**Step 3 — Acquisition:** write blocker se bit-stream image, RAM dump (volatile first), SHA-256 hash.
+
+**Step 4 — Verification:** image hash original se match, do copies (working + archive).
+
+**Step 5 — Analysis:** sirf copy par kaam, artifacts extract, timeline, notes aur screenshots.
+
+**Step 6 — Documentation:** chain of custody form, hash log, tool versions.
+
+**Step 7 — Presentation:** report + 65B certificate, expert testimony, evidence appendix.
+
+| Stage | Key control |
+|---|---|
+| Seizure | photo, label, seal |
+| Preservation | write blocker, access control |
+| Acquisition | hash + verified image |
+| Analysis | copy par kaam, notes |
+| Report | 65B + expert |
+
+**Common mistakes:** original par kaam karna, hash na lena, headers strip karna, chain of custody mein gap.
+
+**Diagram:** Refer to the Digital evidence handling diagram.`,
+    diagram: 'cf-evidence',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq39',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.4',
+    question: `Discuss the technical, legal and organisational challenges in cyber forensics with solutions.`,
+    answer: `**Technical challenges:**
+1. **Encryption** — BitLocker, FileVault, LUKS; key na mile to data inaccessible.
+2. **Data volume** — TB-scale disks, millions of log lines.
+3. **Anti-forensics** — log clearing, timestomping, secure wipe.
+4. **Volatility** — RAM aur connections power off se khatam.
+5. **File-less malware** — disk par sample nahi.
+6. **Cloud & virtualisation** — provider control, shared tenancy.
+7. **Tool limitations** — proprietary formats, OS updates.
+
+**Legal challenges:** privacy (DPDP Act), jurisdiction (MLAT), authorisation, 65B certification, hearsay rule.
+
+**Organisational:** skilled examiner ki kami, high lab cost, case backlog, business pressure.
+
+**Solutions:**
+
+| Challenge | Solution |
+|---|---|
+| Encryption | RAM se key, TPM escrow, legal compulsion |
+| Volume | triage, filters, AI clustering |
+| Anti-forensics | SIEM, $UsnJrnl, anomaly detection |
+| Volatility | RAM capture first |
+| Cloud | legal process, API export |
+| Skills | training, open-source tools |
+
+**Diagram:** Refer to the Cyber forensics challenges aur solutions diagram.`,
+    diagram: 'cf-challenges',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq40',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.4',
+    question: `How does encryption challenge cyber forensics? Explain the counter techniques.`,
+    answer: `**Challenges:**
+- **Full-disk encryption** — disk image bekaar bina key (BitLocker, LUKS, FileVault).
+- **Container/file encryption** — VeraCrypt, password zip, EFS.
+- **App-level** — WhatsApp DB, password managers, PGP mail.
+- **In transit** — TLS ke baad sirf metadata (SNI, IP, size, timing).
+- **Key management** — keys RAM mein ya TPM sealed.
+- **Crypto-erasure** — key destroy = data permanently gone.
+
+**Counter techniques:**
+1. **Live memory capture** — \`aeskeyfind\`, Volatility ke plugins.
+2. **TPM/escrow** — enterprise recovery keys AD/Intune mein.
+3. **Legal compulsion** — court order, cooperation.
+4. **Side channels** — hiberfil.sys, pagefile, crash dump.
+5. **Password recovery** — \`hashcat\`/\`john\` wordlist/brute force.
+6. **Cloud cooperation** — provider side key access.
+7. **Prevention** — key escrow mandatory policy.
+
+**Limitation:** strong encryption + powered off + no key = practically unbreakable.
+
+**Diagram:** Refer to the Cyber forensics challenges aur solutions diagram.`,
+    diagram: 'cf-challenges',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq41',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.5',
+    question: `Explain web attack forensics with evidence sources, attack signatures and analysis steps.`,
+    answer: `**Definition:** Web attack forensics server/application ke traces se attack reconstruct karta hai.
+
+**Evidence sources:**
+
+| Source | Kya milta hai |
+|---|---|
+| Access log | IP, time, method, URI, status, UA |
+| Error log | 500/403 spikes |
+| WAF/proxy | blocked payload, geo-IP |
+| App log | login, admin action |
+| DB log | injected query, data access |
+| auth.log/EDR | shell spawn, cron, new user |
+
+**Signatures:**
+1. **SQLi** — \`UNION SELECT\`, \`OR 1=1\`, \`sleep()\`, \`information_schema\`.
+2. **XSS** — \`%3Cscript%3E\`, \`onerror=\`.
+3. **Traversal/LFI** — \`../../etc/passwd\`.
+4. **RFI** — \`?page=http://evil/\`.
+5. **Command injection** — \`; whoami\`, \`| id\`.
+6. **Upload** — \`.php/.jsp\` + webshell access.
+7. **Brute force** — repeated \`401\`/\`302\`.
+8. **Scanner** — \`sqlmap\`/\`nikto\` UA.
+
+**Steps:** preserve → URL/base64 decode → timeline → cross-layer correlate → affected accounts/data → IOC + report.
+
+**Diagram:** Refer to the Web attack forensics diagram.`,
+    diagram: 'cf-intrusion',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq42',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.5',
+    question: `Describe the phases of an intrusion and the evidence each phase leaves behind.`,
+    answer: `**1. Reconnaissance** — scanning, directory brute force; evidence: IDS alerts, 404 flood, scanner user-agent.
+
+**2. Exploitation** — SQLi/XSS/LFI/default creds; evidence: access log payload, error log 500, WAF block.
+
+**3. Foothold/webshell** — upload + \`?cmd=\`; evidence: POST upload 200, new file in webroot, later GET requests.
+
+**4. Privilege escalation** — local exploit, sudo misconfig; evidence: auth.log, process creation, \`/etc/passwd\` change.
+
+**5. Persistence** — cron, systemd service, new user, \`authorized_keys\`; evidence: cron log, new files, service registry.
+
+**6. Lateral movement** — SSH/RDP/WinRM, pass-the-hash; evidence: multi-host auth logs, NetFlow, admin shares.
+
+**7. Data access & exfiltration** — DB dump, archive, outbound; evidence: large responses, DB slow log, flow spikes, DNS tunnelling.
+
+**8. Cover-up** — log clear, timestomping; evidence: Event ID 1102, \`$UsnJrnl\` gaps, timestamp mismatch.
+
+**Exam line:** "Har phase ka ek log source hota hai — chain complete hone par narrative ban jaati hai."
+
+**Diagram:** Refer to the Web attack forensics diagram.`,
+    diagram: 'cf-intrusion',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq43',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.6',
+    question: `What is database forensics? Explain evidence sources and analysis techniques.`,
+    answer: `**Definition:** DBMS ke data files aur logs examine karke ye establish karna ki kisne, kab, kya data access/modify/delete kiya.
+
+**Evidence sources:**
+
+| DBMS | Source |
+|---|---|
+| MySQL | binlog, redo/undo, .ibd pages, general log |
+| SQL Server | .ldf transaction log, SQL Server Audit |
+| Oracle | redo/archive log, UNDO, Unified Auditing |
+| PostgreSQL | WAL, pg_xact, pgaudit |
+
+**Techniques:**
+1. **Restore & replay** — backup + \`mysqlbinlog\` se state reconstruct.
+2. **Point-in-time recovery** — incident se pehle ki state.
+3. **Log mining** — \`mysqlbinlog\`, \`fn_dblog\`, \`LogMiner\`, \`pg_waldump\`.
+4. **Page analysis** — deleted rows, unallocated pages (\`DBCC PAGE\`).
+5. **Audit correlation** — user + IP + session mapping.
+6. **Integrity checks** — \`DBCC CHECKDB\`, checksum, row count.
+
+**Rule:** production par modifying query **nahi** — read-only copy.
+
+**Use:** insider theft, fraud, SQL injection impact, compliance audit.
+
+**Diagram:** Refer to the Database forensics diagram.`,
+    diagram: 'cf-database',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq44',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.6',
+    question: `Explain the role of transaction logs in database forensics with an example.`,
+    answer: `**Transaction log** har change ka record rakhta hai — insert/update/delete/DDL — before-image aur after-image ke saath.
+
+**Types:** MySQL binary log + redo/undo, SQL Server \`.ldf\`, Oracle redo/archive log, PostgreSQL WAL.
+
+**Forensic role:**
+1. **Exact modification** — row, column, purani aur nayi value.
+2. **Timing** — LSN + timestamp.
+3. **Attribution** — audit/session logs ke saath user aur IP.
+4. **Recovery** — replay se deleted row wapas.
+5. **Point-in-time** — incident se pehle ka state.
+6. **Tamper detection** — sequence gap.
+
+**Example:** Attacker ne \`DELETE FROM customers WHERE id=1042\` chalaya. \`mysqlbinlog --base64-output=DECODE-ROWS -v binlog.000017\` se delete event aur before-image milta hai; usi position se row staging DB mein replay ho jaati hai. App log se user/IP aur session ID confirm hote hain.
+
+**Limitations:** short retention, rotation, encrypted/compressed logs, production access risky.
+
+**Best practice:** log shipping, long retention, centralised audit, log file hashing.
+
+**Diagram:** Refer to the Database forensics diagram.`,
+    diagram: 'cf-database',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq45',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.7',
+    question: `What is preventive forensics? Explain forensic readiness controls and their benefits.`,
+    answer: `**Definition:** Preventive forensics (forensic readiness) proactive design hai jisse incident ke baad evidence available, complete aur trustworthy mile.
+
+**Controls:**
+
+| Control | Purpose |
+|---|---|
+| Centralised logging (SIEM) | local deletion se bachav |
+| NTP time sync | timeline correlation |
+| Log protection (WORM/signing) | tamper-proof evidence |
+| FIM (Tripwire/OSSEC/AIDE) | file change detection |
+| EDR/Sysmon | endpoint telemetry |
+| NetFlow + selective PCAP | network evidence |
+| DB audit (pgaudit) | query-level record |
+| Cloud audit export | immutable retention |
+
+**Benefits:**
+1. Investigation time aur cost kam.
+2. Attacker logs delete kare to bhi central copy safe.
+3. Court-ready evidence (hash, custody, 65B).
+4. Compliance — PCI DSS 10, ISO 27001 A.8.15, DPDP Act.
+5. Fast RCA aur recovery.
+
+**Exam line:** "Bina time sync ke timeline nahi banti — NTP sabse under-rated readiness control hai."
+
+**Diagram:** Refer to the Preventive forensics readiness diagram.`,
+    diagram: 'cf-preventive',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq46',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.7',
+    question: `Discuss log management for forensic readiness: collection, retention, protection.`,
+    answer: `Logs investigation ka backbone hain — par management zaroori hai.
+
+**1. Collection** — firewall, proxy, IDS, VPN, AD, web server, DB, cloud (CloudTrail), EDR ko central SIEM mein bhejo; structured format (JSON/CEF).
+
+**2. Time sync** — sab hosts NTP, timezone UTC normalize.
+
+**3. Retention** — PCI DSS: 1 year total, 3 months immediately available. Practical: proxy 6–12 months, auth 12 months, DB audit 12 months, PCAP 7–30 days, cloud audit 12 months+.
+
+**4. Protection** — WORM/immutable storage, log signing, separate VLAN/account, no delete rights, offsite copy, encryption at rest.
+
+**5. Monitoring** — correlation rules, FIM alerts, clock drift aur log-gap alerts.
+
+**6. Governance** — logging policy, retention schedule, legal hold, PII masking (DPDP/GDPR).
+
+**Result:** "logs hi nahi hain" situation khatam, timeline minutes mein, evidence admissible.
+
+**Diagram:** Refer to the Preventive forensics readiness diagram.`,
+    diagram: 'cf-preventive',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq47',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.8',
+    question: `What is anti-forensics? Explain its categories with examples.`,
+    answer: `**Definition:** Anti-forensics wo techniques hain jo evidence ko destroy, hide ya mislead karti hain.
+
+**1. Data destruction**
+- \`sdelete -p 3\`, \`shred -u\`, \`cipher /w:C:\`, DBAN.
+- Media destroy, crypto-erase (key delete).
+
+**2. Data hiding**
+- Encryption: BitLocker, VeraCrypt, password zip.
+- Steganography: \`steghide\`, OpenStego.
+- NTFS ADS: \`type secret > file.txt:hidden\`.
+- Hidden partitions, slack space.
+
+**3. Trail obfuscation**
+- Log clear: \`wevtutil cl\` (Event 1102).
+- Log injection, timestomping.
+- Tor, VPN chain, MAC spoofing.
+
+**4. Artefact alteration**
+- Registry tamper, extension change, packing (UPX), obfuscation.
+
+**5. Anti-analysis evasion**
+- VM/sandbox/debugger detection, sleep timers, rootkits.
+
+**6. Living off the land** — \`certutil\`, \`bitsadmin\`, \`wmic\`.
+
+**Note:** har technique ka counter-artifact hota hai; evidence destruction khud offence hai.
+
+**Diagram:** Refer to the Anti-forensics practices diagram.`,
+    diagram: 'cf-antiforensics',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq48',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.8',
+    question: `Explain timestomping, log clearing and data hiding techniques with their detection.`,
+    answer: `**Timestomping:** file ke MACB timestamps badalna taaki malware purana lage (\`timestomp\`, \`SetFileTime\`).
+
+**Detection:**
+1. \`$STANDARD_INFORMATION\` vs \`$FILE_NAME\` mismatch.
+2. \`$UsnJrnl\` mein recent write record.
+3. \`$LogFile\` transaction anomaly.
+4. Prefetch/shimcache execution time contradiction.
+
+**Log clearing:** \`wevtutil cl\`, \`Clear-EventLog\`, \`/var/log\` truncate.
+
+**Detection:**
+1. **Event ID 1102 / 104** — log cleared.
+2. Sequence gap, missing time window.
+3. Central SIEM copy intact.
+4. \`$UsnJrnl\` mein \`.evtx\` deletion record.
+5. WORM storage delete attempt log.
+
+**Data hiding:**
+- **Encryption** — key RAM mein; counter: memory capture, escrow, cracking.
+- **Steganography** — LSB payload; counter: \`zsteg\`, chi-square, entropy check.
+- **ADS** — \`dir /r\`, \`Get-Item -Stream *\`, Autopsy.
+
+**Legal:** evidence destruction par court **adverse inference** le sakti hai.
+
+**Diagram:** Refer to the Anti-forensics practices diagram.`,
+    diagram: 'cf-antiforensics',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq49',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.9',
+    question: `Explain anti-forensics detection techniques in detail.`,
+    answer: `**Goal:** prove karna ki evidence jaan-boojh kar mitaya ya badla gaya.
+
+**1. Independent sources** — SIEM/syslog, proxy, WAF, IDS, VPN, cloud audit, EDR.
+
+**2. Filesystem journals** — \`$MFT\`, \`$LogFile\`, \`$UsnJrnl\`, \`$Bitmap\`, ext4 journal, prefetch/shimcache.
+
+**3. Timeline anomalies** — gaps, duplicate/future timestamps, clock skew, created > modified.
+
+**4. Entropy/content** — \`binwalk -E\`, \`ent\`, \`zsteg\` (stego).
+
+**5. Hash baseline** — Tripwire/AIDE known-good hash, imphash, \`ssdeep\`.
+
+**6. Toolmarks** — wiper/timestomper/packer artifacts, YARA rules.
+
+**7. Memory analysis** — Volatility \`pslist\` vs \`psscan\`, \`malfind\`, \`netscan\`.
+
+**8. Behaviour analytics** — EDR process lineage, SIEM correlation, volume anomaly.
+
+**9. Documentation** — negative finding bhi evidence ("expected log absent, Event 1102 present").
+
+**Exam line:** "Attacker ek jagah chhupata hai, doosri jagah reh jaata hai."
+
+**Diagram:** Refer to the Anti-forensics detection diagram.`,
+    diagram: 'cf-afdetect',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq50',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.9',
+    question: `How are log tampering and timestomping detected using NTFS artefacts?`,
+    answer: `**NTFS do timestamp sets rakhta hai — yahi detection ki chaabi hai.**
+
+**Timestomping detection:**
+1. **\`$STANDARD_INFORMATION\`** user-mode API se badalta hai.
+2. **\`$FILE_NAME\`** kernel-level, badalna mushkil — mismatch = tampering.
+3. **\`$UsnJrnl\`** recent write record (file "2019 ki" dikhe par write kal ka ho).
+4. **\`$LogFile\`** transaction sequence.
+5. **Prefetch/shimcache/amcache** execution time.
+6. **Logical checks** — future date, OS install se pehle ka timestamp.
+
+**Log tampering detection:**
+1. **Event ID 1102** ("audit log was cleared") / 104.
+2. **Sequence gap** aur missing window.
+3. **\`$UsnJrnl\`/\`$LogFile\`** mein \`.evtx\` delete record.
+4. **Prefetch** mein \`wevtutil.exe\` execution.
+5. **SIEM copy** intact — local clear ka asar nahi.
+6. **WORM storage** — delete attempt logged.
+
+**Report:** tampering ko alag finding likho; court adverse inference le sakti hai.
+
+**Diagram:** Refer to the Anti-forensics detection diagram.`,
+    diagram: 'cf-afdetect',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq51',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.10',
+    question: `Explain the types of network forensics analysis tools with examples.`,
+    answer: `**1. Packet capture** — tcpdump, dumpcap (BPF filters, ring buffer).
+
+**2. Deep analysis** — Wireshark/tshark (decode, follow stream, export objects), NetworkMiner (passive reassembly).
+
+**3. Flow analysis** — NetFlow/IPFIX/sFlow with nfdump, SiLK, ElastiFlow.
+
+**4. Metadata/IDS** — Zeek (\`conn\`, \`http\`, \`dns\`, \`ssl\`, \`files\`), Snort/Suricata.
+
+**5. Platform** — Arkime (indexed PCAP), ntopng, Security Onion (Zeek + Suricata + Elastic).
+
+**6. Supporting** — \`capinfos\`, \`editcap\`, \`mergecap\`, \`tcpreplay\`, Scapy.
+
+| Type | Strength | Limitation |
+|---|---|---|
+| Full PCAP | poora payload | storage heavy, TLS ke baad content nahi |
+| Flow | scale, trend | content nahi |
+| Metadata logs | searchable evidence | sirf metadata |
+
+**Encryption era:** SNI, DNS, JA3, flow size aur timing par focus.
+
+**Diagram:** Refer to the Network forensics toolchain diagram.`,
+    diagram: 'cf-netools',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq52',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.10',
+    question: `How do you detect DNS tunnelling and data exfiltration using network evidence?`,
+    answer: `**DNS tunnelling:** data DNS queries mein chhupa kar bhejna (port 53 generally allowed).
+
+**Detection signals:**
+1. Long, high-entropy subdomains (\`aGVsbG8.evil.com\`).
+2. High query volume from one host to one domain.
+3. Unusual record types — TXT, NULL, CNAME chains.
+4. Bade TXT responses.
+5. Zeek \`dns.log\` — \`qtype_name\`, \`query_length\`, unique domain count.
+6. Regular beacon interval, DGA names, low TTL.
+
+**Exfiltration detection:**
+- Flow volume outbound >> baseline (\`nfdump\` top talkers).
+- Off-hours transfer to unusual geo-IP.
+- HTTP POST to raw IP, SCP/FTP to unknown host, ICMP payloads.
+- Archive signatures (\`PK\`, \`Rar!\`) in HTTP streams.
+- Large TLS sessions with unknown SNI/JA3.
+- EDR file-read burst + network upload correlation.
+
+**Tools:** Zeek, Suricata DNS rules, \`tshark\` filters, passivedns, Arkime.
+
+**Response:** block domain/IP, sinkhole, capture more PCAP, quantify data, preserve evidence.
+
+**Diagram:** Refer to the Network forensics toolchain diagram.`,
+    diagram: 'cf-netools',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq53',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.11',
+    question: `Explain malware types with their behaviour and forensic artifacts.`,
+    answer: `| Type | Behaviour | Artifact |
+|---|---|---|
+| Virus | host file infect, user action | infected hash, $MFT change |
+| Worm | self-propagate SMB/RDP | 445/3389 scan traffic |
+| Trojan | disguise + backdoor | unsigned exe, Run key |
+| Ransomware | mass encrypt + note | \`.locked\`, vssadmin delete |
+| Spyware/keylogger | capture + exfil | small periodic HTTP POST |
+| Rootkit | hide + hook | pslist vs psscan diff |
+| Botnet | C2 polling | regular beacon, DGA |
+| Fileless | memory only | encoded PowerShell, malfind |
+
+**Hybrid examples:** WannaCry (worm + ransomware), Emotet (trojan + botnet).
+
+**Why classification matters:**
+1. **Containment** — worm ke liye segmentation, trojan ke liye user awareness.
+2. **Scope** — network-wide vs few hosts.
+3. **IOC hunting** — family ke known indicators.
+4. **Root cause** — missing patch vs phishing.
+5. **Reporting** — impact clearly describe hota hai.
+
+**Diagram:** Refer to the Malware types behaviour map diagram.`,
+    diagram: 'cf-malware',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq54',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.11',
+    question: `How is a ransomware incident investigated end to end?`,
+    answer: `**Step 1 — Containment without losing evidence:** network isolate (EDR/VLAN), machine **off/reboot na karo** — RAM mein keys ho sakti hain.
+
+**Step 2 — Live response:** RAM dump, connections (\`netscan\`), running processes.
+
+**Step 3 — Family & entry point:** ransom note, extension, hash → ID Ransomware/VirusTotal; entry via VPN log, phishing header, RDP.
+
+**Step 4 — Scope:** SIEM/EDR se affected hosts, encryption start time, lateral movement; \`$UsnJrnl\` se mass rename; shadow copy delete events.
+
+**Step 5 — Data theft:** outbound volume, archive creation, cloud-sync logs.
+
+**Step 6 — Recovery:** immutable backup restore, clean rebuild, credential rotation, IOC block, decryptor check (No More Ransom).
+
+**Step 7 — Report:** timeline, IOC, impact, root cause, 65B certificate, lessons learned.
+
+**Evidence checklist:** RAM image, disk image, ransom note, EDR logs, firewall/VPN logs, backup catalog.
+
+**Diagram:** Refer to the Malware types behaviour map diagram.`,
+    diagram: 'cf-malware',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq55',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.12',
+    question: `Explain static, dynamic and memory-based malware analysis with tools.`,
+    answer: `**1. Static analysis (sample nahi chalta):**
+- Hash → \`sha256sum\`, VirusTotal.
+- File type → \`file\`, TrID, PEStudio, DIE.
+- Strings → \`strings -n 8\` (URLs, mutex, APIs).
+- PE structure → imports (\`VirtualAllocEx\`), entropy, packer.
+- Disassembly → Ghidra, IDA Pro, dnSpy.
+- Signatures → YARA, CAPA, imphash.
+
+**2. Dynamic analysis (isolated VM):**
+- Procmon (file/registry/process), Process Explorer, Regshot, API Monitor.
+- Wireshark/FakeNet-NG/INetSim (C2 aur download).
+- Sandbox: Cuckoo/CAPE, ANY.RUN, Joe Sandbox.
+
+**3. Memory analysis:**
+- Volatility 3 — \`pslist\`, \`psscan\`, \`malfind\`, \`netscan\`.
+
+| Approach | Strength | Weakness |
+|---|---|---|
+| Static | safe, fast | packing/obfuscation |
+| Dynamic | real behaviour | evasive malware |
+| Memory | fileless + injection | capture timing |
+
+**Output:** capabilities, persistence, C2, dropped files, hashes, YARA/Sigma rules.
+
+**Diagram:** Refer to the Malware analysis workflow diagram.`,
+    diagram: 'cf-malanalysis',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq56',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.12',
+    question: `Describe the malware analysis lab setup, safety precautions and the use of YARA.`,
+    answer: `**Lab setup:**
+1. Analysis host with snapshots.
+2. Windows + Linux VMs, Sysmon/Procmon installed.
+3. **Host-only network** + INetSim/FakeNet-NG (no bridge).
+4. Tool VMs: REMnux, FlareVM, Ghidra/IDA/YARA.
+5. Separate evidence drive, password-protected archives (\`infected\`).
+
+**Safety:**
+- No real credentials/production network.
+- Snapshot before every run; restore after.
+- Egress blocked, USB/clipboard/file-share off.
+- Hash + chain of custody, notes aur tool versions.
+
+**YARA:**
+\`\`\`yara
+rule Example_Ransom {
+  strings:
+    $a = "vssadmin delete shadows" ascii wide
+  condition:
+    uint16(0) == 0x5A4D and all of ($a)
+}
+\`\`\`
+- \`meta\` (description), \`strings\` (text/hex/regex), \`condition\` (logic).
+- Use: file/ memory scan (\`-r\`, Volatility \`yarascan\`), EDR/SIEM detection, retro-hunt, IOC blocking.
+
+**Diagram:** Refer to the Malware analysis workflow diagram.`,
+    diagram: 'cf-malanalysis',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq57',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.13',
+    question: `Explain e-mail protocols and their forensic significance.`,
+    answer: `| Protocol | Purpose | Ports | Forensic value |
+|---|---|---|---|
+| SMTP | send/relay | 25, 587, 465 | server logs, queue, relay IP |
+| POP3 | download | 110, 995 | local PST/MBOX |
+| IMAP | server sync | 143, 993 | mailbox + login audit logs |
+| DNS MX | server locate | 53 | domain verification |
+| HTTPS webmail | webmail access | 443 | webmail audit, originating IP |
+| LDAP/AD | directory | 389, 636 | user attribution |
+
+**SMTP:** submission aur relay; har hop \`Received\` header likhta hai.
+
+**POP3:** download + often delete; evidence local machine par.
+
+**IMAP:** mailbox server par; provider ke paas messages aur login logs — strongest source.
+
+**Investigation implications:** path trace, attribution (login IP), content (mailbox export), authenticity (SPF/DKIM/DMARC).
+
+**Diagram:** Refer to the E-mail flow aur header chain diagram.`,
+    diagram: 'cf-email',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq58',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.13',
+    question: `Explain the structure of an e-mail header and how to analyse it forensically.`,
+    answer: `**Structure:** headers + body + MIME attachments.
+
+| Header | Meaning |
+|---|---|
+| Received | har hop ka IP + timestamp |
+| Message-ID | originating system |
+| Return-Path | envelope sender |
+| From/Reply-To | visible sender (spoof ho sakta) |
+| Date | sending time + timezone |
+| X-Mailer | client/script |
+| Authentication-Results | SPF/DKIM/DMARC |
+| X-Originating-IP | webmail sender IP |
+
+**Analysis steps:**
+1. **Raw source** export (\`.eml\`, "Show original") — forward na karo.
+2. **Received chain neeche se upar** — originating server/IP.
+3. **Delays** — consecutive timestamps ka gap.
+4. **Spoof check** — Return-Path vs From, Message-ID domain, SPF/DKIM/DMARC fail.
+5. **Client ID** — X-Mailer (PHPMailer = scripted bulk).
+6. **Attachments** — hash, type, password-protected zip.
+7. **Correlate** — MTA log queue ID, geo-IP, abuse history.
+
+**Diagram:** Refer to the E-mail flow aur header chain diagram.`,
+    diagram: 'cf-email',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq59',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.14',
+    question: `Explain the types of e-mail crimes with investigation approach.`,
+    answer: `**1. Phishing/spear-phishing** — fake login page; investigate URL/domain, sandbox, victim click time.
+
+**2. Spoofing** — forged From; investigate header chain, IP, SPF/DKIM/DMARC.
+
+**3. BEC** — executive/vendor impersonation; investigate mailbox login logs, hidden forwarding rule, OAuth grant, bank records.
+
+**4. Malware distribution** — weaponised attachment; hash → sandbox → C2 extraction.
+
+**5. Spam/bulk** — volume, bulk mailer headers, blocklists.
+
+**6. Mail bombing/DoS** — rate anomaly, source distribution.
+
+**7. Stalking/harassment** — header IP, content, provider request.
+
+**8. Identity theft/data leakage** — DLP logs, forwarding rules, cloud sync.
+
+**Legal (India):** IT Act **66**, **66C**, **66D**, BNS cheating/forgery, evidence via **65B**.
+
+**Diagram:** Refer to the E-mail crime investigation flow diagram.`,
+    diagram: 'cf-emailcrime',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+  {
+    id: 'cq60',
+    unit: '3',
+    subjectId: 'cyber-security',
+    topicNumber: '3.14',
+    question: `How is a phishing e-mail investigated? Explain header and infrastructure analysis.`,
+    answer: `**Step 1 — Preserve:** raw \`.eml\`, SHA-256 hash, screenshots, recipient list.
+
+**Step 2 — Header analysis:**
+- Received chain neeche se upar (originating IP, relays, delays).
+- From vs Return-Path mismatch.
+- Message-ID domain.
+- \`Authentication-Results: spf=fail dkim=none dmarc=fail\`.
+- X-Mailer (bulk script).
+
+**Step 3 — IP & domain intelligence:** geo-IP, ASN, reputation, VPN/proxy; WHOIS age, lookalike domain, MX, SSL certificate.
+
+**Step 4 — URL & content:** anchor vs href, shortener expansion, sandbox detonation, branding mismatch, urgent language.
+
+**Step 5 — Victim correlation:** proxy log click time, credential entry, account takeover signs, MFA events.
+
+**Step 6 — Attribution & impact:** kitne users, kitne clicks, kaunsa account, financial/data loss.
+
+**Step 7 — Response & report:** block sender/domain/URL, password reset, MFA, awareness mail, IOC + 65B report.
+
+**Diagram:** Refer to the E-mail crime investigation flow diagram.`,
+    diagram: 'cf-emailcrime',
+    image: null,
+    importance: '⭐⭐⭐',
+  },
+// ========================================================
   // Software Testing Unit 1 — Fundamentals of Software Quality Assurance
   // ========================================================
   {

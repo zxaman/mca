@@ -254,6 +254,22 @@ import {
   NextjsOverviewDiagram,
   NextjsFeaturesDiagram,
 } from './AngularDiagrams';
+import {
+  CyberForensicsIntroDiagram,
+  ForensicsProcessDiagram,
+  DigitalEvidenceDiagram,
+  ForensicsChallengesDiagram,
+  IntrusionForensicsDiagram,
+  DatabaseForensicsDiagram,
+  PreventiveForensicsDiagram,
+  AntiForensicsPracticesDiagram,
+  AntiForensicsDetectionDiagram,
+  NetworkForensicsToolsDiagram,
+  MalwareTypesDiagram,
+  MalwareAnalysisDiagram,
+  EmailProtocolsDiagram,
+  EmailCrimeDiagram,
+} from './CyberForensicsDiagrams';
 
 // ============================================================
 // Improved, properly-labelled SVG diagrams
@@ -1236,6 +1252,34 @@ export function Diagram({ type }) {
       return <SeleniumGridDiagram />;
     case 'st5-test-design':
       return <TestDesignConsiderationsDiagram />;
+    case 'cf-intro':
+      return <CyberForensicsIntroDiagram />;
+    case 'cf-process':
+      return <ForensicsProcessDiagram />;
+    case 'cf-evidence':
+      return <DigitalEvidenceDiagram />;
+    case 'cf-challenges':
+      return <ForensicsChallengesDiagram />;
+    case 'cf-intrusion':
+      return <IntrusionForensicsDiagram />;
+    case 'cf-database':
+      return <DatabaseForensicsDiagram />;
+    case 'cf-preventive':
+      return <PreventiveForensicsDiagram />;
+    case 'cf-antiforensics':
+      return <AntiForensicsPracticesDiagram />;
+    case 'cf-afdetect':
+      return <AntiForensicsDetectionDiagram />;
+    case 'cf-netools':
+      return <NetworkForensicsToolsDiagram />;
+    case 'cf-malware':
+      return <MalwareTypesDiagram />;
+    case 'cf-malanalysis':
+      return <MalwareAnalysisDiagram />;
+    case 'cf-email':
+      return <EmailProtocolsDiagram />;
+    case 'cf-emailcrime':
+      return <EmailCrimeDiagram />;
     default:
       return null;
   }

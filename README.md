@@ -12,7 +12,7 @@ adding a topic is just adding an object.
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
 | Business Intelligence | BI | 1 | 8 | Live |
-| Cyber Security | CYS | 2 | 47 | Live |
+| Cyber Security | CYS | 3 | 61 | Live — Unit I (Introduction) + Unit II (Cybercrimes & Hacking) + Unit III (Cyber Forensics) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
 | Web Technology | WT | 5 | 76 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) + Unit V (AngularJS & Next.js) |
@@ -182,6 +182,27 @@ file-based routing, App Router with React Server Components, API routes, image/f
 metadata for SEO and middleware). Each topic carries an animated SVG diagram and three six-mark
 questions with full answers.
 
+**Cyber Security (Unit III — Cyber Forensics)** has 14 topics in five groups. *Foundations:* introduction
+to cyber forensics (definition, Locard's exchange principle, branches, computer vs network vs memory vs
+mobile forensics, and the contrast with incident response and ethical hacking), the investigation process
+(NIST SP 800-86 phases, chain of custody, the RFC 3227 order of volatility, live vs dead acquisition),
+digital evidence (types, latent/fragile/volatile/duplicable properties, the ACPO admissibility criteria and
+IT Act Section 65B) and the challenges of cyber forensics (encryption, data volume, anti-forensics,
+volatility, cloud, jurisdiction, skills and cost, each with a counter-measure). *Web attack forensics:*
+intrusion forensics (kill-chain reconstruction from access, error, WAF, application, database and EDR logs,
+with SQLi/XSS/LFI/RCE signatures), database forensics (binlog, WAL, `.ldf`, redo and audit-trail sources,
+replay and point-in-time recovery, page-level row recovery) and preventive forensics (forensic readiness by
+central logging, NTP, FIM, EDR, retention and WORM storage). *Anti-forensics:* the practices (data
+destruction, data hiding, trail obfuscation, anti-analysis evasion) and the detection techniques (`$MFT`,
+`$LogFile`, `$UsnJrnl`, Event ID 1102, timestomp mismatch, entropy and steganalysis, memory diff). *Network
+and malware:* network forensics analysis tools (tcpdump, Wireshark, NetworkMiner, Zeek, NetFlow, Arkime,
+Security Onion; DNS tunnelling and beaconing detection under TLS), malware types and malware analysis with
+its static, dynamic and memory toolchain (PEStudio, Ghidra, Procmon, Wireshark, Cuckoo/CAPE, Volatility,
+YARA). *E-mail:* e-mail protocols and header forensics (SMTP/POP3/IMAP ports, the `Received` chain,
+`Message-ID`, `Return-Path`, SPF/DKIM/DMARC) and e-mail crimes (phishing, spoofing, BEC, malware mail, spam,
+mail bombing, stalking, insider leakage) with the investigation checklist and Indian legal provisions.
+Each topic carries an animated SVG diagram and three six-mark questions with full answers.
+
 **Software Testing & QA (Unit IV — Testing Strategies)** has 13 topics in three groups. *Testing
 levels:* integration testing (big bang, top-down with stubs, bottom-up with drivers, sandwich) and
 system & acceptance testing (UAT, alpha, beta, contractual, regulatory, operational). *Testing
@@ -233,7 +254,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 70 · Web Technology 88 (251 total).
+Curated exam-question banks: BI 10 · Cyber Security 60 · STQA 51 · Data Science 70 · Web Technology 121 (312 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -268,7 +289,8 @@ src/
 │   ├── Sidebar.jsx            # shared subject → unit → topic navigation
 │   ├── Icons.jsx              # stroke icon set
 │   └── Diagrams.jsx           # <Diagram type="…" /> switch over all diagrams
-│       ├── CyberDiagrams.jsx
+│       ├── CyberDiagrams.jsx  # Cyber Security Units I-II
+│       ├── CyberForensicsDiagrams.jsx  # Cyber Security Unit III (Cyber Forensics)
 │       ├── SoftwareTestingDiagrams.jsx
 │       ├── DataScienceDiagrams.jsx
 │       └── WebDiagrams.jsx
@@ -287,6 +309,7 @@ src/
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
 │   ├── webTechnology7.js / 8  # Web Technology Unit III (PHP — 3.1 to 3.8)
 │   ├── webTechnology9.js / 10 # Web Technology Unit III (PHP — 3.9 to 3.16)
+│   ├── cyberForensics.js      # Cyber Security Unit III (Cyber Forensics)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js
