@@ -9,5 +9,30 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- If the bundle never mounts, say so instead of showing a blank page. -->
+    <script>
+      (function () {
+        var show = function () {
+          var root = document.getElementById('root');
+          if (!root || root.childElementCount > 0) return;
+          if (document.getElementById('boot-fallback')) return;
+          var box = document.createElement('div');
+          box.id = 'boot-fallback';
+          box.className = 'boot-fallback';
+          box.innerHTML =
+            '<strong>App load nahi hua.</strong><br>' +
+            'Bundle ya dev server se connect nahi ho paya. Page reload karo; agar phir bhi blank hai to ' +
+            'terminal mein <code>npm install</code> aur <code>npm run dev</code> chala kar error dekho ' +
+            '(aksar <code>node_modules</code> missing hota hai).';
+          document.body.appendChild(box);
+        };
+        window.addEventListener('error', function (event) {
+          if (event && event.target && event.target.tagName === 'SCRIPT') show();
+        }, true);
+        window.addEventListener('load', function () {
+          setTimeout(show, 5000);
+        });
+      })();
+    </script>
   </body>
 </html>
