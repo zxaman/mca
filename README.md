@@ -14,7 +14,7 @@ adding a topic is just adding an object.
 | Business Intelligence | BI | 1 | 8 | Live |
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 5 | 64 | Live |
-| Data Science | DS | 3 | 37 | Live — Units I–III |
+| Data Science | DS | 4 | 46 | Live — Units I–IV |
 | Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
@@ -58,6 +58,24 @@ machines (hyperplane, maximum margin, support vectors, soft margin and C, kernel
 topics cover model evaluation: the confusion matrix (TP / FP / FN / TN, Type I and Type II errors), accuracy,
 precision, recall and F1 including the accuracy paradox and precision-recall trade-off, the ROC curve and AUC
 with a threshold table and ranking interpretation, and MAE, MSE, RMSE and R-squared for regression.
+
+**Data Science (Unit IV — Clustering and Association Rule Mining)** has 9 topics. It starts with
+distance based models (the Euclidean, Manhattan, Minkowski, Hamming and cosine measures, a worked
+A (1, 2) / B (4, 6) comparison, the metric axioms and why scaling comes first), then the two centroid
+algorithms: k-means (Lloyd's assign-update loop, the WCSS objective, the 1-D worked example on
+1, 2, 3, 10, 11, 12 with centroids 2 and 11 and WCSS 4, k-means++ and the local-optimum problem) and
+k-medoid / PAM (BUILD and SWAP phases, the cost function, and the outlier case where the mean moves to
+33.25 while the medoid stays at 11). Hierarchical clustering follows with the agglomerative vs divisive
+split, the single / complete / average / Ward linkage rules, the dendrogram, the merge heights 1 → 2 → 5
+for the points 1, 2, 4, 9 and the O(n²) cost, and clustering evaluation covers the elbow method (the
+WCSS sequence 500, 250, 120, 100, 90, 82 and the elbow at k = 3), the silhouette score, and internal vs
+external measures versus supervised accuracy. The last four topics are association rule mining: market
+basket analysis (transactions, itemsets, the two mining phases, business uses), the Apriori algorithm
+(downward closure, join and prune, the full L1 → L4 run over 5 baskets with minsup 40% and rule
+generation at minconf 60%), FP-Growth (header table, FP-tree construction from two scans, conditional
+pattern bases, mining the cola branch, and a point-by-point comparison with Apriori) and support,
+confidence, lift, leverage and conviction with the diaper → beer (lift 1.25) versus bread → milk
+(lift 0.94) example.
 
 **Web Technology (Unit I — HTML and XML)** has 19 topics: introduction to web technology, internet
 and WWW, web servers, website planning and design issues, structure of an HTML document, headings /
@@ -157,7 +175,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 49 · Web Technology 88 (230 total).
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 51 · Data Science 58 · Web Technology 88 (239 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -205,6 +223,7 @@ src/
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
 │   ├── dataScience2.js        # Data Science Unit II (pre-processing + warehouse)
 │   ├── dataScience3.js        # Data Science Unit III (classification)
+│   ├── dataScience4.js        # Data Science Unit IV (clustering + association rules)
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
 │   ├── webTechnology7.js / 8  # Web Technology Unit III (PHP — 3.1 to 3.8)

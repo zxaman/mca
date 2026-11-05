@@ -3071,3 +3071,812 @@ export function RegressionMetricsDiagram() {
     </svg>
   );
 }
+
+// ============================================================
+// Data Science Unit IV — Diagram 1 · Distance based models
+// ============================================================
+export function DistanceModelsDiagram() {
+  const A = [170, 262];
+  const B = [350, 142];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Distance based models: Euclidean straight line, Manhattan stepped path and the cosine angle between two vectors, with formulas for Euclidean, Manhattan, Minkowski, Hamming and cosine similarity">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Distance Based Models
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        do points kitne paas hain — yahi clustering aur KNN ka base hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="330" rx="9" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.3)" />
+        <line x1="110" y1="320" x2="410" y2="320" stroke="rgba(255,255,255,0.3)" />
+        <line x1="110" y1="320" x2="110" y2="98" stroke="rgba(255,255,255,0.3)" />
+        <text x="404" y="336" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>feature 1</text>
+        <text x="102" y="104" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>feature 2</text>
+
+        <line x1="110" y1="320" x2={A[0]} y2={A[1]} stroke="rgba(111,178,255,0.6)" strokeWidth="1.6" />
+        <line x1="110" y1="320" x2={B[0]} y2={B[1]} stroke="rgba(111,178,255,0.6)" strokeWidth="1.6" />
+        <path d="M170 320 A60 60 0 0 0 136 272" fill="none" stroke="#c4ff00" strokeWidth="1.3" />
+        <text x="176" y="300" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>θ = 8°</text>
+
+        <line x1={A[0]} y1={A[1]} x2={B[0]} y2={B[1]} stroke="#00ff88" strokeWidth="2" />
+        <path d={`M${A[0]} ${A[1]} H${B[0]} V${B[1]}`} fill="none" stroke="#ff8800" strokeWidth="1.6" strokeDasharray="5 4" />
+        <circle cx={A[0]} cy={A[1]} r="5" fill="#00d4ff" />
+        <circle cx={B[0]} cy={B[1]} r="5" fill="#00d4ff" />
+        <text x={A[0] + 10} y={A[1] + 24} fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>A (1, 2)</text>
+        <text x={B[0] + 8} y={B[1] - 6} fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>B (4, 6)</text>
+
+        <text x="212" y="180" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Euclidean = 5</text>
+        <text x="244" y="286" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Manhattan = 7</text>
+        <text x="134" y="126" fill="#6fb2ff" fontSize="8.2" fontFamily={FONT}>cos θ = 0.992 (vectors almost same direction)</text>
+
+        <text x="34" y="356" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          green = seedhi doori · orange = axis ke saath chalti doori · θ = dono vectors ka angle
+        </text>
+        <text x="34" y="376" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          cosine angle dekhta hai, magnitude nahi — isliye text ke liye best
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="474" y="84" fill="#00ff88" fontSize="9.4" fontWeight="800" fontFamily={FONT}>FORMULAS</text>
+        <text x="474" y="106" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Euclidean (L2)</text>
+        <text x="474" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>d = √Σ (xi − yi)²</text>
+        <text x="474" y="142" fill="#ff8800" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Manhattan (L1)</text>
+        <text x="474" y="158" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>d = Σ |xi − yi|</text>
+        <text x="474" y="178" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Minkowski (Lp)</text>
+        <text x="474" y="194" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>d = (Σ |xi − yi|^p)^(1/p) · p=1 L1 · p=2 L2</text>
+
+        <rect x="460" y="226" width="320" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(170,0,255,0.4)" />
+        <text x="474" y="246" fill="#c08bff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>HAMMING</text>
+        <text x="474" y="266" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1011101 vs 1001001 → alag positions 3 aur 6</text>
+        <text x="474" y="284" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>distance = 2 (normalised 2/7 = 0.29)</text>
+        <text x="474" y="304" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>equal length strings, binary, one-hot, DNA</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="460" y="334" width="320" height="128" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="354" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>COSINE SIMILARITY</text>
+        <text x="474" y="374" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cos θ = (A·B) / (|A| · |B|)</text>
+        <text x="474" y="392" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cosine distance = 1 − cos θ</text>
+        <text x="474" y="412" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>A·B = 16, |A| = 2.236, |B| = 7.211 → 0.992</text>
+        <text x="474" y="432" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>text, TF-IDF, embeddings, recommender</text>
+        <text x="474" y="450" fill="#ffd166" fontSize="8" fontFamily={FONT}>metric: d ≥ 0 · d=0 same · symmetric · triangle</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="420" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="34" y="432" fill="#ff7a90" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Dhyan: scaling se pehle distance ka koi matlab nahi
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          salary 30,000 vs 31,000 poore distance ko kha jaayegi — z-score/min-max zaroori
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 2 · K-means
+// ============================================================
+export function KMeansDiagram() {
+  const c1 = [134, 230];
+  const c2 = [338, 252];
+  const pts = [
+    [110, 180], [140, 280], [190, 215], [95, 245],
+    [300, 180], [360, 300], [380, 240], [310, 290],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K-means clustering: points assigned to two centroids, the assign and update loop, WCSS objective and a solved one dimensional example">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        K-Means — assign aur update ka loop
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        centroid = members ka mean · objective = WCSS minimise
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="330" rx="9" fill="rgba(255,0,128,0.04)" stroke="rgba(255,0,128,0.3)" />
+
+        {pts.map(([x, y], i) => {
+          const near = i < 4 ? c1 : c2;
+          const color = i < 4 ? '#00d4ff' : '#ff0080';
+          return (
+            <g key={i}>
+              <line x1={x} y1={y} x2={near[0]} y2={near[1]} stroke={`${color}44`} strokeWidth="1" strokeDasharray="3 3" />
+              <circle cx={x} cy={y} r="5.4" fill={color} />
+            </g>
+          );
+        })}
+
+        <g stroke="#c4ff00" strokeWidth="2.2">
+          <line x1={c1[0] - 8} y1={c1[1] - 8} x2={c1[0] + 8} y2={c1[1] + 8} />
+          <line x1={c1[0] + 8} y1={c1[1] - 8} x2={c1[0] - 8} y2={c1[1] + 8} />
+          <line x1={c2[0] - 8} y1={c2[1] - 8} x2={c2[0] + 8} y2={c2[1] + 8} />
+          <line x1={c2[0] + 8} y1={c2[1] - 8} x2={c2[0] - 8} y2={c2[1] + 8} />
+        </g>
+        <text x={c1[0] - 22} y={c1[1] - 10} textAnchor="middle" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>μ1</text>
+        <text x={c2[0] + 20} y={c2[1] - 10} textAnchor="middle" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>μ2</text>
+
+        <text x="40" y="92" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● cluster 1</text>
+        <text x="140" y="92" fill="#ff0080" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● cluster 2</text>
+        <text x="250" y="92" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>✕ centroid</text>
+
+        <rect x="40" y="340" width="380" height="38" rx="6" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
+        <text x="52" y="358" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Step 1: point → nearest centroid   →   Step 2: centroid = mean
+        </text>
+        <text x="52" y="372" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Step 3: repeat till assignments stable (ya max iterations)
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="474" y="84" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>OBJECTIVE — WCSS</text>
+        <text x="474" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>J = Σk Σ(x∈Ck) ||x − μk||²</text>
+        <text x="474" y="124" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>kam WCSS = tight clusters (inertia)</text>
+        <text x="474" y="144" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>k badhao to WCSS hamesha girega</text>
+        <text x="474" y="166" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>complexity O(n · k · d · iterations)</text>
+
+        <rect x="460" y="196" width="320" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="216" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>SOLVED EXAMPLE (1-D, k = 2)</text>
+        <text x="474" y="236" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>points: 1, 2, 3, 10, 11, 12</text>
+        <text x="474" y="254" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>centroids → (1+2+3)/3 = 2 · (10+11+12)/3 = 11</text>
+        <text x="474" y="272" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>WCSS = 1 + 0 + 1 + 1 + 0 + 1 = 4</text>
+        <text x="474" y="292" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>assignments same → converged</text>
+
+        <rect x="460" y="314" width="320" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="474" y="334" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
+        <text x="474" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>k pehle dena padta hai (elbow se chuno)</text>
+        <text x="474" y="370" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers mean ko khinch lete hain</text>
+        <text x="474" y="386" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>sirf spherical clusters par theek</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Fixes: k-means++ initialisation · n_init = 10 · scaling · elbow/silhouette se k · outliers hatao
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Local optimum par atak sakta hai — kai baar alag init se chala kar sabse kam WCSS wala result rakho
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 3 · K-medoid (PAM)
+// ============================================================
+export function KMedoidDiagram() {
+  const X = { 1: 90, 2: 130, 3: 170, 10: 320, 11: 360, 12: 400, 100: 700 };
+  const yA = 164;
+  const yB = 268;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K-medoid versus k-means on one dimensional data with an outlier: the k-means mean is pulled to 33.25 by the outlier while the medoid stays on real data points, plus the BUILD and SWAP phases of PAM">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        K-Medoid (PAM) — medoid vs centroid
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        medoid = actual data point · centroid = mean · isliye outlier par medoid jeetta hai
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="760" height="336" rx="9" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.3)" />
+        <text x="34" y="92" fill="#9ab0e0" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          DATA: 1, 2, 3, 10, 11, 12 (+ outlier 100)
+        </text>
+
+        <text x="34" y="128" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>K-MEANS (centroid = mean)</text>
+        <line x1="60" y1="182" x2="760" y2="182" stroke="rgba(255,255,255,0.14)" />
+        {[1, 2, 3, 10, 11, 12].map((v) => (
+          <g key={`a${v}`}>
+            <circle cx={X[v]} cy={yA} r="5" fill="#00d4ff" />
+            <text x={X[v]} y="204" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{v}</text>
+          </g>
+        ))}
+        <circle cx={X[100]} cy={yA} r="5" fill="#ff7a90" />
+        <text x={X[100]} y="204" textAnchor="middle" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>100</text>
+
+        <g stroke="#c4ff00" strokeWidth="2.2">
+          <line x1={X[2] - 7} y1={yA - 7} x2={X[2] + 7} y2={yA + 7} />
+          <line x1={X[2] + 7} y1={yA - 7} x2={X[2] - 7} y2={yA + 7} />
+        </g>
+        <text x={X[2] + 6} y={yA - 13} fill="#c4ff00" fontSize="8.2" fontWeight="700" fontFamily={FONT}>μ = 2</text>
+
+        <g stroke="#ff8800" strokeWidth="2.2">
+          <line x1="462" y1={yA - 7} x2="476" y2={yA + 7} />
+          <line x1="476" y1={yA - 7} x2="462" y2={yA + 7} />
+        </g>
+        <text x="470" y={yA - 14} textAnchor="middle" fill="#ff8800" fontSize="8.2" fontWeight="700" fontFamily={FONT}>μ = 33.25</text>
+        <text x="516" y={yA - 14} fill="#ff8800" fontSize="7.8" fontFamily={FONT}>outlier ne mean khinch liya</text>
+
+        <text x="512" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>gap</text>
+        <text x="512" y="196" fill="rgba(255,255,255,0.3)" fontSize="7.8" fontFamily={FONT}>....</text>
+
+        <text x="34" y="240" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>K-MEDOID (actual data point)</text>
+        <line x1="60" y1="286" x2="760" y2="286" stroke="rgba(255,255,255,0.14)" />
+        {[1, 2, 3, 10, 11, 12].map((v) => (
+          <g key={`b${v}`}>
+            <circle cx={X[v]} cy={yB} r="5" fill="#00ff88" />
+            <text x={X[v]} y="308" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{v}</text>
+          </g>
+        ))}
+        <circle cx={X[100]} cy={yB} r="5" fill="#ff7a90" />
+        <text x={X[100]} y="308" textAnchor="middle" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>100</text>
+
+        {[2, 11].map((v) => (
+          <g key={`m${v}`}>
+            <circle cx={X[v]} cy={yB} r="10" fill="none" stroke="#c4ff00" strokeWidth="1.6" />
+            <text x={X[v]} y={yB - 16} textAnchor="middle" fill="#c4ff00" fontSize="8.2" fontWeight="700" fontFamily={FONT}>{`medoid ${v}`}</text>
+          </g>
+        ))}
+        <text x="470" y={yB + 26} textAnchor="middle" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>medoid nahi hila — 11 hi rehta hai</text>
+
+        <rect x="34" y="326" width="732" height="58" rx="8" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.35)" />
+        <text x="48" y="346" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Cost (objective)</text>
+        <text x="48" y="366" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
+          Cost = Σ distance(x, medoid) · medoid wo point jiski cluster ke baaki sabhi points se total dissimilarity sabse kam
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="20" y="412" width="370" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <text x="34" y="432" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>PAM PHASES</text>
+        <text x="34" y="452" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>BUILD</text>
+        <text x="92" y="452" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>greedy initial medoids (cost sabse kam)</text>
+        <text x="34" y="472" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>SWAP</text>
+        <text x="92" y="472" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>medoid ↔ non-medoid, cost kam ho to accept</text>
+        <text x="34" y="494" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>O(k(n−k)²) per iter · CLARA/CLARANS se speed up</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
+        <rect x="410" y="412" width="370" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="424" y="432" fill="#ff7a90" fontSize="9.2" fontWeight="800" fontFamily={FONT}>K-MEANS vs K-MEDOID</text>
+        <text x="424" y="452" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>representative: mean centroid vs actual point</text>
+        <text x="424" y="470" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers: sensitive vs robust</text>
+        <text x="424" y="488" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>speed: fast vs slow · output: numbers vs records</text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 4 · Hierarchical clustering
+// ============================================================
+export function HierarchicalDiagram() {
+  const baseY = 350;
+  const hy = (h) => baseY - h * 45;
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Agglomerative hierarchical clustering dendrogram for points 1, 2, 4 and 9 with merge heights 1, 2 and 5, a cut at height 3 giving two clusters, plus linkage methods and divisive clustering">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Hierarchical Clustering — dendrogram
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        agglomerative: har point alag → paas wale milte jao · k pehle se dene ki zaroorat nahi
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="336" rx="9" fill="rgba(255,136,0,0.04)" stroke="rgba(255,136,0,0.3)" />
+        <line x1="60" y1={baseY} x2="440" y2={baseY} stroke="rgba(255,255,255,0.3)" />
+        <line x1="60" y1={baseY} x2="60" y2="96" stroke="rgba(255,255,255,0.3)" />
+
+        {[1, 2, 3, 4, 5].map((h) => (
+          <g key={h}>
+            <line x1="56" y1={hy(h)} x2="60" y2={hy(h)} stroke="rgba(255,255,255,0.3)" />
+            <text x="52" y={hy(h) + 3} textAnchor="end" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>{h}</text>
+          </g>
+        ))}
+        <text x="52" y="90" textAnchor="end" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>height</text>
+
+        {/* leaves */}
+        {[[110, '1', 1], [170, '2', 1], [250, '4', 2], [380, '9', 5]].map(([x, label, h]) => (
+          <g key={label}>
+            <line x1={x} y1={baseY} x2={x} y2={hy(h)} stroke="#00d4ff" strokeWidth="1.6" />
+            <circle cx={x} cy={baseY} r="3.4" fill="#00d4ff" />
+            <text x={x} y={baseY + 16} textAnchor="middle" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>{label}</text>
+          </g>
+        ))}
+
+        {/* merge 1: {1,2} at h=1 */}
+        <line x1="110" y1={hy(1)} x2="170" y2={hy(1)} stroke="#00ff88" strokeWidth="2" />
+        <line x1="140" y1={hy(1)} x2="140" y2={hy(2)} stroke="#00ff88" strokeWidth="2" />
+        <text x="196" y={hy(1) + 4} fill="#00ff88" fontSize="7.8" fontFamily={FONT}>merge {`{1,2}`} at h = 1</text>
+
+        {/* merge 2: {1,2}+4 at h=2 */}
+        <line x1="140" y1={hy(2)} x2="250" y2={hy(2)} stroke="#c4ff00" strokeWidth="2" />
+        <line x1="195" y1={hy(2)} x2="195" y2={hy(5)} stroke="#c4ff00" strokeWidth="2" />
+        <text x="262" y={hy(2) + 4} fill="#c4ff00" fontSize="7.8" fontFamily={FONT}>merge with 4 at h = 2</text>
+
+        {/* merge 3: all at h=5 */}
+        <line x1="195" y1={hy(5)} x2="380" y2={hy(5)} stroke="#ff8800" strokeWidth="2" />
+        <text x="288" y={hy(5) - 8} textAnchor="middle" fill="#ff8800" fontSize="7.8" fontFamily={FONT}>all merged at h = 5</text>
+
+        {/* cut */}
+        <line x1="60" y1={hy(3)} x2="440" y2={hy(3)} stroke="rgba(255,122,144,0.85)" strokeWidth="1.2" strokeDasharray="6 4" />
+        <text x="470" y={hy(3) - 8} fill="#ff7a90" fontSize="8" fontFamily={FONT}>cut at h = 3 → clusters [1,2,4] aur [9]</text>
+
+        <text x="34" y="380" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          cut jis height par lagao, utne hi clusters milte hain — yahi hierarchical ka fayda hai
+        </text>
+        <text x="34" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          height = us merge par dono clusters ke beech ki distance
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="480" y="64" width="300" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DO TAREEKE</text>
+        <text x="494" y="104" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Agglomerative</text>
+        <text x="494" y="120" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bottom-up: n clusters → merge → 1</text>
+        <text x="494" y="142" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Divisive</text>
+        <text x="494" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>top-down: 1 cluster → split (DIANA)</text>
+        <text x="494" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>divisive mehnga — saare splits dekhne padte hain</text>
+
+        <rect x="480" y="196" width="300" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="494" y="216" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>LINKAGE METHODS</text>
+        <text x="494" y="236" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>single — sabse paas (min) · chain banti hai</text>
+        <text x="494" y="254" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>complete — sabse door (max) · compact</text>
+        <text x="494" y="272" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>average — saare pairs ka average</text>
+        <text x="494" y="290" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Ward — WCSS increase minimum (best)</text>
+
+        <rect x="480" y="320" width="300" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
+        <text x="494" y="340" fill="#ff7a90" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
+        <text x="494" y="358" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>O(n²) memory, O(n³) time — bade data par slow</text>
+        <text x="494" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>merge undo nahi hota (greedy)</text>
+        <text x="494" y="394" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers single-link par chain bana dete hain</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Pros: k ki zaroorat nahi · poora hierarchy dikhta hai · deterministic result
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Example: 1, 2, 4, 9 → merges at heights 1 ({`{1,2}`}), 2 ({`{1,2,4}`}), 5 (sab)
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 5 · Elbow method
+// ============================================================
+export function ElbowMethodDiagram() {
+  const data = [[1, 500], [2, 250], [3, 120], [4, 100], [5, 90], [6, 82]];
+  const px = (k) => 90 + (k - 1) * 54;
+  const py = (w) => 340 - w * 0.4;
+  const path = data.map(([k, w], i) => `${i === 0 ? 'M' : 'L'}${px(k)} ${py(w)}`).join(' ');
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Elbow method: line chart of WCSS against the number of clusters k with the elbow at k equals 3 highlighted, plus the silhouette coefficient formula and other internal validation metrics">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Elbow Method — best k kaise chunein
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        WCSS vs k plot karo — curve ke jis bend par girti hai, wahi k
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="336" rx="9" fill="rgba(170,0,255,0.04)" stroke="rgba(170,0,255,0.3)" />
+        <line x1="90" y1="340" x2="430" y2="340" stroke="rgba(255,255,255,0.3)" />
+        <line x1="90" y1="340" x2="90" y2="96" stroke="rgba(255,255,255,0.3)" />
+        <text x="424" y="356" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>k (clusters)</text>
+        <text x="84" y="102" textAnchor="end" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>WCSS</text>
+
+        <path d={path} stroke="#c08bff" strokeWidth="2.4" fill="none" />
+        {data.map(([k, w]) => (
+          <g key={k}>
+            <circle cx={px(k)} cy={py(w)} r="4.4" fill="#c08bff" />
+            <text x={k === 3 ? px(k) - 16 : px(k)} y={k === 3 ? py(w) + 18 : py(w) - 10} textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{w}</text>
+            <text x={px(k)} y="356" textAnchor="middle" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>{k}</text>
+          </g>
+        ))}
+
+        <circle cx={px(3)} cy={py(120)} r="9" fill="none" stroke="#c4ff00" strokeWidth="1.8" />
+        <line x1={px(3)} y1={py(120)} x2={px(3)} y2="340" stroke="rgba(196,255,0,0.5)" strokeDasharray="4 4" />
+        <text x={px(3) + 14} y={py(120) - 14} fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>elbow → k = 3</text>
+
+        <text x="106" y="150" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>500 → 250 → 120 → 100 → 90 → 82</text>
+        <text x="106" y="166" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>drops: 250, 130, 20, 10, 8</text>
+
+        <text x="34" y="382" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          k badhane par WCSS hamesha girti hai — isliye "sabse kam WCSS" wala k galat hai
+        </text>
+        <text x="34" y="396" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          elbow ke baad fayda kam, complexity zyada — wahan ruk jao
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="480" y="64" width="300" height="140" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>SILHOUETTE SCORE</text>
+        <text x="494" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>a = apne cluster se average distance</text>
+        <text x="494" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>b = nearest doosre cluster se distance</text>
+        <text x="494" y="142" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>s = (b − a) / max(a, b)</text>
+        <text x="494" y="164" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>+1 apne cluster mein · 0 boundary · −1 galat</text>
+        <text x="494" y="184" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>average &gt; 0.5 = strong structure</text>
+
+        <rect x="480" y="216" width="300" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="494" y="236" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DOOSRE METRICS</text>
+        <text x="494" y="256" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Davies-Bouldin — kam achha</text>
+        <text x="494" y="274" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Calinski-Harabasz — zyada achha</text>
+        <text x="494" y="292" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>gap statistic — model comparison</text>
+        <text x="494" y="308" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>external: purity, ARI, NMI (labels chahiye)</text>
+
+        <rect x="480" y="328" width="300" height="72" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="494" y="348" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>BEND AMBIGUOUS HO TO</text>
+        <text x="494" y="366" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>silhouette score dekho (max wala k)</text>
+        <text x="494" y="384" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>business/domain sense + stability check</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          Steps: scale data → k = 1…10 par k-means → har k ka WCSS note → plot → elbow par ruk jao → silhouette se verify
+        </text>
+        <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Clustering unsupervised hai, isliye "accuracy" nahi hoti — internal measures (elbow, silhouette) hi sahara hain
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 6 · Market basket analysis
+// ============================================================
+export function MarketBasketDiagram() {
+  const baskets = [
+    ['T1', 'bread · milk'],
+    ['T2', 'bread · diaper · beer · eggs'],
+    ['T3', 'milk · diaper · beer · cola'],
+    ['T4', 'bread · milk · diaper · beer'],
+    ['T5', 'bread · milk · diaper · cola'],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Market basket analysis: five grocery transactions, an association rule diaper implies beer with support 60 percent and confidence 75 percent, the two mining phases and the business actions they enable">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Market Basket Analysis — jo saath bikta hai
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        transaction data se association rule: X → Y ("X kharidne wala Y bhi")
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="290" rx="9" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.3)" />
+        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TRANSACTIONS (N = 5 baskets)</text>
+        {baskets.map(([id, items], i) => (
+          <g key={id}>
+            <rect x="34" y={98 + i * 44} width="392" height="34" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" />
+            <text x="48" y={119 + i * 44} fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>{id}</text>
+            <text x="86" y={119 + i * 44} fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>{items}</text>
+          </g>
+        ))}
+        <text x="34" y="342" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          itemset = items ka group · support count = jitni baskets mein aaya
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="130" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
+        <text x="474" y="84" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>RULE: diaper → beer</text>
+        <text x="474" y="106" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>support = 3/5 = 60% (kitna common)</text>
+        <text x="474" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>confidence = 3/4 = 75% (kitna reliable)</text>
+        <text x="474" y="142" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>lift = 0.75/0.60 = 1.25 (positive)</text>
+        <text x="474" y="162" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>yaani diaper wale 75% baskets mein beer bhi</text>
+        <text x="474" y="180" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
+
+        <rect x="460" y="206" width="320" height="148" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="474" y="226" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>BUSINESS MEIN KYA KAREIN</text>
+        <text x="474" y="246" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>cross-sell / combo offer (basket value up)</text>
+        <text x="474" y="264" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>store layout — saath bikne wale paas-paas</text>
+        <text x="474" y="282" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bundling aur pricing decisions</text>
+        <text x="474" y="300" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>recommendation engine ("ye bhi dekha")</text>
+        <text x="474" y="318" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>catalog design, dead combos hatana</text>
+        <text x="474" y="340" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>retail ke alawa insurance fraud, medical patterns</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="366" width="760" height="104" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.35)" />
+        <text x="34" y="386" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING KE 2 PHASES</text>
+        <rect x="34" y="396" width="330" height="52" rx="7" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.4)" />
+        <text x="48" y="414" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>1 · FREQUENT ITEMSETS</text>
+        <text x="48" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>support ≥ minsup wale itemsets (Apriori/FP-Growth)</text>
+        <path d="M372 422 L404 422 M398 417 L404 422 L398 427" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <rect x="416" y="396" width="348" height="52" rx="7" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.4)" />
+        <text x="430" y="414" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>2 · RULE GENERATION</text>
+        <text x="430" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>confidence ≥ minconf wale rules (X → Y splits)</text>
+        <text x="34" y="462" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Phases alag kyun: itemset space 2^m hota hai — pehle support se prune, phir confidence se rules filter</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
+        <rect x="20" y="474" width="760" height="30" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.25)" />
+        <text x="34" y="494" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
+          Exam line: market basket analysis association rules se pata karta hai ki kaun se items saath purchase hote hain
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 7 · Apriori
+// ============================================================
+export function AprioriDiagram() {
+  const l1 = [['bread', 4], ['milk', 4], ['diaper', 4], ['beer', 3], ['cola', 2]];
+  const l2 = [
+    ['bread,milk', 3], ['bread,diaper', 3], ['diaper,milk', 3], ['diaper,beer', 3],
+    ['beer,bread', 2], ['beer,milk', 2], ['cola,diaper', 2], ['cola,milk', 2],
+  ];
+  const l3 = [
+    ['bread,diaper,milk', 2], ['beer,bread,diaper', 2], ['beer,diaper,milk', 2], ['cola,diaper,milk', 2],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Apriori algorithm level by level flow: frequent one itemsets, eight frequent pairs, four frequent triples, then stop, with the downward closure property and rule generation">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Apriori — level-wise frequent itemsets
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        5 transactions · minsup = 40% (2 transactions) · har level par ek scan
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="470" height="352" rx="9" fill="rgba(255,0,128,0.04)" stroke="rgba(255,0,128,0.28)" />
+
+        <text x="34" y="86" fill="#00d4ff" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L1 — frequent 1-itemsets (5)</text>
+        {l1.map(([name, c], i) => (
+          <g key={name}>
+            <rect x={30 + i * 90} y="94" width="82" height="26" rx="6" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.45)" />
+            <text x={30 + i * 90 + 41} y="111" textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{`${name} ${c}`}</text>
+          </g>
+        ))}
+        <text x="34" y="134" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>eggs = 1 → minsup se kam, hat gaya</text>
+
+        <path d="M255 142 L255 156 M250 150 L255 156 L260 150" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <text x="266" y="154" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>join + prune → count</text>
+
+        <text x="34" y="176" fill="#00ff88" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L2 — frequent pairs (8)</text>
+        {l2.map(([name, c], i) => (
+          <g key={name}>
+            <rect x={30 + (i % 4) * 114} y={184 + Math.floor(i / 4) * 32} width="106" height="26" rx="6" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.4)" />
+            <text x={30 + (i % 4) * 114 + 53} y={201 + Math.floor(i / 4) * 32} textAnchor="middle" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>{`{${name}} ${c}`}</text>
+          </g>
+        ))}
+
+        <path d="M255 250 L255 264 M250 258 L255 264 L260 258" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
+        <text x="266" y="262" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>subset prune: {`{beer,bread,milk}`} ka support 1 → out</text>
+
+        <text x="34" y="286" fill="#c4ff00" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L3 — frequent triples (4)</text>
+        {l3.map(([name, c], i) => (
+          <g key={name}>
+            <rect x={30 + (i % 2) * 226} y={294 + Math.floor(i / 2) * 34} width="218" height="28" rx="6" fill="rgba(196,255,0,0.08)" stroke="rgba(196,255,0,0.4)" />
+            <text x={30 + (i % 2) * 226 + 109} y={312 + Math.floor(i / 2) * 34} textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{`{${name}} ${c}`}</text>
+          </g>
+        ))}
+
+        <text x="34" y="376" fill="#ff7a90" fontSize="8.4" fontWeight="700" fontFamily={FONT}>
+          L4 khaali — {`{beer,bread,diaper,milk}`} ka subset {`{beer,bread,milk}`} frequent nahi tha → STOP
+        </text>
+        <text x="34" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Total scans: k + 1 (yahan 4) — isliye I/O heavy</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
+        <rect x="510" y="64" width="270" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="524" y="84" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DOWNWARD CLOSURE</text>
+        <text x="524" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Agar itemset infrequent hai,</text>
+        <text x="524" y="120" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>uske saare supersets bhi infrequent.</text>
+        <text x="524" y="142" fill="#ff7a90" fontSize="8" fontFamily={FONT}>{`{milk,cola} infrequent`}</text>
+        <text x="524" y="158" fill="#ff7a90" fontSize="8" fontFamily={FONT}>→ {`{milk,cola,chips}`} bhi infrequent</text>
+        <text x="524" y="180" fill="#00ff88" fontSize="8" fontFamily={FONT}>frequent → saare subsets frequent</text>
+        <text x="524" y="200" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>yahi anti-monotone property hai</text>
+
+        <rect x="510" y="226" width="270" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="524" y="246" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>STEPS</text>
+        <text x="524" y="266" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>1 · count items → L1 (minsup)</text>
+        <text x="524" y="284" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>2 · join L(k−1) → Ck candidates</text>
+        <text x="524" y="302" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>3 · subset prune (downward closure)</text>
+        <text x="524" y="320" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>4 · count → Lk · repeat</text>
+
+        <rect x="510" y="344" width="270" height="72" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="524" y="364" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>RULES (minconf 60%)</text>
+        <text x="524" y="382" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread∧milk → diaper = 2/3 = 67%</text>
+        <text x="524" y="400" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread → milk∧diaper = 2/4 = 50% (out)</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="428" width="760" height="66" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="448" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Pros: simple, complete, downward closure se search space chhota
+        </text>
+        <text x="34" y="466" fill="#ff7a90" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
+          Cons: k+1 database scans, candidate explosion (dense data par bahut slow)
+        </text>
+        <text x="34" y="484" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Fix: FP-Growth (2 scans, koi candidate nahi) · Eclat (vertical tidsets) · partition/sampling
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 8 · FP-Growth
+// ============================================================
+export function FpGrowthDiagram() {
+  const tree = [
+    'root',
+    '+- bread:4',
+    '|  +- milk:3',
+    '|  |  +- diaper:2',
+    '|  |     +- beer:1',
+    '|  |     +- cola:1',
+    '|  +- diaper:1',
+    '|     +- beer:1',
+    '+- milk:1',
+    '   +- diaper:1',
+    '      +- beer:1',
+    '         +- cola:1',
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="FP-Growth: FP-tree built in two scans with item counts, header table ordering and conditional pattern base mining for the item cola">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        FP-Growth — FP-tree se bina candidate mining
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        sirf 2 database scans · koi candidate generation nahi
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="440" height="330" rx="9" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.3)" />
+        <text x="34" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>FP-TREE (minsup = 2)</text>
+        {tree.map((line, i) => (
+          <text key={i} x="36" y={108 + i * 21} fill={i === 0 ? '#c4ff00' : '#dbe6ff'} fontSize="8.8" fontFamily="'Consolas', monospace">
+            {line}
+          </text>
+        ))}
+        <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          common prefixes share hote hain → data compress ho jaata hai
+        </text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="480" y="64" width="300" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="494" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>HEADER TABLE</text>
+        <text x="494" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread 4 · milk 4 · diaper 4 · beer 3 · cola 2</text>
+        <text x="494" y="122" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>descending frequency order mein</text>
+        <text x="494" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>har item se uske saare nodes link hote hain</text>
+        <text x="494" y="162" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>eggs (1) pehle hi hata diya gaya</text>
+
+        <rect x="480" y="196" width="300" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
+        <text x="494" y="216" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>CONSTRUCTION (2 scans)</text>
+        <text x="494" y="236" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 1 → counts + order</text>
+        <text x="494" y="254" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 2 → har transaction order mein insert</text>
+        <text x="494" y="272" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>common prefix share → node count badhta hai</text>
+        <text x="494" y="288" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>koi candidate set nahi banti</text>
+
+        <rect x="480" y="308" width="300" height="86" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
+        <text x="494" y="328" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING (cola se shuru)</text>
+        <text x="494" y="346" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>prefix paths: {`{bread,milk,diaper}:1`}</text>
+        <text x="494" y="362" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>aur {`{milk,diaper,beer}:1`}</text>
+        <text x="494" y="380" fill="#00ff88" fontSize="8" fontFamily={FONT}>minsup 2 → {`{cola,milk,diaper}`} sup 2</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
+        <rect x="20" y="406" width="760" height="88" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="426" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>APRIORI vs FP-GROWTH</text>
+        <text x="34" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          scans: k+1 vs 2 · candidates: haan vs nahi · data: transaction list vs compressed tree
+        </text>
+        <text x="34" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
+          speed: dense data par FP-Growth kaafi fast · memory: tree zyada leti hai · implementation: Apriori aasan
+        </text>
+        <text x="34" y="482" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Limit: incremental update mushkil (tree rebuild) · Apriori chhote/sparse data ke liye theek
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// ============================================================
+// Data Science Unit IV — Diagram 9 · Support and confidence
+// ============================================================
+export function SupportConfidenceDiagram() {
+  const cols = ['bread', 'milk', 'diaper', 'beer', 'cola'];
+  const rows = [
+    ['T1', [1, 1, 0, 0, 0]],
+    ['T2', [1, 0, 1, 1, 0]],
+    ['T3', [0, 1, 1, 1, 1]],
+    ['T4', [1, 1, 1, 1, 0]],
+    ['T5', [1, 1, 1, 0, 1]],
+  ];
+  return (
+    <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Support and confidence: transaction item grid highlighting diaper and beer, formulas for support, confidence and lift, with the computed values and interpretation scale of lift">
+      <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
+        Support aur Confidence — rule ka score
+      </text>
+      <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
+        support = kitna common · confidence = kitna reliable · lift = asli correlation
+      </text>
+
+      <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
+        <rect x="20" y="64" width="420" height="332" rx="9" fill="rgba(255,136,0,0.04)" stroke="rgba(255,136,0,0.28)" />
+        <text x="34" y="86" fill="#ff8800" fontSize="8.8" fontWeight="800" fontFamily={FONT}>5 TRANSACTIONS × 5 ITEMS</text>
+
+        {cols.map((c, j) => (
+          <text key={c} x={132 + j * 58} y="108" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{c}</text>
+        ))}
+        {rows.map(([id, cells], i) => (
+          <g key={id}>
+            <text x="96" y={128 + i * 26} fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>{id}</text>
+            {cells.map((v, j) => (
+              <rect
+                key={j}
+                x={110 + j * 58}
+                y={114 + i * 26}
+                width="44"
+                height="18"
+                rx="3"
+                fill={v ? 'rgba(0,255,136,0.28)' : 'rgba(255,255,255,0.03)'}
+                stroke={v ? 'rgba(0,255,136,0.6)' : 'rgba(255,255,255,0.1)'}
+              />
+            ))}
+          </g>
+        ))}
+        <text x="34" y="278" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>green = item basket mein hai</text>
+        <text x="200" y="278" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>diaper: 4 · beer: 3 · diaper+beer: 3</text>
+
+        <rect x="34" y="292" width="392" height="42" rx="7" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.4)" />
+        <text x="46" y="310" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>support(diaper → beer) = 3/5 = 0.60</text>
+        <text x="46" y="326" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>dono saath 3 baskets mein — rule 60% data par lagu</text>
+
+        <rect x="34" y="342" width="392" height="42" rx="7" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
+        <text x="46" y="360" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>confidence = 3/4 = 0.75</text>
+        <text x="46" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>diaper wale 4 baskets mein se 3 mein beer bhi aaya</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
+        <rect x="460" y="64" width="320" height="126" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
+        <text x="474" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>FORMULAS</text>
+        <text x="474" y="106" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>support</text>
+        <text x="474" y="122" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>count(X ∪ Y) / N = P(X ∪ Y)</text>
+        <text x="474" y="142" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>confidence</text>
+        <text x="474" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>count(X ∪ Y) / count(X) = P(Y | X)</text>
+        <text x="474" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
+
+        <rect x="460" y="202" width="320" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,0,128,0.4)" />
+        <text x="474" y="222" fill="#ff7ab2" fontSize="9" fontWeight="800" fontFamily={FONT}>LIFT — confidence ka dhokha pakdo</text>
+        <text x="474" y="240" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>lift = confidence / support(Y)</text>
+        <line x1="486" y1="266" x2="756" y2="266" stroke="rgba(255,255,255,0.25)" />
+        <line x1="620" y1="260" x2="620" y2="272" stroke="#fff" strokeWidth="1.4" />
+        <text x="620" y="286" textAnchor="middle" fill="#fff" fontSize="7.6" fontFamily={FONT}>= 1 independent</text>
+        <text x="486" y="286" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>less than 1 negative</text>
+        <text x="756" y="286" textAnchor="end" fill="#00ff88" fontSize="7.6" fontFamily={FONT}>greater than 1 positive</text>
+        <text x="474" y="300" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>diaper → beer: 0.75/0.60 = 1.25 (positive)</text>
+
+        <rect x="460" y="318" width="320" height="82" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
+        <text x="474" y="338" fill="#ffd166" fontSize="9" fontWeight="800" fontFamily={FONT}>THRESHOLDS</text>
+        <text x="474" y="356" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>support ≥ minsup · confidence ≥ minconf</text>
+        <text x="474" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>dono pass → strong rule</text>
+        <text x="474" y="392" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>minsup kam → rules ki explosion</text>
+      </g>
+
+      <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
+        <rect x="20" y="410" width="760" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
+        <text x="34" y="430" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          bread → milk: support 0.60 · confidence 0.75 · lift 0.94 → milk waise bhi 80% baskets mein (rule useless)
+        </text>
+        <text x="34" y="450" fill="#ff8800" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
+          diaper → beer: support 0.60 · confidence 0.75 · lift 1.25 → asli positive association
+        </text>
+        <text x="34" y="470" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
+          Aage: leverage = P(X∪Y) − P(X)P(Y) · conviction = (1 − support(Y))/(1 − confidence)
+        </text>
+      </g>
+    </svg>
+  );
+}

@@ -152,6 +152,15 @@ import {
   ClassificationMetricsDiagram,
   RocAucDiagram,
   RegressionMetricsDiagram,
+  DistanceModelsDiagram,
+  KMeansDiagram,
+  KMedoidDiagram,
+  HierarchicalDiagram,
+  ElbowMethodDiagram,
+  MarketBasketDiagram,
+  AprioriDiagram,
+  FpGrowthDiagram,
+  SupportConfidenceDiagram,
 } from './DataScienceDiagrams';
 import {
   WebStackDiagram,
@@ -911,6 +920,24 @@ export function Diagram({ type }) {
       return <RocAucDiagram />;
     case 'ds3-regression-metrics':
       return <RegressionMetricsDiagram />;
+    case 'ds4-distances':
+      return <DistanceModelsDiagram />;
+    case 'ds4-kmeans':
+      return <KMeansDiagram />;
+    case 'ds4-kmedoid':
+      return <KMedoidDiagram />;
+    case 'ds4-hierarchical':
+      return <HierarchicalDiagram />;
+    case 'ds4-elbow':
+      return <ElbowMethodDiagram />;
+    case 'ds4-market-basket':
+      return <MarketBasketDiagram />;
+    case 'ds4-apriori':
+      return <AprioriDiagram />;
+    case 'ds4-fpgrowth':
+      return <FpGrowthDiagram />;
+    case 'ds4-support-confidence':
+      return <SupportConfidenceDiagram />;
     case 'web-stack':
       return <WebStackDiagram />;
     case 'internet-www':

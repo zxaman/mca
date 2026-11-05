@@ -2,6 +2,7 @@ import { dataScienceExtraTopics } from './dataScienceUnit1b.js';
 import { dataScienceFinalTopics } from './dataScienceUnit1c.js';
 import { dataScienceUnit2Topics } from './dataScience2.js';
 import { dataScienceUnit3Topics } from './dataScience3.js';
+import { dataScienceUnit4Topics } from './dataScience4.js';
 
 // ============================================================
 // DATA SCIENCE — Unit I: Fundamentals of Data Science
@@ -474,5 +475,11 @@ export const dataScienceUnits = [
     number: '3',
     name: 'Classification',
     topics: dataScienceUnit3Topics,
+  },
+  {
+    id: 'unit-4',
+    number: '4',
+    name: 'Clustering and Association Rule Mining',
+    topics: dataScienceUnit4Topics,
   },
 ];
