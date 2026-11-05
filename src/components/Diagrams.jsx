@@ -310,6 +310,21 @@ import {
   BwAiPrepDiagram,
 } from './BiWarehouseDiagrams';
 
+import {
+  OlMultidimDiagram,
+  OlFactDimDiagram,
+  OlMeasuresDiagram,
+  OlStarSchemaDiagram,
+  OlSnowflakeDiagram,
+  OlStarVsSnowDiagram,
+  OlOlapArchDiagram,
+  OlOlapTypesDiagram,
+  OlCubeDiagram,
+  OlOperationsDiagram,
+  OlVsOltpDiagram,
+  OlAppsDiagram,
+} from './BiOlapDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1381,6 +1396,30 @@ export function Diagram({ type }) {
       return <BwDataQualityDiagram />;
     case 'bw-ai-etl':
       return <BwAiPrepDiagram />;
+    case 'ol-multidim':
+      return <OlMultidimDiagram />;
+    case 'ol-fact-dim':
+      return <OlFactDimDiagram />;
+    case 'ol-measures':
+      return <OlMeasuresDiagram />;
+    case 'ol-star':
+      return <OlStarSchemaDiagram />;
+    case 'ol-snowflake':
+      return <OlSnowflakeDiagram />;
+    case 'ol-star-vs-snow':
+      return <OlStarVsSnowDiagram />;
+    case 'ol-olap-arch':
+      return <OlOlapArchDiagram />;
+    case 'ol-olap-types':
+      return <OlOlapTypesDiagram />;
+    case 'ol-cube':
+      return <OlCubeDiagram />;
+    case 'ol-operations':
+      return <OlOperationsDiagram />;
+    case 'ol-vs-oltp':
+      return <OlVsOltpDiagram />;
+    case 'ol-apps':
+      return <OlAppsDiagram />;
     default:
       return null;
   }

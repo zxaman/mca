@@ -11,7 +11,7 @@ adding a topic is just adding an object.
 
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
-| Business Intelligence | BI | 2 | 17 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) |
+| Business Intelligence | BI | 3 | 29 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) + Unit III (Multidimensional Data Modeling and OLAP) |
 | Cyber Security | CYS | 5 | 83 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) + Unit V (Social Engineering) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
@@ -36,6 +36,23 @@ monitor/govern lifecycle, measurement and root-cause fixing at source) and the r
 preparation (profiling, mapping suggestions, entity resolution, document extraction, code generation and
 pipeline agents, balanced against hallucination, privacy, drift and bias with human-in-the-loop controls).
 Each topic carries an animated SVG diagram and three six-mark questions with full answers.
+
+**Business Intelligence (Unit III — Multidimensional Data Modeling and OLAP)** has 12 topics in four groups.
+*Modelling:* the multidimensional data model (cube, dimensions, members, hierarchies, cells and measures,
+and why analysts think in axes instead of rows), fact and dimension tables (grain first, foreign keys versus
+descriptive attributes, transaction / periodic snapshot / accumulating snapshot / factless facts, and
+conformed, role-playing, junk, degenerate and slowly changing dimensions), and measures versus dimensions
+(additive, semi-additive and non-additive measures, and the average-of-averages trap). *Schema design:* star
+schema (one fact, flat dimensions, one join per dimension), snowflake schema (normalized hierarchy tables and
+the star-to-snowflake conversion), and the star versus snowflake comparison with decision criteria, galaxy
+schemas and selective snowflaking. *OLAP:* introduction and architecture (FASMI test, the data, OLAP-server
+and presentation tiers, metadata and scheduling), types of OLAP systems (ROLAP, MOLAP and HOLAP with
+DOLAP/WOLAP/RTOLAP variants), and the OLAP cube concept (aggregate levels, pre-computed cells, sparsity
+maths - 3,000 products x 400 stores x 1,100 days x 2 channels gives 2.64 billion possible cells against
+about 4 crore actual, roughly 1.5% dense - plus partitioning and non-empty storage). *Using OLAP:* the five
+operations (roll-up, drill-down, slice, dice, pivot, plus drill-through), OLAP versus OLTP across eleven
+points with ETL/CDC and HTAP, and applications in business analysis across nine domains with benefits and
+limitations. Each topic carries an animated SVG diagram and three six-mark questions with full answers.
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -322,7 +339,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 27 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (369 total).
+Curated exam-question banks: BI 42 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (384 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -362,6 +379,7 @@ src/
 │       ├── DigitalForensicsDiagrams.jsx  # Cyber Security Unit IV (Digital Forensics)
 │       ├── SocialEngineeringDiagrams.jsx  # Cyber Security Unit V (Social Engineering)
 │       ├── BiWarehouseDiagrams.jsx  # Business Intelligence Unit II (Data Warehousing)
+│       ├── BiOlapDiagrams.jsx  # Business Intelligence Unit III (Multidimensional / OLAP)
 │       ├── SoftwareTestingDiagrams.jsx
 │       ├── DataScienceDiagrams.jsx
 │       └── WebDiagrams.jsx
@@ -384,6 +402,7 @@ src/
 │   ├── digitalForensics.js    # Cyber Security Unit IV (Digital Forensics)
 │   ├── socialEngineering.js   # Cyber Security Unit V (Social Engineering)
 │   ├── biDataWarehousing.js   # Business Intelligence Unit II (Data Warehousing & Prep)
+│   ├── biOlap.js              # Business Intelligence Unit III (Multidimensional & OLAP)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js

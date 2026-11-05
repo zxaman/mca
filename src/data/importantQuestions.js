@@ -465,6 +465,488 @@ LLMs GenAI ka subtype hai jo language ko samajh aur generate karti hai. Ye bade 
     importance: '⭐⭐⭐',
   },
   // ============================================================
+  // Business Intelligence Unit 3 - Multidimensional modelling + OLAP
+  // ============================================================
+  {
+    id: 'q28',
+    unit: '3',
+    topicNumber: '3.1',
+    topicTitle: 'Multidimensional Data Model',
+    question: `Explain the multidimensional data model used in OLAP systems. Discuss its basic elements with a suitable diagram.`,
+    answer: `**Definition:** A multidimensional data model represents data as a **cube** (hypercube) in which each dimension is an axis and each point of intersection - a **cell** - stores one or more numeric measures. Instead of flat rows and columns, the analyst thinks in terms of "sales by product by time by store", which is exactly how business questions are asked.
+
+**Basic elements:**
+1. **Dimension** - an axis of analysis (product, time, location, customer, promotion).
+2. **Dimension member** - one value on an axis (Aata 5kg, Q3 FY25, Pune).
+3. **Hierarchy** - levels inside a dimension along which aggregation moves: category - subcategory - item; year - quarter - month - day; region - state - city - store.
+4. **Level** - one step of a hierarchy.
+5. **Measure** - the numeric value stored in the cell (sales, quantity, cost, margin).
+6. **Cell** - one member per dimension, holding the measures.
+7. **Cube** - the collection of all cells; 3 dimensions look like a box, more dimensions are still called a cube.
+
+**Why it is needed:** a relational table forces repeated multi-table joins and GROUP BY for every question; a multidimensional model stores the same facts with dimensions arranged as axes, so slicing, dicing and drill-down become direct navigation instead of query writing.
+
+**Modelling steps:** (1) decide the grain, (2) identify dimensions and their hierarchies, (3) identify additive measures, (4) store as star schema (ROLAP) or as a pre-built array (MOLAP).
+
+**Diagram:** Refer to the multidimensional data model diagram.`,
+    diagram: 'ol-multidim',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q29',
+    unit: '3',
+    topicNumber: '3.1',
+    topicTitle: 'Multidimensional Data Model',
+    question: `Compare the relational (entity-relationship) model with the multidimensional model for analytical data.`,
+    answer: `| Point | Relational model | Multidimensional model |
+|---|---|---|
+| Unit of storage | row in a table | cell in a cube |
+| User's view | tables and joins | dimensions and measures |
+| Query language | SQL with GROUP BY | MDX, drag-drop pivot, cube navigation |
+| Aggregation | computed at query time | pre-computed aggregates |
+| Navigation | ad-hoc joins | roll-up, drill-down, slice, dice, pivot |
+| Speed | depends on query and indexes | fast for consistent summary questions |
+| Flexibility | high, any new question possible | strongest when dimensions are stable |
+| Storage | compact, normalized | aggregates increase storage |
+| Best for | OLTP and detailed audit | OLAP, dashboards, trend analysis |
+
+**Explanation:** The relational model is a **general-purpose** model - it can store anything but forces the query writer to construct joins and groupings. The multidimensional model is a **purpose-built** analytical model: dimensions are fixed in advance and aggregates are pre-computed, which is why a dashboard answers in one second what a SQL query may take minutes to compute.
+
+**Trade-off:** fixed dimensions make the cube fast but rigid. If the business suddenly wants "sales by weather", the cube must be rebuilt, while in a relational star schema the new dimension can simply be added.
+
+**Practical reality:** Both are used together - data is stored relationally (star schema) and exposed multidimensionally (OLAP cube) by the OLAP server.
+
+**Diagram:** Refer to the multidimensional data model diagram.`,
+    diagram: 'ol-multidim',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q30',
+    unit: '3',
+    topicNumber: '3.2',
+    topicTitle: 'Fact Tables and Dimension Tables',
+    question: `Differentiate between fact tables and dimension tables. Explain the structure of each with an example.`,
+    answer: `**Fact table:** stores the **measurable business events**. One row = one event at the declared grain (one line item, one visit, one month-end snapshot). It contains foreign keys to each dimension plus numeric measures, and almost no descriptive text. It is **long and narrow** - millions of rows, few columns.
+
+**Dimension table:** stores the **descriptive context**. One row = one entity (a product, a store, a customer, a day). It contains a surrogate key, a natural key and descriptive attributes, and it is **short and wide** - thousands of rows, many columns.
+
+| Point | Fact table | Dimension table |
+|---|---|---|
+| Content | keys + numeric measures | attributes + descriptive text |
+| Size | very large, narrow | small, wide |
+| Rows represent | an event or snapshot | an entity |
+| Keys | FK to every dimension | surrogate PK + natural key |
+| Changes | append-only, immutable | slowly changing (SCD) |
+| Used for | aggregation (SUM, AVG) | filtering, grouping, labelling |
+
+**Example:**
+- fact_sales (product_key, date_key, store_key, customer_key, qty, sales, cost, margin) - 4 dimensions, 4 measures.
+- dim_product (product_key, sku, item_name, brand, subcategory, category) - descriptive levels.
+
+**Rule of thumb:** if a column is a number you want to add up, it belongs in the fact table; if it is a label you might use in a filter or a row heading, it belongs in a dimension table.
+
+**Grain first:** always declare the grain before choosing dimensions, otherwise measures get double counted.
+
+**Diagram:** Refer to the fact and dimension tables diagram.`,
+    diagram: 'ol-fact-dim',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q31',
+    unit: '3',
+    topicNumber: '3.2',
+    topicTitle: 'Fact Tables and Dimension Tables',
+    question: `Explain the types of fact tables and the types of dimension tables with examples.`,
+    answer: `**A. Types of fact tables**
+1. **Transaction fact** - one row per event, the most granular (one invoice line). Best for detailed analysis.
+2. **Periodic snapshot fact** - one row per entity per period, e.g. month-end inventory on hand. Measures are semi-additive.
+3. **Accumulating snapshot fact** - one row per process instance with multiple dates (order date, ship date, delivery date) that are updated as the order progresses - used for cycle-time analysis.
+4. **Factless fact** - no numeric measure at all; the event's existence is the fact (student attended a lecture, product on promotion). Counted with COUNT.
+
+**B. Types of dimension tables**
+1. **Conformed dimension** - the same dimension reused across multiple facts, so results are comparable ("single version of truth").
+2. **Role-playing dimension** - one dimension serving several roles in the same fact (date as order date, ship date, delivery date), accessed through views or aliases.
+3. **Junk dimension** - collection of small, unrelated flags (is_gift, is_return, payment_channel) combined into one dimension to avoid key clutter.
+4. **Degenerate dimension** - a key stored in the fact table itself because it needs no attributes (invoice number, ticket number).
+5. **Slowly changing dimension (SCD)**
+   - Type 1: overwrite the old value (no history),
+   - Type 2: add a new row with version and effective dates (full history, preferred for reporting),
+   - Type 3: add a "previous value" column (limited history).
+
+**Diagram:** Refer to the fact and dimension tables diagram.`,
+    diagram: 'ol-fact-dim',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q32',
+    unit: '3',
+    topicNumber: '3.3',
+    topicTitle: 'Measures and Dimensions',
+    question: `What are measures? Explain additive, semi-additive and non-additive measures with examples.`,
+    answer: `**Measure:** a numeric fact that the business wants to quantify and aggregate - sales amount, quantity sold, cost, margin, balance, headcount.
+
+**Classification by aggregation behaviour**
+
+1. **Additive** - can be summed along **every** dimension.
+   - Examples: sales amount, quantity sold, discount given, units returned.
+   - SUM(sales) is correct across product, store, time and customer.
+
+2. **Semi-additive** - can be summed along some dimensions but **not along time**.
+   - Examples: closing stock on hand, account balance, headcount, room occupancy.
+   - Adding January and February stock gives an imaginary number; the correct measure is the last value, average, or max over the period.
+
+3. **Non-additive** - cannot be summed along any dimension.
+   - Examples: ratios such as margin %, growth %, average order value, unit price, KPI index.
+   - Correct method: aggregate the numerator and denominator separately, then divide.
+
+**Why this matters:** summing a non-additive measure produces the classic "average of averages" error. AVG(margin_pct) of three stores is not the company margin if the stores have different sales volumes.
+
+**Design rule:** store the additive components (revenue, cost) and compute the ratio at query time rather than storing margin %.
+
+**Dimensions on the other side:** the dimension answers "by what"; the measure answers "how much". A cell is therefore "measure value for one member of each dimension".
+
+**Diagram:** Refer to the measures and dimensions diagram.`,
+    diagram: 'ol-measures',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q33',
+    unit: '3',
+    topicNumber: '3.3',
+    topicTitle: 'Measures and Dimensions',
+    question: `Design a dimensional model (star schema) for a retail chain selling grocery products across stores. State the grain, dimensions and measures.`,
+    answer: `**Business question:** "How much did we sell, by product, by store, by month, and at what margin?"
+
+**1. Grain (declared first):** one row per **invoice line item per store per day**. Finest grain keeps every other aggregation possible.
+
+**2. Fact table fact_sales**
+- Foreign keys: product_key, date_key, store_key, customer_key, promotion_key
+- Measures: quantity, gross_sales, discount, net_sales, cost, margin (margin % computed, not stored)
+
+**3. Dimensions**
+| Dimension | Key attributes | Hierarchy |
+|---|---|---|
+| dim_product | SKU, item name, brand, pack size | category - subcategory - brand - item |
+| dim_date | date, month, quarter, year, fiscal period, holiday flag | year - quarter - month - day |
+| dim_store | store name, format, city, state | region - state - city - store |
+| dim_customer | name, segment, loyalty tier | segment - tier - customer |
+| dim_promotion | campaign, media, discount %, start and end date | campaign type - campaign |
+
+**4. Measures classification:** net_sales, quantity, cost are additive; margin %, average basket size are non-additive; stock-on-hand in an inventory snapshot would be semi-additive.
+
+**5. Why star, not snowflake:** five flat dimension tables cost one join each, the model is easy for BI tools, and dimension row counts are modest. Only dim_product may be selectively snowflaked if category data is shared.
+
+**6. Expected query:** SELECT d.year, p.category, SUM(f.net_sales) FROM fact_sales f JOIN dim_product p ... JOIN dim_date d ... GROUP BY 1,2 - four joins, answered from pre-aggregates in an OLAP cube.
+
+**Diagram:** Refer to the star schema diagram.`,
+    diagram: 'ol-star',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q34',
+    unit: '3',
+    topicNumber: '3.4',
+    topicTitle: 'Star Schema',
+    question: `Explain the star schema. Discuss its components, advantages and disadvantages with an example.`,
+    answer: `**Definition:** A star schema is a dimensional model in which **one central fact table** is joined to a set of **denormalized dimension tables** arranged like a star. Each dimension is a single table holding all of its hierarchy levels.
+
+**Components**
+1. **Fact table** - foreign keys to all dimensions + numeric measures at the declared grain.
+2. **Dimension tables** - flat, denormalized, containing descriptive attributes and hierarchy levels.
+3. **Surrogate keys** - simple integer keys replacing natural keys, so dimension history (SCD type 2) can be tracked.
+4. **Star join** - every dimension joins the fact directly on one key.
+
+**Example:** fact_sales(product_key, date_key, store_key, customer_key, qty, sales, cost, margin) with dim_product holding category and subcategory in the same table (not in separate normalized tables).
+
+**Advantages**
+- Simple for analysts and BI tools - one join per dimension.
+- Fast query response: fewer joins, better use of bitmap indexes and pre-aggregates.
+- Denormalization is acceptable in read-mostly warehouses; no update anomalies in practice.
+- Easy to understand and to extend with a new dimension.
+
+**Disadvantages**
+- Data redundancy inside dimensions (category name repeated for every item).
+- More storage than a normalized model.
+- A hierarchy change requires updating many rows.
+- Very large dimensions (millions of customers) can make the star heavy.
+
+**When to use:** most data marts, dashboards, and any model where query speed matters more than storage.
+
+**Diagram:** Refer to the star schema diagram.`,
+    diagram: 'ol-star',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q35',
+    unit: '3',
+    topicNumber: '3.5',
+    topicTitle: 'Snowflake Schema',
+    question: `Explain the snowflake schema. How is a star schema converted into a snowflake? Discuss advantages and disadvantages.`,
+    answer: `**Definition:** A snowflake schema is a star schema whose **dimension tables are normalized** into multiple related tables. The fact table stays the same; each dimension hierarchy is split into its own level table, so the diagram branches like a snowflake.
+
+**Structure:** fact_sales joins dim_product, which joins dim_subcategory, which joins dim_category; and dim_store joins dim_city, dim_state, dim_region.
+
+**Conversion steps (star to snowflake)**
+1. Pick a dimension with repeated values, e.g. dim_product containing category, subcategory.
+2. Create a new table for each repeated level: dim_category(category_id, category_name, department).
+3. Replace the descriptive columns in dim_product with a foreign key category_id.
+4. Repeat for every hierarchy: product, geography, date.
+5. Add foreign key constraints and re-point the ETL mapping.
+
+**Advantages**
+- Removes redundancy: a category name is stored once.
+- Saves storage for large dimensions.
+- Cleaner updates - changing a category name touches one row.
+- Conformed, reusable hierarchy tables across marts.
+
+**Disadvantages**
+- More joins: fact - store - city - state - region is four joins for one dimension.
+- Slower queries, complex SQL, harder for business users.
+- BI tools need a semantic layer to hide the complexity.
+- Over-normalization is the classic tuning problem in warehouses.
+
+**Practical use:** snowflaking is applied **selectively** - only to large or shared dimensions; small dimensions stay flat.
+
+**Diagram:** Refer to the snowflake schema diagram.`,
+    diagram: 'ol-snowflake',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q36',
+    unit: '3',
+    topicNumber: '3.6',
+    topicTitle: 'Star vs Snowflake Schema',
+    question: `Compare star schema and snowflake schema on at least eight points. Which one should be used and when?`,
+    answer: `| Point | Star schema | Snowflake schema |
+|---|---|---|
+| Structure | fact + flat dimensions | fact + normalized dimension levels |
+| Number of tables | fewer | more |
+| Joins per query | one per dimension | several per dimension |
+| Query speed | faster | slower |
+| Storage | higher (redundancy) | lower (no repetition) |
+| Normal form | denormalized (2NF/3NF dims) | normalized (3NF) |
+| Complexity for users | simple, self-explanatory | complex, needs semantic layer |
+| ETL complexity | simpler loads | more tables and key lookups |
+| Update anomaly | possible in dimensions | minimized |
+| Maintenance | easy to extend | hierarchy changes are clean |
+| Cube build | faster | slower |
+| Typical use | data marts, dashboards, BI tools | enterprise warehouse, shared hierarchies |
+
+**Choose star when:** query speed is the priority, the team is small, dimensions are moderate (thousands of rows), and the BI tool relies on simple star joins.
+
+**Choose snowflake when:** storage is a constraint, hierarchies are large (product, geography with lakhs of members), or the same dimension is reused across many marts and must be maintained in one place.
+
+**Hybrid (most common in practice):** a **star** core with **selective snowflaking** of the two or three biggest dimensions, plus a **galaxy schema** when several fact tables share conformed dimensions.
+
+**Exam one-liner:** star schema optimizes **reads**, snowflake schema optimizes **storage and consistency**.
+
+**Diagram:** Refer to the star vs snowflake schema diagram.`,
+    diagram: 'ol-star-vs-snow',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q37',
+    unit: '3',
+    topicNumber: '3.7',
+    topicTitle: 'Introduction to OLAP and its Architecture',
+    question: `Define OLAP. Explain the FASMI test and the three-tier architecture of an OLAP system.`,
+    answer: `**Definition:** OLAP (Online Analytical Processing) is a technology that lets analysts **view and analyse multidimensional data interactively**, with fast responses to aggregation, drill-down and comparison queries over large historical volumes. It sits on top of the data warehouse and serves the "why and what if", not the day-to-day "what happened now".
+
+**FASMI test (Pendse/OLAP Council)**
+- **F**ast - answers in about 1-5 seconds even for large data.
+- **A**nalysis - supports business logic and statistics, not just listing.
+- **S**hared - multi-user concurrency, security, and controlled access.
+- **M**ultidimensional - a true dimensional view with hierarchies.
+- **I**nformation - delivers all the data and derived information a decision needs.
+
+**Architecture (three tiers)**
+1. **Data tier** - source systems (ERP, CRM, POS, flat files) loaded through ETL into a data warehouse or data marts using star/snowflake schemas.
+2. **OLAP server tier** - the analytical engine: aggregation and summary tables, cube cache, MDX/SQL query processor, metadata repository (cube definitions, hierarchies, security) and scheduler for refresh.
+3. **Presentation tier** - client tools: Excel PivotTable, Power BI, Tableau, web dashboards, mobile apps; they send MDX/drag-drop requests and render charts, pivots and drill paths.
+
+**Data flow:** sources - ETL - warehouse - OLAP server (aggregate + cache) - client report. Security and metadata are cross-cutting, applied on each layer.
+
+**Diagram:** Refer to the OLAP introduction and architecture diagram.`,
+    diagram: 'ol-olap-arch',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q38',
+    unit: '3',
+    topicNumber: '3.8',
+    topicTitle: 'Types of OLAP Systems',
+    question: `Explain ROLAP, MOLAP and HOLAP with their advantages and disadvantages.`,
+    answer: `**1. ROLAP (Relational OLAP)**
+- The OLAP engine works directly on the **relational star/snowflake schema** in an RDBMS or MPP database.
+- Aggregates are handled by summary tables, materialized views, bitmap indexes and SQL generation.
+- *Advantages:* no data duplication, handles very large volumes, near real-time freshness, full drill-down to detail, standard SQL tools.
+- *Disadvantages:* slower for heavy ad-hoc aggregation unless summary tables are tuned; performance depends on the DBA.
+
+**2. MOLAP (Multidimensional OLAP)**
+- Data is loaded into a **proprietary multidimensional array (cube)** with pre-computed aggregates and bitmap/compressed sparse storage.
+- *Advantages:* fastest response (sub-second), strong support for complex calculations and time series, ideal for slicing and dicing.
+- *Disadvantages:* cube build time and storage cost, cube size limit, batch refresh so data can be stale, detail rows often left out.
+
+**3. HOLAP (Hybrid OLAP)**
+- **Combines both:** summary aggregates live in a cube (MOLAP) while the detail rows stay relational (ROLAP); the engine decides which store answers a query.
+- *Advantages:* fast summaries plus full drill-through detail, balanced storage.
+- *Disadvantages:* two-tier design, complex maintenance and tuning, consistency between cube and detail must be managed.
+
+**Other variants:** DOLAP (desktop, offline cube), WOLAP (web-based), RTOLAP (real-time/streaming updates for fraud and operations).
+
+**Selection:** detail and freshness - ROLAP; speed - MOLAP; both - HOLAP. Sparse dimensions with huge combination counts usually favour ROLAP.
+
+**Diagram:** Refer to the types of OLAP systems diagram.`,
+    diagram: 'ol-olap-types',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q39',
+    unit: '3',
+    topicNumber: '3.9',
+    topicTitle: 'OLAP Cube Concept',
+    question: `Explain the concept of an OLAP cube. Discuss sparsity and the techniques to manage it.`,
+    answer: `**Definition:** An OLAP cube is a multidimensional structure that stores measure values for **every combination of dimension members**. With three dimensions it looks like a box with length, width and height; with more dimensions it is a hypercube, but the name "cube" stays. Each cell address is one member per dimension, and the cell content is the measure set (sales, quantity, margin).
+
+**Components:** dimensions and hierarchies, measures, cells, aggregates, and the metadata that defines them.
+
+**Aggregation levels:** a cube stores not only base cells but also pre-computed roll-ups (day - week - month - quarter - year). This is why a "year total" is instant - it is a stored cell, not a scan.
+
+**Sparsity problem:** the number of possible cells is the product of dimension member counts. Example: 3,000 products x 400 stores x 1,100 days x 2 channels = **2.64 arab (2.64 billion) possible cells**, but the combinations that actually occur in sales are only about **4 crore** - roughly **1.5% dense**, meaning 98.5% of the cube is empty. Storing all cells wastes storage and slows loading.
+
+**Techniques to manage sparsity**
+1. Store only **non-empty cells** (sparse array with an offset/index map).
+2. **Bitmap indexes** per dimension member to locate matching cells.
+3. **Partitioning** the cube by time or region so only the changed partition is rebuilt.
+4. **Aggregate-only** cubes - keep detail in the relational store (HOLAP).
+5. **Dimension pruning** - drop dimensions nobody queries.
+
+**Cube vs relational table:** array with pre-computed cells and sub-second response versus rows with query-time GROUP BY and flexible detail.
+
+**Diagram:** Refer to the OLAP cube concept diagram.`,
+    diagram: 'ol-cube',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q40',
+    unit: '3',
+    topicNumber: '3.10',
+    topicTitle: 'OLAP Operations',
+    question: `Explain the basic OLAP operations: roll-up, drill-down, slice, dice and pivot, with examples.`,
+    answer: `**1. Roll-up (consolidation)** - move **up** a hierarchy, replacing a fine level with a coarser one and aggregating the measures. Example: monthly sales - quarter - year. Result: fewer cells, higher-level totals.
+
+**2. Drill-down** - the inverse: move **down** a hierarchy to reveal detail, or add a new dimension. Example: year - quarter - month - day, to find which month caused the drop. Drill-through further jumps from a cube cell to the source invoice rows.
+
+**3. Slice** - fix **one** dimension to a single value, producing a sub-cube of the remaining dimensions. Example: time = FY 2024 gives a product x store x customer plane.
+
+**4. Dice** - select a **range or list of values on two or more** dimensions, producing a smaller sub-cube. Example: products in (Aata, Soap) AND cities in (Pune, Mumbai) AND quarters in (Q1, Q2).
+
+**5. Pivot (rotate)** - **swap the axes** of the presentation - product on rows becomes product on columns - without changing any value or performing aggregation. Purely a presentation operation.
+
+**Difference table**
+| Operation | Direction | Values change? | Data volume |
+|---|---|---|---|
+| Roll-up | up the hierarchy | yes, aggregated | decreases |
+| Drill-down | down the hierarchy | yes, disaggregated | increases |
+| Slice | one dimension fixed | no | decreases |
+| Dice | multi-dimension range | no | decreases |
+| Pivot | presentation only | no | same |
+
+**Use in business:** roll-up for management summaries, drill-down for root-cause, slice/dice for segment comparison, pivot for reporting layout, drill-through for audit.
+
+**Diagram:** Refer to the OLAP operations diagram.`,
+    diagram: 'ol-operations',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q41',
+    unit: '3',
+    topicNumber: '3.11',
+    topicTitle: 'OLAP vs OLTP Systems',
+    question: `Differentiate between OLTP and OLAP systems. Why are they kept as separate systems?`,
+    answer: `| Point | OLTP | OLAP |
+|---|---|---|
+| Purpose | run the business | analyse the business |
+| Users | clerks, applications | analysts, managers |
+| Workload | many short read-write transactions | few long read-only queries |
+| Queries | INSERT/UPDATE/DELETE | SELECT with GROUP BY / MDX |
+| Data | current, detailed | historical, summarized |
+| Schema | normalized (3NF) | star / snowflake |
+| Size | GB | TB to PB |
+| Indexing | B-tree on keys | bitmap, columnar, partitioning |
+| Response | milliseconds | seconds to minutes |
+| Concurrency | thousands of users | tens of heavy queries |
+| Metric | TPS and latency | scan throughput |
+| Backup | point-in-time critical | periodic reload possible |
+
+**Why separate systems**
+1. **Performance isolation** - an analytical scan of lakhs of rows would lock tables and slow billing.
+2. **Different schema needs** - 3NF for safe updates, star for fast reads.
+3. **Historical depth** - OLTP keeps current state, OLAP keeps multi-year history.
+4. **Integration** - many sources must be cleansed and conformed before analysis.
+5. **Governance** - analysts need read-only, masked, row-level-secured access.
+6. **Reproducibility** - a non-volatile snapshot means two reports show the same number.
+
+**Link:** ETL (batch) or CDC (streaming) moves data from OLTP to OLAP; never backwards. **HTAP** systems (row store + column store in memory) attempt both in one engine but remain an exception.
+
+**Diagram:** Refer to the OLAP vs OLTP systems diagram.`,
+    diagram: 'ol-vs-oltp',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q42',
+    unit: '3',
+    topicNumber: '3.12',
+    topicTitle: 'Applications of OLAP in Business Analysis',
+    question: `Discuss the applications of OLAP in business analysis. What are its benefits and limitations?`,
+    answer: `**Applications**
+1. **Retail and sales** - sales, margin and footfall by store, product and week; assortment and pricing decisions; promotion effectiveness.
+2. **Finance** - revenue vs budget variance by cost centre, ledger and period; profitability and cost analysis; consolidation reporting.
+3. **Supply chain** - fill rate, stock on hand, lead time by warehouse, supplier and item; reorder and safety-stock planning.
+4. **HR / workforce** - headcount, attrition and cost by department, grade, location and month; hiring and retention planning.
+5. **Banking** - balances, NPA percentage and transaction value by branch, product and segment; risk and cross-sell.
+6. **Telecom** - ARPU, churn and data usage by circle, plan and month; retention offers.
+7. **Healthcare** - bed occupancy, cost per case, readmission by hospital, speciality and payer; capacity planning.
+8. **Education** - marks, attendance and dropout by course, batch and term; remedial action.
+9. **Manufacturing** - OEE, rejection and downtime by plant, line, shift and machine; maintenance planning.
+
+**Common analytical patterns:** trend over time, contribution by dimension, exception and outlier detection, what-if and budget-vs-actual comparison, ranking and ABC analysis.
+
+**Benefits**
+- Fast interactive multi-dimensional analysis without writing SQL.
+- Self-service access for business users; reduced load on the IT team.
+- Trend and exception detection from years of history.
+- Single version of truth through conformed dimensions.
+- Supports planning, forecasting and target tracking.
+
+**Limitations**
+- Cube build cost and refresh latency - data is as fresh as the last load.
+- Schema rigidity: new dimensions require remodelling and rebuild.
+- Storage growth from aggregates; sparsity must be managed.
+- Depends on clean ETL and good data quality - garbage in, garbage out.
+- Not suited to row-level transactional detail or real-time alerting.
+- Requires governance: access control, masking and metric definitions.
+
+**Diagram:** Refer to the applications of OLAP in business analysis diagram.`,
+    diagram: 'ol-apps',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  // ============================================================
   // Cyber Security Unit 1 — 17 Most Important 6-Mark Questions
   // ============================================================
   {
