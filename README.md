@@ -12,7 +12,7 @@ adding a topic is just adding an object.
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
 | Business Intelligence | BI | 1 | 8 | Live |
-| Cyber Security | CYS | 4 | 71 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) |
+| Cyber Security | CYS | 5 | 83 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) + Unit V (Social Engineering) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
 | Web Technology | WT | 5 | 76 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) + Unit V (AngularJS & Next.js) |
@@ -225,6 +225,32 @@ forensic technology and practices (ISO/IEC 27037/27041/27042/27043, ISO 17025, N
 ACPO, RFC 3227, lab quality management, emerging cloud/remote/IoT/blockchain/AI technology and ethics). Each
 topic carries an animated SVG diagram and three six-mark questions with full answers.
 
+**Cyber Security (Unit V — Social Engineering)** has 12 topics in four groups. *Foundations:* introduction
+to social engineering (definition, why the human is the weakest link, the attacker → message → human → action
+→ loss chain, the five levers — trust, authority, urgency, helpfulness, fear — and the defence loop) and the
+conceptual evolution (phone phreaking → e-mail and pretext calls → web and spear phishing → social media and
+mobile → AI, deepfake and attack-as-a-service, keeping the constants and the shifts side by side). *Models:*
+defining social engineering with its categories (human-based, computer-based and socio-technical, plus the
+shared research → pretext → trust → request → exit pattern), the phases of an attack (Mitnick's research,
+hook, play, exit with the artefact each phase leaves behind and the matching defence), the attack spiral
+model (the same four stages repeated in expanding loops, from public information to credentials, session and
+finally action) and attack vendors (the buyer → vendor → target economy, contrasting the pure social approach
+with the socio-technical one). *Attacks:* advanced social engineering (adversary-in-the-middle proxies, MFA
+fatigue, callback phishing, OAuth consent phishing, deepfake, quishing, collaboration-platform impersonation,
+watering holes and supply chains, answered with FIDO2, token protection, conditional access, consent policy
+and callback rules), phishing (anatomy of sender, pretext, payload and pressure; bulk, spear, whaling, clone,
+vishing, smishing, pharming, angler and AiTM variants; header/URL/attachment investigation; the preventive →
+protective → detective → responsive defence chain) and insider attacks (malicious, negligent, compromised,
+infiltrator, third-party and departing insiders, the motive → access → collection → exfiltration → cover-up
+lifecycle, and the detection/prevention split). *People and defence:* identity theft (types from financial and
+synthetic to criminal and child identity theft, the collection routes such as phishing, SIM swap and breach
+data, the financial/legal impact, IT Act 66C and 66D with BNS and 65B, and prevention plus response), preventing
+insider threats (governance, hiring, least privilege, separation of duties, PAM, DLP, UEBA, response and
+same-day offboarding as one measured programme loop) and social engineering targets and defence strategies
+(executives, finance, HR, IT help desk, admins, reception, new joiners, remote staff, vendors and customers
+mapped to prepare → prevent → detect → respond → recover, with role-based awareness and metrics). Each topic
+carries an animated SVG diagram and three six-mark questions with full answers.
+
 **Software Testing & QA (Unit IV — Testing Strategies)** has 13 topics in three groups. *Testing
 levels:* integration testing (big bang, top-down with stubs, bottom-up with drivers, sandwich) and
 system & acceptance testing (UAT, alpha, beta, contractual, regulatory, operational). *Testing
@@ -276,7 +302,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 80 · STQA 51 · Data Science 70 · Web Technology 121 (332 total).
+Curated exam-question banks: BI 10 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (352 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -314,6 +340,7 @@ src/
 │       ├── CyberDiagrams.jsx  # Cyber Security Units I-II
 │       ├── CyberForensicsDiagrams.jsx  # Cyber Security Unit III (Cyber Forensics)
 │       ├── DigitalForensicsDiagrams.jsx  # Cyber Security Unit IV (Digital Forensics)
+│       ├── SocialEngineeringDiagrams.jsx  # Cyber Security Unit V (Social Engineering)
 │       ├── SoftwareTestingDiagrams.jsx
 │       ├── DataScienceDiagrams.jsx
 │       └── WebDiagrams.jsx
@@ -334,6 +361,7 @@ src/
 │   ├── webTechnology9.js / 10 # Web Technology Unit III (PHP — 3.9 to 3.16)
 │   ├── cyberForensics.js      # Cyber Security Unit III (Cyber Forensics)
 │   ├── digitalForensics.js    # Cyber Security Unit IV (Digital Forensics)
+│   ├── socialEngineering.js   # Cyber Security Unit V (Social Engineering)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js

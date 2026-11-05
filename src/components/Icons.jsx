@@ -78,6 +78,8 @@ export function Icon({ name, size = 28, color = '#c4ff00' }) {
     bug: 'M8 8a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V8zM4 10h4M16 10h4M4 16h4M16 16h4M9 4l1 2M15 4l-1 2',
     alert: 'M12 3l9 16H3l9-16zm0 5v5m0 3v.5',
     dollar: 'M12 2v20M17 6a4 4 0 0 0-4-2h-2a4 4 0 0 0 0 8h2a4 4 0 0 1 0 8H9a4 4 0 0 1-4-2',
+    phone: 'M7 3h10v18H7zM10 18h4',
+    device: 'M7 2h10v20H7zM10 6h4M10 18h4',
   };
   return (
     <svg
