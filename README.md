@@ -11,11 +11,31 @@ adding a topic is just adding an object.
 
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
-| Business Intelligence | BI | 1 | 8 | Live |
+| Business Intelligence | BI | 2 | 17 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) |
 | Cyber Security | CYS | 5 | 83 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) + Unit V (Social Engineering) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
 | Web Technology | WT | 5 | 76 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) + Unit V (AngularJS & Next.js) |
+
+**Business Intelligence (Unit II — Data Warehousing and Data Preparation)** has 9 topics in four groups.
+*Foundations:* operational databases vs data warehouses (the OLTP/OLAP contrast across purpose, workload,
+schema, data currency, size, indexing and users, and why the warehouse is separated) and the four Inmon
+characteristics with their practical extensions (subject-oriented, integrated, time-variant, non-volatile,
+plus summarization, metadata, read optimisation, security and scheduled refresh). *Design and pipeline:*
+the three-tier architecture (bottom tier of warehouse database, staging and ETL, middle tier of the OLAP
+server as ROLAP, MOLAP or HOLAP, top tier of reporting, dashboard, mining and natural-language tools, with
+metadata and scheduler spanning the tiers), the ETL process (full versus incremental extraction with CDC,
+the transformation rule set, and loading with reconciliation, reject handling and audit logging, plus the
+ETL/ELT distinction) and data cleaning techniques (profiling, missing-value strategies, fuzzy de-duplication
+into a golden record, outlier detection, standardisation, validation and text cleaning). *Integration:*
+data integration from heterogeneous sources (the four levels of heterogeneity, ETL/ELT/EAI/virtualisation/
+lake/MDM approaches, the canonical model, entity and conflict resolution) and metadata (technical, business
+and operational types, the repository, and its role in discovery, lineage, impact analysis and governance).
+*Quality and automation:* data quality concepts and challenges (eight dimensions, the define/assess/cleanse/
+monitor/govern lifecycle, measurement and root-cause fixing at source) and the role of AI and LLMs in data
+preparation (profiling, mapping suggestions, entity resolution, document extraction, code generation and
+pipeline agents, balanced against hallucination, privacy, drift and bias with human-in-the-loop controls).
+Each topic carries an animated SVG diagram and three six-mark questions with full answers.
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -302,7 +322,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 10 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (352 total).
+Curated exam-question banks: BI 27 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (369 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -341,6 +361,7 @@ src/
 │       ├── CyberForensicsDiagrams.jsx  # Cyber Security Unit III (Cyber Forensics)
 │       ├── DigitalForensicsDiagrams.jsx  # Cyber Security Unit IV (Digital Forensics)
 │       ├── SocialEngineeringDiagrams.jsx  # Cyber Security Unit V (Social Engineering)
+│       ├── BiWarehouseDiagrams.jsx  # Business Intelligence Unit II (Data Warehousing)
 │       ├── SoftwareTestingDiagrams.jsx
 │       ├── DataScienceDiagrams.jsx
 │       └── WebDiagrams.jsx
@@ -362,6 +383,7 @@ src/
 │   ├── cyberForensics.js      # Cyber Security Unit III (Cyber Forensics)
 │   ├── digitalForensics.js    # Cyber Security Unit IV (Digital Forensics)
 │   ├── socialEngineering.js   # Cyber Security Unit V (Social Engineering)
+│   ├── biDataWarehousing.js   # Business Intelligence Unit II (Data Warehousing & Prep)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js

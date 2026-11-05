@@ -298,6 +298,18 @@ import {
   SocialEngineeringTargetsDiagram,
 } from './SocialEngineeringDiagrams';
 
+import {
+  BwOltpVsOlapDiagram,
+  BwCharacteristicsDiagram,
+  BwArchitectureDiagram,
+  BwEtlDiagram,
+  BwCleaningDiagram,
+  BwIntegrationDiagram,
+  BwMetadataDiagram,
+  BwDataQualityDiagram,
+  BwAiPrepDiagram,
+} from './BiWarehouseDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1351,6 +1363,24 @@ export function Diagram({ type }) {
       return <PreventingInsiderThreatsDiagram />;
     case 'se-targets':
       return <SocialEngineeringTargetsDiagram />;
+    case 'bw-oltp-olap':
+      return <BwOltpVsOlapDiagram />;
+    case 'bw-characteristics':
+      return <BwCharacteristicsDiagram />;
+    case 'bw-architecture':
+      return <BwArchitectureDiagram />;
+    case 'bw-etl':
+      return <BwEtlDiagram />;
+    case 'bw-cleaning':
+      return <BwCleaningDiagram />;
+    case 'bw-integration':
+      return <BwIntegrationDiagram />;
+    case 'bw-metadata':
+      return <BwMetadataDiagram />;
+    case 'bw-dq':
+      return <BwDataQualityDiagram />;
+    case 'bw-ai-etl':
+      return <BwAiPrepDiagram />;
     default:
       return null;
   }

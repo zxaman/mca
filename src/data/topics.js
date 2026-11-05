@@ -3,6 +3,7 @@ import { webTechnologyUnits } from './webTechnology.js';
 import { cyberForensicsUnit } from './cyberForensics.js';
 import { digitalForensicsUnit } from './digitalForensics.js';
 import { socialEngineeringUnit } from './socialEngineering.js';
+import { biWarehousingUnit } from './biDataWarehousing.js';
 import { softwareTestingUnit3Topics } from './softwareTesting3.js';
 import { softwareTestingUnit4Topics } from './softwareTesting4.js';
 import { softwareTestingUnit5Topics } from './softwareTesting5.js';
@@ -46,7 +47,7 @@ export const subjects = [
     "code": "BI",
     "color": "#0047ff",
     "available": true,
-    "description": "Data se decisions tak ka safar — bilkul simple Hinglish mein"
+    "description": "Data se decisions tak ka safar — BI basics, data warehousing, ETL, data quality aur AI-assisted preparation, bilkul simple Hinglish mein"
   }
 ];
 
@@ -1182,7 +1183,8 @@ export const units = {
           ]
         }
       ]
-    }
+    },
+    biWarehousingUnit
   ],
   "cyber-security": [
     {

@@ -79,6 +79,8 @@ export function Icon({ name, size = 28, color = '#c4ff00' }) {
     alert: 'M12 3l9 16H3l9-16zm0 5v5m0 3v.5',
     dollar: 'M12 2v20M17 6a4 4 0 0 0-4-2h-2a4 4 0 0 0 0 8h2a4 4 0 0 1 0 8H9a4 4 0 0 1-4-2',
     phone: 'M7 3h10v18H7zM10 18h4',
+    up: 'M12 21V7m-6 6l6-6 6 6M4 3h16',
+    plus: 'M12 5v14M5 12h14',
     device: 'M7 2h10v20H7zM10 6h4M10 18h4',
   };
   return (
