@@ -13,6 +13,10 @@ import { webTechnologyTopicsC } from './webTechnology3.js';
 import { webTechnologyTopicsD } from './webTechnology4.js';
 import { webTechnologyTopicsE } from './webTechnology5.js';
 import { webTechnologyTopicsF } from './webTechnology6.js';
+import { webTechnologyTopicsG } from './webTechnology7.js';
+import { webTechnologyTopicsH } from './webTechnology8.js';
+import { webTechnologyTopicsI } from './webTechnology9.js';
+import { webTechnologyTopicsJ } from './webTechnology10.js';
 
 const unit1Topics = [
   // ==========================================================
@@ -795,5 +799,11 @@ export const webTechnologyUnits = [
     number: '2',
     name: 'JavaScript',
     topics: [...webTechnologyTopicsE, ...webTechnologyTopicsF],
+  },
+  {
+    id: 'unit-3',
+    number: '3',
+    name: 'PHP',
+    topics: [...webTechnologyTopicsG, ...webTechnologyTopicsH, ...webTechnologyTopicsI, ...webTechnologyTopicsJ],
   },
 ];

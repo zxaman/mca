@@ -233,6 +233,21 @@ export default function App() {
   const [route, setRoute] = useState(parseRoute);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Landing rule: the home page is always the first page a visitor sees.
+  // A bare URL ("/", "#" or "#/") means home, so we make the route explicit
+  // with replaceState (no extra history entry) instead of leaving a stale hash.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash || hash === '#' || hash === '#/') {
+      try {
+        window.history.replaceState(null, '', '#/');
+      } catch {
+        window.location.hash = '#/';
+      }
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   // Listen for hash changes
   useEffect(() => {
     const onHash = () => {
@@ -246,6 +261,7 @@ export default function App() {
   const goHome = () => {
     goTo('#/');
     setSidebarOpen(false);
+    window.scrollTo(0, 0);
   };
 
   const openSubject = (subjectId) => {
@@ -310,7 +326,7 @@ export default function App() {
 
       {/* Sidebar - Common across ALL pages */}
       <Sidebar
-        currentSubjectId={route.subjectId || 'business-intelligence'}
+        currentSubjectId={route.subjectId}
         currentUnitId={route.unitId}
         currentTopicId={route.topicId}
         onNavigate={navigate}

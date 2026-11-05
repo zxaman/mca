@@ -155,6 +155,41 @@ function tokenizeMixed(lines) {
   });
 }
 
+// PHP: $variables, <?php ?> tags, . concatenation, -> and => operators.
+const PHP_KEYWORDS =
+  'echo|print|printf|sprintf|var_dump|print_r|isset|empty|unset|if|else|elseif|endif|foreach|endforeach|for|endfor|while|endwhile|do|switch|case|break|continue|default|function|return|require|require_once|include|include_once|new|class|extends|public|private|protected|static|const|define|global|use|namespace|try|catch|finally|throw|as|and|or|xor|not|true|false|null|array|list|die|exit|match|fn';
+
+const PHP_TOKEN = new RegExp(
+  '\\/\\/[^\\n]*|#[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/|<[?]php|<[?]=|[?]>' +
+    '|"[^"]*"|\'[^\']*\'|\\$[A-Za-z_]\\w*|\\b\\d+(?:\\.\\d+)?\\b' +
+    '|\\b(?:' + PHP_KEYWORDS + ')\\b' +
+    '|[A-Za-z_]\\w*(?=\\s*\\()|->|=>',
+  'gi',
+);
+
+function tokenizePhp(line) {
+  const out = [];
+  let last = 0;
+  let match;
+  PHP_TOKEN.lastIndex = 0;
+  while ((match = PHP_TOKEN.exec(line)) !== null) {
+    if (match.index > last) out.push({ t: line.slice(last, match.index), c: 'plain' });
+    const tok = match[0];
+    let cls;
+    if (tok.startsWith('//') || tok.startsWith('#') || tok.startsWith('/*')) cls = 'comment';
+    else if (/^<\?/.test(tok) || tok === '?>') cls = 'pi';
+    else if (tok.startsWith('"') || tok.startsWith("'")) cls = 'str';
+    else if (tok.startsWith('$')) cls = 'var';
+    else if (/^\d/.test(tok)) cls = 'num';
+    else if (/^[A-Za-z_]/.test(tok)) cls = /^(.*)$/.test(tok) && new RegExp(`^(?:${PHP_KEYWORDS})$`, 'i').test(tok) ? 'kw' : 'fn';
+    else cls = 'punct';
+    out.push({ t: tok, c: cls });
+    last = match.index + tok.length;
+  }
+  if (last < line.length) out.push({ t: line.slice(last), c: 'plain' });
+  return out.length ? out : [{ t: line || ' ', c: 'plain' }];
+}
+
 function tokenizeCss(line) {
   const trimmed = line.trim();
   if (!trimmed) return [{ t: ' ', c: 'plain' }];
@@ -190,6 +225,7 @@ export default function CodeBlock({ code = '', language = 'html', filename, note
   const lines = useMemo(() => code.replace(/\n$/, '').split('\n'), [code]);
   const tokens = useMemo(() => {
     const lang = String(language).toLowerCase();
+    if (lang === 'php') return lines.map((line) => tokenizePhp(line));
     if (lang === 'javascript' || lang === 'js') return lines.map((line) => tokenizeJs(line));
     if (lang === 'css') return lines.map((line) => tokenizeCss(line));
     if (lang === 'dtd') return lines.map((line) => tokenizeDtd(line));

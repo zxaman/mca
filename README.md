@@ -15,7 +15,7 @@ adding a topic is just adding an object.
 | Cyber Security | CYS | 2 | 47 | Live |
 | Software Testing & QA | STQA | 2 | 21 | Live |
 | Data Science | DS | 1 | 12 | Live — Unit I |
-| Web Technology | WT | 2 | 34 | Live — Unit I (HTML/XML) + Unit II (JavaScript) |
+| Web Technology | WT | 3 | 50 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) |
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -51,7 +51,37 @@ These previews are **not screenshots** — the iframe runs the script with `allo
 counters, tables, calculators, array operations, live clock and prompts really execute, and a thrown
 error is printed inside the preview.
 
-Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 40 (114 total).
+**Web Technology (Unit III — PHP)** has 16 topics: what PHP is (definition, history, features, the
+client→server→engine→database request flow and why only HTML reaches the browser), PHP variables
+(`$` naming rules, loose typing, the 8 data types with `var_dump`, local/global/static scope,
+constants and the superglobals), operators (all six groups, `==` vs `===`, `.` vs `+` and operator
+precedence), taking user input and generating output (GET vs POST, `$_GET`/`$_POST`, validation with
+`filter_var`, escaping with `htmlspecialchars` and the XSS trap), formatting (`printf`/`sprintf`
+format specifiers such as `%05.2f`, `number_format`, `round`/`str_pad`), string library functions
+(`strlen` → `str_replace`, `explode`/`implode`, PHP 8's `str_contains` family and the `mb_*`
+multibyte note), array fundamentals and single-dimensional arrays (keys, `foreach`, `sort`,
+`in_array`, the `unset()` key gap), and multidimensional + associative arrays (2D tables, nested
+`foreach`, `"key" => value`, `ksort`/`asort`, records as arrays of associative arrays), the array
+library grouped by purpose (`array_push` → `array_map`/`array_filter`/`array_column`, and the
+`sort`/`asort`/`ksort` key rules), dates and times (`date()` format characters, `time()`, `mktime()`,
+`strtotime()`, the `DateTime` class and timezones), functions and user-defined functions (parameters,
+defaults, variadic, by-reference, `static`, closures, arrow functions, recursion), object-oriented PHP
+(class/object, `__construct`, `$this`, access modifiers, inheritance and overriding, abstract classes
+vs interfaces, the four pillars), file handling (`fopen` modes, `fwrite`/`fgets`/`fclose`, the
+`file_get_contents` shortcuts and a safe upload with `$_FILES` + `move_uploaded_file`), cookies and
+sessions (`setcookie`/`$_COOKIE` vs `session_start()`/`$_SESSION`, the login→logout cycle), forms
+handling and validation (pipeline, validation rules, sticky forms, POST/Redirect/GET), and an
+introduction to **CodeIgniter** (MVC, request flow, controller/model/view, folder structure).
+
+PHP cannot execute in a browser, so these topics never fake a live preview: each one ships the code
+beside a **`php 8.3 · server output`** panel that shows the exact stdout the interpreter produces,
+with the caveat stated in the panel itself.
+
+Curated exam-question banks: BI 10 · Cyber Security 32 · STQA 8 · Data Science 24 · Web Technology 88 (162 total).
+
+Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
+the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
+Home button sits above the subject list so "back to home" is one click from anywhere.
 
 Mobile-first details: diagrams swipe horizontally inside their card (instead of being clipped),
 answer tables scroll instead of overflowing, comparison tables restack below 820 px with their
@@ -77,6 +107,7 @@ src/
 │   ├── CodeBlock.jsx          # syntax highlighting + copy (html/css/xml/dtd/xsd/xslt)
 │   ├── OutputPreview.jsx      # sandboxed iframe that runs the code's output
 │   ├── ExamAnswer.jsx         # **bold**, pipe tables and fenced code in answers
+│   ├── PhpOutput.jsx         # server-output panel for PHP (no fake preview)
 │   ├── ImportantExamQuestions.jsx
 │   ├── Sidebar.jsx            # shared subject → unit → topic navigation
 │   ├── Icons.jsx              # stroke icon set
@@ -91,6 +122,8 @@ src/
 │   ├── dataScienceUnit1b.js / dataScienceUnit1c.js
 │   ├── webTechnology.js / 2 / 3 / 4   # Web Technology Unit I (HTML + XML)
 │   ├── webTechnology5.js / 6  # Web Technology Unit II (JavaScript)
+│   ├── webTechnology7.js / 8  # Web Technology Unit III (PHP — 3.1 to 3.8)
+│   ├── webTechnology9.js / 10 # Web Technology Unit III (PHP — 3.9 to 3.16)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js
