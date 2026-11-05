@@ -947,6 +947,548 @@ LLMs GenAI ka subtype hai jo language ko samajh aur generate karti hai. Ye bade 
     importance: '⭐⭐⭐⭐',
   },
   // ============================================================
+  // Business Intelligence Unit 4 - Business analytics + temporal data
+  // ============================================================
+  {
+    id: 'q43',
+    unit: '4',
+    topicNumber: '4.1',
+    topicTitle: 'Business Metrics and Key Performance Indicators (KPIs)',
+    question: `Define business metrics and KPIs. Differentiate between them and explain the characteristics of a good KPI.`,
+    answer: `**Business metric:** a quantifiable measure that tracks the status of a business process. It describes activity - orders shipped, tickets closed, page views - without judging good or bad.
+
+**KPI (Key Performance Indicator):** a metric tied to a strategic objective, with a **target**, a **time frame** and an **owner**, used by management to evaluate success - order fill rate 98 percent this quarter, churn below 5 percent annually.
+
+| Point | Metric | KPI |
+|---|---|---|
+| Purpose | describe activity | evaluate performance |
+| Target | optional | mandatory (target + thresholds) |
+| Count | many per process | 2-5 per function |
+| Audience | team, operations | management, board |
+| Decision link | indirect | direct action trigger |
+
+**Characteristics of a good KPI (SMART plus):**
+1. Specific - measures one clear process.
+2. Measurable - exact formula and single data source.
+3. Achievable - realistic target with baseline.
+4. Relevant - traced to a strategic objective.
+5. Time-bound - daily, weekly or monthly cadence.
+6. Owned - one accountable person, not a committee.
+7. Actionable - a defined action when it turns red.
+8. Comparable - shown against target, last period and benchmark.
+
+**Example:** "4 lakh website visits" is a metric; "conversion rate 18 percent against a target of 20 percent, owned by the e-commerce head" is a KPI.
+
+**Diagram:** Refer to the business metrics and KPIs diagram.`,
+    diagram: 'td-metrics',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q44',
+    unit: '4',
+    topicNumber: '4.1',
+    topicTitle: 'Business Metrics and Key Performance Indicators (KPIs)',
+    question: `Explain the types and hierarchy of KPIs in an organisation with examples.`,
+    answer: `**Hierarchy by management level**
+- **Strategic KPIs** (board, CXO, quarterly to annual): revenue growth, EBITDA margin, market share, customer retention.
+- **Tactical KPIs** (department head, monthly): conversion rate, inventory turns, cost per hire, on-time delivery.
+- **Operational metrics** (team, daily to weekly): orders per day, average handling time, stock-out count, downtime minutes.
+
+**Types by behaviour**
+- **Leading indicators** - predict the future and allow action now: pipeline value, trial signups, website traffic, demo requests.
+- **Lagging indicators** - confirm the outcome but arrive late: revenue, profit, churn, NPS.
+- **Financial** - revenue, cost, margin, ROI, working capital.
+- **Non-financial** - quality defects, safety incidents, satisfaction, engagement, innovation.
+- **Efficiency vs effectiveness** - cost per order (efficiency) versus fill rate (effectiveness).
+
+**Why the mix matters:** a dashboard with only lagging financial KPIs tells you the year is bad in December. A dashboard with only leading indicators never proves the outcome. Balanced sets combine both, plus financial and non-financial, which is exactly the logic of the balanced scorecard.
+
+**Cascade example:** company churn under 5 percent (strategic) leads to marketing CAC under Rs 900 (tactical) leads to first-response time under 4 hours (operational).
+
+**Diagram:** Refer to the business metrics and KPIs diagram.`,
+    diagram: 'td-metrics',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q45',
+    unit: '4',
+    topicNumber: '4.2',
+    topicTitle: 'Importance of KPIs in Organizational Decision Making',
+    question: `Explain the importance of KPIs in organizational decision making with the decision loop.`,
+    answer: `**Importance**
+1. **Strategy to measurement** - abstract goals become numbers with targets.
+2. **Alignment** - every function's KPI traces to the company objective.
+3. **Accountability** - named owner plus target makes responsibility explicit.
+4. **Early warning** - threshold breaches trigger corrective action while the problem is small.
+5. **Resource allocation** - budget and manpower move to the KPI gap.
+6. **Objective appraisal** - incentives and reviews use the same numbers.
+7. **Risk monitoring** - fraud rate, default percentage, safety incidents.
+8. **Communication** - one consistent story for the board, investors and regulators.
+
+**Decision loop (5 steps)**
+1. **Measure** - current value, target and trend from the dashboard.
+2. **Compare** - against target, previous period and benchmark.
+3. **Diagnose** - drill-down by dimension to find the root cause.
+4. **Act** - the owner takes a specific corrective action.
+5. **Re-measure** - next cycle verifies whether the action worked.
+
+If the loop is not closed, the organisation has a **reporting culture** (reports are produced, decisions are not) instead of a **performance culture**.
+
+**Example:** churn 5.8 percent against a 5 percent target, diagnosed to circle-B network downtime, fixed with a tower upgrade, re-measured at 5.1 percent.
+
+**Diagram:** Refer to the KPIs and organizational decision making diagram.`,
+    diagram: 'td-kpi-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q46',
+    unit: '4',
+    topicNumber: '4.2',
+    topicTitle: 'Importance of KPIs in Organizational Decision Making',
+    question: `Discuss the risks and limitations of KPI-driven management and how to mitigate them.`,
+    answer: `**Risks**
+1. **Tunnel vision** - one dominant KPI makes other dimensions invisible (cut cost, quality falls).
+2. **Gaming** - the metric is optimised, not the outcome (tickets closed without solving).
+3. **Measure proliferation** - sixty KPIs mean no focus.
+4. **Lagging-only sets** - churn is visible only after the customer has left.
+5. **Arbitrary targets** - targets without a baseline destroy motivation.
+6. **Data quality** - a wrong number drives a wrong decision.
+7. **Short-termism** - quarterly KPIs starve long-term investment.
+8. **Local optimisation** - department KPIs conflict (sales discounts versus margin).
+
+**Mitigations**
+- **Balanced scorecard** - financial, customer, internal process, learning and growth together.
+- **Leading plus lagging** mix, and non-financial alongside financial.
+- **KPI governance** - one definition, one owner, documented formula, versioned metric layer.
+- **Cadence and review** - weekly operations, monthly business, quarterly board.
+- **Sunset rule** - retire KPIs that no longer change behaviour.
+- **Qualitative context** - dashboards carry an explanation, not only a colour.
+- **Audit and validation** - reconcile KPI values with the source system.
+
+**Exam point:** KPIs are a tool, not a truth; without governance they invert into target-fixation.
+
+**Diagram:** Refer to the KPIs and organizational decision making diagram.`,
+    diagram: 'td-kpi-decision',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q47',
+    unit: '4',
+    topicNumber: '4.3',
+    topicTitle: 'Performance Measurement and Analytical Reporting',
+    question: `What is performance measurement? Explain the balanced scorecard and its four perspectives.`,
+    answer: `**Performance measurement:** the systematic process of defining measures, collecting data, comparing actual results with targets or standards, and communicating the outcome so that management can act.
+
+**Balanced scorecard (Kaplan and Norton)** balances four perspectives so that financial results are explained by their drivers:
+
+1. **Financial** - revenue growth, gross margin, ROI, cost ratio. Question: how do we look to shareholders?
+2. **Customer** - NPS, churn, satisfaction, on-time delivery. Question: how do customers see us?
+3. **Internal business process** - cycle time, defect rate, fill rate, downtime. Question: which processes must we excel at?
+4. **Learning and growth** - training hours, attrition, engagement, innovation. Question: can we keep improving?
+
+**Cause and effect chain:** learning and growth improves processes, better processes delight customers, delighted customers produce financial results. This is why a single financial KPI is not enough.
+
+**For each perspective define:** objective, measure, target, initiative and owner.
+
+**Benefits:** balance of short and long term, leading and lagging, financial and non-financial; strategy becomes measurable; communication improves.
+
+**Limitations:** measure design effort, lag in feedback, risk of sticking to stale measures, and difficulty proving the causal chain.
+
+**Diagram:** Refer to the performance measurement and analytical reporting diagram.`,
+    diagram: 'td-performance',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q48',
+    unit: '4',
+    topicNumber: '4.3',
+    topicTitle: 'Performance Measurement and Analytical Reporting',
+    question: `Explain the types of analytical reporting in BI and the design principles of an effective report.`,
+    answer: `**By management layer**
+- **Operational** - team, daily or real time, row-level detail: stock-out list, dispatch status, queue depth.
+- **Tactical** - department head, weekly or monthly, aggregated: category margin, SLA compliance, variance report.
+- **Strategic** - CXO and board, quarterly or annual, summarised with trends: scorecard, forecast, market share.
+
+**By format**
+- **Dashboard** - KPIs on one screen, glanceable.
+- **Scorecard** - KPI against target with red-amber-green status.
+- **Variance report** - actual versus budget or forecast with explanation.
+- **Exception or alert report** - only the outliers.
+- **Ad-hoc and self-service** - analyst builds the question.
+- **Statutory or regulatory** - fixed format with audit trail.
+
+**Design principles of an effective report**
+1. **Decision-first layout** - the "so what" at the top, supporting numbers below.
+2. **Single definition** - every report draws from one metric layer.
+3. **Comparison** - target, previous period and benchmark together.
+4. **Exception highlighting** - colour only where the eye must go.
+5. **Visual hierarchy** - KPI tile, then trend, then table, then detail.
+6. **Drill-down path** - aggregate to row level in two clicks.
+7. **Right grain** - as much detail as the audience needs, no more.
+8. **Performance and trust** - loads in seconds, shows data source, refresh time and cutoff.
+
+**Diagram:** Refer to the performance measurement and analytical reporting diagram.`,
+    diagram: 'td-performance',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q49',
+    unit: '4',
+    topicNumber: '4.3',
+    topicTitle: 'Performance Measurement and Analytical Reporting',
+    question: `What is variance analysis? Explain volume, price and mix variance with an example.`,
+    answer: `**Variance analysis** quantifies the gap between actual and planned performance and decomposes it into causes, so that corrective action is specific.
+
+**Components of a sales variance**
+1. **Volume variance** = (actual quantity - planned quantity) x standard price.
+2. **Price variance** = (actual price - standard price) x actual quantity.
+3. **Mix variance** = effect of a change in the product or customer mix.
+
+**Example**
+- Plan: 5,000 units x Rs 200 = Rs 10,00,000.
+- Actual: 4,600 units x Rs 200 = Rs 9,20,000.
+- **Volume variance** = -400 x 200 = **-Rs 80,000**.
+- **Price variance** = 0.
+- **Mix variance** = premium share fell from 25 to 22 percent (-Rs 12,000), offset by lower discount (+Rs 12,000).
+- **Total** = **-Rs 80,000 (8 percent unfavourable)**.
+
+**Interpretation:** the shortfall is a volume problem, not a pricing problem - twelve SKUs were out of stock. The action therefore belongs to supply chain, not to sales pricing.
+
+**Reporting format:** one-page variance report with the decomposition, drill-down by region, an owner and an action date.
+
+**Why it matters:** "sales are down" is an observation; "volume down 400 units due to stock-outs in twelve SKUs" is a decision input.
+
+**Diagram:** Refer to the performance measurement and analytical reporting diagram.`,
+    diagram: 'td-performance',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q50',
+    unit: '4',
+    topicNumber: '4.4',
+    topicTitle: 'Introduction to Temporal Data',
+    question: `What is temporal data? Explain its types with examples and why BI systems need it.`,
+    answer: `**Temporal data** is data whose correctness is tied to time: every value is associated with the period during which it was true.
+
+**Types**
+1. **Snapshot (non-temporal)** - current state only. Question: what is the price now?
+2. **Valid-time** - the period the fact was true in the real world. Question: what was the price in March?
+3. **Transaction-time** - the period the assertion was stored in the database. Question: what did we believe in March?
+4. **Bitemporal** - both together. Question: for March, what is considered correct today?
+
+**Examples in a warehouse:** the fact table event date (event time), dim_product effective dates (valid time), and load_ts or audit history (transaction time).
+
+**Why BI needs it**
+- **Historical reporting** - year-over-year and trend analysis require period-accurate data.
+- **Late-arriving data** - the order belongs to March even if it was loaded in April.
+- **Restatement** - corrections must be explainable to auditors and regulators.
+- **Reproducibility** - a report published last quarter must be regenerable exactly.
+- **Slowly changing dimensions** - the attribute version must match the fact date.
+- **Audit and dispute resolution** - prove what was known and when.
+
+**Challenges:** late facts, late dimensions, time zones and DST, fiscal versus calendar periods, retention, idempotent loads.
+
+**Diagram:** Refer to the temporal data introduction diagram.`,
+    diagram: 'td-temporal',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q51',
+    unit: '4',
+    topicNumber: '4.4',
+    topicTitle: 'Introduction to Temporal Data',
+    question: `Discuss the challenges of handling temporal data in a BI system and the techniques used to solve them.`,
+    answer: `**Challenges and solutions**
+
+1. **Late-arriving facts** - order dated 28 March, loaded 3 April. Solution: report on event date, backfill into the correct period partition, idempotent upsert on natural key plus date.
+2. **Late-arriving dimensions** - the fact arrives before its dimension. Solution: inferred (placeholder) member that is updated later, or lookup by the fact's event date.
+3. **Corrections and restatement** - previously published numbers change. Solution: bitemporal storage, frozen period-end snapshots, audit log, published restatement note.
+4. **Slowly changing attributes** - which product category applies to an old sale? Solution: SCD type 2 with effective dates and a half-open range join.
+5. **Time zones and daylight saving** - the day boundary shifts. Solution: store UTC, convert at presentation, keep source time zone metadata.
+6. **Fiscal versus calendar periods** - April to March financial year. Solution: both sets of columns in the date dimension.
+7. **Grain mismatch** - daily facts with monthly dimensions. Solution: explicit grain and aggregation rules per measure.
+8. **Retention and cost** - how much history stays online. Solution: hot, warm and cold tiers with a documented retention policy.
+9. **Duplicate counting on re-run** - Solution: batch_id, deduplication key, reconciliation counts and amounts.
+10. **Ambiguous questions** - "as of" means valid time or transaction time? Solution: documented semantics per report.
+
+**Diagram:** Refer to the temporal data introduction diagram.`,
+    diagram: 'td-temporal',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q52',
+    unit: '4',
+    topicNumber: '4.5',
+    topicTitle: 'Valid Time and Transaction Time',
+    question: `Differentiate between valid time and transaction time with examples. What is bitemporal data?`,
+    answer: `**Valid time** - the period during which the fact was true in the real world; business-owned and can be corrected. Example: price Rs 100 valid from 1 January to 31 March.
+
+**Transaction time** - the period during which the assertion existed in the database; system-owned and immutable. Example: the row was inserted 4 January and superseded 5 April.
+
+| Point | Valid time | Transaction time |
+|---|---|---|
+| Meaning | real-world validity | database record period |
+| Owner | business or user | system or DBMS |
+| Can change | yes, via correction | never, append-only |
+| Columns | valid_from, valid_to | txn_from, txn_to |
+| Question | what was the price in March? | what did we believe in March? |
+| BI mapping | SCD type 2 | audit columns and history table |
+
+**Bitemporal data:** stores both, with four columns - valid_from, valid_to, txn_from, txn_to - and answers three queries:
+- **Current** - today's truth (open transaction row).
+- **As-of** - what we believed on a given date (restatement evidence).
+- **As-was** - what was actually true for a period, using today's knowledge.
+
+**Example:** Rs 110 was valid from 1 April and entered on 5 April; on 10 May a correction revealed Rs 100 for 1-15 April. Current shows Rs 100, as-of 20 April shows Rs 110 (the belief then), as-was 1 April shows Rs 100.
+
+**Diagram:** Refer to the valid time and transaction time diagram.`,
+    diagram: 'td-bitemporal',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q53',
+    unit: '4',
+    topicNumber: '4.5',
+    topicTitle: 'Valid Time and Transaction Time',
+    question: `How are valid time and transaction time implemented in a data warehouse for audit and restatement?`,
+    answer: `**Valid time implementation**
+- SCD type 2 dimension with effective_from, effective_to, is_current and version.
+- Fact tables keep the event date; attribute versions are attached by a range join.
+- Late-arriving dimension handled by inferred members or date-based lookup.
+
+**Transaction time implementation**
+- Audit columns: load_ts, update_ts, batch_id, source_file, record_hash.
+- Append-only history table with before and after images.
+- SQL:2011 system-time temporal tables, or a CDC stream feeding an audit store.
+
+**Bitemporal implementation**
+- Four columns: valid_from, valid_to, txn_from, txn_to.
+- Three query templates: current, as-of, as-was.
+
+**Restatement process**
+1. Reconcile source against warehouse to detect the correction.
+2. Reproduce the original report from the as-of view.
+3. Apply the correction as a new transaction version with corrected valid time.
+4. Run impact analysis - which reports and KPIs change.
+5. Publish the restated report with a note stating old value, new value and reason.
+
+**Governance**
+- Transaction time immutable; no destructive updates.
+- Retention and purge policy aligned to tax, legal and privacy requirements.
+- Access log on historical data.
+- Documented metric version so changes are attributable.
+
+**Diagram:** Refer to the valid time and transaction time diagram.`,
+    diagram: 'td-bitemporal',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q54',
+    unit: '4',
+    topicNumber: '4.6',
+    topicTitle: 'Temporal Attributes and Timestamps',
+    question: `What are temporal attributes? Explain the important temporal attributes and design rules used in a warehouse.`,
+    answer: `**Temporal attributes** are the columns that record when a row is valid, when it was loaded and when it changed.
+
+**Important attributes**
+1. **valid_from / valid_to** - validity of a dimension row; open-ended rows use a 9999-12-31 sentinel.
+2. **event_date / posting_date** - the business date of a fact, used for reporting.
+3. **load_ts / update_ts** - when ETL inserted or modified the row.
+4. **batch_id / source_file** - lineage and reprocessing.
+5. **record_version / is_current** - SCD type 2 versioning.
+6. **deleted_flag** - soft delete so history is not destroyed.
+7. **prev_value / effective_date** - SCD type 3 previous-value tracking.
+8. **time_zone / utc_offset** - source time zone metadata.
+
+**Design rules**
+- Store timestamps in **UTC**, convert at presentation.
+- Declare the **grain** - second or day - and never mix.
+- Use **half-open intervals** [valid_from, valid_to) so no overlap or gap.
+- Prefer a **sentinel end date** over NULL for open rows.
+- One uniform **load_ts per batch**, not row-by-row CURRENT_TIMESTAMP.
+- **Never overwrite history** without an audit record.
+- Keep **fiscal and calendar** columns in the date dimension.
+- Make loads **idempotent** with deduplication keys.
+
+**Usage:** range join attaches the correct attribute version to each fact; as-of queries answer audit questions.
+
+**Diagram:** Refer to the temporal attributes and timestamps diagram.`,
+    diagram: 'td-attributes',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q55',
+    unit: '4',
+    topicNumber: '4.6',
+    topicTitle: 'Temporal Attributes and Timestamps',
+    question: `Explain slowly changing dimensions type 1, 2 and 3 with examples. Which one should be used when?`,
+    answer: `**SCD** tracks how a dimension attribute changes over time.
+
+**Type 1 - overwrite**
+- The old value is replaced; no history.
+- Example: correcting a customer name spelling.
+- Pros: simple, minimal storage. Cons: history lost, past reports change silently.
+
+**Type 2 - versioned row (recommended for analytics)**
+- Insert a new row, close the previous row with valid_to, set is_current and version.
+- Example: product category changes from Grocery to Staples; old sales stay in Grocery, new sales in Staples.
+- Pros: complete history and accurate trends. Cons: more storage, range joins required.
+
+**Type 3 - previous value column**
+- One column keeps the old value (prev_category) plus effective_date.
+- Example: region reorganisation before-after comparison.
+- Pros: simple comparison. Cons: only one step of history.
+
+| Point | Type 1 | Type 2 | Type 3 |
+|---|---|---|---|
+| Method | overwrite | versioned row | previous column |
+| History | none | full | one step |
+| Columns | same | valid_from, valid_to, is_current | prev_value |
+| Use | typo fix | audit and trend | limited comparison |
+
+**Selection:** type 2 when history matters for reporting or audit; type 1 for pure error correction; type 3 for a one-step before-after. Hybrid types 4 and 6 are used when many attributes change or when current and history must sit side by side.
+
+**Diagram:** Refer to the temporal attributes and timestamps diagram.`,
+    diagram: 'td-attributes',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q56',
+    unit: '4',
+    topicNumber: '4.7',
+    topicTitle: 'Time-based Data Analysis',
+    question: `Explain time-based data analysis. Discuss MTD, YTD, YoY, moving average and CAGR with examples.`,
+    answer: `**Time-based data analysis** aggregates and compares measures along the time dimension to reveal trend, growth and seasonality.
+
+1. **MTD / QTD / YTD** - cumulative total from the start of the period. Example: YTD sales from April to 5 November are Rs 3.2 crore.
+2. **Period-over-period (MoM)** - (current - previous) / previous x 100.
+3. **YoY** - compare the same period last year; seasonality cancels out. Example: 1-5 November Rs 12 lakh against Rs 10 lakh last year = +20 percent.
+4. **Moving average** - average of the last N periods to smooth noise (7-day, 3-month).
+5. **Rolling 12 months** - the safe comparison when the year is incomplete.
+6. **CAGR** - (end / start)^(1/n) - 1. Example: Rs 2.9 crore to Rs 4.6 crore in three years = 16.6 percent.
+7. **Seasonal index** - period value / overall average; 1.8 means 80 percent above a normal month.
+
+**Supporting structure:** a date dimension with fiscal periods, week numbers, holiday flags and working-day index, so calculations live in data rather than ad-hoc SQL.
+
+**Pitfalls:** summing semi-additive measures, comparing a partial period with a full one, ignoring working days and holidays, and omitting the data cutoff.
+
+**Diagram:** Refer to the time-based data analysis diagram.`,
+    diagram: 'td-time-analysis',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q57',
+    unit: '4',
+    topicNumber: '4.7',
+    topicTitle: 'Time-based Data Analysis',
+    question: `Discuss seasonality and trend in time-based BI. How are the two separated, and what are the common aggregation traps?`,
+    answer: `**Trend** is the long-term direction of a series; **seasonality** is a pattern that repeats within a fixed period (festival peak, monsoon dip); **residual** is the irregular, event-driven noise.
+
+**Separating trend from seasonality**
+1. **Year-over-year comparison** - the same month last year cancels the seasonal effect.
+2. **Seasonal index** - period value divided by the overall average; index 1.8 means 80 percent above normal.
+3. **Decomposition** - additive or multiplicative: value = trend + seasonal + residual.
+4. **12-month moving average** - smooths the seasonality and leaves the trend.
+5. **STL or regression** - advanced statistical separation.
+
+**Why it matters:** inventory build-up before the peak, seasonal staffing, month-wise targets from seasonal indices, and anomaly detection when the residual jumps.
+
+**Common aggregation traps**
+1. **Semi-additive measures summed over time** - stock, balance and headcount must use period-end, last value or average.
+2. **Non-additive ratios averaged** - margin percentage must be recomputed from summed numerator and denominator.
+3. **Partial period versus full period** - five days against thirty days always looks like a decline.
+4. **Working days ignored** - 22 days against 26 days is not comparable.
+5. **Nested periods added** - month and quarter summed together double counts.
+6. **Late data without a refresh window** - month-end figures keep changing.
+7. **Time zone shift** - the day boundary moves.
+8. **CAGR misuse** - meaningless when the start value is negative or the period is very short.
+
+**Diagram:** Refer to the time-based data analysis diagram.`,
+    diagram: 'td-time-analysis',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  {
+    id: 'q58',
+    unit: '4',
+    topicNumber: '4.8',
+    topicTitle: 'Trend Analysis and Historical Data Tracking in BI Systems',
+    question: `What is trend analysis? Explain the techniques used and the accuracy measures for forecasting.`,
+    answer: `**Trend analysis** identifies the direction and rate of change of a measure over time, separating signal from noise and projecting the near future.
+
+**Techniques**
+1. **Trend line or regression** - linear or exponential fit; the slope gives the change per period.
+2. **Moving average** - smooths short-term noise (3-month, 12-month).
+3. **Exponential smoothing / EWMA** - recent periods weighted more heavily.
+4. **Holt-Winters** - level, trend and seasonality, the standard simple method for seasonal data.
+5. **Growth rate and CAGR** - short-term and long-term comparison.
+6. **YoY comparison** - removes seasonality.
+7. **Control charts and anomaly detection** - values beyond two or three standard deviations are signals.
+8. **Driver-based models** - forecast a measure from its business drivers.
+
+**Accuracy measures (on a hold-out period)**
+- **MAPE** - mean absolute percentage error, scale-free and easy to explain.
+- **MAE** - mean absolute error, in the units of the measure.
+- **RMSE** - root mean squared error, penalises large misses.
+- Always compare with a **naive baseline** (last period or same period last year).
+
+**Practice:** publish a point forecast with a confidence range and a data cutoff, monitor actual versus forecast monthly, and refresh the model when the error trend rises.
+
+**Diagram:** Refer to the trend analysis and historical data tracking diagram.`,
+    diagram: 'td-trend',
+    image: null,
+    importance: '⭐⭐⭐⭐⭐',
+  },
+  {
+    id: 'q59',
+    unit: '4',
+    topicNumber: '4.8',
+    topicTitle: 'Trend Analysis and Historical Data Tracking in BI Systems',
+    question: `Explain historical data tracking in a BI system. What are its requirements, and how is restatement handled?`,
+    answer: `**Historical data tracking** keeps history complete, consistent, versioned and auditable.
+
+**Requirements**
+1. **Append-only facts** keyed by event date.
+2. **SCD type 2 dimensions** with effective dates.
+3. **Audit columns** - load_ts, update_ts, batch_id, source, record hash.
+4. **Immutable transaction history** - proof of what was reported when.
+5. **Partitioned storage and archival tiers** - hot 90 days, warm two years, cold seven years.
+6. **Retention and purge policy** - aligned to tax, legal and privacy requirements.
+7. **Reproducible snapshots** - period-end frozen copies so an old report regenerates exactly.
+8. **Reconciliation** - source against warehouse counts and amounts.
+9. **Documented restatement policy.**
+
+**Restatement handling**
+- Detect the correction through reconciliation or a late-arriving feed.
+- Reproduce the original figure from the **as-of** view.
+- Apply the correction as a new transaction version with corrected valid time.
+- Run impact analysis for the affected reports and KPIs.
+- Publish the restated report with a note: old value, new value, reason and date.
+
+**Example:** April churn was reported at 6.0 percent; eight late cancellations were backfilled; as-was becomes 5.9 percent while as-of 1 May still returns 6.0 percent.
+
+**Benefits:** trustworthy trends, audit and compliance, dispute resolution, better forecast baselines, and confidence in dashboards.
+
+**Diagram:** Refer to the trend analysis and historical data tracking diagram.`,
+    diagram: 'td-trend',
+    image: null,
+    importance: '⭐⭐⭐⭐',
+  },
+  // ============================================================
   // Cyber Security Unit 1 — 17 Most Important 6-Mark Questions
   // ============================================================
   {

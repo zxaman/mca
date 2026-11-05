@@ -11,7 +11,7 @@ adding a topic is just adding an object.
 
 | Subject | Code | Units | Topics | Status |
 |---|---|---|---|---|
-| Business Intelligence | BI | 3 | 29 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) + Unit III (Multidimensional Data Modeling and OLAP) |
+| Business Intelligence | BI | 4 | 37 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) + Unit III (Multidimensional Modeling & OLAP) + Unit IV (Business Analytics and Temporal Data) |
 | Cyber Security | CYS | 5 | 83 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) + Unit V (Social Engineering) |
 | Software Testing & QA | STQA | 5 | 64 | Live |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
@@ -53,6 +53,22 @@ about 4 crore actual, roughly 1.5% dense - plus partitioning and non-empty stora
 operations (roll-up, drill-down, slice, dice, pivot, plus drill-through), OLAP versus OLTP across eleven
 points with ETL/CDC and HTAP, and applications in business analysis across nine domains with benefits and
 limitations. Each topic carries an animated SVG diagram and three six-mark questions with full answers.
+
+**Business Intelligence (Unit IV — Business Analytics and Temporal Data)** has 8 topics in two groups.
+*Analytics:* business metrics versus KPIs (the metric pyramid, SMART-plus criteria, leading and lagging
+indicators, strategic/tactical/operational hierarchy and a KPI definition sheet), the importance of KPIs in
+decision making (alignment, accountability, early warning, and the five-step measure, compare, diagnose,
+act, re-measure loop, balanced against tunnel vision, gaming and measure proliferation), and performance
+measurement with analytical reporting (the balanced scorecard's four perspectives, operational versus
+tactical versus strategic reporting, report design principles, and variance decomposition into volume, price
+and mix). *Temporal data:* introduction to temporal data (event, valid and transaction time, the four data
+classes, late-arriving facts and retention), valid time versus transaction time (bitemporal tables with
+valid_from, valid_to, txn_from and txn_to, and the current, as-of and as-was views), temporal attributes and
+timestamps (effective dates, audit columns, half-open intervals, SCD type 1/2/3 and range joins), time-based
+data analysis (MTD/QTD/YTD, YoY, moving averages, rolling 12 months, CAGR, seasonal indices, and the
+semi-additive and partial-period traps) and trend analysis with historical tracking (trend lines, Holt-Winters,
+MAPE/MAE/RMSE, append-only facts, audit history, storage tiers and restatement). Each topic carries an
+animated SVG diagram and three six-mark questions with full answers.
 
 **Data Science (Unit I — Fundamentals of Data Science)** has 12 topics: importance of data science,
 types of data (structured / semi-structured / unstructured), scales of measurement (nominal, ordinal,
@@ -339,7 +355,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 42 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (384 total).
+Curated exam-question banks: BI 59 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (401 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
@@ -380,6 +396,7 @@ src/
 │       ├── SocialEngineeringDiagrams.jsx  # Cyber Security Unit V (Social Engineering)
 │       ├── BiWarehouseDiagrams.jsx  # Business Intelligence Unit II (Data Warehousing)
 │       ├── BiOlapDiagrams.jsx  # Business Intelligence Unit III (Multidimensional / OLAP)
+│       ├── BiAnalyticsDiagrams.jsx  # Business Intelligence Unit IV (Analytics / Temporal)
 │       ├── SoftwareTestingDiagrams.jsx
 │       ├── DataScienceDiagrams.jsx
 │       └── WebDiagrams.jsx
@@ -403,6 +420,7 @@ src/
 │   ├── socialEngineering.js   # Cyber Security Unit V (Social Engineering)
 │   ├── biDataWarehousing.js   # Business Intelligence Unit II (Data Warehousing & Prep)
 │   ├── biOlap.js              # Business Intelligence Unit III (Multidimensional & OLAP)
+│   ├── biAnalytics.js         # Business Intelligence Unit IV (Analytics & Temporal Data)
 │   ├── importantQuestions.js  # curated exam banks (merges subject modules)
 │   ├── dataScienceQuestions.js
 │   └── webTechnologyQuestions.js

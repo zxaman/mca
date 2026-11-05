@@ -325,6 +325,17 @@ import {
   OlAppsDiagram,
 } from './BiOlapDiagrams';
 
+import {
+  TdMetricsDiagram,
+  TdKpiDecisionDiagram,
+  TdPerformanceDiagram,
+  TdTemporalDiagram,
+  TdBitemporalDiagram,
+  TdAttributesDiagram,
+  TdTimeAnalysisDiagram,
+  TdTrendDiagram,
+} from './BiAnalyticsDiagrams';
+
 // ============================================================
 // Improved, properly-labelled SVG diagrams
 // All labels in English (exam style) with Hinglish captions in UI
@@ -1420,6 +1431,22 @@ export function Diagram({ type }) {
       return <OlVsOltpDiagram />;
     case 'ol-apps':
       return <OlAppsDiagram />;
+    case 'td-metrics':
+      return <TdMetricsDiagram />;
+    case 'td-kpi-decision':
+      return <TdKpiDecisionDiagram />;
+    case 'td-performance':
+      return <TdPerformanceDiagram />;
+    case 'td-temporal':
+      return <TdTemporalDiagram />;
+    case 'td-bitemporal':
+      return <TdBitemporalDiagram />;
+    case 'td-attributes':
+      return <TdAttributesDiagram />;
+    case 'td-time-analysis':
+      return <TdTimeAnalysisDiagram />;
+    case 'td-trend':
+      return <TdTrendDiagram />;
     default:
       return null;
   }
