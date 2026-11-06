@@ -9,28 +9,93 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- If the bundle never mounts, say so instead of showing a blank page. -->
+    <noscript>
+      <div class="boot-fallback">
+        <strong>JavaScript band hai.</strong><br />
+        Is app ko chalane ke liye browser mein JavaScript on karo.
+      </div>
+    </noscript>
+    <!-- If the bundle never mounts, say so instead of showing a blank page. The notice removes
+         itself the moment #root gets content, so a slow first paint can never leave it stuck
+         on screen next to a working app. -->
     <script>
       (function () {
-        var show = function () {
-          var root = document.getElementById('root');
-          if (!root || root.childElementCount > 0) return;
-          if (document.getElementById('boot-fallback')) return;
+        var TIMEOUT = 8000;
+        var detail = '';
+
+        function rootEl() {
+          return document.getElementById('root');
+        }
+
+        function removeNotice() {
+          var box = document.getElementById('boot-fallback');
+          if (box && box.parentNode) box.parentNode.removeChild(box);
+        }
+
+        function mounted() {
+          var root = rootEl();
+          return !!root && root.childElementCount > 0;
+        }
+
+        function showNotice() {
+          if (mounted() || document.getElementById('boot-fallback')) return;
           var box = document.createElement('div');
           box.id = 'boot-fallback';
           box.className = 'boot-fallback';
           box.innerHTML =
             '<strong>App load nahi hua.</strong><br>' +
-            'Bundle ya dev server se connect nahi ho paya. Page reload karo; agar phir bhi blank hai to ' +
-            'terminal mein <code>npm install</code> aur <code>npm run dev</code> chala kar error dekho ' +
-            '(aksar <code>node_modules</code> missing hota hai).';
+            'Bundle ya dev server se connect nahi ho paya.' +
+            (detail ? '<br><span class="boot-fallback-detail">' + detail + '</span>' : '') +
+            '<br>Page reload karo; agar phir bhi blank hai to terminal mein ' +
+            '<code>npm install</code> aur <code>npm run dev</code> chala kar error dekho ' +
+            '(aksar <code>node_modules</code> missing hota hai).' +
+            '<br><button type="button" onclick="location.reload()">Reload</button>';
           document.body.appendChild(box);
-        };
-        window.addEventListener('error', function (event) {
-          if (event && event.target && event.target.tagName === 'SCRIPT') show();
-        }, true);
+        }
+
+        // The moment React writes into #root, drop the notice — a slow module graph must not
+        // leave an error box sitting under a perfectly working page.
+        function watchMount() {
+          var root = rootEl();
+          if (!root) return;
+          if (mounted()) {
+            removeNotice();
+            return;
+          }
+          if (!window.MutationObserver) return;
+          var observer = new MutationObserver(function () {
+            if (mounted()) {
+              removeNotice();
+              observer.disconnect();
+            }
+          });
+          observer.observe(root, { childList: true, subtree: true });
+        }
+
+        window.addEventListener(
+          'error',
+          function (event) {
+            var target = event && event.target;
+            if (target && target.tagName === 'SCRIPT') {
+              detail = 'Script load failed: ' + (target.src || 'inline module');
+              showNotice();
+            } else if (event && event.message) {
+              detail = String(event.message).slice(0, 200);
+            }
+          },
+          true,
+        );
+
+        window.addEventListener('unhandledrejection', function (event) {
+          var reason = event && event.reason;
+          detail = 'Unhandled error: ' + String((reason && reason.message) || reason).slice(0, 200);
+        });
+
         window.addEventListener('load', function () {
-          setTimeout(show, 5000);
+          watchMount();
+          setTimeout(function () {
+            if (!mounted()) showNotice();
+          }, TIMEOUT);
         });
       })();
     </script>
