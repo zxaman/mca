@@ -3401,9 +3401,241 @@ svg.diagram-svg, svg.diagram-pop {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.qp-answer-diagram {
-  margin: 16px 0 0;
+/* ---------- Explanation + answer blocks ---------- */
+
+.qp-block-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffd600;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(255, 214, 0, 0.28);
+}
+
+.qp-block-title-answer {
+  color: #c4ff00;
+  border-bottom-color: rgba(196, 255, 0, 0.28);
+}
+
+.qp-explain {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 214, 0, 0.05);
+  border: 1px solid rgba(255, 214, 0, 0.22);
+}
+
+.qp-explain .exam-answer {
+  color: #e9edf7;
+  font-size: 13px;
+}
+
+.qp-answer-main {
+  margin-top: 18px;
+}
+
+/* ---------- Labelled diagram figure ---------- */
+
+.qp-figure {
+  margin: 20px 0 0;
+  border: 1px solid rgba(100, 130, 255, 0.28);
+  border-radius: 14px;
+  background: rgba(10, 14, 26, 0.6);
+  overflow: hidden;
+}
+
+.qp-figure-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(100, 130, 255, 0.2);
+  background: rgba(100, 130, 255, 0.08);
+}
+
+.qp-figure-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9ab0e0;
+}
+
+.qp-figure-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: #c4ff00;
+  background: rgba(196, 255, 0, 0.08);
+  border: 1px solid rgba(196, 255, 0, 0.4);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.qp-figure-zoom:hover {
+  background: rgba(196, 255, 0, 0.16);
+}
+
+.qp-figure-canvas {
   overflow-x: auto;
+  padding: 10px;
+  background: #101427;
+}
+
+/* never let a 920-unit wide diagram shrink until its labels vanish */
+.qp-figure-canvas svg {
+  display: block;
+  width: 100%;
+  min-width: 660px;
+  height: auto;
+}
+
+.qp-figure-caption {
+  padding: 10px 14px 12px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #9ab0e0;
+  border-top: 1px solid rgba(100, 130, 255, 0.16);
+}
+
+.qp-figure-caption::before {
+  content: 'Figure — ';
+  color: #c4ff00;
+  font-weight: 800;
+}
+
+/* ---------- Full-screen diagram viewer ---------- */
+
+.qp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  background: rgba(4, 8, 20, 0.94);
+  backdrop-filter: blur(6px);
+  padding: 18px;
+}
+
+.qp-lightbox-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  margin: auto;
+  max-height: 100%;
+  border: 1px solid rgba(196, 255, 0, 0.28);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0a0e1a;
+}
+
+.qp-lightbox-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(100, 130, 255, 0.24);
+  background: rgba(100, 130, 255, 0.1);
+}
+
+.qp-lightbox-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #dfe7f6;
+  line-height: 1.5;
+}
+
+.qp-lightbox-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.qp-lightbox-tools button {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid rgba(196, 255, 0, 0.4);
+  background: rgba(196, 255, 0, 0.1);
+  color: #c4ff00;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.qp-lightbox-tools button:hover {
+  background: rgba(196, 255, 0, 0.2);
+}
+
+.qp-lightbox-close {
+  color: #ff7ab2 !important;
+  border-color: rgba(255, 122, 178, 0.45) !important;
+  background: rgba(255, 122, 178, 0.1) !important;
+}
+
+.qp-lightbox-scale {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ab0e0;
+  min-width: 42px;
+  text-align: center;
+}
+
+.qp-lightbox-canvas {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+  background: #101427;
+}
+
+.qp-lightbox-inner {
+  margin: 0 auto;
+}
+
+.qp-lightbox-inner svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 720px) {
+  .qp-lightbox {
+    padding: 0;
+  }
+
+  .qp-lightbox-panel {
+    border-radius: 0;
+    max-height: 100%;
+  }
+
+  .qp-lightbox-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .qp-lightbox-title {
+    font-size: 11.5px;
+  }
+
+  .qp-figure-canvas svg {
+    min-width: 560px;
+  }
 }
 
 .qp-sheet-foot {
@@ -3441,4 +3673,53 @@ svg.diagram-svg, svg.diagram-pop {
 
 .qp-option-flat:first-child {
   border-top: none;
+}
+
+/* ---------- Question Papers card (6th card in the subjects grid) ---------- */
+
+.qp-card {
+  border-color: rgba(196, 255, 0, 0.34);
+}
+
+.qp-card .subject-card-icon {
+  background: rgba(196, 255, 0, 0.14);
+  border-color: rgba(196, 255, 0, 0.45);
+}
+
+.qp-card .subject-card-code {
+  color: #c4ff00;
+  background: rgba(196, 255, 0, 0.12);
+  border-color: rgba(196, 255, 0, 0.4);
+}
+
+.qp-card .subject-card-desc strong {
+  color: #e9f4ff;
+}
+
+.qp-card .subject-card-cta {
+  margin-top: 4px;
+}
+
+/* ---------- Top nav actions ---------- */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-papers {
+  border-color: rgba(196, 255, 0, 0.4);
+  color: #c4ff00;
+}
+
+.nav-papers:hover {
+  background: rgba(196, 255, 0, 0.12);
+}
+
+@media (max-width: 560px) {
+  .nav-papers {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
 }

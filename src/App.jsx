@@ -3,6 +3,7 @@ import { subjects, units } from './data/topics';
 import TopicPage from './components/TopicPage';
 import ImportantExamQuestions from './components/ImportantExamQuestions';
 import { QuestionPapersHome, QuestionPaperView, QuestionPapersSidebar } from './components/QuestionPapers';
+import { questionPapers } from './data/questionPapers';
 import Sidebar from './components/Sidebar';
 import { Icon } from './components/Icons';
 import { getCompletedTopics } from './utils/progress';
@@ -167,6 +168,35 @@ function UnitPage({ subject, onBack }) {
   );
 }
 
+// ---------- Question Papers card (sits in the subjects grid) ----------
+function QuestionPapersCard() {
+  const paperSubjects = subjects.filter((subject) => (questionPapers[subject.id] || []).length > 0);
+  const totalPapers = paperSubjects.reduce((n, s) => n + questionPapers[s.id].length, 0);
+  return (
+    <article className="subject-card qp-card" style={{ '--accent': '#c4ff00' }}>
+      <div className="subject-card-head">
+        <span className="subject-card-icon"><Icon name="quiz" size={30} color="#c4ff00" /></span>
+        <span className="subject-card-code">QP</span>
+      </div>
+      <h2 className="subject-card-title">Question Papers</h2>
+      <p className="subject-card-desc">
+        Asli exam format mein papers — 50 marks, 2½ hours, OR options aur per-part marks. Har jawab
+        chhupa rehta hai; <strong>Show answer</strong> par poora answer + diagram khulta hai.
+      </p>
+      <p className="subject-progress">
+        ★ {totalPapers} paper{totalPapers === 1 ? '' : 's'} live · {paperSubjects.length} subject
+        {paperSubjects.length === 1 ? '' : 's'} covered
+      </p>
+      <button
+        className="subject-card-cta"
+        onClick={() => goTo('#/question-papers')}
+      >
+        Open Paper Sets <Icon name="arrow" size={16} color="#c4ff00" />
+      </button>
+    </article>
+  );
+}
+
 // ---------- Home ----------
 function Home() {
   const liveSubjects = subjects.filter((subject) => subject.available);
@@ -229,22 +259,8 @@ function Home() {
           {subjects.map((subject) => (
             <SubjectCard key={subject.id} subject={subject} />
           ))}
+          <QuestionPapersCard />
         </div>
-
-        {/* Question Papers entry */}
-        <section className="qp-home-banner">
-          <div className="qp-home-banner-text">
-            <div className="section-kicker">Practice</div>
-            <h2 className="qp-home-banner-title">Question Papers</h2>
-            <p className="qp-home-banner-sub">
-              Asli exam format mein papers — 50 marks, 2½ hours, OR options. Har jawab chhupa hua
-              rehta hai; <strong>Show answer</strong> par poora answer aur diagram khulta hai.
-            </p>
-          </div>
-          <button className="btn primary qp-home-banner-cta" onClick={() => goTo('#/question-papers')}>
-            <Icon name="quiz" size={18} color="#0a0e1a" /> Open Question Papers
-          </button>
-        </section>
       </main>
     </div>
   );
@@ -392,7 +408,12 @@ export default function App() {
             <span className="brand" onClick={goHome} style={{ cursor: 'pointer', marginLeft: '32px' }}>
               <span className="brand-dot" /> MCA · Hinglish Study
             </span>
-            <button className="nav-home" onClick={goHome}>Home</button>
+            <div className="nav-actions">
+              <button className="nav-home" onClick={goHome}>Home</button>
+              <button className="nav-home nav-papers" onClick={() => goTo('#/question-papers')}>
+                Question Papers
+              </button>
+            </div>
           </div>
         </nav>
 

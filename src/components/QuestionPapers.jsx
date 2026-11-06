@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { subjects } from '../data/topics';
 import { goTo } from '../utils/navigation';
 import { questionPapers } from '../data/questionPapers';
@@ -28,7 +28,8 @@ export function QuestionPapersHome() {
           </div>
           <h1 className="topic-hero-title">Question Papers</h1>
           <p className="topic-hero-sub">
-            Asli exam format mein papers — jawab chhupa hua rehta hai, "Show answer" par khulta hai.
+            Real exam-format papers in English — every question is answered in full, but the answer stays
+            hidden until you press Show answer.
           </p>
           <div className="topic-hero-stats">
             <span>{withPapers.length} subject{withPapers.length === 1 ? '' : 's'}</span>
@@ -170,9 +171,62 @@ export function QuestionPapersSidebar({ subjectId, paperId, onClose, mobileOpen 
       </div>
 
       <div className="sidebar-footer">
-        <span>Papers · answers hidden till tap</span>
+        <span>Papers · answers hidden until revealed</span>
       </div>
     </aside>
+  );
+}
+
+// A diagram in an answer: labelled figure + full-screen, zoomable view, because the
+// exam diagrams are drawn on a 920 x 520 canvas and their labels are unreadable when
+// the drawing is squeezed into a phone-width column.
+function DiagramFigure({ type, caption }) {
+  const [open, setOpen] = useState(false);
+  const [scale, setScale] = useState(1.6);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  return (
+    <figure className="qp-figure">
+      <div className="qp-figure-head">
+        <span className="qp-figure-tag">Diagram</span>
+        <button className="qp-figure-zoom" onClick={() => setOpen(true)}>
+          <Icon name="expand" size={14} color="#c4ff00" /> Enlarge
+        </button>
+      </div>
+      <div className="qp-figure-canvas">
+        <Diagram type={type} />
+      </div>
+      {caption && <figcaption className="qp-figure-caption">{caption}</figcaption>}
+
+      {open && (
+        <div className="qp-lightbox" role="dialog" aria-modal="true" aria-label={caption || 'Diagram'}>
+          <div className="qp-lightbox-panel">
+            <div className="qp-lightbox-head">
+              <span className="qp-lightbox-title">{caption || 'Diagram'}</span>
+              <div className="qp-lightbox-tools">
+                <button onClick={() => setScale((s) => Math.max(1, +(s - 0.3).toFixed(2)))} aria-label="Zoom out">−</button>
+                <span className="qp-lightbox-scale">{Math.round(scale * 100)}%</span>
+                <button onClick={() => setScale((s) => Math.min(3, +(s + 0.3).toFixed(2)))} aria-label="Zoom in">+</button>
+                <button className="qp-lightbox-close" onClick={() => setOpen(false)} aria-label="Close diagram">✕</button>
+              </div>
+            </div>
+            <div className="qp-lightbox-canvas">
+              <div className="qp-lightbox-inner" style={{ width: `${920 * scale}px` }}>
+                <Diagram type={type} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </figure>
   );
 }
 
@@ -186,12 +240,21 @@ function AnswerBlock({ part }) {
       </button>
       {open && (
         <div className="qp-answer-body">
-          <ExamAnswer text={part.answer} />
-          {part.diagram && (
-            <figure className="qp-answer-diagram">
-              <Diagram type={part.diagram} />
-            </figure>
+          {part.explain && (
+            <section className="qp-explain">
+              <h4 className="qp-block-title">
+                <Icon name="bulb" size={16} color="#ffd600" /> Explanation
+              </h4>
+              <ExamAnswer text={part.explain} />
+            </section>
           )}
+          <section className="qp-answer-main">
+            <h4 className="qp-block-title qp-block-title-answer">
+              <Icon name="check" size={16} color="#c4ff00" /> Answer
+            </h4>
+            <ExamAnswer text={part.answer} />
+          </section>
+          {part.diagram && <DiagramFigure type={part.diagram} caption={part.diagramCaption} />}
         </div>
       )}
     </div>
