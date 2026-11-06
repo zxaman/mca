@@ -1,46 +1,71 @@
 const FONT = "'Segoe UI', system-ui, sans-serif";
 
+// Translucent card fills: an rgba fill is rendered identically by the browser, the
+// lightbox and the SVG rasteriser, whereas an opacity attribute is silently dropped
+// by some renderers and turns the card into a solid block that hides its own labels.
+const tint = (hex, alpha) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
+};
+
+
 // 1. QA vs QC Comparison
 export function QAQCComparisonDiagram() {
+  const qa = [
+    ['Prevents defects', 'process focus — stop the defect being created'],
+    ['Owned by the whole team', 'analysts, developers, testers, managers'],
+    ['Systematic', 'standards, reviews, checklists, audits'],
+    ['Continuous', 'runs through every phase of the life cycle'],
+  ];
+  const qc = [
+    ['Finds defects', 'product focus — compare output with the expectation'],
+    ['Run by the testing team', 'an independent team executes the checks'],
+    ['Validation', 'the software is actually executed'],
+    ['Final gate', 'release decision on measured quality'],
+  ];
   return (
     <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
-      <defs>
-        <marker id="arrowST1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L8,3 L0,6 Z" fill="#c4ff00" />
-        </marker>
-      </defs>
-      {/* QA side */}
-      <rect x="60" y="60" width="300" height="280" rx="10" fill="#0047ff" opacity="0.1" stroke="#0047ff" strokeWidth="2" />
-      <text x="210" y="90" textAnchor="middle" fill="#0047ff" fontSize="18" fontWeight="800" fontFamily={FONT}>QA (Quality Assurance)</text>
-      <text x="210" y="115" textAnchor="middle" fill="#888" fontSize="13" fontFamily={FONT}>Process-Oriented</text>
-      {['Prevents defects', 'Whole team', 'Systematic', 'Continuous'].map((item, i) => {
-        const y = 150 + i * 40;
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        Quality assurance versus quality control
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        QA builds quality into the process · QC measures quality in the product
+      </text>
+
+      <rect x="20" y="66" width="368" height="256" rx="12" fill="rgba(0,71,255,0.12)" stroke="#0047ff" strokeWidth="1.6" />
+      <text x="40" y="94" fill="#6fb2ff" fontSize="12.5" fontWeight="800" fontFamily={FONT}>QA — QUALITY ASSURANCE</text>
+      <text x="40" y="112" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>Process oriented · preventive · verification</text>
+      {qa.map((row, i) => {
+        const y = 146 + i * 44;
         return (
-          <g key={i}>
-            <circle cx="100" cy={y} r="6" fill="#0047ff" />
-            <line x1="110" y1={y} x2="300" y2={y} stroke="#333" strokeWidth="1" />
-            <text x="310" y={y + 4} fill="#fff" fontSize="13" fontFamily={FONT}>{item}</text>
+          <g key={row[0]}>
+            <circle cx="46" cy={y - 3} r="3.4" fill="#6fb2ff" />
+            <text x="58" y={y} fill="#ffffff" fontSize="10.4" fontWeight="700" fontFamily={FONT}>{row[0]}</text>
+            <text x="58" y={y + 15} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{row[1]}</text>
           </g>
         );
       })}
-      {/* QC side */}
-      <rect x="440" y="60" width="300" height="280" rx="10" fill="#ff0040" opacity="0.1" stroke="#ff0040" strokeWidth="2" />
-      <text x="590" y="90" textAnchor="middle" fill="#ff0040" fontSize="18" fontWeight="800" fontFamily={FONT}>QC (Quality Control)</text>
-      <text x="590" y="115" textAnchor="middle" fill="#888" fontSize="13" fontFamily={FONT}>Product-Oriented</text>
-      {['Finds defects', 'QA team', 'Verification', 'Final check'].map((item, i) => {
-        const y = 150 + i * 40;
+
+      <rect x="412" y="66" width="368" height="256" rx="12" fill="rgba(255,0,64,0.12)" stroke="#ff0040" strokeWidth="1.6" />
+      <text x="432" y="94" fill="#ff7a90" fontSize="12.5" fontWeight="800" fontFamily={FONT}>QC — QUALITY CONTROL</text>
+      <text x="432" y="112" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>Product oriented · detective · validation</text>
+      {qc.map((row, i) => {
+        const y = 146 + i * 44;
         return (
-          <g key={i}>
-            <circle cx="480" cy={y} r="6" fill="#ff0040" />
-            <line x1="490" y1={y} x2="680" y2={y} stroke="#333" strokeWidth="1" />
-            <text x="690" y={y + 4} fill="#fff" fontSize="13" fontFamily={FONT}>{item}</text>
+          <g key={row[0]}>
+            <circle cx="438" cy={y - 3} r="3.4" fill="#ff7a90" />
+            <text x="450" y={y} fill="#ffffff" fontSize="10.4" fontWeight="700" fontFamily={FONT}>{row[0]}</text>
+            <text x="450" y={y + 15} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{row[1]}</text>
           </g>
         );
       })}
-      {/* VS in middle */}
-      <circle cx="400" cy="200" r="35" fill="#c4ff00" opacity="0.2" stroke="#c4ff00" strokeWidth="2" />
-      <text x="400" y="206" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>VS</text>
-      <text x="400" y="380" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>QA vs QC</text>
+
+      <text x="400" y="348" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Example — QA: a mandatory code review before every merge · QC: executing the login test cases on the build
+      </text>
+      <text x="400" y="372" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: QA is verification of the process, QC is validation of the product; both are needed, QC alone finds defects too late
+      </text>
     </svg>
   );
 }
@@ -48,200 +73,264 @@ export function QAQCComparisonDiagram() {
 // 2. SQA Components
 export function SQAComponentsDiagram() {
   const components = [
-    { name: 'Standards', desc: 'ISO, CMMI', color: '#0047ff' },
-    { name: 'Metrics', desc: 'Measure', color: '#00aaff' },
-    { name: 'Reviews', desc: 'Code review', color: '#00ff88' },
-    { name: 'Testing', desc: 'Unit, Integration', color: '#c4ff00' },
-    { name: 'Training', desc: 'Team skills', color: '#ff8800' },
-    { name: 'Audits', desc: 'Compliance', color: '#ff0080' },
+    { name: 'Standards', desc: ['ISO 9001, CMMI,', 'coding and review standards'], color: '#0047ff' },
+    { name: 'Metrics', desc: ['defect density, coverage,', 'review rate, MTTR'], color: '#00aaff' },
+    { name: 'Reviews', desc: ['walkthrough, technical', 'review, formal inspection'], color: '#00ff88' },
+    { name: 'Testing', desc: ['unit, integration,', 'system, acceptance'], color: '#c4ff00' },
+    { name: 'Training', desc: ['skills, tool knowledge,', 'quality awareness'], color: '#ff8800' },
+    { name: 'Audits', desc: ['process compliance', 'and independent check'], color: '#ff0080' },
   ];
   return (
     <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        Components of the SQA system
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        Six components work together — remove one and the quality system has a hole
+      </text>
       {components.map((c, i) => {
-        const col = i % 3;
-        const row = Math.floor(i / 3);
-        const x = 150 + col * 250;
-        const y = 80 + row * 120;
+        const x = 16 + (i % 3) * 254;
+        const y = 70 + Math.floor(i / 3) * 124;
         return (
-          <g key={i}>
-            <rect x={x - 100} y={y - 40} width="200" height="80" rx="10" fill={c.color} opacity="0.15" stroke={c.color} strokeWidth="2" />
-            <text x={x} y={y - 5} textAnchor="middle" fill={c.color} fontSize="16" fontWeight="800" fontFamily={FONT}>{c.name}</text>
-            <text x={x} y={y + 18} textAnchor="middle" fill="#fff" fontSize="12" fontFamily={FONT}>{c.desc}</text>
+          <g key={c.name}>
+            <rect x={x} y={y} width="238" height="106" rx="10" fill={tint(c.color, 0.12)} stroke={c.color} strokeWidth="1.5" />
+            <text x={x + 16} y={y + 26} fill={c.color} fontSize="11.5" fontWeight="800" fontFamily={FONT}>{c.name}</text>
+            <text x={x + 16} y={y + 50} fill="#e8f0ff" fontSize="9" fontFamily={FONT}>{c.desc[0]}</text>
+            <text x={x + 16} y={y + 66} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{c.desc[1]}</text>
           </g>
         );
       })}
-      <text x="400" y="360" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>SQA SYSTEM COMPONENTS</text>
-      <text x="400" y="380" textAnchor="middle" fill="#888" fontSize="12" fontFamily={FONT}>All components work together for quality</text>
+      <text x="400" y="340" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Standards and metrics define quality · reviews and testing measure it · training and audits keep it alive
+      </text>
+      <text x="400" y="366" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: the SQA system = standards, metrics, reviews, testing, training and audits, supported by the quality plan
+      </text>
     </svg>
   );
 }
 
-// 3. Quality Business Impact
+// 3. Quality in the Business Context
 export function QualityBusinessImpactDiagram() {
   const benefits = [
-    { name: 'Lower Costs', icon: '💰' },
-    { name: 'Customer Satisfaction', icon: '😊' },
-    { name: 'Reputation', icon: '⭐' },
-    { name: 'Competitive Edge', icon: '🏆' },
-    { name: 'Reduced Risks', icon: '🛡️' },
-  ];
-  return (
-    <svg viewBox="0 0 800 350" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
-      {/* Quality center */}
-      <circle cx="400" cy="80" r="50" fill="#c4ff00" opacity="0.2" stroke="#c4ff00" strokeWidth="3" />
-      <text x="400" y="75" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>QUALITY</text>
-      <text x="400" y="95" textAnchor="middle" fill="#888" fontSize="11" fontFamily={FONT}>Software</text>
-      {/* Arrows to benefits */}
-      {benefits.map((b, i) => {
-        const x = 120 + i * 140;
-        const y = 200;
-        return (
-          <g key={i}>
-            <line x1="400" y1="130" x2={x} y2={y - 30} stroke="#c4ff00" strokeWidth="2" markerEnd="url(#arrowST1)" />
-            <rect x={x - 60} y={y - 30} width="120" height="60" rx="10" fill="#0047ff" opacity="0.1" stroke="#0047ff" strokeWidth="2" />
-            <text x={x} y={y - 5} textAnchor="middle" fontSize="24">{b.icon}</text>
-            <text x={x} y={y + 15} textAnchor="middle" fill="#fff" fontSize="11" fontFamily={FONT}>{b.name}</text>
-          </g>
-        );
-      })}
-      {/* Result */}
-      <rect x="250" y="280" width="300" height="50" rx="10" fill="#00ff88" opacity="0.15" stroke="#00ff88" strokeWidth="2" />
-      <text x="400" y="310" textAnchor="middle" fill="#00ff88" fontSize="16" fontWeight="800" fontFamily={FONT}>BUSINESS SUCCESS</text>
-      <text x="400" y="350" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="700" fontFamily={FONT}>Quality → Benefits → Success</text>
-    </svg>
-  );
-}
-
-// 4. SQA Planning Process
-export function SQAPlanningProcessDiagram() {
-  const steps = [
-    { name: 'Goals', desc: 'Define', color: '#0047ff' },
-    { name: 'Standards', desc: 'Establish', color: '#00aaff' },
-    { name: 'Resources', desc: 'Allocate', color: '#00ff88' },
-    { name: 'Schedules', desc: 'Create', color: '#c4ff00' },
-    { name: 'Processes', desc: 'Define', color: '#ff8800' },
-    { name: 'Document', desc: 'Plan', color: '#ff0080' },
-  ];
-  return (
-    <svg viewBox="0 0 800 350" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
-      {steps.map((s, i) => {
-        const x = 100 + i * 120;
-        return (
-          <g key={i}>
-            <rect x={x - 50} y={80} width="100" height="80" rx="10" fill={s.color} opacity="0.15" stroke={s.color} strokeWidth="2" />
-            <text x={x} y={110} textAnchor="middle" fill={s.color} fontSize="14" fontWeight="800" fontFamily={FONT}>{s.name}</text>
-            <text x={x} y={130} textAnchor="middle" fill="#fff" fontSize="11" fontFamily={FONT}>{s.desc}</text>
-            {i < steps.length - 1 && (
-              <line x1={x + 50} y1={120} x2={x + 120 - 50} y2={120} stroke="#c4ff00" strokeWidth="2" markerEnd="url(#arrowST1)" />
-            )}
-          </g>
-        );
-      })}
-      <text x="400" y="230" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>SQA PLANNING PROCESS</text>
-      <text x="400" y="255" textAnchor="middle" fill="#888" fontSize="12" fontFamily={FONT}>Goals → Standards → Resources → Schedules → Processes → Documentation</text>
-      <text x="400" y="320" textAnchor="middle" fill="#00ff88" fontSize="12" fontWeight="700" fontFamily={FONT}>Quality built-in — not tested-in</text>
-    </svg>
-  );
-}
-
-// 5. Product vs Process Quality
-export function ProductProcessQualityDiagram() {
-  return (
-    <svg viewBox="0 0 800 350" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
-      {/* Product side */}
-      <rect x="60" y="60" width="300" height="220" rx="10" fill="#0047ff" opacity="0.1" stroke="#0047ff" strokeWidth="2" />
-      <text x="210" y="85" textAnchor="middle" fill="#0047ff" fontSize="16" fontWeight="800" fontFamily={FONT}>PRODUCT QUALITY</text>
-      <text x="210" y="105" textAnchor="middle" fill="#888" fontSize="11" fontFamily={FONT}>Outcome — What We Get</text>
-      {['Reliability', 'Usability', 'Performance', 'Maintainability', 'Scalability', 'Security'].map((item, i) => {
-        const y = 130 + i * 25;
-        return (
-          <g key={i}>
-            <circle cx="90" cy={y} r="5" fill="#0047ff" />
-            <line x1="100" y1={y} x2="280" y2={y} stroke="#333" strokeWidth="1" />
-            <text x="290" y={y + 4} fill="#fff" fontSize="12" fontFamily={FONT}>{item}</text>
-          </g>
-        );
-      })}
-      {/* Process side */}
-      <rect x="440" y="60" width="300" height="220" rx="10" fill="#ff8800" opacity="0.1" stroke="#ff8800" strokeWidth="2" />
-      <text x="590" y="85" textAnchor="middle" fill="#ff8800" fontSize="16" fontWeight="800" fontFamily={FONT}>PROCESS QUALITY</text>
-      <text x="590" y="105" textAnchor="middle" fill="#888" fontSize="11" fontFamily={FONT}>Approach — How We Work</text>
-      {['Planning', 'Design', 'Coding', 'Testing', 'Standards', 'Metrics'].map((item, i) => {
-        const y = 130 + i * 25;
-        return (
-          <g key={i}>
-            <circle cx="470" cy={y} r="5" fill="#ff8800" />
-            <line x1="480" y1={y} x2="660" y2={y} stroke="#333" strokeWidth="1" />
-            <text x="670" y={y + 4} fill="#fff" fontSize="12" fontFamily={FONT}>{item}</text>
-          </g>
-        );
-      })}
-      {/* VS in middle */}
-      <circle cx="400" cy="170" r="30" fill="#c4ff00" opacity="0.2" stroke="#c4ff00" strokeWidth="2" />
-      <text x="400" y="176" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>VS</text>
-      <line x1="340" y1="170" x2="460" y2="170" stroke="#c4ff00" strokeWidth="2" />
-      <text x="400" y="320" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="700" fontFamily={FONT}>Good Process → Good Product</text>
-    </svg>
-  );
-}
-
-// 6. Process Models Comparison
-export function ProcessModelsComparisonDiagram() {
-  const models = [
-    { name: 'Waterfall', desc: 'Linear', color: '#0047ff' },
-    { name: 'Agile', desc: 'Iterative', color: '#00ff88' },
-    { name: 'Spiral', desc: 'Risk-Driven', color: '#ff8800' },
-    { name: 'V-Model', desc: 'Verification', color: '#ff0080' },
-  ];
-  return (
-    <svg viewBox="0 0 800 350" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
-      {models.map((m, i) => {
-        const x = 120 + i * 180;
-        return (
-          <g key={i}>
-            <rect x={x - 70} y={60} width="140" height="100" rx="10" fill={m.color} opacity="0.15" stroke={m.color} strokeWidth="2" />
-            <text x={x} y={90} textAnchor="middle" fill={m.color} fontSize="16" fontWeight="800" fontFamily={FONT}>{m.name}</text>
-            <text x={x} y={115} textAnchor="middle" fill="#fff" fontSize="12" fontFamily={FONT}>{m.desc}</text>
-          </g>
-        );
-      })}
-      <text x="400" y="230" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>SOFTWARE PROCESS MODELS</text>
-      <text x="400" y="255" textAnchor="middle" fill="#888" fontSize="12" fontFamily={FONT}>Waterfall | Agile | Spiral | V-Model</text>
-      <text x="400" y="300" textAnchor="middle" fill="#00ff88" fontSize="12" fontWeight="700" fontFamily={FONT}>Each model has strengths and weaknesses</text>
-    </svg>
-  );
-}
-
-// 7. QC Tools Overview
-export function QCToolsOverviewDiagram() {
-  const tools = [
-    { name: 'Check Sheet', desc: 'Data', color: '#0047ff' },
-    { name: 'Flow Chart', desc: 'Process', color: '#00aaff' },
-    { name: 'Histogram', desc: 'Distribution', color: '#00ff88' },
-    { name: 'Pareto', desc: 'Priority', color: '#c4ff00' },
-    { name: 'Fishbone', desc: 'Root Cause', color: '#ff8800' },
-    { name: 'Scatter', desc: 'Relationship', color: '#ff0080' },
-    { name: 'Control Chart', desc: 'Control', color: '#aa00ff' },
+    { name: 'Lower cost', desc: ['less rework,', 'fewer hotfixes'], color: '#00ff88' },
+    { name: 'Satisfied users', desc: ['features work,', 'trust grows'], color: '#00aaff' },
+    { name: 'Reputation', desc: ['reviews, referrals,', 'brand value'], color: '#c4ff00' },
+    { name: 'Competitive edge', desc: ['faster releases,', 'lower price'], color: '#ff8800' },
+    { name: 'Lower risk', desc: ['no outage,', 'no penalty'], color: '#ff0080' },
   ];
   return (
     <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
-      {tools.map((t, i) => {
-        const col = i % 4;
-        const row = Math.floor(i / 4);
-        const x = 130 + col * 180;
-        const y = 80 + row * 140;
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        Software quality in the business context
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        Quality is not a technical luxury — it decides cost, reputation and market position
+      </text>
+      <rect x="150" y="64" width="500" height="46" rx="10" fill="rgba(196,255,0,0.12)" stroke="#c4ff00" strokeWidth="1.5" />
+      <text x="400" y="93" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>SOFTWARE QUALITY</text>
+      {[190, 305, 420, 535, 650].map((x, i) => (
+        <line key={i} x1="400" y1="110" x2={x} y2="160" stroke="#33406b" strokeWidth="1.4" />
+      ))}
+      {benefits.map((b, i) => {
+        const x = 105 + i * 118;
         return (
-          <g key={i}>
-            <rect x={x - 70} y={y - 40} width="140" height="80" rx="10" fill={t.color} opacity="0.15" stroke={t.color} strokeWidth="2" />
-            <text x={x} y={y - 5} textAnchor="middle" fill={t.color} fontSize="14" fontWeight="800" fontFamily={FONT}>{t.name}</text>
-            <text x={x} y={y + 18} textAnchor="middle" fill="#fff" fontSize="11" fontFamily={FONT}>{t.desc}</text>
+          <g key={b.name}>
+            <rect x={x} y="160" width="108" height="92" rx="10" fill={tint(b.color, 0.12)} stroke={b.color} strokeWidth="1.5" />
+            <text x={x + 54} y="184" textAnchor="middle" fill={b.color} fontSize="10" fontWeight="800" fontFamily={FONT}>{b.name}</text>
+            <text x={x + 54} y="205" textAnchor="middle" fill="#e8f0ff" fontSize="8.6" fontFamily={FONT}>{b.desc[0]}</text>
+            <text x={x + 54} y="219" textAnchor="middle" fill="#9ab0e0" fontSize="8.6" fontFamily={FONT}>{b.desc[1]}</text>
           </g>
         );
       })}
-      <text x="400" y="380" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>7 QC TOOLS</text>
+      <rect x="150" y="272" width="500" height="40" rx="10" fill="rgba(0,71,255,0.14)" stroke="#0047ff" strokeWidth="1.5" />
+      <text x="400" y="297" textAnchor="middle" fill="#6fb2ff" fontSize="11" fontWeight="700" fontFamily={FONT}>
+        Better quality → lower cost, faster delivery, repeat business
+      </text>
+      <text x="400" y="342" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        The cost of poor quality is paid by the business, not only by the test team
+      </text>
+      <text x="400" y="368" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: quality affects cost of rework, customer satisfaction, reputation, competitiveness and business risk
+      </text>
     </svg>
   );
 }
+
+// 4. Planning for SQA
+export function SQAPlanningProcessDiagram() {
+  const steps = [
+    ['1. Quality goals', 'measurable targets,', 'for the release'],
+    ['2. Standards', 'ISO 9001, CMMI,', 'internal checklists'],
+    ['3. Resources', 'people, tools,', 'environment, budget'],
+    ['4. Schedule', 'reviews and tests', 'on the project plan'],
+    ['5. Processes', 'review, test and', 'defect workflow'],
+    ['6. Documentation', 'quality plan, records,', 'audit evidence'],
+  ];
+  return (
+    <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        Planning for software quality assurance
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        The SQA plan fixes goals, standards, resources, schedule, process and documentation before work starts
+      </text>
+      {steps.map((s, i) => {
+        const x = 12 + i * 130;
+        return (
+          <g key={s[0]}>
+            <rect x={x} y="80" width="112" height="120" rx="10" fill={tint('#0047ff', 0.1 + i * 0.012)} stroke="#6fb2ff" strokeWidth="1.4" />
+            <text x={x + 56} y="106" textAnchor="middle" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>{s[0]}</text>
+            <text x={x + 56} y="132" textAnchor="middle" fill="#e8f0ff" fontSize="9" fontFamily={FONT}>{s[1]}</text>
+            <text x={x + 56} y="148" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{s[2]}</text>
+          </g>
+        );
+      })}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <text key={i} x={124 + i * 130} y="146" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>→</text>
+      ))}
+      <rect x="60" y="228" width="680" height="60" rx="10" fill="rgba(0,255,136,0.1)" stroke="#00ff88" strokeWidth="1.4" />
+      <text x="400" y="254" textAnchor="middle" fill="#00ff88" fontSize="11" fontWeight="700" fontFamily={FONT}>
+        Quality is built in, not tested in
+      </text>
+      <text x="400" y="274" textAnchor="middle" fill="#9ab0e0" fontSize="9.4" fontFamily={FONT}>
+        The plan says who reviews, who tests, against which standard, by which date and how the result is recorded
+      </text>
+      <text x="400" y="330" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        A plan without measurable goals cannot be audited — goals, standards and records are the three proofs
+      </text>
+      <text x="400" y="360" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: planning for SQA produces the quality plan covering goals, standards, resources, schedule and documentation
+      </text>
+    </svg>
+  );
+}
+
+// 5. Product Quality and Process Quality
+export function ProductProcessQualityDiagram() {
+  const product = ['Functionality', 'Reliability', 'Usability', 'Performance', 'Maintainability', 'Security'];
+  const process = ['Requirements review', 'Design inspection', 'Coding standard', 'Test coverage target', 'Defect tracking', 'Process audit'];
+  return (
+    <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        Product quality and process quality
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        Product quality is what the user experiences · process quality is how the product was produced
+      </text>
+      <rect x="20" y="66" width="368" height="252" rx="12" fill="rgba(0,71,255,0.12)" stroke="#0047ff" strokeWidth="1.6" />
+      <text x="40" y="92" fill="#6fb2ff" fontSize="11.5" fontWeight="800" fontFamily={FONT}>PRODUCT QUALITY — outcome</text>
+      <text x="40" y="110" fill="#9ab0e0" fontSize="9.2" fontFamily={FONT}>Measured on the delivered software</text>
+      {product.map((p, i) => (
+        <g key={p}>
+          <circle cx="46" cy={134 + i * 30} r="3.2" fill="#6fb2ff" />
+          <text x="58" y={138 + i * 30} fill="#e8f0ff" fontSize="10" fontFamily={FONT}>{p}</text>
+        </g>
+      ))}
+      <rect x="412" y="66" width="368" height="252" rx="12" fill="rgba(255,136,0,0.12)" stroke="#ff8800" strokeWidth="1.6" />
+      <text x="432" y="92" fill="#ffb066" fontSize="11.5" fontWeight="800" fontFamily={FONT}>PROCESS QUALITY — cause</text>
+      <text x="432" y="110" fill="#9ab0e0" fontSize="9.2" fontFamily={FONT}>Measured on the way the work is done</text>
+      {process.map((p, i) => (
+        <g key={p}>
+          <circle cx="438" cy={134 + i * 30} r="3.2" fill="#ffb066" />
+          <text x="450" y={138 + i * 30} fill="#e8f0ff" fontSize="10" fontFamily={FONT}>{p}</text>
+        </g>
+      ))}
+      <text x="400" y="344" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
+        Good process → good product · a lucky good product does not survive the next release
+      </text>
+      <text x="400" y="370" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: product quality satisfies the user today, process quality keeps satisfying the user release after release
+      </text>
+    </svg>
+  );
+}
+
+// 6. Software Process Models
+export function ProcessModelsComparisonDiagram() {
+  const models = [
+    { name: 'Waterfall', how: 'Linear phases', test: 'one test phase after coding', color: '#0047ff' },
+    { name: 'Agile', how: 'Short iterations', test: 'tests inside every sprint', color: '#00ff88' },
+    { name: 'Spiral', how: 'Risk driven loops', test: 'risk analysis in every loop', color: '#ff8800' },
+    { name: 'V-Model', how: 'V shaped phases', test: 'a test level per design phase', color: '#ff0080' },
+  ];
+  return (
+    <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        Software process models and where testing fits
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        The model decides when testing starts, how often it repeats and how early defects are found
+      </text>
+      {models.map((m, i) => {
+        const x = 14 + i * 192;
+        return (
+          <g key={m.name}>
+            <rect x={x} y="70" width="176" height="150" rx="10" fill={tint(m.color, 0.12)} stroke={m.color} strokeWidth="1.6" />
+            <text x={x + 88} y="96" textAnchor="middle" fill={m.color} fontSize="12" fontWeight="800" fontFamily={FONT}>{m.name}</text>
+            <text x={x + 88} y="118" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{m.how}</text>
+            <line x1={x + 22} y1="132" x2={x + 154} y2="132" stroke="#33406b" strokeWidth="1" />
+            <text x={x + 88} y="152" textAnchor="middle" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>TESTING</text>
+            <text x={x + 88} y="172" textAnchor="middle" fill="#e8f0ff" fontSize="9" fontFamily={FONT}>{m.test.split(' ').slice(0, 3).join(' ')}</text>
+            <text x={x + 88} y="188" textAnchor="middle" fill="#e8f0ff" fontSize="9" fontFamily={FONT}>{m.test.split(' ').slice(3).join(' ')}</text>
+          </g>
+        );
+      })}
+      <rect x="40" y="238" width="720" height="34" rx="8" fill="rgba(0,71,255,0.12)" stroke="#0047ff" strokeWidth="1.2" />
+      <text x="400" y="260" textAnchor="middle" fill="#6fb2ff" fontSize="9.6" fontFamily={FONT}>
+        Earlier test design = cheaper defects · V-model pairs each development phase with a test level
+      </text>
+      <text x="400" y="312" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Waterfall finds defects late, Agile and V-model shift testing left, Spiral attacks the biggest risk first
+      </text>
+      <text x="400" y="344" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: compare models by phase structure, risk handling and the point at which testing enters
+      </text>
+    </svg>
+  );
+}
+
+// 7. Seven QC Tools
+export function QCToolsOverviewDiagram() {
+  const tools = [
+    { name: 'Check sheet', use: 'collect the defect data', color: '#0047ff' },
+    { name: 'Flow chart', use: 'map the process steps', color: '#00aaff' },
+    { name: 'Histogram', use: 'shape of the variation', color: '#00ff88' },
+    { name: 'Pareto chart', use: '80/20 priority of causes', color: '#c4ff00' },
+    { name: 'Fishbone', use: 'find the root cause', color: '#ff8800' },
+    { name: 'Scatter diagram', use: 'relation of two variables', color: '#ff0080' },
+    { name: 'Control chart', use: 'detect drift over time', color: '#aa00ff' },
+  ];
+  return (
+    <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
+      <text x="400" y="28" textAnchor="middle" fill="#dbe6ff" fontSize="15" fontWeight="800" fontFamily={FONT}>
+        The seven QC tools
+      </text>
+      <text x="400" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
+        Seven simple charts that turn defect data into a decision
+      </text>
+      {tools.map((t, i) => {
+        const x = 16 + (i % 4) * 196;
+        const y = 70 + Math.floor(i / 4) * 112;
+        return (
+          <g key={t.name}>
+            <rect x={x} y={y} width="180" height="94" rx="10" fill={tint(t.color, 0.12)} stroke={t.color} strokeWidth="1.5" />
+            <text x={x + 14} y={y + 28} fill={t.color} fontSize="10.6" fontWeight="800" fontFamily={FONT}>{t.name}</text>
+            <text x={x + 14} y={y + 54} fill="#e8f0ff" fontSize="9.2" fontFamily={FONT}>{t.use.split(' ').slice(0, 3).join(' ')}</text>
+            <text x={x + 14} y={y + 70} fill="#9ab0e0" fontSize="9.2" fontFamily={FONT}>{t.use.split(' ').slice(3).join(' ')}</text>
+          </g>
+        );
+      })}
+      <text x="400" y="330" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
+        Pareto and fishbone carry the most marks — the first ranks causes, the second traces one cause to its root
+      </text>
+      <text x="400" y="360" textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>
+        Exam point: the seven QC tools are check sheet, flow chart, histogram, Pareto, fishbone, scatter and control chart
+      </text>
+    </svg>
+  );
+}
+
 
 // ============================================================
 // TOPIC 1.8 — Quality Assurance Models
@@ -623,7 +712,7 @@ export function SecurityTestingOverviewDiagram() {
       </g>
       
       <g transform="translate(50, 500)">
-        <text x="300" y="25" textAnchor="middle" fill="#666" fontSize="10" fontFamily="'Segoe UI', system-ui, sans-serif">Six-Sigma aur TQM quality improvement methodologies hain jo security testing ko systematic approach dete hain</text>
+        <text x="300" y="25" textAnchor="middle" fill="#666" fontSize="10" fontFamily="'Segoe UI', system-ui, sans-serif">Six Sigma and TQM are quality improvement methodologies that give security testing a systematic approach</text>
       </g>
     </svg>
   );
@@ -1248,9 +1337,9 @@ export function TaguchiLossOverviewDiagram() {
         <text x="350" y="20" textAnchor="middle" fill="#ff8800" fontSize="12" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Taguchi's Philosophy</text>
         <text x="350" y="45" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Quality = Minimal deviation from target</text>
         <text x="350" y="65" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Loss increases with deviation</text>
-        <text x="350" y="85" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Specification limits andar bhi loss hota hai</text>
-        <text x="350" y="105" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Quality loss customer satisfaction affect karta hai</text>
-        <text x="350" y="125" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Preventive approach — defects prevent karna</text>
+        <text x="350" y="85" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Loss occurs even inside the specification limits</text>
+        <text x="350" y="105" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Quality loss affects customer satisfaction</text>
+        <text x="350" y="125" textAnchor="middle" fill="#ccc" fontSize="11" fontFamily="'Segoe UI', system-ui, sans-serif">• Preventive approach — stop defects before they happen</text>
       </g>
       
       <g transform="translate(50, 520)">
@@ -1289,7 +1378,7 @@ export function COQOverviewDiagram() {
       <g transform="translate(50, 160)">
         <text x="200" y="20" textAnchor="middle" fill="#00ff88" fontSize="11" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Prevention</text>
         <rect x="20" y="30" width="360" height="80" rx="4" fill="#1a2a1a" stroke="#00ff88" strokeWidth="2" />
-        <text x="200" y="48" textAnchor="middle" fill="#00ff88" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Defects prevent karne ke costs</text>
+        <text x="200" y="48" textAnchor="middle" fill="#00ff88" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Costs of preventing defects</text>
         <text x="200" y="65" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Quality Planning</text>
         <text x="200" y="78" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Training</text>
         <text x="200" y="91" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Documentation</text>
@@ -1297,7 +1386,7 @@ export function COQOverviewDiagram() {
         
         <text x="620" y="20" textAnchor="middle" fill="#ffaa00" fontSize="11" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Appraisal</text>
         <rect x="440" y="30" width="360" height="80" rx="4" fill="#2a2a1a" stroke="#ffaa00" strokeWidth="2" />
-        <text x="620" y="48" textAnchor="middle" fill="#ffaa00" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Quality measure karne ke costs</text>
+        <text x="620" y="48" textAnchor="middle" fill="#ffaa00" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Costs of measuring quality</text>
         <text x="620" y="65" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Inspection</text>
         <text x="620" y="78" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Testing</text>
         <text x="620" y="91" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Measurement</text>
@@ -1307,7 +1396,7 @@ export function COQOverviewDiagram() {
       <g transform="translate(50, 270)">
         <text x="200" y="20" textAnchor="middle" fill="#ff4444" fontSize="11" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Internal Failure</text>
         <rect x="20" y="30" width="360" height="80" rx="4" fill="#2a1a1a" stroke="#ff4444" strokeWidth="1" />
-        <text x="200" y="48" textAnchor="middle" fill="#ff4444" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Internal defects fix karne ke costs</text>
+        <text x="200" y="48" textAnchor="middle" fill="#ff4444" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Costs of fixing internal defects</text>
         <text x="200" y="65" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Scrap</text>
         <text x="200" y="78" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Rework</text>
         <text x="200" y="91" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Retest</text>
@@ -1315,7 +1404,7 @@ export function COQOverviewDiagram() {
         
         <text x="620" y="20" textAnchor="middle" fill="#ff0080" fontSize="11" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">External Failure</text>
         <rect x="440" y="30" width="360" height="80" rx="4" fill="#2a1a2a" stroke="#ff0080" strokeWidth="2" />
-        <text x="620" y="48" textAnchor="middle" fill="#ff0080" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">External defects fix karne ke costs</text>
+        <text x="620" y="48" textAnchor="middle" fill="#ff0080" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Costs of fixing external defects</text>
         <text x="620" y="65" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Warranty</text>
         <text x="620" y="78" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Returns</text>
         <text x="620" y="91" textAnchor="middle" fill="#ccc" fontSize="9" fontFamily="'Segoe UI', system-ui, sans-serif">• Lost Sales</text>
@@ -1365,7 +1454,7 @@ export function SoftwareTestingBasicsOverviewDiagram() {
         <g transform="translate(20, 30)">
           <rect width="140" height="70" rx="4" fill="#1a1a2e" stroke="#0047ff" strokeWidth="1" />
           <text x="70" y="25" textAnchor="middle" fill="#0047ff" fontSize="10" fontWeight="bold" fontFamily="'Segoe UI', system-ui, sans-serif">Defects Detection</text>
-          <text x="70" y="42" textAnchor="middle" fill="#ccc" fontSize="8" fontFamily="'Segoe UI', system-ui, sans-serif">Bugs identify karna</text>
+          <text x="70" y="42" textAnchor="middle" fill="#ccc" fontSize="8" fontFamily="'Segoe UI', system-ui, sans-serif">Identifying bugs</text>
           <text x="70" y="55" textAnchor="middle" fill="#888" fontSize="8" fontFamily="'Segoe UI', system-ui, sans-serif">Quality improve</text>
         </g>
         <g transform="translate(180, 30)">
@@ -2017,7 +2106,7 @@ export function CyclomaticComplexityDiagram() {
         <rect x="460" y="186" width="440" height="110" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="474" y="206" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>THRESHOLDS — EFFECT ON TESTING</text>
         {[
-          ['1 – 10', 'simple, risk kam', '#00ff88'],
+          ['1 – 10', 'simple, low risk', '#00ff88'],
           ['11 – 20', 'moderate, test badhao', '#c4ff00'],
           ['21 – 50', 'complex, refactor socho', '#ff8800'],
           ['50+', 'untestable — todo', '#ff7a90'],
@@ -2492,7 +2581,7 @@ export function StateGraphTestingDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x="470" y="340" width="430" height="82" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
         <text x="484" y="360" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>GRAPH BASED TESTING</text>
-        <text x="484" y="380" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Model graph banao: node = step, edge = flow</text>
+        <text x="484" y="380" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Draw the model graph: node = step, edge = flow</text>
         <text x="484" y="398" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Derive tests with node, edge and path coverage</text>
         <text x="484" y="414" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>CFG, use case graph, decision graph, state table</text>
       </g>
@@ -2516,10 +2605,10 @@ export function CompatibilityTestingDiagram() {
   return (
     <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Compatibility testing matrix of operating systems and browsers, with the types of compatibility testing: backward, forward, cross browser, cross platform, device and network">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Compatibility testing — har environment par chalta hai?
+        Compatibility testing — does it run in every environment?
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        OS · browser · device · hardware · network · database · language — matrix bana kar test karo
+        OS · browser · device · hardware · network · database · language — build a matrix and test it
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2547,15 +2636,15 @@ export function CompatibilityTestingDiagram() {
             ))}
           </g>
         ))}
-        <text x="34" y="270" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Nateeja: matrix hi "supported combinations" ka document hai</text>
+        <text x="34" y="270" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Result: the matrix itself documents the supported combinations</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
         <rect x="510" y="66" width="390" height="212" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
-        <text x="524" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>COMPATIBILITY KE PRAKAAR</text>
+        <text x="524" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TYPES OF COMPATIBILITY TESTING</text>
         {[
-          ['Backward', 'purane version / file format ke saath'],
-          ['Forward', 'naye version / browser ke saath'],
+          ['Backward', 'with older versions and file formats'],
+          ['Forward', 'with newer versions and browsers'],
           ['Cross-browser', 'Chrome, Firefox, Safari, Edge'],
           ['Cross-platform', 'Windows, macOS, Linux, Android, iOS'],
           ['Device', 'screen size, resolution, touch'],
@@ -2572,20 +2661,20 @@ export function CompatibilityTestingDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="294" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="34" y="314" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>KAISE KAREIN</text>
+        <text x="34" y="314" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>HOW TO DO IT</text>
         <text x="34" y="332" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
           Manual checklist · Selenium Grid · cloud device farm (BrowserStack, Sauce Labs) · VM/Docker snapshot · responsive mode
         </text>
       </g>
 
       <text x="460" y="376" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Sab combination test karna impossible — risk ke hisaab se top 5–10 combinations chunein
+        Testing every combination is impossible — pick the top 5–10 by risk
       </text>
       <text x="460" y="400" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Compatibility ≠ performance: yahan "chalta hai ya nahi" dekhte hain, "kitna tez" nahi
+        Compatibility is not performance: here we ask whether it runs, not how fast
       </text>
       <text x="460" y="428" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: compatibility testing alag-alag environment par software ke behaviour ko verify karti hai
+        Exam point: compatibility testing verifies behaviour across different environments
       </text>
     </svg>
   );
@@ -2596,10 +2685,10 @@ export function DocumentationTestingDiagram() {
   return (
     <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="User documentation testing checks manuals, help files and installation guides for accuracy, completeness, clarity, consistency, usability and currency against the actual software">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        User documentation testing — manual sach bolta hai?
+        User documentation testing — does the manual tell the truth?
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        jo document user ke saath jaata hai, wo software ke actual behaviour se match kare
+        the document shipped with the software must match its actual behaviour
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2609,7 +2698,7 @@ export function DocumentationTestingDiagram() {
           'User manual / guide',
           'Installation & config guide',
           'Online help / tooltips',
-          'FAQ aur troubleshooting',
+          'FAQ and troubleshooting',
           'Release notes / changelog',
           'API reference (developer docs)',
           'Tutorials / video script',
@@ -2621,12 +2710,12 @@ export function DocumentationTestingDiagram() {
       <text x="302" y="170" textAnchor="middle" fill="#9ab0e0" fontSize="16" fontFamily={FONT}>→</text>
 
       {[
-        ['ACCURACY', '#00d4ff', 'Har step sach mein chalta hai?', 'screenshot current hai?'],
-        ['COMPLETENESS', '#c4ff00', 'Har feature documented?', 'error message explain hua?'],
-        ['CLARITY', '#ff8800', 'Simple language, chhote steps', 'jargon kam, example zyada'],
-        ['CONSISTENCY', '#ff7ab2', 'UI ke shabdon se match', 'version number same'],
-        ['USABILITY', '#00ff88', 'Naya user follow kar paya?', 'index / search kaam karta?'],
-        ['CURRENCY', '#8f9dc4', 'Latest build ke hisaab se', 'purane steps hataye?'],
+        ['ACCURACY', '#00d4ff', 'Does every step actually work?', 'is the screenshot current?'],
+        ['COMPLETENESS', '#c4ff00', 'Is every feature documented?', 'is the error message explained?'],
+        ['CLARITY', '#ff8800', 'Simple language, short steps', 'less jargon, more examples'],
+        ['CONSISTENCY', '#ff7ab2', 'matches the words used in the UI', 'version number same'],
+        ['USABILITY', '#00ff88', 'Can a new user follow it?', 'do the index and search work?'],
+        ['CURRENCY', '#8f9dc4', 'matches the latest build', 'purane steps hataye?'],
       ].map(([t, c, l1, l2], i) => {
         const col = i % 2;
         const row = Math.floor(i / 2);
@@ -2642,20 +2731,20 @@ export function DocumentationTestingDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '680ms' }}>
         <rect x="20" y="280" width="880" height="52" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="34" y="300" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>KAUN KARTA HAI</text>
+        <text x="34" y="300" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>WHO DOES IT</text>
         <text x="34" y="318" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          Technical writer + tester + ek "naya user" — manual le kar software use karo, jahan phanso wahan defect
+          Technical writer + tester + a new user — use the software with the manual, and every place you get stuck is a defect
         </text>
       </g>
 
       <text x="460" y="360" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Galat manual bhi ek defect hai — support tickets badhate hain, product kharab lagta hai
+        A wrong manual is a defect too — it raises support tickets and makes the product look bad
       </text>
       <text x="460" y="384" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Testing ke tareeke: walkthrough, checklist, doc review, usability test, link/screenshot check
+        Techniques: walkthrough, checklist, document review, usability test, link and screenshot check
       </text>
       <text x="460" y="412" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: user documentation testing usability aur accuracy ke liye document ko product ke saath verify karti hai
+        Exam point: user documentation testing verifies the document with the product for usability and accuracy
       </text>
     </svg>
   );
@@ -2666,10 +2755,10 @@ export function DomainTestingDiagram() {
   return (
     <svg viewBox="0 0 920 452" className="diagram-svg" role="img" aria-label="Domain testing divides the complete input domain of a variable into sub domains, then picks representative values in the middle and boundary values at the edges, including output domain checks">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Domain testing — input domain ko chhote hisson mein tod kar test karo
+        Domain testing — split the input domain into small parts and test them
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        value ka domain important hai, code ka path nahi — EP + BVA ka theoretical base
+        the value domain matters, not the code path — this is the theory behind EP and BVA
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2677,8 +2766,8 @@ export function DomainTestingDiagram() {
         <text x="34" y="86" fill="#9ab0e0" fontSize="9" fontWeight="700" fontFamily={FONT}>INPUT DOMAIN (variable: quantity 1–100)</text>
         {[
           ['D1', 'less than 1', 'invalid', '#ff7a90', 34, 112],
-          ['D2', '1 se 100', 'valid', '#00ff88', 160, 150],
-          ['D3', '100 se zyada', 'invalid', '#ff7a90', 324, 112],
+          ['D2', '1 to 100', 'valid', '#00ff88', 160, 150],
+          ['D3', 'more than 100', 'invalid', '#ff7a90', 324, 112],
         ].map(([d, r, kind, c, x, w], i) => (
           <g key={d} className="diagram-pop" style={{ animationDelay: `${160 + i * 90}ms` }}>
             <rect x={x} y="104" width={w} height="66" rx="8" fill={c} fillOpacity="0.1" stroke={c} />
@@ -2688,39 +2777,39 @@ export function DomainTestingDiagram() {
           </g>
         ))}
         <text x="34" y="192" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">values: 0 · 1 · 2 · 50 · 99 · 100 · 101</text>
-        <text x="34" y="212" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Beech ki values skip — kinare aur ek nominal</text>
-        <text x="34" y="232" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Har sub-domain se kam se kam ek test</text>
+        <text x="34" y="212" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Middle values skipped — the edges and one nominal value</text>
+        <text x="34" y="232" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>At least one test from every sub-domain</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="470" y="66" width="430" height="184" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="484" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>DOMAIN TESTING KE 2 STEP</text>
-        <text x="484" y="110" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>1. Domain analyse karo</text>
-        <text x="484" y="128" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Kaunse variables? Unki valid range kya?</text>
-        <text x="484" y="144" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Kaunse constraints ek doosre par depend karte?</text>
-        <text x="484" y="168" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>2. Test values chuno</text>
-        <text x="484" y="186" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Har sub-domain se ek nominal value</text>
-        <text x="484" y="202" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Aur har boundary ke dono taraf ki value</text>
-        <text x="484" y="226" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">output domain bhi: 0 se 10000 ka bill</text>
-        <text x="484" y="242" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>invalid output = defect (galat total, overflow)</text>
+        <text x="484" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TWO STEPS OF DOMAIN TESTING</text>
+        <text x="484" y="110" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>1. Analyse the domain</text>
+        <text x="484" y="128" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Which variables? What is their valid range?</text>
+        <text x="484" y="144" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Which constraints depend on each other?</text>
+        <text x="484" y="168" fill="#c4ff00" fontSize="8.5" fontWeight="700" fontFamily={FONT}>2. Pick the test values</text>
+        <text x="484" y="186" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>One nominal value from every sub-domain</text>
+        <text x="484" y="202" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>and a value on both sides of every boundary</text>
+        <text x="484" y="226" fill="#7ee787" fontSize="8" fontFamily="'Consolas', monospace">the output domain too: a bill from 0 to 10000</text>
+        <text x="484" y="242" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>an invalid output is a defect (wrong total, overflow)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x="20" y="266" width="880" height="52" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
-        <text x="34" y="286" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>DOMAIN ERRORS KE PRAKAAR</text>
+        <text x="34" y="286" fill="#ff8800" fontSize="9" fontWeight="700" fontFamily={FONT}>TYPES OF DOMAIN ERROR</text>
         <text x="34" y="304" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          closure error (boundary off-by-one) · shift error (poora boundary khisak gaya) · missing boundary / extra boundary
+          closure error (boundary off by one) · shift error (the whole boundary moved) · missing or extra boundary
         </text>
       </g>
 
       <text x="460" y="346" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Domain testing = EP (kaunse hisse) + BVA (us hisse ke kinare) ka combined model
+        Domain testing is EP (which parts) plus BVA (the edges of those parts) in one model
       </text>
       <text x="460" y="370" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Black-box hai — code dekhe bina, sirf input/output domain dekh kar test design
+        Black box — test design from the input and output domains, without looking at the code
       </text>
       <text x="460" y="398" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: domain testing mein input domain ke sub-domains aur boundaries se test values chuni jaati hain
+        Exam point: domain testing chooses test values from the sub-domains and boundaries of the input domain
       </text>
     </svg>
   );
@@ -3387,10 +3476,10 @@ export function SpecificationBasedTestingDiagram() {
   return (
     <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Specification based testing derives test cases from a formal specification using decision tables, state models, grammar and equivalence partitions, without looking at the code">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Specification based testing — spec se test cases, code se nahi
+        Specification based testing — test cases from the spec, not the code
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        black-box ka formal naam · input/output spec, decision table, state model, grammar
+        the formal name for black box · input/output spec, decision table, state model, grammar
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3399,22 +3488,22 @@ export function SpecificationBasedTestingDiagram() {
         <text x="34" y="106" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>SRS, use case, state model,</text>
         <text x="34" y="122" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>decision table, grammar,</text>
         <text x="34" y="138" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>API contract, UI spec</text>
-        <text x="34" y="162" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Formal aur testable hona chahiye</text>
-        <text x="34" y="180" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Code dekhe bina test design</text>
-        <text x="34" y="200" fill="#ff8800" fontSize="7.2" fontFamily={FONT}>Spec galat = sab test bekaar</text>
+        <text x="34" y="162" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>It must be formal and testable</text>
+        <text x="34" y="180" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Test design without looking at the code</text>
+        <text x="34" y="200" fill="#ff8800" fontSize="7.2" fontFamily={FONT}>A wrong spec makes every test worthless</text>
       </g>
 
       <text x="262" y="146" textAnchor="middle" fill="#9ab0e0" fontSize="15" fontFamily={FONT}>→</text>
 
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
         <rect x="280" y="66" width="330" height="150" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="294" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>2. TECHNIQUE CHUNO</text>
+        <text x="294" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>2. PICK THE TECHNIQUE</text>
         {[
           ['Decision table', 'saare condition combinations'],
           ['State model', 'valid + invalid transitions'],
           ['Grammar / syntax', 'input format, protocol'],
           ['Cause-effect graph', 'input → output relation'],
-          ['EP + BVA', 'classes aur boundaries'],
+          ['EP + BVA', 'classes and boundaries'],
         ].map(([t, d], i) => (
           <g key={t}>
             <text x="294" y={110 + i * 21} fill="#fff" fontSize="7.6" fontWeight="700" fontFamily={FONT}>{t}</text>
@@ -3428,9 +3517,9 @@ export function SpecificationBasedTestingDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x="640" y="66" width="260" height="150" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
         <text x="654" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>3. TEST CASES</text>
-        <text x="654" y="108" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• Har rule ka ek test case</text>
-        <text x="654" y="126" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• Valid + invalid dono</text>
-        <text x="654" y="144" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• Expected output spec se</text>
+        <text x="654" y="108" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• One test case per rule</text>
+        <text x="654" y="126" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• Both valid and invalid</text>
+        <text x="654" y="144" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• Expected output from the spec</text>
         <text x="654" y="162" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>• Traceability requirement ID</text>
         <text x="654" y="186" fill="#7ee787" fontSize="7.2" fontFamily="'Consolas', monospace">R1 · DT-3 · expect 400</text>
         <text x="654" y="204" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Coverage: rules covered / total rules</text>
@@ -3438,24 +3527,24 @@ export function SpecificationBasedTestingDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="232" width="880" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="252" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DECISION TABLE KA EXAMPLE — discount rule</text>
+        <text x="34" y="252" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DECISION TABLE EXAMPLE — discount rule</text>
         <text x="34" y="272" fill="#dbe6ff" fontSize="7.8" fontFamily="'Consolas', monospace">
           conditions:  amt &gt; 5000 | member | coupon   →  action: discount
         </text>
         <text x="34" y="292" fill="#dbe6ff" fontSize="7.8" fontFamily="'Consolas', monospace">
           R1: T T T → 15%   R2: T T F → 12%   R3: T F F → 10%   R4: F T T → 7%   R5: F F F → 0%
         </text>
-        <text x="34" y="312" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>5 rules = 5 test cases; jo rule table mein missing hai wahi defect banega</text>
+        <text x="34" y="312" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>5 rules = 5 test cases; the rule missing from the table becomes the defect</text>
       </g>
 
       <text x="460" y="356" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Spec based testing implementation se independent hoti hai — isliye code badle to test cases wahi rehte hain
+        Spec based testing is implementation independent — so the test cases survive a code change
       </text>
       <text x="460" y="380" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Technical review ke saath combine karo — spec ki galti pehle pakdi jaaye
+        Combine it with technical review so a spec error is caught first
       </text>
       <text x="460" y="408" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: specification based testing mein test cases formal specification se derive hote hain, implementation se nahi
+        Exam point: specification based testing derives test cases from the formal specification, not the implementation
       </text>
     </svg>
   );
@@ -3466,10 +3555,10 @@ export function ObjectOrientedTestingDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Testing object oriented software: class testing with state and polymorphism, inheritance and method message paths, and inter class integration testing">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Object Oriented software testing — class, inheritance aur polymorphism ke challenge
+        Object oriented software testing — the challenge of class, inheritance and polymorphism
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        encapsulation test mushkil banata hai · overriding se naya path · state object ke saath chalta hai
+        encapsulation makes testing hard · overriding adds a new path · state travels with the object
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3486,55 +3575,55 @@ export function ObjectOrientedTestingDiagram() {
           <line x1="200" y1="128" x2="140" y2="162" />
           <line x1="250" y1="128" x2="310" y2="162" />
         </g>
-        <text x="34" y="208" fill="#ff7a90" fontSize="7.4" fontFamily={FONT}>Same method, alag behaviour — dono override ka test chahiye</text>
+        <text x="34" y="208" fill="#ff7a90" fontSize="7.4" fontFamily={FONT}>Same method, different behaviour — both overrides need a test</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
         <rect x="470" y="66" width="430" height="150" rx="10" fill="rgba(196,255,0,0.05)" stroke="rgba(196,255,0,0.35)" />
-        <text x="484" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>OO TESTING KE LEVELS</text>
+        <text x="484" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>LEVELS OF OO TESTING</text>
         {[
-          ['Intra-method', 'ek method ka logic (white-box)'],
-          ['Inter-method', 'class ke andar method to method'],
-          ['Intra-class', 'class ka poora behaviour + state'],
-          ['Inter-class', 'do class ka message interaction'],
-          ['System level', 'poora OO system, use case'],
+          ['Intra-method', 'logic of one method (white box)'],
+          ['Inter-method', 'method to method inside a class'],
+          ['Intra-class', 'the whole behaviour and state of a class'],
+          ['Inter-class', 'message interaction between two classes'],
+          ['System level', 'the whole OO system, use case'],
         ].map(([t, d], i) => (
           <g key={t}>
             <text x="484" y={110 + i * 21} fill="#fff" fontSize="7.6" fontWeight="700" fontFamily={FONT}>{t}</text>
             <text x="566" y={110 + i * 21} fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>{d}</text>
           </g>
         ))}
-        <text x="484" y="208" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Fault model based testing: har class ke saare methods ek baar</text>
+        <text x="484" y="208" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Fault model based testing: every method of the class once</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x="20" y="232" width="430" height="120" rx="9" fill="rgba(255,136,0,0.08)" stroke="rgba(255,136,0,0.45)" />
         <text x="34" y="252" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>CHALLENGES</text>
-        <text x="34" y="272" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Encapsulation — private state bahar se set nahi hota</text>
-        <text x="34" y="290" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Inheritance — parent ka test child par dobara chalao</text>
-        <text x="34" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Polymorphism — actual object type decide karta hai path</text>
-        <text x="34" y="326" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Object state — same method, pehle call ke baad alag result</text>
-        <text x="34" y="344" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Dynamic binding se static analysis limited ho jaata hai</text>
+        <text x="34" y="272" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Encapsulation — private state cannot be set from outside</text>
+        <text x="34" y="290" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Inheritance — re-run the parent tests on the child</text>
+        <text x="34" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Polymorphism — the actual object type decides the path</text>
+        <text x="34" y="326" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Object state — same method, a different result after the first call</text>
+        <text x="34" y="344" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Dynamic binding limits static analysis</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
         <rect x="470" y="232" width="430" height="120" rx="9" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
         <text x="484" y="252" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TECHNIQUES</text>
         <text x="484" y="272" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Method message path (MM path) coverage</text>
-        <text x="484" y="290" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>State based testing — object ki state machine</text>
-        <text x="484" y="308" fill="#dbe6ff" fontFamily={FONT} fontSize="7.8">Inheritance testing — parent + child dono</text>
-        <text x="484" y="326" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Mock/fake se private dependency isolate karo</text>
+        <text x="484" y="290" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>State based testing — the state machine of the object</text>
+        <text x="484" y="308" fill="#dbe6ff" fontFamily={FONT} fontSize="7.8">Inheritance testing — parent and child both</text>
+        <text x="484" y="326" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Isolate private dependencies with mocks and fakes</text>
         <text x="484" y="344" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Tools: JUnit + Mockito, PHPUnit + Prophecy</text>
       </g>
 
       <text x="460" y="384" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Class test pass + integration test pass ≠ system sahi — message flow aur state dono dekho
+        Class tests plus integration tests passing do not prove the system — check message flow and state too
       </text>
       <text x="460" y="410" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Inheritance ka rule: child class ko parent ki saari test suite dobara chalao (subclass reuse test)
+        Inheritance rule: run the whole parent suite on the child class (subclass reuse test)
       </text>
       <text x="460" y="438" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: OO testing class, inheritance, polymorphism aur object interaction par focus karti hai
+        Exam point: OO testing focuses on classes, inheritance, polymorphism and object interaction
       </text>
     </svg>
   );
@@ -3695,17 +3784,17 @@ export function AutomationIntroDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Test automation pipeline from test case to script, tool, execution and report, with the test pyramid showing automation priority">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Test automation — insaan ki jagah tool test chalata hai
+        Test automation — a tool runs the tests instead of a person
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        script ek baar likho, jitni baar chahiye chalao — fast, repeatable, regression ka sahara
+        write the script once, run it as often as needed — fast, repeatable, the backbone of regression
       </text>
 
       {[
         ['TEST CASE', 'manual steps define', '#6fb2ff'],
-        ['SCRIPT', 'code mein likho', '#00d4ff'],
-        ['TOOL', 'browser driver chalao', '#c4ff00'],
-        ['EXECUTE', 'CI par ya schedule', '#ff8800'],
+        ['SCRIPT', 'written in code', '#00d4ff'],
+        ['TOOL', 'run the browser driver', '#c4ff00'],
+        ['EXECUTE', 'on CI or on a schedule', '#ff8800'],
         ['REPORT', 'pass/fail + screenshot', '#00ff88'],
       ].map(([t, d, c], i) => (
         <g key={t} className="diagram-pop" style={{ animationDelay: `${80 + i * 70}ms` }}>
@@ -3720,42 +3809,42 @@ export function AutomationIntroDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x="20" y="150" width="440" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="170" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>TEST PYRAMID — kya pehle automate karein</text>
+        <text x="34" y="170" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>TEST PYRAMID — what to automate first</text>
         <polygon points="240,182 300,228 180,228" fill="rgba(255,122,144,0.2)" stroke="#ff7a90" />
-        <text x="240" y="213" textAnchor="middle" fill="#ff7a90" fontSize="7" fontFamily={FONT}>UI (kam)</text>
+        <text x="240" y="213" textAnchor="middle" fill="#ff7a90" fontSize="7" fontFamily={FONT}>UI (less)</text>
         <polygon points="180,230 300,230 330,272 150,272" fill="rgba(255,136,0,0.18)" stroke="#ff8800" />
         <text x="240" y="256" textAnchor="middle" fill="#ff8800" fontSize="7" fontFamily={FONT}>API / service</text>
         <polygon points="150,274 330,274 360,296 120,296" fill="rgba(0,255,136,0.16)" stroke="#00ff88" />
-        <text x="240" y="288" textAnchor="middle" fill="#00ff88" fontSize="7" fontFamily={FONT}>unit (sabse zyada)</text>
+        <text x="240" y="288" textAnchor="middle" fill="#00ff88" fontSize="7" fontFamily={FONT}>unit (the most)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <rect x="480" y="150" width="420" height="150" rx="10" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="494" y="170" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>AUTOMATION KAB</text>
-        <text x="494" y="192" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ Baar-baar chalne wale (regression, smoke)</text>
+        <text x="494" y="170" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>WHEN TO AUTOMATE</text>
+        <text x="494" y="192" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ Tests that run again and again (regression, smoke)</text>
         <text x="494" y="210" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ Boring, repetitive, high volume data entry</text>
         <text x="494" y="228" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>✓ 24x7, multi-browser, multi-device runs</text>
-        <text x="494" y="250" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>✗ Ek baar chalta test, exploratory, usability</text>
-        <text x="494" y="268" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>✗ Jaldi badalne wala UI (script tootti hai)</text>
-        <text x="494" y="288" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>ROI = bacha hua manual time − script banana + maintain</text>
+        <text x="494" y="250" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>✗ One-time tests, exploratory and usability testing</text>
+        <text x="494" y="268" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>✗ Fast-changing UI (the script breaks)</text>
+        <text x="494" y="288" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>ROI = manual time saved − (script build + maintenance)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x="20" y="318" width="880" height="50" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
         <text x="34" y="338" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>AUTOMATION ≠ 100% REPLACEMENT</text>
         <text x="34" y="356" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          Automation repeatable check karta hai · insaan exploration, judgement aur naye risk dhoondhta hai — dono saath chalte hain
+          Automation does the repeatable checks · people explore, judge and find new risks — the two work together
         </text>
       </g>
 
       <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Automation ka asli fayda test chhoti nahi — feedback fast hota hai (minutes mein, days mein nahi)
+        The real benefit is not shorter tests — it is faster feedback (minutes, not days)
       </text>
       <text x="460" y="424" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
         Tools: Selenium, Cypress, Playwright, TestCafe, Protractor (legacy), Appium, RestAssured
       </text>
       <text x="460" y="450" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: test automation tool ke through predefined test cases bina manual intervention chalana hai
+        Exam point: test automation runs predefined test cases through a tool without manual intervention
       </text>
     </svg>
   );
@@ -3766,10 +3855,10 @@ export function AutomationSkillsDiagram() {
   return (
     <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Skills needed for test automation: programming, locators and DOM, framework design, version control, CI CD, API and database, debugging, plus domain and analytical thinking">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Automation ke liye skills — coding + testing soch, dono chahiye
+        Skills for automation — coding plus a tester mindset, both are needed
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        tester jo code likh sakta hai, aur developer jo test design samajhta hai — best automation engineer
+        a tester who can write code, and a developer who understands test design — that is the best automation engineer
       </text>
 
       {[
@@ -3800,17 +3889,17 @@ export function AutomationSkillsDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x="40" y="352" width="860" height="48" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="54" y="370" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>SABSE ZAROORI 3</text>
+        <text x="54" y="370" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>THE THREE MOST IMPORTANT</text>
         <text x="54" y="388" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          1. ek programming language (depth) · 2. locator strategy (UI ka map) · 3. debugging patience — flaky test ka root cause dhoondhna
+          1. one programming language, in depth · 2. locator strategy (a map of the UI) · 3. debugging patience — finding the root cause of a flaky test
         </text>
       </g>
 
       <text x="460" y="424" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Tool seekhna aasan hai, soch seekhna mushkil — isliye test design aur domain knowledge pehle
+        Learning a tool is easy, learning to think is hard — so test design and domain knowledge come first
       </text>
       <text x="460" y="448" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: automation tester ko programming, tool knowledge, framework design aur analytical skills chahiye
+        Exam point: an automation tester needs programming, tool knowledge, framework design and analytical skills
       </text>
     </svg>
   );
@@ -3821,21 +3910,21 @@ export function AutomationScopeDiagram() {
   return (
     <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Scope of automation: what should be automated such as regression, smoke, data driven and API tests, versus what should stay manual such as exploratory, usability and one time tests">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Automation ka scope — sab kuch automate nahi hota
+        Scope of automation — not everything can be automated
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        ROI, stability aur repeatability dekh kar decide karo — warna suite bojh ban jaati hai
+        Decide on ROI, stability and repeatability — otherwise the suite becomes a burden
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="20" y="66" width="430" height="196" rx="10" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
-        <text x="34" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>AUTOMATE KARO</text>
+        <text x="34" y="86" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>AUTOMATE</text>
         {[
-          'Regression suite — baar-baar chalti hai',
-          'Smoke / sanity — har build par 15 min',
+          'Regression suite — it runs again and again',
+          'Smoke / sanity — 15 minutes on every build',
           'Data driven cases — 1000 rows, same steps',
-          'API aur database validation',
-          'Cross-browser matrix (grid par)',
+          'API and database validation',
+          'Cross-browser matrix (on a grid)',
           'Performance / load scripts',
           'Long end-to-end business flows',
         ].map((t, i) => (
@@ -3846,40 +3935,40 @@ export function AutomationScopeDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
         <rect x="470" y="66" width="430" height="196" rx="10" fill="rgba(255,122,144,0.07)" stroke="rgba(255,122,144,0.45)" />
-        <text x="484" y="86" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>MANUAL HI RAKHO</text>
+        <text x="484" y="86" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>KEEP MANUAL</text>
         {[
-          'Exploratory aur ad hoc testing',
-          'Usability aur accessibility judgement',
-          'Ek baar chalta test (one-time)',
-          'Jaldi badalne wala UI / prototype',
-          'Naya feature ka pehla round',
+          'Exploratory and ad hoc testing',
+          'Usability and accessibility judgement',
+          'One-time tests',
+          'Fast-changing UI and prototypes',
+          'The first round on a new feature',
           'Complex visual design check',
           'Emotional / UX feedback',
         ].map((t, i) => (
           <text key={t} x="484" y={110 + i * 20} fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>✗ {t}</text>
         ))}
-        <text x="484" y="256" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Criteria: insaan ka judgement, ek baar ka kaam</text>
+        <text x="484" y="256" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Criteria: human judgement, one-off work</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x="20" y="278" width="880" height="70" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="298" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DECISION KE 5 SAWAAL</text>
+        <text x="34" y="298" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>FIVE DECISION QUESTIONS</text>
         <text x="34" y="318" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>
-          1. Test kitni baar chalega? · 2. Steps stable hain? · 3. Expected result measurable hai? · 4. Manual time bachega? · 5. Tool + skill available hai?
+          1. How often will the test run? · 2. Are the steps stable? · 3. Is the expected result measurable? · 4. Will manual time be saved? · 5. Are the tool and skill available?
         </text>
         <text x="34" y="336" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>
-          Teen se zyada "haan" = automation candidate · "nahi" = manual rakho, warna maintenance ka bojh
+          More than three yes answers = automate · otherwise keep it manual, or maintenance becomes a burden
         </text>
       </g>
 
       <text x="460" y="382" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Scope = kya automate karna hai + kitna (percentage) + kab tak (sprint mein kab)
+        Scope = what to automate + how much (percentage) + by when (which sprint)
       </text>
       <text x="460" y="406" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Automation scope test plan mein likho — warna team "sab automate" karne chali jaati hai
+        Write the automation scope into the test plan — otherwise the team sets out to automate everything
       </text>
       <text x="460" y="434" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: automation scope stable, repetitive aur high-ROI test cases tak seemit hota hai
+        Exam point: automation scope is limited to stable, repetitive, high-ROI test cases
       </text>
     </svg>
   );
@@ -3890,10 +3979,10 @@ export function AutomationArchitectureDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Automation framework architecture layers: test data, test scripts, page objects, utilities, driver and runner, with data driven, keyword driven, hybrid and page object model designs">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Automation framework — layered design, ek baar banao baar-baar use karo
+        Automation framework — build the layered design once, reuse it many times
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        scripts + data + page objects + utilities + reporting — sab alag layer mein
+        scripts + data + page objects + utilities + reporting — each in its own layer
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3912,16 +4001,16 @@ export function AutomationArchitectureDiagram() {
             <text x="196" y={y + 19} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
           </g>
         ))}
-        <text x="34" y="282" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Upar ka layer neeche wale par depend karta hai — ulta nahi</text>
+        <text x="34" y="282" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>An upper layer depends on the one below — never the reverse</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
         <rect x="490" y="66" width="410" height="230" rx="10" fill="rgba(47,111,255,0.07)" stroke="rgba(47,111,255,0.4)" />
-        <text x="504" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>FRAMEWORK KE PRAKAAR</text>
+        <text x="504" y="86" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>TYPES OF FRAMEWORK</text>
         {[
-          ['Linear / record-play', 'simple, ek script ek test'],
-          ['Modular', 'module wise alag script'],
-          ['Data driven', 'ek script, kai data sets'],
+          ['Linear / record-play', 'simple, one script per test'],
+          ['Modular', 'a separate script per module'],
+          ['Data driven', 'one script, many data sets'],
           ['Keyword driven', 'action words (login, click)'],
           ['Hybrid', 'data + keyword + POM mix'],
           ['BDD', 'Given-When-Then (Cucumber)'],
@@ -3931,25 +4020,25 @@ export function AutomationArchitectureDiagram() {
             <text x="648" y={110 + i * 26} fill="#dbe6ff" fontSize="7.4" fontFamily={FONT}>{d}</text>
           </g>
         ))}
-        <text x="504" y="272" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Aaj kal hybrid + POM sabse common</text>
+        <text x="504" y="272" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Hybrid + page object model is the most common today</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="312" width="880" height="52" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
         <text x="34" y="332" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>PAGE OBJECT MODEL (POM)</text>
         <text x="34" y="350" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          Har page ka ek class: locators + methods (login(), addToCart()) — UI badle to sirf ek file badalti hai, saare scripts safe
+          One class per page: locators + methods (login(), addToCart()) — change the UI and only one file changes, every script stays safe
         </text>
       </g>
 
       <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Achha framework: reusable, maintainable, readable aur report-friendly
+        A good framework is reusable, maintainable, readable and report friendly
       </text>
       <text x="460" y="416" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Config bahar rakho — URL, browser, credentials environment variable se (hard-code nahi)
+        Keep config outside — URL, browser and credentials from environment variables, never hard-coded
       </text>
       <text x="460" y="444" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: automation architecture mein test scripts, data, page objects aur utility layer alag rakhi jaati hain
+        Exam point: automation architecture keeps scripts, data, page objects and utilities in separate layers
       </text>
     </svg>
   );
@@ -3960,10 +4049,10 @@ export function TestToolRequirementsDiagram() {
   return (
     <svg viewBox="0 0 920 462" className="diagram-svg" role="img" aria-label="Requirements for selecting a test automation tool: platform and browser support, scripting, object identification, reporting, integration, cost, support and scalability">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Test tool kaise chunein — 8 requirements
+        How to choose a test tool — 8 requirements
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        tool sasta nahi hota — license, training aur maintenance ka total cost dekho
+        a tool is not cheap — look at licence, training and maintenance together
       </text>
 
       {[
@@ -3992,20 +4081,20 @@ export function TestToolRequirementsDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x="20" y="322" width="880" height="52" rx="9" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.45)" />
-        <text x="34" y="342" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>EVALUATION KA TAREEKA</text>
+        <text x="34" y="342" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>HOW TO EVALUATE</text>
         <text x="34" y="360" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          Ek chhota pilot project (5–10 real test cases) par 2–3 tool try karo — demo se zyada sach pilot batata hai
+          Try 2–3 tools on a small pilot (5–10 real test cases) — a pilot tells the truth that a demo cannot
         </text>
       </g>
 
       <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Tool ki list lambi nahi, fit zaroori — team skill aur product tech stack se match kare
+        A long tool list is not the point — the fit matters, matching team skill and the product tech stack
       </text>
       <text x="460" y="426" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
         Total cost of ownership = license + training + script maintenance + CI infrastructure
       </text>
       <text x="460" y="452" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: tool selection platform support, scripting, reporting, integration aur cost par depend karta hai
+        Exam point: tool selection depends on platform support, scripting, reporting, integration and cost
       </text>
     </svg>
   );
@@ -4260,19 +4349,19 @@ export function AutomationCaseStudiesDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Automation case studies: e-commerce regression suite, banking cross-browser, SaaS CI pipeline, showing problem, approach, tools and result">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Automation case studies — problem se result tak
+        Automation case studies — from problem to result
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        real project ke numbers se hi automation ka ROI samajh aata hai
+        only real project numbers show the ROI of automation
       </text>
 
       {[
         {
           title: 'E-COMMERCE', color: '#00ff88',
-          problem: 'Har release par 300 regression cases manual — 5 din',
+          problem: '300 regression cases by hand on every release — 5 days',
           approach: 'Smoke + checkout flow + API layer automate',
           tools: 'Selenium + TestNG + Jenkins',
-          result: 'Regression 8 ghante, release weekly se daily',
+          result: 'Regression in 8 hours, releases weekly to daily',
           roi: 'payback: 3 release (~1 quarter)',
         },
         {
@@ -4280,16 +4369,16 @@ export function AutomationCaseStudiesDiagram() {
           problem: '5 browsers × 4 resolutions manual check',
           approach: 'Data driven suite + grid parallel',
           tools: 'Selenium Grid + Docker + Allure',
-          result: '240 combinations 40 min mein, defect 60% jaldi',
+          result: '240 combinations in 40 minutes, defects found 60% earlier',
           roi: 'payback: 4 months, grid cost cover',
         },
         {
           title: 'SAAS DASHBOARD', color: '#c4ff00',
-          problem: 'Bug production mein, sprint end par pata chalta',
-          approach: 'Har PR par API + critical UI tests',
+          problem: 'A bug in production, found only at the end of the sprint',
+          approach: 'API + critical UI tests on every PR',
           tools: 'Cypress + GitHub Actions',
-          result: 'Feedback 4 ghante se 9 minute, flaky 3%',
-          roi: 'payback: 2 sprints, bug cost 5x kam',
+          result: 'Feedback from 4 hours to 9 minutes, 3% flaky',
+          roi: 'payback: 2 sprints, bug cost 5x lower',
         },
       ].map((c, i) => (
         <g key={c.title} className="diagram-pop" style={{ animationDelay: `${80 + i * 140}ms` }}>
@@ -4310,23 +4399,23 @@ export function AutomationCaseStudiesDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x="20" y="294" width="880" height="72" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="34" y="314" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>CASE STUDY MEIN KYA LIKHEIN</text>
+        <text x="34" y="314" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>WHAT A CASE STUDY CONTAINS</text>
         <text x="34" y="334" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>
-          1. Context — product, team size, release cycle · 2. Problem — manual effort, defect leak · 3. Approach — kya automate kiya, framework
+          1. Context — product, team size, release cycle · 2. Problem — manual effort, defect leakage · 3. Approach — what was automated and with which framework
         </text>
         <text x="34" y="352" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>
-          4. Tools + infrastructure · 5. Result — numbers (time, defect, coverage) · 6. Lessons — kya galat hua, kya dobara karenge
+          4. Tools + infrastructure · 5. Result — numbers for time, defects and coverage · 6. Lessons — what went wrong and what we would do again
         </text>
       </g>
 
       <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Case study ka jaadu "number" hai — "automation se achha hua" nahi, "5 din se 8 ghante" likho
+        The magic of a case study is numbers — not automation helped, but 5 days became 8 hours
       </text>
       <text x="460" y="424" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Exam mein apne project ka example do — college project ya internship ka bhi chalega
+        Give an example from your own project — a college project or an internship counts
       </text>
       <text x="460" y="450" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: automation case study problem, approach, tool, result aur lessons se banti hai
+        Exam point: an automation case study is built from problem, approach, tool, result and lessons
       </text>
     </svg>
   );
@@ -4337,23 +4426,23 @@ export function SeleniumIntroDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="History of the Selenium project from 2004 Selenium Core through RC, WebDriver merge in 2011, Grid, IDE and Selenium 4 to the present">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Selenium — browser automation ka sabse purana aur popular tool
+        Selenium — the oldest and most popular browser automation tool
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        open source, cross-browser, multiple languages — 2004 se aaj tak
+        open source, cross-browser, many languages — from 2004 to today
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="20" y="66" width="880" height="90" rx="10" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.35)" />
-        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>SELENIUM KYA HAI</text>
+        <text x="34" y="86" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>WHAT SELENIUM IS</text>
         <text x="34" y="108" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
-          Browser ko program se control karne ka free (open source) suite — click, type, navigate, assert.
+          A free, open-source suite for controlling a browser from code — click, type, navigate, assert.
         </text>
         <text x="34" y="126" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>
           Language bindings: Java, Python, C#, Ruby, JavaScript, Kotlin · Browser: Chrome, Firefox, Edge, Safari
         </text>
         <text x="34" y="146" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>
-          Note: Selenium sirf web UI automate karta hai — mobile ke liye Appium, desktop ke liye WinAppDriver (alag projects)
+          Note: Selenium automates the web UI only — Appium covers mobile and WinAppDriver covers desktop (separate projects)
         </text>
       </g>
 
@@ -4375,7 +4464,7 @@ export function SeleniumIntroDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x="20" y="266" width="430" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="286" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>2016 KE BAAD</text>
+        <text x="34" y="286" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>AFTER 2016</text>
         <text x="34" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2016 — Selenium 3: WebDriver W3C standard, RC hataya</text>
         <text x="34" y="328" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2021 — Selenium 4: W3C protocol, relative locators,</text>
         <text x="34" y="348" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>CDP, new Grid, IDE revival</text>
@@ -4383,20 +4472,20 @@ export function SeleniumIntroDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
         <rect x="470" y="266" width="430" height="100" rx="9" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.4)" />
-        <text x="484" y="286" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>NAAM KA RAHASYA</text>
-        <text x="484" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Ek time par Mercury (Mercury Interactive) ka product tha —</text>
-        <text x="484" y="328" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>mercuree ke saamne selenium (chemical) rakha gaya,</text>
-        <text x="484" y="348" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>jokes ke liye "Selenium" naam popular ho gaya</text>
+        <text x="484" y="286" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>THE NAME STORY</text>
+        <text x="484" y="308" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>It was once a product of Mercury Interactive —</text>
+        <text x="484" y="328" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>selenium, the chemical, was placed opposite mercury,</text>
+        <text x="484" y="348" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>the joke made the name Selenium stick</text>
       </g>
 
       <text x="460" y="388" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Selenium project ka safar: Core → IDE → RC → Grid → WebDriver (2.0) → Selenium 3 → Selenium 4
+        The project journey: Core → IDE → RC → Grid → WebDriver (2.0) → Selenium 3 → Selenium 4
       </text>
       <text x="460" y="414" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Aaj WebDriver + Grid + IDE teeno mil kar Selenium suite banate hain
+        Today WebDriver, Grid and IDE together form the Selenium suite
       </text>
       <text x="460" y="442" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: Selenium 2004 mein Jason Huggins ne Selenium Core se shuru kiya, 2011 mein WebDriver merge hua
+        Exam point: Jason Huggins started Selenium Core in 2004, and WebDriver merged into it in 2011
       </text>
     </svg>
   );
@@ -4407,7 +4496,7 @@ export function SeleniumSuiteDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="The Selenium tool suite: IDE for record and playback, WebDriver for coding, Grid for parallel and distributed runs, plus Selenium Manager and language bindings">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Selenium ka tool suite — chaar tools, ek family
+        The Selenium tool suite — four tools, one family
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
         IDE (record) + WebDriver (code) + Grid (parallel) + Manager (driver setup)
@@ -4415,7 +4504,7 @@ export function SeleniumSuiteDiagram() {
 
       {[
         ['SELENIUM IDE', '#c4ff00', 'Browser extension', ['Record & playback', 'No coding needed', '.side file save', 'Quick smoke / learning']],
-        ['SELENIUM WEBDRIVER', '#00d4ff', 'The main library', ['Code se browser control', 'Java/Python/JS/C#', 'Real browser, real user flow', 'Framework + CI ke saath']],
+        ['SELENIUM WEBDRIVER', '#00d4ff', 'The main library', ['Browser control from code', 'Java/Python/JS/C#', 'Real browser, real user flow', 'Works with a framework and CI']],
         ['SELENIUM GRID', '#00ff88', 'Distributed runner', ['Parallel execution', 'Multi browser + OS', 'Hub + Node model', 'Cloud / docker farm']],
         ['SELENIUM MANAGER', '#ff8800', 'Driver manager', ['Driver auto download', 'Browser version match', 'Selenium 4.6+ built-in', 'No manual setup']],
       ].map(([name, c, sub, pts], i) => (
@@ -4433,26 +4522,26 @@ export function SeleniumSuiteDiagram() {
         <rect x="20" y="264" width="430" height="96" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
         <text x="34" y="284" fill="#6fb2ff" fontSize="9" fontWeight="800" fontFamily={FONT}>LANGUAGE BINDINGS</text>
         <text x="34" y="304" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Official: Java, Python, C#, Ruby, JavaScript, Kotlin</text>
-        <text x="34" y="322" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Sab same WebDriver protocol bolte hain — test logic same</text>
+        <text x="34" y="322" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>All of them speak the same WebDriver protocol — the test logic is the same</text>
         <text x="34" y="342" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Community: PHP, Perl, Go (unofficial bindings)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x="470" y="264" width="430" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="484" y="284" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>RC KA KYA HUA</text>
-        <text x="484" y="304" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Selenium RC (2007–2016) deprecated hai — Selenium 3 se hataya</text>
-        <text x="484" y="322" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Kaam WebDriver karta hai, grid Grid karta hai, record IDE</text>
-        <text x="484" y="342" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Interview favorite: RC vs WebDriver ka farak poochha jaata hai</text>
+        <text x="484" y="284" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>WHAT HAPPENED TO RC</text>
+        <text x="484" y="304" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Selenium RC (2007–2016) is deprecated — removed from Selenium 3</text>
+        <text x="484" y="322" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver does the work, Grid scales it, the IDE records</text>
+        <text x="484" y="342" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Interview favourite: the difference between RC and WebDriver</text>
       </g>
 
       <text x="460" y="392" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Suite = IDE (seekho) → WebDriver (banao) → Grid (scale karo) → Manager (setup bhool jao)
+        Suite = IDE (learn) → WebDriver (build) → Grid (scale) → Manager (forget the setup)
       </text>
       <text x="460" y="418" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Assertion library aur reporting Selenium ke saath alag aate hain — TestNG/JUnit, pytest, Mocha
+        Assertion libraries and reporting come separately — TestNG/JUnit, pytest, Mocha
       </text>
       <text x="460" y="446" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: Selenium suite mein IDE, RC (legacy), WebDriver, Grid aur Selenium Manager shaamil hain
+        Exam point: the Selenium suite includes IDE, RC (legacy), WebDriver, Grid and Selenium Manager
       </text>
     </svg>
   );
@@ -4463,10 +4552,10 @@ export function SeleniumIdeDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium IDE: a browser extension that records user actions as commands such as open, click and assert, replays them, and saves suites as .side files, with limitations">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Selenium IDE — record karo, replay karo, code baad mein
+        Selenium IDE — record, replay, write code later
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        browser extension · no programming · seekhne aur quick smoke ke liye best
+        browser extension · no programming · best for learning and quick smoke tests
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4494,12 +4583,12 @@ export function SeleniumIdeDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
         <rect x="490" y="66" width="410" height="176" rx="10" fill="rgba(196,255,0,0.05)" stroke="rgba(196,255,0,0.35)" />
-        <text x="504" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>KAISE USE KAREIN</text>
-        <text x="504" y="110" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>1. Extension install karo (Chrome / Firefox / Edge)</text>
-        <text x="504" y="130" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2. Record dabao, user jaise click karo</text>
-        <text x="504" y="150" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>3. Har action command ban jaata hai</text>
+        <text x="504" y="86" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>HOW TO USE IT</text>
+        <text x="504" y="110" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>1. Install the extension (Chrome / Firefox / Edge)</text>
+        <text x="504" y="130" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>2. Press record and click like a user</text>
+        <text x="504" y="150" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>3. Every action becomes a command</text>
         <text x="504" y="170" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>4. Playback — fast/slow, step by step debug</text>
-        <text x="504" y="190" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>5. Suite mein cases jodo, .side file export</text>
+        <text x="504" y="190" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>5. Group cases into a suite and export the .side file</text>
         <text x="504" y="210" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>6. Code export — Java / Python / JS</text>
         <text x="504" y="230" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Selenium 4 IDE: control flow (if/while), runner CLI</text>
       </g>
@@ -4507,29 +4596,29 @@ export function SeleniumIdeDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="258" width="430" height="110" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
         <text x="34" y="278" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>FAYDE</text>
-        <text x="34" y="298" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Coding nahi chahiye — manual tester turant shuru</text>
-        <text x="34" y="316" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Bug reproduce karne ka fast tareeka</text>
-        <text x="34" y="334" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Selenium commands samajhne ka best tool</text>
-        <text x="34" y="352" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Recorded steps ko code mein export kar sakte hain</text>
+        <text x="34" y="298" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>No coding needed — a manual tester can start at once</text>
+        <text x="34" y="316" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>A fast way to reproduce a bug</text>
+        <text x="34" y="334" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>The best tool for learning Selenium commands</text>
+        <text x="34" y="352" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Recorded steps can be exported as code</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x="470" y="258" width="430" height="110" rx="9" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
         <text x="484" y="278" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>LIMITATIONS</text>
-        <text x="484" y="298" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Script brittle — UI badla to recorded steps toot</text>
-        <text x="484" y="316" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Branching, looping aur data driven kamzor</text>
-        <text x="484" y="334" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Cross-browser scale nahi, CI integration limited</text>
-        <text x="484" y="352" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Real framework ka replacement nahi — sirf entry point</text>
+        <text x="484" y="298" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Brittle script — change the UI and the recorded steps break</text>
+        <text x="484" y="316" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Weak at branching, looping and data-driven tests</text>
+        <text x="484" y="334" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>No cross-browser scale, limited CI integration</text>
+        <text x="484" y="352" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Not a replacement for a real framework — only an entry point</text>
       </g>
 
       <text x="460" y="394" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        IDE se seekho, WebDriver se banao — record & playback production framework nahi banta
+        Learn with the IDE, build with WebDriver — record and playback is not a production framework
       </text>
       <text x="460" y="420" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        .side file JSON-based hoti hai — git mein rakh sakte hain, CI se CLI se chala sakte hain
+        The .side file is JSON based — keep it in git and run it from the CLI in CI
       </text>
       <text x="460" y="448" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: Selenium IDE ek record & playback tool hai jo browser extension ke roop mein chalta hai
+        Exam point: Selenium IDE is a record and playback tool that runs as a browser extension
       </text>
     </svg>
   );
@@ -4540,10 +4629,10 @@ export function SeleniumRcDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium RC architecture: test code calls the RC server over HTTP which injects JavaScript into the browser, and the reasons RC was replaced by WebDriver">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Selenium RC — purana tareeka: server browser mein JavaScript inject karta tha
+        Selenium RC — the old way: a server injected JavaScript into the browser
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        2007–2016 · any language support ka hero · Selenium 3 se remove
+        2007–2016 · the hero of any-language support · removed in Selenium 3
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4558,7 +4647,7 @@ export function SeleniumRcDiagram() {
         <rect x="232" y="74" width="200" height="92" rx="9" fill="rgba(196,255,0,0.08)" stroke="#c4ff00" strokeWidth="1.5" />
         <text x="332" y="98" textAnchor="middle" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RC SERVER</text>
         <text x="332" y="116" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>Java jar (selenium-server)</text>
-        <text x="332" y="132" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>launcher browser khodta hai</text>
+        <text x="332" y="132" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>the launcher opens the browser</text>
         <text x="332" y="150" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>HTTP proxy + JS inj</text>
       </g>
       <text x="444" y="122" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>→</text>
@@ -4575,42 +4664,42 @@ export function SeleniumRcDiagram() {
         <rect x="676" y="80" width="224" height="80" rx="9" fill="rgba(0,255,136,0.08)" stroke="#00ff88" strokeWidth="1.5" />
         <text x="788" y="104" textAnchor="middle" fill="#00ff88" fontSize="8.6" fontWeight="800" fontFamily={FONT}>AUT (application)</text>
         <text x="788" y="122" textAnchor="middle" fill="#dbe6ff" fontSize="7" fontFamily={FONT}>page load, click, type</text>
-        <text x="788" y="138" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>result RC server ko wapas</text>
+        <text x="788" y="138" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>results go back to the RC server</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x="20" y="180" width="430" height="150" rx="10" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
-        <text x="34" y="200" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>RC KI PROBLEMS</text>
-        <text x="34" y="222" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>JavaScript injection — speed slow, browser version se tooti</text>
-        <text x="34" y="240" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Same origin policy — proxy server ki zaroorat</text>
-        <text x="34" y="258" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Headless / native events support kamzor</text>
-        <text x="34" y="276" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Actual user ke jaisa browser control nahi</text>
-        <text x="34" y="294" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Stability issue — alert, upload, file download par problem</text>
-        <text x="34" y="316" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Isi liye WebDriver ne RC ko replace kiya (2011 merge)</text>
+        <text x="34" y="200" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>PROBLEMS WITH RC</text>
+        <text x="34" y="222" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>JavaScript injection — slow, and broken by browser versions</text>
+        <text x="34" y="240" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Same origin policy — a proxy server is required</text>
+        <text x="34" y="258" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Headless and native event support is weak</text>
+        <text x="34" y="276" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>It does not control the browser like a real user</text>
+        <text x="34" y="294" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>Stability issues — alerts, uploads and file downloads break</text>
+        <text x="34" y="316" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>That is why WebDriver replaced RC (merged in 2011)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x="470" y="180" width="430" height="150" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
         <text x="484" y="200" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>RC vs WEBDRIVER (short)</text>
-        <text x="484" y="222" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — server ke through JS injection</text>
-        <text x="484" y="240" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver — browser ka native automation API</text>
-        <text x="484" y="258" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — HTTP proxy chahiye</text>
+        <text x="484" y="222" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — JS injection through a server</text>
+        <text x="484" y="240" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver — the native automation API of the browser</text>
+        <text x="484" y="258" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — an HTTP proxy is required</text>
         <text x="484" y="276" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>WebDriver — direct driver binary (chromedriver)</text>
         <text x="484" y="296" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>RC — speed slow, flaky · WebDriver — fast, stable</text>
-        <text x="484" y="316" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Aaj RC sirf exam ke liye — project mein use na karein</text>
+        <text x="484" y="316" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>Today RC is exam material only — never use it in a project</text>
       </g>
 
       <text x="460" y="360" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        RC ka contribution: kisi bhi language se browser control — WebDriver ne wahi kaam behtar kiya
+        The RC contribution: browser control from any language — WebDriver did the same job better
       </text>
       <text x="460" y="386" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Selenium 3 (2016) mein RC officially deprecated, Selenium 4 mein poora hataya gaya
+        RC was deprecated in Selenium 3 (2016) and removed completely in Selenium 4
       </text>
       <text x="460" y="412" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: Selenium RC ek server tha jo JavaScript inject karke browser ko control karta tha
+        Exam point: Selenium RC was a server that controlled the browser by injecting JavaScript
       </text>
       <text x="460" y="440" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Architecture yaad rakho: test code → RC server → browser → application
+        Remember the architecture: test code → RC server → browser → application
       </text>
     </svg>
   );
@@ -4707,17 +4796,17 @@ export function SeleniumGridDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Selenium Grid hub and node architecture for parallel cross browser execution, with capabilities matching and a 4 parallel runs example">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Selenium Grid — ek test, kai machine, parallel run
+        Selenium Grid — one test, many machines, parallel run
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Hub requests leta hai, Node browser deta hai — capabilities se matching hoti hai
+        The hub takes requests, a node provides the browser — they are matched by capabilities
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="330" y="72" width="260" height="70" rx="10" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="1.6" />
         <text x="460" y="96" textAnchor="middle" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>HUB (Selenium 3) / ROUTER (Selenium 4)</text>
-        <text x="460" y="114" textAnchor="middle" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>test requests queue karta hai</text>
-        <text x="460" y="130" textAnchor="middle" fill="#9ab0e0" fontSize="7" fontFamily={FONT}>capabilities match karke node chunta hai</text>
+        <text x="460" y="114" textAnchor="middle" fill="#dbe6ff" fontSize="7.2" fontFamily={FONT}>queues the test requests</text>
+        <text x="460" y="130" textAnchor="middle" fill="#9ab0e0" fontSize="7" fontFamily={FONT}>picks a node by matching capabilities</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
@@ -4759,21 +4848,21 @@ export function SeleniumGridDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x="470" y="266" width="430" height="92" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
-        <text x="484" y="286" fill="#00ff88" fontSize="8.8" fontWeight="800" fontFamily={FONT}>PARALLEL KA BENEFIT</text>
+        <text x="484" y="286" fill="#00ff88" fontSize="8.8" fontWeight="800" fontFamily={FONT}>BENEFIT OF PARALLEL RUNS</text>
         <text x="484" y="306" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>4 browsers × 100 tests · sequential 40 min → parallel 12 min</text>
-        <text x="484" y="324" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>Cross-browser matrix ek hi run mein cover</text>
+        <text x="484" y="324" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>the cross-browser matrix covered in one run</text>
         <text x="484" y="342" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>Docker: selenium/hub, selenium/node-chrome images</text>
         <text x="484" y="356" fill="#9ab0e0" fontSize="6.9" fontFamily={FONT}>Cloud grids: BrowserStack, Sauce Labs, LambdaTest</text>
       </g>
 
       <text x="460" y="386" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Grid = horizontal scaling — machine jodo, suite fast karo (test parallel-safe hone chahiye)
+        Grid = horizontal scaling — add machines, speed up the suite (tests must be parallel safe)
       </text>
       <text x="460" y="410" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Shared data conflict, port limit aur test order dependency parallel ka dushman hai
+        Shared data conflicts, port limits and test order dependencies are the enemies of parallel runs
       </text>
       <text x="460" y="438" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: Selenium Grid hub-node architecture se parallel aur distributed testing deta hai
+        Exam point: Selenium Grid gives parallel and distributed testing through its hub-node architecture
       </text>
     </svg>
   );
@@ -4784,21 +4873,21 @@ export function TestDesignConsiderationsDiagram() {
   return (
     <svg viewBox="0 0 920 470" className="diagram-svg" role="img" aria-label="Test design considerations for automation: independent atomic tests, stable locators, data handling, waits, reusable page objects, assertions, naming and test pyramid balance">
       <text x="460" y="28" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Test design considerations — achha test likhne ka tareeka
+        Test design considerations — how to write a good test
       </text>
       <text x="460" y="47" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        automation ka 80% dard galat design se aata hai, tool se nahi
+        80% of automation pain comes from bad design, not from the tool
       </text>
 
       {[
-        ['INDEPENDENT TESTS', 'koi test doosre par depend na kare', 'test 3 akela bhi chale', '#6fb2ff'],
-        ['ATOMIC & FOCUSED', 'ek test = one behaviour', 'fail hone par wajah saaf', '#00d4ff'],
-        ['STABLE LOCATORS', 'data-testid, id, relative xpath', 'index/absolute xpath nahi', '#c4ff00'],
+        ['INDEPENDENT TESTS', 'no test should depend on another', 'test 3 must also run alone', '#6fb2ff'],
+        ['ATOMIC & FOCUSED', 'one test = one behaviour', 'the reason for a failure is obvious', '#00d4ff'],
+        ['STABLE LOCATORS', 'data-testid, id, relative xpath', 'no index or absolute XPath', '#c4ff00'],
         ['WAITS, NOT SLEEP', 'explicit wait on condition', 'flaky tests gone', '#00ff88'],
-        ['TEST DATA STRATEGY', 'factory / seed / API setup', 'DB shared state nahi', '#ff8800'],
-        ['PAGE OBJECT MODEL', 'locators ek jagah', 'UI change = 1 file', '#ff7ab2'],
-        ['MEANINGFUL ASSERTIONS', 'sirf click nahi — verify karo', 'status, text, db row', '#aa88ff'],
-        ['NAMING & REPORTING', 'intent batane wala naam', 'fail par screenshot + log', '#ffd166'],
+        ['TEST DATA STRATEGY', 'factory / seed / API setup', 'no shared database state', '#ff8800'],
+        ['PAGE OBJECT MODEL', 'locators in one place', 'UI change = 1 file', '#ff7ab2'],
+        ['MEANINGFUL ASSERTIONS', 'do not just click — verify', 'status, text, db row', '#aa88ff'],
+        ['NAMING & REPORTING', 'a name that states the intent', 'screenshot and log on failure', '#ffd166'],
       ].map(([t, d, why, c], i) => {
         const col = i % 2;
         const row = Math.floor(i / 2);
@@ -4816,19 +4905,19 @@ export function TestDesignConsiderationsDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x="20" y="310" width="880" height="66" rx="9" fill="rgba(47,111,255,0.08)" stroke="rgba(47,111,255,0.45)" />
-        <text x="34" y="330" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>DIRTY TEST KA EXAMPLE</text>
-        <text x="34" y="348" fill="#ff7a90" fontSize="7.6" fontFamily="FONT">✗ test1 user banata hai → test2 usi user par login karta hai (order dependency, akela fail)</text>
-        <text x="34" y="364" fill="#00ff88" fontSize="7.6" fontFamily="FONT">✓ har test apna user API se banaye (beforeEach), phir login kare — akela bhi pass</text>
+        <text x="34" y="330" fill="#6fb2ff" fontSize="9" fontWeight="700" fontFamily={FONT}>EXAMPLE OF A DIRTY TEST</text>
+        <text x="34" y="348" fill="#ff7a90" fontSize="7.6" fontFamily="FONT">✗ test1 creates a user → test2 logs in as that user (order dependency, fails alone)</text>
+        <text x="34" y="364" fill="#00ff88" fontSize="7.6" fontFamily="FONT">✓ every test creates its own user through the API (beforeEach), then logs in — it passes alone too</text>
       </g>
 
       <text x="460" y="402" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>
-        Test ka naam aisa ho ki fail dekh kar hi pata chale kya toota — "login test 2" nahi
+        The test name should say what broke just from the failure — not login test 2
       </text>
       <text x="460" y="426" textAnchor="middle" fill="#92a5d8" fontSize="9" fontFamily={FONT}>
-        Smoke tests pehle, phir critical path, phir detailed UI — pyramid ka balance rakho
+        Smoke tests first, then the critical path, then detailed UI — keep the pyramid balanced
       </text>
       <text x="460" y="454" textAnchor="middle" fill="#8f9dc4" fontSize="9" fontFamily={FONT}>
-        Exam point: automation test design mein independence, locator strategy, waits, data aur reporting dekhi jaati hai
+        Exam point: automation test design covers independence, locator strategy, waits, data and reporting
       </text>
     </svg>
   );

@@ -389,6 +389,13 @@ count, instructions, `Q1) … [10 Marks]`, internal **OR** options and per-part 
 and an "any two" short-notes question) matches the 2022–2024 papers. Adding another paper is one object in
 its own data file, registered in `src/data/questionPapers.js`.
 
+Four STQA papers ship today, each on a different topic set so a student can rehearse the whole syllabus:
+**Paper 1** (the real 2020 pattern, straight 10-mark questions and any-two short notes), **Paper 2** (10-mark
+questions on a second set of topics), **Paper 3** (every question is a 10-mark question divided **5 + 5**) and
+**Paper 4** (every question divided **6 + 4**, the 6-mark part for the discussion and the 4-mark part for the
+applied or numerical question). The mark division is printed in each question head (`10 marks — (a) 6 + (b) 4
+· OR (c) 6 + (d) 4`), so the layout itself shows the split.
+
 **Paper content rules** (apply to every paper added to this section):
 - The paper is **English only** — questions, options, notes, instructions and answers. The rest of the app
   keeps its Hinglish voice, but exam material does not.
