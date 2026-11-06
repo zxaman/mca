@@ -9,10 +9,15 @@ import { cysPaper1 } from './cysPaper1';
 import { cysPaper2 } from './cysPaper2';
 import { cysPaper3 } from './cysPaper3';
 import { cysPaper4 } from './cysPaper4';
+import { dsPaper1 } from './dsPaper1';
+import { dsPaper2 } from './dsPaper2';
+import { dsPaper3 } from './dsPaper3';
+import { dsPaper4 } from './dsPaper4';
 
 export const questionPapers = {
   'software-testing': [stqaPaper1, stqaPaper2, stqaPaper3, stqaPaper4],
   'cyber-security': [cysPaper1, cysPaper2, cysPaper3, cysPaper4],
+  'data-science': [dsPaper1, dsPaper2, dsPaper3, dsPaper4],
 };
 
 export const paperCounts = Object.fromEntries(

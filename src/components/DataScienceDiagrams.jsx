@@ -88,7 +88,7 @@ export function DSImpactDiagram() {
         );
       })}
       <text x="470" y="215" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>
-        Data Science isi chain ke beech ke steps ko strong karti hai — cleaning, modelling aur prediction se
+        Data Science strengthens the steps in between — through cleaning, modelling and prediction
       </text>
       <g className="diagram-pop" style={{ animationDelay: '900ms' }}>
         {[
@@ -148,7 +148,7 @@ export function DataTypesDiagram() {
       <g className="diagram-pop">
         <rect x="370" y="14" width="200" height="54" rx="12" fill="rgba(196,255,0,0.08)" stroke="#c4ff00" strokeWidth="2" />
         <text x="470" y="40" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>DATA</text>
-        <text x="470" y="58" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>kitna structure hai?</text>
+        <text x="470" y="58" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>how much structure?</text>
       </g>
       <line x1="470" y1="68" x2="470" y2="96" stroke="rgba(255,255,255,0.28)" strokeWidth="2" />
       <line x1="160" y1="96" x2="780" y2="96" stroke="rgba(255,255,255,0.28)" strokeWidth="2" />
@@ -173,10 +173,10 @@ export function DataTypesDiagram() {
         </g>
       ))}
       <text x="470" y="442" textAnchor="middle" fill="#9ab0e0" fontSize="11" fontFamily={FONT}>
-        Jitna kam structure, utna zyada storage + processing effort — par utni hi zyada insight value
+        The less structure, the more storage + processing effort — but the more insight value
       </text>
       <text x="470" y="460" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
-        Real systems mein teeno types saath aate hain (hybrid data)
+        Real systems bring all three types together (hybrid data)
       </text>
     </svg>
   );
@@ -224,7 +224,7 @@ export function MeasurementScalesDiagram() {
         More structure → more mathematical operations allowed
       </text>
       <text x="470" y="394" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Order (rank)? · Equal intervals (distance)? · True zero (absence)? — teeno check karo aur scale decide karo
+        Order (rank)? · Equal intervals (distance)? · True zero (absence)? — check all three, then fix the scale
       </text>
       <text x="470" y="412" textAnchor="middle" fill="#8f9dc4" fontSize="10" fontFamily={FONT}>
         S. S. Stevens (1946) — four scales of measurement
@@ -266,7 +266,7 @@ export function DataFormatsDiagram() {
   return (
     <svg viewBox="0 0 920 500" className="diagram-svg" role="img" aria-label="The same student record stored as CSV, JSON, XML and an SQL table">
       <text x="460" y="30" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Same record — chaar formats
+        Same record — four formats
       </text>
       <text x="460" y="48" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
         roll = 1 · name = Riya · marks = 78
@@ -319,8 +319,8 @@ export function BigDataVsDataScienceDiagram() {
         ].map((t, i) => (
           <text key={t} x="170" y={146 + i * 26} textAnchor="middle" fill="#fff" fontSize="11.5" fontFamily={FONT}>{t}</text>
         ))}
-        <text x="170" y="278" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>Sawaal: data itna bada kaise</text>
-        <text x="170" y="294" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>store aur process karein?</text>
+        <text x="170" y="278" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>Question: how do we store</text>
+        <text x="170" y="294" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>and process data this large?</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
@@ -332,14 +332,14 @@ export function BigDataVsDataScienceDiagram() {
         ].map((t, i) => (
           <text key={t} x="750" y={146 + i * 26} textAnchor="middle" fill="#fff" fontSize="11.5" fontFamily={FONT}>{t}</text>
         ))}
-        <text x="750" y="278" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>Sawaal: data se decision</text>
-        <text x="750" y="294" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>kaise nikaalein?</text>
+        <text x="750" y="278" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>Question: from data to decision</text>
+        <text x="750" y="294" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>and extract insight from it?</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <circle cx="460" cy="92" r="26" fill="#0a0e1a" stroke="#c4ff00" strokeWidth="2" />
         <text x="460" y="98" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>VS</text>
-        <text x="460" y="138" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>Big Data ke 5 V&apos;s</text>
+        <text x="460" y="138" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="700" fontFamily={FONT}>The 5 V&apos;s of big data</text>
         {vs.map((v) => (
           <g key={v.label}>
             <text x="460" y={v.y} textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700" fontFamily={FONT}>{v.label}</text>
@@ -352,13 +352,13 @@ export function BigDataVsDataScienceDiagram() {
         Big Data = fuel (data + infrastructure) · Data Science = engine (insight + action)
       </text>
       <text x="460" y="362" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Big data ke bina data science chhoti scale par bhi chalti hai; par 5 V&apos;s wala data
+        Without big data, data science still runs at a small scale; but data with the 5 V&apos;s
       </text>
       <text x="460" y="380" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        handle karne ke liye big data tools zaroori ho jaate hain
+        needs big data tools to handle it
       </text>
       <text x="460" y="410" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
-        Exam: pehle difference likho, phir ek example (10 TB clickstream → churn model)
+        Exam: write the difference first, then one example (10 TB clickstream → churn model)
       </text>
     </svg>
   );
@@ -427,10 +427,10 @@ export function DSLifecycleDiagram() {
         );
       })}
       <text x={cx} y="500" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Monitoring se insight milti hai → problem phir se define hota hai (feedback loop)
+        Monitoring yields insight → the problem is redefined (feedback loop)
       </text>
       <text x={cx} y="522" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
-        Real project mein 70–80% time stage 2–3 (data collection + cleaning) mein jaata hai
+        In a real project 70–80% of the time goes into stages 2–3 (data collection + cleaning)
       </text>
     </svg>
   );
@@ -497,7 +497,7 @@ export function CrispDmDiagram() {
         );
       })}
       <text x={cx} y="498" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Evaluation ke baad phase 1 ya 4 par wapas ja sakte hain — isliye CRISP-DM cyclic hai
+        After evaluation you may return to phase 1 or 4 — that is why CRISP-DM is cyclic
       </text>
       <text x={cx} y="520" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
         SEMMA (SAS) = Sample → Explore → Modify → Model → Assess · TDSP (Microsoft) = 5 stages + team roles
@@ -548,7 +548,7 @@ export function DSApplicationsDiagram() {
         );
       })}
       <text x="460" y="452" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Har domain ka pattern same hai: problem → data → model → decision → measurable value
+        Every domain follows the same pattern: problem → data → model → decision → measurable value
       </text>
     </svg>
   );
@@ -559,11 +559,11 @@ export function DSApplicationsDiagram() {
 // ============================================================
 export function DSvsFieldsDiagram() {
   const fields = [
-    { name: 'STATISTICS', q: 'Data reliable hai?', out: 'inference · p-value', tech: 'sampling, tests', color: '#8f9dc4' },
-    { name: 'BI', q: 'Kya hua?', out: 'dashboard · KPI', tech: 'SQL, OLAP', color: '#2f6fff' },
-    { name: 'ML', q: 'Pattern seekho', out: 'trained model', tech: 'supervised, clustering', color: '#00d4ff' },
-    { name: 'AI', q: 'Machine ko smart banao', out: 'autonomous system', tech: 'NLP, CV, agents', color: '#ff8800' },
-    { name: 'DATA SCIENCE', q: 'Kya hoga + kya karein?', out: 'insight → decision', tech: 'stats + ML + domain', color: '#c4ff00' },
+    { name: 'STATISTICS', q: 'Is the data reliable?', out: 'inference · p-value', tech: 'sampling, tests', color: '#8f9dc4' },
+    { name: 'BI', q: 'What happened?', out: 'dashboard · KPI', tech: 'SQL, OLAP', color: '#2f6fff' },
+    { name: 'ML', q: 'Learn the pattern', out: 'trained model', tech: 'supervised, clustering', color: '#00d4ff' },
+    { name: 'AI', q: 'Make the machine smart', out: 'autonomous system', tech: 'NLP, CV, agents', color: '#ff8800' },
+    { name: 'DATA SCIENCE', q: 'What will happen + what to do?', out: 'insight → decision', tech: 'stats + ML + domain', color: '#c4ff00' },
   ];
   return (
     <svg viewBox="0 0 920 360" className="diagram-svg" role="img" aria-label="Data science compared with statistics, business intelligence, machine learning and artificial intelligence">
@@ -575,7 +575,7 @@ export function DSvsFieldsDiagram() {
             <rect x={x} y={isDs ? 40 : 56} width="164" height={isDs ? 246 : 214} rx="12" fill={isDs ? 'rgba(196,255,0,0.07)' : 'rgba(255,255,255,0.03)'} stroke={f.color} strokeWidth={isDs ? 2.2 : 1.5} strokeOpacity="0.8" />
             <rect x={x} y={isDs ? 40 : 56} width="164" height="38" rx="12" fill={f.color} fillOpacity="0.16" />
             <text x={x + 82} y={isDs ? 64 : 80} textAnchor="middle" fill={f.color} fontSize="11" fontWeight="800" fontFamily={FONT}>{f.name}</text>
-            <text x={x + 14} y={isDs ? 102 : 118} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>SAWAAL</text>
+            <text x={x + 14} y={isDs ? 102 : 118} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>QUESTION</text>
             <text x={x + 14} y={isDs ? 120 : 136} fill="#fff" fontSize="10" fontFamily={FONT}>{f.q}</text>
             <text x={x + 14} y={isDs ? 148 : 164} fill="#9ab0e0" fontSize="9" fontFamily={FONT}>OUTPUT</text>
             <text x={x + 14} y={isDs ? 166 : 182} fill="#fff" fontSize="10" fontFamily={FONT}>{f.out}</text>
@@ -583,17 +583,17 @@ export function DSvsFieldsDiagram() {
             <text x={x + 14} y={isDs ? 212 : 228} fill="#fff" fontSize="10" fontFamily={FONT}>{f.tech}</text>
             {isDs && (
               <text x={x + 14} y={268} fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>
-                = sabka use + domain
+                = all three + domain
               </text>
             )}
           </g>
         );
       })}
       <text x="460" y="322" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        AI ⊃ ML ⊃ deep learning · Data Science ek applied field hai jo statistics + ML + domain use karti hai
+        AI ⊃ ML ⊃ deep learning · Data Science is an applied field using statistics + ML + domain
       </text>
       <text x="460" y="344" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
-        Exam: definition se pehle ek line mein "overlap" likho, phir table se difference
+        Exam: write one line on the "overlap" before the definition, then the table of differences
       </text>
     </svg>
   );
@@ -606,10 +606,10 @@ export function MLAIStackDiagram() {
   const steps = [
     { n: '1', t: 'Data collect', d: 'history · sensors · logs' },
     { n: '2', t: 'Clean + features', d: 'missing values, encoding' },
-    { n: '3', t: 'Train / test split', d: '80% seekhne ke liye, 20% test' },
-    { n: '4', t: 'Train the algorithm', d: 'model weights adjust hote hain' },
+    { n: '3', t: 'Train / test split', d: '80% to learn, 20% to test' },
+    { n: '4', t: 'Train the algorithm', d: 'the model weights are adjusted' },
     { n: '5', t: 'Evaluate', d: 'accuracy, precision, recall' },
-    { n: '6', t: 'Deploy + monitor', d: 'naya data → model dobara train' },
+    { n: '6', t: 'Deploy + monitor', d: 'new data → retrain the model' },
   ];
   return (
     <svg viewBox="0 0 920 480" className="diagram-svg" role="img" aria-label="Artificial intelligence contains machine learning which contains deep learning, next to the six steps of training a model">
@@ -617,25 +617,25 @@ export function MLAIStackDiagram() {
         AI ⊃ Machine Learning ⊃ Deep Learning
       </text>
       <text x="460" y="44" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        har Deep Learning ek ML hai · har ML ek AI approach hai · par har AI ML nahi
+        every Deep Learning is ML · every ML is an AI approach · but not every AI is ML
       </text>
 
       <g className="diagram-pop">
         <rect x="20" y="62" width="450" height="348" rx="16" fill="rgba(255,136,0,0.06)" stroke="#ff8800" strokeWidth="2" />
         <text x="40" y="90" fill="#ff8800" fontSize="14" fontWeight="800" fontFamily={FONT}>ARTIFICIAL INTELLIGENCE</text>
-        <text x="40" y="108" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>machine ko human-like intelligence dena</text>
+        <text x="40" y="108" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>give the machine human-like intelligence</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '140ms' }}>
         <rect x="52" y="126" width="386" height="232" rx="14" fill="rgba(0,212,255,0.07)" stroke="#00d4ff" strokeWidth="1.8" />
         <text x="70" y="152" fill="#00d4ff" fontSize="12.5" fontWeight="800" fontFamily={FONT}>MACHINE LEARNING</text>
-        <text x="70" y="170" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>data se pattern seekhna, bina explicit rules</text>
+        <text x="70" y="170" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>learn patterns from data without explicit rules</text>
 
         <rect x="84" y="188" width="322" height="132" rx="12" fill="rgba(196,255,0,0.07)" stroke="#c4ff00" strokeWidth="1.6" />
         <text x="102" y="212" fill="#c4ff00" fontSize="11.5" fontWeight="800" fontFamily={FONT}>DEEP LEARNING</text>
         <text x="102" y="232" fill="#fff" fontSize="10" fontFamily={FONT}>neural networks, 3+ hidden layers</text>
         <text x="102" y="252" fill="#fff" fontSize="10" fontFamily={FONT}>images · speech · language · video</text>
-        <text x="102" y="274" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>bahut data + GPU chahiye</text>
+        <text x="102" y="274" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>needs lots of data + GPU</text>
         <text x="102" y="296" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>CNN, RNN, transformers</text>
 
         <text x="70" y="330" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>ML examples</text>
@@ -647,7 +647,7 @@ export function MLAIStackDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <text x="706" y="86" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>
-          ML model kaise seekhta hai
+          How an ML model learns
         </text>
         {steps.map((s, i) => {
           const y = 100 + i * 52;
@@ -665,15 +665,15 @@ export function MLAIStackDiagram() {
           );
         })}
         <text x="706" y="414" textAnchor="middle" fill="#c4ff00" fontSize="9.5" fontFamily={FONT}>
-          evaluate → deploy → monitor · naya data aaye to dobara step 1 (loop)
+          evaluate → deploy → monitor · with new data go back to step 1 (loop)
         </text>
       </g>
 
       <text x="460" y="438" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        Training = data + algorithm + feedback · learning ka matlab model ke numbers (weights) data ke hisaab se badalna
+        Training = data + algorithm + feedback · learning means the model's weights change to fit the data
       </text>
       <text x="460" y="462" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
-        Exam: nested circle diagram banao (AI &gt; ML &gt; DL), phir 6 steps likho
+        Exam: draw the nested circle diagram (AI &gt; ML &gt; DL), then write the 6 steps
       </text>
     </svg>
   );
@@ -685,25 +685,25 @@ export function MLAIStackDiagram() {
 export function DSRolesDiagram() {
   const roles = [
     {
-      name: 'DATA ENGINEER', color: '#2f6fff', tag: 'data ko laata hai',
+      name: 'DATA ENGINEER', color: '#2f6fff', tag: 'brings the data',
       work: ['source → warehouse', 'pipelines + ETL'],
       skills: ['SQL · Python', 'Spark · Airflow'],
       output: 'clean, reliable data',
     },
     {
-      name: 'DATA ANALYST', color: '#00d4ff', tag: 'kya hua, batata hai',
+      name: 'DATA ANALYST', color: '#00d4ff', tag: 'reports what happened',
       work: ['dashboards + reports', 'trend + KPI analysis'],
       skills: ['SQL · Excel', 'Power BI · Tableau'],
       output: 'insight + dashboard',
     },
     {
-      name: 'DATA SCIENTIST', color: '#c4ff00', tag: 'kya hoga, predict karta hai',
+      name: 'DATA SCIENTIST', color: '#c4ff00', tag: 'predicts what will happen',
       work: ['experiment + model', 'statistics + ML'],
       skills: ['Python/R · stats', 'scikit-learn · SQL'],
       output: 'model + recommendation',
     },
     {
-      name: 'ML ENGINEER', color: '#ff8800', tag: 'model ko chalata hai',
+      name: 'ML ENGINEER', color: '#ff8800', tag: 'runs the model in production',
       work: ['deploy + serve model', 'monitor + retrain'],
       skills: ['Python · Docker', 'MLOps · cloud'],
       output: 'live prediction API',
@@ -712,10 +712,10 @@ export function DSRolesDiagram() {
   return (
     <svg viewBox="0 0 920 480" className="diagram-svg" role="img" aria-label="Data engineer, data analyst, data scientist and machine learning engineer roles with their work, skills and output">
       <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Data science team ke chaar roles
+        The four roles in a data science team
       </text>
       <text x="460" y="44" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        data → insight → model → production · ek hi project mein chaaron kaam aate hain
+        data → insight → model → production · one project uses all four
       </text>
       {roles.map((r, i) => {
         const x = 20 + i * 226;
@@ -726,7 +726,7 @@ export function DSRolesDiagram() {
             <text x={x + 100} y="84" textAnchor="middle" fill={r.color} fontSize="11" fontWeight="800" fontFamily={FONT}>{r.name}</text>
             <text x={x + 100} y="101" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>{r.tag}</text>
 
-            <text x={x + 14} y="136" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>KAAM</text>
+            <text x={x + 14} y="136" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>ROLE</text>
             {r.work.map((w, j) => (
               <text key={w} x={x + 14} y={154 + j * 17} fill="#fff" fontSize="10" fontFamily={FONT}>{w}</text>
             ))}
@@ -741,8 +741,8 @@ export function DSRolesDiagram() {
             <text x={x + 14} y="291" fill={r.color} fontSize="10" fontWeight="700" fontFamily={FONT}>{r.output}</text>
 
             <line x1={x + 14} y1="310" x2={x + 186} y2="310" stroke="rgba(255,255,255,0.1)" />
-            <text x={x + 14} y="330" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>SAWAAL</text>
-            <text x={x + 14} y="349" fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>{['kahan se aaya?', 'kya hua?', 'kya hoga?', 'chal kaise raha?'][i]}</text>
+            <text x={x + 14} y="330" fill="#9ab0e0" fontSize="8.5" fontWeight="700" fontFamily={FONT}>QUESTION</text>
+            <text x={x + 14} y="349" fill="#dbe6ff" fontSize="9.5" fontFamily={FONT}>{['where from?', 'what happened?', 'what will happen?', 'how is it running?'][i]}</text>
           </g>
         );
       })}
@@ -752,13 +752,13 @@ export function DSRolesDiagram() {
         </text>
       ))}
       <text x="460" y="398" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
-        Chhota team: ek data scientist chaar kaam karta hai · Bada team: roles specialised hote hain
+        Small team: one data scientist does all four · Large team: roles are specialised
       </text>
       <text x="460" y="420" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
-        Data Engineer banata hai · Data Analyst samajhta hai · Data Scientist model banata hai · ML Engineer chalata hai
+        Data Engineer builds · Data Analyst understands · Data Scientist builds the model · ML Engineer runs it
       </text>
       <text x="460" y="442" textAnchor="middle" fill="#5a6a9e" fontSize="9.5" fontFamily={FONT}>
-        Exam mein table + ek project example (churn) likhna best answer hota hai
+        In the exam a table + one project example (churn) is the best answer
       </text>
     </svg>
   );
@@ -778,18 +778,18 @@ export function StatisticsFoundationDiagram() {
   ];
   const widths = [400, 340, 280, 220, 160];
   const use = [
-    { stage: 'Cleaning', what: 'outliers aur missing values detect karna (IQR, z-score)' },
-    { stage: 'EDA', what: 'distribution, spread aur correlation dekhna' },
-    { stage: 'Modelling', what: 'regression, assumptions, error ka matlab' },
+    { stage: 'Cleaning', what: 'detect outliers and missing values (IQR, z-score)' },
+    { stage: 'EDA', what: 'examine distribution, spread and correlation' },
+    { stage: 'Modelling', what: 'regression, assumptions, meaning of error' },
     { stage: 'Evaluation', what: 'p-value, confidence interval, A/B test' },
   ];
   return (
     <svg viewBox="0 0 920 480" className="diagram-svg" role="img" aria-label="Statistics as the five layer foundation under data science, with the stages where each part is used">
       <text x="460" y="26" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>
-        Mathematical statistics — data science ki neev
+        Mathematical statistics — the foundation of data science
       </text>
       <text x="460" y="44" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>
-        statistics batati hai ki result bharose ke layak hai ya sirf ittefaq (chance)
+        statistics tells us whether a result is trustworthy or just chance
       </text>
 
       {layers.map((l, i) => {
@@ -816,7 +816,7 @@ export function StatisticsFoundationDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <text x="690" y="86" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="800" fontFamily={FONT}>
-          Statistics kahan kaam aati hai
+          Where statistics helps
         </text>
         {use.map((u, i) => {
           const y = 104 + i * 74;
@@ -835,7 +835,7 @@ export function StatisticsFoundationDiagram() {
         mean μ = Σx / n · standard deviation σ = √(Σ(x − μ)² / n) · z = (x − μ) / σ · p &lt; 0.05 = significant
       </text>
       <text x="460" y="462" textAnchor="middle" fill="#5a6a9e" fontSize="10" fontFamily={FONT}>
-        ML prediction deta hai, statistics batati hai ki prediction par bharosa kitna karein
+        ML gives a prediction, statistics tells us how much to trust it
       </text>
     </svg>
   );
@@ -855,10 +855,10 @@ export function PreprocessingOverviewDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data pre-processing pipeline: raw data through cleaning, integration, transformation and reduction to quality data for mining">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Pre-processing — kachre se quality data tak
+        Data Pre-processing — from raw data to quality data
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        Garbage In, Garbage Out — model jitna achha data utna hi achha
+        Garbage In, Garbage Out — the model is only as good as the data
       </text>
 
       {steps.map((s, i) => (
@@ -893,7 +893,7 @@ export function PreprocessingOverviewDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '1010ms' }}>
         <rect x="420" y="212" width="360" height="172" rx="9" fill="rgba(47,111,255,0.07)" stroke="rgba(47,111,255,0.4)" />
-        <text x="436" y="232" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>PRE-PROCESSING KITNA TIME LETA HAI</text>
+        <text x="436" y="232" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>HOW MUCH TIME PRE-PROCESSING TAKES</text>
         {[
           ['Data collection', 10, '#6fb2ff'],
           ['Data pre-processing', 60, '#c4ff00'],
@@ -906,14 +906,14 @@ export function PreprocessingOverviewDiagram() {
             <text x="772" y={254 + i * 24} textAnchor="end" fill={c} fontSize="8.2" fontFamily={FONT}>{w}%</text>
           </g>
         ))}
-        <text x="436" y="366" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>Industry reports: analyst ka 60–80% time data prepare karne mein jaata hai</text>
+        <text x="436" y="366" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>Industry reports: 60–80% of an analyst's time goes into preparing data</text>
       </g>
 
       <text x="400" y="418" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="700" fontFamily={FONT}>
-        Pre-processing ke baad hi model ka result bharosemand hota hai
+        Only after pre-processing is the model's result dependable
       </text>
       <text x="400" y="442" textAnchor="middle" fill="#5a6a9e" fontSize="9.6" fontFamily={FONT}>
-        Forms: data cleaning (values theek) · integration (sources jodo) · transformation (shape badlo) · reduction (size ghatao)
+        Forms: data cleaning (fix values) · integration (join sources) · transformation (change shape) · reduction (cut size)
       </text>
       <text x="400" y="466" textAnchor="middle" fill="#8f9dc4" fontSize="10" fontFamily={FONT}>
         Clean data = complete + consistent + correct + relevant + timely
@@ -929,10 +929,10 @@ export function PreprocessingNeedDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Why data pre-processing is needed: real world data is incomplete, noisy, inconsistent and duplicated, and dirty data leads to wrong models and wrong decisions">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data pre-processing ki zaroorat kyun hai?
+        Why is data pre-processing needed?
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        Real world data kabhi ready-to-use nahi hota
+        Real world data is never ready to use
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -952,17 +952,17 @@ export function PreprocessingNeedDiagram() {
             ))}
           </g>
         ))}
-        <text x="34" y="206" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>missing · outlier · inconsistent · duplicate — sab ek hi table mein</text>
+        <text x="34" y="206" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>missing · outlier · inconsistent · duplicate — all in one table</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
         <rect x="410" y="64" width="370" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
         <text x="424" y="84" fill="#c4ff00" fontSize="10" fontWeight="800" fontFamily={FONT}>4 QUALITY DIMENSIONS FAIL</text>
         {[
-          ['Incomplete', 'attributes missing, khaali cells', '#ff7a90'],
+          ['Incomplete', 'attributes missing, empty cells', '#ff7a90'],
           ['Noisy', 'typo, random error, wrong reading', '#ff8800'],
           ['Inconsistent', 'Pune vs pune, 45,000 vs 45000', '#ffd166'],
-          ['Redundant', 'same record 2 baar, extra columns', '#00d4ff'],
+          ['Redundant', 'same record twice, extra columns', '#00d4ff'],
         ].map(([t, d, c], i) => (
           <g key={t}>
             <text x="424" y={106 + i * 26} fill={c} fontSize="9.2" fontWeight="700" fontFamily={FONT}>✗ {t}</text>
@@ -973,11 +973,11 @@ export function PreprocessingNeedDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x="20" y="232" width="760" height="96" rx="9" fill="rgba(47,111,255,0.07)" stroke="rgba(47,111,255,0.4)" />
-        <text x="400" y="254" textAnchor="middle" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>DIRTY DATA KA ASAR — CHAIN REACTION</text>
+        <text x="400" y="254" textAnchor="middle" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>THE EFFECT OF DIRTY DATA — A CHAIN REACTION</text>
         {[
           ['Wrong input', 'age 999, salary blank'],
-          ['Wrong training', 'model galat pattern seekhta hai'],
-          ['Wrong output', 'forecast ya score galat'],
+          ['Wrong training', 'the model learns the wrong pattern'],
+          ['Wrong output', 'the forecast or score is wrong'],
           ['Wrong decision', 'loan reject, stock extra'],
         ].map(([t, d], i) => (
           <g key={t}>
@@ -991,27 +991,27 @@ export function PreprocessingNeedDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x="20" y="346" width="370" height="104" rx="9" fill="rgba(255,122,144,0.05)" stroke="rgba(255,122,144,0.35)" />
-        <text x="34" y="366" fill="#ff7a90" fontSize="9.6" fontWeight="800" fontFamily={FONT}>AGAR PRE-PROCESS NA KAREIN</text>
-        <text x="34" y="386" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• model accuracy girti hai, error badhta hai</text>
-        <text x="34" y="404" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• algorithm crash ya NaN / type error</text>
-        <text x="34" y="422" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• duplicate rows se result bias</text>
-        <text x="34" y="440" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• 80% project time debugging mein jaata hai</text>
+        <text x="34" y="366" fill="#ff7a90" fontSize="9.6" fontWeight="800" fontFamily={FONT}>IF WE DO NOT PRE-PROCESS</text>
+        <text x="34" y="386" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• model accuracy falls, error rises</text>
+        <text x="34" y="404" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• algorithm crash or NaN / type error</text>
+        <text x="34" y="422" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• duplicate rows bias the result</text>
+        <text x="34" y="440" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• 80% of project time goes into debugging</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x="410" y="346" width="370" height="104" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
-        <text x="424" y="366" fill="#00ff88" fontSize="9.6" fontWeight="800" fontFamily={FONT}>PRE-PROCESS KE FAYDE</text>
-        <text x="424" y="386" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• better accuracy aur stable model</text>
-        <text x="424" y="404" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• training fast (kam rows/columns)</text>
-        <text x="424" y="422" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• same format par algorithms compare ho sakte hain</text>
-        <text x="424" y="440" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• reproducible aur explainable pipeline</text>
+        <text x="424" y="366" fill="#00ff88" fontSize="9.6" fontWeight="800" fontFamily={FONT}>BENEFITS OF PRE-PROCESSING</text>
+        <text x="424" y="386" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• better accuracy and a stable model</text>
+        <text x="424" y="404" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• faster training (fewer rows/columns)</text>
+        <text x="424" y="422" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• algorithms can be compared on the same format</text>
+        <text x="424" y="440" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• a reproducible and explainable pipeline</text>
       </g>
 
       <text x="400" y="480" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="700" fontFamily={FONT}>
-        “Achha model nahi, achha data jeetta hai”
+        “A good data set beats a good model”
       </text>
       <text x="400" y="504" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>
-        Exam line: pre-processing data ko complete, consistent, noise-free aur model-ready banata hai
+        Exam line: pre-processing makes data complete, consistent, noise-free and model-ready
       </text>
     </svg>
   );
@@ -1024,7 +1024,7 @@ export function DataCleaningDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data cleaning: handling missing values, noisy data, outliers and duplicates with techniques such as mean imputation, binning, IQR and deduplication">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Cleaning — gande values ko theek karna
+        Data Cleaning — repairing dirty values
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
         missing values · noise · outliers · duplicates · inconsistency
@@ -1033,53 +1033,53 @@ export function DataCleaningDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="20" y="64" width="370" height="168" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.45)" />
         <text x="34" y="84" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>1 · MISSING VALUES</text>
-        <text x="34" y="104" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Row drop — agar missing bahut kam ho</text>
-        <text x="34" y="122" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Mean / median / mode se replace</text>
-        <text x="34" y="140" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Constant ya “Unknown” category</text>
-        <text x="34" y="158" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Model se predict (KNN / regression)</text>
+        <text x="34" y="104" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Row drop — when very few values are missing</text>
+        <text x="34" y="122" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Replace with mean / median / mode</text>
+        <text x="34" y="140" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• A constant or “Unknown” category</text>
+        <text x="34" y="158" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Predict it with a model (KNN / regression)</text>
         <text x="34" y="176" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Forward / backward fill (time series)</text>
-        <text x="34" y="200" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>median better hai jab outliers hon</text>
-        <text x="34" y="218" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>angootha: &lt;5% missing → impute, &gt;40% → column chhod do</text>
+        <text x="34" y="200" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>the median is better when there are outliers</text>
+        <text x="34" y="218" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>rule of thumb: &lt;5% missing → impute, &gt;40% → drop the column</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
         <rect x="410" y="64" width="370" height="168" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.45)" />
         <text x="424" y="84" fill="#00d4ff" fontSize="10" fontWeight="800" fontFamily={FONT}>2 · NOISY DATA (random error)</text>
-        <text x="424" y="104" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Binning — values ko bins mein daal kar smooth</text>
-        <text x="424" y="122" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Regression — fit line se value replace</text>
-        <text x="424" y="140" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Clustering — outlier cluster alag karke detect</text>
+        <text x="424" y="104" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Binning — smooth values by placing them in bins</text>
+        <text x="424" y="122" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Regression — replace with the fitted line value</text>
+        <text x="424" y="140" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Clustering — detect outliers as a separate cluster</text>
         <text x="424" y="158" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Smoothing — moving average, median filter</text>
         <text x="424" y="176" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Typo fix — “Pune” vs “pune”, spelling dictionary</text>
-        <text x="424" y="200" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>price 32, 35, 34, 999 → 999 noise hai</text>
-        <text x="424" y="218" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>smoothing se pattern dikhta hai, random error kam hota hai</text>
+        <text x="424" y="200" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>price 32, 35, 34, 999 → 999 is noise</text>
+        <text x="424" y="218" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>smoothing reveals the pattern and reduces random error</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x="20" y="248" width="370" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.45)" />
         <text x="34" y="268" fill="#ff8800" fontSize="10" fontWeight="800" fontFamily={FONT}>3 · OUTLIERS</text>
-        <text x="34" y="288" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• IQR rule: Q1 − 1.5·IQR se Q3 + 1.5·IQR ke bahar</text>
-        <text x="34" y="306" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Z-score: |z| &gt; 3 (mean se 3 SD door)</text>
-        <text x="34" y="324" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Box plot / scatter se visual detect</text>
-        <text x="34" y="342" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Handle: remove, cap (winsorise), transform, alag model</text>
-        <text x="34" y="366" fill="#ff7a90" fontSize="8.4" fontFamily={FONT}>Har outlier galti nahi — fraud data genuinely outlier hota hai</text>
+        <text x="34" y="288" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• IQR rule: outside Q1 − 1.5·IQR to Q3 + 1.5·IQR</text>
+        <text x="34" y="306" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Z-score: |z| &gt; 3 (3 SD away from the mean)</text>
+        <text x="34" y="324" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Detect visually with a box plot / scatter</text>
+        <text x="34" y="342" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Handle: remove, cap (winsorise), transform, separate model</text>
+        <text x="34" y="366" fill="#ff7a90" fontSize="8.4" fontFamily={FONT}>Not every outlier is an error — fraud genuinely looks like one</text>
         <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>IQR = Q3 − Q1 · z = (x − μ) / σ</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x="410" y="248" width="370" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.45)" />
         <text x="424" y="268" fill="#c4ff00" fontSize="10" fontWeight="800" fontFamily={FONT}>4 · DUPLICATES + INCONSISTENCY</text>
-        <text x="424" y="288" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Exact duplicate rows hatao (drop_duplicates)</text>
+        <text x="424" y="288" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Drop exact duplicate rows (drop_duplicates)</text>
         <text x="424" y="306" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Fuzzy match — “Riya Sharma” = “riya s.”</text>
-        <text x="424" y="324" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Units same karo — kg/g, Rs/$, km/mile</text>
+        <text x="424" y="324" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Make units consistent — kg/g, Rs/$, km/mile</text>
         <text x="424" y="342" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Date format — dd-mm-yyyy vs yyyy-mm-dd</text>
         <text x="424" y="360" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Trim spaces, lower-case, standard city names</text>
-        <text x="424" y="382" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Same person do baar = analysis double count karega</text>
+        <text x="424" y="382" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>The same person twice = the analysis double counts</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <rect x="20" y="412" width="760" height="42" rx="8" fill="rgba(0,255,136,0.07)" stroke="rgba(0,255,136,0.4)" />
         <text x="400" y="430" textAnchor="middle" fill="#00ff88" fontSize="9.6" fontWeight="700" fontFamily={FONT}>
-          Cleaning ka output: ek row = ek sach, ek column = ek hi unit, koi khaali cell nahi
+          Output of cleaning: one row = one fact, one column = one unit, no empty cell
         </text>
         <text x="400" y="446" textAnchor="middle" fill="#9ab0e0" fontSize="8.6" fontFamily={FONT}>
           Tools: pandas (fillna / dropna / clip / drop_duplicates), OpenRefine, Excel Power Query, SQL
@@ -1087,10 +1087,10 @@ export function DataCleaningDiagram() {
       </g>
 
       <text x="400" y="476" textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="700" fontFamily={FONT}>
-        Cleaning rule: pehle problem ko samjho, phir technique chuno — andhadhund replace nahi
+        Cleaning rule: understand the problem first, then choose the technique — never replace blindly
       </text>
       <text x="400" y="502" textAnchor="middle" fill="#8f9dc4" fontSize="10" fontFamily={FONT}>
-        Exam line: data cleaning missing values, noise, outliers aur duplicates ko handle karti hai
+        Exam line: data cleaning handles missing values, noise, outliers and duplicates
       </text>
     </svg>
   );
@@ -1103,7 +1103,7 @@ export function DataIntegrationDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data integration: combining multiple heterogeneous sources with schema matching and entity resolution into one consistent dataset">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Integration — kai sources, ek consistent dataset
+        Data Integration — many sources, one consistent dataset
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
         schema matching + entity resolution + redundancy removal
@@ -1127,14 +1127,14 @@ export function DataIntegrationDiagram() {
         <rect x="270" y="66" width="230" height="154" rx="9" fill="rgba(196,255,0,0.08)" stroke="#c4ff00" strokeWidth="1.6" />
         <text x="385" y="86" textAnchor="middle" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>INTEGRATION ENGINE</text>
         {[
-          'Schema matching (naam/type)',
+          'Schema matching (name/type)',
           'Entity resolution (same person?)',
           'Value conflict resolve',
           'Metadata + lineage save',
         ].map((t, i) => (
           <text key={t} x="284" y={108 + i * 24} fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• {t}</text>
         ))}
-        <text x="284" y="212" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>ETL / ELT tools yahi kaam karte hain</text>
+        <text x="284" y="212" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>this is what ETL / ELT tools do</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
@@ -1153,41 +1153,41 @@ export function DataIntegrationDiagram() {
             ))}
           </g>
         ))}
-        <text x="534" y="208" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>ek row = ek entity, saare attributes saath</text>
+        <text x="534" y="208" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>one row = one entity, all attributes together</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x="20" y="240" width="370" height="158" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.45)" />
-        <text x="34" y="260" fill="#ff7a90" fontSize="10" fontWeight="800" fontFamily={FONT}>INTEGRATION KE 4 CHALLENGE</text>
+        <text x="34" y="260" fill="#ff7a90" fontSize="10" fontWeight="800" fontFamily={FONT}>THE 4 CHALLENGES OF INTEGRATION</text>
         <text x="34" y="282" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>1. Entity identification</text>
-        <text x="34" y="298" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>“Riya Sharma”, “riya s.”, “R. Sharma” — ek hi insaan?</text>
+        <text x="34" y="298" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>“Riya Sharma”, “riya s.”, “R. Sharma” — the same person?</text>
         <text x="34" y="320" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>2. Redundancy</text>
         <text x="34" y="336" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>duplicate attribute — correlation r ≈ 1, chi-square test</text>
         <text x="34" y="358" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>3. Schema conflict</text>
-        <text x="34" y="374" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>naam alag (cust_id vs customer_no), unit alag (Rs vs $)</text>
+        <text x="34" y="374" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>different names (cust_id vs customer_no), different units (Rs vs $)</text>
         <text x="34" y="392" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>4. Tuple duplication</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '780ms' }}>
         <rect x="410" y="240" width="370" height="158" rx="9" fill="rgba(47,111,255,0.07)" stroke="rgba(47,111,255,0.4)" />
         <text x="424" y="260" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>SOLUTION (practical)</text>
-        <text x="424" y="282" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Common key / surrogate key banao (customer_id)</text>
-        <text x="424" y="300" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Data dictionary aur naming standard fix karo</text>
-        <text x="424" y="318" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Fuzzy matching se entity resolve (email + phone)</text>
-        <text x="424" y="336" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Units aur currency ek base par convert karo</text>
-        <text x="424" y="354" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Duplicate detect karke master record banao</text>
-        <text x="424" y="372" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Lineage note karo — data kis source se aaya</text>
-        <text x="424" y="390" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Without lineage, galat report ka source dhoondhna mushkil</text>
+        <text x="424" y="282" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Create a common or surrogate key (customer_id)</text>
+        <text x="424" y="300" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Fix a data dictionary and a naming standard</text>
+        <text x="424" y="318" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Resolve the entity by fuzzy matching (email + phone)</text>
+        <text x="424" y="336" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Convert units and currency to one base</text>
+        <text x="424" y="354" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Detect duplicates and build a master record</text>
+        <text x="424" y="372" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>• Record lineage — which source the data came from</text>
+        <text x="424" y="390" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Without lineage, tracing a wrong report is very hard</text>
       </g>
 
       <text x="400" y="424" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="700" fontFamily={FONT}>
-        Integration ka goal: “ek sach” (single source of truth), duplicate aur conflict ke bina
+        Goal of integration: “one truth” (single source of truth), free of duplicates and conflict
       </text>
       <text x="400" y="448" textAnchor="middle" fill="#5a6a9e" fontSize="9.6" fontFamily={FONT}>
         IT tools: Apache NiFi, Talend, Informatica, Airflow, dbt; code: pandas merge / SQL JOIN
       </text>
       <text x="400" y="476" textAnchor="middle" fill="#8f9dc4" fontSize="10" fontFamily={FONT}>
-        Exam line: data integration heterogeneous sources ko ek schema par laata hai
+        Exam line: data integration brings heterogeneous sources onto one schema
       </text>
     </svg>
   );
@@ -1200,21 +1200,21 @@ export function DataTransformationDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data transformation techniques: normalisation, z-score standardisation, decimal scaling, encoding, discretisation, aggregation smoothing and attribute construction">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Transformation — data ka shape aur scale badalna
+        Data Transformation — changing the shape and scale of data
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        model ko numbers samajhne hote hain — unhe same scale par laana zaroori hai
+        models need numbers — they must be brought to the same scale
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="20" y="64" width="760" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.45)" />
         <text x="34" y="84" fill="#6fb2ff" fontSize="10" fontWeight="800" fontFamily={FONT}>1 · NORMALISATION / SCALING</text>
-        <text x="34" y="106" fill="#c4ff00" fontSize="9" fontFamily="'Consolas', monospace">Min-Max:  x' = (x − min) / (max − min)   → range 0 se 1</text>
+        <text x="34" y="106" fill="#c4ff00" fontSize="9" fontFamily="'Consolas', monospace">Min-Max:  x' = (x − min) / (max − min)   → range 0 to 1</text>
         <text x="34" y="126" fill="#c4ff00" fontSize="9" fontFamily="'Consolas', monospace">Z-score:  z = (x − μ) / σ                → mean 0, SD 1</text>
         <text x="34" y="146" fill="#c4ff00" fontSize="9" fontFamily="'Consolas', monospace">Decimal:  x' = x / 10^j                  → 986 → 0.986</text>
-        <text x="430" y="106" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>Salary 45,000 vs Age 24 — bina scale,</text>
-        <text x="430" y="122" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>distance based algorithms salary ko</text>
-        <text x="430" y="138" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>zyada weight de dete hain (KNN, K-means).</text>
+        <text x="430" y="106" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>Salary 45,000 vs Age 24 — without scaling,</text>
+        <text x="430" y="122" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>distance based algorithms give salary</text>
+        <text x="430" y="138" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>far more weight (KNN, K-means).</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
@@ -1224,46 +1224,46 @@ export function DataTransformationDiagram() {
         <text x="34" y="226" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Ordinal → Label: small=1, med=2, large=3</text>
         <text x="34" y="244" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Binary → 0/1: yes/no, male/female</text>
         <text x="34" y="262" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Text → TF-IDF, bag of words, embeddings</text>
-        <text x="34" y="282" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>One-hot avoid: category count bahut zyada ho</text>
-        <text x="34" y="300" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Label encoding se model galat order seekh sakta hai</text>
+        <text x="34" y="282" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>Avoid one-hot when the category count is very high</text>
+        <text x="34" y="300" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Label encoding can teach the model a false order</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x="410" y="168" width="370" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.45)" />
         <text x="424" y="188" fill="#c4ff00" fontSize="10" fontWeight="800" fontFamily={FONT}>3 · DISCRETISATION (BINNING)</text>
-        <text x="424" y="208" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Equal-width — range ko barabar hisson mein</text>
-        <text x="424" y="226" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Equal-frequency — har bin mein same count</text>
-        <text x="424" y="244" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Custom — domain ke hisaab se (0-18, 19-30, 31-45)</text>
+        <text x="424" y="208" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Equal-width — split the range into equal parts</text>
+        <text x="424" y="226" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Equal-frequency — the same count in every bin</text>
+        <text x="424" y="244" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Custom — by domain meaning (0-18, 19-30, 31-45)</text>
         <text x="424" y="262" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Concept hierarchy — Pune → Maharashtra → India</text>
         <text x="424" y="284" fill="#ffd166" fontSize="9" fontFamily="'Consolas', monospace">age 24, 27, 31, 44 → 20s [24,27]</text>
-        <text x="424" y="302" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>noise kam, interpret karna aasan, thoda information loss</text>
+        <text x="424" y="302" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>less noise, easier to interpret, some information loss</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="330" width="370" height="104" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.45)" />
         <text x="34" y="350" fill="#ff8800" fontSize="10" fontWeight="800" fontFamily={FONT}>4 · SMOOTHING + AGGREGATION</text>
-        <text x="34" y="370" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Smoothing se noise kam — moving average, median</text>
+        <text x="34" y="370" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Reduce noise by smoothing — moving average, median</text>
         <text x="34" y="388" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Aggregation — daily → monthly sales (summary)</text>
-        <text x="34" y="406" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Log transform — right skew data ko linear banata hai</text>
-        <text x="34" y="424" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Aggregation row count kam karta hai aur pattern dikhata hai</text>
+        <text x="34" y="406" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Log transform — makes right skewed data closer to linear</text>
+        <text x="34" y="424" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Aggregation cuts the row count and reveals the pattern</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '500ms' }}>
         <rect x="410" y="330" width="370" height="104" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
         <text x="424" y="350" fill="#00ff88" fontSize="10" fontWeight="800" fontFamily={FONT}>5 · ATTRIBUTE CONSTRUCTION</text>
-        <text x="424" y="370" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• dob se age nikaalo; date se day/month/year</text>
+        <text x="424" y="370" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• derive age from date of birth; day/month/year from a date</text>
         <text x="424" y="388" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• price × qty = total_amount</text>
         <text x="424" y="406" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• BMI = weight / height², ratio features</text>
-        <text x="424" y="424" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Raw columns se zyada useful column banana = feature engineering</text>
+        <text x="424" y="424" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Building a more useful column from raw ones = feature engineering</text>
       </g>
 
       <rect x="20" y="446" width="760" height="26" rx="7" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
       <text x="400" y="464" textAnchor="middle" fill="#c4ff00" fontSize="9" fontFamily={FONT}>
-        Order yaad rakho: clean → integrate → transform → reduce. Transformation clean data par hi lagao.
+        Remember the order: clean → integrate → transform → reduce. Apply transformation to clean data only.
       </text>
 
       <text x="400" y="494" textAnchor="middle" fill="#8f9dc4" fontSize="10" fontFamily={FONT}>
-        Exam line: transformation smoothing, aggregation, generalisation, normalisation aur encoding karta hai
+        Exam line: transformation performs smoothing, aggregation, generalisation, normalisation and encoding
       </text>
     </svg>
   );
@@ -1276,10 +1276,10 @@ export function DataReductionDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data reduction: dimensionality reduction with feature selection and PCA, numerosity reduction with sampling and clustering, and data compression">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Reduction — data chhota, matlab wahi
+        Data Reduction — smaller data, same meaning
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        volume kam karo, analysis ka result lagbhag same rakho
+        reduce the volume, keep the analysis result almost the same
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -1295,19 +1295,19 @@ export function DataReductionDiagram() {
       ))}
 
       {[
-        ['DIMENSIONALITY', 'kam columns', '#6fb2ff', 20, [
+        ['DIMENSIONALITY', 'fewer columns', '#6fb2ff', 20, [
           'Feature selection: filter, wrapper, embedded',
           'PCA — principal component analysis',
           'LDA, autoencoder, chi-square, RFE',
           'Example: 1000 → 12 PCs = 95% variance',
         ]],
-        ['NUMEROSITY', 'kam rows', '#c4ff00', 280, [
+        ['NUMEROSITY', 'fewer rows', '#c4ff00', 280, [
           'Sampling: random, stratified, cluster',
           'Histogram, clustering, regression model',
-          'Binning + aggregation se summary',
-          'Example: 1 lakh → 10,000 representative',
+          'Summary by binning + aggregation',
+          'Example: 1,00,000 → 10,000 representative',
         ]],
-        ['COMPRESSION', 'kam size', '#ff8800', 540, [
+        ['COMPRESSION', 'smaller size', '#ff8800', 540, [
           'Lossless: zip, gzip, snappy',
           'Lossy: wavelet, JPEG, quantisation',
           'Columnar + dictionary encoding (Parquet)',
@@ -1326,28 +1326,28 @@ export function DataReductionDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x="20" y="322" width="370" height="118" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
-        <text x="34" y="342" fill="#00ff88" fontSize="10" fontWeight="800" fontFamily={FONT}>PCA EK LINE MEIN</text>
-        <text x="34" y="362" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>100 correlated columns ko kuch naye orthogonal</text>
-        <text x="34" y="380" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>components mein badal deta hai, jo zyada tar</text>
-        <text x="34" y="398" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>variation (information) hold karte hain.</text>
-        <text x="34" y="418" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>Trade-off: interpret karna mushkil ho jaata hai</text>
-        <text x="34" y="434" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Feature selection interpretable rehta hai — pehle wahi try karo</text>
+        <text x="34" y="342" fill="#00ff88" fontSize="10" fontWeight="800" fontFamily={FONT}>PCA IN ONE LINE</text>
+        <text x="34" y="362" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>it turns 100 correlated columns into a few new orthogonal</text>
+        <text x="34" y="380" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>components that hold most of the</text>
+        <text x="34" y="398" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>variation (information).</text>
+        <text x="34" y="418" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>Trade-off: the components become harder to interpret</text>
+        <text x="34" y="434" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Feature selection stays interpretable — try that first</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x="410" y="322" width="370" height="118" rx="9" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
-        <text x="424" y="342" fill="#ff7a90" fontSize="10" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
-        <text x="424" y="362" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Reduction ke baad accuracy test karo —</text>
-        <text x="424" y="380" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>  information loss chhupa hua aa sakta hai</text>
-        <text x="424" y="398" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Rare class / fraud rows sampling se gayab na ho</text>
-        <text x="424" y="416" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Split ke baad sirf train par fit karo (leakage)</text>
+        <text x="424" y="342" fill="#ff7a90" fontSize="10" fontWeight="800" fontFamily={FONT}>WATCH OUT</text>
+        <text x="424" y="362" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Test accuracy after reduction —</text>
+        <text x="424" y="380" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>  information loss can be hidden</text>
+        <text x="424" y="398" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Rare class / fraud rows must not vanish in sampling</text>
+        <text x="424" y="416" fill="#dbe6ff" fontSize="8.8" fontFamily={FONT}>• Fit only on train after the split (leakage)</text>
       </g>
 
       <text x="400" y="462" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="700" fontFamily={FONT}>
-        Reduction = speed + storage bachat, par information ka balance
+        Reduction = speed + storage saving, at a measured cost of information
       </text>
       <text x="400" y="486" textAnchor="middle" fill="#9ab0e0" fontSize="9.6" fontFamily={FONT}>
-        Exam line: reduction mein dimensionality reduction, numerosity reduction aur compression aate hain
+        Exam line: reduction covers dimensionality reduction, numerosity reduction and compression
       </text>
     </svg>
   );
@@ -1360,7 +1360,7 @@ export function DataWarehouseIntroDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data warehouse characteristics: subject oriented, integrated, time variant and non-volatile, compared with an operational database">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Warehouse — analysis ke liye alag godown
+        Data Warehouse — a separate store for analysis
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
         Inmon: “subject-oriented, integrated, time-variant, non-volatile collection of data”
@@ -1370,51 +1370,51 @@ export function DataWarehouseIntroDiagram() {
         <rect x="20" y="64" width="185" height="140" rx="9" fill="rgba(111,178,255,0.07)" stroke="rgba(111,178,255,0.5)" />
         <text x="112" y="86" textAnchor="middle" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>1 · SUBJECT ORIENTED</text>
         <text x="34" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Sales, customer, product,</text>
-        <text x="34" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>inventory — analysis ke subject</text>
-        <text x="34" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>ke hisaab se data organise.</text>
-        <text x="34" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Operational DB: application ke</text>
-        <text x="34" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>hisaaab se (billing, HR, CRM).</text>
-        <text x="34" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Irrelevant detail hata di jaati hai</text>
+        <text x="34" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>inventory — the subject of the analysis</text>
+        <text x="34" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>organise the data by subject.</text>
+        <text x="34" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Operational DB: data written by the</text>
+        <text x="34" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>by business area (billing, HR, CRM).</text>
+        <text x="34" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Irrelevant detail is removed</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
         <rect x="215" y="64" width="185" height="140" rx="9" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.5)" />
         <text x="307" y="86" textAnchor="middle" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>2 · INTEGRATED</text>
-        <text x="229" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Kai sources ek hi format mein:</text>
-        <text x="229" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>same code, same unit, same naam.</text>
-        <text x="229" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Pune/pune, kg/g, Rs/$ — sab fix.</text>
-        <text x="229" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>ETL ke waqt encoding + naming</text>
-        <text x="229" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>standard apply hote hain.</text>
-        <text x="229" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>“Ek company, ek definition”</text>
+        <text x="229" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Many sources in one format:</text>
+        <text x="229" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>same code, same unit, same name.</text>
+        <text x="229" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Pune/pune, kg/g, Rs/$ — all fixed.</text>
+        <text x="229" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Encoding and naming standards</text>
+        <text x="229" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>are applied during ETL.</text>
+        <text x="229" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>“One company, one definition”</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x="410" y="64" width="185" height="140" rx="9" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.5)" />
         <text x="502" y="86" textAnchor="middle" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>3 · TIME VARIANT</text>
-        <text x="424" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Har record ke saath time hota</text>
-        <text x="424" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>hai — daily/weekly/monthly</text>
-        <text x="424" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>snapshots 5–10 saal tak.</text>
-        <text x="424" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Operational DB: sirf current</text>
-        <text x="424" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>value (aaj ka balance).</text>
-        <text x="424" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Trend dekhne ke liye history chahiye</text>
+        <text x="424" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Every record carries a time</text>
+        <text x="424" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>stamp — daily/weekly/monthly</text>
+        <text x="424" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>snapshots kept 5–10 years.</text>
+        <text x="424" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Operational DB: only the current</text>
+        <text x="424" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>value (today's balance).</text>
+        <text x="424" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>A trend needs history</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x="605" y="64" width="175" height="140" rx="9" fill="rgba(255,136,0,0.07)" stroke="rgba(255,136,0,0.5)" />
         <text x="692" y="86" textAnchor="middle" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>4 · NON-VOLATILE</text>
-        <text x="619" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Load ke baad data update ya</text>
-        <text x="619" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>delete nahi hota — sirf read</text>
-        <text x="619" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>aur periodic refresh.</text>
+        <text x="619" y="108" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>After load, data is not updated</text>
+        <text x="619" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>or deleted — only read</text>
+        <text x="619" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>and periodically refreshed.</text>
         <text x="619" y="164" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Operational DB: insert, update,</text>
-        <text x="619" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>delete — roz hazaaron baar.</text>
-        <text x="619" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Isliye report reproducer ho sakti hai</text>
+        <text x="619" y="178" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>delete — thousands of times a day.</text>
+        <text x="619" y="196" fill="#c4ff00" fontSize="8" fontFamily={FONT}>So the same report can be reproduced</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x="20" y="222" width="760" height="136" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
         <text x="34" y="242" fill="#fff" fontSize="10" fontWeight="800" fontFamily={FONT}>OPERATIONAL DATABASE vs DATA WAREHOUSE</text>
         {[
-          ['Purpose', 'roz ka transaction chalana', 'analysis + decision support'],
+          ['Purpose', 'running the daily transactions', 'analysis + decision support'],
           ['Operations', 'insert / update / delete', 'bulk load + read-only query'],
           ['Data', 'current, detailed', 'historical, summarised'],
           ['Design', 'normalised (3NF), entity', 'dimensional (star), subject'],
@@ -1432,19 +1432,19 @@ export function DataWarehouseIntroDiagram() {
       </g>
 
       <text x="400" y="374" textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="700" fontFamily={FONT}>
-        Yaad rakhne ka tareeka: S-I-T-N (Subject, Integrated, Time-variant, Non-volatile)
+        Way to remember: S-I-T-N (Subject, Integrated, Time-variant, Non-volatile)
       </text>
       <text x="400" y="398" textAnchor="middle" fill="#5a6a9e" fontSize="9.4" fontFamily={FONT}>
-        Data mart = ek department ka chhota warehouse · metadata = data ke baare mein data
+        Data mart = a department's small warehouse · metadata = data about data
       </text>
       <text x="400" y="422" textAnchor="middle" fill="#8f9dc4" fontSize="9.6" fontFamily={FONT}>
         Examples: Amazon Redshift, Google BigQuery, Snowflake, Azure Synapse
       </text>
       <text x="400" y="452" textAnchor="middle" fill="#8f9dc4" fontSize="9.6" fontFamily={FONT}>
-        Exam line: DW subject-oriented, integrated, time-variant aur non-volatile hota hai
+        Exam line: a DW is subject-oriented, integrated, time-variant and non-volatile
       </text>
       <text x="400" y="480" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
-        DW ek product nahi, ek process + architecture hai — data ko analysis ke liye taiyaar karta hai
+        A DW is not a product but a process + architecture — it makes data ready for analysis
       </text>
     </svg>
   );
@@ -1545,30 +1545,30 @@ export function WarehouseArchitectureDiagram() {
         <rect x="20" y="266" width="370" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="286" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>TWO BUILDING APPROACHES</text>
         <text x="34" y="306" fill="#6fb2ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Top-down (Inmon)</text>
-        <text x="34" y="322" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>pehle central DW banao, phir marts — consistent par slow/mehnga</text>
+        <text x="34" y="322" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>build the central DW first, then marts — consistent but slow and costly</text>
         <text x="34" y="344" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Bottom-up (Kimball)</text>
-        <text x="34" y="360" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>pehle data marts, phir integrate — fast value, consistency risk</text>
-        <text x="34" y="378" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Aaj kal: Data Vault / lakehouse hybrid models bhi popular</text>
+        <text x="34" y="360" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>marts first, then integrate — fast value, consistency risk</text>
+        <text x="34" y="378" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Today: Data Vault / lakehouse hybrid designs are also popular</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x="410" y="266" width="370" height="120" rx="9" fill="rgba(255,136,0,0.06)" stroke="rgba(255,136,0,0.4)" />
-        <text x="424" y="286" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>METADATA — DW KA INDEX</text>
+        <text x="424" y="286" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>METADATA — THE INDEX OF THE DW</text>
         <text x="424" y="306" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>• Technical: schema, table, column, ETL job, run time</text>
         <text x="424" y="324" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>• Business: definition, owner, KPI formula, refresh</text>
-        <text x="424" y="342" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>• Lineage: ye number kis source se aaya</text>
-        <text x="424" y="362" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>• Data quality rules aur test results</text>
-        <text x="424" y="380" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Metadata ke bina DW ek black box ban jaata hai</text>
+        <text x="424" y="342" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>• Lineage: which source this number came from</text>
+        <text x="424" y="362" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>• Data quality rules and test results</text>
+        <text x="424" y="380" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Without metadata the DW becomes a black box</text>
       </g>
 
       <text x="400" y="410" textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="700" fontFamily={FONT}>
-        Layers: staging → warehouse → mart → presentation — har layer ka apna kaam
+        Layers: staging → warehouse → mart → presentation — each layer has its own job
       </text>
       <text x="400" y="436" textAnchor="middle" fill="#5a6a9e" fontSize="9.4" fontFamily={FONT}>
         Modern stack: S3/GCS (lake) + dbt (transform) + Snowflake/BigQuery (warehouse) + BI
       </text>
       <text x="400" y="464" textAnchor="middle" fill="#8f9dc4" fontSize="9.6" fontFamily={FONT}>
-        Exam line: DW architecture mein source, ETL, warehouse, marts aur reporting tiers hote hain
+        Exam line: DW architecture has source, ETL, warehouse, marts and reporting tiers
       </text>
       <text x="400" y="492" textAnchor="middle" fill="#5a6a9e" fontSize="9" fontFamily={FONT}>
         Data lake = raw files (schema-on-read) · DW = structured, modelled, query-ready
@@ -1587,19 +1587,19 @@ export function EtlProcessDiagram() {
         ETL Process — Extract · Transform · Load
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        DW ka data isi pipeline se aata hai — roz, har ghante, real time
+        DW data arrives through this pipeline — daily, hourly, real time
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="20" y="64" width="235" height="160" rx="9" fill="rgba(111,178,255,0.07)" stroke="rgba(111,178,255,0.55)" />
         <text x="34" y="84" fill="#6fb2ff" fontSize="10.4" fontWeight="800" fontFamily={FONT}>E — EXTRACT</text>
-        <text x="34" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Full extract — poora table copy</text>
-        <text x="34" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Incremental — sirf naye/badle rows</text>
+        <text x="34" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Full extract — copy the whole table</text>
+        <text x="34" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Incremental — only new or changed rows</text>
         <text x="34" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• CDC — change data capture (log based)</text>
         <text x="34" y="158" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Sources: DB, API, files, streams, SaaS</text>
-        <text x="34" y="176" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Staging area mein raw copy rakho</text>
-        <text x="34" y="200" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Timestamp / watermark note karo</text>
-        <text x="34" y="216" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Extract fail ho to source par load na pade</text>
+        <text x="34" y="176" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Keep a raw copy in the staging area</text>
+        <text x="34" y="200" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Record the timestamp / watermark</text>
+        <text x="34" y="216" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>If extract fails, the source is not loaded</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
@@ -1607,23 +1607,23 @@ export function EtlProcessDiagram() {
         <text x="294" y="84" fill="#c4ff00" fontSize="10.4" fontWeight="800" fontFamily={FONT}>T — TRANSFORM</text>
         <text x="294" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Clean — missing, duplicate, typo</text>
         <text x="294" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Standardise — code, unit, date format</text>
-        <text x="294" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Integrate — keys se sources jodo</text>
+        <text x="294" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Integrate — join sources on keys</text>
         <text x="294" y="158" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Aggregate — daily → monthly</text>
         <text x="294" y="176" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Derive — total, margin, age, flags</text>
         <text x="294" y="194" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• SCD — slowly changing dimension</text>
-        <text x="294" y="216" fill="#ff8800" fontSize="7.8" fontFamily={FONT}>Business rules yahin lagte hain</text>
+        <text x="294" y="216" fill="#ff8800" fontSize="7.8" fontFamily={FONT}>Business rules are applied here</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x="545" y="64" width="235" height="160" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.55)" />
         <text x="559" y="84" fill="#00ff88" fontSize="10.4" fontWeight="800" fontFamily={FONT}>L — LOAD</text>
         <text x="559" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Full refresh — truncate + insert</text>
-        <text x="559" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Incremental append — naye rows</text>
+        <text x="559" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Incremental append — new rows</text>
         <text x="559" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Upsert / merge — SCD type 1 &amp; 2</text>
-        <text x="559" y="158" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Bulk load — file se warehouse</text>
-        <text x="559" y="176" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Load order — dimension pehle, fact baad</text>
-        <text x="559" y="200" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Load ke baad row count + checksum verify</text>
-        <text x="559" y="216" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Idempotent load — dobara chalane par duplicate na bane</text>
+        <text x="559" y="158" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Bulk load — from file into the warehouse</text>
+        <text x="559" y="176" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>• Load order — dimension first, fact after</text>
+        <text x="559" y="200" fill="#c4ff00" fontSize="8" fontFamily={FONT}>Verify row count + checksum after load</text>
+        <text x="559" y="216" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>Idempotent load — re-running creates no duplicate</text>
       </g>
 
       {[['253', '282'], ['518', '547']].map(([a, b]) => (
@@ -1635,29 +1635,29 @@ export function EtlProcessDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x="20" y="240" width="370" height="132" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="260" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>SCD — SLOWLY CHANGING DIMENSION</text>
-        <text x="34" y="280" fill="#6fb2ff" fontSize="8.4" fontFamily={FONT}>Type 1 — purani value overwrite</text>
-        <text x="34" y="296" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>simple, history nahi milti</text>
-        <text x="34" y="316" fill="#00ff88" fontSize="8.4" fontFamily={FONT}>Type 2 — naya row + valid_from / valid_to</text>
-        <text x="34" y="332" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>poori history, is_active flag, surrogat key</text>
+        <text x="34" y="280" fill="#6fb2ff" fontSize="8.4" fontFamily={FONT}>Type 1 — overwrite the old value</text>
+        <text x="34" y="296" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>simple, no history kept</text>
+        <text x="34" y="316" fill="#00ff88" fontSize="8.4" fontFamily={FONT}>Type 2 — new row + valid_from / valid_to</text>
+        <text x="34" y="332" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>full history, is_active flag, surrogate key</text>
         <text x="34" y="352" fill="#ffd166" fontSize="8.4" fontFamily={FONT}>Type 3 — previous value extra column</text>
-        <text x="34" y="366" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Example: customer ka city change — Type 2 se purani sales bhi sahi rehti hai</text>
+        <text x="34" y="366" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Example: a customer changes city — Type 2 keeps old sales correct</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <rect x="410" y="240" width="370" height="132" rx="9" fill="rgba(47,111,255,0.07)" stroke="rgba(47,111,255,0.4)" />
         <text x="424" y="260" fill="#6fb2ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>ETL vs ELT + QUALITY CHECKS</text>
-        <text x="424" y="280" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>ETL: transform pehle, phir load (classic DW)</text>
-        <text x="424" y="296" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>ELT: load pehle, transform warehouse mein (cloud, dbt)</text>
+        <text x="424" y="280" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>ETL: transform first, then load (classic DW)</text>
+        <text x="424" y="296" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>ELT: load first, transform in the warehouse (cloud, dbt)</text>
         <text x="424" y="316" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>Checks: null %, duplicate count, referential integrity,</text>
         <text x="424" y="330" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>row count match, amount reconciliation, freshness</text>
-        <text x="424" y="350" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>Fail ho to job roko (fail fast), alert bhejo, DW ko galat data se bachao</text>
+        <text x="424" y="350" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>On failure stop the job (fail fast), alert, keep wrong data out of the DW</text>
         <text x="424" y="366" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Scheduling: Airflow, cron, Azure Data Factory, dbt + orchestrator</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x="20" y="386" width="760" height="46" rx="8" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.35)" />
         <text x="400" y="404" textAnchor="middle" fill="#00ff88" fontSize="9" fontWeight="700" fontFamily={FONT}>
-          Typical DW load: raat 1 baje extract → 1:15 transform → 1:40 load → 2:00 validation → dashboards fresh by 6 AM
+          Typical DW load: extract at 1:00 am → transform 1:15 → load 1:40 → validate 2:00 → dashboards fresh by 6 am
         </text>
         <text x="400" y="422" textAnchor="middle" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
           Tools: Informatica, Talend, SSIS, Azure Data Factory, Apache Airflow, dbt, Apache NiFi, Kafka (streaming)
@@ -1665,10 +1665,10 @@ export function EtlProcessDiagram() {
       </g>
 
       <text x="400" y="458" textAnchor="middle" fill="#c4ff00" fontSize="11" fontWeight="700" fontFamily={FONT}>
-        ETL  = DW ka pehla aur sabse zaroori step — yahan data “trustworthy” banta hai
+        ETL = the first and most important step of a DW — here the data becomes “trustworthy”
       </text>
       <text x="400" y="484" textAnchor="middle" fill="#8f9dc4" fontSize="10" fontFamily={FONT}>
-        Exam line: ETL mein extract (sources se lena), transform (clean + conform) aur load (DW mein daalna) aata hai
+        Exam line: ETL covers extract (take from sources), transform (clean + conform) and load (put into the DW)
       </text>
     </svg>
   );
@@ -1681,16 +1681,16 @@ export function FactDimensionDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Fact table with numeric measures and foreign keys surrounded by dimension tables that give descriptive context, plus the concept of grain">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Fact aur Dimension Tables — kaam aur context
+        Fact and Dimension Tables — task and context
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        fact = “kitna hua” (numbers) · dimension = “kisne, kab, kahan” (context)
+        fact = “how much happened” (numbers) · dimension = “who, when, where” (context)
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x="270" y="176" width="260" height="142" rx="9" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="1.8" />
         <text x="400" y="196" textAnchor="middle" fill="#c4ff00" fontSize="10" fontWeight="800" fontFamily={FONT}>FACT_SALES</text>
-        <text x="400" y="211" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>grain: ek row = ek order line</text>
+        <text x="400" y="211" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>grain: one row = one order line</text>
         <line x1="284" y1="218" x2="516" y2="218" stroke="rgba(255,255,255,0.18)" />
         {[
           'sale_id (PK)',
@@ -1724,7 +1724,7 @@ export function FactDimensionDiagram() {
         <text x="34" y="422" fill="#c4ff00" fontSize="8.8" fontWeight="800" fontFamily={FONT}>FACT TABLE</text>
         <text x="34" y="440" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• numeric measures (additive)</text>
         <text x="34" y="456" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• foreign keys to dimensions</text>
-        <text x="34" y="472" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• rows bahut zyada, columns kam</text>
+        <text x="34" y="472" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• many rows, few columns</text>
         <text x="34" y="490" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Additive vs semi-additive (balance)</text>
       </g>
 
@@ -1733,21 +1733,21 @@ export function FactDimensionDiagram() {
         <text x="291" y="422" fill="#6fb2ff" fontSize="8.8" fontWeight="800" fontFamily={FONT}>DIMENSION TABLE</text>
         <text x="291" y="440" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• descriptive attributes (text)</text>
         <text x="291" y="456" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• surrogate primary key</text>
-        <text x="291" y="472" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• rows kam, columns zyada</text>
+        <text x="291" y="472" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• few rows, many columns</text>
         <text x="291" y="490" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>denormalised, flat, readable</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '720ms' }}>
         <rect x="534" y="404" width="246" height="96" rx="9" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.35)" />
-        <text x="548" y="422" fill="#ff8800" fontSize="8.8" fontWeight="800" fontFamily={FONT}>GRAIN — SABSE PEHLE DECIDE</text>
-        <text x="548" y="440" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>“ek fact row kis level par hai?”</text>
-        <text x="548" y="456" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>ek per order line / per day / per visit</text>
-        <text x="548" y="472" fill="#fff" fontSize="7.8" fontFamily={FONT}>Grain galat = double counting</text>
+        <text x="548" y="422" fill="#ff8800" fontSize="8.8" fontWeight="800" fontFamily={FONT}>GRAIN — DECIDE IT FIRST</text>
+        <text x="548" y="440" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>“at what level is one fact row?”</text>
+        <text x="548" y="456" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>one per order line / per day / per visit</text>
+        <text x="548" y="472" fill="#fff" fontSize="7.8" fontFamily={FONT}>Wrong grain = double counting</text>
         <text x="548" y="490" fill="#9ab0e0" fontSize="7.4" fontFamily={FONT}>Fact types: transaction, periodic, accumulating</text>
       </g>
 
       <text x="400" y="156" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
-        Fact + dimension = “kitna + kisne/kab/kahan” — isi se har OLAP sawaal banta hai
+        Fact + dimension = “how much + who/when/where” — every OLAP question is built from these
       </text>
     </svg>
   );
@@ -1766,10 +1766,10 @@ export function StarSchemaDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Star schema with one central fact table joined directly to four denormalised dimension tables, with advantages and disadvantages">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Star Schema — ek fact, seedhe jude dimensions
+        Star Schema — one fact, directly joined dimensions
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        simple, fast, reporting ke liye best — dimension denormalised (flat)
+        simple, fast, best for reporting — dimensions denormalised (flat)
       </text>
 
       {corners.map((d, i) => (
@@ -1794,27 +1794,27 @@ export function StarSchemaDiagram() {
         <text x="400" y="222" textAnchor="middle" fill="#c4ff00" fontSize="9.8" fontWeight="800" fontFamily={FONT}>FACT_SALES</text>
         <text x="400" y="240" textAnchor="middle" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>date · product · store · customer keys</text>
         <text x="400" y="258" textAnchor="middle" fill="#ffd166" fontSize="8" fontFamily={FONT}>qty · unit_price · discount · amount</text>
-        <text x="400" y="274" textAnchor="middle" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>grain: ek row = ek order line</text>
+        <text x="400" y="274" textAnchor="middle" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>grain: one row = one order line</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x="20" y="386" width="370" height="86" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
         <text x="34" y="404" fill="#00ff88" fontSize="9" fontWeight="800" fontFamily={FONT}>FAYDE</text>
-        <text x="34" y="422" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• simple — fact se dimension tak 1 join</text>
-        <text x="34" y="438" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• fast query (star join), BI tools ke liye easy</text>
-        <text x="34" y="454" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• dimension readable, cube banana aasan</text>
+        <text x="34" y="422" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• simple — one join from fact to dimension</text>
+        <text x="34" y="438" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• fast queries (star join), easy for BI tools</text>
+        <text x="34" y="454" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• readable dimensions, easy to build a cube</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x="410" y="386" width="370" height="86" rx="9" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
         <text x="424" y="404" fill="#ff7a90" fontSize="9" fontWeight="800" fontFamily={FONT}>NUKSaan</text>
-        <text x="424" y="422" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• data redundancy aur zyada storage</text>
-        <text x="424" y="438" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• dimension bahut bada ho to slow</text>
-        <text x="424" y="454" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• update anomaly ka risk (ETL se handle)</text>
+        <text x="424" y="422" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• data redundancy and more storage</text>
+        <text x="424" y="438" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• slow when a dimension is very large</text>
+        <text x="424" y="454" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>• risk of update anomaly (handled by ETL)</text>
       </g>
 
       <text x="400" y="492" textAnchor="middle" fill="#8f9dc4" fontSize="9.6" fontFamily={FONT}>
-        Exam line: star schema mein central fact table seedhe denormalised dimension tables se juda hota hai
+        Exam line: in a star schema the central fact table joins directly to denormalised dimension tables
       </text>
     </svg>
   );
@@ -1827,10 +1827,10 @@ export function SnowflakeSchemaDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Snowflake schema where dimension tables are normalised into sub dimension tables, compared with star schema on joins, storage and performance">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Snowflake Schema — dimensions ko normalise kiya gaya star
+        Snowflake Schema — a star with normalised dimensions
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        dimension ke andar dimension → kam redundancy, zyada joins
+        a dimension inside a dimension → less redundancy, more joins
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -1878,7 +1878,7 @@ export function SnowflakeSchemaDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <line x1="400" y1="252" x2="400" y2="290" stroke="#5a6a9e" strokeWidth="1.3" />
         <rect x="300" y="290" width="200" height="34" rx="7" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.35)" />
-        <text x="400" y="311" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>DIM_PRODUCT ke sub-dimensions (2 hop)</text>
+        <text x="400" y="311" textAnchor="middle" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>sub-dimensions of DIM_PRODUCT (2 hops)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '500ms' }}>
@@ -1902,28 +1902,28 @@ export function SnowflakeSchemaDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x="540" y="70" width="240" height="114" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
         <text x="554" y="90" fill="#00ff88" fontSize="8.8" fontWeight="800" fontFamily={FONT}>FAYDE</text>
-        <text x="554" y="110" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• redundancy kam, storage bachta hai</text>
-        <text x="554" y="128" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• dimension update ek hi jagah</text>
+        <text x="554" y="110" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• less redundancy, storage saved</text>
+        <text x="554" y="128" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• a dimension is updated in one place</text>
         <text x="554" y="146" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• normalised = data integrity better</text>
-        <text x="554" y="164" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• bahut bade dimension ke liye better</text>
+        <text x="554" y="164" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• better for very large dimensions</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
         <rect x="540" y="196" width="240" height="114" rx="9" fill="rgba(255,122,144,0.06)" stroke="rgba(255,122,144,0.4)" />
         <text x="554" y="216" fill="#ff7a90" fontSize="8.8" fontWeight="800" fontFamily={FONT}>NUKSaan</text>
-        <text x="554" y="236" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• zyada joins → query slow</text>
-        <text x="554" y="254" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• schema complex, samajhna mushkil</text>
-        <text x="554" y="272" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• BI tool setup aur ETL mehnat</text>
-        <text x="554" y="290" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• maintenance zyada</text>
+        <text x="554" y="236" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• more joins → slower queries</text>
+        <text x="554" y="254" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• complex schema, harder to understand</text>
+        <text x="554" y="272" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• more BI tool setup and ETL effort</text>
+        <text x="554" y="290" fill="#dbe6ff" fontSize="7.8" fontFamily={FONT}>• more maintenance</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '720ms' }}>
         <rect x="540" y="322" width="240" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="554" y="342" fill="#c4ff00" fontSize="8.8" fontWeight="800" fontFamily={FONT}>STAR vs SNOWFLAKE</text>
         {[
-          ['Joins', 'kam (1 hop)', 'zyada (multi hop)'],
-          ['Storage', 'zyada', 'kam'],
-          ['Speed', 'fast', 'thoda slow'],
+          ['Joins', 'few (1 hop)', 'many (multi hop)'],
+          ['Storage', 'more', 'less'],
+          ['Speed', 'fast', 'slightly slower'],
           ['Complexity', 'simple', 'complex'],
         ].map((r, i) => (
           <g key={r[0]}>
@@ -1935,13 +1935,13 @@ export function SnowflakeSchemaDiagram() {
       </g>
 
       <text x="400" y="438" textAnchor="middle" fill="#c4ff00" fontSize="10.5" fontWeight="700" fontFamily={FONT}>
-        Practical choice: mostly star (speed) — dimension bahut bada ho to snowflake
+        Practical choice: mostly star (speed) — snowflake when a dimension is very large
       </text>
       <text x="400" y="464" textAnchor="middle" fill="#5a6a9e" fontSize="9.2" fontFamily={FONT}>
-        Snowflake DB ka naam bhi isi design idea se aaya (normalised, scalable warehouse)
+        The Snowflake database takes its name from this design idea (normalised, scalable warehouse)
       </text>
       <text x="400" y="490" textAnchor="middle" fill="#8f9dc4" fontSize="9.6" fontFamily={FONT}>
-        Exam line: snowflake schema mein dimension tables normalised hoti hain, isliye joins badh jaate hain
+        Exam line: in a snowflake schema dimension tables are normalised, so the number of joins rises
       </text>
     </svg>
   );
@@ -1954,10 +1954,10 @@ export function OlapVsOltpDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="OLTP versus OLAP comparison and the OLAP operations roll-up, drill-down, slice, dice and pivot, plus ROLAP MOLAP HOLAP server types">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        OLTP vs OLAP — transaction aur analysis
+        OLTP vs OLAP — transaction and analysis
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        OLTP = roz ka kaam · OLAP = sochne-samajhne ke liye data
+        OLTP = the daily work · OLAP = data for thinking and analysing
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -1971,9 +1971,9 @@ export function OlapVsOltpDiagram() {
         ['Purpose', 'din-ba-din transactions chalana', 'analysis, reporting, decision support'],
         ['Data', 'current, detailed, up-to-date', 'historical, aggregated, multi-year'],
         ['Operations', 'insert, update, delete (short)', 'read-only complex queries, drill'],
-        ['Queries', 'simple, few rows, index se', 'complex joins, scan millions rows'],
+        ['Queries', 'simple, few rows, by index', 'complex joins, scan millions rows'],
         ['Design', 'normalised 3NF (no redundancy)', 'star / snowflake (denormalised)'],
-        ['Users', 'clerk, app, customer (hazaaron)', 'analyst, manager (kuch sau)'],
+        ['Users', 'clerk, app, customer (thousands)', 'analyst, manager (a few hundred)'],
         ['Size', 'GB, per transaction', 'TB–PB, warehouse'],
         ['Metric', 'response time, throughput', 'query time, insight quality'],
       ].map(([a, b, c], i) => (
@@ -1995,37 +1995,37 @@ export function OlapVsOltpDiagram() {
         <text x="34" y="330" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Drill-down</text>
         <text x="110" y="330" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>summary → detail (year → quarter → month)</text>
         <text x="34" y="352" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Slice</text>
-        <text x="110" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>ek dimension fix karo (sirf 2025 ka data)</text>
+        <text x="110" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>fix one dimension (only 2025 data)</text>
         <text x="34" y="374" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Dice</text>
-        <text x="110" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>do ya zyada dimension par range select</text>
+        <text x="110" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>select a range on two or more dimensions</text>
         <text x="34" y="396" fill="#ff7ab2" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Pivot</text>
         <text x="110" y="396" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>rows ↔ columns rotate (cross-tab view)</text>
-        <text x="34" y="418" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Cube, rollup() aur group by grouping sets SQL mein</text>
+        <text x="34" y="418" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Cube, rollup() and grouping sets in SQL</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x="410" y="266" width="370" height="164" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
-        <text x="424" y="286" fill="#6fb2ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>OLAP SERVER KE PRAKAAR</text>
+        <text x="424" y="286" fill="#6fb2ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>TYPES OF OLAP SERVER</text>
         <text x="424" y="308" fill="#6fb2ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>ROLAP</text>
-        <text x="484" y="308" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>relational tables par — scalable, flexible</text>
+        <text x="484" y="308" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>on relational tables — scalable, flexible</text>
         <text x="424" y="330" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>MOLAP</text>
-        <text x="484" y="330" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>pre-computed cube — fastest, storage zyada</text>
+        <text x="484" y="330" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>pre-computed cube — fastest, more storage</text>
         <text x="424" y="352" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>HOLAP</text>
         <text x="484" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>hybrid — detail relational, summary cube</text>
-        <text x="424" y="376" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Warehouse = data ka ghar; OLAP = us par sochne ka tareeka</text>
+        <text x="424" y="376" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Warehouse = the home of the data; OLAP = the way to think over it</text>
         <text x="424" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Tools: SSAS, Essbase, ClickHouse, DuckDB, BigQuery</text>
-        <text x="424" y="418" fill="#ffd166" fontSize="7.8" fontFamily={FONT}>Real systems: OLTP par likho, ELT se DW, phir OLAP par padho</text>
+        <text x="424" y="418" fill="#ffd166" fontSize="7.8" fontFamily={FONT}>Real systems: write on OLTP, ELT into the DW, then read with OLAP</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '720ms' }}>
         <rect x="20" y="444" width="760" height="28" rx="7" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.35)" />
         <text x="400" y="462" textAnchor="middle" fill="#00ff88" fontSize="8.8" fontFamily={FONT}>
-          Ek hi sawaal: OLTP poochhta hai “abhi kya hona chahiye”, OLAP poochhta hai “pichhle saal kya hua aur aage kya hoga”
+          One question: OLTP asks “what should happen now”, OLAP asks “what happened last year and what comes next”
         </text>
       </g>
 
       <text x="400" y="492" textAnchor="middle" fill="#8f9dc4" fontSize="9.6" fontFamily={FONT}>
-        Exam line: OLTP transactional aur normalised hai, OLAP analytical, historical aur dimensional
+        Exam line: OLTP is transactional and normalised, OLAP is analytical, historical and dimensional
       </text>
     </svg>
   );
@@ -2049,7 +2049,7 @@ export function ClassificationAppsDiagram() {
         Applications of Classification
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        Features andar, discrete label bahar — bas yahi classification hai
+        Features in, a discrete label out — that is classification
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2061,7 +2061,7 @@ export function ClassificationAppsDiagram() {
         <rect x="280" y="64" width="240" height="64" rx="9" fill="rgba(196,255,0,0.08)" stroke="rgba(196,255,0,0.45)" />
         <text x="400" y="86" textAnchor="middle" fill="#c4ff00" fontSize="9.8" fontWeight="800" fontFamily={FONT}>2 · CLASSIFIER (model)</text>
         <text x="400" y="104" textAnchor="middle" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>logistic · tree · SVM · KNN · NB</text>
-        <text x="400" y="119" textAnchor="middle" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>decision boundary seekhta hai</text>
+        <text x="400" y="119" textAnchor="middle" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>learns the decision boundary</text>
 
         <rect x="540" y="64" width="240" height="64" rx="9" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.45)" />
         <text x="660" y="86" textAnchor="middle" fill="#00ff88" fontSize="9.8" fontWeight="800" fontFamily={FONT}>3 · DISCRETE LABEL (Y)</text>
@@ -2091,7 +2091,7 @@ export function ClassificationAppsDiagram() {
               <text x={x + 16} y={y + 58} fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>classes:</text>
               <text x={x + 70} y={y + 58} fill={color} fontSize="8.4" fontWeight="700" fontFamily={FONT}>{out}</text>
               <text x={x + 16} y={y + 74} fill="#7d8db3" fontSize="7.6" fontFamily={FONT}>
-                {['precision + recall important', 'imbalanced data, cost of FN high', 'recall sabse important', 'FP aur FN dono ki cost', 'probabilities se offer bhejo', 'F1 + confusion matrix'][i]}
+                {['precision + recall important', 'imbalanced data, cost of FN high', 'recall matters most', 'the cost of both FP and FN', 'send the offer from the probabilities', 'F1 + confusion matrix'][i]}
               </text>
             </g>
           );
@@ -2101,10 +2101,10 @@ export function ClassificationAppsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x="20" y="458" width="760" height="44" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.35)" />
         <text x="34" y="476" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Types: binary (2 classes) · multi-class (3+, exclusive) · multi-label (kai labels ek saath)
+          Types: binary (2 classes) · multi-class (3+, exclusive) · multi-label (several labels at once)
         </text>
         <text x="34" y="492" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Exam tip: har application mein features, classes aur benefit likho — 4 se 5 examples kaafi hote hain
+          Exam tip: for each application write the features, the classes and the benefit — 4 to 5 examples are enough
         </text>
       </g>
     </svg>
@@ -2118,38 +2118,38 @@ export function MLTypesDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Three types of machine learning: supervised with labelled data, unsupervised with unlabelled data, and reinforcement learning with reward from an environment, plus semi-supervised and self-supervised variants">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Machine Learning ke Types
+        Types of Machine Learning
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        Data mein label hai ya nahi — yahi teeno types ka farak hai
+        Whether the data carries a label — that is the difference between the three types
       </text>
 
       {[
         {
           x: 20, color: '#00d4ff', title: '1 · SUPERVISED', sub: 'labelled data (X + Y)',
           lines: [
-            ['Data', 'har row ke saath correct answer'],
-            ['Kaam', 'classification + regression'],
+            ['Data', 'the correct answer with every row'],
+            ['Task', 'classification + regression'],
             ['Algo', 'logistic, tree, SVM, KNN, NB'],
             ['Example', 'spam, churn, price predict'],
             ['Metric', 'accuracy, F1, RMSE, R2'],
           ],
         },
         {
-          x: 280, color: '#00ff88', title: '2 · UNSUPERVISED', sub: 'sirf data (X)',
+          x: 280, color: '#00ff88', title: '2 · UNSUPERVISED', sub: 'only data (X)',
           lines: [
-            ['Data', 'koi label nahi hota'],
-            ['Kaam', 'clustering, association, PCA'],
+            ['Data', 'there is no label'],
+            ['Task', 'clustering, association, PCA'],
             ['Algo', 'K-means, DBSCAN, Apriori'],
             ['Example', 'segmentation, basket analysis'],
             ['Metric', 'silhouette, within-cluster SSE'],
           ],
         },
         {
-          x: 540, color: '#ff8800', title: '3 · REINFORCEMENT', sub: 'reward se seekhna',
+          x: 540, color: '#ff8800', title: '3 · REINFORCEMENT', sub: 'learning from reward',
           lines: [
-            ['Data', 'environment se interaction'],
-            ['Kaam', 'policy seekhna (state to action)'],
+            ['Data', 'interaction with the environment'],
+            ['Task', 'learn a policy (state to action)'],
             ['Algo', 'Q-learning, DQN, PPO'],
             ['Example', 'game AI, robot, self-driving'],
             ['Metric', 'average reward, regret'],
@@ -2173,29 +2173,29 @@ export function MLTypesDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x="20" y="330" width="500" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
-        <text x="34" y="350" fill="#6fb2ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>DATA SE TYPE KAISE DECIDE KAREIN</text>
-        <text x="34" y="372" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>labels available?  haan → SUPERVISED  (classification ya regression chuno)</text>
-        <text x="34" y="392" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>labels nahi, sirf data?  → UNSUPERVISED  (clusters, rules, components)</text>
-        <text x="34" y="412" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>action lena hai aur reward milta hai?  → REINFORCEMENT (policy)</text>
-        <text x="34" y="432" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>thoda labelled + bahut unlabelled → semi-supervised</text>
+        <text x="34" y="350" fill="#6fb2ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>DECIDING THE TYPE FROM THE DATA</text>
+        <text x="34" y="372" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>labels available?  yes → SUPERVISED  (choose classification or regression)</text>
+        <text x="34" y="392" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>no labels, only data?  → UNSUPERVISED  (clusters, rules, components)</text>
+        <text x="34" y="412" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>an action earns a reward?  → REINFORCEMENT (policy)</text>
+        <text x="34" y="432" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>a little labelled + much unlabelled → semi-supervised</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x="540" y="330" width="240" height="112" rx="9" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.4)" />
-        <text x="554" y="350" fill="#ff8800" fontSize="9.6" fontWeight="800" fontFamily={FONT}>RL KA LOOP</text>
+        <text x="554" y="350" fill="#ff8800" fontSize="9.6" fontWeight="800" fontFamily={FONT}>THE RL LOOP</text>
         <text x="554" y="372" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>agent → action → environment</text>
         <text x="554" y="390" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>environment → state + reward</text>
-        <text x="554" y="408" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>agent policy update karta hai</text>
+        <text x="554" y="408" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>the agent updates its policy</text>
         <text x="554" y="428" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>explore vs exploit · delayed reward</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <rect x="20" y="454" width="760" height="46" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="472" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Extra types: semi-supervised (thoda labelled) · self-supervised (LLM pre-training) · transfer learning (fine-tune)
+          Extra types: semi-supervised (a little labelled) · self-supervised (LLM pre-training) · transfer learning (fine-tune)
         </text>
         <text x="34" y="490" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Exam line: supervised = teacher ke saath, unsupervised = bina teacher, reinforcement = reward se
+          Exam line: supervised = with a teacher, unsupervised = without a teacher, reinforcement = from reward
         </text>
       </g>
     </svg>
@@ -2217,7 +2217,7 @@ export function LinearRegressionDiagram() {
         Linear Regression — best fit line
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        Y = b0 + b1X — squared galti sabse kam karne wali line
+        Y = b0 + b1X — the line that minimises squared error
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2253,13 +2253,13 @@ export function LinearRegressionDiagram() {
         <text x="464" y="84" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>MODEL</text>
         <text x="464" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>simple: Y = b0 + b1X</text>
         <text x="464" y="122" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>multiple: Y = b0 + b1X1 + … + bnXn</text>
-        <text x="464" y="140" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>b1 = slope (X ek unit badhe to Y kitna badhe)</text>
-        <text x="464" y="156" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>b0 = intercept (X = 0 par Y ki value)</text>
+        <text x="464" y="140" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>b1 = slope (how much Y rises per unit of X)</text>
+        <text x="464" y="156" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>b0 = intercept (value of Y at X = 0)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x="450" y="180" width="330" height="98" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
-        <text x="464" y="200" fill="#00d4ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>COST AUR TRAINING</text>
+        <text x="464" y="200" fill="#00d4ff" fontSize="9.6" fontWeight="800" fontFamily={FONT}>COST AND TRAINING</text>
         <text x="464" y="220" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>MSE J = (1/n) Σ (yi − yhat_i)²</text>
         <text x="464" y="240" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>gradient descent: b ← b − α·∂J/∂b</text>
         <text x="464" y="258" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>closed form: theta = (X^TX)^-1X^TY</text>
@@ -2279,7 +2279,7 @@ export function LinearRegressionDiagram() {
         <text x="34" y="428" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>SOLVED EXAMPLE (X = 1,2,3,4 · Y = 2,4,5,4)</text>
         <text x="34" y="448" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>xbar = 2.5, ybar = 3.75 · Σ(x−xbar)(y−ybar) = 3.5 · Σ(x−xbar)² = 5.0</text>
         <text x="34" y="466" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>b1 = 3.5 / 5.0 = 0.7 · b0 = 3.75 − 0.7(2.5) = 2.0 → Y = 2 + 0.7X</text>
-        <text x="34" y="486" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>X = 5 par prediction = 5.5 · output continuous hai, isliye metric R²/RMSE hota hai, accuracy nahi</text>
+        <text x="34" y="486" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>at X = 5 the prediction is 5.5 · the output is continuous, so the metric is R²/RMSE, not accuracy</text>
       </g>
     </svg>
   );
@@ -2298,7 +2298,7 @@ export function LogisticRegressionDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Logistic regression: linear score z passed through the sigmoid function to give a probability between 0 and 1, the 0.5 threshold, log odds form and the log loss objective">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Logistic Regression — sigmoid se probability
+        Logistic Regression — probability from the sigmoid
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
         score z → sigmoid → probability p → 0.5 threshold → class
@@ -2329,8 +2329,8 @@ export function LogisticRegressionDiagram() {
         <text x="474" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>z = b0 + b1X1 + … + bnXn</text>
         <text x="474" y="122" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>p = 1 / (1 + e^-z)</text>
         <text x="474" y="140" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>log-odds: ln(p/(1−p)) = z</text>
-        <text x="474" y="158" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>e^b1 = odds ratio (X ek unit par)</text>
-        <text x="474" y="174" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>p ≥ 0.5 → class 1, warna class 0</text>
+        <text x="474" y="158" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>e^b1 = odds ratio (per unit of X)</text>
+        <text x="474" y="174" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>p ≥ 0.5 → class 1, otherwise class 0</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
@@ -2338,16 +2338,16 @@ export function LogisticRegressionDiagram() {
         <text x="474" y="216" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>SIGMOID READY RECKONER</text>
         <text x="474" y="236" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>z = −2 → 0.12 · z = −1 → 0.27</text>
         <text x="474" y="254" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>z = 0 → 0.50 · z = 1 → 0.73 · z = 2 → 0.88</text>
-        <text x="474" y="274" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>curve S-shaped, output always 0 se 1</text>
+        <text x="474" y="274" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>curve S-shaped, output always between 0 and 1</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x="460" y="300" width="320" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
         <text x="474" y="320" fill="#ff7a90" fontSize="9.6" fontWeight="800" fontFamily={FONT}>LOG LOSS (CROSS-ENTROPY)</text>
         <text x="474" y="340" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>J = −(1/n) Σ [ y·log p + (1−y)·log(1−p) ]</text>
-        <text x="474" y="360" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>galat confident prediction par penalty bahut badi</text>
-        <text x="474" y="378" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>multi-class ke liye softmax regression</text>
-        <text x="474" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>L1/L2 regularisation se overfitting control</text>
+        <text x="474" y="360" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>a confident wrong prediction is penalised heavily</text>
+        <text x="474" y="378" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>softmax regression for multi-class</text>
+        <text x="474" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>L1/L2 regularisation controls overfitting</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
@@ -2355,7 +2355,7 @@ export function LogisticRegressionDiagram() {
         <text x="34" y="432" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>SOLVED EXAMPLE — default risk model</text>
         <text x="34" y="452" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>z = −3 + 0.05 × income · income 80,000 → z = −3 + 4 = 1</text>
         <text x="34" y="470" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>p = 1/(1 + e^-1) = 0.731 → 0.731 greater than 0.5 → predict default = Yes (73% risk)</text>
-        <text x="34" y="490" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>threshold 0.35 karo to recall badhega · linear boundary only, isliye non-linear data par tree/SVM better</text>
+        <text x="34" y="490" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>lowering the threshold to 0.35 raises recall · the boundary is linear, so tree/SVM is better on non-linear data</text>
       </g>
     </svg>
   );
@@ -2368,10 +2368,10 @@ export function NaiveBayesDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Naive Bayes classifier: Bayes theorem split into prior, likelihood and posterior, the conditional independence assumption, the spam example computation and the Gaussian, multinomial and Bernoulli variants">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Naive Bayes — Bayes theorem se classification
+        Naive Bayes — classification from Bayes theorem
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        prior × likelihood = posterior — bas isi ko compare karna hai
+        prior × likelihood = posterior — that is all there is to compare
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2380,31 +2380,31 @@ export function NaiveBayesDiagram() {
           P(C | X) = P(X | C) × P(C) / P(X)
         </text>
         <text x="400" y="108" textAnchor="middle" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          posterior · likelihood · prior · evidence — evidence sab classes ke liye same, isliye compare mein chhod do
+          posterior · likelihood · prior · evidence — evidence is the same for all classes, so drop it from the comparison
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
         <rect x="20" y="132" width="240" height="112" rx="9" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.4)" />
         <text x="34" y="152" fill="#00d4ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>1 · PRIOR  P(C)</text>
-        <text x="34" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>training data mein class ka share</text>
+        <text x="34" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>share of the class in the training data</text>
         <text x="34" y="192" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(spam) = 0.4</text>
         <text x="34" y="210" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(ham) = 0.6</text>
-        <text x="34" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>sirf counting se nikalta hai</text>
+        <text x="34" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>obtained by counting alone</text>
 
         <rect x="280" y="132" width="240" height="112" rx="9" fill="rgba(196,255,0,0.06)" stroke="rgba(196,255,0,0.4)" />
         <text x="294" y="152" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>2 · LIKELIHOOD  P(X|C)</text>
-        <text x="294" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>us class mein features kitne common</text>
+        <text x="294" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>how common the features are in that class</text>
         <text x="294" y="192" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(free | spam) = 0.6</text>
         <text x="294" y="210" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(free | ham) = 0.05</text>
-        <text x="294" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>independent maan kar multiply</text>
+        <text x="294" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>multiply assuming independence</text>
 
         <rect x="540" y="132" width="240" height="112" rx="9" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.4)" />
         <text x="554" y="152" fill="#00ff88" fontSize="9.4" fontWeight="800" fontFamily={FONT}>3 · POSTERIOR  P(C|X)</text>
         <text x="554" y="172" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>spam: 0.4 × 0.6 = 0.24</text>
         <text x="554" y="190" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>ham: 0.6 × 0.05 = 0.03</text>
         <text x="554" y="208" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>0.24/0.27 = 0.889 spam</text>
-        <text x="554" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>max posterior wali class jeet gayi</text>
+        <text x="554" y="230" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>the class with the highest posterior wins</text>
 
         <path d="M262 188 L274 188 M268 183 L274 188 L268 193" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
         <path d="M522 188 L534 188 M528 183 L534 188 L528 193" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
@@ -2414,22 +2414,22 @@ export function NaiveBayesDiagram() {
         <rect x="20" y="258" width="370" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
         <text x="34" y="278" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>NAIVE ASSUMPTION — conditional independence</text>
         <text x="34" y="298" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(X | C) = P(x1|C) × P(x2|C) × … × P(xn|C)</text>
-        <text x="34" y="318" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>features ko aapas mein independent maan liya</text>
-        <text x="34" y="336" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>real data mein galat, phir bhi text par kaam karta hai</text>
+        <text x="34" y="318" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>features are assumed independent of each other</text>
+        <text x="34" y="336" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>false on real data, yet it works on text</text>
         <text x="34" y="358" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Multi-word example</text>
         <text x="34" y="376" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>P(free|spam) × P(offer|spam) × P(spam) …</text>
-        <text x="34" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>practice mein log probabilities ka sum (underflow se bacho)</text>
+        <text x="34" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>in practice the sum of log probabilities (avoids underflow)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x="410" y="258" width="370" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
-        <text x="424" y="278" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>TEEN VARIANTS</text>
+        <text x="424" y="278" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>THREE VARIANTS</text>
         <text x="424" y="300" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Gaussian</text>
         <text x="500" y="300" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>continuous features, normal distribution</text>
         <text x="424" y="322" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Multinomial</text>
-        <text x="500" y="322" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>word counts, TF-IDF — text ka favourite</text>
+        <text x="500" y="322" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>word counts, TF-IDF — a favourite for text</text>
         <text x="424" y="344" fill="#ff8800" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Bernoulli</text>
-        <text x="500" y="344" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>binary presence — word hai ya nahi</text>
+        <text x="500" y="344" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>binary presence — the word is there or not</text>
         <text x="424" y="370" fill="#ffd166" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Laplace smoothing</text>
         <text x="424" y="388" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>(count + 1) / (total + k) — zero frequency fix</text>
       </g>
@@ -2437,7 +2437,7 @@ export function NaiveBayesDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
         <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Pros: super fast, kam data par bhi chalta hai, multi-class natural, text ke liye best baseline
+          Pros: very fast, works on little data, multi-class is natural, the best baseline for text
         </text>
         <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
           Cons: independence assumption unrealistic, zero-frequency problem, probabilities poorly calibrated
@@ -2461,10 +2461,10 @@ export function KnnDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K nearest neighbour: query point with k equals 3 nearest neighbours voting, distance formulas, choice of k and the curse of dimensionality">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        K-Nearest Neighbor — paas wale bolte hain
+        K-Nearest Neighbor — the neighbours decide
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        k nearest points ki majority vote — koi training nahi, sirf distance
+        majority vote of the k nearest points — no training, only distance
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2503,23 +2503,23 @@ export function KnnDiagram() {
         <text x="494" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Euclidean: √Σ (xi − yi)²</text>
         <text x="494" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Manhattan: Σ |xi − yi|</text>
         <text x="494" y="140" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Minkowski: (Σ|xi−yi|^p)^(1/p)</text>
-        <text x="494" y="158" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>text ke liye Hamming ya cosine</text>
+        <text x="494" y="158" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Hamming or cosine for text</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x="480" y="182" width="300" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
-        <text x="494" y="202" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>K KA CHOICE</text>
+        <text x="494" y="202" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>CHOOSING K</text>
         <text x="494" y="222" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>k = 1 → overfit, noise follow</text>
         <text x="494" y="240" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>k badha → smooth, underfit</text>
-        <text x="494" y="258" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>odd rakho (tie se bacho)</text>
-        <text x="494" y="276" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>rule of thumb k ≈ √n, CV se best k</text>
+        <text x="494" y="258" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>keep it odd (avoids a tie)</text>
+        <text x="494" y="276" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>rule of thumb k ≈ √n, best k by CV</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
         <rect x="480" y="306" width="300" height="102" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
-        <text x="494" y="326" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
-        <text x="494" y="346" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>feature scaling compulsory hai</text>
-        <text x="494" y="364" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>curse of dimensionality — PCA karo</text>
+        <text x="494" y="326" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>WATCH OUT</text>
+        <text x="494" y="346" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>feature scaling is compulsory</text>
+        <text x="494" y="364" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>curse of dimensionality — apply PCA</text>
         <text x="494" y="382" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>predict cost O(n·d) per query</text>
         <text x="494" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>lazy learner — training instant, memory heavy</text>
       </g>
@@ -2527,10 +2527,10 @@ export function KnnDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Pros: simple, no training, non-linear boundary, multi-class seedha, regression (neighbours ka mean) bhi
+          Pros: simple, no training, non-linear boundary, multi-class directly, regression too (mean of neighbours)
         </text>
         <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Cons: prediction slow, poora data memory mein, scaling zaroori, high dimension par fail
+          Cons: slow prediction, the whole data in memory, scaling essential, fails in high dimension
         </text>
         <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
           Applications: digit recognition, image retrieval, recommendation, credit risk, missing value imputation
@@ -2547,10 +2547,10 @@ export function DecisionTreeDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Decision tree for the play tennis dataset: root Outlook with Sunny, Overcast and Rain branches, humidity and wind tests, leaves with yes and no classes, entropy and information gain formulas">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Decision Tree — sawaal poochte hue class tak
+        Decision Tree — reach the class by asking questions
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        entropy / information gain se best split chuno
+        choose the best split by entropy / information gain
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2596,7 +2596,7 @@ export function DecisionTreeDiagram() {
         ))}
 
         <text x="34" y="392" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          leaf = class · internal node = attribute test · branch = test ka outcome
+          leaf = class · internal node = attribute test · branch = outcome of the test
         </text>
       </g>
 
@@ -2616,7 +2616,7 @@ export function DecisionTreeDiagram() {
         <text x="554" y="236" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>parent: 9 yes / 5 no → H = 0.940</text>
         <text x="554" y="254" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outlook child H = 0.693</text>
         <text x="554" y="272" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>IG = 0.940 − 0.693 = 0.247</text>
-        <text x="554" y="292" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>sabse zyada gain = root node</text>
+        <text x="554" y="292" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>highest gain = root node</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
@@ -2653,7 +2653,7 @@ export function SvmDiagram() {
         Support Vector Machine — maximum margin
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        boundary se sabse door line chuno — margin jitni badi, generalisation utna achha
+        choose the line farthest from both classes — the wider the margin, the better the generalisation
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2683,8 +2683,8 @@ export function SvmDiagram() {
 
         <text x="40" y="98" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>● class +1</text>
         <text x="150" y="98" fill="#ff0080" fontSize="8.6" fontWeight="700" fontFamily={FONT}>■ class −1</text>
-        <text x="40" y="330" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>◯ support vectors — margin par baithe points</text>
-        <text x="40" y="350" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>baaki points hata do to bhi hyperplane same rehta hai</text>
+        <text x="40" y="330" fill="#c4ff00" fontSize="8.4" fontFamily={FONT}>◯ support vectors — the points on the margin</text>
+        <text x="40" y="350" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>remove the other points and the hyperplane stays the same</text>
         <text x="40" y="376" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>objective: min |w|²/2  →  margin 2/|w| maximise</text>
       </g>
 
@@ -2695,33 +2695,33 @@ export function SvmDiagram() {
         <text x="484" y="122" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>linear: xi·xj → simple, text</text>
         <text x="484" y="140" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>polynomial: (γ xi·xj + r)^d</text>
         <text x="484" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>RBF: exp(−γ|xi − xj|²) → default</text>
-        <text x="484" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>mapping explicitly compute nahi hoti</text>
+        <text x="484" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>the mapping is never computed explicitly</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x="470" y="204" width="310" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
-        <text x="484" y="224" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>SOFT MARGIN AUR C</text>
+        <text x="484" y="224" fill="#ff8800" fontSize="9.4" fontWeight="800" fontFamily={FONT}>SOFT MARGIN AND C</text>
         <text x="484" y="242" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>min |w|²/2 + C·Σξ</text>
-        <text x="484" y="260" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bada C → strict, overfit risk</text>
-        <text x="484" y="278" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>chhota C → tolerant, smooth</text>
+        <text x="484" y="260" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>large C → strict, risk of overfitting</text>
+        <text x="484" y="278" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>small C → tolerant, smooth</text>
         <text x="484" y="298" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>loss = hinge max(0, 1 − y·f(x))</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x="470" y="322" width="310" height="78" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
-        <text x="484" y="342" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
-        <text x="484" y="360" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>scaling zaroori · large data par slow</text>
-        <text x="484" y="378" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>probability ke liye Platt scaling</text>
-        <text x="484" y="394" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>multi-class: one-vs-rest ya one-vs-one</text>
+        <text x="484" y="342" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>WATCH OUT</text>
+        <text x="484" y="360" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>scaling essential · slow on large data</text>
+        <text x="484" y="378" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Platt scaling for probabilities</text>
+        <text x="484" y="394" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>multi-class: one-vs-rest or one-vs-one</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Pros: high-dimensional data par best, max-margin generalisation, kernel se non-linear, memory efficient
+          Pros: best on high-dimensional data, max-margin generalisation, non-linear through a kernel, memory efficient
         </text>
         <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Cons: training slow on large data, C aur γ tuning, interpretability kam, probability output nahi
+          Cons: slow training on large data, tuning C and γ, lower interpretability, no probability output
         </text>
         <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
           Applications: text classification, face detection, handwriting, gene expression, one-class anomaly detection
@@ -2736,15 +2736,15 @@ export function SvmDiagram() {
 // ============================================================
 export function ConfusionMatrixDiagram() {
   const cells = [
-    { x: 165, y: 126, label: 'TP', value: '40', note: 'sahi positive', color: '#00ff88' },
+    { x: 165, y: 126, label: 'TP', value: '40', note: 'correct positive', color: '#00ff88' },
     { x: 295, y: 126, label: 'FN', value: '10', note: 'miss (Type II)', color: '#ff7a90' },
     { x: 165, y: 210, label: 'FP', value: '5', note: 'false alarm (Type I)', color: '#ff8800' },
-    { x: 295, y: 210, label: 'TN', value: '45', note: 'sahi negative', color: '#00d4ff' },
+    { x: 295, y: 210, label: 'TN', value: '45', note: 'correct negative', color: '#00d4ff' },
   ];
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Confusion matrix 2 by 2 with true positive 40, false negative 10, false positive 5 and true negative 45, the metrics derived from it and the meaning of type one and type two errors">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Confusion Matrix — galti ka poora hisaab
+        Confusion Matrix — the full account of errors
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
         rows = actual class · columns = predicted class
@@ -2771,13 +2771,13 @@ export function ConfusionMatrixDiagram() {
 
         <text x="34" y="322" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>Total = 40 + 10 + 5 + 45 = 100 patients · actual positive = 50, actual negative = 50</text>
         <text x="34" y="344" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Type I error = FP (false alarm) · Type II error = FN (miss)</text>
-        <text x="34" y="366" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Multi-class problem mein matrix k × k ban jaati hai — diagonal sahi predictions</text>
-        <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Sirf accuracy likhna adhura answer hai — matrix ke saath precision/recall likho</text>
+        <text x="34" y="366" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>In a multi-class problem the matrix becomes k × k — the diagonal holds correct predictions</text>
+        <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Accuracy alone is an incomplete answer — give precision/recall with the matrix</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
         <rect x="500" y="64" width="280" height="336" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
-        <text x="514" y="84" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>ISSE NIKALNE WALE METRICS</text>
+        <text x="514" y="84" fill="#c4ff00" fontSize="9.6" fontWeight="800" fontFamily={FONT}>METRICS DERIVED FROM IT</text>
         {[
           ['Accuracy', '(TP+TN)/N = 85/100', '0.850'],
           ['Precision', 'TP/(TP+FP) = 40/45', '0.889'],
@@ -2793,19 +2793,19 @@ export function ConfusionMatrixDiagram() {
           </g>
         ))}
         <line x1="514" y1="366" x2="766" y2="366" stroke="rgba(255,255,255,0.12)" />
-        <text x="514" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>recall 0.80 = 10 patients chhoot gaye</text>
+        <text x="514" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>recall 0.80 = 10 patients missed</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="444" fill="#ff8800" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Type I (FP): healthy ko bimaru bolna, genuine mail ko spam mark karna, genuine transaction ko fraud bolna
+          Type I (FP): calling a healthy person sick, marking genuine mail as spam, flagging a genuine transaction as fraud
         </text>
         <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Type II (FN): bimari chhootna, spam inbox mein aana, fraud pakda na jaana — usually zyada mehnga
+          Type II (FN): missing a disease, spam reaching the inbox, failing to catch fraud — usually the more expensive
         </text>
         <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Threshold ghatao to FN kam FP zyada (recall up) · threshold badhao to FP kam FN zyada (precision up)
+          Lower the threshold → fewer FN, more FP (recall up) · raise it → fewer FP, more FN (precision up)
         </text>
       </g>
     </svg>
@@ -2822,14 +2822,14 @@ export function ClassificationMetricsDiagram() {
         Accuracy · Precision · Recall · F1
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        imbalanced data par accuracy jhooth bolti hai — precision aur recall dekho
+        on imbalanced data accuracy lies — look at precision and recall
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         {[
-          { x: 20, y: 64, color: '#00d4ff', name: 'ACCURACY', formula: '(TP + TN) / N', note: 'overall sahi · balanced data ke liye', value: '0.850' },
-          { x: 400, y: 64, color: '#00ff88', name: 'PRECISION', formula: 'TP / (TP + FP)', note: 'positive bola, sach tha? FP kam', value: '0.889' },
-          { x: 20, y: 156, color: '#ff8800', name: 'RECALL', formula: 'TP / (TP + FN)', note: 'jo positive the, pakde? FN kam', value: '0.800' },
+          { x: 20, y: 64, color: '#00d4ff', name: 'ACCURACY', formula: '(TP + TN) / N', note: 'overall correct · for balanced data', value: '0.850' },
+          { x: 400, y: 64, color: '#00ff88', name: 'PRECISION', formula: 'TP / (TP + FP)', note: 'said positive, was true? keeps FP low', value: '0.889' },
+          { x: 20, y: 156, color: '#ff8800', name: 'RECALL', formula: 'TP / (TP + FN)', note: 'of the true positives, how many caught? keeps FN low', value: '0.800' },
           { x: 400, y: 156, color: '#aa00ff', name: 'F1 SCORE', formula: '2PR / (P + R)', note: 'harmonic mean · imbalance-safe', value: '0.842' },
         ].map(({ x, y, color, name, formula, note, value }) => (
           <g key={name}>
@@ -2846,11 +2846,11 @@ export function ClassificationMetricsDiagram() {
         <rect x="20" y="252" width="380" height="152" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
         <text x="34" y="272" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>ACCURACY PARADOX</text>
         <text x="34" y="292" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1000 records: 990 negative, 10 positive</text>
-        <text x="34" y="310" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>model bole sab negative → TP 0, FP 0, FN 10, TN 990</text>
+        <text x="34" y="310" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>model says all negative → TP 0, FP 0, FN 10, TN 990</text>
         <text x="34" y="330" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>accuracy = 990/1000 = 99%</text>
         <text x="34" y="348" fill="#ff7a90" fontSize="8.4" fontWeight="700" fontFamily={FONT}>recall = 0/10 = 0% · F1 = 0 · model useless</text>
         <text x="34" y="370" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>fix: class weights, SMOTE, threshold tuning</text>
-        <text x="34" y="390" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>report: F1, recall, PR-AUC — accuracy nahi</text>
+        <text x="34" y="390" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>report: F1, recall, PR-AUC — not accuracy</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
@@ -2872,7 +2872,7 @@ export function ClassificationMetricsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Spam filter → precision (genuine mail spam na bane) · Cancer screening → recall (bimari chhoote na)
+          Spam filter → precision (genuine mail must not be marked spam) · Cancer screening → recall (a disease must not be missed)
         </text>
         <text x="34" y="464" fill="#dbe6ff" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
           F-beta: β = 2 recall-heavy · β = 0.5 precision-heavy · multi-class: macro / micro / weighted average
@@ -2892,10 +2892,10 @@ export function RocAucDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="ROC curve plotting true positive rate against false positive rate at all thresholds, shaded area under the curve of 0.92, a threshold table and the interpretation scale of AUC values">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        ROC Curve aur AUC — threshold ka graph
+        ROC Curve and AUC — the graph over thresholds
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        TPR (recall) vs FPR (1 − specificity), har threshold par
+        TPR (recall) vs FPR (1 − specificity), at every threshold
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -2955,7 +2955,7 @@ export function RocAucDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x="460" y="208" width="320" height="192" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
-        <text x="474" y="228" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>AUC KA MATLAB</text>
+        <text x="474" y="228" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>WHAT AUC MEANS</text>
         {[
           ['0.50', 'random guess — useless', '#ff7a90'],
           ['0.60–0.70', 'weak signal', '#ffd166'],
@@ -2969,20 +2969,20 @@ export function RocAucDiagram() {
           </g>
         ))}
         <line x1="474" y1="352" x2="766" y2="352" stroke="rgba(255,255,255,0.12)" />
-        <text x="474" y="370" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>AUC = random positive ko random negative se</text>
-        <text x="474" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>upar rank karne ki probability</text>
+        <text x="474" y="370" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>AUC = the probability that a random positive</text>
+        <text x="474" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>is ranked above a random negative</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="424" width="760" height="76" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="444" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          AUC threshold-free hai aur class balance se invariant — isliye do models compare karna aasan
+          AUC is threshold-free and invariant to class balance — so two models are easy to compare
         </text>
         <text x="34" y="464" fill="#ff7a90" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Extreme imbalance (fraud 0.5%) par ROC optimist dikhta hai — tab PR curve / PR-AUC better
+          Under extreme imbalance (fraud 0.5%) ROC looks optimistic — then the PR curve / PR-AUC is better
         </text>
         <text x="34" y="486" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Deploy karte waqt threshold business cost se chuno — max F1 ya target precision par max recall
+          At deployment choose the threshold from business cost — max F1, or max recall at a target precision
         </text>
       </g>
     </svg>
@@ -3002,10 +3002,10 @@ export function RegressionMetricsDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Regression metrics: actual versus predicted bars with residuals, formulas of MAE, MSE, RMSE and R squared, the computed example and guidance about which metric to choose">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        MAE · MSE · RMSE · R² — regression ki galti
+        MAE · MSE · RMSE · R² — the errors of regression
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        MAE/RMSE batate hain kitni galti · R² batata hai kitna fit
+        MAE/RMSE say how large the error is · R² says how well the model fits
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3048,25 +3048,25 @@ export function RegressionMetricsDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x="460" y="242" width="320" height="158" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(111,178,255,0.4)" />
-        <text x="474" y="262" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>KAUNSA METRIC CHUNEIN</text>
+        <text x="474" y="262" fill="#6fb2ff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>WHICH METRIC TO CHOOSE</text>
         <text x="474" y="284" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>MAE</text>
-        <text x="522" y="284" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>har galti barabar, outliers soft</text>
+        <text x="522" y="284" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>every error equal, outliers softened</text>
         <text x="474" y="306" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>RMSE</text>
-        <text x="522" y="306" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bade errors mehnge, same unit</text>
+        <text x="522" y="306" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>large errors cost more, same unit</text>
         <text x="474" y="328" fill="#aa00ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>R²</text>
-        <text x="506" y="328" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>baseline (mean) se kitna better</text>
+        <text x="506" y="328" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>how much better than the baseline (mean)</text>
         <text x="474" y="350" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Adj R²</text>
-        <text x="530" y="350" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>extra useless features ka penalty</text>
-        <text x="474" y="372" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>R² negative bhi ho sakta hai (test data)</text>
-        <text x="474" y="388" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>RMSE hamesha ≥ MAE</text>
+        <text x="530" y="350" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>penalty for extra useless features</text>
+        <text x="474" y="372" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>R² can even be negative (on test data)</text>
+        <text x="474" y="388" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>RMSE is always ≥ MAE</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x="20" y="412" width="760" height="88" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="432" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>INTERPRETATION — solved example</text>
-        <text x="34" y="452" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>MAE 1.0 → average 1 unit ki galti · RMSE 1.29 → bade error (−2) ka extra weight</text>
-        <text x="34" y="470" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>R² 0.375 → variance ka 37.5% explain hua, 62.5% abhi bhi unexplained</text>
-        <text x="34" y="490" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>Classification metrics (accuracy/F1) yahan nahi chalte — yahan MAE, RMSE, R² likho</text>
+        <text x="34" y="452" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>MAE 1.0 → average error of 1 unit · RMSE 1.29 → the large error (−2) weighted more</text>
+        <text x="34" y="470" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>R² 0.375 → 37.5% of variance explained, 62.5% still unexplained</text>
+        <text x="34" y="490" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>classification metrics (accuracy/F1) do not apply here — report MAE, RMSE, R²</text>
       </g>
     </svg>
   );
@@ -3084,7 +3084,7 @@ export function DistanceModelsDiagram() {
         Distance Based Models
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        do points kitne paas hain — yahi clustering aur KNN ka base hai
+        how close two points are — the basis of clustering and KNN
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3111,10 +3111,10 @@ export function DistanceModelsDiagram() {
         <text x="134" y="126" fill="#6fb2ff" fontSize="8.2" fontFamily={FONT}>cos θ = 0.992 (vectors almost same direction)</text>
 
         <text x="34" y="356" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          green = seedhi doori · orange = axis ke saath chalti doori · θ = dono vectors ka angle
+          green = straight distance · orange = distance along the axes · θ = the angle between the two vectors
         </text>
         <text x="34" y="376" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          cosine angle dekhta hai, magnitude nahi — isliye text ke liye best
+          cosine looks at the angle, not the magnitude — hence the best for text
         </text>
       </g>
 
@@ -3130,7 +3130,7 @@ export function DistanceModelsDiagram() {
 
         <rect x="460" y="226" width="320" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(170,0,255,0.4)" />
         <text x="474" y="246" fill="#c08bff" fontSize="9.4" fontWeight="800" fontFamily={FONT}>HAMMING</text>
-        <text x="474" y="266" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1011101 vs 1001001 → alag positions 3 aur 6</text>
+        <text x="474" y="266" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>1011101 vs 1001001 → they differ at positions 3 and 6</text>
         <text x="474" y="284" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>distance = 2 (normalised 2/7 = 0.29)</text>
         <text x="474" y="304" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>equal length strings, binary, one-hot, DNA</text>
       </g>
@@ -3148,10 +3148,10 @@ export function DistanceModelsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="412" width="420" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
         <text x="34" y="432" fill="#ff7a90" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
-          Dhyan: scaling se pehle distance ka koi matlab nahi
+          Caution: before scaling, distance means nothing
         </text>
         <text x="34" y="450" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          salary 30,000 vs 31,000 poore distance ko kha jaayegi — z-score/min-max zaroori
+          salary 30,000 vs 31,000 swallows the whole distance — z-score/min-max is essential
         </text>
       </g>
     </svg>
@@ -3171,10 +3171,10 @@ export function KMeansDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="K-means clustering: points assigned to two centroids, the assign and update loop, WCSS objective and a solved one dimensional example">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        K-Means — assign aur update ka loop
+        K-Means — the assign and update loop
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        centroid = members ka mean · objective = WCSS minimise
+        centroid = mean of the members · objective = minimise WCSS
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3209,7 +3209,7 @@ export function KMeansDiagram() {
           Step 1: point → nearest centroid   →   Step 2: centroid = mean
         </text>
         <text x="52" y="372" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          Step 3: repeat till assignments stable (ya max iterations)
+          Step 3: repeat until assignments are stable (or max iterations)
         </text>
       </g>
 
@@ -3217,8 +3217,8 @@ export function KMeansDiagram() {
         <rect x="460" y="64" width="320" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
         <text x="474" y="84" fill="#c4ff00" fontSize="9.4" fontWeight="800" fontFamily={FONT}>OBJECTIVE — WCSS</text>
         <text x="474" y="104" fill="#dbe6ff" fontSize="8.6" fontFamily={FONT}>J = Σk Σ(x∈Ck) ||x − μk||²</text>
-        <text x="474" y="124" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>kam WCSS = tight clusters (inertia)</text>
-        <text x="474" y="144" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>k badhao to WCSS hamesha girega</text>
+        <text x="474" y="124" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>lower WCSS = tighter clusters (inertia)</text>
+        <text x="474" y="144" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>raising k always lowers WCSS</text>
         <text x="474" y="166" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>complexity O(n · k · d · iterations)</text>
 
         <rect x="460" y="196" width="320" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
@@ -3229,19 +3229,19 @@ export function KMeansDiagram() {
         <text x="474" y="292" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>assignments same → converged</text>
 
         <rect x="460" y="314" width="320" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
-        <text x="474" y="334" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
-        <text x="474" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>k pehle dena padta hai (elbow se chuno)</text>
-        <text x="474" y="370" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers mean ko khinch lete hain</text>
-        <text x="474" y="386" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>sirf spherical clusters par theek</text>
+        <text x="474" y="334" fill="#ff7a90" fontSize="9.4" fontWeight="800" fontFamily={FONT}>WATCH OUT</text>
+        <text x="474" y="352" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>k must be given in advance (choose it from the elbow)</text>
+        <text x="474" y="370" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers drag the mean</text>
+        <text x="474" y="386" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>works well only on spherical clusters</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Fixes: k-means++ initialisation · n_init = 10 · scaling · elbow/silhouette se k · outliers hatao
+          Fixes: k-means++ initialisation · n_init = 10 · scaling · k by elbow/silhouette · remove outliers
         </text>
         <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Local optimum par atak sakta hai — kai baar alag init se chala kar sabse kam WCSS wala result rakho
+          It can stop at a local optimum — run it from several initialisations and keep the lowest WCSS
         </text>
       </g>
     </svg>
@@ -3261,7 +3261,7 @@ export function KMedoidDiagram() {
         K-Medoid (PAM) — medoid vs centroid
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        medoid = actual data point · centroid = mean · isliye outlier par medoid jeetta hai
+        medoid = an actual data point · centroid = mean · so on an outlier the medoid wins
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3292,7 +3292,7 @@ export function KMedoidDiagram() {
           <line x1="476" y1={yA - 7} x2="462" y2={yA + 7} />
         </g>
         <text x="470" y={yA - 14} textAnchor="middle" fill="#ff8800" fontSize="8.2" fontWeight="700" fontFamily={FONT}>μ = 33.25</text>
-        <text x="516" y={yA - 14} fill="#ff8800" fontSize="7.8" fontFamily={FONT}>outlier ne mean khinch liya</text>
+        <text x="516" y={yA - 14} fill="#ff8800" fontSize="7.8" fontFamily={FONT}>the outlier dragged the mean</text>
 
         <text x="512" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>gap</text>
         <text x="512" y="196" fill="rgba(255,255,255,0.3)" fontSize="7.8" fontFamily={FONT}>....</text>
@@ -3314,12 +3314,12 @@ export function KMedoidDiagram() {
             <text x={X[v]} y={yB - 16} textAnchor="middle" fill="#c4ff00" fontSize="8.2" fontWeight="700" fontFamily={FONT}>{`medoid ${v}`}</text>
           </g>
         ))}
-        <text x="470" y={yB + 26} textAnchor="middle" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>medoid nahi hila — 11 hi rehta hai</text>
+        <text x="470" y={yB + 26} textAnchor="middle" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>the medoid did not move — it stays at 11</text>
 
         <rect x="34" y="326" width="732" height="58" rx="8" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.35)" />
         <text x="48" y="346" fill="#00d4ff" fontSize="8.6" fontWeight="700" fontFamily={FONT}>Cost (objective)</text>
         <text x="48" y="366" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
-          Cost = Σ distance(x, medoid) · medoid wo point jiski cluster ke baaki sabhi points se total dissimilarity sabse kam
+          Cost = Σ distance(x, medoid) · the medoid has the smallest total dissimilarity to the rest of its cluster
         </text>
       </g>
 
@@ -3327,10 +3327,10 @@ export function KMedoidDiagram() {
         <rect x="20" y="412" width="370" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
         <text x="34" y="432" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>PAM PHASES</text>
         <text x="34" y="452" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>BUILD</text>
-        <text x="92" y="452" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>greedy initial medoids (cost sabse kam)</text>
+        <text x="92" y="452" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>greedy initial medoids (lowest cost)</text>
         <text x="34" y="472" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>SWAP</text>
-        <text x="92" y="472" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>medoid ↔ non-medoid, cost kam ho to accept</text>
-        <text x="34" y="494" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>O(k(n−k)²) per iter · CLARA/CLARANS se speed up</text>
+        <text x="92" y="472" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>medoid ↔ non-medoid, accept if the cost falls</text>
+        <text x="34" y="494" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>O(k(n−k)²) per iter · speed up with CLARA/CLARANS</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
@@ -3356,7 +3356,7 @@ export function HierarchicalDiagram() {
         Hierarchical Clustering — dendrogram
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        agglomerative: har point alag → paas wale milte jao · k pehle se dene ki zaroorat nahi
+        agglomerative: every point alone → merge the nearest · k need not be given in advance
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3397,46 +3397,46 @@ export function HierarchicalDiagram() {
 
         {/* cut */}
         <line x1="60" y1={hy(3)} x2="440" y2={hy(3)} stroke="rgba(255,122,144,0.85)" strokeWidth="1.2" strokeDasharray="6 4" />
-        <text x="470" y={hy(3) - 8} fill="#ff7a90" fontSize="8" fontFamily={FONT}>cut at h = 3 → clusters [1,2,4] aur [9]</text>
+        <text x="470" y={hy(3) - 8} fill="#ff7a90" fontSize="8" fontFamily={FONT}>cut at h = 3 → clusters [1,2,4] and [9]</text>
 
         <text x="34" y="380" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          cut jis height par lagao, utne hi clusters milte hain — yahi hierarchical ka fayda hai
+          cut at any height and you get that many clusters — this is the advantage of hierarchical clustering
         </text>
         <text x="34" y="394" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          height = us merge par dono clusters ke beech ki distance
+          height = the distance between the two clusters at that merge
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
         <rect x="480" y="64" width="300" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
-        <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DO TAREEKE</text>
+        <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>TWO WAYS</text>
         <text x="494" y="104" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Agglomerative</text>
         <text x="494" y="120" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bottom-up: n clusters → merge → 1</text>
         <text x="494" y="142" fill="#ff8800" fontSize="8.4" fontWeight="700" fontFamily={FONT}>Divisive</text>
         <text x="494" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>top-down: 1 cluster → split (DIANA)</text>
-        <text x="494" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>divisive mehnga — saare splits dekhne padte hain</text>
+        <text x="494" y="176" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>divisive is costly — every split must be examined</text>
 
         <rect x="480" y="196" width="300" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
         <text x="494" y="216" fill="#c4ff00" fontSize="9.2" fontWeight="800" fontFamily={FONT}>LINKAGE METHODS</text>
-        <text x="494" y="236" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>single — sabse paas (min) · chain banti hai</text>
-        <text x="494" y="254" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>complete — sabse door (max) · compact</text>
-        <text x="494" y="272" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>average — saare pairs ka average</text>
+        <text x="494" y="236" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>single — nearest pair (min) · chains form</text>
+        <text x="494" y="254" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>complete — farthest pair (max) · compact</text>
+        <text x="494" y="272" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>average — mean over all pairs</text>
         <text x="494" y="290" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Ward — WCSS increase minimum (best)</text>
 
         <rect x="480" y="320" width="300" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,122,144,0.4)" />
-        <text x="494" y="340" fill="#ff7a90" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DHYAN RAKHO</text>
-        <text x="494" y="358" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>O(n²) memory, O(n³) time — bade data par slow</text>
-        <text x="494" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>merge undo nahi hota (greedy)</text>
-        <text x="494" y="394" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers single-link par chain bana dete hain</text>
+        <text x="494" y="340" fill="#ff7a90" fontSize="9.2" fontWeight="800" fontFamily={FONT}>WATCH OUT</text>
+        <text x="494" y="358" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>O(n²) memory, O(n³) time — slow on large data</text>
+        <text x="494" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>a merge cannot be undone (greedy)</text>
+        <text x="494" y="394" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>outliers form chains under single linkage</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Pros: k ki zaroorat nahi · poora hierarchy dikhta hai · deterministic result
+          Pros: k not needed · the full hierarchy is visible · the result is deterministic
         </text>
         <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Example: 1, 2, 4, 9 → merges at heights 1 ({`{1,2}`}), 2 ({`{1,2,4}`}), 5 (sab)
+          Example: 1, 2, 4, 9 → merges at heights 1 ({`{1,2}`}), 2 ({`{1,2,4}`}), 5 (all)
         </text>
       </g>
     </svg>
@@ -3454,10 +3454,10 @@ export function ElbowMethodDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Elbow method: line chart of WCSS against the number of clusters k with the elbow at k equals 3 highlighted, plus the silhouette coefficient formula and other internal validation metrics">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Elbow Method — best k kaise chunein
+        Elbow Method — how to choose the best k
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        WCSS vs k plot karo — curve ke jis bend par girti hai, wahi k
+        plot WCSS against k — the bend in the curve is the k
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3484,42 +3484,42 @@ export function ElbowMethodDiagram() {
         <text x="106" y="166" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>drops: 250, 130, 20, 10, 8</text>
 
         <text x="34" y="382" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          k badhane par WCSS hamesha girti hai — isliye "sabse kam WCSS" wala k galat hai
+          WCSS always falls as k rises — so the k with the "lowest WCSS" is the wrong answer
         </text>
         <text x="34" y="396" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          elbow ke baad fayda kam, complexity zyada — wahan ruk jao
+          after the elbow the gain is small and the complexity high — stop there
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
         <rect x="480" y="64" width="300" height="140" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
         <text x="494" y="84" fill="#00d4ff" fontSize="9.2" fontWeight="800" fontFamily={FONT}>SILHOUETTE SCORE</text>
-        <text x="494" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>a = apne cluster se average distance</text>
-        <text x="494" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>b = nearest doosre cluster se distance</text>
+        <text x="494" y="104" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>a = mean distance to its own cluster</text>
+        <text x="494" y="122" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>b = distance to the nearest other cluster</text>
         <text x="494" y="142" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>s = (b − a) / max(a, b)</text>
-        <text x="494" y="164" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>+1 apne cluster mein · 0 boundary · −1 galat</text>
+        <text x="494" y="164" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>+1 inside its cluster · 0 on the boundary · −1 wrong cluster</text>
         <text x="494" y="184" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>average &gt; 0.5 = strong structure</text>
 
         <rect x="480" y="216" width="300" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
-        <text x="494" y="236" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>DOOSRE METRICS</text>
-        <text x="494" y="256" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Davies-Bouldin — kam achha</text>
-        <text x="494" y="274" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Calinski-Harabasz — zyada achha</text>
+        <text x="494" y="236" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>OTHER METRICS</text>
+        <text x="494" y="256" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Davies-Bouldin — lower is better</text>
+        <text x="494" y="274" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>Calinski-Harabasz — higher is better</text>
         <text x="494" y="292" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>gap statistic — model comparison</text>
-        <text x="494" y="308" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>external: purity, ARI, NMI (labels chahiye)</text>
+        <text x="494" y="308" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>external: purity, ARI, NMI (labels needed)</text>
 
         <rect x="480" y="328" width="300" height="72" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
-        <text x="494" y="348" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>BEND AMBIGUOUS HO TO</text>
-        <text x="494" y="366" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>silhouette score dekho (max wala k)</text>
+        <text x="494" y="348" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>IF THE BEND IS AMBIGUOUS</text>
+        <text x="494" y="366" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>check the silhouette score (the k with the maximum)</text>
         <text x="494" y="384" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>business/domain sense + stability check</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="412" width="760" height="50" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="432" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          Steps: scale data → k = 1…10 par k-means → har k ka WCSS note → plot → elbow par ruk jao → silhouette se verify
+          Steps: scale data → k-means for k = 1…10 → note WCSS for each k → plot → stop at the elbow → verify with silhouette
         </text>
         <text x="34" y="450" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Clustering unsupervised hai, isliye "accuracy" nahi hoti — internal measures (elbow, silhouette) hi sahara hain
+          Clustering is unsupervised, so there is no "accuracy" — internal measures (elbow, silhouette) are the guide
         </text>
       </g>
     </svg>
@@ -3540,10 +3540,10 @@ export function MarketBasketDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Market basket analysis: five grocery transactions, an association rule diaper implies beer with support 60 percent and confidence 75 percent, the two mining phases and the business actions they enable">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Market Basket Analysis — jo saath bikta hai
+        Market Basket Analysis — what sells together
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        transaction data se association rule: X → Y ("X kharidne wala Y bhi")
+        association rule from transaction data: X → Y ("whoever buys X also buys Y")
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3557,46 +3557,46 @@ export function MarketBasketDiagram() {
           </g>
         ))}
         <text x="34" y="342" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          itemset = items ka group · support count = jitni baskets mein aaya
+          itemset = a group of items · support count = in how many baskets it appeared
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
         <rect x="460" y="64" width="320" height="130" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,255,136,0.4)" />
         <text x="474" y="84" fill="#00ff88" fontSize="9.2" fontWeight="800" fontFamily={FONT}>RULE: diaper → beer</text>
-        <text x="474" y="106" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>support = 3/5 = 60% (kitna common)</text>
-        <text x="474" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>confidence = 3/4 = 75% (kitna reliable)</text>
+        <text x="474" y="106" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>support = 3/5 = 60% (how common)</text>
+        <text x="474" y="124" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>confidence = 3/4 = 75% (how reliable)</text>
         <text x="474" y="142" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>lift = 0.75/0.60 = 1.25 (positive)</text>
-        <text x="474" y="162" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>yaani diaper wale 75% baskets mein beer bhi</text>
-        <text x="474" y="180" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
+        <text x="474" y="162" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>that is, 75% of diaper baskets also hold beer</text>
+        <text x="474" y="180" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>support is symmetric, confidence is not</text>
 
         <rect x="460" y="206" width="320" height="148" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
         <text x="474" y="226" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>WHAT TO DO IN THE BUSINESS</text>
         <text x="474" y="246" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>cross-sell / combo offer (basket value up)</text>
-        <text x="474" y="264" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>store layout — saath bikne wale paas-paas</text>
-        <text x="474" y="282" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bundling aur pricing decisions</text>
-        <text x="474" y="300" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>recommendation engine ("ye bhi dekha")</text>
+        <text x="474" y="264" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>store layout — place items that sell together side by side</text>
+        <text x="474" y="282" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bundling and pricing decisions</text>
+        <text x="474" y="300" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>recommendation engine ("also viewed")</text>
         <text x="474" y="318" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>catalog design, dead combos hatana</text>
-        <text x="474" y="340" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>retail ke alawa insurance fraud, medical patterns</text>
+        <text x="474" y="340" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>beyond retail: insurance fraud, medical patterns</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x="20" y="366" width="760" height="104" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.35)" />
-        <text x="34" y="386" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING KE 2 PHASES</text>
+        <text x="34" y="386" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>THE 2 PHASES OF MINING</text>
         <rect x="34" y="396" width="330" height="52" rx="7" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.4)" />
         <text x="48" y="414" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>1 · FREQUENT ITEMSETS</text>
-        <text x="48" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>support ≥ minsup wale itemsets (Apriori/FP-Growth)</text>
+        <text x="48" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>itemsets with support ≥ minsup (Apriori/FP-Growth)</text>
         <path d="M372 422 L404 422 M398 417 L404 422 L398 427" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
         <rect x="416" y="396" width="348" height="52" rx="7" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.4)" />
         <text x="430" y="414" fill="#00ff88" fontSize="8.4" fontWeight="700" fontFamily={FONT}>2 · RULE GENERATION</text>
-        <text x="430" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>confidence ≥ minconf wale rules (X → Y splits)</text>
-        <text x="34" y="462" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Phases alag kyun: itemset space 2^m hota hai — pehle support se prune, phir confidence se rules filter</text>
+        <text x="430" y="432" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>rules with confidence ≥ minconf (X → Y splits)</text>
+        <text x="34" y="462" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Why two phases: the itemset space is 2^m — prune by support first, then filter rules by confidence</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x="20" y="474" width="760" height="30" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.25)" />
         <text x="34" y="494" fill="#9ab0e0" fontSize="8.4" fontFamily={FONT}>
-          Exam line: market basket analysis association rules se pata karta hai ki kaun se items saath purchase hote hain
+          Exam line: market basket analysis uses association rules to find which items are bought together
         </text>
       </g>
     </svg>
@@ -3621,7 +3621,7 @@ export function AprioriDiagram() {
         Apriori — level-wise frequent itemsets
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        5 transactions · minsup = 40% (2 transactions) · har level par ek scan
+        5 transactions · minsup = 40% (2 transactions) · one scan at each level
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3634,7 +3634,7 @@ export function AprioriDiagram() {
             <text x={30 + i * 90 + 41} y="111" textAnchor="middle" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>{`${name} ${c}`}</text>
           </g>
         ))}
-        <text x="34" y="134" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>eggs = 1 → minsup se kam, hat gaya</text>
+        <text x="34" y="134" fill="#ff7a90" fontSize="7.8" fontFamily={FONT}>eggs = 1 → below minsup, removed</text>
 
         <path d="M255 142 L255 156 M250 150 L255 156 L260 150" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
         <text x="266" y="154" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>join + prune → count</text>
@@ -3648,7 +3648,7 @@ export function AprioriDiagram() {
         ))}
 
         <path d="M255 250 L255 264 M250 258 L255 264 L260 258" stroke="#6fb2ff" strokeWidth="1.4" fill="none" />
-        <text x="266" y="262" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>subset prune: {`{beer,bread,milk}`} ka support 1 → out</text>
+        <text x="266" y="262" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>subset prune: {`{beer,bread,milk}`} has support 1 → out</text>
 
         <text x="34" y="286" fill="#c4ff00" fontSize="8.8" fontWeight="800" fontFamily={FONT}>L3 — frequent triples (4)</text>
         {l3.map(([name, c], i) => (
@@ -3659,20 +3659,20 @@ export function AprioriDiagram() {
         ))}
 
         <text x="34" y="376" fill="#ff7a90" fontSize="8.4" fontWeight="700" fontFamily={FONT}>
-          L4 khaali — {`{beer,bread,diaper,milk}`} ka subset {`{beer,bread,milk}`} frequent nahi tha → STOP
+          L4 is empty — the subset {`{beer,bread,milk}`} of {`{beer,bread,diaper,milk}`} was not frequent → STOP
         </text>
-        <text x="34" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Total scans: k + 1 (yahan 4) — isliye I/O heavy</text>
+        <text x="34" y="396" fill="#9ab0e0" fontSize="8" fontFamily={FONT}>Total scans: k + 1 (here 4) — hence I/O heavy</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
         <rect x="510" y="64" width="270" height="150" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
         <text x="524" y="84" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>DOWNWARD CLOSURE</text>
-        <text x="524" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>Agar itemset infrequent hai,</text>
-        <text x="524" y="120" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>uske saare supersets bhi infrequent.</text>
+        <text x="524" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>If an itemset is infrequent,</text>
+        <text x="524" y="120" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>all of its supersets are infrequent too.</text>
         <text x="524" y="142" fill="#ff7a90" fontSize="8" fontFamily={FONT}>{`{milk,cola} infrequent`}</text>
-        <text x="524" y="158" fill="#ff7a90" fontSize="8" fontFamily={FONT}>→ {`{milk,cola,chips}`} bhi infrequent</text>
+        <text x="524" y="158" fill="#ff7a90" fontSize="8" fontFamily={FONT}>→ {`{milk,cola,chips}`} is infrequent too</text>
         <text x="524" y="180" fill="#00ff88" fontSize="8" fontFamily={FONT}>frequent → saare subsets frequent</text>
-        <text x="524" y="200" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>yahi anti-monotone property hai</text>
+        <text x="524" y="200" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>this is the anti-monotone property</text>
 
         <rect x="510" y="226" width="270" height="106" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
         <text x="524" y="246" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>STEPS</text>
@@ -3690,13 +3690,13 @@ export function AprioriDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="428" width="760" height="66" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="448" fill="#00ff88" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
-          Pros: simple, complete, downward closure se search space chhota
+          Pros: simple, complete, the downward closure property shrinks the search space
         </text>
         <text x="34" y="466" fill="#ff7a90" fontSize="8.6" fontWeight="700" fontFamily={FONT}>
-          Cons: k+1 database scans, candidate explosion (dense data par bahut slow)
+          Cons: k+1 database scans, candidate explosion (very slow on dense data)
         </text>
         <text x="34" y="484" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          Fix: FP-Growth (2 scans, koi candidate nahi) · Eclat (vertical tidsets) · partition/sampling
+          Fixes: FP-Growth (2 scans, no candidates) · Eclat (vertical tidsets) · partition/sampling
         </text>
       </g>
     </svg>
@@ -3724,10 +3724,10 @@ export function FpGrowthDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="FP-Growth: FP-tree built in two scans with item counts, header table ordering and conditional pattern base mining for the item cola">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        FP-Growth — FP-tree se bina candidate mining
+        FP-Growth — mining from an FP-tree without candidates
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        sirf 2 database scans · koi candidate generation nahi
+        only 2 database scans · no candidate generation
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3739,7 +3739,7 @@ export function FpGrowthDiagram() {
           </text>
         ))}
         <text x="34" y="386" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          common prefixes share hote hain → data compress ho jaata hai
+          common prefixes are shared → the data is compressed
         </text>
       </g>
 
@@ -3747,21 +3747,21 @@ export function FpGrowthDiagram() {
         <rect x="480" y="64" width="300" height="120" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,255,0.4)" />
         <text x="494" y="84" fill="#00d4ff" fontSize="9" fontWeight="800" fontFamily={FONT}>HEADER TABLE</text>
         <text x="494" y="104" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>bread 4 · milk 4 · diaper 4 · beer 3 · cola 2</text>
-        <text x="494" y="122" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>descending frequency order mein</text>
-        <text x="494" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>har item se uske saare nodes link hote hain</text>
-        <text x="494" y="162" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>eggs (1) pehle hi hata diya gaya</text>
+        <text x="494" y="122" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>in descending frequency order</text>
+        <text x="494" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>every node of an item is linked</text>
+        <text x="494" y="162" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>eggs (1) was removed up front</text>
 
         <rect x="480" y="196" width="300" height="100" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(196,255,0,0.4)" />
         <text x="494" y="216" fill="#c4ff00" fontSize="9" fontWeight="800" fontFamily={FONT}>CONSTRUCTION (2 scans)</text>
         <text x="494" y="236" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 1 → counts + order</text>
-        <text x="494" y="254" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 2 → har transaction order mein insert</text>
-        <text x="494" y="272" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>common prefix share → node count badhta hai</text>
-        <text x="494" y="288" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>koi candidate set nahi banti</text>
+        <text x="494" y="254" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>scan 2 → insert each transaction in that order</text>
+        <text x="494" y="272" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>shared common prefix → node count rises</text>
+        <text x="494" y="288" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>no candidate set is ever generated</text>
 
         <rect x="480" y="308" width="300" height="86" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
-        <text x="494" y="328" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING (cola se shuru)</text>
+        <text x="494" y="328" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>MINING (starting from cola)</text>
         <text x="494" y="346" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>prefix paths: {`{bread,milk,diaper}:1`}</text>
-        <text x="494" y="362" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>aur {`{milk,diaper,beer}:1`}</text>
+        <text x="494" y="362" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>plus {`{milk,diaper,beer}:1`}</text>
         <text x="494" y="380" fill="#00ff88" fontSize="8" fontFamily={FONT}>minsup 2 → {`{cola,milk,diaper}`} sup 2</text>
       </g>
 
@@ -3769,13 +3769,13 @@ export function FpGrowthDiagram() {
         <rect x="20" y="406" width="760" height="88" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="426" fill="#c4ff00" fontSize="8.8" fontWeight="700" fontFamily={FONT}>APRIORI vs FP-GROWTH</text>
         <text x="34" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          scans: k+1 vs 2 · candidates: haan vs nahi · data: transaction list vs compressed tree
+          scans: k+1 vs 2 · candidates: yes vs no · data: transaction list vs compressed tree
         </text>
         <text x="34" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          speed: dense data par FP-Growth kaafi fast · memory: tree zyada leti hai · implementation: Apriori aasan
+          speed: FP-Growth is much faster on dense data · memory: the tree needs more · implementation: Apriori is easier
         </text>
         <text x="34" y="482" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          Limit: incremental update mushkil (tree rebuild) · Apriori chhote/sparse data ke liye theek
+          Limit: incremental update is hard (the tree is rebuilt) · Apriori is fine for small or sparse data
         </text>
       </g>
     </svg>
@@ -3797,10 +3797,10 @@ export function SupportConfidenceDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Support and confidence: transaction item grid highlighting diaper and beer, formulas for support, confidence and lift, with the computed values and interpretation scale of lift">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Support aur Confidence — rule ka score
+        Support and Confidence — the score of a rule
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        support = kitna common · confidence = kitna reliable · lift = asli correlation
+        support = how common · confidence = how reliable · lift = the real correlation
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3827,16 +3827,16 @@ export function SupportConfidenceDiagram() {
             ))}
           </g>
         ))}
-        <text x="34" y="278" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>green = item basket mein hai</text>
+        <text x="34" y="278" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>green = the item is in the basket</text>
         <text x="200" y="278" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>diaper: 4 · beer: 3 · diaper+beer: 3</text>
 
         <rect x="34" y="292" width="392" height="42" rx="7" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.4)" />
         <text x="46" y="310" fill="#00d4ff" fontSize="8.4" fontWeight="700" fontFamily={FONT}>support(diaper → beer) = 3/5 = 0.60</text>
-        <text x="46" y="326" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>dono saath 3 baskets mein — rule 60% data par lagu</text>
+        <text x="46" y="326" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>both together in 3 baskets — the rule applies to 60% of data</text>
 
         <rect x="34" y="342" width="392" height="42" rx="7" fill="rgba(196,255,0,0.07)" stroke="rgba(196,255,0,0.4)" />
         <text x="46" y="360" fill="#c4ff00" fontSize="8.4" fontWeight="700" fontFamily={FONT}>confidence = 3/4 = 0.75</text>
-        <text x="46" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>diaper wale 4 baskets mein se 3 mein beer bhi aaya</text>
+        <text x="46" y="376" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>3 of the 4 diaper baskets also hold beer</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '220ms' }}>
@@ -3846,10 +3846,10 @@ export function SupportConfidenceDiagram() {
         <text x="474" y="122" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>count(X ∪ Y) / N = P(X ∪ Y)</text>
         <text x="474" y="142" fill="#c4ff00" fontSize="8.6" fontWeight="700" fontFamily={FONT}>confidence</text>
         <text x="474" y="158" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>count(X ∪ Y) / count(X) = P(Y | X)</text>
-        <text x="474" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
+        <text x="474" y="178" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>support is symmetric, confidence is not</text>
 
         <rect x="460" y="202" width="320" height="112" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,0,128,0.4)" />
-        <text x="474" y="222" fill="#ff7ab2" fontSize="9" fontWeight="800" fontFamily={FONT}>LIFT — confidence ka dhokha pakdo</text>
+        <text x="474" y="222" fill="#ff7ab2" fontSize="9" fontWeight="800" fontFamily={FONT}>LIFT — catching the trap in confidence</text>
         <text x="474" y="240" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>lift = confidence / support(Y)</text>
         <line x1="486" y1="266" x2="756" y2="266" stroke="rgba(255,255,255,0.25)" />
         <line x1="620" y1="260" x2="620" y2="272" stroke="#fff" strokeWidth="1.4" />
@@ -3861,20 +3861,20 @@ export function SupportConfidenceDiagram() {
         <rect x="460" y="318" width="320" height="82" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" />
         <text x="474" y="338" fill="#ffd166" fontSize="9" fontWeight="800" fontFamily={FONT}>THRESHOLDS</text>
         <text x="474" y="356" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>support ≥ minsup · confidence ≥ minconf</text>
-        <text x="474" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>dono pass → strong rule</text>
-        <text x="474" y="392" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>minsup kam → rules ki explosion</text>
+        <text x="474" y="374" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>both pass → strong rule</text>
+        <text x="474" y="392" fill="#9ab0e0" fontSize="7.8" fontFamily={FONT}>low minsup → an explosion of rules</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x="20" y="410" width="760" height="80" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="430" fill="#00ff88" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          bread → milk: support 0.60 · confidence 0.75 · lift 0.94 → milk waise bhi 80% baskets mein (rule useless)
+          bread → milk: support 0.60 · confidence 0.75 · lift 0.94 → milk is in 80% of baskets anyway (the rule is useless)
         </text>
         <text x="34" y="450" fill="#ff8800" fontSize="8.8" fontWeight="700" fontFamily={FONT}>
-          diaper → beer: support 0.60 · confidence 0.75 · lift 1.25 → asli positive association
+          diaper → beer: support 0.60 · confidence 0.75 · lift 1.25 → a genuine positive association
         </text>
         <text x="34" y="470" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>
-          Aage: leverage = P(X∪Y) − P(X)P(Y) · conviction = (1 − support(Y))/(1 − confidence)
+          Further: leverage = P(X∪Y) − P(X)P(Y) · conviction = (1 − support(Y))/(1 − confidence)
         </text>
       </g>
     </svg>
@@ -3889,25 +3889,25 @@ export function SupportConfidenceDiagram() {
 export function VisualizationPipelineDiagram() {
   const stages = [
     { x: 36, title: 'RAW DATA', sub: ['rows, columns', 'types, units'], color: '#8a95ad', note: 'clean + aggregate' },
-    { x: 215, title: 'ENCODING', sub: ['mark + channel', 'position, length'], color: '#00d4ff', note: 'chart type chuno' },
+    { x: 215, title: 'ENCODING', sub: ['mark + channel', 'position, length'], color: '#00d4ff', note: 'choose the chart type' },
     { x: 394, title: 'PERCEPTION', sub: ['eye + brain', '250 ms pre-attentive'], color: '#c4ff00', note: 'Gestalt + colour' },
-    { x: 573, title: 'INSIGHT', sub: ['pattern, outlier', 'decision'], color: '#00ff88', note: 'explore, phir explain' },
+    { x: 573, title: 'INSIGHT', sub: ['pattern, outlier', 'decision'], color: '#00ff88', note: 'explore, then explain' },
   ];
   const channels = [
-    { label: 'position (common scale)', w: 240, v: 'sabse accurate' },
+    { label: 'position (common scale)', w: 240, v: 'most accurate' },
     { label: 'position (non-aligned)', w: 205, v: '' },
     { label: 'length', w: 175, v: 'bar chart' },
     { label: 'angle / slope', w: 140, v: 'pie chart' },
     { label: 'area', w: 105, v: 'bubble / treemap' },
-    { label: 'colour hue', w: 70, v: 'sirf category' },
+    { label: 'colour hue', w: 70, v: 'category only' },
   ];
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Data visualization pipeline from raw data through encoding and perception to insight, plus the accuracy ranking of visual channels">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Data Visualization — pipeline aur encodings
+        Data Visualization — pipeline and encodings
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        data → encoding → perception → insight · aankh position aur length sabse achhe se padhti hai
+        data → encoding → perception → insight · the eye reads position and length best
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3946,15 +3946,15 @@ export function VisualizationPipelineDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x="20" y="400" width="760" height="96" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="422" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>TEEN SABAK</text>
+        <text x="34" y="422" fill="#ff8800" fontSize="9" fontWeight="800" fontFamily={FONT}>THREE LESSONS</text>
         <text x="34" y="444" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
-          Anscombe: chaar datasets ka r = 0.816 same, shapes bilkul alag → pehle plot karo
+          Anscombe: four datasets with the same r = 0.816 look completely different → plot first
         </text>
         <text x="34" y="464" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
-          Pre-attentive: colour aur size 250 ms mein dikhte hain → exception highlight, baaki grey
+          Pre-attentive: colour and size are seen in 250 ms → highlight the exception, keep the rest grey
         </text>
         <text x="34" y="484" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
-          Data-ink ratio: 3-D, shadow, gradient = chartjunk — hata do
+          Data-ink ratio: 3-D, shadow, gradient = chartjunk — remove it
         </text>
       </g>
     </svg>
@@ -3979,10 +3979,10 @@ export function VisualizationChallengesDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Four common visualization challenges: truncated axis, too many pie slices, overplotting and rainbow colour scale, with their fixes">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Challenges — char sabse aam galtiyan
+        Challenges — the four most common mistakes
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        numbers sahi, message galat · har problem ka ek standard fix
+        the numbers are right, the message is wrong · every problem has one standard fix
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -3995,8 +3995,8 @@ export function VisualizationChallengesDiagram() {
             <text x={77 + i * 50} y={190 - b.h} textAnchor="middle" fill="#ff7a90" fontSize="7.6" fontWeight="700" fontFamily={FONT}>{b.v}</text>
           </g>
         ))}
-        <text x="228" y="182" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>axis 98 se</text>
-        <text x="228" y="194" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>2x farq lagta hai</text>
+        <text x="228" y="182" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>axis from 98</text>
+        <text x="228" y="194" fill="#ff7a90" fontSize="7.6" fontFamily={FONT}>looks like a 2x difference</text>
         <text x="34" y="212" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: zero baseline + honest label</text>
       </g>
 
@@ -4017,9 +4017,9 @@ export function VisualizationChallengesDiagram() {
             <path key={c} d={`M${cx} ${cy} L${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1} Z`} fill={rainbow[i % 8]} opacity="0.65" stroke="#0b0f1a" strokeWidth="0.8" />
           );
         })}
-        <text x="566" y="132" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>12 slices: koi</text>
-        <text x="566" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>comparison nahi</text>
-        <text x="566" y="160" fill="#ff8800" fontSize="7.6" fontFamily={FONT}>labels bhi overlap</text>
+        <text x="566" y="132" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>12 slices: no</text>
+        <text x="566" y="144" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>comparison possible</text>
+        <text x="566" y="160" fill="#ff8800" fontSize="7.6" fontFamily={FONT}>labels also overlap</text>
         <text x="424" y="212" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: sorted horizontal bar chart</text>
       </g>
 
@@ -4030,10 +4030,10 @@ export function VisualizationChallengesDiagram() {
         {dots.map(([x, y], i) => (
           <circle key={i} cx={x} cy={y} r="3.2" fill="#00d4ff" opacity="0.35" />
         ))}
-        <text x="292" y="296" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>sab points</text>
-        <text x="292" y="308" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>ek jagah →</text>
-        <text x="292" y="320" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>trend nahi</text>
-        <text x="292" y="332" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>dikhta</text>
+        <text x="292" y="296" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>all points</text>
+        <text x="292" y="308" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>in one place →</text>
+        <text x="292" y="320" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>no trend</text>
+        <text x="292" y="332" fill="#dbe6ff" fontSize="8" fontFamily={FONT}>visible</text>
         <text x="34" y="376" fill="#00ff88" fontSize="7.8" fontFamily={FONT}>fix: alpha, jitter, hexbin, sampling, facets</text>
       </g>
 
@@ -4058,10 +4058,10 @@ export function VisualizationChallengesDiagram() {
           zero baseline · sorted bars · max 5–6 pie slices · alpha / hexbin · viridis · colour + label (redundant encoding)
         </text>
         <text x="34" y="464" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
-          Simpson&apos;s paradox: aggregate aur grouped view dono dikhao — warna confounding variable chhup jaata hai
+          Simpson&apos;s paradox: show both the aggregate and the grouped view — otherwise a confounder is hidden
         </text>
         <text x="34" y="484" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>
-          Ethics: baseline, aggregation aur axis range jaan-boojh kar badalna = misleading visualization
+          Ethics: deliberately changing the baseline, the aggregation or the axis range = a misleading visualization
         </text>
       </g>
     </svg>
@@ -4095,10 +4095,10 @@ export function DashboardTypesDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Four dashboard types: operational, tactical, strategic and analytical with their audience, refresh rate, examples and action">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Dashboard — chaar types
+        Dashboard — four types
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        type decide hota hai audience + time horizon se · ek screen, 5-second rule
+        the type is decided by audience + time horizon · one screen, the 5-second rule
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4143,7 +4143,7 @@ export function DashboardTypesDiagram() {
           KPI cards (actual vs target) · trend charts · comparisons · filters · alerts / thresholds · drill-down · timestamp
         </text>
         <text x="36" y="388" fill="#8a95ad" fontSize="7.8" fontFamily={FONT}>
-          rule: 5–7 KPIs, ek screen, no scroll — sab kuch dikhana dashboard ka sabse bada mistake hai
+          rule: 5–7 KPIs, one screen, no scroll — showing everything is the biggest dashboard mistake
         </text>
       </g>
 
@@ -4151,10 +4151,10 @@ export function DashboardTypesDiagram() {
         <rect x="24" y="406" width="752" height="90" rx="9" fill="rgba(196,255,0,0.04)" stroke="rgba(196,255,0,0.25)" />
         <text x="36" y="426" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>DASHBOARD vs REPORT vs SCORECARD</text>
         <text x="36" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          dashboard = monitor (kya ho raha hai) · report = detail (poora record) · scorecard = KPI vs target (accountability)
+          dashboard = monitor (how are we doing) · report = detail (the full record) · scorecard = KPI vs target (accountability)
         </text>
         <text x="36" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          teeno ek hi data model (star schema) se bante hain, delivery format alag hota hai
+          all three are built from one data model (star schema); only the delivery format differs
         </text>
         <text x="36" y="484" fill="#00ff88" fontSize="8.2" fontFamily={FONT}>
           Definition (Few): most important information, single screen, monitored at a glance
@@ -4176,7 +4176,7 @@ export function DashboardEvolutionDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Evolution of dashboards across five generations from executive information systems to AI-augmented analytics">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Dashboard evolution — paanch generation
+        Dashboard evolution — five generations
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
         audience badhi, latency ghati: nightly batch → real time → predictive
@@ -4215,14 +4215,14 @@ export function DashboardEvolutionDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
         <rect x="20" y="284" width="760" height="216" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="306" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>EVOLUTION KE DRIVERS</text>
-        <text x="34" y="330" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>in-memory computing → live filter aur drill-down (VizQL + Hyper, VertiPaq)</text>
-        <text x="34" y="356" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cloud → kisi bhi device se access, elastic compute, SaaS BI</text>
-        <text x="34" y="382" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>mobile + UX → 10-foot wallboard se 5-inch phone tak same insight</text>
+        <text x="34" y="306" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>DRIVERS OF THE EVOLUTION</text>
+        <text x="34" y="330" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>in-memory computing → live filtering and drill-down (VizQL + Hyper, VertiPaq)</text>
+        <text x="34" y="356" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>cloud → access from any device, elastic compute, SaaS BI</text>
+        <text x="34" y="382" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>mobile + UX → the same insight from a 10-foot wallboard to a 5-inch phone</text>
         <text x="34" y="408" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>streaming (Kafka / IoT) → real-time ops dashboards</text>
         <text x="34" y="434" fill="#dbe6ff" fontSize="8.4" fontFamily={FONT}>machine learning + LLM → auto insights, anomaly alerts, natural language BI</text>
         <text x="34" y="460" fill="#ff8800" fontSize="8.4" fontFamily={FONT}>governance → metric / semantic layer, catalogue, certified datasets</text>
-        <text x="34" y="486" fill="#8a95ad" fontSize="8" fontFamily={FONT}>net result: audience wide hui aur decision ka time ghata</text>
+        <text x="34" y="486" fill="#8a95ad" fontSize="8" fontFamily={FONT}>net result: a wider audience and a shorter time to decide</text>
       </g>
     </svg>
   );
@@ -4250,7 +4250,7 @@ export function DashboardDesignDiagram() {
         Dashboard design — layout wireframe
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        5-second rule: purpose, status aur exception ek nazar mein
+        5-second rule: purpose, status and exception in one glance
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4288,7 +4288,7 @@ export function DashboardDesignDiagram() {
         <line x1="356" y1="264" x2="562" y2="264" stroke="rgba(255,255,255,0.18)" />
 
         <rect x="32" y="292" width="536" height="88" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" />
-        <text x="42" y="306" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Details on demand — click KPI se drill-down table</text>
+        <text x="42" y="306" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>Details on demand — click a KPI for a drill-down table</text>
         {[0, 1, 2].map((r) => (
           <g key={r}>
             <line x1="42" y1={318 + r * 18} x2="558" y2={318 + r * 18} stroke="rgba(255,255,255,0.08)" />
@@ -4316,10 +4316,10 @@ export function DashboardDesignDiagram() {
         <rect x="20" y="406" width="760" height="92" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="426" fill="#00ff88" fontSize="8.6" fontWeight="800" fontFamily={FONT}>GESTALT + COLOUR</text>
         <text x="34" y="446" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          proximity · similarity · enclosure · connection → grouping bina border ke
+          proximity · similarity · enclosure · connection → grouping without a border
         </text>
         <text x="34" y="464" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          grey base + ek accent colour (exception) · colourblind-safe · 3 font sizes · numbers right-aligned
+          grey base + one accent colour (exception) · colourblind-safe · 3 font sizes · numbers right-aligned
         </text>
         <text x="34" y="484" fill="#ff7a90" fontSize="8.2" fontFamily={FONT}>
           avoid: 3-D pie, gauges, dual axis, chartjunk, 20 KPIs, undefined KPI
@@ -4340,10 +4340,10 @@ export function DisplayMediaDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Display media for dashboards: wallboard, desktop, tablet and phone with their resolution, viewing distance and design rules">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Display media — har screen ke apne rules
+        Display media — every screen has its own rules
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        resolution + viewing distance + input method decide karte hain layout aur font size
+        resolution + viewing distance + input method decide the layout and font size
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4364,31 +4364,31 @@ export function DisplayMediaDiagram() {
         <rect x="20" y="270" width="370" height="118" rx="8" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.28)" />
         <text x="34" y="290" fill="#ff8800" fontSize="8.6" fontWeight="800" fontFamily={FONT}>WALLBOARD = 10-FOOT UI</text>
         <text x="34" y="310" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>4–6 metrics, high contrast, no scroll, auto-rotate 15–30 s</text>
-        <text x="34" y="328" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>colour sirf status ke liye · remote se control</text>
+        <text x="34" y="328" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>colour only for status · controlled remotely</text>
         <text x="34" y="346" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>ops floor, NOC/SOC, plant output, sales floor</text>
-        <text x="34" y="368" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>test: 3 m se padho — na aaye to font badhao</text>
+        <text x="34" y="368" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>test: read it from 3 m — if not, increase the font</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x="410" y="270" width="370" height="118" rx="8" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.28)" />
         <text x="424" y="290" fill="#00d4ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RESPONSIVE vs ADAPTIVE</text>
         <text x="424" y="310" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>responsive: layout reflow (content same)</text>
-        <text x="424" y="328" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>adaptive: content badalta hai (mobile par 3 KPI)</text>
+        <text x="424" y="328" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>adaptive: the content changes (3 KPIs on mobile)</text>
         <text x="424" y="346" fill="#dbe6ff" fontSize="7.9" fontFamily={FONT}>touch target ≥ 44 px · contrast ≥ 4.5:1</text>
         <text x="424" y="368" fill="#9ab0e0" fontSize="7.6" fontFamily={FONT}>print / PDF: light theme, timestamp, pagination</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x="20" y="400" width="760" height="98" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="420" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>MEDIA CHOOSE KARNE KE FACTORS</text>
+        <text x="34" y="420" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>FACTORS IN CHOOSING THE MEDIUM</text>
         <text x="34" y="440" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
           resolution / pixel density · physical size + viewing distance · ambient light (glare) · input method (mouse / touch / remote)
         </text>
         <text x="34" y="458" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          interactivity · accessibility — ek data model, teen layouts (desktop, mobile, wallboard)
+          interactivity · accessibility — one data model, three layouts (desktop, mobile, wallboard)
         </text>
         <text x="34" y="478" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
-          aur: projector (meeting room), print/PDF, embedded app, email digest, digital signage, voice / AR
+          and: projector (meeting room), print/PDF, embedded app, email digest, digital signage, voice / AR
         </text>
       </g>
     </svg>
@@ -4453,7 +4453,7 @@ export function ChartsBasicDiagram() {
         })}
         <text x="632" y="120" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>total + segments</text>
         <text x="632" y="132" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>100% version =</text>
-        <text x="632" y="144" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>sirf proportion</text>
+        <text x="632" y="144" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>proportion only</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
@@ -4478,8 +4478,8 @@ export function ChartsBasicDiagram() {
           );
         })}
         <text x="222" y="296" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>angle padhna</text>
-        <text x="222" y="308" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>mushkil → ranking</text>
-        <text x="222" y="320" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>ke liye bar better</text>
+        <text x="222" y="308" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>hard → ranking</text>
+        <text x="222" y="320" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>is easier with a bar</text>
         <text x="222" y="342" fill="#ff7a90" fontSize="7.2" fontFamily={FONT}>3-D pie = distort</text>
       </g>
 
@@ -4501,9 +4501,9 @@ export function ChartsBasicDiagram() {
         <circle cx="520" cy="322" r="26" fill="#0b0f1a" />
         <text x="520" y="320" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="800" fontFamily={FONT}>62%</text>
         <text x="520" y="332" textAnchor="middle" fill="#8a95ad" fontSize="6.6" fontFamily={FONT}>top 2</text>
-        <text x="612" y="296" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>beech mein total</text>
-        <text x="612" y="308" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>ya headline %</text>
-        <text x="612" y="324" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>pie ke same</text>
+        <text x="612" y="296" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>a total in the middle</text>
+        <text x="612" y="308" fill="#dbe6ff" fontSize="7.6" fontFamily={FONT}>or a headline %</text>
+        <text x="612" y="324" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>the same as a pie</text>
         <text x="612" y="336" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>rules lagu</text>
       </g>
 
@@ -4511,13 +4511,13 @@ export function ChartsBasicDiagram() {
         <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RULES</text>
         <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          sort karo · zero baseline · value labels end par · ek accent colour · max 5–7 categorical colours
+          sort · zero baseline · value labels at the end · one accent colour · at most 5–7 categorical colours
         </text>
         <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          bar vs pie test: agar slices ko rank karna hai ya chhota farq dikhana hai → bar chart
+          bar vs pie test: if the slices must be ranked or a small gap shown → bar chart
         </text>
         <text x="34" y="482" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
-          stacked bar mein sirf neeche wala segment compare hota hai — middle segments ke liye 100% stacked ya small multiples
+          in a stacked bar only the bottom segment can be compared — use 100% stacked or small multiples for the middle ones
         </text>
       </g>
     </svg>
@@ -4554,7 +4554,7 @@ export function ChartsAdvancedDiagram() {
         <text x="58" y="116" fill="#8a95ad" fontSize="7" fontFamily={FONT}>actual</text>
         <rect x="96" y="112" width="14" height="3" fill="#ff8800" />
         <text x="114" y="116" fill="#8a95ad" fontSize="7" fontFamily={FONT}>target</text>
-        <text x="40" y="212" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>continuous time, 4–5 series max, gaps chhodo</text>
+        <text x="40" y="212" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>continuous time, 4–5 series max, drop the gaps</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
@@ -4563,7 +4563,7 @@ export function ChartsAdvancedDiagram() {
         <polygon points="434,196 470,180 506,172 542,160 578,150 614,140 650,134 686,126 722,120 722,196" fill="#00d4ff" opacity="0.5" />
         <polygon points="434,196 470,190 506,184 542,176 578,168 614,160 650,154 686,148 722,142 722,196" fill="#00ff88" opacity="0.5" />
         <polygon points="434,196 470,194 506,192 542,188 578,186 614,182 650,180 686,176 722,174 722,196" fill="#ff8800" opacity="0.5" />
-        <text x="434" y="212" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>total + composition; andar ka series compare karna mushkil</text>
+        <text x="434" y="212" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>total + composition; comparing the series inside is hard</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
@@ -4577,7 +4577,7 @@ export function ChartsAdvancedDiagram() {
         <text x="228" y="344" fill="#0b0f1a" fontSize="7.4" fontWeight="700" fontFamily={FONT}>Fashion 14%</text>
         <rect x="326" y="266" width="50" height="48" rx="3" fill="#aa00ff" opacity="0.6" />
         <rect x="326" y="318" width="50" height="44" rx="3" fill="#ff7a90" opacity="0.6" />
-        <text x="34" y="376" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>20+ categories, bada hissa turant dikhta hai</text>
+        <text x="34" y="376" fill="#8a95ad" fontSize="7.2" fontFamily={FONT}>20+ categories, the big share is seen at once</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
@@ -4598,13 +4598,13 @@ export function ChartsAdvancedDiagram() {
         <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>RULES</text>
         <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          line: direct labels, spaghetti avoid (small multiples), index karo jab scale alag ho
+          line: direct labels, avoid spaghetti (small multiples), index when the scales differ
         </text>
         <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          treemap: squarified layout, area ratio aankh se mushkil → exact value ke liye bar chart
+          treemap: squarified layout, area ratios are hard for the eye → a bar chart for exact values
         </text>
         <text x="34" y="482" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          heatmap: sequential / diverging scale, viridis, rainbow nahi; bins report karo
+          heatmap: sequential / diverging scale, viridis, not rainbow; report the bins
         </text>
       </g>
     </svg>
@@ -4662,7 +4662,7 @@ export function ChartsSpecialDiagram() {
           </g>
         ))}
         <line x1="276" y1="108" x2="284" y2="108" stroke="rgba(255,255,255,0.18)" strokeDasharray="2 2" />
-        <text x="40" y="218" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>totals baseline se · changes floating · 100 + 30 − 12 + 8 − 6 = 120</text>
+        <text x="40" y="218" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>totals from the baseline · changes floating · 100 + 30 − 12 + 8 − 6 = 120</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
@@ -4711,21 +4711,20 @@ export function ChartsSpecialDiagram() {
         <text x={bx(23.5)} y="352" textAnchor="middle" fill="#fff" fontSize="6.8" fontFamily={FONT}>23.5</text>
         <text x={bx(30)} y="292" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>Q3 30</text>
         <text x={bx(38)} y="348" textAnchor="middle" fill="#9ab0e0" fontSize="6.8" fontFamily={FONT}>32</text>
-        <text x="424" y="372" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>IQR 12 · fences 0 aur 48 · 65 &gt; 48 → outlier</text>
+        <text x="424" y="372" fill="#9ab0e0" fontSize="7.2" fontFamily={FONT}>IQR 12 · fences 0 and 48 · 65 &gt; 48 → outlier</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
         <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>WHICH ONE WHEN</text>
         <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          number kaise bana → waterfall · do variables ka rishta → scatter · shape/spread → histogram · outlier + groups
-          → box plot
+          how a number was built → waterfall · relationship of two variables → scatter · shape/spread → histogram · outliers + groups → box plot
         </text>
         <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          histogram vs bar chart: bins continuous aur touch karte hain · scatter par alpha/hexbin (overplotting)
+          histogram vs bar chart: bins are continuous and touch · on a scatter use alpha/hexbin (overplotting)
         </text>
         <text x="34" y="482" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
-          box plot shape nahi dikhata (bimodal chhup jaata hai) — histogram / violin ke saath use karo
+          a box plot hides the shape (bimodality disappears) — use it with a histogram / violin
         </text>
       </g>
     </svg>
@@ -4756,7 +4755,7 @@ export function VisualizationToolsDiagram() {
         Tableau vs Power BI
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        VizQL + Hyper vs VertiPaq + DAX · dono self-service BI, choice ecosystem aur budget se
+        VizQL + Hyper vs VertiPaq + DAX · both self-service BI, the choice depends on ecosystem and budget
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4825,10 +4824,10 @@ export function ReinforcementLearningDiagram() {
   return (
     <svg viewBox="0 0 800 520" className="diagram-svg" role="img" aria-label="Reinforcement learning loop between agent and environment with state, action and reward, plus the types of reinforcement learning and the Q-learning update rule">
       <text x="400" y="26" textAnchor="middle" fill="#fff" fontSize="16" fontWeight="800" fontFamily={FONT}>
-        Reinforcement learning — agent aur environment ka loop
+        Reinforcement learning — the loop of agent and environment
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        trial and error se seekhna: state → action → reward → update → repeat
+        learning by trial and error: state → action → reward → update → repeat
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4883,7 +4882,7 @@ export function ReinforcementLearningDiagram() {
         <rect x="20" y="398" width="760" height="100" rx="9" fill="rgba(255,136,0,0.05)" stroke="rgba(255,136,0,0.25)" />
         <text x="34" y="418" fill="#ff8800" fontSize="8.6" fontWeight="800" fontFamily={FONT}>EXPLORATION vs EXPLOITATION</text>
         <text x="34" y="438" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          explore = naya action try karo (seekhne ke liye) · exploit = best known action (reward ke liye)
+          explore = try a new action (to learn) · exploit = the best known action (for reward)
         </text>
         <text x="34" y="456" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
           strategies: epsilon-greedy · softmax · UCB · Thompson sampling · optimistic initialisation
@@ -4901,7 +4900,7 @@ export function GenerativeDeepXaiDiagram() {
   const cols = [
     {
       x: 20, color: '#aa00ff', title: 'GENERATIVE',
-      sub: 'P(X) seekhta hai', items: ['GAN — generator vs discriminator', 'VAE — encoder, latent, KL loss', 'Diffusion — noise se image', 'GPT / transformers — next token', 'use: image, text, synthetic data'],
+      sub: 'learns P(X)', items: ['GAN — generator vs discriminator', 'VAE — encoder, latent, KL loss', 'Diffusion — image from noise', 'GPT / transformers — next token', 'use: image, text, synthetic data'],
     },
     {
       x: 278, color: '#00d4ff', title: 'DEEP LEARNING',
@@ -4909,7 +4908,7 @@ export function GenerativeDeepXaiDiagram() {
     },
     {
       x: 536, color: '#00ff88', title: 'EXPLAINABLE AI',
-      sub: 'black box kholo', items: ['LIME — local surrogate', 'SHAP — Shapley values', 'Grad-CAM — image saliency', 'PDP, permutation importance', 'counterfactual: "kya badle to?"'],
+      sub: 'open the black box', items: ['LIME — local surrogate', 'SHAP — Shapley values', 'Grad-CAM — image saliency', 'PDP, permutation importance', 'counterfactual: "what would change it?"'],
     },
   ];
   return (
@@ -4918,7 +4917,7 @@ export function GenerativeDeepXaiDiagram() {
         Generative learning · Deep learning · XAI
       </text>
       <text x="400" y="46" textAnchor="middle" fill="#9ab0e0" fontSize="11.5" fontFamily={FONT}>
-        naya data banao → deep network se seekho → aur insaan ko samjhao
+        generate new data → learn it with a deep network → and explain it to a human
       </text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
@@ -4937,18 +4936,18 @@ export function GenerativeDeepXaiDiagram() {
           </g>
         ))}
         <text x="400" y="314" textAnchor="middle" fill="#8a95ad" fontSize="7.6" fontFamily={FONT}>
-          generative = discriminative (P(Y|X)) se zyada seekhta hai, isliye zyada data chahiye
+          generative learns more than discriminative (P(Y|X)), so it needs more data
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
         <rect x="20" y="322" width="760" height="70" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="342" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>XAI KYUN ZAROORI</text>
+        <text x="34" y="342" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>WHY XAI MATTERS</text>
         <text x="34" y="362" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          trust · debugging · bias detection · GDPR "right to explanation" / EU AI Act · safety aur accountability
+          trust · debugging · bias detection · GDPR "right to explanation" / EU AI Act · safety and accountability
         </text>
         <text x="34" y="380" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
-          trade-off: interpretable model samajhna easy par kam accurate · deep model accurate par opaque — XAI beech ka raasta
+          trade-off: an interpretable model is easy to understand but less accurate · a deep model is accurate but opaque — XAI is the middle path
         </text>
       </g>
 
@@ -4956,13 +4955,13 @@ export function GenerativeDeepXaiDiagram() {
         <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(170,0,255,0.05)" stroke="rgba(170,0,255,0.25)" />
         <text x="34" y="424" fill="#aa00ff" fontSize="8.6" fontWeight="800" fontFamily={FONT}>GENERATIVE vs DISCRIMINATIVE</text>
         <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          generative: P(X) ya P(X,Y) · naya sample bana sakta hai · GAN, VAE, diffusion, GPT
+          generative: P(X) or P(X,Y) · can create new samples · GAN, VAE, diffusion, GPT
         </text>
         <text x="34" y="462" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
-          discriminative: sirf P(Y|X) · classification/prediction · logistic regression, SVM, CNN classifier
+          discriminative: only P(Y|X) · classification/prediction · logistic regression, SVM, CNN classifier
         </text>
         <text x="34" y="482" fill="#8a95ad" fontSize="8.2" fontFamily={FONT}>
-          risk: deepfake aur misuse · XAI explanation bhi approximation hai — stability aur faithfulness test karo
+          risk: deepfakes and misuse · an XAI explanation is itself an approximation — test stability and faithfulness
         </text>
       </g>
     </svg>
