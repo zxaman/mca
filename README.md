@@ -387,7 +387,18 @@ count, instructions, `Q1) … [10 Marks]`, internal **OR** options and per-part 
 **hidden** until the student taps **Show answer**, which reveals the full answer plus its diagram. Spacing
 (STQA, `IT-33`, 2020 pattern, 50 marks, 2½ hours, 5 compulsory questions, 10 marks each with 5+5 sub-parts
 and an "any two" short-notes question) matches the 2022–2024 papers. Adding another paper is one object in
-`src/data/questionPapers.js`.
+its own data file, registered in `src/data/questionPapers.js`.
+
+**Paper content rules** (apply to every paper added to this section):
+- The paper is **English only** — questions, options, notes, instructions and answers. The rest of the app
+  keeps its Hinglish voice, but exam material does not.
+- Every answer is written in two blocks: an **Explanation** (the concept, the terms used in the question and
+  how to structure the answer) followed by the **Answer** itself, so a student who did not understand the
+  topic can still follow the solution.
+- Every answer ends with a **labelled figure**: a diagram with a written caption, rendered at a readable size
+  (never below 660 px wide, horizontally scrollable on a phone) and an **Enlarge** button that opens a
+  full-screen viewer with zoom, because the diagrams are drawn on a 920 × 520 canvas.
+- Diagram labels are in English as well, so nothing inside the paper falls back to Hinglish.
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a

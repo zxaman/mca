@@ -81,8 +81,8 @@ export function St1SqaBlocksDiagram() {
   return (
     <Frame
       id="st1-sqa-blocks"
-      title="SQA activities aur building blocks"
-      sub="activities batati hain kaam kaise chalta hai, blocks batate hain system kis cheez se bana hai"
+      title="SQA activities and building blocks"
+      sub="Activities show how the work runs; blocks show what the system is built from"
       label="The four SQA activities of planning execution checking and improvement arranged as a loop, beside the six building blocks of an SQA system covering pre-project components life cycle components infrastructure management organisation and improvement, with the QA versus QC versus testing distinction"
     >
       {/* activity loop */}
@@ -98,9 +98,9 @@ export function St1SqaBlocksDiagram() {
         ))}
         <Arrow x1={308} y1={230} x2={308} y2={114} color={C.pink} dashed delay={260} label="re-plan" labelDx={-20} labelDy={-52} />
         <text x={324} y={118} fill={C.white} fontSize="7.6" fontFamily={FONT}>Output = confidence,</text>
-        <text x={324} y={130} fill={C.white} fontSize="7.6" fontFamily={FONT}>sirf defect list nahi.</text>
-        <text x={324} y={152} fill={C.dim} fontSize="7.2" fontFamily={FONT}>Audit independent hota</text>
-        <text x={324} y={163} fill={C.dim} fontSize="7.2" fontFamily={FONT}>hai — team member nahi.</text>
+        <text x={324} y={130} fill={C.white} fontSize="7.6" fontFamily={FONT}>not only a defect list.</text>
+        <text x={324} y={152} fill={C.dim} fontSize="7.2" fontFamily={FONT}>The audit is independent —</text>
+        <text x={324} y={163} fill={C.dim} fontSize="7.2" fontFamily={FONT}>not a team member.</text>
         <text x={324} y={185} fill={C.faint} fontSize="7" fontFamily={FONT}>docs: plan, review record,</text>
         <text x={324} y={196} fill={C.faint} fontSize="7" fontFamily={FONT}>audit report, metrics.</text>
         <text x={244} y={252} textAnchor="middle" fill={C.yellow} fontSize="7.4" fontWeight="700" fontFamily={FONT}>plan → execute → check → improve → re-plan</text>
@@ -124,9 +124,9 @@ export function St1SqaBlocksDiagram() {
         <rect x={24} y={286} width={872} height={120} rx="11" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={460} y={308} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>QA vs QC vs TESTING</text>
         {[
-          ['QA', 'process, preventive, audit', 'process sahi rakho', C.cyan],
-          ['QC', 'product, detective, review', 'product measure karo', C.yellow],
-          ['TESTING', 'running software, dynamic', 'execute karke check karo', C.orange],
+          ['QA', 'process, preventive, audit', 'keep the process right', C.cyan],
+          ['QC', 'product, detective, review', 'measure the product', C.yellow],
+          ['TESTING', 'running software, dynamic', 'run it and check', C.orange],
         ].map(([t, sub, m, col], i) => (
           <g key={t}>
             <rect x={44 + i * 288} y={320} width={268} height="66" rx="7" fill={col} fillOpacity="0.07" stroke={col} strokeWidth="1" strokeOpacity="0.65" />
@@ -139,9 +139,9 @@ export function St1SqaBlocksDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
         <rect x={24} y={422} width={872} height={80} rx="10" fill="rgba(255,214,0,0.05)" stroke={C.yellow} strokeWidth="1.2" strokeOpacity="0.7" />
-        <text x={460} y={444} textAnchor="middle" fill={C.yellow} fontSize="9" fontWeight="800" fontFamily={FONT}>exam line</text>
-        <text x={460} y={464} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>SQA assurance deta hai (preventive), QC aur testing detection karte hain (detective) — teeno ek chain ke hisse hain</text>
-        <text x={460} y={484} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>block missing = system leak: infrastructure ke bina reviews ad-hoc, management ke bina metrics par action nahi</text>
+        <text x={460} y={444} textAnchor="middle" fill={C.yellow} fontSize="9" fontWeight="800" fontFamily={FONT}>exam point</text>
+        <text x={460} y={464} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>SQA assures (preventive); QC and testing detect (detective) — three links of one chain</text>
+        <text x={460} y={484} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>A missing block leaks the system: no infrastructure, ad hoc reviews; no management, no action on metrics</text>
       </g>
     </Frame>
   );
@@ -154,13 +154,13 @@ export function St2LevelsTestingDiagram() {
   return (
     <Frame
       id="st2-levels-testing"
-      title="Levels of testing — V-model aur W-model"
-      sub="unit > integration > system > acceptance, har phase ka ek test pair"
+      title="Levels of testing — V-model and W-model"
+      sub="unit > integration > system > acceptance, one test pair per phase"
       label="The four levels of testing paired against development phases in a V shape from requirements with acceptance testing down to detailed design with unit testing and coding at the vertex, plus the W-model adding a static verification branch at every phase and a summary of who performs each level and on what basis"
     >
       {/* V-model */}
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
-        <text x={460} y={84} textAnchor="middle" fill={C.dim} fontSize="8.6" fontWeight="700" fontFamily={FONT}>V-MODEL — verification (left) aur validation (right)</text>
+        <text x={460} y={84} textAnchor="middle" fill={C.dim} fontSize="8.6" fontWeight="700" fontFamily={FONT}>V-MODEL — verification (left) and validation (right)</text>
         {[
           ['REQUIREMENTS', 92, C.cyan, 'ACCEPTANCE TEST'],
           ['SYSTEM DESIGN', 146, C.lime, 'SYSTEM TEST'],
@@ -186,7 +186,7 @@ export function St2LevelsTestingDiagram() {
       {/* W-model */}
       <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
         <rect x={24} y={356} width={432} height={146} rx="11" fill="rgba(255,126,178,0.05)" stroke={C.pink} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={240} y={378} textAnchor="middle" fill={C.pink} fontSize="9.2" fontWeight="800" fontFamily={FONT}>W-MODEL — do shakha har phase par</text>
+        <text x={240} y={378} textAnchor="middle" fill={C.pink} fontSize="9.2" fontWeight="800" fontFamily={FONT}>W-MODEL — two branches at every phase</text>
         {[
           ['Requirements', 'review + acceptance test', C.cyan],
           ['Design', 'inspection + system test', C.lime],
@@ -198,13 +198,13 @@ export function St2LevelsTestingDiagram() {
             <text x={152} y={402 + i * 24} fill={C.dim} fontSize="7.4" fontFamily={FONT}>{sub}</text>
           </g>
         ))}
-        <text x={240} y={492} textAnchor="middle" fill={C.faint} fontSize="7.2" fontFamily={FONT}>static verification + dynamic validation dono plan hote hain</text>
+        <text x={240} y={492} textAnchor="middle" fill={C.faint} fontSize="7.2" fontFamily={FONT}>static verification + dynamic validation are both planned</text>
       </g>
 
       {/* who / basis */}
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x={472} y={356} width={424} height={146} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={684} y={378} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>KAUN KARTA HAI — AUR BASIS KYA HAI</text>
+        <text x={684} y={378} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>WHO PERFORMS IT — AND ON WHAT BASIS</text>
         {[
           ['Unit', 'developer', 'code / detailed design', C.orange],
           ['Integration', 'dev + test team', 'interface spec', C.yellow],
@@ -217,11 +217,11 @@ export function St2LevelsTestingDiagram() {
             <text x={700} y={402 + i * 24} fill={C.faint} fontSize="7.2" fontFamily={FONT}>{basis}</text>
           </g>
         ))}
-        <text x={684} y={492} textAnchor="middle" fill={C.faint} fontSize="7.2" fontFamily={FONT}>regression har level par — smoke pehle, retest fix ke baad</text>
+        <text x={684} y={492} textAnchor="middle" fill={C.faint} fontSize="7.2" fontFamily={FONT}>regression at every level — smoke first, retest after a fix</text>
       </g>
 
       <text x={460} y={516} textAnchor="middle" fill={C.yellow} fontSize="7.4" fontWeight="700" fontFamily={FONT}>
-        level badla to basis, owner aur environment bhi badla — isliye koi level skip nahi hota
+        change the level and the basis, owner and environment change too — so no level can be skipped
       </text>
     </Frame>
   );
