@@ -182,7 +182,7 @@ export function QuestionPapersSidebar({ subjectId, paperId, onClose, mobileOpen 
 // the drawing is squeezed into a phone-width column.
 function DiagramFigure({ type, caption }) {
   const [open, setOpen] = useState(false);
-  const [scale, setScale] = useState(1.6);
+  const [scale, setScale] = useState(2);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -212,9 +212,9 @@ function DiagramFigure({ type, caption }) {
             <div className="qp-lightbox-head">
               <span className="qp-lightbox-title">{caption || 'Diagram'}</span>
               <div className="qp-lightbox-tools">
-                <button onClick={() => setScale((s) => Math.max(1, +(s - 0.3).toFixed(2)))} aria-label="Zoom out">−</button>
+                <button onClick={() => setScale((s) => Math.max(1, +(s - 0.25).toFixed(2)))} aria-label="Zoom out">−</button>
                 <span className="qp-lightbox-scale">{Math.round(scale * 100)}%</span>
-                <button onClick={() => setScale((s) => Math.min(3, +(s + 0.3).toFixed(2)))} aria-label="Zoom in">+</button>
+                <button onClick={() => setScale((s) => Math.min(3, +(s + 0.25).toFixed(2)))} aria-label="Zoom in">+</button>
                 <button className="qp-lightbox-close" onClick={() => setOpen(false)} aria-label="Close diagram">✕</button>
               </div>
             </div>
