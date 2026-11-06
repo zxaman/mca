@@ -732,7 +732,7 @@ export function VzDecisionDiagram() {
       {/* risks */}
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x={470} y={322} width={410} height={130} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={675} y={344} textAnchor="middle" fill={C.red} fontSize="9" fontWeight="800" fontFamily={FONT}>VISUALIZATION KAB MISLEAD KARTI HAI</text>
+        <text x={675} y={344} textAnchor="middle" fill={C.red} fontSize="9" fontWeight="800" fontFamily={FONT}>WHEN A VISUALIZATION MISLEADS</text>
         {['truncated y-axis - chhota farq bada', 'cherry-picked period / start date', 'correlation ko causation batana', 'aggregation hiding (Simpson paradox)', 'percentage without denominator'].map((t, i) => (
           <text key={t} x={488} y={362 + i * 15} fill={C.dim} fontSize="7.6" fontFamily={FONT}>- {t}</text>
         ))}

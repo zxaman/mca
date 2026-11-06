@@ -121,8 +121,8 @@ export function DigitalForensicsIntroDiagram() {
   return (
     <Frame
       id="df-intro"
-      title="Digital forensics — history, scope aur golden rules"
-      sub="1980s computer forensics se 2020s AI-assisted DFIR tak — rules wahi rehte hain"
+      title="Digital forensics — history, scope and golden rules"
+      sub="from 1980s computer forensics to 2020s AI-assisted DFIR — the rules stay the same"
       label="Digital forensics timeline from 1980s computer forensics through 1990s network and ACPO guidance, 2000s NIST and ISO standards, 2010s mobile cloud IoT, to 2020s AI triage, with scope branches and golden rules"
     >
       <Arrow x1={70} y1={112} x2={850} y2={112} color={C.faint} dashed delay={40} />
@@ -138,7 +138,7 @@ export function DigitalForensicsIntroDiagram() {
         </g>
       ))}
 
-      <Note x={460} y={166} text="SCOPE — evidence kahan se aata hai" color={C.dim} size={9.6} bold />
+      <Note x={460} y={166} text="SCOPE — where evidence comes from" color={C.dim} size={9.6} bold />
       {branches.map(([t, s2, col], i) => (
         <Box key={t} x={21 + i * 178} y={176} w={166} h={78} title={t} lines={[s2]} color={col} delay={420 + i * 60} />
       ))}
@@ -146,14 +146,14 @@ export function DigitalForensicsIntroDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
         <rect x={21} y={276} width={878} height={118} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={300} textAnchor="middle" fill={C.lime} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          GOLDEN RULES — har case mein same
+          GOLDEN RULES — the same in every case
         </text>
         {[
           ['Original untouched', 'write blocker / duplicator'],
           ['Hash integrity', 'SHA-256 match'],
-          ['Chain of custody', 'signed aur sealed'],
+          ['Chain of custody', 'signed and sealed'],
           ['Documentation', 'notes + tool version'],
-          ['Reproducibility', 'doosra expert same result'],
+          ['Reproducibility', 'another expert gets the same result'],
           ['Legality', 'authorisation + 65B'],
         ].map(([t, s2], i) => (
           <g key={t}>
@@ -163,8 +163,8 @@ export function DigitalForensicsIntroDiagram() {
         ))}
       </g>
 
-      <Note x={460} y={420} text="Purpose: convict + exonerate + root cause + prevention — sirf punishment nahi" color={C.orange} size={9.6} />
-      <Note x={460} y={450} text='Exam line: "Digital forensics digital evidence ko court-ready banane ki scientific discipline hai"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={420} text="Purpose: convict + exonerate + root cause + prevention — not punishment alone" color={C.orange} size={9.6} />
+      <Note x={460} y={450} text='Exam line: "Digital forensics is the discipline that makes digital evidence court-ready"' color={C.yellow} size={9.8} bold />
       <Note x={460} y={476} text="Standards: ISO/IEC 27037 · NIST SP 800-86 · ISO 17025 · IT Act 65B" color={C.teal} size={9.2} />
     </Frame>
   );
@@ -178,7 +178,7 @@ export function CyberVsDigitalForensicsDiagram() {
     <Frame
       id="df-vs-cyber"
       title="Cyber forensics vs digital forensics — scope map"
-      sub="digital forensics parent hai, cyber forensics uska cybercrime branch"
+      sub="digital forensics is the parent; cyber forensics is its cybercrime branch"
       label="Scope map: digital forensics as the umbrella discipline covering disk, mobile, media, IoT, e-discovery, HR and civil cases, with cyber forensics as the branch covering hacking, malware, phishing and data breaches"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
@@ -187,7 +187,7 @@ export function CyberVsDigitalForensicsDiagram() {
           DIGITAL FORENSICS — umbrella
         </text>
         <text x={226} y={120} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          kisi bhi digital device ya data ka examination
+          examination of any digital device or data
         </text>
         {[
           'disk, file system, registry',
@@ -208,7 +208,7 @@ export function CyberVsDigitalForensicsDiagram() {
           CYBER FORENSICS — branch
         </text>
         <text x={702} y={176} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          sirf cyber offences (system = scene + instrument)
+          cyber offences only (the system is scene and instrument)
         </text>
         {[
           'hacking / unauthorised access',
@@ -241,7 +241,7 @@ export function CyberVsDigitalForensicsDiagram() {
       </g>
 
       <Note x={460} y={444} text="Different: scope of authorisation · applicable law (IT Act vs civil) · stakeholder (police vs HR)" color={C.orange} size={9.2} />
-      <Note x={460} y={472} text='Exam line: "Har cyber forensics digital forensics hai, ulta zaroori nahi"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={472} text='Exam line: "Every cyber forensic case is a digital forensic case, but not the reverse"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -262,8 +262,8 @@ export function ForensicsRoleEnvironmentDiagram() {
   return (
     <Frame
       id="df-role"
-      title="Forensic roles aur lab environment"
-      sub="kaam team effort hai — environment evidence ko defensible banata hai"
+      title="Forensic roles and the lab environment"
+      sub="the work is a team effort — the environment makes evidence defensible"
       label="Digital forensic roles including first responder, examiner, lab quality manager, incident response, legal counsel, expert witness and evidence custodian working inside an accredited isolated laboratory environment"
     >
       {roles.slice(0, 4).map(([t, lines, col], i) => (
@@ -277,7 +277,7 @@ export function ForensicsRoleEnvironmentDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={27} y={302} width={866} height={128} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={326} textAnchor="middle" fill={C.lime} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          LAB ENVIRONMENT — evidence ko defensible banata hai
+          LAB ENVIRONMENT — what makes evidence defensible
         </text>
         {[
           ['Access control', 'CCTV, log, locked store'],
@@ -294,8 +294,8 @@ export function ForensicsRoleEnvironmentDiagram() {
         ))}
       </g>
 
-      <Note x={460} y={456} text="Separation of duties: examiner aur custodian alag — tampering ka risk kam" color={C.orange} size={9.4} />
-      <Note x={460} y={482} text='Exam line: "Environment weak = evidence challenged, chahe analysis sahi ho"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={456} text="Separation of duties: examiner and custodian are different people — less tampering risk" color={C.orange} size={9.4} />
+      <Note x={460} y={482} text='Exam line: "A weak environment gets the evidence challenged, however right the analysis"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -314,8 +314,8 @@ export function ForensicHardwareSoftwareDiagram() {
   return (
     <Frame
       id="df-hw-sw"
-      title="Forensic hardware aur software stack"
-      sub="hardware evidence ko bachata hai, software usse interpret karta hai"
+      title="Forensic hardware and software stack"
+      sub="hardware protects the evidence, software interprets it"
       label="Forensic stack: device, write blocker or Faraday isolation, imaging with hash, analysis on a forensic workstation, and verification with hash match and NIST CFTT reports, along with hardware and software categories"
     >
       {pipeline.map(([t, lines, col], i) => (
@@ -375,7 +375,7 @@ export function ForensicHardwareSoftwareDiagram() {
         </text>
       </g>
       <Note x={460} y={460} text="Selection: validated (NIST CFTT) · licensed · capable · reproducible · reportable" color={C.orange} size={9.4} />
-      <Note x={460} y={486} text='Exam line: "Tool kit ka serial aur version bhi evidence ka hissa hai"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={486} text='Exam line: "The serial and version of the tool kit are part of the evidence"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -385,8 +385,8 @@ export function ForensicHardwareSoftwareDiagram() {
    ------------------------------------------------------------------ */
 export function DigitalEvidencePropertiesDiagram() {
   const technical = [
-    ['Latent', 'tools se interpret hota hai'],
-    ['Fragile', 'ek write/mount se badal'],
+    ['Latent', 'interpreted by tools'],
+    ['Fragile', 'one write or mount changes it'],
     ['Volatile', 'RAM, keys — power off'],
     ['Duplicable', 'bit-stream copy'],
     ['Voluminous', 'TB-scale data'],
@@ -396,7 +396,7 @@ export function DigitalEvidencePropertiesDiagram() {
   const quality = [
     ['Authenticity', 'source verified'],
     ['Integrity', 'hash match'],
-    ['Completeness', 'exculpatory bhi'],
+    ['Completeness', 'exculpatory too'],
     ['Accuracy', 'no truncation'],
     ['Granularity', 'detail level'],
     ['Reliability', 'validated + repeatable'],
@@ -446,8 +446,8 @@ export function DigitalEvidencePropertiesDiagram() {
         </text>
       </g>
 
-      <Note x={460} y={456} text="Ek property weak ho to poora case challenge hota hai — defence wahin attack karti hai" color={C.orange} size={9.4} />
-      <Note x={460} y={482} text='Exam line: "Authenticity batati hai kahan se aayi, integrity batati hai badli nahi"' color={C.yellow} size={9.6} bold />
+      <Note x={460} y={456} text="If one property is weak the whole case is challenged — that is where the defence attacks" color={C.orange} size={9.4} />
+      <Note x={460} y={482} text='Exam line: "Authenticity shows where it came from, integrity shows it was not changed"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }
@@ -472,8 +472,8 @@ export function RecoveringPreservingEvidenceDiagram() {
   return (
     <Frame
       id="df-recover"
-      title="Recovering aur preserving digital evidence"
-      sub="pehle preserve, phir copy par recover — har attempt document"
+      title="Recovering and preserving digital evidence"
+      sub="preserve first, then recover on the copy — document every attempt"
       label="Preservation controls such as write blocker, imaging with hash, sealing, Faraday isolation and legal hold, followed by recovery methods: metadata based recovery, file carving, unallocated and slack space, and snapshots or log replay"
     >
       <Note x={460} y={74} text="STEP 1 — PRESERVE" color={C.lime} size={9.8} bold />
@@ -482,7 +482,7 @@ export function RecoveringPreservingEvidenceDiagram() {
       ))}
       <Arrow x1={460} y1={148} x2={460} y2={182} color={C.lime} delay={400} />
 
-      <Note x={460} y={202} text="STEP 2 — RECOVER (copy par, original untouched)" color={C.orange} size={9.8} bold />
+      <Note x={460} y={202} text="STEP 2 — RECOVER (on the copy, original untouched)" color={C.orange} size={9.8} bold />
       {recover.map(([t, lines, col], i) => (
         <Box key={t} x={27 + i * 220} y={216} w={206} h={88} title={t} lines={lines} color={col} delay={460 + i * 70} />
       ))}
@@ -490,18 +490,18 @@ export function RecoveringPreservingEvidenceDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '780ms' }}>
         <rect x={27} y={330} width={866} height={82} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={354} textAnchor="middle" fill={C.red} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          RECOVERY KO MUSHKIL BANANE WALE FACTORS
+          FACTORS THAT MAKE RECOVERY HARD
         </text>
         <text x={460} y={376} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
           SSD TRIM · encryption · secure wipe · overwrite · cloud sync · physical damage · time delay
         </text>
         <text x={460} y={398} textAnchor="middle" fill={C.orange} fontSize="9" fontFamily={FONT}>
-          recovery fail hona case fail nahi — alternative evidence source dhoondho
+          a failed recovery is not a failed case — find an alternative evidence source
         </text>
       </g>
 
       <Note x={460} y={440} text="Recovery tools: Autopsy, FTK, TestDisk (metadata) · PhotoRec, Scalpel (carving) · Volatility (memory)" color={C.dim} size={9.2} />
-      <Note x={460} y={468} text='Exam line: "Delete hone par data turant nahi jaata — cluster reuse hone par jaata hai"' color={C.yellow} size={9.6} bold />
+      <Note x={460} y={468} text='Exam line: "Deleted data does not vanish at once — it goes when the cluster is reused"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }
@@ -524,7 +524,7 @@ export function AdvancedForensicToolsDiagram() {
     <Frame
       id="df-tools"
       title="Advanced forensic tools — capability map"
-      sub="basic imaging se aage: memory, mobile, cloud, timeline aur review"
+      sub="beyond basic imaging: memory, mobile, cloud, timeline and review"
       label="Advanced forensic tool families: commercial suites, mobile platforms, memory analysis, timeline and triage, network, carving, cloud forensics, and malware plus AI tools, all requiring validation and documentation"
     >
       {fams.map(([t, lines, col], i) => (
@@ -551,13 +551,13 @@ export function AdvancedForensicToolsDiagram() {
           super-timeline · hash-set de-duplication · entity / link analysis · keyword + YARA search
         </text>
         <text x={460} y={388} textAnchor="middle" fill={C.orange} fontSize="9" fontFamily={FONT}>
-          AI triage aur clustering — human verification mandatory
+          AI triage and clustering — human verification mandatory
         </text>
       </g>
 
       <Note x={460} y={428} text="Open source: Autopsy, Volatility, Plaso, Zeek, Ghidra, Velociraptor, KAPE — dual-tool verification" color={C.dim} size={9.2} />
       <Note x={460} y={456} text="Selection: validated (NIST CFTT) · licensed · supported formats · hashing + audit log" color={C.orange} size="9.2" />
-      <Note x={460} y={484} text='Exam line: "Advanced tool ka output utna hi admissible hai jitna uska process"' color={C.yellow} size={9.6} bold />
+      <Note x={460} y={484} text='Exam line: "The output of an advanced tool is only as admissible as its process"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }
@@ -569,22 +569,22 @@ export function SelectingAnalyzingEvidenceDiagram() {
   return (
     <Frame
       id="df-select"
-      title="Selecting aur analyzing digital evidence"
-      sub="bade data set se relevant artefacts — documented selection, falsifiable analysis"
+      title="Selecting and analysing digital evidence"
+      sub="relevant artefacts from a large data set — documented selection, falsifiable analysis"
       label="Evidence selection funnel: case theory and legal scope, then selection filters such as time window, custodian, hash sets and keywords, then timeline and correlation, then hypothesis testing including the innocent explanation, ending in findings traceable to artefacts"
     >
-      <Box x={60} y={72} w={800} h={58} title="CASE THEORY + LEGAL SCOPE" sub="kya allegation hai, kya prove karna hai, authority kya hai" color={C.blue} delay={60} />
+      <Box x={60} y={72} w={800} h={58} title="CASE THEORY + LEGAL SCOPE" sub="what is alleged, what must be proved, what authority do we have" color={C.blue} delay={60} />
       <Arrow x1={460} y1={130} x2={460} y2={148} color={C.faint} delay={180} />
       <Box x={120} y={148} w={680} h={58} title="SELECTION FILTERS" sub="time window · custodian · hash sets (NSRL) · keyword / regex · file type" color={C.cyan} delay={220} />
       <Arrow x1={460} y1={206} x2={460} y2={224} color={C.faint} delay={340} />
       <Box x={180} y={224} w={560} h={58} title="TIMELINE + CORRELATION" sub="super-timeline · independent sources · anti-forensic check" color={C.green} delay={380} />
       <Arrow x1={460} y1={282} x2={460} y2={300} color={C.faint} delay={500} />
-      <Box x={240} y={300} w={440} h={58} title="HYPOTHESIS TESTING" sub="innocent explanation bhi formally test karo" color={C.orange} delay={540} />
+      <Box x={240} y={300} w={440} h={58} title="HYPOTHESIS TESTING" sub="test the innocent explanation formally as well" color={C.orange} delay={540} />
       <Arrow x1={460} y1={358} x2={460} y2={376} color={C.faint} delay={620} />
       <Box x={300} y={376} w={320} h={58} title="FINDINGS + ARTEFACT TRACE" sub="evidence table + limitations" color={C.pink} delay={660} />
 
       <Note x={460} y={460} text="Bias control: falsification · corroboration · dual-tool · peer review · full documentation" color={C.orange} size={9.2} />
-      <Note x={460} y={488} text='Exam line: "Documented selection na ho to analysis court mein challenge hota hai"' color={C.yellow} size={9.6} bold />
+      <Note x={460} y={488} text='Exam line: "Without documented selection the analysis is challenged in court"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }
@@ -603,7 +603,7 @@ export function ValidatingEvidenceDiagram() {
     <Frame
       id="df-validate"
       title="Validating the evidence — 4 layers"
-      sub="cross-examination ka defence: records, na ki confidence"
+      sub="the defence against cross-examination is records, not confidence"
       label="Four validation layers of digital evidence: tool validation through NIST CFTT and known-answer tests, process verification through hashing and dual tool comparison, evidence validation through seals and custody, and legal admissibility through section 65B and Daubert criteria"
     >
       {layers.map(([t, s2, w, x, col], i) => (
@@ -624,30 +624,30 @@ export function ValidatingEvidenceDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x={110} y={340} width={700} height={70} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={364} textAnchor="middle" fill={C.red} fontSize="9.8" fontWeight="800" fontFamily={FONT}>
-          EVIDENCE INVALID KARNE WALE FACTORS
+          FACTORS THAT INVALIDATE EVIDENCE
         </text>
         <text x={460} y={386} textAnchor="middle" fill={C.dim} fontSize="8.9" fontFamily={FONT}>
           hash mismatch · custody gap · unvalidated tool · undocumented steps · unauthorised access
         </text>
         <text x={460} y={402} textAnchor="middle" fill={C.faint} fontSize="8.4" fontFamily={FONT}>
-          inme se koi ek bhi mile to poora case challenge ho sakta hai
+          any one of these can put the whole case in doubt
         </text>
       </g>
 
-      <Note x={460} y={440} text="Case file mein rakho: acquisition log · hash log · validation report · SOP version · reviewer sign-off" color={C.orange} size={9.2} />
-      <Note x={460} y={468} text='Exam line: "Tool calibrate karna validation hai, aaj ka weight check karna verification"' color={C.yellow} size={9.6} bold />
+      <Note x={460} y={440} text="Keep in the case file: acquisition log · hash log · validation report · SOP version · reviewer sign-off" color={C.orange} size={9.2} />
+      <Note x={460} y={468} text='Exam line: "Calibrating a tool is validation; checking it today is verification"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }
 
 /* ------------------------------------------------------------------
-   4.10 — Forensic technology aur practices
+   4.10 — Forensic technology and practices
    ------------------------------------------------------------------ */
 export function ForensicTechnologyPracticesDiagram() {
   return (
     <Frame
       id="df-tech"
-      title="Forensic technology aur practices"
+      title="Forensic technology and practices"
       sub="standards + lab practices + emerging tech + ethics"
       label="Forensic technology and practices triangle: standards such as ISO 27037, 27041 to 27043, ISO 17025 and NIST, laboratory practices such as SOP, validation, competency, peer review and audit, and emerging technology such as cloud, remote acquisition, IoT, blockchain and AI triage, all under ethical requirements"
     >
@@ -716,7 +716,7 @@ export function ForensicTechnologyPracticesDiagram() {
           ETHICS — authorisation · privacy (DPDP) · impartiality · confidentiality
         </text>
         <text x={460} y={398} textAnchor="middle" fill={C.dim} fontSize="8.9" fontFamily={FONT}>
-          competence · disclosure of limitations · no tampering · exculpatory evidence bhi report
+          competence · disclosure of limitations · no tampering · exculpatory evidence reported too
         </text>
         <text x={460} y={411} textAnchor="middle" fill={C.faint} fontSize="8.2" fontFamily={FONT}>
           standard + SOP + validation = defensible forensics
@@ -724,7 +724,7 @@ export function ForensicTechnologyPracticesDiagram() {
       </g>
 
       <Note x={460} y={450} text="India: IT Act 2000 Section 65B + CERT-In directions; global: ISO 17025 accreditation" color={C.orange} size={9.2} />
-      <Note x={460} y={480} text='Exam line: "Tool badalte rehte hain, validation aur documentation nahi"' color={C.yellow} size={9.6} bold />
+      <Note x={460} y={480} text='Exam line: "Tools keep changing; validation and documentation do not"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }

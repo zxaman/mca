@@ -11,13 +11,13 @@ const FONT = "'Segoe UI', system-ui, sans-serif";
 // ============================================================
 export function CyberFrameworkDiagram() {
   const areas = [
-    { label: 'NETWORK\nSECURITY', sub: 'Firewalls · IDS · VPN', icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z', delay: '0ms' },
-    { label: 'APPLICATION\nSECURITY', sub: 'Input validation · Auth', icon: 'M6 2h8l4 4v16H6zM14 2v4h4', delay: '120ms' },
-    { label: 'INFORMATION\nSECURITY', sub: 'Encryption · Access control', icon: 'M12 3C7 3 3 6.5 3 11s4 8 9 8 9-3.5 9-8-4-8-9-8zm0 15c-4 0-7-2.5-7-6s3-5.5 7-5.5S19 8 19 11s-3 5.5-7 5.5z', delay: '240ms' },
-    { label: 'OPERATIONAL\nSECURITY', sub: 'Policies · Training · Risk', icon: 'M4 4h16v4H4zM6 8v12m12-12v12M4 20h16', delay: '360ms' },
+    { label: ['NETWORK', 'SECURITY'], sub: 'Firewalls · IDS · VPN', icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z', delay: '0ms' },
+    { label: ['APPLICATION', 'SECURITY'], sub: 'Input validation · Auth', icon: 'M6 2h8l4 4v16H6zM14 2v4h4', delay: '120ms' },
+    { label: ['INFORMATION', 'SECURITY'], sub: 'Encryption · Access control', icon: 'M12 3C7 3 3 6.5 3 11s4 8 9 8 9-3.5 9-8-4-8-9-8zm0 15c-4 0-7-2.5-7-6s3-5.5 7-5.5S19 8 19 11s-3 5.5-7 5.5z', delay: '240ms' },
+    { label: ['OPERATIONAL', 'SECURITY'], sub: 'Policies · Training · Risk', icon: 'M4 4h16v4H4zM6 8v12m12-12v12M4 20h16', delay: '360ms' },
   ];
   return (
-    <svg viewBox="0 0 1000 340" className="diagram-svg" role="img" aria-label="Cyber Security Framework — 4 key areas">
+    <svg viewBox="0 0 1000 400" className="diagram-svg" role="img" aria-label="Cyber Security Framework — 4 key areas">
       <defs>
         <marker id="arrowCyberA" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
           <path d="M0,0 L8,3 L0,6 Z" fill="#c4ff00" />
@@ -29,24 +29,28 @@ export function CyberFrameworkDiagram() {
       </defs>
       <text x="500" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>CYBER SECURITY FRAMEWORK</text>
       <text x="500" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>4 Key Areas of Protection — all work together</text>
-      <circle cx="500" cy="200" r="120" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" strokeDasharray="8 8" />
-      <text x="500" y="208" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="700" fontFamily={FONT}>SECURE</text>
-      {areas.map((a, i) => {
-        const x = 500 + (i % 2 === 0 ? -240 : 240);
-        const y = 200 + (i < 2 ? -140 : 140);
+      <circle cx="500" cy="210" r="92" fill="rgba(0,71,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="3" strokeDasharray="8 8" />
+      <text x="500" y="204" textAnchor="middle" fill="#fff" fontSize="17" fontWeight="800" fontFamily={FONT}>SECURE</text>
+      <text x="500" y="226" textAnchor="middle" fill="#9ab0e0" fontSize="11" fontFamily={FONT}>CORE</text>
+      {[
+        { x: 250, y: 126 },
+        { x: 750, y: 126 },
+        { x: 250, y: 294 },
+        { x: 750, y: 294 },
+      ].map((pos, i) => {
+        const a = areas[i];
         return (
-          <g key={a.label} style={{ animationDelay: a.delay }} className="diagram-pop">
-            <rect x={x - 110} y={y - 60} width="220" height="120" rx="14" fill="rgba(0,71,255,0.08)" stroke="rgba(255,255,255,0.18)" />
-            <rect x={x - 110} y={y - 60} width="220" height="120" rx="14" fill="url(#cyberGradA)" opacity="0.4" />
-            <rect x={x - 110} y={y - 60} width="220" height="120" rx="14" fill="none" stroke="#0047ff" strokeWidth="2" />
-            <g transform={`translate(${x}, ${y - 28})`}>
+          <g key={a.label[0]} style={{ animationDelay: a.delay }} className="diagram-pop">
+            <rect x={pos.x - 115} y={pos.y - 52} width="230" height="104" rx="14" fill="rgba(0,71,255,0.08)" stroke="rgba(255,255,255,0.18)" />
+            <rect x={pos.x - 115} y={pos.y - 52} width="230" height="104" rx="14" fill="url(#cyberGradA)" opacity="0.4" />
+            <rect x={pos.x - 115} y={pos.y - 52} width="230" height="104" rx="14" fill="none" stroke="#0047ff" strokeWidth="2" />
+            <g transform={`translate(${pos.x - 13}, ${pos.y - 46}) scale(1.1)`}>
               <path d={a.icon} fill="none" stroke="#c4ff00" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </g>
-            {a.label.split('\n').map((line, li) => (
-              <text key={li} x={x} y={y + 10 + li * 14} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>{line}</text>
-            ))}
-            <text x={x} y={y + 34} textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>{a.sub}</text>
-            <line x1={x + (i < 2 ? -110 : 110)} y1={y} x2="500" y2="200" stroke="rgba(196,255,0,0.25)" strokeWidth="2" strokeDasharray="4 4" markerEnd="url(#arrowCyberA)" className="arrow-pulse" />
+            <text x={pos.x} y={pos.y - 6} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>{a.label[0]}</text>
+            <text x={pos.x} y={pos.y + 10} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>{a.label[1]}</text>
+            <text x={pos.x} y={pos.y + 34} textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>{a.sub}</text>
+            <line x1={pos.x} y1={pos.y - 52} x2="500" y2={pos.y < 210 ? 118 : 302} stroke="rgba(196,255,0,0.25)" strokeWidth="2" strokeDasharray="4 4" className="arrow-pulse" />
           </g>
         );
       })}
@@ -159,32 +163,35 @@ export function CyberWarfareDiagram() {
 // ============================================================
 export function CIATriadDiagram() {
   const parts = [
-    { letter: 'C', word: 'CONFIDENTIALITY', desc: 'Data accessible only to authorized users', methods: 'Encryption · Passwords · Access control', color: '#0047ff', delay: '0ms' },
-    { letter: 'I', word: 'INTEGRITY', desc: 'Data accurate — no unauthorized changes', methods: 'Checksums · Digital signatures · Hash', color: '#c4ff00', delay: '120ms' },
-    { letter: 'A', word: 'AVAILABILITY', desc: 'Systems up when users need them', methods: 'Redundancy · Backups · DDoS protection', color: '#ff6b6b', delay: '240ms' },
+    { letter: 'C', word: 'CONFIDENTIALITY', desc: 'Only authorized users can access data', methods: 'Encryption · Passwords · Access control', color: '#0047ff', delay: '0ms' },
+    { letter: 'I', word: 'INTEGRITY', desc: 'Data stays accurate and unchanged', methods: 'Hashes · Digital signatures · Checksums', color: '#c4ff00', delay: '120ms' },
+    { letter: 'A', word: 'AVAILABILITY', desc: 'Systems stay up when users need them', methods: 'Redundancy · Backups · DDoS protection', color: '#ff6b6b', delay: '240ms' },
   ];
   return (
-    <svg viewBox="0 0 800 340" className="diagram-svg" role="img" aria-label="CIA Triad — 3 core security principles">
-      <text x="400" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>CIA TRIAD — 3 CORE PRINCIPLES</text>
-      <text x="400" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Confidentiality · Integrity · Availability</text>
-      <circle cx="400" cy="180" r="80" fill="rgba(0,71,255,0.1)" stroke="rgba(255,255,255,0.15)" strokeWidth="3" />
-      <text x="400" y="188" textAnchor="middle" fill="#fff" fontSize="22" fontWeight="800" fontFamily={FONT}>SECURITY</text>
-      <text x="400" y="210" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>Model</text>
+    <svg viewBox="0 0 900 360" className="diagram-svg" role="img" aria-label="CIA Triad — 3 core security principles">
+      <text x="450" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>CIA TRIAD — 3 CORE PRINCIPLES</text>
+      <text x="450" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Confidentiality · Integrity · Availability — all three together make security</text>
+      <line x1="450" y1="96" x2="450" y2="150" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="6 6" />
+      <rect x="330" y="96" width="240" height="26" rx="13" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
+      <text x="450" y="113" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="700" fontFamily={FONT}>SECURITY</text>
+      <path d="M170 190 L450 150 L730 190" fill="none" stroke="rgba(196,255,0,0.2)" strokeWidth="2" strokeDasharray="5 5" />
+      {[170, 450, 730].map((x) => (
+        <line key={x} x1={x} y1="150" x2={x} y2="196" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="4 4" />
+      ))}
       {parts.map((p, i) => {
-        const angle = (i * 120 - 90) * Math.PI / 180;
-        const x = 400 + Math.cos(angle) * 200;
-        const y = 180 + Math.sin(angle) * 200;
+        const x = 170 + i * 280;
         return (
           <g key={p.letter} style={{ animationDelay: p.delay }} className="diagram-pop">
-            <circle cx={x} cy={y} r="56" fill={p.color} opacity="0.12" stroke={p.color} strokeWidth="3" />
-            <text x={x} y={y - 4} textAnchor="middle" fill={p.color} fontSize="30" fontWeight="800" fontFamily={FONT}>{p.letter}</text>
-            <text x={x} y={y + 18} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="700" fontFamily={FONT}>{p.word}</text>
-            <line x1={x + (x > 400 ? -56 : 56)} y1={y} x2="400" y2="180" stroke={p.color} strokeWidth="2" strokeDasharray="5 5" opacity="0.4" className="arrow-pulse" />
-            <text x={x + (x > 400 ? -90 : 90)} y={y + 90} textAnchor={x > 400 ? 'end' : 'start'} fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>{p.desc}</text>
-            <text x={x + (x > 400 ? -90 : 90)} y={y + 104} textAnchor={x > 400 ? 'end' : 'start'} fill={p.color} fontSize="9.5" fontFamily={FONT}>{p.methods}</text>
+            <rect x={x - 125} y="150" width="250" height="170" rx="14" fill="rgba(255,255,255,0.03)" stroke={p.color} strokeWidth="2" />
+            <circle cx={x} cy="196" r="26" fill={p.color} opacity="0.14" stroke={p.color} strokeWidth="2" />
+            <text x={x} y="205" textAnchor="middle" fill={p.color} fontSize="24" fontWeight="800" fontFamily={FONT}>{p.letter}</text>
+            <text x={x} y="244" textAnchor="middle" fill="#fff" fontSize="12.5" fontWeight="800" fontFamily={FONT}>{p.word}</text>
+            <text x={x} y="266" textAnchor="middle" fill="#c8d4f0" fontSize="10" fontFamily={FONT}>{p.desc}</text>
+            <text x={x} y="292" textAnchor="middle" fill={p.color} fontSize="9.5" fontFamily={FONT}>{p.methods}</text>
           </g>
         );
       })}
+      <text x="450" y="344" textAnchor="middle" fill="#9ab0e0" fontSize="10.5" fontFamily={FONT}>Attack any one leg and the whole model falls — most attacks target one of the three</text>
     </svg>
   );
 }
@@ -195,7 +202,7 @@ export function CIATriadDiagram() {
 export function CyberTerrorismDiagram() {
   return (
     <svg viewBox="0 0 800 360" className="diagram-svg" role="img" aria-label="Cyber terrorism — concept and elements">
-      <text x="400" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>CYBER TERROBIM — KEY ELEMENTS</text>
+      <text x="400" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>CYBER TERRORISM — KEY ELEMENTS</text>
       <text x="400" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Terrorism through digital attacks on critical systems</text>
       <g style={{ animationDelay: '0ms' }} className="diagram-pop">
         <rect x="40" y="80" width="220" height="110" rx="14" fill="rgba(255,107,107,0.08)" stroke="rgba(255,107,107,0.4)" strokeWidth="2" />
@@ -224,7 +231,7 @@ export function CyberTerrorismDiagram() {
         <rect x="150" y="220" width="500" height="90" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" />
         <text x="400" y="248" textAnchor="middle" fill="#c4ff00" fontSize="13" fontWeight="800" fontFamily={FONT}>IMPACT</text>
         {['Public fear & panic', 'Economic disruption', 'Loss of life (indirect)', 'National security threat'].map((p, i) => (
-          <text key={p} x={220 + i * 150} y={272 + i * 16} textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>{p}</text>
+          <text key={p} x={140 + i * 178} y={274} textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>{p}</text>
         ))}
       </g>
       <text x="400" y="340" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Motive → Attack → Targets → Impact — cyber terrorism cycle</text>
@@ -281,36 +288,37 @@ export function CriticalInfraDiagram() {
 // ============================================================
 export function OrgSecurityDiagram() {
   const areas = [
-    { name: 'DATA LOSS', impact: 'Customer info · Financial records · Trade secrets', icon: 'M12 3C7 3 3 6.5 3 11s4 8 9 8 9-3.5 9-8-4-8-9-8zm0 15c-4 0-7-2.5-7-6s3-5.5 7-5.5S19 8 19 11s-3 5.5-7 5.5z' },
-    { name: 'FINANCIAL LOSS', impact: 'Ransom payments · Revenue loss · Legal fines', icon: 'M4 4h16v4H4zM6 8v12m12-12v12M4 20h16' },
-    { name: 'REPUTATION', impact: 'Customer trust lost · Brand damage · Market value down', icon: 'M12 2l2.4 5.4L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.6-1.6L12 2z' },
-    { name: 'OPERATIONAL', impact: 'Systems down · Employees blocked · Work halted', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5v5l3 3' },
-    { name: 'LEGAL', impact: 'IT Act violations · Fines · Lawsuits · Compliance', icon: 'M4 4h16v16H4zM4 4l8 8 8-8' },
-    { name: 'NATIONAL', impact: 'Critical infra affected · Security threat · Economy hit', icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z' },
+    { name: 'DATA LOSS', lines: ['Customer info · Financial records', 'Trade secrets'], icon: 'M12 3C7 3 3 6.5 3 11s4 8 9 8 9-3.5 9-8-4-8-9-8zm0 15c-4 0-7-2.5-7-6s3-5.5 7-5.5S19 8 19 11s-3 5.5-7 5.5z' },
+    { name: 'FINANCIAL LOSS', lines: ['Ransom payments · Revenue loss', 'Legal fines'], icon: 'M4 4h16v4H4zM6 8v12m12-12v12M4 20h16' },
+    { name: 'REPUTATION', lines: ['Customer trust lost · Brand damage', 'Market value down'], icon: 'M12 2l2.4 5.4L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.6-1.6L12 2z' },
+    { name: 'OPERATIONAL', lines: ['Systems down · Employees blocked', 'Work halted'], icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5v5l3 3' },
+    { name: 'LEGAL', lines: ['IT Act violations · Fines · Lawsuits', 'Compliance burden'], icon: 'M4 4h16v16H4zM4 4l8 8 8-8' },
+    { name: 'NATIONAL', lines: ['Critical infra affected · Economy hit', 'Security threat'], icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z' },
   ];
   return (
-    <svg viewBox="0 0 1000 360" className="diagram-svg" role="img" aria-label="Organizational security implications — 6 areas">
+    <svg viewBox="0 0 1000 400" className="diagram-svg" role="img" aria-label="Organizational security implications — 6 areas">
       <text x="500" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>ORGANIZATIONAL SECURITY IMPLICATIONS</text>
       <text x="500" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>What happens when an organization is attacked</text>
       <g style={{ animationDelay: '0ms' }} className="diagram-pop">
-        <circle cx="500" cy="100" r="50" fill="rgba(0,71,255,0.15)" stroke="#0047ff" strokeWidth="3" />
-        <text x="500" y="96" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>ORG</text>
-        <text x="500" y="112" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>ATTACK</text>
+        <circle cx="500" cy="104" r="38" fill="rgba(0,71,255,0.15)" stroke="#0047ff" strokeWidth="3" />
+        <text x="500" y="102" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>ORG</text>
+        <text x="500" y="118" textAnchor="middle" fill="#9ab0e0" fontSize="9" fontFamily={FONT}>ATTACK</text>
       </g>
       {areas.map((a, i) => {
         const col = i % 3;
         const row = Math.floor(i / 3);
-        const x = 130 + col * 370;
-        const y = 190 + row * 130;
+        const x = 190 + col * 310;
+        const y = 232 + row * 130;
         return (
           <g key={a.name} style={{ animationDelay: `${(i + 1) * 90}ms` }} className="diagram-pop">
-            <rect x={x - 120} y={y - 45} width="240" height="90" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" />
-            <g transform={`translate(${x - 95}, ${y - 25})`}>
+            <rect x={x - 140} y={y - 46} width="280" height="92" rx="14" fill="rgba(255,107,107,0.05)" stroke="rgba(255,107,107,0.3)" />
+            <g transform={`translate(${x - 122}, ${y - 30}) scale(1.05)`}>
               <path d={a.icon} fill="none" stroke="#ff6b6b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </g>
-            <text x={x + 25} y={y - 22} textAnchor="middle" fill="#ff6b6b" fontSize="13" fontWeight="800" fontFamily={FONT}>{a.name}</text>
-            <text x={x + 25} y={y - 6} textAnchor="middle" fill="#fff" fontSize="10" fontFamily={FONT}>{a.impact}</text>
-            <line x1={x} y1={y - 45} x2="500" y2="100" stroke="rgba(255,107,107,0.15)" strokeWidth="2" strokeDasharray="3 3" className="arrow-pulse" />
+            <text x={x + 12} y={y - 24} textAnchor="middle" fill="#ff6b6b" fontSize="12.5" fontWeight="800" fontFamily={FONT}>{a.name}</text>
+            <text x={x + 12} y={y - 2} textAnchor="middle" fill="#dbe4f8" fontSize="9.6" fontFamily={FONT}>{a.lines[0]}</text>
+            <text x={x + 12} y={y + 16} textAnchor="middle" fill="#dbe4f8" fontSize="9.6" fontFamily={FONT}>{a.lines[1]}</text>
+            <line x1={x} y1={y - 46} x2="500" y2="142" stroke="rgba(255,107,107,0.15)" strokeWidth="2" strokeDasharray="3 3" className="arrow-pulse" />
           </g>
         );
       })}
@@ -398,34 +406,34 @@ export function NodalAuthorityDiagram() {
 // ============================================================
 export function InternationalCyberDiagram() {
   const items = [
-    { name: 'UNITED NATIONS', items: ['UN Charter applies to cyber', 'UN GGE — 6 norms for cyber', 'UN OEWG — Open working group'], color: '#00c8ff' },
+    { name: 'UNITED NATIONS', items: ['UN Charter applies to cyber', 'UN GGE — 6 norms for cyber', 'UN OEWG — open working group'], color: '#00c8ff' },
     { name: 'BUENOS AIRES', items: ['1998 — first UN confidence-building', 'Agenda for peace in cyberspace'], color: '#c4ff00' },
-    { name: 'TALLINN', items: ['2009 — NATO manual on cyber', '3 pillars: deterrence · defense · resilience'], color: '#ff6b6b' },
+    { name: 'TALLINN', items: ['2009 — NATO manual on cyber', '3 pillars: deterrence · defence · resilience'], color: '#ff6b6b' },
     { name: 'MADRID', items: ['2021 — Budapest Convention update', 'Human rights · Democracy · Rule of law'], color: '#a78bfa' },
   ];
   return (
-    <svg viewBox="0 0 900 380" className="diagram-svg" role="img" aria-label="International cyber conventions — key initiatives">
+    <svg viewBox="0 0 900 430" className="diagram-svg" role="img" aria-label="International cyber conventions — key initiatives">
       <text x="450" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>INTERNATIONAL CYBER CONVENTIONS</text>
       <text x="450" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Global efforts to govern cyberspace</text>
       {items.map((it, i) => {
         const col = i % 2;
         const row = Math.floor(i / 2);
-        const x = 150 + col * 400;
-        const y = 90 + row * 130;
+        const x = 230 + col * 440;
+        const y = 145 + row * 130;
         return (
           <g key={it.name} style={{ animationDelay: `${i * 110}ms` }} className="diagram-pop">
-            <rect x={x - 140} y={y - 45} width="280" height="90" rx="14" fill="rgba(0,71,255,0.06)" stroke="rgba(255,255,255,0.15)" />
-            <rect x={x - 140} y={y - 45} width="280" height="28" rx="14" fill={it.color} opacity="0.15" stroke={it.color} strokeWidth="2" />
-            <text x={x} y={y - 24} textAnchor="middle" fill={it.color} fontSize="13" fontWeight="800" fontFamily={FONT}>{it.name}</text>
+            <rect x={x - 210} y={y - 52} width="420" height="104" rx="14" fill="rgba(0,71,255,0.06)" stroke="rgba(255,255,255,0.15)" />
+            <rect x={x - 210} y={y - 52} width="420" height="30" rx="14" fill={it.color} opacity="0.15" stroke={it.color} strokeWidth="2" />
+            <text x={x} y={y - 31} textAnchor="middle" fill={it.color} fontSize="13" fontWeight="800" fontFamily={FONT}>{it.name}</text>
             {it.items.map((p, j) => (
-              <text key={p} x={x} y={y + 10 + j * 16} textAnchor="middle" fill="#fff" fontSize="10.5" fontFamily={FONT}>{p}</text>
+              <text key={p} x={x} y={y + 2 + j * 20} textAnchor="middle" fill="#fff" fontSize="10.5" fontFamily={FONT}>{p}</text>
             ))}
           </g>
         );
       })}
       <g style={{ animationDelay: '480ms' }} className="diagram-pop">
-        <rect x="100" y="330" width="700" height="40" rx="10" fill="rgba(196,255,0,0.06)" stroke="#c4ff00" strokeWidth="1.5" />
-        <text x="450" y="356" textAnchor="middle" fill="#c4ff00" fontSize="12" fontWeight="700" fontFamily={FONT}>Global cooperation needed — no single nation can secure cyberspace alone</text>
+        <rect x="100" y="380" width="700" height="38" rx="10" fill="rgba(196,255,0,0.06)" stroke="#c4ff00" strokeWidth="1.5" />
+        <text x="450" y="404" textAnchor="middle" fill="#c4ff00" fontSize="11.5" fontWeight="700" fontFamily={FONT}>No single nation can secure cyberspace alone — cooperation is the only option</text>
       </g>
     </svg>
   );
@@ -436,37 +444,36 @@ export function InternationalCyberDiagram() {
 // ============================================================
 export function CyberLawsDiagram() {
   const items = [
-    { name: 'DEFINITION', desc: 'Laws covering cybercrime, data protection, e-transactions, and digital evidence', icon: 'M4 4h16v16H4zM4 4l8 8 8-8' },
-    { name: 'SCOPE', desc: 'Applies to all digital activity — computers, networks, internet, mobile', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5v5l3 3' },
-    { name: 'PURPOSE', desc: 'Prevent cybercrime · Protect data · Ensure trust · Enforce rights', icon: 'M12 2l2.4 5.4L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.6-1.6L12 2z' },
-    { name: 'ENFORCEMENT', desc: 'Police cyber cells · Courts · IT Act provisions · International cooperation', icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z' },
+    { name: 'DEFINITION', lines: ['Laws covering cybercrime,', 'data protection, e-transactions'], icon: 'M4 4h16v16H4zM4 4l8 8 8-8' },
+    { name: 'SCOPE', lines: ['All digital activity — computers,', 'networks, internet, mobile'], icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5v5l3 3' },
+    { name: 'PURPOSE', lines: ['Prevent crime · Protect data', 'Ensure trust · Enforce rights'], icon: 'M12 2l2.4 5.4L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.6-1.6L12 2z' },
+    { name: 'ENFORCEMENT', lines: ['Police cyber cells · Courts', 'IT Act · International cooperation'], icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z' },
   ];
   return (
     <svg viewBox="0 0 1000 340" className="diagram-svg" role="img" aria-label="Cyber laws — 4 pillars">
       <text x="500" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>CYBER LAWS — 4 PILLARS</text>
-      <text x="500" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Legal framework for the digital world</text>
+      <text x="500" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>The legal framework for the digital world</text>
       <g style={{ animationDelay: '0ms' }} className="diagram-pop">
-        <rect x="380" y="70" width="240" height="60" rx="14" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="2.5" />
-        <text x="500" y="98" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>CYBER LAW</text>
-        <text x="500" y="115" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>Digital world ka law</text>
+        <rect x="380" y="76" width="240" height="56" rx="14" fill="rgba(196,255,0,0.1)" stroke="#c4ff00" strokeWidth="2.5" />
+        <text x="500" y="100" textAnchor="middle" fill="#c4ff00" fontSize="14" fontWeight="800" fontFamily={FONT}>CYBER LAW</text>
+        <text x="500" y="118" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>Law of the digital world</text>
       </g>
       {items.map((it, i) => {
-        const angle = (i * 90 - 90) * Math.PI / 180;
-        const x = 500 + Math.cos(angle) * 280;
-        const y = 100 + Math.sin(angle) * 100;
+        const x = 140 + i * 240;
         return (
           <g key={it.name} style={{ animationDelay: `${(i + 1) * 100}ms` }} className="diagram-pop">
-            <rect x={x - 110} y={y - 40} width="220" height="80" rx="14" fill="rgba(0,71,255,0.08)" stroke="rgba(255,255,255,0.18)" />
-            <rect x={x - 110} y={y - 40} width="220" height="80" rx="14" fill="none" stroke="#0047ff" strokeWidth="2" />
-            <g transform={`translate(${x - 88}, ${y - 20})`}>
+            <line x1={x} y1="132" x2={x} y2="176" stroke="rgba(196,255,0,0.2)" strokeWidth="2" strokeDasharray="4 4" className="arrow-pulse" />
+            <rect x={x - 108} y="176" width="216" height="112" rx="14" fill="rgba(0,71,255,0.08)" stroke="#0047ff" strokeWidth="2" />
+            <g transform={`translate(${x - 12}, ${186}) scale(0.9)`}>
               <path d={it.icon} fill="none" stroke="#c4ff00" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </g>
-            <text x={x} y={y - 2} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>{it.name}</text>
-            <text x={x} y={y + 14} textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>{it.desc}</text>
-            <line x1={x + (x > 500 ? -110 : 110)} y1={y} x2="500" y2="100" stroke="rgba(196,255,0,0.15)" strokeWidth="2" strokeDasharray="3 3" className="arrow-pulse" />
+            <text x={x} y={230} textAnchor="middle" fill="#fff" fontSize="12.5" fontWeight="800" fontFamily={FONT}>{it.name}</text>
+            <text x={x} y={250} textAnchor="middle" fill="#9ab0e0" fontSize="9.4" fontFamily={FONT}>{it.lines[0]}</text>
+            <text x={x} y={264} textAnchor="middle" fill="#9ab0e0" fontSize="9.4" fontFamily={FONT}>{it.lines[1]}</text>
           </g>
         );
       })}
+      <text x="500" y="318" textAnchor="middle" fill="#c8d4f0" fontSize="10.5" fontFamily={FONT}>In India these pillars are built by the IT Act 2000, its amendments and the DPDP Act 2023</text>
     </svg>
   );
 }
@@ -476,33 +483,36 @@ export function CyberLawsDiagram() {
 // ============================================================
 export function LawPrinciplesDiagram() {
   const principles = [
-    { name: 'LEGALITY', desc: 'All digital activity must follow the law', icon: 'M4 4h16v16H4zM4 4l8 8 8-8' },
+    { name: 'LEGALITY', desc: 'Everything digital must follow the law', icon: 'M4 4h16v16H4zM4 4l8 8 8-8' },
     { name: 'PROPORTIONALITY', desc: 'Response must match the threat level', icon: 'M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 1 0-6 0' },
     { name: 'DATA PROTECTION', desc: 'Personal data must be protected', icon: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z' },
-    { name: 'COOPERATION', desc: 'Cross-border enforcement needed', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
+    { name: 'COOPERATION', desc: 'Cross-border enforcement is needed', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
     { name: 'ACCOUNTABILITY', desc: 'Violators must face legal action', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5v5l3 3' },
-    { name: 'TRANSPARENCE', desc: 'Laws and policies must be public', icon: 'M4 4h16v4H4zM6 8v12m12-12v12M4 20h16' },
+    { name: 'TRANSPARENCY', desc: 'Laws and policies must be public', icon: 'M4 4h16v4H4zM6 8v12m12-12v12M4 20h16' },
   ];
   return (
-    <svg viewBox="0 0 1000 360" className="diagram-svg" role="img" aria-label="Key principles of cyber law — 6 principles">
+    <svg viewBox="0 0 1000 400" className="diagram-svg" role="img" aria-label="Key principles of cyber law — 6 principles">
       <text x="500" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>KEY PRINCIPLES OF CYBER LAW</text>
-      <text x="500" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>6 Principles — the foundation of any cyber law</text>
+      <text x="500" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>6 principles — the foundation of any cyber law</text>
       {principles.map((p, i) => {
         const col = i % 3;
         const row = Math.floor(i / 3);
-        const x = 170 + col * 330;
-        const y = 100 + row * 130;
+        const x = 50 + col * 310;
+        const y = 90 + row * 140;
         return (
           <g key={p.name} style={{ animationDelay: `${i * 100}ms` }} className="diagram-pop">
-            <circle cx={x} cy={y} r="50" fill="rgba(0,71,255,0.1)" stroke="#0047ff" strokeWidth="2.5" />
-            <g transform={`translate(${x - 22}, ${y - 22})`}>
+            <rect x={x} y={y} width="290" height="120" rx="14" fill="rgba(0,71,255,0.07)" stroke="rgba(0,71,255,0.45)" strokeWidth="2" />
+            <circle cx={x + 52} cy={y + 60} r="28" fill="rgba(0,71,255,0.12)" stroke="#0047ff" strokeWidth="2" />
+            <g transform={`translate(${x + 41}, ${y + 49})`}>
               <path d={p.icon} fill="none" stroke="#c4ff00" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </g>
-            <text x={x} y={y + 30} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily={FONT}>{p.name}</text>
-            <text x={x} y={y + 44} textAnchor="middle" fill="#9ab0e0" fontSize="9.5" fontFamily={FONT}>{p.desc}</text>
+            <text x={x + 96} y={y + 46} fill="#fff" fontSize="12.5" fontWeight="800" fontFamily={FONT}>{p.name}</text>
+            <text x={x + 96} y={y + 68} fill="#9ab0e0" fontSize="9.2" fontFamily={FONT}>{p.desc}</text>
+            <text x={x + 96} y={y + 90} fill="#c4ff00" fontSize="9" fontFamily={FONT}>{`Principle ${i + 1}`}</text>
           </g>
         );
       })}
+      <text x="500" y="382" textAnchor="middle" fill="#c8d4f0" fontSize="10.5" fontFamily={FONT}>Together these six principles decide what a state may do, and what it must not do, in cyberspace</text>
     </svg>
   );
 }
@@ -656,27 +666,36 @@ export function CyberAttacksOverviewDiagram() {
     { name: 'Actions', desc: 'Data theft, damage', color: '#ff0040' },
   ];
   return (
-    <svg viewBox="0 0 800 400" className="diagram-pop" style={{ maxWidth: '100%', height: 'auto' }}>
+    <svg viewBox="0 0 900 400" className="diagram-svg" role="img" aria-label="Cyber attack lifecycle — 7 phases">
       <defs>
         <marker id="arrowCyberA" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
           <path d="M0,0 L8,4 L0,8 Z" fill="#c4ff00" />
         </marker>
       </defs>
+      <text x="450" y="34" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>ATTACK LIFECYCLE — 7 PHASES</text>
+      <text x="450" y="56" textAnchor="middle" fill="#9ab0e0" fontSize="12" fontFamily={FONT}>Cyber attack stages from reconnaissance to damage</text>
       {phases.map((p, i) => {
-        const x = 70 + i * 100;
+        const row = i < 4 ? 0 : 1;
+        const idx = i < 4 ? i : 6 - i;
+        const x = 130 + idx * 210;
+        const y = row === 0 ? 130 : 270;
         return (
-          <g key={i}>
-            <rect x={x - 45} y={50} width="90" height="70" rx="10" fill={p.color} opacity="0.15" stroke={p.color} strokeWidth="2" />
-            <text x={x} y={75} textAnchor="middle" fill={p.color} fontSize="13" fontWeight="800" fontFamily={FONT}>{p.name}</text>
-            <text x={x} y={95} textAnchor="middle" fill="#fff" fontSize="10" fontFamily={FONT}>{p.desc}</text>
-            {i < phases.length - 1 && (
-              <line x1={x + 45} y1={85} x2={x + 100 - 45} y2={85} stroke="#c4ff00" strokeWidth="2" markerEnd="url(#arrowCyberA)" className="arrow-pulse" />
+          <g key={p.name} style={{ animationDelay: `${i * 80}ms` }} className="diagram-pop">
+            <rect x={x - 95} y={y - 42} width="190" height="84" rx="12" fill={p.color} opacity="0.15" stroke={p.color} strokeWidth="2" />
+            <text x={x} y={y - 12} textAnchor="middle" fill={p.color} fontSize="12.5" fontWeight="800" fontFamily={FONT}>{i + 1}. {p.name}</text>
+            <text x={x} y={y + 12} textAnchor="middle" fill="#fff" fontSize="10" fontFamily={FONT}>{p.desc}</text>
+            {row === 0 && i < 3 && (
+              <line x1={x + 95} y1={y} x2={x + 115} y2={y} stroke="#c4ff00" strokeWidth="2" markerEnd="url(#arrowCyberA)" className="arrow-pulse" />
+            )}
+            {row === 1 && i < 6 && (
+              <line x1={x - 95} y1={y} x2={x - 115} y2={y} stroke="#c4ff00" strokeWidth="2" markerEnd="url(#arrowCyberA)" className="arrow-pulse" />
             )}
           </g>
         );
       })}
-      <text x="400" y="170" textAnchor="middle" fill="#c4ff00" fontSize="16" fontWeight="800" fontFamily={FONT}>ATTACK LIFECYCLE — 7 Phases</text>
-      <text x="400" y="195" textAnchor="middle" fill="#888" fontSize="12" fontFamily={FONT}>Cyber attack stages from reconnaissance to damage</text>
+      <path d="M760 172 L760 228" stroke="#c4ff00" strokeWidth="2" fill="none" markerEnd="url(#arrowCyberA)" className="arrow-pulse" />
+      <text x="450" y="352" textAnchor="middle" fill="#c8d4f0" fontSize="10.5" fontFamily={FONT}>Each phase leaves an artefact — an IDS log, a file drop, a C2 beacon — and that is what forensics collects</text>
+      <text x="450" y="374" textAnchor="middle" fill="#9ab0e0" fontSize="10" fontFamily={FONT}>Defenders break the chain early — detection at phase 1 or 2 is far cheaper than cleanup at phase 7</text>
     </svg>
   );
 }
