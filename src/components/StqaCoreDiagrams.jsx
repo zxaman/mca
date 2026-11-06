@@ -4,7 +4,7 @@ const FONT = "'Segoe UI', system-ui, sans-serif";
 const C = {
   white: '#ffffff',
   dim: '#9ab0e0',
-  faint: '#5a6a9e',
+  faint: '#92a5d8',
   cyan: '#00d4ff',
   blue: '#2f6fff',
   lime: '#c4ff00',

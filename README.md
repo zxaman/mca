@@ -399,6 +399,18 @@ its own data file, registered in `src/data/questionPapers.js`.
   (never below 660 px wide, horizontally scrollable on a phone) and an **Enlarge** button that opens a
   full-screen viewer with zoom, because the diagrams are drawn on a 920 × 520 canvas.
 - Diagram labels are in English as well, so nothing inside the paper falls back to Hinglish.
+- Figures **break out of the 900 px paper column** (up to 1180 px) because a 920-unit diagram squeezed into
+  ~770 px shrinks its 7–9 px labels to about 6 px, which made the text unreadable; on a phone the canvas
+  scrolls sideways at a 900 px minimum width instead of shrinking, and muted label grey was lightened for
+  contrast.
+
+**Papers available:** `stqaPaper1` (test plan / test cases · SQA activities & metrics · building blocks &
+reliability · white box & V–W model · levels & verification/validation · static testing & black box ·
+mutation & risk · short notes on CAST, defect life cycle, JMeter, error guessing) and `stqaPaper2`
+(code coverage · cyclomatic & Halstead complexity · BVA · state/graph testing · requirement based & RTM ·
+positive & negative · integration with stubs and drivers · system vs acceptance · regression · scenario ·
+usability & accessibility · GUI · web challenges · database · Selenium WebDriver · manual vs automated ·
+automation challenges · bug tracking & debugging).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
