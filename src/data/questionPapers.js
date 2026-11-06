@@ -17,12 +17,17 @@ import { dsPaper1 } from './dsPaper1';
 import { dsPaper2 } from './dsPaper2';
 import { dsPaper3 } from './dsPaper3';
 import { dsPaper4 } from './dsPaper4';
+import { biPaper1 } from './biPaper1';
+import { biPaper2 } from './biPaper2';
+import { biPaper3 } from './biPaper3';
+import { biPaper4 } from './biPaper4';
 
 export const questionPapers = {
   'software-testing': [stqaPaper1, stqaPaper2, stqaPaper3, stqaPaper4],
   'cyber-security': [cysPaper1, cysPaper2, cysPaper3, cysPaper4],
   'data-science': [dsPaper1, dsPaper2, dsPaper3, dsPaper4],
   'web-technology': [wtPaper1, wtPaper2, wtPaper3, wtPaper4],
+  'business-intelligence': [biPaper1, biPaper2, biPaper3, biPaper4],
 };
 
 export const paperCounts = Object.fromEntries(
