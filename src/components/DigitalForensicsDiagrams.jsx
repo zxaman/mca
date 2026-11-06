@@ -439,7 +439,7 @@ export function DigitalEvidencePropertiesDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x={24} y={374} width={872} height={62} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={398} textAnchor="middle" fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          PROVE KAISE KAREIN
+          HOW TO PROVE IT
         </text>
         <text x={460} y={420} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
           SHA-256 hash · chain of custody · write blocker · full image · validated tools · 65B certificate

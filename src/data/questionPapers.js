@@ -3,9 +3,11 @@
 
 import { stqaPaper1 } from './stqaPaper1';
 import { stqaPaper2 } from './stqaPaper2';
+import { stqaPaper3 } from './stqaPaper3';
+import { stqaPaper4 } from './stqaPaper4';
 
 export const questionPapers = {
-  'software-testing': [stqaPaper1, stqaPaper2],
+  'software-testing': [stqaPaper1, stqaPaper2, stqaPaper3, stqaPaper4],
 };
 
 export const paperCounts = Object.fromEntries(

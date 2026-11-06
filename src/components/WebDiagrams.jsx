@@ -1069,7 +1069,7 @@ export function JsTypesDiagram() {
         JavaScript loosely typed hai — variable ka type value se aata hai, typeof se pata chalta hai
       </text>
 
-      <text x="20" y="76" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>DECLARE KAISE KAREIN</text>
+      <text x="20" y="76" fill="#5a6a9e" fontSize="9" fontWeight="700" fontFamily={FONT}>HOW TO DECLARE</text>
       {vars.map((v, i) => (
         <g key={v.t} className="diagram-pop" style={{ animationDelay: `${90 + i * 110}ms` }}>
           <rect x="20" y={88 + i * 82} width="380" height="70" rx="10" fill="rgba(255,255,255,0.03)" stroke={v.c} strokeWidth="1.5" strokeOpacity="0.75" />
@@ -1878,7 +1878,7 @@ export function BootstrapDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '200ms' }}>
         <rect x="320" y="72" width="330" height="196" rx="12" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.13)" />
-        <text x="336" y="94" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>KAISE USE KAREIN (CDN)</text>
+        <text x="336" y="94" fill="#c4ff00" fontSize="9" fontWeight="700" fontFamily={FONT}>HOW TO USE IT (CDN)</text>
         <text x="336" y="114" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">&lt;link href=&quot;bootstrap.min.css&quot;</text>
         <text x="336" y="128" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">      rel=&quot;stylesheet&quot;&gt;</text>
         <text x="336" y="148" fill="#9ab0e0" fontSize="7.5" fontFamily="'Consolas', monospace">bootstrap.bundle.min.js (optional)</text>
