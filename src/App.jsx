@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { subjects, units } from './data/topics';
 import TopicPage from './components/TopicPage';
 import ImportantExamQuestions from './components/ImportantExamQuestions';
+import { QuestionPapersHome, QuestionPaperView, QuestionPapersSidebar } from './components/QuestionPapers';
 import Sidebar from './components/Sidebar';
 import { Icon } from './components/Icons';
 import { getCompletedTopics } from './utils/progress';
@@ -33,6 +34,12 @@ function parseRoute() {
   const hash = window.location.hash.replace(/^#/, '') || '/';
   const parts = hash.split('/').filter(Boolean);
   if (parts.length === 0) return { level: 'home' };
+  if (parts[0] === 'question-papers') {
+    if (parts[1] && parts[2]) {
+      return { level: 'paper', qpSubjectId: parts[1], paperId: parts[2] };
+    }
+    return { level: 'papers' };
+  }
   if (parts[0] === 'subject' && parts[1]) {
     if (parts[2] === 'topic' && parts[3]) {
       return { level: 'topic', subjectId: parts[1], topicId: parts[3] };
@@ -223,6 +230,21 @@ function Home() {
             <SubjectCard key={subject.id} subject={subject} />
           ))}
         </div>
+
+        {/* Question Papers entry */}
+        <section className="qp-home-banner">
+          <div className="qp-home-banner-text">
+            <div className="section-kicker">Practice</div>
+            <h2 className="qp-home-banner-title">Question Papers</h2>
+            <p className="qp-home-banner-sub">
+              Asli exam format mein papers — 50 marks, 2½ hours, OR options. Har jawab chhupa hua
+              rehta hai; <strong>Show answer</strong> par poora answer aur diagram khulta hai.
+            </p>
+          </div>
+          <button className="btn primary qp-home-banner-cta" onClick={() => goTo('#/question-papers')}>
+            <Icon name="quiz" size={18} color="#0a0e1a" /> Open Question Papers
+          </button>
+        </section>
       </main>
     </div>
   );
@@ -299,7 +321,11 @@ export default function App() {
   );
 
   const renderContent = () => {
-    if (route.level === 'exam') {
+    if (route.level === 'papers') {
+      return <QuestionPapersHome />;
+    } else if (route.level === 'paper') {
+      return <QuestionPaperView subjectId={route.qpSubjectId} paperId={route.paperId} />;
+    } else if (route.level === 'exam') {
       return (
         <ImportantExamQuestions
           subjectId={route.subjectId}
@@ -322,6 +348,8 @@ export default function App() {
     }
   };
 
+  const isPaperSection = route.level === 'papers' || route.level === 'paper';
+
   return (
     <div className="app-with-sidebar">
       {/* Mobile menu button */}
@@ -332,15 +360,25 @@ export default function App() {
         {sidebarOpen ? '✕' : '☰'}
       </button>
 
+      {/* Question-paper section has its own paper-wise sidebar */}
+      {isPaperSection && (
+        <QuestionPapersSidebar
+          subjectId={route.qpSubjectId}
+          paperId={route.paperId}
+          onClose={() => setSidebarOpen(false)}
+          mobileOpen={sidebarOpen}
+        />
+      )}
+
       {/* Sidebar - Common across ALL pages */}
-      <Sidebar
+      {!isPaperSection && <Sidebar
         currentSubjectId={route.subjectId}
         currentUnitId={currentUnit ? currentUnit.id : null}
         currentTopicId={route.topicId}
         onNavigate={navigate}
         onClose={() => setSidebarOpen(false)}
         mobileOpen={sidebarOpen}
-      />
+      />}
 
       {/* Sidebar overlay for mobile */}
       {sidebarOpen && (
