@@ -337,6 +337,11 @@ import {
 } from './BiAnalyticsDiagrams';
 
 import {
+  St1SqaBlocksDiagram,
+  St2LevelsTestingDiagram,
+} from './StqaCoreDiagrams';
+
+import {
   VzIntroDiagram,
   VzPrinciplesDiagram,
   VzChartsDiagram,
@@ -1477,6 +1482,10 @@ export function Diagram({ type }) {
       return <VzDecisionDiagram />;
     case 'vz-ai':
       return <VzAiDiagram />;
+    case 'st1-sqa-blocks':
+      return <St1SqaBlocksDiagram />;
+    case 'st2-levels-testing':
+      return <St2LevelsTestingDiagram />;
     default:
       return null;
   }

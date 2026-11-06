@@ -10,6 +10,7 @@ import { biVisualizationUnit } from './biVisualization.js';
 import { softwareTestingUnit3Topics } from './softwareTesting3.js';
 import { softwareTestingUnit4Topics } from './softwareTesting4.js';
 import { softwareTestingUnit5Topics } from './softwareTesting5.js';
+import { stqaUnit1Extra, stqaUnit2Extra } from './softwareTestingCore.js';
 
 export const subjects = [
   {
@@ -8794,3 +8795,16 @@ export const units = {
   "data-science": dataScienceUnits,
   "web-technology": webTechnologyUnits
 };
+
+// IT-33 question papers keep asking for SQA activities / building blocks (Unit I)
+// and levels of testing with the V and W models (Unit II); these extra topics are
+// appended in syllabus order so every paper answer has a topic behind it.
+{
+  const stqaUnits = units['software-testing'] || [];
+  const byId = Object.fromEntries(stqaUnits.map((u) => [u.id, u]));
+  if (byId['unit-1']) byId['unit-1'].topics = [...byId['unit-1'].topics, ...stqaUnit1Extra];
+  if (byId['unit-2']) byId['unit-2'].topics = [...byId['unit-2'].topics, ...stqaUnit2Extra];
+  stqaUnits.forEach((u) => {
+    u.topics.sort((a, b) => String(a.number).localeCompare(String(b.number), undefined, { numeric: true }));
+  });
+}

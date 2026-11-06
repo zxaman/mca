@@ -13,7 +13,7 @@ adding a topic is just adding an object.
 |---|---|---|---|---|
 | Business Intelligence | BI | 5 | 46 | Live — Unit I (Introduction to BI) + Unit II (Data Warehousing and Data Preparation) + Unit III (Multidimensional Modeling & OLAP) + Unit IV (Business Analytics and Temporal Data) + Unit V (Data Visualization and BI Tools) |
 | Cyber Security | CYS | 5 | 83 | Live — Units I–II (basics + cybercrimes & hacking) + Unit III (Cyber Forensics) + Unit IV (Digital Forensics) + Unit V (Social Engineering) |
-| Software Testing & QA | STQA | 5 | 64 | Live |
+| Software Testing & QA | STQA | 5 | 66 | Live — Units I–V (incl. SQA activities & building blocks, levels of testing with the V and W models) |
 | Data Science | DS | 5 | 58 | Live — Units I–V |
 | Web Technology | WT | 5 | 76 | Live — Unit I (HTML/XML) + Unit II (JavaScript) + Unit III (PHP) + Unit IV (ASP.NET) + Unit V (AngularJS & Next.js) |
 
@@ -377,7 +377,7 @@ WebDriver (W3C protocol, driver binary, 8 locators, implicit/explicit/fluent wai
 (hub/router + nodes, capabilities, parallel test design) and test design considerations
 (independent atomic tests, stable locators, condition waits, test data, meaningful assertions).
 
-Curated exam-question banks: BI 77 · Cyber Security 100 · STQA 51 · Data Science 70 · Web Technology 121 (419 total).
+Curated exam-question banks: BI 77 · Cyber Security 100 · STQA 56 · Data Science 70 · Web Technology 121 (424 total).
 
 Landing rule: opening the site (no hash, `#` or `#/`) always shows the **home page** first —
 the router writes an explicit `#/` with `replaceState`, no subject is pre-selected in the sidebar, and a
