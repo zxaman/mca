@@ -3106,3 +3106,339 @@ svg.diagram-svg, svg.diagram-pop {
   .sidebar-home-btn { padding: 10px 12px; font-size: 13px; }
   .sidebar-home-hint { display: none; }
 }
+
+/* ============================================================
+   QUESTION PAPERS — paper sets home, sidebar, exam sheet
+   ============================================================ */
+
+.qp-home-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 40px 0 8px;
+  padding: 26px 28px;
+  border-radius: 18px;
+  border: 1px solid rgba(196, 255, 0, 0.28);
+  background:
+    radial-gradient(600px 200px at 0% 0%, rgba(196, 255, 0, 0.1), transparent 70%),
+    linear-gradient(180deg, rgba(16, 22, 40, 0.9), rgba(10, 14, 26, 0.9));
+}
+
+.qp-home-banner-title {
+  margin: 4px 0 6px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.qp-home-banner-sub {
+  margin: 0;
+  max-width: 620px;
+  color: #9ab0e0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.qp-home-banner-cta {
+  white-space: nowrap;
+}
+
+.qp-home-main {
+  padding-bottom: 48px;
+}
+
+.qp-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.qp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 255, 0, 0.4);
+  background: rgba(196, 255, 0, 0.08);
+  color: #e9f4ff;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qp-chip:hover {
+  background: rgba(196, 255, 0, 0.18);
+  transform: translateY(-1px);
+}
+
+.qp-chip-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c4ff00;
+  opacity: 0.85;
+}
+
+.qp-sidebar-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: calc(100% - 32px);
+  margin: 4px 16px 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(196, 255, 0, 0.32);
+  background: rgba(196, 255, 0, 0.08);
+  color: #e9f4ff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qp-sidebar-home:hover {
+  background: rgba(196, 255, 0, 0.16);
+}
+
+.sidebar-subject-code.muted {
+  color: #4a5570;
+  background: rgba(100, 130, 255, 0.06);
+}
+
+.qp-main {
+  padding: 28px 0 60px;
+}
+
+.qp-sheet {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 34px 36px 26px;
+  border-radius: 18px;
+  border: 1px solid rgba(100, 130, 255, 0.22);
+  background: linear-gradient(180deg, rgba(16, 22, 40, 0.94), rgba(9, 13, 24, 0.96));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.qp-sheet-head {
+  text-align: center;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed rgba(100, 130, 255, 0.24);
+}
+
+.qp-board {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.qp-meta-line {
+  margin: 4px 0 10px;
+  font-size: 12.5px;
+  color: #9ab0e0;
+}
+
+.qp-sheet-subject {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #c4ff00;
+}
+
+.qp-sheet-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  justify-content: center;
+  font-size: 12.5px;
+  color: #b9c6e6;
+  margin-bottom: 14px;
+}
+
+.qp-sheet-stats strong {
+  color: #ffffff;
+}
+
+.qp-instructions {
+  margin: 0 auto;
+  padding-left: 18px;
+  max-width: 620px;
+  text-align: left;
+  color: #9ab0e0;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.qp-question {
+  padding: 22px 0 6px;
+  border-bottom: 1px solid rgba(100, 130, 255, 0.12);
+}
+
+.qp-question-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.qp-question-head h3 {
+  margin: 0;
+  font-size: 15.5px;
+  color: #ffffff;
+}
+
+.qp-question-note {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #9ab0e0;
+}
+
+.qp-marks {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #ffd600;
+  white-space: nowrap;
+}
+
+.qp-or {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 6px;
+  color: #ff7ab2;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.qp-or::before,
+.qp-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 122, 178, 0.32);
+}
+
+.qp-part {
+  padding: 10px 0 6px;
+}
+
+.qp-part-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.qp-part-label {
+  font-size: 14px;
+  font-weight: 800;
+  color: #00d4ff;
+}
+
+.qp-part-marks {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffd600;
+}
+
+.qp-part-text {
+  margin: 6px 0 10px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #e6edf9;
+}
+
+.qp-answer {
+  margin-top: 4px;
+}
+
+.qp-reveal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 255, 0, 0.45);
+  background: #c4ff00;
+  color: #0a0e1a;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qp-reveal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(126, 217, 87, 0.24);
+}
+
+.qp-answer.open .qp-reveal {
+  background: rgba(196, 255, 0, 0.08);
+  border-color: rgba(196, 255, 0, 0.32);
+  color: #b9c6e6;
+}
+
+.qp-answer-body {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(196, 255, 0, 0.18);
+  background: rgba(196, 255, 0, 0.04);
+  color: #dfe7f6;
+  font-size: 13.5px;
+  line-height: 1.75;
+  animation: qpFade 0.25s ease;
+}
+
+@keyframes qpFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.qp-answer-diagram {
+  margin: 16px 0 0;
+  overflow-x: auto;
+}
+
+.qp-sheet-foot {
+  padding-top: 22px;
+  text-align: center;
+  color: #5a6a9e;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.qp-missing {
+  padding: 80px 0;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .qp-sheet {
+    padding: 22px 18px 18px;
+  }
+
+  .qp-home-banner {
+    padding: 20px;
+  }
+
+  .qp-question-head h3 {
+    font-size: 14.5px;
+  }
+}
+
+/* Short notes ("any two") — options stacked without OR dividers */
+.qp-option-flat {
+  border-top: 1px solid rgba(100, 130, 255, 0.12);
+}
+
+.qp-option-flat:first-child {
+  border-top: none;
+}
