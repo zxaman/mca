@@ -580,7 +580,7 @@ export function CookiesQueryStringDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
         <rect x={24} y={324} width={872} height={136} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.5" strokeOpacity="0.6" />
-        <text x={460} y={350} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>SENSITIVE DATA KABHI NAHI — user badal sakta hai, logs mein bhi jaata hai</text>
+        <text x={460} y={350} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>SENSITIVE DATA NEVER — the user can change it and it reaches the logs too</text>
         {[
           'password / token / role / price',
           'har value validate karo (type, length, allowed)',

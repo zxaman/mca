@@ -3571,7 +3571,7 @@ export function MarketBasketDiagram() {
         <text x="474" y="180" fill="#9ab0e0" fontSize="8.2" fontFamily={FONT}>support symmetric hai, confidence nahi</text>
 
         <rect x="460" y="206" width="320" height="148" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,136,0,0.4)" />
-        <text x="474" y="226" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>BUSINESS MEIN KYA KAREIN</text>
+        <text x="474" y="226" fill="#ff8800" fontSize="9.2" fontWeight="800" fontFamily={FONT}>WHAT TO DO IN THE BUSINESS</text>
         <text x="474" y="246" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>cross-sell / combo offer (basket value up)</text>
         <text x="474" y="264" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>store layout — saath bikne wale paas-paas</text>
         <text x="474" y="282" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>bundling aur pricing decisions</text>
@@ -4716,7 +4716,7 @@ export function ChartsSpecialDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x="20" y="404" width="760" height="94" rx="9" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.14)" />
-        <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>KAB KAUNSA</text>
+        <text x="34" y="424" fill="#c4ff00" fontSize="8.6" fontWeight="800" fontFamily={FONT}>WHICH ONE WHEN</text>
         <text x="34" y="444" fill="#dbe6ff" fontSize="8.2" fontFamily={FONT}>
           number kaise bana → waterfall · do variables ka rishta → scatter · shape/spread → histogram · outlier + groups
           → box plot

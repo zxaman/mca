@@ -114,23 +114,23 @@ export function CyberForensicsIntroDiagram() {
   return (
     <Frame
       id="cf-intro"
-      title="Cyber forensics — scope aur golden rules"
+      title="Cyber forensics — scope and golden rules"
       sub="digital crime scene → preservation + hash → analysis → legally valid report"
       label="Cyber forensics scope: disk, RAM, network, mobile and cloud sources are preserved with hashing, analysed and presented as a legally valid report under Locard principle, chain of custody and Section 65B"
     >
-      <Note x={460} y={74} text="DIGITAL CRIME SCENE — evidence ke sources" color={C.dim} size={9.6} bold />
+      <Note x={460} y={74} text="DIGITAL CRIME SCENE — sources of evidence" color={C.dim} size={9.6} bold />
       {sources.map(([t, lines, col], i) => (
         <Box key={t} x={17 + i * 180} y={84} w={166} h={86} title={t} lines={lines} color={col} delay={60 + i * 70} />
       ))}
       <Arrow x1={460} y1={170} x2={460} y2={196} color={C.lime} delay={420} label="preserve" labelDx={52} labelDy={4} />
-      <Box x={92} y={196} w={736} h={58} title="PRESERVATION + INTEGRITY" sub="write blocker / RAM dump pehle · SHA-256 hash · chain of custody" color={C.lime} delay={460} />
+      <Box x={92} y={196} w={736} h={58} title="PRESERVATION + INTEGRITY" sub="write blocker and RAM dump first · SHA-256 hash · chain of custody" color={C.lime} delay={460} />
       <Arrow x1={460} y1={254} x2={460} y2={278} color={C.orange} delay={520} />
       <Box x={92} y={278} w={736} h={58} title="EXAMINATION + ANALYSIS" sub="timeline · artifacts correlate · attacker vs user activity · reproducibility" color={C.orange} delay={560} />
       <Arrow x1={460} y1={336} x2={460} y2={360} color={C.pink} delay={620} />
       <Box x={92} y={360} w={736} h={58} title="REPORT + PRESENTATION" sub="findings · methodology · IT Act 2000 Section 65B certificate · expert testimony" color={C.pink} delay={660} />
 
       <Note x={460} y={452} text="Locard: every contact leaves a trace  ·  hash match  ·  order of volatility (RFC 3227)" color={C.dim} size={9.6} />
-      <Note x={460} y={476} text='Exam line: "Cyber forensics = digital evidence ko court-ready banane ki scientific process"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={476} text='Exam line: "Cyber forensics is the scientific process that makes digital evidence court-ready"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -155,7 +155,7 @@ export function ForensicsProcessDiagram() {
     <Frame
       id="cf-process"
       title="Cyber forensics investigation process"
-      sub="NIST SP 800-86 flow — har phase par chain of custody"
+      sub="NIST SP 800-86 flow — chain of custody at every phase"
       label="Seven phase cyber forensics investigation process: identification, preservation, acquisition, examination, analysis, documentation and reporting, each with chain of custody and hashing"
     >
       {row1.map(([t, lines, col], i) => (
@@ -168,7 +168,7 @@ export function ForensicsProcessDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x={36} y={344} width={848} height={62} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={368} textAnchor="middle" fill={C.lime} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          CHAIN OF CUSTODY — har transfer signed, sealed, hash verified
+          CHAIN OF CUSTODY — every transfer signed, sealed, hash verified
         </text>
         <text x={460} y={390} textAnchor="middle" fill={C.dim} fontSize="9.2" fontFamily={FONT}>
           exhibit number · collector · date/time · SHA-256 · storage location · access log
@@ -194,7 +194,7 @@ export function DigitalEvidenceDiagram() {
   return (
     <Frame
       id="cf-evidence"
-      title="Digital evidence — source se court tak"
+      title="Digital evidence — from source to court"
       sub="acquire → verify → analyse copy → present (original untouched)"
       label="Digital evidence handling flow: sources, write blocker and bit stream image with hash, verified working copy for analysis, and a 65B report for court"
     >
@@ -216,7 +216,7 @@ export function DigitalEvidenceDiagram() {
         </text>
         {[
           ['Authentic', 'hash + custody + logs'],
-          ['Complete', 'exculpatory bhi shamil'],
+          ['Complete', 'exculpatory evidence included'],
           ['Reliable', 'tested tools, reproducible'],
           ['Believable', 'clear, defensible'],
           ['Relevant', 'case facts se juda'],
@@ -230,8 +230,8 @@ export function DigitalEvidenceDiagram() {
       </g>
 
       <Note x={460} y={424} text="Properties: latent · fragile · volatile · duplicable · time-sensitive · cross-border" color={C.dim} size={9.6} />
-      <Note x={460} y={448} text='Exam line: "Original preserve karo, copy par kaam karo, hash se integrity prove karo"' color={C.yellow} size={9.8} bold />
-      <Note x={460} y={472} text="India: IT Act 2000 Section 65B — electronic record ka certificate" color={C.teal} size={9.4} />
+      <Note x={460} y={448} text='Exam line: "Preserve the original, work on the copy, prove integrity with a hash"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={472} text="India: IT Act 2000 Section 65B — the certificate for an electronic record" color={C.teal} size={9.4} />
     </Frame>
   );
 }
@@ -241,7 +241,7 @@ export function DigitalEvidenceDiagram() {
    ------------------------------------------------------------------ */
 export function ForensicsChallengesDiagram() {
   const items = [
-    ['ENCRYPTION', ['BitLocker / LUKS', 'key RAM mein'], C.red],
+    ['ENCRYPTION', ['BitLocker / LUKS', 'the key is in RAM'], C.red],
     ['DATA VOLUME', ['TB disks', 'millions of logs'], C.orange],
     ['ANTI-FORENSICS', ['log clear', 'timestomping'], C.purple],
     ['VOLATILITY', ['RAM, connections', 'power off = lost'], C.cyan],
@@ -251,8 +251,8 @@ export function ForensicsChallengesDiagram() {
   return (
     <Frame
       id="cf-challenges"
-      title="Cyber forensics ke challenges aur solutions"
-      sub="technical · legal · organisational — har challenge ka ek counter-source"
+      title="Challenges and solutions in cyber forensics"
+      sub="technical · legal · organisational — every challenge has a counter-source"
       label="Six cyber forensics challenges: encryption, data volume, anti-forensics, volatility, cloud and legal issues, skills and cost, with mitigation strategies such as triage, memory capture, SIEM and legal process"
     >
       {items.map(([t, lines, col], i) => (
@@ -271,7 +271,7 @@ export function ForensicsChallengesDiagram() {
           anti-forensics: SIEM + $UsnJrnl · cloud: audit log export + MLAT · skills: open-source tools
         </text>
       </g>
-      <Note x={460} y={462} text='Exam line: "Har challenge ka ek alternate evidence source hota hai — wahi investigate karo"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={462} text='Exam line: "Every challenge has an alternate evidence source — investigate that one"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -291,8 +291,8 @@ export function IntrusionForensicsDiagram() {
   return (
     <Frame
       id="cf-intrusion"
-      title="Web attack forensics — recon se exfiltration tak"
-      sub="har stage ka apna log source — milkar banate hain attack narrative"
+      title="Web attack forensics — from recon to exfiltration"
+      sub="every stage has its own log source — together they build the attack narrative"
       label="Web attack forensic chain: reconnaissance, exploitation, foothold with webshell, privilege escalation, lateral movement and exfiltration, with the log sources that record each stage"
     >
       {chain.map(([t, lines, col], i) => (
@@ -308,10 +308,10 @@ export function IntrusionForensicsDiagram() {
           EVIDENCE SOURCES
         </text>
         <text x={470} y={222} textAnchor="middle" fill={C.teal} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          ATTACK SIGNATURE (log mein)
+          ATTACK SIGNATURE (in the log)
         </text>
         <text x={780} y={222} textAnchor="middle" fill={C.teal} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          KYA PROVE HOTA HAI
+          WHAT IT PROVES
         </text>
         {[
           ['Access log', 'IP, time, URI, status'],
@@ -345,7 +345,7 @@ export function IntrusionForensicsDiagram() {
 
       <Note x={460} y={382} text="Analysis: URL/base64 decode → timeline → cross-layer correlate → affected accounts & data → preserve with hash" color={C.dim} size={9.4} />
       <Note x={460} y={408} text="Output: report + IOC list (IP, domain, user-agent, hash) + detection rules" color={C.orange} size={9.6} />
-      <Note x={460} y={440} text='Exam line: "Access log attack ki diary hoti hai — har request ek entry"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={440} text='Exam line: "The access log is the diary of the attack — every request is an entry"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -363,8 +363,8 @@ export function DatabaseForensicsDiagram() {
   return (
     <Frame
       id="cf-database"
-      title="Database forensics — logs se proof tak"
-      sub="production par modifying query nahi — restore copy par read-only analysis"
+      title="Database forensics — from logs to proof"
+      sub="no modifying query on production — read-only analysis on a restored copy"
       label="Database forensics flow: database files, transaction logs, audit trail and general logs feed a restored read-only forensic copy where log mining and replay identify who changed which records and when"
     >
       <Note x={140} y={74} text="EVIDENCE SOURCES" color={C.dim} size={9.6} bold />
@@ -385,7 +385,7 @@ export function DatabaseForensicsDiagram() {
           'page & row analysis (DBCC PAGE)',
           'log mining (mysqlbinlog, fn_dblog)',
           'checksum / row count verify',
-          'har query documented',
+          'every query documented',
         ].map((s, i) => (
           <text key={s} x={316} y={134 + i * 24} fill={C.dim} fontSize="9" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
@@ -396,22 +396,22 @@ export function DatabaseForensicsDiagram() {
           replay = deleted row wapas
         </text>
         <text x={444} y={362} textAnchor="middle" fill={C.white} fontSize="9.2" fontWeight="700" fontFamily={FONT}>
-          PITR = incident se pehle ka state
+          PITR = the state just before the incident
         </text>
       </g>
 
       <Arrow x1={592} y1={220} x2={632} y2={220} color={C.orange} delay={560} label="findings" labelDy={-6} />
       {[
         ['KISNE', ['user, IP, session'], C.orange],
-        ['KAB', ['LSN + timestamp'], C.cyan],
-        ['KYA', ['before / after image'], C.pink],
+        ['WHEN', ['LSN + timestamp'], C.cyan],
+        ['WHAT', ['before / after image'], C.pink],
       ].map(([t, lines, col], i) => (
         <Box key={t} x={632} y={82 + i * 100} w={264} h={86} title={t} lines={lines} color={col} delay={600 + i * 70} />
       ))}
 
       <Note x={460} y={404} text="Sources per DBMS: MySQL binlog · SQL Server .ldf · Oracle redo/archive · PostgreSQL WAL" color={C.dim} size={9.4} />
-      <Note x={460} y={430} text="Use: insider data theft, fraud, SQL injection ka impact, compliance (PCI DSS, DPDP Act)" color={C.orange} size={9.6} />
-      <Note x={460} y={458} text='Exam line: "Database ka sach transaction log mein hota hai, table mein nahi"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={430} text="Use: insider data theft, fraud, impact of SQL injection, compliance (PCI DSS, DPDP Act)" color={C.orange} size={9.6} />
+      <Note x={460} y={458} text='Exam line: "The truth of a database is in the transaction log, not in the table"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -430,7 +430,7 @@ export function PreventiveForensicsDiagram() {
     <Frame
       id="cf-preventive"
       title="Preventive forensics — readiness architecture"
-      sub="incident se pehle evidence ready: collect → protect → retain → investigate fast"
+      sub="evidence ready before the incident: collect → protect → retain → investigate fast"
       label="Preventive forensics architecture: hosts, network, database and cloud logs flow into central logging with NTP, FIM and EDR, then into immutable WORM storage with defined retention, enabling fast admissible investigation"
     >
       {sources.map(([t, lines, col], i) => (
@@ -439,12 +439,12 @@ export function PreventiveForensicsDiagram() {
       {[0, 1, 2, 3].map((i) => (
         <Arrow key={`d${i}`} x1={130 + i * 220} y1={162} x2={130 + i * 220} y2={190} color={C.faint} delay={340 + i * 40} />
       ))}
-      <Box x={27} y={190} w={866} h={80} title="CENTRAL LOGGING + NTP + FIM + EDR" sub="local logs attacker delete kar sakta hai — central copy safe rehti hai" lines={['sab hosts ka clock sync (UTC) · file integrity monitoring · endpoint telemetry']} color={C.lime} delay={420} />
+      <Box x={27} y={190} w={866} h={80} title="CENTRAL LOGGING + NTP + FIM + EDR" sub="the attacker can delete local logs — a central copy stays safe" lines={['clock sync (UTC) on every host · file integrity monitoring · endpoint telemetry']} color={C.lime} delay={420} />
       <Arrow x1={460} y1={270} x2={460} y2={298} color={C.orange} delay={480} />
       <Box x={27} y={298} w={866} h={76} title="IMMUTABLE / WORM STORE + RETENTION" sub="log signing · offsite copy · least privilege · no delete rights" lines={['PCI DSS 10: 1 year total, 3 months hot · firewall 6-12 months · DB audit 12 months']} color={C.orange} delay={520} />
       <Arrow x1={460} y1={374} x2={460} y2={400} color={C.pink} delay={580} />
-      <Box x={240} y={400} w={440} h={72} title="INVESTIGATION READY" sub="fast RCA + admissible evidence" lines={['timeline minutes mein, court-proof report']} color={C.pink} delay={620} />
-      <Note x={460} y={498} text='Exam line: "Bina time sync ke timeline nahi banti — NTP sabse zaroori readiness control"' color={C.yellow} size={9.6} bold />
+      <Box x={240} y={400} w={440} h={72} title="INVESTIGATION READY" sub="fast RCA + admissible evidence" lines={['a timeline in minutes and a court-proof report']} color={C.pink} delay={620} />
+      <Note x={460} y={498} text='Exam line: "Without time sync there is no timeline — NTP is the most important readiness control"' color={C.yellow} size={9.6} bold />
     </Frame>
   );
 }
@@ -462,8 +462,8 @@ export function AntiForensicsPracticesDiagram() {
   return (
     <Frame
       id="cf-antiforensics"
-      title="Anti-forensics practices — attacker ki cleanup"
-      sub="evidence ko destroy karo, chhupao, ya mislead karo"
+      title="Anti-forensics practices — the attacker cleans up"
+      sub="destroy the evidence, hide it, or mislead the investigator"
       label="Four categories of anti-forensics practices: data destruction with wiping, data hiding with encryption and steganography, trail obfuscation with log clearing and timestomping, and anti-analysis evasion with packing and sandbox detection"
     >
       {cats.map(([t, lines, col], i) => (
@@ -483,7 +483,7 @@ export function AntiForensicsPracticesDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
         <rect x={30} y={364} width={860} height={84} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={388} textAnchor="middle" fill={C.lime} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          DETECTION KE COUNTER-ARTIFACTS
+          COUNTER-ARTEFACTS FOR DETECTION
         </text>
         <text x={460} y={410} textAnchor="middle" fill={C.dim} fontSize="9.2" fontFamily={FONT}>
           central logs · $MFT / $UsnJrnl · timestamp mismatch · hash baseline · YARA / memory diff
@@ -492,7 +492,7 @@ export function AntiForensicsPracticesDiagram() {
           evidence destruction = offence + court adverse inference
         </text>
       </g>
-      <Note x={460} y={478} text='Exam line: "Anti-forensics sach ko mitaata nahi — sirf chhupata hai, nishaan reh jaata hai"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={478} text='Exam line: "Anti-forensics does not erase the truth — it only hides it, and traces remain"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -510,8 +510,8 @@ export function AntiForensicsDetectionDiagram() {
   return (
     <Frame
       id="cf-afdetect"
-      title="Anti-forensics detection — sources aur signals"
-      sub="attacker ek jagah chhupata hai, doosri jagah reh jaata hai"
+      title="Anti-forensics detection — sources and signals"
+      sub="the attacker hides in one place and leaves traces in another"
       label="Anti forensics detection: log clearing, timestomping, secure wipe and hidden data are detected through cross checking independent logs, NTFS journals, timeline anomalies, toolmarks and memory analysis"
     >
       <Note x={145} y={74} text="ANTI-FORENSIC ACTION" color={C.red} size={9.6} bold />
@@ -563,8 +563,8 @@ export function AntiForensicsDetectionDiagram() {
       ))}
 
       <Note x={460} y={404} text="Toolmarks + YARA + memory diff: Volatility pslist vs psscan, malfind, netscan" color={C.dim} size={9.4} />
-      <Note x={460} y={430} text="Negative finding bhi evidence hai — 'expected log absent' report mein likho" color={C.orange} size={9.6} />
-      <Note x={460} y={460} text='Exam line: "Presence of tampering prove karna hi detection hai"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={430} text="A negative finding is evidence too — record that the expected log is absent" color={C.orange} size={9.6} />
+      <Note x={460} y={460} text='Exam line: "Proving the presence of tampering is what detection means"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -584,7 +584,7 @@ export function NetworkForensicsToolsDiagram() {
     <Frame
       id="cf-netools"
       title="Network forensics analysis toolchain"
-      sub="packet · flow · metadata — metadata-first triage, phir deep dive"
+      sub="packet · flow · metadata — metadata-first triage, then a deep dive"
       label="Network forensics toolchain: capture with tcpdump, store and hash, decode with Wireshark and Zeek, correlate flow and IDS data, then report indicators of compromise with PCAP evidence"
     >
       {stages.map(([t, lines, col], i) => (
@@ -616,7 +616,7 @@ export function NetworkForensicsToolsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x={472} y={202} width={412} height={168} rx="12" fill="rgba(255,255,255,0.03)" stroke={C.orange} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={678} y={226} textAnchor="middle" fill={C.orange} fontSize="10.2" fontWeight="800" fontFamily={FONT}>
-          ENCRYPTION KE BAAD BHI KYA DIKHTA HAI
+          WHAT IS STILL VISIBLE AFTER ENCRYPTION
         </text>
         {[
           ['DNS query + qtype', 'tunnelling, DGA'],
@@ -634,7 +634,7 @@ export function NetworkForensicsToolsDiagram() {
 
       <Note x={460} y={392} text="Triage: flow records se suspicious host pair → targeted PCAP → filters (http.request, dns.qry.name, tls SNI)" color={C.dim} size={9.2} />
       <Note x={460} y={416} text="Beaconing signature: same destination, regular interval, small constant bytes, periodic DNS" color={C.orange} size={9.4} />
-      <Note x={460} y={448} text='Exam line: "Aaj content encrypted hai, evidence metadata mein hai"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={448} text='Exam line: "Today the content is encrypted, so the evidence is in the metadata"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -656,8 +656,8 @@ export function MalwareTypesDiagram() {
   return (
     <Frame
       id="cf-malware"
-      title="Malware types — behaviour aur forensic artifact"
-      sub="family identify hone par uske IOC se poore network par hunting"
+      title="Malware types — behaviour and forensic artefact"
+      sub="once the family is identified, hunt the whole network with its IOCs"
       label="Eight malware types: virus, worm, trojan, ransomware, spyware, rootkit, botnet and fileless malware, each with its behaviour and the forensic artifact it leaves behind"
     >
       {types.map(([t, lines, col], i) => (
@@ -677,16 +677,16 @@ export function MalwareTypesDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={26} y={356} width={862} height={86} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={380} textAnchor="middle" fill={C.lime} fontSize="10.2" fontWeight="800" fontFamily={FONT}>
-          MALWARE FORENSICS KE SAWAAL
+          QUESTIONS OF MALWARE FORENSICS
         </text>
         <text x={460} y={402} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
           process + parent · dropper source · persistence · C2 · dropped/encrypted files · privilege · lateral movement
         </text>
         <text x={460} y={424} textAnchor="middle" fill={C.orange} fontSize="9" fontFamily={FONT}>
-          data gaya? volume + destination · hash / YARA match · containment steps
+          was data taken? volume and destination · hash or YARA match · containment steps
         </text>
       </g>
-      <Note x={460} y={466} text='Exam line: "Malware ka naam nahi, uska behaviour aur artifact likho"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={466} text='Exam line: "Write the behaviour and the artefact, not the name of the malware"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -706,7 +706,7 @@ export function MalwareAnalysisDiagram() {
     <Frame
       id="cf-malanalysis"
       title="Malware analysis workflow"
-      sub="static + dynamic + memory — teeno milkar poora behaviour dete hain"
+      sub="static + dynamic + memory — together they give the full behaviour"
       label="Malware analysis workflow: triage by hash and file type, static analysis with PEStudio and Ghidra, dynamic analysis in an isolated VM with Procmon and Wireshark, memory analysis with Volatility, and output of IOCs and detection rules"
     >
       {stages.map(([t, lines, col], i) => (
@@ -719,7 +719,7 @@ export function MalwareAnalysisDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '500ms' }}>
         <rect x={36} y={198} width={420} height={140} rx="12" fill="rgba(255,255,255,0.03)" stroke={C.green} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={246} y={222} textAnchor="middle" fill={C.green} fontSize="10.2" fontWeight="800" fontFamily={FONT}>
-          STATIC TOOLS (sample run nahi hota)
+          STATIC TOOLS (the sample is not run)
         </text>
         {[
           ['PEStudio / DIE', 'sections, imports, entropy'],
@@ -761,7 +761,7 @@ export function MalwareAnalysisDiagram() {
           host-only network · snapshot before run · INetSim fake internet · no real credentials · hash + custody
         </text>
         <text x={460} y={412} textAnchor="middle" fill={C.faint} fontSize="8.6" fontFamily={FONT}>
-          galat setup = real breach ya contaminated evidence
+          a wrong setup means a real breach or contaminated evidence
         </text>
       </g>
       <Note x={460} y={452} text='Exam line: "Static se hypothesis, dynamic se confirmation, memory se fileless part"' color={C.yellow} size={9.8} bold />
@@ -770,7 +770,7 @@ export function MalwareAnalysisDiagram() {
 }
 
 /* ------------------------------------------------------------------
-   3.13 — E-mail flow aur header chain
+   3.13 — E-mail flow and the header chain
    ------------------------------------------------------------------ */
 export function EmailProtocolsDiagram() {
   const hops = [
@@ -783,8 +783,8 @@ export function EmailProtocolsDiagram() {
   return (
     <Frame
       id="cf-email"
-      title="E-mail flow aur header chain"
-      sub="SMTP bhejta hai, IMAP/POP3 padhte hain — har hop ek Received line likhta hai"
+      title="E-mail flow and the header chain"
+      sub="SMTP sends, IMAP and POP3 read — every hop writes one Received line"
       label="Email delivery flow: sender client submits over SMTP, sender MTA relays after DNS MX lookup to the recipient server, and the mailbox is read over IMAP or POP3, with each hop adding a Received header"
     >
       {hops.map(([t, lines, col], i) => (
@@ -797,13 +797,13 @@ export function EmailProtocolsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x={20} y={186} width={880} height={166} rx="12" fill="rgba(255,255,255,0.03)" stroke={C.teal} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={460} y={210} textAnchor="middle" fill={C.teal} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          HEADERS — forensic gold (neeche se upar padho)
+          HEADERS — forensic gold (read from bottom to top)
         </text>
         {[
-          ['Received', 'har hop ka IP + time'],
+          ['Received', 'IP and time of every hop'],
           ['Message-ID', 'originating system'],
           ['Return-Path', 'envelope sender'],
-          ['From / Reply-To', 'visible sender (spoof ho sakta)'],
+          ['From / Reply-To', 'visible sender (can be spoofed)'],
           ['Date', 'sending time + timezone'],
           ['X-Mailer', 'client / script'],
           ['Authentication-Results', 'SPF / DKIM / DMARC'],
@@ -815,21 +815,21 @@ export function EmailProtocolsDiagram() {
           </g>
         ))}
         <text x={460} y={338} textAnchor="middle" fill={C.orange} fontSize="9" fontFamily={FONT}>
-          Received chain neeche se upar: sabse neeche wala = originating server
+          Received chain from bottom to top: the lowest line is the originating server
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
         <rect x={20} y={364} width={880} height={60} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={460} y={388} textAnchor="middle" fill={C.red} fontSize="9.8" fontWeight="800" fontFamily={FONT}>
-          SPOOFING KE SIGNAL: Return-Path vs From mismatch · Message-ID domain mismatch · spf=fail / dkim=none / dmarc=fail
+          SIGNS OF SPOOFING: Return-Path vs From mismatch · Message-ID domain mismatch · spf=fail / dkim=none / dmarc=fail
         </text>
         <text x={460} y={408} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          raw source (.eml) export karo — forward karne se headers badal jaate hain
+          export the raw source (.eml) — forwarding changes the headers
         </text>
       </g>
       <Note x={460} y={452} text="Evidence: server MTA logs, mailbox export (PST/MBOX/EML), webmail audit logs, provider records" color={C.dim} size={9.4} />
-      <Note x={460} y={478} text='Exam line: "Header jhooth nahi bolta — bas usse padhna aana chahiye"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={478} text='Exam line: "A header does not lie — you only have to know how to read it"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
@@ -840,7 +840,7 @@ export function EmailProtocolsDiagram() {
 export function EmailCrimeDiagram() {
   const chain = [
     ['1. COMPLAINT', ['victim report', 'screenshots'], C.cyan],
-    ['2. PRESERVE', ['raw .eml + hash', 'na forward karo'], C.green],
+    ['2. PRESERVE', ['raw .eml + hash', 'do not forward the mail'], C.green],
     ['3. HEADER + IP', ['Received chain', 'geo-IP, SPF'], C.lime],
     ['4. CONTENT', ['URL + attachment', 'sandbox detonate'], C.orange],
     ['5. MAILBOX LOGS', ['login IP, rules', 'OAuth grant'], C.purple],
@@ -874,15 +874,15 @@ export function EmailCrimeDiagram() {
           CRIME TYPES: phishing · spoofing · BEC · malware mail · spam · mail bombing · stalking · insider leak
         </text>
         <text x={460} y={372} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          BEC mein sabse pehle dekho: hidden forwarding rule, OAuth consent grant, MFA bypass, new bank beneficiary
+          In BEC check first: hidden forwarding rule, OAuth consent grant, MFA bypass, new bank beneficiary
         </text>
         <text x={460} y={392} textAnchor="middle" fill={C.orange} fontSize="9" fontFamily={FONT}>
           India: IT Act 66 / 66C / 66D + BNS cheating &amp; forgery + Section 65B certificate
         </text>
       </g>
       <Note x={460} y={432} text="Attribution: originating IP + ASN + geo · mailbox login history · device/browser fingerprint" color={C.dim} size={9.2} />
-      <Note x={460} y={456} text="Impact: kitne users ko gayi, kitne ne click kiya, kitna paisa/data gaya — quantify karo" color={C.dim} size={9.2} />
-      <Note x={460} y={484} text='Exam line: "E-mail case header se shuru hota hai, logs se decide hota hai"' color={C.yellow} size={9.8} bold />
+      <Note x={460} y={456} text="Impact: how many users received it, how many clicked, how much money or data was lost — quantify it" color={C.dim} size={9.2} />
+      <Note x={460} y={484} text='Exam line: "An e-mail case starts with the headers and is decided by the logs"' color={C.yellow} size={9.8} bold />
     </Frame>
   );
 }
