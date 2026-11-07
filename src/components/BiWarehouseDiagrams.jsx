@@ -108,13 +108,13 @@ export function BwOltpVsOlapDiagram() {
     <Frame
       id="bw-oltp-olap"
       title="Operational database vs data warehouse — OLTP vs OLAP"
-      sub="ek business chalata hai, doosra business ko samajhne mein help karta hai"
+      sub="one runs the business, the other helps understand it"
       label="Left side operational OLTP systems with clerks and apps doing many small transactions, right side a subject-oriented OLAP warehouse answering few large analytical queries, joined by an ETL pipeline, with a contrast table of schema, data, size and users"
     >
-      <Box x={24} y={72} w={250} h={148} title="OLTP SOURCES" sub="roz ka kaam" color={C.cyan} delay={60}
+      <Box x={24} y={72} w={250} h={148} title="OLTP SOURCES" sub="day-to-day work" color={C.cyan} delay={60}
         lines={['billing, orders, banking core', 'many small read-write', 'normalized (3NF)', 'current, detailed data']} />
       <Arrow x1={276} y1={146} x2={316} y2={146} color={C.lime} delay={220} label="ETL" labelDy={-10} />
-      <Box x={318} y={72} w={250} h={148} title="DATA WAREHOUSE" sub="analysis ke liye" color={C.green} delay={140}
+      <Box x={318} y={72} w={250} h={148} title="DATA WAREHOUSE" sub="for analysis" color={C.green} delay={140}
         lines={['subject-oriented model', 'denormalized star schema', 'historical + summarized', 'read-only, stable snapshot']} />
       <Arrow x1={570} y1={146} x2={610} y2={146} color={C.lime} delay={300} label="OLAP" labelDy={-10} />
       <Box x={612} y={72} w={284} h={148} title="BI / ANALYTICS" sub="decisions" color={C.purple} delay={220}
@@ -146,7 +146,7 @@ export function BwOltpVsOlapDiagram() {
       </g>
 
       <Note x={460} y={470} text="OLTP = system of record for transactions | OLAP = system of record for history" color={C.orange} size={9.2} />
-      <Note x={460} y={496} text='Exam line: "Warehouse operational system ka replacement nahi, uska analytical partner hai"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={496} text='Exam line: &quot;a warehouse is not a replacement for the operational system, it is its analytical partner&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -156,7 +156,7 @@ export function BwOltpVsOlapDiagram() {
    ------------------------------------------------------------------ */
 export function BwCharacteristicsDiagram() {
   const pillars = [
-    ['SUBJECT-ORIENTED', ['customer, product, sales', 'application ke hisaab se nahi'], C.cyan],
+    ['SUBJECT-ORIENTED', ['customer, product, sales', 'not by application'], C.cyan],
     ['INTEGRATED', ['naming, coding, units, format', 'one customer, one truth'], C.green],
     ['TIME-VARIANT', ['history + time dimension', 'snapshots, effective dates'], C.orange],
     ['NON-VOLATILE', ['bulk load, no user updates', 'stable snapshot, reproducible'], C.purple],
@@ -189,19 +189,19 @@ export function BwCharacteristicsDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x={472} y={202} width={424} height={150} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.7" />
-        <text x={684} y={226} textAnchor="middle" fill={C.purple} fontSize="10.2" fontWeight="800" fontFamily={FONT}>NON-VOLATILE — matlab</text>
+        <text x={684} y={226} textAnchor="middle" fill={C.purple} fontSize="10.2" fontWeight="800" fontFamily={FONT}>NON-VOLATILE - what it means</text>
         {[
-          'data bulk load se aata hai (ETL)',
-          'analyst sirf SELECT karta hai',
-          'correction = naya snapshot/load',
-          'purana record preserve rehta hai',
+          'data arrives by bulk load (ETL)',
+          'the analyst only runs SELECT',
+          'correction = a new snapshot or load',
+          'the old record is kept',
           'report dobara chalao -> same number',
         ].map((s, i) => (
           <text key={s} x={492} y={250 + i * 20} fill={C.dim} fontSize="8.6" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
       </g>
 
-      <Note x={460} y={378} text="PRACTICAL PROPERTIES — exam mein bonus points" color={C.dim} size={9.6} bold />
+      <Note x={460} y={378} text="PRACTICAL PROPERTIES - bonus marks in the exam" color={C.dim} size={9.6} bold />
       {[
         ['SUMMARIZED', 'multi-level aggregates', C.teal],
         ['METADATA', 'dictionary + glossary', C.cyan],
@@ -212,8 +212,8 @@ export function BwCharacteristicsDiagram() {
         <Box key={t} x={24 + i * 178} y={388} w={160} h={68} title={t} lines={[s]} color={col} delay={560 + i * 50} />
       ))}
 
-      <Note x={460} y={484} text='Exam line: "SITN = subject, integrated, time-variant, non-volatile — warehouse ki chaar pehchaan"' color={C.yellow} size={9.2} bold />
-      <Note x={460} y={508} text="70% effort integration + quality mein jaata hai, sirf 30% database aur reporting mein" color={C.dim} size={8.8} />
+      <Note x={460} y={484} text='Exam line: "SITN = subject-oriented, integrated, time-variant, non-volatile — the four marks of a warehouse"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={508} text="70% of the effort goes into integration and quality, only 30% into the database and reporting" color={C.dim} size={8.8} />
     </Frame>
   );
 }
@@ -297,7 +297,7 @@ export function BwArchitectureDiagram() {
           SPANS ALL TIERS: metadata repository · scheduler / ETL manager · security &amp; audit
         </text>
         <text x={460} y={480} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>
-          three-tier = storage, serving aur consumption alag — har layer independently scale hoti hai
+          three tiers = storage, serving and consumption apart - each layer scales independently
         </text>
       </g>
       <Note x={460} y={508} text="Exam line: bottom = data, middle = OLAP intelligence, top = user" color={C.yellow} size={9.2} bold />
@@ -313,7 +313,7 @@ export function BwEtlDiagram() {
     <Frame
       id="bw-etl"
       title="ETL — extract, transform, load"
-      sub="source se warehouse tak: staging, rules, validation, audit"
+      sub="from source to warehouse: staging, rules, validation, audit"
       label="ETL pipeline: sources extracted into a staging area, transformation rules applied, then loaded into fact and dimension tables with validation, rejects and audit logging, plus an ETL versus ELT comparison"
     >
       <Note x={460} y={80} text="PIPELINE" color={C.dim} size={9.6} bold />
@@ -337,7 +337,7 @@ export function BwEtlDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x={24} y={198} width={430} height={134} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.7" />
-        <text x={239} y={222} textAnchor="middle" fill={C.purple} fontSize="10.2" fontWeight="800" fontFamily={FONT}>TRANSFORM — andar kya hota hai</text>
+        <text x={239} y={222} textAnchor="middle" fill={C.purple} fontSize="10.2" fontWeight="800" fontFamily={FONT}>TRANSFORM - what happens inside</text>
         {[
           'clean: nulls, invalid, whitespace, encoding',
           'standardise: date, unit, currency, code',
@@ -369,20 +369,20 @@ export function BwEtlDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
         <rect x={24} y={358} width={430} height={94} rx="10" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={239} y={380} textAnchor="middle" fill={C.cyan} fontSize="9.8" fontWeight="800" fontFamily={FONT}>ETL</text>
-        <text x={239} y={400} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>transform, phir load</text>
+        <text x={239} y={400} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>transform, then load</text>
         <text x={239} y={416} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>separate engine, on-prem DW</text>
-        <text x={239} y={434} textAnchor="middle" fill={C.faint} fontSize="8" fontFamily={FONT}>raw warehouse mein nahi aata</text>
+        <text x={239} y={434} textAnchor="middle" fill={C.faint} fontSize="8" fontFamily={FONT}>raw never enters the warehouse</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={466} y={358} width={430} height={94} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={681} y={380} textAnchor="middle" fill={C.lime} fontSize="9.8" fontWeight="800" fontFamily={FONT}>ELT</text>
-        <text x={681} y={400} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>load raw, phir warehouse mein transform</text>
+        <text x={681} y={400} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>load raw, then transform inside the warehouse</text>
         <text x={681} y={416} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>cloud columnar, SQL-based</text>
-        <text x={681} y={434} textAnchor="middle" fill={C.faint} fontSize="8" fontFamily={FONT}>raw layer se reprocess possible</text>
+        <text x={681} y={434} textAnchor="middle" fill={C.faint} fontSize="8" fontFamily={FONT}>reprocessing is possible from the raw layer</text>
       </g>
 
       <Note x={460} y={472} text="Golden rules: idempotent · restartable · reconciled · monitored (freshness SLA) · documented" color={C.orange} size={9} />
-      <Note x={460} y={498} text='Exam line: "ETL ka kaam data move karna nahi, data ko trustworthy banana hai"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={498} text='Exam line: &quot;the job of ETL is not to move data, it is to make data trustworthy&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -394,7 +394,7 @@ export function BwCleaningDiagram() {
   return (
     <Frame
       id="bw-cleaning"
-      title="Data cleaning techniques — defect se fix tak"
+      title="Data cleaning techniques - from defect to fix"
       sub="profile -> missing -> duplicate -> outlier -> standardise -> validate"
       label="Data cleaning pipeline from profiling through missing values, duplicates, outliers, standardisation and validation, with the technique choices for each defect and the golden rules of logging and preserving raw data"
     >
@@ -418,14 +418,14 @@ export function BwCleaningDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={24} y={176} width={424} height={148} rx="12" fill="rgba(255,214,0,0.05)" stroke={C.yellow} strokeWidth="1.4" strokeOpacity="0.7" />
-        <text x={236} y={200} textAnchor="middle" fill={C.yellow} fontSize="10.2" fontWeight="800" fontFamily={FONT}>MISSING VALUES — kya chuno</text>
+        <text x={236} y={200} textAnchor="middle" fill={C.yellow} fontSize="10.2" fontWeight="800" fontFamily={FONT}>MISSING VALUES - what to choose</text>
         {[
-          'delete row: bahut kam affected, unreliable',
+          'delete the row: few rows affected, unreliable',
           'delete column: >60-70% null',
           'mean/median: numeric (median if skewed)',
           'mode: categorical',
           'regression / KNN: correlated fields available',
-          'business default + flag: audit trail ke liye',
+          'business default plus flag: keeps an audit trail',
         ].map((s, i) => (
           <text key={s} x={44} y={224 + i * 17} fill={C.dim} fontSize="8.4" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
@@ -433,7 +433,7 @@ export function BwCleaningDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
         <rect x={472} y={176} width={424} height={148} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.7" />
-        <text x={684} y={200} textAnchor="middle" fill={C.purple} fontSize="10.2" fontWeight="800" fontFamily={FONT}>DUPLICATES — kaise pakdein</text>
+        <text x={684} y={200} textAnchor="middle" fill={C.purple} fontSize="10.2" fontWeight="800" fontFamily={FONT}>DUPLICATES - how to catch them</text>
         {[
           'exact match: key, email, phone',
           'fuzzy: Levenshtein, Jaro-Winkler',
@@ -446,7 +446,7 @@ export function BwCleaningDiagram() {
         ))}
       </g>
 
-      <Note x={460} y={346} text="DEFECT SE TECHNIQUE — quick map" color={C.dim} size={9.6} bold />
+      <Note x={460} y={346} text="FROM DEFECT TO TECHNIQUE - a quick map" color={C.dim} size={9.6} bold />
       {[
         ['NULL', 'impute or flag', C.orange],
         ['DUPLICATE', 'fuzzy + survivor', C.purple],
@@ -468,10 +468,10 @@ export function BwCleaningDiagram() {
           GOLDEN RULES — measure first, preserve raw, log every change, flag (don&apos;t hide), fix at source
         </text>
         <text x={460} y={468} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>
-          over-cleaning se genuine business event delete ho sakta hai — outlier ko reason code ke saath review karo
+          over-cleaning can delete a genuine business event - review an outlier with a reason code
         </text>
       </g>
-      <Note x={460} y={504} text='Exam line: "Cleaning ke bina warehouse ganda data ka bada store hai"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={504} text='Exam line: &quot;without cleaning a warehouse is just a large store of dirty data&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -484,7 +484,7 @@ export function BwIntegrationDiagram() {
     <Frame
       id="bw-integration"
       title="Data integration from heterogeneous sources"
-      sub="chaar level ki heterogeneity, paanch approach, ek canonical model"
+      sub="four levels of heterogeneity, five approaches, one canonical model"
       label="Heterogeneous sources feeding profiling, canonical model, mapping, entity and conflict resolution into an integrated view, with the four heterogeneity levels and the comparison of ETL ELT EAI virtualisation and MDM approaches"
     >
       <Note x={460} y={78} text="SOURCES — silos" color={C.dim} size={9.6} bold />
@@ -503,7 +503,7 @@ export function BwIntegrationDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={120} y={186} width={680} height={62} rx="12" fill="rgba(196,255,0,0.06)" stroke={C.lime} strokeWidth="1.5" strokeOpacity="0.8" />
         <text x={460} y={208} textAnchor="middle" fill={C.lime} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          CANONICAL MODEL — ek customer, ek product, ek date
+          CANONICAL MODEL — one customer, one product, one date
         </text>
         <text x={460} y={228} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>
           profile, mapping, transformation rules, entity resolution, conflict resolution, surrogate keys
@@ -548,7 +548,7 @@ export function BwIntegrationDiagram() {
           governance: lineage, ownership, PII masking, versioned mappings, change-data-capture
         </text>
       </g>
-      <Note x={460} y={510} text='Exam line: "Integration many silos ko one enterprise view banata hai"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={510} text='Exam line: &quot;integration turns many silos into one enterprise view&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -560,8 +560,8 @@ export function BwMetadataDiagram() {
   return (
     <Frame
       id="bw-metadata"
-      title="Metadata — data ke baare mein data"
-      sub="technical, business aur operational metadata ek repository mein"
+      title="Metadata - data about data"
+      sub="technical, business and operational metadata in one repository"
       label="Three metadata types technical business and operational feeding a metadata repository, which powers discovery, lineage and impact analysis, KPI consistency, quality monitoring and governance"
     >
       {[
@@ -586,16 +586,16 @@ export function BwMetadataDiagram() {
         </text>
       </g>
 
-      <Note x={460} y={292} text="IMPORTANCE — kya possible hota hai" color={C.dim} size={9.6} bold />
+      <Note x={460} y={292} text="IMPORTANCE - what becomes possible" color={C.dim} size={9.6} bold />
       {[
-        ['DISCOVERY', 'analyst ko table milta hai', C.cyan],
-        ['UNDERSTANDING', 'definition ke saath KPI', C.green],
-        ['IMPACT', 'change se kaun tootega', C.yellow],
-        ['LINEAGE', 'source se report ka raasta', C.purple],
-        ['AUDIT', 'regulator ko proof', C.red],
+        ['DISCOVERY', 'the analyst finds the table', C.cyan],
+        ['UNDERSTANDING', 'a KPI with its definition', C.green],
+        ['IMPACT', 'who breaks if this changes', C.yellow],
+        ['LINEAGE', 'the path from source to report', C.purple],
+        ['AUDIT', 'proof for the regulator', C.red],
         ['SECURITY', 'PII class + retention', C.teal],
         ['QUALITY', 'freshness, DQ score', C.orange],
-        ['SPEED', 'onboarding dinon mein', C.pink],
+        ['SPEED', 'onboarding in days', C.pink],
       ].map(([t, s, col], i) => (
         <g key={t}>
           <rect x={24 + (i % 4) * 222} y={302 + Math.floor(i / 4) * 66} width={204} height={56} rx="9" fill={col} fillOpacity="0.06" stroke={col} strokeWidth="1.2" strokeOpacity="0.7" />
@@ -607,13 +607,13 @@ export function BwMetadataDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={24} y={444} width={872} height={44} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={460} y={464} textAnchor="middle" fill={C.lime} fontSize="9" fontWeight="700" fontFamily={FONT}>
-          Example: column drop karne se pehle catalogue batata hai — 14 reports, 3 dashboards aur 1 regulatory report depend karte hain
+          Example: before dropping a column the catalogue shows 14 reports, 3 dashboards and 1 regulatory report depend on it
         </text>
         <text x={460} y={480} textAnchor="middle" fill={C.dim} fontSize="8" fontFamily={FONT}>
-          metadata ke bina warehouse andha hai — data swamp; metadata ke saath data asset
+          without metadata a warehouse is blind - a data swamp; with metadata it is a data asset
         </text>
       </g>
-      <Note x={460} y={508} text='Exam line: "Metadata = discovery + trust + audit ka aadhaar"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={508} text='Exam line: &quot;metadata is the foundation of discovery, trust and audit&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -625,8 +625,8 @@ export function BwDataQualityDiagram() {
   return (
     <Frame
       id="bw-dq"
-      title="Data quality — dimensions, challenges aur lifecycle"
-      sub="fit for use: sahi, poora, consistent, time par"
+      title="Data quality - dimensions, challenges and lifecycle"
+      sub="fit for use: correct, complete, consistent, on time"
       label="Eight data quality dimensions with failure examples, the quality lifecycle of define assess cleanse monitor govern, and the common challenges such as silos manual entry and ownership gaps"
     >
       <Note x={460} y={78} text="DIMENSIONS — fit for use" color={C.dim} size={9.6} bold />
@@ -664,12 +664,12 @@ export function BwDataQualityDiagram() {
 
       <Note x={690} y={228} text="CHALLENGES" color={C.dim} size={9.4} bold />
       {[
-        ['SILOS', 'alag format, code, definition'],
+        ['SILOS', 'different format, code, definition'],
         ['MANUAL ENTRY', 'typos, shortcuts, nulls'],
-        ['NO UPSTREAM RULE', 'source app mein validation nahi'],
-        ['LATE DETECTION', 'report ke time pata chalta'],
+        ['NO UPSTREAM RULE', 'no validation in the source application'],
+        ['LATE DETECTION', 'found out at report time'],
         ['PATCHING', 'warehouse fix temporary'],
-        ['OWNERSHIP GAP', 'data kiski, koi answer nahi'],
+        ['OWNERSHIP GAP', 'whose data is it - nobody answers'],
       ].map(([t, s], i) => (
         <g key={t}>
           <rect x={486} y={238 + i * 34} width={410} height={28} rx="8" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.1" strokeOpacity="0.55" />
@@ -684,10 +684,10 @@ export function BwDataQualityDiagram() {
           Measurement: rule checks · completeness % · uniqueness % · freshness vs SLA · referential pass % · DQ score (0-100)
         </text>
         <text x={460} y={480} textAnchor="middle" fill={C.dim} fontSize="8" fontFamily={FONT}>
-          fix at source — warehouse par sirf patch karna har load par dobara karna padta hai
+          fix at source - patching in the warehouse must be repeated at every load
         </text>
       </g>
-      <Note x={460} y={508} text='Exam line: "Galat data se BI tez galat decision deta hai"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={508} text='Exam line: &quot;wrong data makes BI take the wrong decision faster&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -699,11 +699,11 @@ export function BwAiPrepDiagram() {
   return (
     <Frame
       id="bw-ai-etl"
-      title="AI aur LLMs in data preparation"
-      sub="suggest -> validate -> human approve -> version + log"
+      title="AI and LLMs in data preparation"
+      sub="suggest -> validate -> human approves -> version and log"
       label="AI touchpoints across profiling, schema mapping, cleaning, document extraction, code generation and pipeline agents, with benefits and the risks of hallucination privacy drift and bias along with human-in-the-loop controls"
     >
-      <Note x={460} y={78} text="AI TOUCHPOINTS — pipeline ke har stage par" color={C.dim} size={9.6} bold />
+      <Note x={460} y={78} text="AI TOUCHPOINTS - at every stage of the pipeline" color={C.dim} size={9.6} bold />
       {[
         ['PROFILING', ['cluster tables', 'key + join suggest'], C.teal],
         ['MAPPING', ['source -> target', 'transform logic'], C.cyan],
@@ -718,10 +718,10 @@ export function BwAiPrepDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x={24} y={186} width={872} height={52} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={460} y={208} textAnchor="middle" fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          LOOP — AI suggest karta hai, rules validate karte hain, insaan approve karta hai
+          THE LOOP - AI suggests, rules validate, a human approves
         </text>
         <text x={460} y={226} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>
-          har generated rule ka review + version + log — warna "model ne kaha tha" audit mein kaam nahi aayega
+          every generated rule is reviewed, versioned and logged - else &quot;the model said so&quot; is no use in an audit
         </text>
       </g>
 
@@ -729,11 +729,11 @@ export function BwAiPrepDiagram() {
         <rect x={24} y={252} width={424} height={162} rx="12" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={236} y={276} textAnchor="middle" fill={C.green} fontSize="10.2" fontWeight="800" fontFamily={FONT}>BENEFITS</text>
         {[
-          'mapping setup time tezi se kam',
-          'unstructured data ka coverage (PDF, mail)',
-          'anomaly jo manual rules miss karte hain',
-          'NL se rule likhna, docs auto-generate',
-          'skill barrier kam — SQL/pandas generated',
+          'mapping setup time falls sharply',
+          'coverage of unstructured data (PDF, mail)',
+          'anomalies that manual rules miss',
+          'write a rule in natural language, generate the docs',
+          'lower skill barrier - SQL and pandas generated',
           'monitoring agents 24x7',
         ].map((s, i) => (
           <text key={s} x={44} y={300 + i * 18} fill={C.dim} fontSize="8.4" fontFamily={FONT}>{`- ${s}`}</text>
@@ -745,10 +745,10 @@ export function BwAiPrepDiagram() {
         <text x={684} y={276} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>RISKS</text>
         {[
           'hallucination: invented mapping/field',
-          'non-determinism: same input, alag output',
-          'privacy: PII external model ko',
-          'prompt injection: document ke andar order',
-          'bias: imputation aur matching mein',
+          'non-determinism: same input, different output',
+          'privacy: PII sent to an external model',
+          'prompt injection: an instruction inside a document',
+          'bias: in imputation and matching',
           'drift + cost: model badla, accuracy giri',
         ].map((s, i) => (
           <text key={s} x={492} y={300 + i * 18} fill={C.dim} fontSize="8.4" fontFamily={FONT}>{`- ${s}`}</text>
@@ -764,7 +764,7 @@ export function BwAiPrepDiagram() {
           example: LLM invoice extraction + rules (GSTIN checksum, total = line items, PO exists), confidence low to human queue
         </text>
       </g>
-      <Note x={460} y={506} text='Exam line: "AI speed deta hai, governance bharosa deti hai"' color={C.yellow} size={9.2} bold />
+      <Note x={460} y={506} text='Exam line: &quot;AI gives speed, governance gives trust&quot;' color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }

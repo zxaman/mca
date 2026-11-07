@@ -127,12 +127,12 @@ export function JsFrameworksDiagram() {
     <Frame
       h={520}
       title="JavaScript frameworks ka landscape"
-      sub="library vs framework · SPA ka flow · 2006 se aaj tak"
+      sub="library vs framework · the SPA flow · from 2006 to today"
       label="JavaScript frameworks: the difference between a library and a framework, the single page application flow, and a timeline from jQuery 2006 to Next.js"
     >
-      <Box x={24} y={78} w={276} h={126} title="LIBRARY" sub="aap code ko call karte ho" lines={['jQuery · Lodash · Axios', 'ek kaam ka tool', '$("#box").hide()']} color={C.cyan} delay={60} />
-      <Box x={322} y={78} w={276} h={126} title="FRAMEWORK" sub="framework aapke code ko call karta hai" lines={['AngularJS · Angular · Vue', 'poora app structure', 'ng-app se bootstrap']} color={C.orange} delay={160} />
-      <Box x={620} y={78} w={276} h={126} title="SPA" sub="ek HTML shell + client routing" lines={['JSON data, koi page reload', 'framework ki zaroorat', 'SEO ka issue → SSR']} color={C.lime} delay={260} />
+      <Box x={24} y={78} w={276} h={126} title="LIBRARY" sub="you call the code" lines={['jQuery · Lodash · Axios', 'a single-purpose tool', '$("#box").hide()']} color={C.cyan} delay={60} />
+      <Box x={322} y={78} w={276} h={126} title="FRAMEWORK" sub="the framework calls your code" lines={['AngularJS · Angular · Vue', 'the whole app structure', 'ng-app se bootstrap']} color={C.orange} delay={160} />
+      <Box x={620} y={78} w={276} h={126} title="SPA" sub="ek HTML shell + client routing" lines={['JSON data, no page reload', 'framework ki zaroorat', 'SEO ka issue → SSR']} color={C.lime} delay={260} />
 
       <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
         <rect x={24} y={224} width={872} height={92} rx="12" fill="rgba(255,255,255,0.03)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.6" />
@@ -162,8 +162,8 @@ export function JsFrameworksDiagram() {
         </g>
       ))}
 
-      <Note x={460} y={474} text="Inversion of control: library mein aap call karte ho, framework aapko call karta hai" color={C.dim} size={9.8} />
-      <Note x={460} y={496} text="AngularJS (2010) pehla mainstream SPA framework — Dec 2021 mein EOL" color={C.pink} size={9.6} bold />
+      <Note x={460} y={474} text="Inversion of control: with a library you call it, with a framework it calls you" color={C.dim} size={9.8} />
+      <Note x={460} y={496} text="AngularJS (2010) was the first mainstream SPA framework — end of life in Dec 2021" color={C.pink} size={9.6} bold />
     </Frame>
   );
 }
@@ -185,7 +185,7 @@ export function AngularOverviewDiagram() {
       <Arrow x1={452} y1={126} x2={500} y2={126} color={C.orange} delay={260} label="DI" />
       <Box x={500} y={78} w={190} h={96} title="$injector" sub="dependency injection" lines={['services resolve', 'controllers create']} color={C.yellow} delay={300} />
       <Arrow x1={690} y1={126} x2={738} y2={126} color={C.yellow} delay={380} />
-      <Box x={738} y={78} w={158} h={96} title="CONTROLLER" sub="ng-controller" lines={['$scope bharta hai', 'actions deta hai']} color={C.lime} delay={420} />
+      <Box x={738} y={78} w={158} h={96} title="CONTROLLER" sub="ng-controller" lines={['fills the $scope', 'exposes actions']} color={C.lime} delay={420} />
 
       <Arrow x1={817} y1={174} x2={817} y2={216} color={C.lime} delay={480} />
 
@@ -213,17 +213,17 @@ export function AngularOverviewDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={230} y={352} width={460} height={86} rx="12" fill="rgba(170,0,255,0.07)" stroke={C.purple} strokeWidth="1.5" strokeOpacity="0.7" />
         <text x={460} y={378} textAnchor="middle" fill={C.purple} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          DIGEST CYCLE — $watch list evaluate hoti hai
+          DIGEST CYCLE — the $watch list is evaluated
         </text>
         <text x={460} y={400} textAnchor="middle" fill={C.dim} fontSize="9.2" fontFamily={FONT}>
-          model badla → DOM update · input type kiya → model update
+          model changed → DOM update · typing in an input → model update
         </text>
         <text x={460} y={422} textAnchor="middle" fill={C.faint} fontSize="8.8" fontFamily={FONT}>
           $apply() → $digest() → dirty checking → stable
         </text>
       </g>
 
-      <Note x={460} y={466} text="Server sirf JSON deta hai — rendering poora browser mein (client-side MVC/MVVM)" color={C.dim} size={9.6} />
+      <Note x={460} y={466} text="the server sends only JSON — all rendering in the browser (client-side MVC/MVVM)" color={C.dim} size={9.6} />
       <Note x={460} y={490} text="AngularJS 1.x = JavaScript + $scope · Angular 2+ = TypeScript + components" color={C.lime} size={9.4} bold />
     </Frame>
   );
@@ -242,7 +242,7 @@ export function AngularFeaturesDiagram() {
     <Frame
       h={470}
       title="AngularJS features"
-      sub="HTML side + logic side + app side — sab built-in"
+      sub="HTML side + logic side + app side — all built in"
       label="AngularJS features grouped into HTML side directives and expressions, logic side modules controllers services and DI, and app side routing validation animation testing"
     >
       {cols.map((col, ci) => (
@@ -267,7 +267,7 @@ export function AngularFeaturesDiagram() {
           Two-way binding + directives + DI = AngularJS ka core idea
         </text>
         <text x={460} y={432} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          Sab features inhi teen ke aas-paas hain — binding view, directives HTML, DI services
+          Every feature sits around these three — data binding, HTML directives, DI services
         </text>
       </g>
     </Frame>
@@ -278,13 +278,13 @@ export function AngularFeaturesDiagram() {
    5.4 — Advantages vs limitations
    ------------------------------------------------------------------ */
 export function AngularAdvantagesDiagram() {
-  const pros = ['kam code (ng-model, ng-repeat)', 'declarative HTML template', 'routing + validation built-in', 'DI se testable (Karma/Jasmine)', 'Google support, MIT license', 'SPA + CRUD ke liye perfect'];
+  const pros = ['less code (ng-model, ng-repeat)', 'declarative HTML template', 'routing + validation built in', 'testable through DI (Karma/Jasmine)', 'Google support, MIT licence', 'ideal for SPA and CRUD'];
   const cons = ['EOL Dec 2021 (no patches)', 'digest slow at scale', 'two-way binding ka andhera', 'mobile performance weak', 'Angular 2+ = rewrite migration', 'directive API mushkil'];
   return (
     <Frame
       h={500}
       title="AngularJS — advantages vs limitations"
-      sub="fayde bhi, kamiyan bhi — balanced answer ke liye dono"
+      sub="the gains and the limits — a balanced answer needs both"
       label="AngularJS advantages such as less code, declarative HTML, built-in routing and testability set against limitations such as end of life, digest performance and migration cost"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
@@ -312,13 +312,13 @@ export function AngularAdvantagesDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <rect x={24} y={396} width={872} height={76} rx="10" fill="rgba(0,212,255,0.06)" stroke={C.cyan} strokeWidth="1.3" strokeOpacity="0.6" />
         <text x={460} y={420} textAnchor="middle" fill={C.cyan} fontSize="9.8" fontWeight="700" fontFamily={FONT}>
-          Aaj ka faisla: legacy 1.x app maintain karo · naya project Angular 2+ / React + Next.js / Vue + Nuxt par
+          Today's call: maintain a legacy 1.x app · build new work on Angular 2+ / React + Next.js / Vue + Nuxt
         </text>
         <text x={460} y={442} textAnchor="middle" fill={C.dim} fontSize="9.2" fontFamily={FONT}>
-          Migration: ngUpgrade se hybrid (1.x + 2+ side by side), phir page-by-page rewrite
+          Migration: hybrid through ngUpgrade (1.x and 2+ side by side), then a page-by-page rewrite
         </text>
         <text x={460} y={462} textAnchor="middle" fill={C.faint} fontSize="8.9" fontFamily={FONT}>
-          Performance tip (1.x): one-time binding (::x) · track by · kam $watch · ng-if over ng-show
+          Performance tip (1.x): one-time binding (::x) · track by · fewer $watches · ng-if over ng-show
         </text>
       </g>
     </Frame>
@@ -336,11 +336,11 @@ export function AngularMvcDiagram() {
       sub="Model (data) ↔ Controller ↔ $scope (ViewModel) ↔ View (template)"
       label="AngularJS MVC: the model holds data and services, the controller populates the scope which acts as view model, and the view renders directives and expressions while the digest cycle syncs changes"
     >
-      <Box x={330} y={78} w={260} h={92} title="CONTROLLER" sub="ng-controller ka function" lines={['$scope bharta hai', 'actions deta hai']} color={C.lime} delay={60} />
+      <Box x={330} y={78} w={260} h={92} title="CONTROLLER" sub="ng-controller ka function" lines={['fills the $scope', 'exposes actions']} color={C.lime} delay={60} />
 
-      <Box x={24} y={208} w={260} h={120} title="MODEL" sub="data + business rules" lines={['plain objects / arrays', 'services + $http', 'DOM nahi jaanta']} color={C.cyan} delay={140} />
-      <Box x={330} y={208} w={260} h={120} title="$scope = VIEWMODEL" sub="view aur model ke beech pul" lines={['properties + functions', '$watch list', 'digest isi ko dekhta hai']} color={C.purple} delay={200} />
-      <Box x={636} y={208} w={260} h={120} title="VIEW" sub="HTML template" lines={['ng-model, ng-repeat, ng-if', '{{ expression }} + filters', 'deklarativ — DOM code nahi']} color={C.orange} delay={260} />
+      <Box x={24} y={208} w={260} h={120} title="MODEL" sub="data + business rules" lines={['plain objects / arrays', 'services + $http', 'does not know the DOM']} color={C.cyan} delay={140} />
+      <Box x={330} y={208} w={260} h={120} title="$scope = VIEWMODEL" sub="the bridge between view and model" lines={['properties + functions', '$watch list', 'this is what digest watches']} color={C.purple} delay={200} />
+      <Box x={636} y={208} w={260} h={120} title="VIEW" sub="HTML template" lines={['ng-model, ng-repeat, ng-if', '{{ expression }} + filters', 'declarative — no DOM code']} color={C.orange} delay={260} />
 
       <Arrow x1={290} y1={252} x2={330} y2={252} color={C.cyan} delay={340} label="data" />
       <Arrow x1={330} y1={288} x2={290} y2={288} color={C.cyan} dashed delay={380} label="update" />
@@ -357,15 +357,15 @@ export function AngularMvcDiagram() {
           DIGEST CYCLE — view ↔ model sync
         </text>
         <text x={460} y={410} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          input type → model update · model change → DOM update (koi manual code nahi)
+          input typed → model update · model change → DOM update (no manual code)
         </text>
         <text x={460} y={428} textAnchor="middle" fill={C.faint} fontSize="8.8" fontFamily={FONT}>
-          Bahar ka change? $scope.$apply() ya $timeout
+          A change from outside? $scope.$apply() or $timeout
         </text>
       </g>
 
-      <Note x={460} y={466} text="Server sirf JSON deta hai — rendering browser mein (client-side MVC)" color={C.dim} size={9.6} />
-      <Note x={460} y={488} text="Discipline: patla controller · logic service mein · DOM directive mein" color={C.lime} size={9.4} bold />
+      <Note x={460} y={466} text="the server sends only JSON — rendering in the browser (client-side MVC)" color={C.dim} size={9.6} />
+      <Note x={460} y={488} text="Discipline: a thin controller · logic in a service · DOM in a directive" color={C.lime} size={9.4} bold />
     </Frame>
   );
 }
@@ -386,7 +386,7 @@ export function AngularApplicationsDiagram() {
     <Frame
       h={470}
       title="AngularJS applications"
-      sub="kahan fit hai — aur kahan nahi"
+      sub="where it fits — and where it does not"
       label="AngularJS application areas: admin dashboards, CRM and ERP screens, e-commerce, data entry portals, real-time apps and Ionic hybrid mobile apps, with good-fit and poor-fit guidance"
     >
       {domains.map(([t, s, col], i) => (
@@ -407,7 +407,7 @@ export function AngularApplicationsDiagram() {
         <rect x={24} y={356} width={424} height={80} rx="10" fill="rgba(0,230,118,0.06)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.6" />
         <text x={236} y={380} textAnchor="middle" fill={C.green} fontSize="9.8" fontWeight="800" fontFamily={FONT}>GOOD FIT</text>
         <text x={44} y={402} fill={C.dim} fontSize="9" fontFamily={FONT}>forms + tables + validation heavy</text>
-        <text x={44} y={420} fill={C.dim} fontSize="9" fontFamily={FONT}>behind login (SEO ki zaroorat nahi)</text>
+        <text x={44} y={420} fill={C.dim} fontSize="9" fontFamily={FONT}>behind login (no SEO need)</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '620ms' }}>
         <rect x={472} y={356} width={424} height={80} rx="10" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.6" />
@@ -428,13 +428,13 @@ export function AngularExpressionsDiagram() {
   return (
     <Frame
       h={500}
-      title="Expressions aur directives"
+      title="Expressions and directives"
       sub="{{ }} = value · ng-* = behaviour"
       label="AngularJS expressions evaluate against the scope and render values with filters, while directives add behaviour such as ng-model binding, ng-repeat loops and ng-click events"
     >
-      <Box x={24} y={78} w={276} h={128} title="EXPRESSION {{ }}" sub="scope par evaluate hoke value" lines={['{{ 5 + 3 }}', '{{ s.name | uppercase }}', 'statements / loops nahi']} color={C.orange} delay={60} />
-      <Box x={322} y={78} w={276} h={128} title="DIRECTIVE ng-*" sub="HTML ko behaviour" lines={['ng-model, ng-repeat', 'ng-if, ng-click, ng-class', 'custom directive bhi']} color={C.cyan} delay={160} />
-      <Box x={620} y={78} w={276} h={128} title="TEMPLATE" sub="compile → link → render" lines={['directives compile hote hain', 'scope se link', 'DOM output']} color={C.lime} delay={260} />
+      <Box x={24} y={78} w={276} h={128} title="EXPRESSION {{ }}" sub="scope par evaluate hoke value" lines={['{{ 5 + 3 }}', '{{ s.name | uppercase }}', 'no statements or loops']} color={C.orange} delay={60} />
+      <Box x={322} y={78} w={276} h={128} title="DIRECTIVE ng-*" sub="HTML ko behaviour" lines={['ng-model, ng-repeat', 'ng-if, ng-click, ng-class', 'custom directives too']} color={C.cyan} delay={160} />
+      <Box x={620} y={78} w={276} h={128} title="TEMPLATE" sub="compile → link → render" lines={['directives are compiled', 'scope se link', 'DOM output']} color={C.lime} delay={260} />
 
       <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
         <rect x={24} y={226} width={872} height={128} rx="12" fill="rgba(255,255,255,0.03)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.6" />
@@ -454,15 +454,15 @@ export function AngularExpressionsDiagram() {
           </g>
         ))}
         <text x={460} y={342} textAnchor="middle" fill={C.faint} fontSize="8.8" fontFamily={FONT}>
-          ng-app / ng-controller structural bhi hain — app aur scope banate hain
+          ng-app and ng-controller are structural too — they create the app and the scope
         </text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x={24} y={372} width={424} height={86} rx="10" fill="rgba(196,255,0,0.06)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.6" />
         <text x={236} y={396} textAnchor="middle" fill={C.lime} fontSize="9.6" fontWeight="800" fontFamily={FONT}>EXPRESSION ke rules</text>
-        <text x={44} y={418} fill={C.dim} fontSize="8.9" fontFamily={FONT}>operators + filters chalte hain</text>
-        <text x={44} y={436} fill={C.dim} fontSize="8.9" fontFamily={FONT}>undefined par blank (error nahi)</text>
+        <text x={44} y={418} fill={C.dim} fontSize="8.9" fontFamily={FONT}>operators and filters work</text>
+        <text x={44} y={436} fill={C.dim} fontSize="8.9" fontFamily={FONT}>blank for undefined (no error)</text>
         <text x={44} y={452} fill={C.faint} fontSize="8.7" fontFamily={FONT}>ng-bind / ng-cloak se FOUC fix</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
@@ -473,7 +473,7 @@ export function AngularExpressionsDiagram() {
         <text x={492} y={452} fill={C.faint} fontSize="8.7" fontFamily={FONT}>rating, date picker, chart wrapper</text>
       </g>
 
-      <Note x={460} y={484} text="Ek expression = ek $watch — bahut saare expressions page slow karte hain" color={C.pink} size={9.2} />
+      <Note x={460} y={484} text="one expression = one $watch — too many expressions slow the page" color={C.pink} size={9.2} />
     </Frame>
   );
 }
@@ -485,7 +485,7 @@ export function AngularModulesDiagram() {
   return (
     <Frame
       h={500}
-      title="Modules aur controllers"
+      title="Modules and controllers"
       sub="ng-app → module → registry → controller + scope → view"
       label="AngularJS modules and controllers: ng-app bootstraps the root module, its dependency list loads other modules, controllers and services are registered on the module, and the controller publishes data on the scope for the view"
     >
@@ -507,13 +507,13 @@ export function AngularModulesDiagram() {
 
       <Arrow x1={460} y1={282} x2={460} y2={320} color={C.lime} delay={460} />
 
-      <Box x={24} y={320} w={280} h={104} title="CONTROLLER" sub="ng-controller='XCtrl as vm'" lines={['services DI se milti hain', 'vm.data + vm.actions']} color={C.cyan} delay={500} />
-      <Box x={330} y={320} w={260} h={104} title="$scope / vm" sub="ViewModel" lines={['properties + functions', 'digest watch karta hai']} color={C.purple} delay={560} />
+      <Box x={24} y={320} w={280} h={104} title="CONTROLLER" sub="ng-controller='XCtrl as vm'" lines={['services come through DI', 'vm.data + vm.actions']} color={C.cyan} delay={500} />
+      <Box x={330} y={320} w={260} h={104} title="$scope / vm" sub="ViewModel" lines={['properties + functions', 'digest watches it']} color={C.purple} delay={560} />
       <Box x={616} y={320} w={280} h={104} title="VIEW" sub="template" lines={['{{ vm.name }}', 'ng-repeat="s in vm.list"']} color={C.orange} delay={620} />
       <Arrow x1={304} y1={372} x2={330} y2={372} color={C.cyan} delay={660} />
       <Arrow x1={590} y1={372} x2={616} y2={372} color={C.purple} delay={700} />
 
-      <Note x={460} y={452} text="Child scope: har ng-controller / ng-repeat / ng-if naya scope banata hai (prototype inheritance)" color={C.dim} size={9.4} />
+      <Note x={460} y={452} text="Child scope: every ng-controller, ng-repeat or ng-if creates a new scope (prototype inheritance)" color={C.dim} size={9.4} />
       <Note x={460} y={476} text="DI array notation: ['$scope', '$http', function ('$scope', '$http') {}] — minification-safe" color={C.lime} size={9.2} bold />
     </Frame>
   );
@@ -526,11 +526,11 @@ export function AngularFormsDiagram() {
   return (
     <Frame
       h={500}
-      title="Forms aur two-way binding"
+      title="Forms and two-way binding"
       sub="input ↔ ng-model ↔ scope ↔ digest ↔ view"
       label="AngularJS form handling: ng-model binds an input to the scope, the digest cycle syncs both directions, the form controller exposes valid and dirty state, and ng-submit prevents a page reload"
     >
-      <Box x={24} y={78} w={190} h={104} title="INPUT" sub="text, select, checkbox" lines={['user type karta hai', 'blur / change']} color={C.cyan} delay={60} />
+      <Box x={24} y={78} w={190} h={104} title="INPUT" sub="text, select, checkbox" lines={['the user types', 'blur / change']} color={C.cyan} delay={60} />
       <Arrow x1={214} y1={130} x2={262} y2={130} color={C.cyan} delay={140} label="ng-model" />
       <Box x={262} y={78} w={190} h={104} title="SCOPE" sub="vm.name" lines={['model value', '$setViewValue']} color={C.lime} delay={180} />
       <Arrow x1={452} y1={130} x2={500} y2={130} color={C.lime} delay={260} label="digest" />
@@ -541,15 +541,15 @@ export function AngularFormsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x={24} y={200} width={872} height={98} rx="12" fill="rgba(0,212,255,0.06)" stroke={C.cyan} strokeWidth="1.4" strokeOpacity="0.65" />
         <text x={460} y={224} textAnchor="middle" fill={C.cyan} fontSize="10.2" fontWeight="800" fontFamily={FONT}>
-          FORM CONTROLLER — form par naam do, scope par mil jaata hai
+          FORM CONTROLLER — name the form, and it appears on the scope
         </text>
         {[
-          ['f.$valid', 'form sahi hai'],
-          ['f.$invalid', 'kahin galti'],
-          ['f.$dirty', 'user ne chhua'],
-          ['f.$pristine', 'kuch nahi badla'],
-          ['f.email.$error', 'kaun si galti'],
-          ['f.$submitted', 'submit dabaya'],
+          ['f.$valid', 'the form is valid'],
+          ['f.$invalid', 'any mistake'],
+          ['f.$dirty', 'touched by the user'],
+          ['f.$pristine', 'nothing has changed'],
+          ['f.email.$error', 'which mistake'],
+          ['f.$submitted', 'submitted'],
         ].map(([t, s], i) => (
           <g key={t}>
             <text x={52 + i * 144} y={256} fill={C.lime} fontSize="9.2" fontWeight="700" fontFamily={FONT}>{t}</text>
@@ -558,12 +558,12 @@ export function AngularFormsDiagram() {
         ))}
       </g>
 
-      <Box x={24} y={318} w={276} h={100} title="ng-submit" sub="reload rokta hai" lines={['save(f) handler', 'form.$invalid check']} color={C.green} delay={540} />
-      <Box x={322} y={318} w={276} h={100} title="$setPristine()" sub="submit ke baad reset" lines={['form naya jaisa', '+ $setUntouched()']} color={C.purple} delay={580} />
+      <Box x={24} y={318} w={276} h={100} title="ng-submit" sub="prevents the reload" lines={['save(f) handler', 'form.$invalid check']} color={C.green} delay={540} />
+      <Box x={322} y={318} w={276} h={100} title="$setPristine()" sub="reset after submit" lines={['the form looks new', '+ $setUntouched()']} color={C.purple} delay={580} />
       <Box x={620} y={318} w={276} h={100} title="ng-model-options" sub="binding tuning" lines={['debounce: 300', 'updateOn: blur']} color={C.orange} delay={620} />
 
       <Note x={460} y={450} text="CSS classes automatically: ng-valid, ng-invalid, ng-dirty, ng-touched, ng-pristine" color={C.dim} size={9.4} />
-      <Note x={460} y={474} text="Object par bind karo (vm.form.name) — primitive par nested scope shadowing ho jaati hai" color={C.lime} size={9.2} bold />
+      <Note x={460} y={474} text="bind to an object (vm.form.name) — on a primitive a nested scope shadows it" color={C.lime} size={9.2} bold />
     </Frame>
   );
 }
@@ -574,11 +574,11 @@ export function AngularFormsDiagram() {
 export function AngularValidationDiagram() {
   const validators = [
     ['required', 'khaali na ho', C.red],
-    ['ng-minlength', 'kam se kam n chars', C.orange],
+    ['ng-minlength', 'at least n characters', C.orange],
     ['ng-pattern', 'regexp match', C.cyan],
     ['type="email"', 'email format', C.purple],
     ['min / max', 'number range', C.pink],
-    ['ng-required', 'condition par zaroori', C.teal],
+    ['ng-required', 'required on the condition', C.teal],
   ];
   return (
     <Frame
@@ -606,14 +606,14 @@ export function AngularValidationDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '520ms' }}>
         <rect x={316} y={186} width={580} height={186} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={336} y={210} fill={C.lime} fontSize="9.8" fontWeight="800" fontFamily={FONT}>
-          ERROR DIKHANE KA SAHI TARIKA
+          THE RIGHT WAY TO SHOW AN ERROR
         </text>
         <text x={336} y={234} fill={C.dim} fontSize="8.8" fontFamily={FONT}>1. form par novalidate (browser validation off)</text>
-        <text x={336} y={252} fill={C.dim} fontSize="8.8" fontFamily={FONT}>2. message tab dikhao jab $touched ya $submitted ho</text>
-        <text x={336} y={270} fill={C.dim} fontSize="8.8" fontFamily={FONT}>3. inline message ke saath field border red (CSS class)</text>
-        <text x={336} y={288} fill={C.dim} fontSize="8.8" fontFamily={FONT}>4. ng-messages se ek waqt par ek message</text>
+        <text x={336} y={252} fill={C.dim} fontSize="8.8" fontFamily={FONT}>2. show the message only when $touched or $submitted</text>
+        <text x={336} y={270} fill={C.dim} fontSize="8.8" fontFamily={FONT}>3. an inline message plus a red field border (CSS class)</text>
+        <text x={336} y={288} fill={C.dim} fontSize="8.8" fontFamily={FONT}>4. one message at a time with ng-messages</text>
         <text x={336} y={306} fill={C.dim} fontSize="8.8" fontFamily={FONT}>5. submit handler mein form.$invalid check</text>
-        <text x={336} y={330} fill={C.pink} fontSize="8.8" fontFamily={FONT}>6. server par bhi validate — client bypass ho sakta hai</text>
+        <text x={336} y={330} fill={C.pink} fontSize="8.8" fontFamily={FONT}>6. validate on the server too — the client can be bypassed</text>
         <text x={336} y={352} fill={C.faint} fontSize="8.6" fontFamily={FONT}>custom: $validators / $setValidity / $asyncValidators</text>
       </g>
 
@@ -623,11 +623,11 @@ export function AngularValidationDiagram() {
           SUBMIT GATE: ng-disabled="f.$invalid" + if (form.$invalid) return;
         </text>
         <text x={460} y={434} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          Client validation UX ke liye, security ke liye nahi — server par hamesha check karo
+          Client validation is for UX, not security — always check on the server
         </text>
       </g>
 
-      <Note x={460} y={480} text="CSS classes (ng-valid / ng-invalid / ng-dirty) AngularJS khud lagata hai — styling free" color={C.lime} size={9.4} bold />
+      <Note x={460} y={480} text="AngularJS sets the CSS classes (ng-valid / ng-invalid / ng-dirty) itself — styling comes free" color={C.lime} size={9.4} bold />
     </Frame>
   );
 }
@@ -639,7 +639,7 @@ export function NextjsOverviewDiagram() {
   return (
     <Frame
       h={510}
-      title="Next.js — React ke upar ek layer"
+      title="Next.js — a layer on top of React"
       sub="React = UI · Next.js = routing + rendering + API + optimisation"
       label="Next.js overview: React provides the UI, Next.js adds routing, server side rendering, static generation, API routes and optimisation to produce a production application"
     >
@@ -647,24 +647,24 @@ export function NextjsOverviewDiagram() {
       <Arrow x1={224} y1={126} x2={272} y2={126} color={C.cyan} delay={140} label="+" />
       <Box x={272} y={78} w={340} h={96} title="NEXT.JS (Vercel, 2016)" sub="production framework" lines={['routing · SSR/SSG/ISR · API', 'image/font optimisation · SEO']} color={C.orange} delay={180} />
       <Arrow x1={612} y1={126} x2={660} y2={126} color={C.orange} delay={260} label="=" />
-      <Box x={660} y={78} w={236} h={96} title="PRODUCTION APP" sub="fast + SEO ready" lines={['server HTML first', 'phir hydration (JS)']} color={C.lime} delay={300} />
+      <Box x={660} y={78} w={236} h={96} title="PRODUCTION APP" sub="fast + SEO ready" lines={['server HTML first', 'then hydration (JS)']} color={C.lime} delay={300} />
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={24} y={196} width={424} height={148} rx="12" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={236} y={220} textAnchor="middle" fill={C.red} fontSize="10" fontWeight="800" fontFamily={FONT}>PLAIN REACT SPA</text>
         <text x={44} y={244} fill={C.dim} fontSize="9" fontFamily={FONT}>server se khaali HTML: &lt;div id="root"&gt;&lt;/div&gt;</text>
-        <text x={44} y={266} fill={C.dim} fontSize="9" fontFamily={FONT}>crawler ko content nahi milta (SEO kamzor)</text>
-        <text x={44} y={288} fill={C.dim} fontSize="9" fontFamily={FONT}>pehla paint JS download ke baad</text>
-        <text x={44} y={310} fill={C.faint} fontSize="8.8" fontFamily={FONT}>routing, API, optimisation — sab khud jodo</text>
-        <text x={44} y={330} fill={C.faint} fontSize="8.6" fontFamily={FONT}>theek hai: internal dashboard, behind login</text>
+        <text x={44} y={266} fill={C.dim} fontSize="9" fontFamily={FONT}>the crawler finds no content (weak SEO)</text>
+        <text x={44} y={288} fill={C.dim} fontSize="9" fontFamily={FONT}>the first paint waits for the JS download</text>
+        <text x={44} y={310} fill={C.faint} fontSize="8.8" fontFamily={FONT}>routing, API, optimisation — you wire it all yourself</text>
+        <text x={44} y={330} fill={C.faint} fontSize="8.6" fontFamily={FONT}>fine for an internal dashboard, behind login</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
         <rect x={472} y={196} width={424} height={148} rx="12" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={684} y={220} textAnchor="middle" fill={C.green} fontSize="10" fontWeight="800" fontFamily={FONT}>NEXT.JS APP</text>
-        <text x={492} y={244} fill={C.dim} fontSize="9" fontFamily={FONT}>server se poora rendered HTML</text>
+        <text x={492} y={244} fill={C.dim} fontSize="9" fontFamily={FONT}>fully rendered HTML from the server</text>
         <text x={492} y={266} fill={C.dim} fontSize="9" fontFamily={FONT}>SEO strong: HTML + metadata API</text>
-        <text x={492} y={288} fill={C.dim} fontSize="9" fontFamily={FONT}>pehla paint fast, phir hydrate</text>
+        <text x={492} y={288} fill={C.dim} fontSize="9" fontFamily={FONT}>fast first paint, then hydration</text>
         <text x={492} y={310} fill={C.faint} fontSize="8.8" fontFamily={FONT}>file-based routing + API + image/font</text>
         <text x={492} y={330} fill={C.faint} fontSize="8.6" fontFamily={FONT}>best: public site, e-commerce, docs, blog</text>
       </g>
@@ -672,7 +672,7 @@ export function NextjsOverviewDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
         <rect x={24} y={364} width={872} height={92} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={460} y={388} textAnchor="middle" fill={C.purple} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          RENDERING — per page choose karo
+          RENDERING — choose per page
         </text>
         {[
           ['SSR', 'har request par', 'getServerSideProps'],
@@ -732,7 +732,7 @@ export function NextjsFeaturesDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={24} y={320} width={872} height={80} rx="12" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={460} y={344} textAnchor="middle" fill={C.cyan} fontSize="9.8" fontWeight="800" fontFamily={FONT}>
-          ROUTING (pages router) — file hi URL hai
+          ROUTING (pages router) — the file is the URL
         </text>
         {[
           ['pages/index.js', '/'],

@@ -89,7 +89,7 @@ export function VzIntroDiagram() {
   return (
     <Frame
       id="vz-intro"
-      title="Data visualization — numbers se insight tak"
+      title="Data visualization - from numbers to insight"
       sub="data > visual encoding > perception > insight > decision"
       label="A pipeline from raw data through visual encoding of position length and colour into human perception and insight, with why visualization is needed and typical business use cases"
     >
@@ -115,16 +115,16 @@ export function VzIntroDiagram() {
       </g>
 
       {/* why */}
-      <Box x={40} y={186} w={410} h={168} title="KYUN VISUALIZE KARTE HAIN" color={C.cyan} delay={180}
-        lines={['1. volume: hazaaron rows ek glance mein', '2. speed: pattern turant, table slow', '3. exceptions: outlier jump karta hai', '4. comparison: target / last period', '5. memory: visuals yaad rehte hain', '6. shared truth: ek chart, ek number', '7. communication: alignment + action']} />
+      <Box x={40} y={186} w={410} h={168} title="WHY WE VISUALISE" color={C.cyan} delay={180}
+        lines={['1. volume: thousands of rows at a glance', '2. speed: pattern instantly, table slowly', '3. exceptions: an outlier jumps out', '4. comparison: target / last period', '5. memory: visuals are remembered', '6. shared truth: one chart, one number', '7. communication: alignment + action']} />
 
-      <Box x={470} y={186} w={410} h={168} title="VISUAL ENCODING KI RANKING" color={C.lime} delay={240}
-        lines={['1. position (common scale) - best', '2. length, angle, slope', '3. area, volume', '4. colour (hue, intensity)', '5. shape, texture - weakest', 'rule: important number ko position do', 'colour ko sirf grouping/exception ke liye']} />
+      <Box x={470} y={186} w={410} h={168} title="RANKING OF VISUAL ENCODINGS" color={C.lime} delay={240}
+        lines={['1. position (common scale) - best', '2. length, angle, slope', '3. area, volume', '4. colour (hue, intensity)', '5. shape, texture - weakest', 'rule: give an important number a position', 'use colour only for grouping and exceptions']} />
 
       {/* use cases */}
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x={40} y={368} width={840} height={134} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={460} y={390} textAnchor="middle" fill={C.green} fontSize="9.6" fontWeight="800" fontFamily={FONT}>BUSINESS MEIN KAHAN USE HOTA HAI</text>
+        <text x={460} y={390} textAnchor="middle" fill={C.green} fontSize="9.6" fontWeight="800" fontFamily={FONT}>WHERE IT IS USED IN THE BUSINESS</text>
         {[
           ['Sales', 'trend, target vs actual', C.cyan],
           ['Finance', 'P&L variance, cash flow', C.lime],
@@ -151,18 +151,18 @@ export function VzPrinciplesDiagram() {
   return (
     <Frame
       id="vz-principles"
-      title="Effective data visualization ke principles"
+      title="Principles of effective data visualization"
       sub="accurate + clear + honest + accessible + action-oriented"
       label="Six principles of effective visualization with the data-ink ratio and clutter reduction, chart types for different questions, colour and accessibility rules, and the common ways charts mislead with truncated axes and misleading encodings"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
         {[
           ['ACCURATE', 'scale honest, zero baseline', C.cyan],
-          ['CLEAR', 'ek message, clutter nahi', C.lime],
-          ['HONEST', 'truncated axis nahi', C.yellow],
+          ['CLEAR', 'one message, no clutter', C.lime],
+          ['HONEST', 'no truncated axis', C.yellow],
           ['SIMPLE', 'data-ink ratio high', C.green],
           ['ACCESSIBLE', 'contrast, colour-blind safe', C.purple],
-          ['ACTIONABLE', 'decision se juda', C.orange],
+          ['ACTIONABLE', 'tied to a decision', C.orange],
         ].map(([t, s, col], i) => (
           <g key={t}>
             <rect x={40 + i * 142} y={80} width={128} height="62" rx="9" fill={col} fillOpacity="0.08" stroke={col} strokeWidth="1.4" />
@@ -190,23 +190,23 @@ export function VzPrinciplesDiagram() {
         <rect x={282} y={244} width="24" height="24" fill={C.lime} fillOpacity="0.55" />
         <rect x={314} y={252} width="24" height="16" fill={C.lime} fillOpacity="0.55" />
         <line x1={244} y1={268} x2={344} y2={268} stroke={C.lime} strokeWidth="1.2" />
-        <text x={250} y={284} fill={C.lime} fontSize="7.2" fontFamily={FONT}>axis + bar + label, bas</text>
+        <text x={250} y={284} fill={C.lime} fontSize="7.2" fontFamily={FONT}>axis + bar + label, that is all</text>
         <text x={245} y={306} textAnchor="middle" fill={C.dim} fontSize="7.6" fontFamily={FONT}>jitna ink, utna signal — baaki hatao</text>
-        <text x={245} y={326} textAnchor="middle" fill={C.yellow} fontSize="7.6" fontFamily={FONT}>ek chart = ek sawaal, title mein answer likho</text>
+        <text x={245} y={326} textAnchor="middle" fill={C.yellow} fontSize="7.6" fontFamily={FONT}>one chart = one question, put the answer in the title</text>
         <text x={245} y={346} textAnchor="middle" fill={C.purple} fontSize="7.6" fontFamily={FONT}>5-7 colour max, sequential/diverging palettes</text>
       </g>
 
       {/* pitfalls */}
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x={470} y={164} width={410} height={196} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={675} y={186} textAnchor="middle" fill={C.red} fontSize="9.4" fontWeight="800" fontFamily={FONT}>MISLEAD KARNE KE TAREEKE</text>
+        <text x={675} y={186} textAnchor="middle" fill={C.red} fontSize="9.4" fontWeight="800" fontFamily={FONT}>WAYS TO MISLEAD</text>
         {[
-          '1. truncated y-axis (bar) - farq bada dikhta',
+          '1. a truncated y-axis (bar) - a small gap looks large',
           '2. inconsistent scale in comparison charts',
           '3. area/volume for linear data (2x = 4x)',
           '4. cherry-picked period / start date',
-          '5. dual axis se fake correlation',
-          '6. 3D pie aur perspective distortion',
+          '5. a fake correlation from dual axes',
+          '6. 3D pie and perspective distortion',
           '7. rainbow colours, colour-blind unsafe',
           '8. percentage without denominator',
           '9. aggregation hiding (Simpson paradox)',
@@ -217,14 +217,14 @@ export function VzPrinciplesDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x={40} y={378} width={840} height={124} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.2" strokeOpacity="0.7" />
-        <text x={460} y={400} textAnchor="middle" fill={C.lime} fontSize="9" fontWeight="800" fontFamily={FONT}>CHECKLIST — chart publish karne se pehle</text>
+        <text x={460} y={400} textAnchor="middle" fill={C.lime} fontSize="9" fontWeight="800" fontFamily={FONT}>CHECKLIST - before publishing a chart</text>
         {[
-          ['Axis', 'zero baseline, unit likha', C.cyan],
-          ['Title', 'answer bole, topic nahi', C.green],
+          ['Axis', 'zero baseline, unit stated', C.cyan],
+          ['Title', 'the answer speaks, not the topic', C.green],
           ['Colour', 'accessibility tested', C.yellow],
           ['Context', 'target / last period', C.orange],
           ['Source', 'period + source + refresh', C.purple],
-          ['Message', 'ek line ka takeaway', C.pink],
+          ['Message', 'a one-line takeaway', C.pink],
         ].map(([t, s, col], i) => (
           <g key={t}>
             <text x={60 + i * 138} y={432} fill={col} fontSize="8" fontWeight="700" fontFamily={FONT}>{t}</text>
@@ -244,7 +244,7 @@ export function VzChartsDiagram() {
   return (
     <Frame
       id="vz-charts"
-      title="Chart types — kaunsa sawaal, kaunsa chart"
+      title="Chart types - which question, which chart"
       sub="comparison / trend / composition / distribution / relationship / geography"
       label="A chooser matrix that maps each analysis question to the recommended chart type, with small chart icons for bar line stacked bar histogram scatter waterfall and map, and the common chart mistakes"
     >
@@ -325,16 +325,16 @@ export function VzChartsDiagram() {
         <text x={825} y={228} textAnchor="middle" fill={C.dim} fontSize="6.8" fontFamily={FONT}>KPI tile</text>
       </g>
 
-      <Box x={40} y={288} w={410} h={150} title="SAHI CHART CHUNNE KA RULE" color={C.lime} delay={240}
-        lines={['1. sawaal pehle likho (compare? trend?)', '2. data ka shape dekho (categories? time?)', '3. position use karo, area/volume nahi', '4. sorted bars, zero baseline', '5. 5-7 series max, baaki "others"', '6. pie sirf 2-3 slices ke liye', '7. annotation se insight mark karo']} />
+      <Box x={40} y={288} w={410} h={150} title="THE RULE FOR CHOOSING THE RIGHT CHART" color={C.lime} delay={240}
+        lines={['1. write the question first (compare? trend?)', '2. look at the shape of the data (categories? time?)', '3. use position, not area or volume', '4. sorted bars, zero baseline', '5. 5-7 series max, baaki "others"', '6. a pie only for 2-3 slices', '7. mark the insight with an annotation']} />
 
       <Box x={470} y={288} w={410} h={150} title="COMMON GALTIYAN" color={C.red} delay={300}
-        lines={['1. pie with 10 slices', '2. line chart for categories', '3. truncated axis se drama', '4. 3D charts, shadows, gradients', '5. dual axis se fake correlation', '6. rainbow palette, meaning nahi', '7. table jahan chart chahiye (aur ulta)']} />
+        lines={['1. pie with 10 slices', '2. line chart for categories', '3. drama from a truncated axis', '4. 3D charts, shadows, gradients', '5. a fake correlation from dual axes', '6. a rainbow palette with no meaning', '7. a table where a chart belongs (and the reverse)']} />
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={40} y={454} width={840} height={48} rx="9" fill="rgba(255,214,0,0.05)" stroke={C.yellow} strokeWidth="1.2" strokeOpacity="0.7" />
-        <text x={460} y={474} textAnchor="middle" fill={C.yellow} fontSize="8.6" fontWeight="800" fontFamily={FONT}>ek chart, ek sawaal — aur title mein answer likho ("West 12% behind target", "Regional sales" nahi)</text>
-        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>precision chahiye to table ya tooltip; pattern chahiye to chart</text>
+        <text x={460} y={474} textAnchor="middle" fill={C.yellow} fontSize="8.6" fontWeight="800" fontFamily={FONT}>one chart, one question - and put the answer in the title (&quot;West 12% behind target&quot;, not &quot;Regional sales&quot;)</text>
+        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>need precision: a table or tooltip; need a pattern: a chart</text>
       </g>
     </Frame>
   );
@@ -355,7 +355,7 @@ export function VzDashboardDiagram() {
     <Frame
       id="vz-dashboard"
       title="Dashboard design — 12 column blueprint"
-      sub="header > KPI band > trend band > detail band (5 second rule)"
+      sub="header > KPI band > trend band > detail band (five-second rule)"
       label="A twelve column dashboard wireframe with a header containing global filters and refresh time, a KPI tile band with deltas and sparklines, trend and comparison charts, an alerts rail and a drill-through table, beside the eight dashboard design principles and a dashboard versus report comparison"
     >
       {/* wireframe */}
@@ -420,13 +420,13 @@ export function VzDashboardDiagram() {
           <rect key={i} x={492} y={340 + i * 18} width={52} height="13" rx="3" fill={C.red} fillOpacity="0.12" stroke={C.red} strokeWidth="0.6" strokeOpacity="0.5" />
         ))}
 
-        <text x={294} y={440} textAnchor="middle" fill={C.faint} fontSize="7" fontFamily={FONT}>header (filters + refresh) / KPI band / trend band / detail band — 12-col grid, 16 px margins</text>
-        <text x={294} y={458} textAnchor="middle" fill={C.yellow} fontSize="7.4" fontWeight="700" fontFamily={FONT}>most important KPI top-left: eye wahin se shuru karti hai</text>
+        <text x={294} y={440} textAnchor="middle" fill={C.faint} fontSize="7" fontFamily={FONT}>header (filters and refresh) / KPI band / trend band / detail band - 12-column grid, 16 px margins</text>
+        <text x={294} y={458} textAnchor="middle" fill={C.yellow} fontSize="7.4" fontWeight="700" fontFamily={FONT}>the most important KPI at the top-left: that is where the eye starts</text>
       </g>
 
       {/* principles */}
       <Box x={584} y={68} w={312} h={228} title="8 DESIGN PRINCIPLES" color={C.lime} delay={160}
-        lines={['1. audience + decision pehle', '2. 5-9 KPIs, top-left sabse important', '3. layout bands + Z/F reading pattern', '4. comparison har tile par (target, PY)', '5. ek accent colour, RAG sparingly', '6. global filters ek jagah', '7. performance: 5 second load', '8. trust: refresh time + owner + defs']} />
+        lines={['1. audience and decision first', '2. 5-9 KPIs, the most important at the top-left', '3. layout bands + Z/F reading pattern', '4. a comparison on every tile (target, PY)', '5. ek accent colour, RAG sparingly', '6. global filters in one place', '7. performance: 5 second load', '8. trust: refresh time + owner + defs']} />
 
       <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
         <rect x={584} y={310} width={312} height={162} rx="11" fill="rgba(0,188,212,0.05)" stroke={C.teal} strokeWidth="1.3" strokeOpacity="0.7" />
@@ -455,14 +455,14 @@ export function VzInteractiveDiagram() {
   return (
     <Frame
       id="vz-interactive"
-      title="Interactive reporting aur visual analytics"
+      title="Interactive reporting and visual analytics"
       sub="overview > filter > detail > action (drill path)"
       label="The drill path from overview to filter to detail to action, the interactivity building blocks including slicers drill-down cross-filtering drill-through and what-if parameters, and the visual analytics layer of trend lines forecasts clustering and anomaly detection"
     >
       {/* drill path */}
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
         {[
-          ['OVERVIEW', 'KPI + trend, sab dikhta', C.cyan, 40],
+          ['OVERVIEW', 'KPI plus trend, everything visible', C.cyan, 40],
           ['FILTER', 'region, period, category', C.lime, 250],
           ['DETAIL', 'drill-down / drill-through', C.yellow, 460],
           ['ACTION', 'alert, reorder, fix', C.orange, 670],
@@ -476,21 +476,21 @@ export function VzInteractiveDiagram() {
         <Arrow x1={232} y1={99} x2={248} y2={99} color={C.lime} delay={140} />
         <Arrow x1={442} y1={99} x2={458} y2={99} color={C.yellow} delay={180} />
         <Arrow x1={652} y1={99} x2={668} y2={99} color={C.orange} delay={220} />
-        <text x={460} y={146} textAnchor="middle" fill={C.dim} fontSize="8" fontFamily={FONT}>breadcrumb + "back" har step par — user ko raasta wapas milna chahiye</text>
+        <text x={460} y={146} textAnchor="middle" fill={C.dim} fontSize="8" fontFamily={FONT}>a breadcrumb and a back button at every step - the user must find the way back</text>
       </g>
 
       {/* building blocks */}
-      <Box x={40} y={170} w={410} h={176} title="INTERACTIVITY KE BLOCKS" color={C.cyan} delay={180}
-        lines={['1. slicers / filters (3-5, global upar)', '2. drill-down (hierarchy: year>q>month)', '3. drill-through (KPI se source rows)', '4. cross-filter / linked brushing', '5. tooltip + metric definition', '6. what-if parameter (price, discount)', '7. bookmarks, export, subscribe, alerts']} />
+      <Box x={40} y={170} w={410} h={176} title="BLOCKS OF INTERACTIVITY" color={C.cyan} delay={180}
+        lines={['1. slicers and filters (3-5, global ones on top)', '2. drill-down (hierarchy: year>q>month)', '3. drill-through (from a KPI to the source rows)', '4. cross-filter / linked brushing', '5. tooltip + metric definition', '6. what-if parameter (price, discount)', '7. bookmarks, export, subscribe, alerts']} />
 
       <Box x={470} y={170} w={410} h={176} title="VISUAL ANALYTICS LAYER" color={C.purple} delay={240}
-        lines={['1. trend line + forecast band', '2. anomaly detection (3 sigma / ML)', '3. clustering aur segmentation', '4. small multiples (compare segments)', '5. decomposition tree (root cause)', '6. correlation / scatter with fit', 'these need a semantic layer to be trustworthy']} />
+        lines={['1. trend line plus a forecast band', '2. anomaly detection (3 sigma / ML)', '3. clustering and segmentation', '4. small multiples (compare segments)', '5. decomposition tree (root cause)', '6. correlation / scatter with fit', 'these need a semantic layer to be trustworthy']} />
 
       {/* requirements + risks */}
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x={40} y={362} width={410} height={140} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={245} y={384} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>ENABLERS (technical)</text>
-        {['conformed dimensions - filter ka matlab same', 'pre-aggregated data for 1-2 sec response', 'query folding / in-memory engine', 'governed metric catalogue', 'row-level security at query time', 'event-logged interactions (usage metrics)'].map((t, i) => (
+        {['conformed dimensions - a filter means the same thing', 'pre-aggregated data for 1-2 sec response', 'query folding / in-memory engine', 'governed metric catalogue', 'row-level security at query time', 'event-logged interactions (usage metrics)'].map((t, i) => (
           <text key={t} x={58} y={406 + i * 16} fill={C.dim} fontSize="7.6" fontFamily={FONT}>- {t}</text>
         ))}
       </g>
@@ -498,7 +498,7 @@ export function VzInteractiveDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={470} y={362} width={410} height={140} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={675} y={384} textAnchor="middle" fill={C.red} fontSize="9.2" fontWeight="800" fontFamily={FONT}>RISKS</text>
-        {['filter overload - user kho jaata hai', 'hidden state - do log alag number dekhte', 'performance collapse - har click par 8 queries', 'headline hide ho jaati hai', 'shadow metrics (self-service governance gap)', 'row-level noise par discussion'].map((t, i) => (
+        {['filter overload - the user gets lost', 'hidden state - two people see different numbers', 'performance collapse - eight queries per click', 'the headline disappears', 'shadow metrics (self-service governance gap)', 'discussion at the level of row noise'].map((t, i) => (
           <text key={t} x={488} y={406 + i * 16} fill={C.dim} fontSize="7.6" fontFamily={FONT}>- {t}</text>
         ))}
       </g>
@@ -591,8 +591,8 @@ export function VzToolsDiagram() {
             <text x={60 + i * 138} y={447} fill={C.dim} fontSize="7.2" fontFamily={FONT}>{s}</text>
           </g>
         ))}
-        <text x={460} y={474} textAnchor="middle" fill={C.yellow} fontSize="8" fontWeight="700" fontFamily={FONT}>bahut organisations dono rakhti hain: Power BI governed reporting ke liye, Tableau exploration ke liye</text>
-        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>success factor: dono ek hi warehouse aur ek hi metric definition par chalein</text>
+        <text x={460} y={474} textAnchor="middle" fill={C.yellow} fontSize="8" fontWeight="700" fontFamily={FONT}>many organizations keep both: Power BI for governed reporting, Tableau for exploration</text>
+        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>success factor: both run on one warehouse and one metric definition</text>
       </g>
     </Frame>
   );
@@ -617,7 +617,7 @@ export function VzBuildDiagram() {
     <Frame
       id="vz-build"
       title="BI dashboard build — 9 steps"
-      sub="brief se governed, documented report tak"
+      sub="from a brief to a governed, documented report"
       label="The nine step build pipeline from requirement brief through data preparation dimensional model measures layout interactivity validation publishing and governance, with validation and governance checklists and the common build mistakes"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
@@ -634,7 +634,7 @@ export function VzBuildDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
         <rect x={40} y={266} width={410} height={136} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={245} y={288} textAnchor="middle" fill={C.red} fontSize="9.2" fontWeight="800" fontFamily={FONT}>VALIDATION CHECKLIST</text>
-        {['totals source se reconcile (tolerance 0)', 'grain test: ek known transaction', 'edge cases: no data, zero, negative', 'RLS test with restricted user', 'performance: page < 5 s', 'UAT sign-off on definitions'].map((t, i) => (
+        {['totals reconcile with the source (zero tolerance)', 'grain test: one known transaction', 'edge cases: no data, zero, negative', 'RLS test with restricted user', 'performance: page < 5 s', 'UAT sign-off on definitions'].map((t, i) => (
           <text key={t} x={58} y={310 + i * 17} fill={C.dim} fontSize="7.8" fontFamily={FONT}>- {t}</text>
         ))}
       </g>
@@ -642,17 +642,17 @@ export function VzBuildDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x={470} y={266} width={410} height={136} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={675} y={288} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>PUBLISH + GOVERN</text>
-        {['dev / test / prod workspaces, roles', 'gateway + scheduled / incremental refresh', 'sensitivity labels, export control, mobile', 'dataset certification + lineage', 'metric definition sheet + owner', 'usage metrics: unused report retire karo'].map((t, i) => (
+        {['dev / test / prod workspaces, roles', 'gateway + scheduled / incremental refresh', 'sensitivity labels, export control, mobile', 'dataset certification + lineage', 'metric definition sheet + owner', 'usage metrics: retire an unused report'].map((t, i) => (
           <text key={t} x={488} y={310 + i * 17} fill={C.dim} fontSize="7.8" fontFamily={FONT}>- {t}</text>
         ))}
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={40} y={416} width={840} height={86} rx="10" fill="rgba(255,214,0,0.05)" stroke={C.yellow} strokeWidth="1.2" strokeOpacity="0.7" />
-        <text x={460} y={438} textAnchor="middle" fill={C.yellow} fontSize="9" fontWeight="800" fontFamily={FONT}>BUILD KI COMMON GALTIYAN</text>
+        <text x={460} y={438} textAnchor="middle" fill={C.yellow} fontSize="9" fontWeight="800" fontFamily={FONT}>COMMON MISTAKES IN THE BUILD</text>
         <text x={460} y={458} textAnchor="middle" fill={C.dim} fontSize="7.8" fontFamily={FONT}>flat single-table model . calculated columns overload . hard-coded filters . no date table . wrong grain (double count)</text>
         <text x={460} y={474} textAnchor="middle" fill={C.dim} fontSize="7.8" fontFamily={FONT}>40 visuals per page . no reconciliation . no RLS test . no documentation . no adoption plan</text>
-        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>root cause ek hi: requirement brief skip karna — brief pehle, build baad mein</text>
+        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>one root cause: skipping the requirement brief - the brief first, the build after</text>
       </g>
     </Frame>
   );
@@ -665,16 +665,16 @@ export function VzDecisionDiagram() {
   return (
     <Frame
       id="vz-decision"
-      title="Visualization aur business decision making"
+      title="Visualization and business decision making"
       sub="monitor > diagnose > prioritise > communicate > act"
       label="The four decision jobs of monitoring diagnosis prioritisation and communication feeding a decision and action loop, the business value measures of cycle time decision quality accountability and adoption, and the misleading practices to avoid"
     >
       {/* jobs */}
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
         {[
-          ['1. MONITOR', 'track par hain? KPI vs target', C.cyan],
-          ['2. DIAGNOSE', 'kyun badla? drill, segment', C.lime],
-          ['3. PRIORITISE', 'sabse bada gap kahan? Pareto', C.yellow],
+          ['1. MONITOR', 'on track? KPI against target', C.cyan],
+          ['2. DIAGNOSE', 'why did it change? drill, segment', C.lime],
+          ['3. PRIORITISE', 'where is the biggest gap? Pareto', C.yellow],
           ['4. COMMUNICATE', 'alignment + action', C.orange],
         ].map(([t, s, col], i) => (
           <g key={t}>
@@ -689,17 +689,17 @@ export function VzDecisionDiagram() {
       </g>
 
       {/* perception */}
-      <Box x={40} y={150} w={410} h={158} title="PERCEPTION — kyun visual tez hai" color={C.cyan} delay={180}
-        lines={['1. pre-attentive: 200 ms mein position/length', '2. pattern recognition parallel hota hai', '3. exception visually "jump" karta hai', '4. table sequential padhna padta hai (slow)', '5. visual memory strong hoti hai', '6. shared reference - debate decision par, data par nahi']} />
+      <Box x={40} y={150} w={410} h={158} title="PERCEPTION - why a visual is faster" color={C.cyan} delay={180}
+        lines={['1. pre-attentive: position and length in 200 ms', '2. pattern recognition happens in parallel', '3. an exception visually jumps', '4. a table must be read sequentially (slow)', '5. visual memory is strong', '6. a shared reference - debate the decision, not the data']} />
 
       {/* value */}
       <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
         <rect x={470} y={150} width={410} height={158} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={675} y={172} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>VALUE KAISE MEASURE KAREN</text>
+        <text x={675} y={172} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>HOW TO MEASURE THE VALUE</text>
         {[
           ['Cycle time', 'weekly report > daily dashboard', C.cyan],
           ['Decision quality', 'fewer reversals, faster anomaly', C.lime],
-          ['Accountability', 'ek number, ek definition, owner', C.yellow],
+          ['Accountability', 'one number, one definition, owner', C.yellow],
           ['Adoption', 'active users, alerts acted upon', C.purple],
           ['Cost avoided', 'manual reporting hours saved', C.orange],
         ].map(([t, s, col], i) => (
@@ -715,7 +715,7 @@ export function VzDecisionDiagram() {
         <rect x={40} y={322} width={410} height={130} rx="11" fill="rgba(255,214,0,0.05)" stroke={C.yellow} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={245} y={344} textAnchor="middle" fill={C.yellow} fontSize="9" fontWeight="800" fontFamily={FONT}>CYCLE TIME — BEFORE vs AFTER</text>
         <text x={60} y={368} fill={C.dim} fontSize="7.6" fontFamily={FONT}>data collection</text>
-        <text x={200} y={368} fill={C.red} fontSize="7.6" fontFamily={FONT}>2 din</text>
+        <text x={200} y={368} fill={C.red} fontSize="7.6" fontFamily={FONT}>2 days</text>
         <Arrow x1={250} y1={365} x2={290} y2={365} color={C.lime} delay={380} />
         <text x={300} y={368} fill={C.green} fontSize="7.6" fontFamily={FONT}>automated</text>
         <text x={60} y={388} fill={C.dim} fontSize="7.6" fontFamily={FONT}>analysis</text>
@@ -725,15 +725,15 @@ export function VzDecisionDiagram() {
         <text x={60} y={408} fill={C.dim} fontSize="7.6" fontFamily={FONT}>detection</text>
         <text x={200} y={408} fill={C.red} fontSize="7.6" fontFamily={FONT}>3 hafte</text>
         <Arrow x1={250} y1={405} x2={290} y2={405} color={C.lime} delay={420} />
-        <text x={300} y={408} fill={C.green} fontSize="7.6" fontFamily={FONT}>1 din</text>
-        <text x={245} y={436} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>lesson: value dashboard ke pixels mein nahi, decision latency mein hai</text>
+        <text x={300} y={408} fill={C.green} fontSize="7.6" fontFamily={FONT}>1 day</text>
+        <text x={245} y={436} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>lesson: the value is not in the dashboard pixels, it is in decision latency</text>
       </g>
 
       {/* risks */}
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x={470} y={322} width={410} height={130} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={675} y={344} textAnchor="middle" fill={C.red} fontSize="9" fontWeight="800" fontFamily={FONT}>WHEN A VISUALIZATION MISLEADS</text>
-        {['truncated y-axis - chhota farq bada', 'cherry-picked period / start date', 'correlation ko causation batana', 'aggregation hiding (Simpson paradox)', 'percentage without denominator'].map((t, i) => (
+        {['a truncated y-axis - a small gap looks large', 'cherry-picked period / start date', 'calling correlation causation', 'aggregation hiding (Simpson paradox)', 'percentage without denominator'].map((t, i) => (
           <text key={t} x={488} y={362 + i * 15} fill={C.dim} fontSize="7.6" fontFamily={FONT}>- {t}</text>
         ))}
         <text x={675} y={440} textAnchor="middle" fill={C.lime} fontSize="7.2" fontWeight="700" fontFamily={FONT}>safeguard: axis label, sample size, drill-through, review</text>
@@ -749,7 +749,7 @@ export function VzAiDiagram() {
   return (
     <Frame
       id="vz-ai"
-      title="AI-assisted visualization aur LLM reporting"
+      title="AI-assisted visualization and LLM reporting"
       sub="question > semantic model > query > visual + explanation > human review"
       label="The natural language to semantic model to query to visual pipeline for LLM based reporting, the AI use cases of chart recommendation automated dashboards anomaly detection and forecasting, and the guardrails of grounded metrics human review and audit logging"
     >
@@ -770,25 +770,25 @@ export function VzAiDiagram() {
             {i < 5 && <Arrow x1={170 + i * 142} y1={102} x2={180 + i * 142} y2={102} color={C.dim} delay={100 + i * 30} />}
           </g>
         ))}
-        <text x={460} y={150} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>text-to-query / text-to-DAX ka core: model hi guardrail hai — jo measure model mein nahi, wo answer nahi</text>
+        <text x={460} y={150} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>text-to-query or text-to-DAX: the model is the guardrail - a measure that is not in the model has no answer</text>
       </g>
 
       {/* use cases */}
-      <Box x={40} y={174} w={410} h={176} title="AI KE USE CASES" color={C.cyan} delay={180}
-        lines={['1. chart recommendation (intent + type)', '2. auto dashboard first draft', '3. NL reporting / Q&A on metrics', '4. auto narrative (exec summary)', '5. anomaly detection + explanation', '6. forecasting with confidence band', '7. data prep assist (typing, keys)']} />
+      <Box x={40} y={174} w={410} h={176} title="AI USE CASES" color={C.cyan} delay={180}
+        lines={['1. chart recommendation (intent + type)', '2. auto dashboard first draft', '3. NL reporting / Q&A on metrics', '4. auto narrative (exec summary)', '5. anomaly detection + explanation', '6. forecasting with a confidence band', '7. data prep assist (typing, keys)']} />
 
       {/* pipeline detail / risks */}
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
         <rect x={470} y={174} width={410} height={176} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={675} y={196} textAnchor="middle" fill={C.red} fontSize="9.2" fontWeight="800" fontFamily={FONT}>RISKS</text>
         {[
-          'hallucinated numbers aur invented metrics',
-          'ambiguous question - "best region" ka matlab?',
+          'hallucinated numbers and invented metrics',
+          'an ambiguous question - what does &quot;best region&quot; mean?',
           'wrong joins / double counting (grain)',
           'prompt injection, data leakage, PII',
           'auto chart bias, narrative slant',
-          'audit trail weak - kaunsi query chali?',
-          'over-trust - user bina verify kiye use karta',
+          'audit trail weak - which query ran?',
+          'over-trust - the user acts without verifying',
         ].map((t, i) => (
           <text key={t} x={488} y={218 + i * 18} fill={C.dim} fontSize="7.8" fontFamily={FONT}>- {t}</text>
         ))}
@@ -797,12 +797,12 @@ export function VzAiDiagram() {
       {/* guardrails */}
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x={40} y={368} width={840} height={134} rx="10" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.2" strokeOpacity="0.7" />
-        <text x={460} y={390} textAnchor="middle" fill={C.green} fontSize="9" fontWeight="800" fontFamily={FONT}>GUARDRAILS — AI reporting ko trustworthy banane ke liye</text>
+        <text x={460} y={390} textAnchor="middle" fill={C.green} fontSize="9" fontWeight="800" fontFamily={FONT}>GUARDRAILS - to make AI reporting trustworthy</text>
         {[
-          ['Grounding', 'sirf certified measures/fields', C.cyan],
+          ['Grounding', 'certified measures and fields only', C.cyan],
           ['Show work', 'query + filters + definition', C.lime],
-          ['Human review', 'publish se pehle verify', C.yellow],
-          ['RLS + PII', 'query time par enforce', C.orange],
+          ['Human review', 'verify before publishing', C.yellow],
+          ['RLS + PII', 'enforce at query time', C.orange],
           ['Logging', 'prompt, query, result, user', C.purple],
           ['Evaluation', 'known-answer test set', C.pink],
         ].map(([t, s, col], i) => (
@@ -812,8 +812,8 @@ export function VzAiDiagram() {
             <text x={60 + i * 138} y={448} fill={C.dim} fontSize="7.2" fontFamily={FONT}>{s.split(' ').slice(1).join(' ')}</text>
           </g>
         ))}
-        <text x={460} y={474} textAnchor="middle" fill={C.lime} fontSize="8" fontWeight="700" fontFamily={FONT}>AI analyst ko accelerate karta hai — number ki accountability named owner ki rehti hai</text>
-        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>best practice: traditional BI ka governed model + AI ka natural language interface (hybrid)</text>
+        <text x={460} y={474} textAnchor="middle" fill={C.lime} fontSize="8" fontWeight="700" fontFamily={FONT}>AI accelerates the analyst - accountability for the number stays with a named owner</text>
+        <text x={460} y={492} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>best practice: the governed model of traditional BI plus the natural-language interface of AI (hybrid)</text>
       </g>
     </Frame>
   );
