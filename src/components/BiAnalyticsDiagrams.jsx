@@ -107,7 +107,7 @@ export function TdMetricsDiagram() {
   return (
     <Frame
       id="td-metrics"
-      title="Business metrics aur KPIs"
+      title="Business metrics and KPIs"
       sub="metric = number, KPI = number + target + owner + decision"
       label="A metric pyramid with hundreds of raw operational metrics at the base, tactical metrics in the middle and a handful of strategic KPIs at the top, alongside a KPI definition card listing formula, target, owner, cadence and thresholds, and a row of SMART criteria plus leading and lagging indicator examples"
     >
@@ -121,8 +121,8 @@ export function TdMetricsDiagram() {
         <text x={250} y={178} textAnchor="middle" fill={C.green} fontSize="8.6" fontWeight="800" fontFamily={FONT}>TACTICAL</text>
         <text x={250} y={192} textAnchor="middle" fill={C.dim} fontSize="7.6" fontFamily={FONT}>dept head / monthly</text>
         <text x={250} y={244} textAnchor="middle" fill={C.cyan} fontSize="8.6" fontWeight="800" fontFamily={FONT}>OPERATIONAL METRICS</text>
-        <text x={250} y={258} textAnchor="middle" fill={C.dim} fontSize="7.6" fontFamily={FONT}>team / daily / kai metrics</text>
-        <text x={250} y={276} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>jitna neeche, utna detail</text>
+        <text x={250} y={258} textAnchor="middle" fill={C.dim} fontSize="7.6" fontFamily={FONT}>team / daily / many metrics</text>
+        <text x={250} y={276} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>the lower you go, the more detail</text>
       </g>
 
       {/* KPI definition sheet */}
@@ -161,19 +161,19 @@ export function TdMetricsDiagram() {
       {/* leading vs lagging */}
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={24} y={386} width={424} height={96} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={236} y={406} textAnchor="middle" fill={C.green} fontSize="9.4" fontWeight="800" fontFamily={FONT}>LEADING - aage ka signal</text>
-        {['pipeline value, trial signups', 'website traffic, demo requests', 'action abhi possible'].map((s, i) => (
+        <text x={236} y={406} textAnchor="middle" fill={C.green} fontSize="9.4" fontWeight="800" fontFamily={FONT}>LEADING - the signal ahead</text>
+        {['pipeline value, trial signups', 'website traffic, demo requests', 'action is possible now'].map((s, i) => (
           <text key={s} x={44} y={428 + i * 16} fill={C.dim} fontSize="8.2" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
       </g>
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x={472} y={386} width={424} height={96} rx="11" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={684} y={406} textAnchor="middle" fill={C.cyan} fontSize="9.4" fontWeight="800" fontFamily={FONT}>LAGGING - result, par late</text>
-        {['revenue, profit, churn', 'customer satisfaction score', 'outcome confirm karta hai'].map((s, i) => (
+        <text x={684} y={406} textAnchor="middle" fill={C.cyan} fontSize="9.4" fontWeight="800" fontFamily={FONT}>LAGGING - the result, but late</text>
+        {['revenue, profit, churn', 'customer satisfaction score', 'confirms the outcome'].map((s, i) => (
           <text key={s} x={492} y={428 + i * 16} fill={C.dim} fontSize="8.2" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
       </g>
-      <Note x={460} y={504} text="exam line: har metric KPI nahi hota, par har KPI ek metric zaroor hota hai" color={C.yellow} size={9} bold />
+      <Note x={460} y={504} text="exam line: not every metric is a KPI, but every KPI is a metric" color={C.yellow} size={9} bold />
     </Frame>
   );
 }
@@ -185,15 +185,15 @@ export function TdKpiDecisionDiagram() {
   return (
     <Frame
       id="td-kpi-decision"
-      title="KPIs se organizational decision making"
-      sub="strategy to KPI to action - aur wapas KPI par"
+      title="KPIs in organizational decision making"
+      sub="strategy to KPI to action - and back to the KPI"
       label="A strategy box cascading into company, department and team KPIs on the left, a five step decision loop of measure compare diagnose act and re-measure with a repeat arrow on the right, the benefits of alignment and accountability in one panel, and failure modes such as tunnel vision gaming and too many measures in another"
     >
       {/* strategy cascade */}
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
         <rect x={24} y={74} width={330} height={46} rx="9" fill="rgba(196,255,0,0.12)" stroke={C.lime} strokeWidth="1.5" />
         <text x={189} y={94} textAnchor="middle" fill={C.lime} fontSize="9.4" fontWeight="800" fontFamily={FONT}>COMPANY STRATEGY</text>
-        <text x={189} y={110} textAnchor="middle" fill={C.dim} fontSize="7.8" fontFamily={FONT}>"retention improve karo"</text>
+        <text x={189} y={110} textAnchor="middle" fill={C.dim} fontSize="7.8" fontFamily={FONT}>&quot;improve retention&quot;</text>
         <rect x={94} y={140} width={300} height={42} rx="9" fill="rgba(0,230,118,0.08)" stroke={C.green} strokeWidth="1.3" />
         <text x={244} y={158} textAnchor="middle" fill={C.green} fontSize="8.8" fontWeight="700" fontFamily={FONT}>COMPANY KPI: churn % under 5</text>
         <text x={244} y={173} textAnchor="middle" fill={C.dim} fontSize="7.6" fontFamily={FONT}>owner: CRO</text>
@@ -206,7 +206,7 @@ export function TdKpiDecisionDiagram() {
         <Arrow x1={189} y1={120} x2={224} y2={140} color={C.lime} delay={180} />
         <Arrow x1={200} y1={182} x2={126} y2={206} color={C.lime} delay={220} />
         <Arrow x1={300} y1={182} x2={350} y2={206} color={C.lime} delay={240} />
-        <text x={189} y={268} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>cascade: company se team tak ek hi metric chain</text>
+        <text x={189} y={268} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>cascade: one metric chain from company to team</text>
       </g>
 
       {/* decision loop */}
@@ -216,9 +216,9 @@ export function TdKpiDecisionDiagram() {
         {[
           ['1 MEASURE', 'KPI value + trend', C.cyan],
           ['2 COMPARE', 'target, last period, benchmark', C.yellow],
-          ['3 DIAGNOSE', 'drill-down se root cause', C.orange],
+          ['3 DIAGNOSE', 'root cause by drill-down', C.orange],
           ['4 ACT', 'owner corrective action', C.lime],
-          ['5 RE-MEASURE', 'action ka asar verify karo', C.green],
+          ['5 RE-MEASURE', 'verify the effect of every action', C.green],
         ].map(([t, desc, col], i) => (
           <g key={t}>
             <rect x={476} y={102 + i * 28} width={396} height="24" rx="6" fill={col} fillOpacity="0.08" stroke={col} strokeWidth="1.1" strokeOpacity="0.7" />
@@ -227,19 +227,19 @@ export function TdKpiDecisionDiagram() {
           </g>
         ))}
         <Arrow x1={884} y1={236} x2={884} y2={106} color={C.purple} dashed delay={0} />
-        <text x={678} y={250} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>loop band na ho to reporting culture ban jaata hai</text>
+        <text x={678} y={250} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>an open loop becomes a reporting culture</text>
       </g>
 
       {/* benefits */}
       <g className="diagram-pop" style={{ animationDelay: '380ms' }}>
         <rect x={24} y={274} width={424} height={120} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={236} y={294} textAnchor="middle" fill={C.green} fontSize="9.4" fontWeight="800" fontFamily={FONT}>FAYDE</text>
+        <text x={236} y={294} textAnchor="middle" fill={C.green} fontSize="9.4" fontWeight="800" fontFamily={FONT}>GAINS</text>
         {[
-          'alignment - sab ek goal par',
+          'alignment - everyone on one goal',
           'accountability - owner + target',
           'early warning - threshold alert',
-          'resource allocation - gap par budget',
-          'appraisal aur risk monitoring',
+          'resource allocation - budget to the gap',
+          'appraisal and risk monitoring',
         ].map((t, i) => (
           <text key={t} x={44} y={316 + i * 16} fill={C.dim} fontSize="8.2" fontFamily={FONT}>{`- ${t}`}</text>
         ))}
@@ -250,21 +250,21 @@ export function TdKpiDecisionDiagram() {
         <rect x={472} y={274} width={424} height={120} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={684} y={294} textAnchor="middle" fill={C.red} fontSize="9.4" fontWeight="800" fontFamily={FONT}>RISKS</text>
         {[
-          'tunnel vision - ek KPI sab kuch',
-          'gaming - number theek, behaviour galat',
-          'too many KPIs - focus khatam',
+          'tunnel vision - one KPI is everything',
+          'gaming - the number is right, the behaviour is wrong',
+          'too many KPIs - focus is lost',
           'lagging only - action late',
-          'arbitrary target - trust khatam',
+          'arbitrary target - trust is lost',
         ].map((t, i) => (
           <text key={t} x={492} y={316 + i * 16} fill={C.dim} fontSize="8.2" fontFamily={FONT}>{`- ${t}`}</text>
         ))}
       </g>
 
-      <Note x={460} y={420} text="KPI ka value number mein nahi, uske trigger mein hai" color={C.yellow} size={9.2} bold />
-      <Note x={460} y={444} text="balanced scorecard se financial + customer + process + learning sab cover hote hain" color={C.dim} size="8.4" />
-      <Note x={460} y={466} text="review cadence fix karo: weekly ops, monthly business, quarterly board" color={C.faint} size="8.2" />
-      <Note x={460} y={488} text="har KPI ka ek hi definition - warna do dashboard do number" color={C.faint} size="8.2" />
-      <Note x={460} y={510} text="exam line: KPI decision trigger karta hai, report sirf information deti hai" color={C.lime} size="8.6" bold />
+      <Note x={460} y={420} text="a KPI's value is not the number but the trigger" color={C.yellow} size={9.2} bold />
+      <Note x={460} y={444} text="the balanced scorecard covers financial, customer, process and learning" color={C.dim} size="8.4" />
+      <Note x={460} y={466} text="fix the review cadence: weekly ops, monthly business, quarterly board" color={C.faint} size="8.2" />
+      <Note x={460} y={488} text="one definition per KPI - else two dashboards, two numbers" color={C.faint} size="8.2" />
+      <Note x={460} y={510} text="exam line: a KPI triggers a decision, a report only informs" color={C.lime} size="8.6" bold />
     </Frame>
   );
 }
@@ -276,7 +276,7 @@ export function TdPerformanceDiagram() {
   return (
     <Frame
       id="td-performance"
-      title="Performance measurement aur analytical reporting"
+      title="Performance measurement and analytical reporting"
       sub="balanced scorecard + teen reporting layers + variance analysis"
       label="The balanced scorecard with financial customer internal process and learning perspectives, three reporting layers from daily operational to quarterly strategic, a report anatomy with KPI tiles trend and drill-down, and variance decomposition of an eight lakh shortfall into volume price and mix effects"
     >
@@ -319,21 +319,21 @@ export function TdPerformanceDiagram() {
             <text x={860} y={142 + i * 62} textAnchor="end" fill={C.faint} fontSize="7.4" fontFamily={FONT}>{i === 0 ? 'summary' : i === 1 ? 'aggregate' : 'row level'}</text>
           </g>
         ))}
-        <text x={620} y={296} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>ek hi metric layer se sab reports - warna numbers reconcile nahi honge</text>
+        <text x={620} y={296} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>one metric layer for all reports - else the numbers will not reconcile</text>
       </g>
 
       {/* report anatomy */}
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x={24} y={318} width={424} height={128} rx="11" fill="rgba(0,188,212,0.05)" stroke={C.teal} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={236} y={338} textAnchor="middle" fill={C.teal} fontSize="9.4" fontWeight="800" fontFamily={FONT}>ACHHI REPORT KA ANATOMY</text>
+        <text x={236} y={338} textAnchor="middle" fill={C.teal} fontSize="9.4" fontWeight="800" fontFamily={FONT}>ANATOMY OF A GOOD REPORT</text>
         <rect x={40} y={348} width={120} height="36" rx="6" fill="rgba(196,255,0,0.12)" stroke={C.lime} strokeWidth="1.1" />
         <text x={100} y={368} textAnchor="middle" fill={C.lime} fontSize="7.8" fontWeight="700" fontFamily={FONT}>KPI tile + RAG</text>
         <rect x={170} y={348} width={120} height="36" rx="6" fill="rgba(0,212,255,0.10)" stroke={C.cyan} strokeWidth="1.1" />
         <text x={230} y={368} textAnchor="middle" fill={C.cyan} fontSize="7.8" fontFamily={FONT}>trend vs target</text>
         <rect x={300} y={348} width={132} height="36" rx="6" fill="rgba(255,214,0,0.09)" stroke={C.yellow} strokeWidth="1.1" />
         <text x={366} y={368} textAnchor="middle" fill={C.yellow} fontSize="7.8" fontFamily={FONT}>table + drill-down</text>
-        <text x={44} y={404} fill={C.dim} fontSize="8" fontFamily={FONT}>- decision-first: "so what" upar, number neeche</text>
-        <text x={44} y={420} fill={C.dim} fontSize="8" fontFamily={FONT}>- exception highlight, ek definition, cutoff noted</text>
+        <text x={44} y={404} fill={C.dim} fontSize="8" fontFamily={FONT}>- decision first: the &quot;so what&quot; on top, the number below</text>
+        <text x={44} y={420} fill={C.dim} fontSize="8" fontFamily={FONT}>- exception highlight, one definition, cutoff noted</text>
         <text x={44} y={436} fill={C.faint} fontSize="7.6" fontFamily={FONT}>- 5 second load, source + refresh time visible</text>
       </g>
 
@@ -347,9 +347,9 @@ export function TdPerformanceDiagram() {
         <text x={492} y={414} fill={C.orange} fontSize="8.2" fontFamily={FONT}>mix: premium share 25 to 22% = -1.2 / +1.2 offset</text>
         <text x={492} y={434} fill={C.lime} fontSize="8" fontFamily={FONT}>action: stock-out fix (12 SKUs), not pricing</text>
       </g>
-      <Note x={460} y={470} text="variance ko todo - tabhi action specific hota hai" color={C.yellow} size={9} bold />
-      <Note x={460} y={492} text="scorecard balance deta hai: financial + customer + process + learning" color={C.dim} size="8.4" />
-      <Note x={460} y={512} text="exam line: report ka test - isse koi decision nikalta hai ya nahi" color={C.lime} size="8.4" />
+      <Note x={460} y={470} text="break the variance down - only then is the action specific" color={C.yellow} size={9} bold />
+      <Note x={460} y={492} text="the scorecard balances financial, customer, process and learning" color={C.dim} size="8.4" />
+      <Note x={460} y={512} text="exam line: the test of a report - does a decision come out of it" color={C.lime} size="8.4" />
     </Frame>
   );
 }
@@ -361,17 +361,17 @@ export function TdTemporalDiagram() {
   return (
     <Frame
       id="td-temporal"
-      title="Temporal data - samay se juda data"
-      sub="valid time business se, transaction time database se"
+      title="Temporal data - data tied to time"
+      sub="valid time from the business, transaction time from the database"
       label="One timeline showing the event date, the valid time range and the transaction time range for the same fact, the four data classes from snapshot to bitemporal with the question each answers, and the practical BI problems of late-arriving data corrections slowly changing dimensions time zones and retention"
     >
       {/* three timelines */}
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
-        <text x={24} y={84} fill={C.dim} fontSize="9" fontWeight="700" fontFamily={FONT} anchor="start">EK FACT, TEEN TARAH KA TIME</text>
+        <text x={24} y={84} fill={C.dim} fontSize="9" fontWeight="700" fontFamily={FONT} anchor="start">ONE FACT, THREE KINDS OF TIME</text>
         {[
-          ['EVENT TIME', 'sale 28 Mar ko hui', 128, C.cyan, 340],
-          ['VALID TIME', 'price 1 Jan se 31 Mar tak sach', 168, C.green, 470],
-          ['TRANSACTION TIME', 'record 3 Apr ko system mein aaya', 208, C.yellow, 250],
+          ['EVENT TIME', 'the sale happened on 28 Mar', 128, C.cyan, 340],
+          ['VALID TIME', 'the price was true from 1 Jan to 31 Mar', 168, C.green, 470],
+          ['TRANSACTION TIME', 'the record reached the system on 3 Apr', 208, C.yellow, 250],
         ].map(([t, s, y, col, w]) => (
           <g key={t}>
             <text x={24} y={y - 4} fill={col} fontSize="8.2" fontWeight="700" fontFamily={FONT}>{t}</text>
@@ -384,7 +384,7 @@ export function TdTemporalDiagram() {
         <text x={336} y={236} fill={C.lime} fontSize="7.4" fontFamily={FONT}>28 Mar</text>
         <line x1={560} y1={120} x2={560} y2={230} stroke={C.pink} strokeWidth="1" strokeDasharray="4 3" strokeOpacity="0.7" />
         <text x={566} y={236} fill={C.pink} fontSize="7.4" fontFamily={FONT}>3 Apr (load)</text>
-        <text x={24} y={256} fill={C.faint} fontSize="7.6" fontFamily={FONT}>same fact, teen alag period - kaunsa filter, yahi BI ka sawaal hai</text>
+        <text x={24} y={256} fill={C.faint} fontSize="7.6" fontFamily={FONT}>the same fact, three periods - which filter to use is the BI question</text>
       </g>
 
       {/* four classes */}
@@ -392,10 +392,10 @@ export function TdTemporalDiagram() {
         <rect x={24} y={272} width={872} height={104} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={460} y={292} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>CHAAR DATA CLASSES</text>
         {[
-          ['SNAPSHOT', 'koi time nahi', '"abhi kya hai?"', C.faint],
-          ['VALID-TIME', 'business time', '"March mein price kya tha?"', C.cyan],
-          ['TRANSACTION-TIME', 'system time', '"March mein humein kya pata tha?"', C.yellow],
-          ['BITEMPORAL', 'dono', '"March ke liye aaj kya sahi hai?"', C.lime],
+          ['SNAPSHOT', 'no time at all', '&quot;what is it now?&quot;', C.faint],
+          ['VALID-TIME', 'business time', '&quot;what was the price in March?&quot;', C.cyan],
+          ['TRANSACTION-TIME', 'system time', '&quot;what did we know in March?&quot;', C.yellow],
+          ['BITEMPORAL', 'both', '&quot;what is right for March today?&quot;', C.lime],
         ].map(([t, s, q, col], i) => (
           <g key={t}>
             <rect x={40 + i * 214} y={302} width={198} height="62" rx="8" fill={col} fillOpacity="0.07" stroke={col} strokeWidth="1.2" strokeOpacity="0.75" />
@@ -410,18 +410,18 @@ export function TdTemporalDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x={24} y={392} width={424} height={92} rx="11" fill="rgba(255,136,0,0.05)" stroke={C.orange} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={236} y={412} textAnchor="middle" fill={C.orange} fontSize="9.2" fontWeight="800" fontFamily={FONT}>PROBLEMS</text>
-        {['late-arriving facts aur dimensions', 'corrections / restatement', 'time zone, DST, fiscal year'].map((s, i) => (
+        {['late-arriving facts and dimensions', 'corrections / restatement', 'time zone, DST, fiscal year'].map((s, i) => (
           <text key={s} x={44} y={434 + i * 16} fill={C.dim} fontSize="8" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
       </g>
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x={472} y={392} width={424} height={92} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={684} y={412} textAnchor="middle" fill={C.green} fontSize="9.2" fontWeight="800" fontFamily={FONT}>SOLUTIONS</text>
-        {['event date + load_ts dono store karo', 'SCD type 2 + audit history table', 'UTC store, local display, date dimension'].map((s, i) => (
+        {['store both event date and load_ts', 'SCD type 2 + audit history table', 'UTC store, local display, date dimension'].map((s, i) => (
           <text key={s} x={492} y={434 + i * 16} fill={C.dim} fontSize="8" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
       </g>
-      <Note x={460} y={502} text="exam line: temporal data value + us period ka record hai, sirf current value nahi" color={C.yellow} size="8.8" bold />
+      <Note x={460} y={502} text="exam line: temporal data is a value plus the record of its period, not the current value" color={C.yellow} size="8.8" bold />
     </Frame>
   );
 }
@@ -433,8 +433,8 @@ export function TdBitemporalDiagram() {
   return (
     <Frame
       id="td-bitemporal"
-      title="Valid time aur transaction time"
-      sub="do independent axes - isliye bitemporal table mein chaar columns"
+      title="Valid time and transaction time"
+      sub="two independent axes - hence four columns in the bitemporal table"
       label="Two independent time axes plotted as a grid, valid time on one axis and transaction time on the other, a bitemporal table with four timestamp columns and three rows including a late correction, and the three resulting queries current as-of and as-was answered from the same rows"
     >
       {/* axes grid */}
@@ -455,7 +455,7 @@ export function TdBitemporalDiagram() {
             <line x1={x + 43} y1={y + 30} x2={x + 43} y2={256} stroke={col} strokeWidth="0.8" strokeDasharray="3 3" strokeOpacity="0.5" />
           </g>
         ))}
-        <text x={250} y={296} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>dono axis independent hain - isliye grid banta hai</text>
+        <text x={250} y={296} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>the two axes are independent - that is why a grid forms</text>
       </g>
 
       {/* table */}
@@ -477,19 +477,19 @@ export function TdBitemporalDiagram() {
             <line x1={480} y1={144 + ri * 26} x2={888} y2={144 + ri * 26} stroke={C.faint} strokeWidth="0.7" strokeOpacity="0.3" />
           </g>
         ))}
-        <text x={480} y={232} fill={C.pink} fontSize="7.4" fontFamily={FONT}>row 3: 10 May ko correction - purane row ka txn_to band hua</text>
-        <text x={480} y={250} fill={C.dim} fontSize="7.4" fontFamily={FONT}>transaction time kabhi overwrite nahi hota (append-only)</text>
-        <text x={480} y={268} textAnchor="start" fill={C.faint} fontSize="7.2" fontFamily={FONT}>SAHI value ka matlab: "kis din ki knowledge" pe depend karta hai</text>
+        <text x={480} y={232} fill={C.pink} fontSize="7.4" fontFamily={FONT}>row 3: a correction on 10 May closes the old row's txn_to</text>
+        <text x={480} y={250} fill={C.dim} fontSize="7.4" fontFamily={FONT}>transaction time is never overwritten (append-only)</text>
+        <text x={480} y={268} textAnchor="start" fill={C.faint} fontSize="7.2" fontFamily={FONT}>the right value depends on knowledge as of which day</text>
       </g>
 
       {/* three queries */}
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x={24} y={304} width={872} height={166} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={460} y={324} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>TEEN SAWAAL, EK TABLE</text>
+        <text x={460} y={324} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>THREE QUESTIONS, ONE TABLE</text>
         {[
-          ['CURRENT', 'txn_to = 9999-12-31', 'aaj ka sach: Rs 100 (1-15 Apr)', C.green],
-          ['AS-OF 20 Apr', 'txn_from <= 20 Apr < txn_to', 'us waqt belief: Rs 110', C.yellow],
-          ['AS-WAS 1 Apr', 'valid_from <= 1 Apr < valid_to', 'aaj ki knowledge: Rs 100', C.cyan],
+          ['CURRENT', 'txn_to = 9999-12-31', "today's truth: Rs 100 (1-15 Apr)", C.green],
+          ['AS-OF 20 Apr', 'txn_from <= 20 Apr < txn_to', 'what was believed then: Rs 110', C.yellow],
+          ['AS-WAS 1 Apr', 'valid_from <= 1 Apr < valid_to', "today's knowledge: Rs 100", C.cyan],
         ].map(([t, cond, ans, col], i) => (
           <g key={t}>
             <rect x={40} y={338 + i * 40} width={840} height="34" rx="7" fill={col} fillOpacity="0.06" stroke={col} strokeWidth="1.1" strokeOpacity="0.7" />
@@ -498,9 +498,9 @@ export function TdBitemporalDiagram() {
             <text x={520} y={359 + i * 40} fill={col} fontSize="7.8" fontFamily={FONT}>{ans}</text>
           </g>
         ))}
-        <text x={460} y={462} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>teeno jawab sahi hain - sawaal alag hai</text>
+        <text x={460} y={462} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>all three answers are right - the question differs</text>
       </g>
-      <Note x={460} y={496} text="exam line: valid time business badalta hai, transaction time ek baar likha to kabhi nahi" color={C.lime} size="8.6" bold />
+      <Note x={460} y={496} text="exam line: valid time changes with the business, transaction time never does" color={C.lime} size="8.6" bold />
     </Frame>
   );
 }
@@ -512,7 +512,7 @@ export function TdAttributesDiagram() {
   return (
     <Frame
       id="td-attributes"
-      title="Temporal attributes aur timestamps"
+      title="Temporal attributes and timestamps"
       sub="effective dates + audit columns + range join"
       label="A product dimension row with effective dates and audit timestamps, the half-open validity interval with a sentinel end date, slowly changing dimension types one two and three compared, and a range join between the fact event date and the dimension validity window"
     >
@@ -522,7 +522,7 @@ export function TdAttributesDiagram() {
         <text x={304} y={94} textAnchor="middle" fill={C.yellow} fontSize="9.4" fontWeight="800" fontFamily={FONT}>EK DIMENSION ROW - time columns highlighted</text>
         {[
           ['product_sk', '1204', C.faint],
-          ['product_nk', 'AATA-5KG', C.dim],
+          ['product_nk', 'FLOUR-5KG', C.dim],
           ['category', 'Staples', C.cyan],
           ['valid_from', '2025-02-01', C.green],
           ['valid_to', '9999-12-31', C.green],
@@ -535,9 +535,9 @@ export function TdAttributesDiagram() {
             <text x={140} y={122 + i * 12.5} fill={col} fontSize="7.6" fontFamily={FONT}>{v}</text>
           </g>
         ))}
-        <text x={330} y={124} fill={C.green} fontSize="8" fontWeight="700" fontFamily={FONT}>validity (kis period ke liye sach)</text>
-        <text x={330} y={162} fill={C.orange} fontSize="8" fontWeight="700" fontFamily={FONT}>audit (kab load / change hua)</text>
-        <text x={330} y={200} fill={C.dim} fontSize="7.6" fontFamily={FONT}>open-ended row: 9999-12-31 sentinel, NULL nahi</text>
+        <text x={330} y={124} fill={C.green} fontSize="8" fontWeight="700" fontFamily={FONT}>validity (the period it is true for)</text>
+        <text x={330} y={162} fill={C.orange} fontSize="8" fontWeight="700" fontFamily={FONT}>audit (when it was loaded or changed)</text>
+        <text x={330} y={200} fill={C.dim} fontSize="7.6" fontFamily={FONT}>open-ended row: a 9999-12-31 sentinel, not NULL</text>
       </g>
 
       {/* interval */}
@@ -551,7 +551,7 @@ export function TdAttributesDiagram() {
         <text x={802} y={120} textAnchor="middle" fill={C.dim} fontSize="7.2" fontFamily={FONT}>1 Feb 2026</text>
         <text x={748} y={172} textAnchor="middle" fill={C.dim} fontSize="7.6" fontFamily={FONT}>overlap na ho, gap na ho</text>
         <text x={748} y={190} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>start inclusive, end exclusive</text>
-        <text x={748} y={208} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>warna same din do version match honge</text>
+        <text x={748} y={208} textAnchor="middle" fill={C.faint} fontSize="7.4" fontFamily={FONT}>else two versions match on the same day</text>
       </g>
 
       {/* SCD types */}
@@ -559,9 +559,9 @@ export function TdAttributesDiagram() {
         <rect x={24} y={240} width={872} height={104} rx="12" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={460} y={260} textAnchor="middle" fill={C.cyan} fontSize="9.4" fontWeight="800" fontFamily={FONT}>ATTRIBUTE CHANGE - SCD TYPE 1 / 2 / 3</text>
         {[
-          ['TYPE 1', ['overwrite karo', 'history nahi', 'typo fix ke liye'], C.red],
-          ['TYPE 2', ['naya versioned row', 'valid_from / valid_to', 'audit + trend ke liye'], C.green],
-          ['TYPE 3', ['prev_value column', 'ek step history', 'before-after compare'], C.yellow],
+          ['TYPE 1', ['overwrite', 'no history', 'for a typo fix'], C.red],
+          ['TYPE 2', ['new versioned row', 'valid_from / valid_to', 'for audit and trend'], C.green],
+          ['TYPE 3', ['prev_value column', 'one step of history', 'before-after compare'], C.yellow],
         ].map(([t, lines, col], i) => (
           <g key={t}>
             <rect x={40 + i * 288} y={270} width={272} height="62" rx="8" fill={col} fillOpacity="0.06" stroke={col} strokeWidth="1.2" strokeOpacity="0.75" />
@@ -576,11 +576,11 @@ export function TdAttributesDiagram() {
       {/* range join */}
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x={24} y={358} width={872} height={112} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={460} y={378} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>RANGE JOIN - sahi version kaise lagega</text>
+        <text x={460} y={378} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>RANGE JOIN - how the right version is picked</text>
         <rect x={44} y={392} width={180} height={54} rx="8" fill="rgba(0,212,255,0.08)" stroke={C.cyan} strokeWidth="1.2" />
         <text x={134} y={412} textAnchor="middle" fill={C.cyan} fontSize="8.4" fontWeight="700" fontFamily={FONT}>FACT</text>
         <text x={134} y={428} textAnchor="middle" fill={C.dim} fontSize="7.4" fontFamily={FONT}>event_date 2025-03-12</text>
-        <text x={134} y={440} textAnchor="middle" fill={C.dim} fontSize="7.4" fontFamily={FONT}>product_nk AATA-5KG</text>
+        <text x={134} y={440} textAnchor="middle" fill={C.dim} fontSize="7.4" fontFamily={FONT}>product_nk FLOUR-5KG</text>
         <Arrow x1={228} y1={419} x2={268} y2={419} color={C.lime} delay={0} />
         <rect x={272} y={392} width={280} height={54} rx="8" fill="rgba(196,255,0,0.07)" stroke={C.lime} strokeWidth="1.2" />
         <text x={412} y={410} textAnchor="middle" fill={C.lime} fontSize="7.8" fontFamily={FONT}>ON nk = nk AND event_date &gt;= valid_from</text>
@@ -589,10 +589,10 @@ export function TdAttributesDiagram() {
         <Arrow x1={556} y1={419} x2={596} y2={419} color={C.lime} delay={0} />
         <rect x={600} y={392} width={272} height={54} rx="8" fill="rgba(0,230,118,0.07)" stroke={C.green} strokeWidth="1.2" />
         <text x={736} y={412} textAnchor="middle" fill={C.green} fontSize="8" fontWeight="700" fontFamily={FONT}>version matched</text>
-        <text x={736} y={428} textAnchor="middle" fill={C.dim} fontSize="7.4" fontFamily={FONT}>us din ki category Staples</text>
-        <text x={736} y={440} textAnchor="middle" fill={C.faint} fontSize="7.2" fontFamily={FONT}>is_current = 1 par join galat hoga</text>
+        <text x={736} y={428} textAnchor="middle" fill={C.dim} fontSize="7.4" fontFamily={FONT}>that day's category: Staples</text>
+        <text x={736} y={440} textAnchor="middle" fill={C.faint} fontSize="7.2" fontFamily={FONT}>joining on is_current = 1 gives the wrong answer</text>
       </g>
-      <Note x={460} y={490} text="exam line: temporal attributes history ko matlab dete hain - warna data hota hai, context nahi" color={C.yellow} size="8.6" bold />
+      <Note x={460} y={490} text="exam line: temporal attributes give history meaning - otherwise there is data, not context" color={C.yellow} size="8.6" bold />
     </Frame>
   );
 }
@@ -607,7 +607,7 @@ export function TdTimeAnalysisDiagram() {
     <Frame
       id="td-time-analysis"
       title="Time-based data analysis"
-      sub="MTD, YTD, YoY, moving average, CAGR aur seasonality"
+      sub="MTD, YTD, YoY, moving average, CAGR and seasonality"
       label="A twelve month bar chart with a three month moving average line and a highlighted seasonal peak, cards for MTD QTD YTD accumulation, year over year and month over month growth, CAGR and rolling twelve months, and warning panels for the semi-additive measure trap and the partial period comparison trap"
     >
       {/* chart */}
@@ -639,33 +639,33 @@ export function TdTimeAnalysisDiagram() {
         />
         <text x={300} y={90} textAnchor="middle" fill={C.yellow} fontSize="8.2" fontWeight="700" fontFamily={FONT}>3-month moving average</text>
         <text x={42} y={150} fill={C.faint} fontSize="7" fontFamily={FONT}>sales</text>
-        <text x={560} y={278} textAnchor="end" fill={C.faint} fontSize="7.2" fontFamily={FONT}>seasonal peak ko YoY neutralise karta hai</text>
+        <text x={560} y={278} textAnchor="end" fill={C.faint} fontSize="7.2" fontFamily={FONT}>YoY neutralises a seasonal peak</text>
       </g>
 
       {/* formula cards */}
       <Box x={602} y={74} w={294} h={102} title="PERIOD TO DATE" sub="MTD / QTD / YTD" color={C.green} delay={140}
-        lines={['period start se aaj tak ka total', 'partial period ko partial se compare karo']} />
+        lines={['total from period start to today', 'compare a partial period with a partial one']} />
       <Box x={602} y={188} w={294} h={96} title="MOVING / ROLLING" sub="7-day, 3-month, rolling 12M" color={C.yellow} delay={200}
-        lines={['noise smooth, trend visible', 'adhoore saal ka safe answer']} />
+        lines={['noise smooth, trend visible', 'the safe answer for a part-year']} />
 
       {/* pitfalls */}
       <g className="diagram-pop" style={{ animationDelay: '280ms' }}>
         <rect x={24} y={298} width={424} height={130} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={236} y={318} textAnchor="middle" fill={C.red} fontSize="9.2" fontWeight="800" fontFamily={FONT}>TRAP 1 - SEMI-ADDITIVE</text>
-        <text x={44} y={340} fill={C.dim} fontSize="8" fontFamily={FONT}>stock on hand ko time par SUM karna galat</text>
-        <text x={44} y={358} fill={C.cyan} fontSize="8" fontFamily={FONT}>sahi: period-end value ya average</text>
-        <text x={44} y={376} fill={C.dim} fontSize="8" fontFamily={FONT}>sales additive hai, balance/headcount nahi</text>
-        <text x={44} y={394} fill={C.faint} fontSize="7.6" fontFamily={FONT}>margin % non-additive: components jodo, phir divide</text>
-        <text x={44} y={412} fill={C.faint} fontSize="7.6" fontFamily={FONT}>yahi "average of averages" error hai</text>
+        <text x={44} y={340} fill={C.dim} fontSize="8" fontFamily={FONT}>summing stock on hand over time is wrong</text>
+        <text x={44} y={358} fill={C.cyan} fontSize="8" fontFamily={FONT}>correct: period-end value or average</text>
+        <text x={44} y={376} fill={C.dim} fontSize="8" fontFamily={FONT}>sales are additive, balances and headcount are not</text>
+        <text x={44} y={394} fill={C.faint} fontSize="7.6" fontFamily={FONT}>margin % is non-additive: add the components, then divide</text>
+        <text x={44} y={412} fill={C.faint} fontSize="7.6" fontFamily={FONT}>this is the &quot;average of averages&quot; error</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '340ms' }}>
         <rect x={472} y={298} width={424} height={130} rx="11" fill="rgba(255,136,0,0.05)" stroke={C.orange} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={684} y={318} textAnchor="middle" fill={C.orange} fontSize="9.2" fontWeight="800" fontFamily={FONT}>TRAP 2 - PARTIAL PERIOD</text>
-        <text x={492} y={340} fill={C.dim} fontSize="8" fontFamily={FONT}>5 din ko 30 din ke month se compare mat karo</text>
-        <text x={492} y={358} fill={C.cyan} fontSize="8" fontFamily={FONT}>sahi: MTD vs MTD last year, ya rolling 12M</text>
-        <text x={492} y={376} fill={C.dim} fontSize="8" fontFamily={FONT}>working days normalise karo (22 vs 26 din)</text>
-        <text x={492} y={394} fill={C.faint} fontSize="7.6" fontFamily={FONT}>holiday calendar date dimension se lo</text>
-        <text x={492} y={412} fill={C.faint} fontSize="7.6" fontFamily={FONT}>cutoff likho: "data as of 5 Nov 09:00"</text>
+        <text x={492} y={340} fill={C.dim} fontSize="8" fontFamily={FONT}>do not compare 5 days with a 30-day month</text>
+        <text x={492} y={358} fill={C.cyan} fontSize="8" fontFamily={FONT}>correct: MTD vs MTD last year, or rolling 12M</text>
+        <text x={492} y={376} fill={C.dim} fontSize="8" fontFamily={FONT}>normalise working days (22 vs 26)</text>
+        <text x={492} y={394} fill={C.faint} fontSize="7.6" fontFamily={FONT}>take the holiday calendar from the date dimension</text>
+        <text x={492} y={412} fill={C.faint} fontSize="7.6" fontFamily={FONT}>state the cutoff: "data as of 5 Nov 09:00"</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
@@ -674,7 +674,7 @@ export function TdTimeAnalysisDiagram() {
           growth: MoM = (current - previous)/previous x 100   |   CAGR = (end/start)^(1/n) - 1   |   seasonal index = period/overall
         </text>
         <text x={460} y={480} textAnchor="middle" fill={C.dim} fontSize="8" fontFamily={FONT}>
-          exam line: YoY seasonality hatata hai, MoM sirf short-term noise dikhata hai
+          exam line: YoY removes seasonality, MoM shows only short-term noise
         </text>
       </g>
     </Frame>
@@ -691,8 +691,8 @@ export function TdTrendDiagram() {
   return (
     <Frame
       id="td-trend"
-      title="Trend analysis aur historical data tracking"
-      sub="trend line + forecast, aur neeche wo history jo number par bharosa deti hai"
+      title="Trend analysis and historical data tracking"
+      sub="trend line and forecast, over the history that makes the number trustworthy"
       label="A monthly series rising from left to right with a dashed trend line, a forecast cone for the next three months, anomaly flags above a control limit, and a bottom stack showing the historical tracking layers: append-only facts, slowly changing dimensions, audit columns, partitioned retention tiers and reproducible snapshots"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
@@ -714,7 +714,7 @@ export function TdTrendDiagram() {
         <circle cx={X(7)} cy={Y(0.83)} r="6" fill="none" stroke={C.pink} strokeWidth="1.5" />
         <text x={X(7) - 4} y={Y(0.83) - 12} textAnchor="middle" fill={C.pink} fontSize="7.2" fontFamily={FONT}>signal</text>
         <text x={300} y={90} textAnchor="middle" fill={C.green} fontSize="8.4" fontWeight="700" fontFamily={FONT}>trend line + 3-month moving average + forecast</text>
-        <text x={54} y={270} fill={C.faint} fontSize="7.2" fontFamily={FONT}>accuracy: MAPE, MAE, RMSE hold-out period par</text>
+        <text x={54} y={270} fill={C.faint} fontSize="7.2" fontFamily={FONT}>accuracy: MAPE, MAE, RMSE on a hold-out period</text>
       </g>
 
       <Box x={602} y={74} w={294} h={206} title="HISTORICAL TRACKING STACK" color={C.purple} delay={160}
@@ -722,19 +722,19 @@ export function TdTrendDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x={24} y={296} width={424} height={116} rx="11" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={236} y={316} textAnchor="middle" fill={C.cyan} fontSize="9.2" fontWeight="800" fontFamily={FONT}>RESTATEMENT KA SAWAAL</text>
-        <text x={44} y={338} fill={C.dim} fontSize="8" fontFamily={FONT}>April churn report hua 6.0%</text>
-        <text x={44} y={356} fill={C.dim} fontSize="8" fontFamily={FONT}>8 late cancellations backfill hui</text>
-        <text x={44} y={374} fill={C.lime} fontSize="8" fontFamily={FONT}>as-was: 5.9% (aaj ka sahi answer)</text>
-        <text x={44} y={392} fill={C.yellow} fontSize="8" fontFamily={FONT}>as-of 1 May: 6.0% (tab kya bataya)</text>
+        <text x={236} y={316} textAnchor="middle" fill={C.cyan} fontSize="9.2" fontWeight="800" fontFamily={FONT}>THE RESTATEMENT QUESTION</text>
+        <text x={44} y={338} fill={C.dim} fontSize="8" fontFamily={FONT}>April churn reported at 6.0%</text>
+        <text x={44} y={356} fill={C.dim} fontSize="8" fontFamily={FONT}>8 late cancellations were backfilled</text>
+        <text x={44} y={374} fill={C.lime} fontSize="8" fontFamily={FONT}>as-was: 5.9% (today's right answer)</text>
+        <text x={44} y={392} fill={C.yellow} fontSize="8" fontFamily={FONT}>as-of 1 May: 6.0% (what was reported then)</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '360ms' }}>
         <rect x={472} y={296} width={424} height={116} rx="11" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={684} y={316} textAnchor="middle" fill={C.purple} fontSize="9.2" fontWeight="800" fontFamily={FONT}>STORAGE TIERS</text>
         {[
-          ['HOT - 90 din', 'fast queries, dashboards', C.lime],
-          ['WARM - 2 saal', 'monthly reports, trend', C.yellow],
-          ['COLD - 7 saal', 'audit, legal, regulatory', C.faint],
+          ['HOT - 90 days', 'fast queries, dashboards', C.lime],
+          ['WARM - 2 years', 'monthly reports, trend', C.yellow],
+          ['COLD - 7 years', 'audit, legal, regulatory', C.faint],
         ].map(([t, s, col], i) => (
           <g key={t}>
             <rect x={492} y={326 + i * 26} width={384} height="22" rx="5" fill={col} fillOpacity="0.07" stroke={col} strokeWidth="1" strokeOpacity="0.6" />
@@ -747,13 +747,13 @@ export function TdTrendDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x={24} y={428} width={872} height={62} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={460} y={448} textAnchor="middle" fill={C.lime} fontSize="9" fontWeight="800" fontFamily={FONT}>
-          trend batata hai kahan ja rahe hain, history batati hai number par bharosa kyun hai
+          the trend says where we are going, the history says why the number can be trusted
         </text>
         <text x={460} y={466} textAnchor="middle" fill={C.dim} fontSize="8" fontFamily={FONT}>
-          dhyaan do: forecast ko confidence range ke saath publish karo, aur purane number badle to restatement note bhi do
+          publish a forecast with a confidence range, and add a restatement note when an old number changes
         </text>
         <text x={460} y={482} textAnchor="middle" fill={C.faint} fontSize="7.6" fontFamily={FONT}>
-          exam line: "garbage history in, garbage forecast out" - tracking discipline hi forecast ki quality hai
+          exam line: &quot;garbage history in, garbage forecast out&quot; - tracking discipline is forecast quality
         </text>
       </g>
     </Frame>

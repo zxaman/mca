@@ -115,8 +115,8 @@ export function OlMultidimDiagram() {
   return (
     <Frame
       id="ol-multidim"
-      title="Multidimensional data model - cube, axes aur cells"
-      sub="har dimension ek axis, har cell mein measures (sales, quantity, margin)"
+      title="Multidimensional data model - cube, axes and cells"
+      sub="one axis per dimension, measures inside each cell (sales, quantity, margin)"
       label="An isometric three dimensional cube with product on the horizontal axis, time on the depth axis and store on the vertical axis, one highlighted cell carrying sales quantity and margin, and on the right three hierarchies listing levels such as category product item and year quarter month and region state city store"
     >
       {/* top face */}
@@ -152,7 +152,7 @@ export function OlMultidimDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '300ms' }}>
         <rect x={470} y={80} width={424} height={300} rx="12" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={682} y={104} textAnchor="middle" fill={C.purple} fontSize="10.4" fontWeight="800" fontFamily={FONT}>
-          HIERARCHIES - drill ka rasta
+          HIERARCHIES - the route for drilling
         </text>
         {[
           ['PRODUCT', 'category - subcategory - brand - item', C.blue],
@@ -169,18 +169,18 @@ export function OlMultidimDiagram() {
             ))}
           </g>
         ))}
-        <text x={492} y={352} fill={C.dim} fontSize="8.6" fontFamily={FONT}>ek cell = ek member per dimension (item + month + store)</text>
+        <text x={492} y={352} fill={C.dim} fontSize="8.6" fontFamily={FONT}>a cell = one member per dimension (item + month + store)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '420ms' }}>
         <rect x={24} y={398} width={870} height={94} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={459} y={420} textAnchor="middle" fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>
-          measures cell ke andar rehte hain, dimensions cell ka address banate hain
+          measures live inside the cell, dimensions are the cell's address
         </text>
         {[
-          'cell (Aata 5kg, Q3 FY25, Pune) - sales 1.2 lakh, qty 340, margin 22%',
-          'n dimensions = hypercube; 3 dimensions akele 3-D box dikhte hain',
-          'same model MOLAP array, ROLAP star schema ya HOLAP hybrid mein ban sakta hai',
+          'cell (Flour 5kg, Q3 FY25, Pune) - sales 1.2 lakh, qty 340, margin 22%',
+          'n dimensions = hypercube; three dimensions alone look like a 3-D box',
+          'the same model can be built as a MOLAP array, a ROLAP star schema or a HOLAP hybrid',
         ].map((s, i) => (
           <text key={s} x={44} y={442 + i * 16} fill={C.dim} fontSize="8.6" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
@@ -196,14 +196,14 @@ export function OlFactDimDiagram() {
   return (
     <Frame
       id="ol-fact-dim"
-      title="Fact table aur dimension table"
-      sub="fact = numbers + keys (lamba), dimension = description (chaudi)"
+      title="Fact table and dimension table"
+      sub="fact = numbers and keys (long), dimension = description (wide)"
       label="Central fact_sales table listing foreign keys for product date store customer and promotion plus numeric measures quantity sales cost and margin, surrounded by four dimension tables with descriptive attributes, and a bottom band listing the three fact table types and the dimension table families conformed role playing junk degenerate and slowly changing dimensions"
     >
       <Box x={330} y={72} w={260} h={46} title="DIM_DATE" sub="day, month, quarter, year, holiday" color={C.cyan} delay={200} />
 
       <Box x={330} y={132} w={260} h={126} title="FACT_SALES" sub="numbers + keys" color={C.lime} delay={80}
-        lines={['product_key, date_key, store_key', 'customer_key, promotion_key', 'measures: qty, sales, cost, margin', 'grain: ek row = ek line item']} />
+        lines={['product_key, date_key, store_key', 'customer_key, promotion_key', 'measures: qty, sales, cost, margin', 'grain: one row = one line item']} />
 
       <Box x={330} y={270} w={260} h={54} title="GRAIN (declared first)" sub="din / bill / line item" color={C.yellow} delay={160} />
 
@@ -226,9 +226,9 @@ export function OlFactDimDiagram() {
         <rect x={24} y={352} width={424} height={116} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={236} y={374} textAnchor="middle" fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>FACT TYPES</text>
         {[
-          'transaction fact: har event ki ek row',
+          'transaction fact: one row per event',
           'periodic snapshot: month-end balance',
-          'accumulating snapshot: order ka lifecycle',
+          'accumulating snapshot: the life of an order',
           'factless fact: attendance, coverage',
         ].map((t, i) => (
           <text key={t} x={44} y={396 + i * 17} fill={C.dim} fontSize="8.6" fontFamily={FONT}>{`- ${t}`}</text>
@@ -239,16 +239,16 @@ export function OlFactDimDiagram() {
         <rect x={472} y={352} width={424} height={116} rx="12" fill="rgba(0,188,212,0.05)" stroke={C.teal} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={684} y={374} textAnchor="middle" fill={C.teal} fontSize="10" fontWeight="800" fontFamily={FONT}>DIMENSION FAMILIES</text>
         {[
-          'conformed: same dim, kai facts (date, product)',
-          'role-playing: ek dim, kai roles (order date, ship date)',
-          'junk: chhote flags ek dim mein',
-          'degenerate: key fact mein (invoice no)',
+          'conformed: same dimension, several facts (date, product)',
+          'role-playing: one dimension, several roles (order date, ship date)',
+          'junk: small flags in one dimension',
+          'degenerate: a key in the fact (invoice no)',
           'SCD type 1 / 2 / 3: overwrite, history rows, prev column',
         ].map((t, i) => (
           <text key={t} x={492} y={394 + i * 15} fill={C.dim} fontSize="8.4" fontFamily={FONT}>{`- ${t}`}</text>
         ))}
       </g>
-      <Note x={460} y={494} text="fact table lamba aur patla, dimension table chhota aur chauda" color={C.yellow} size={9.2} bold />
+      <Note x={460} y={494} text="the fact table is long and narrow, the dimension table short and wide" color={C.yellow} size={9.2} bold />
     </Frame>
   );
 }
@@ -260,17 +260,17 @@ export function OlMeasuresDiagram() {
   return (
     <Frame
       id="ol-measures"
-      title="Measures aur dimensions - kya jod sakte hain, kya nahi"
+      title="Measures and dimensions - what can be added and what cannot"
       sub="additive, semi-additive, non-additive + dimension anatomy"
       label="Left side three measure classes additive semi additive and non additive with example measures and the rule for summing each, right side the anatomy of a product dimension with surrogate key natural key attributes and a three level hierarchy, and a bottom example showing that sales can be summed across all dimensions while balance can only be summed across one"
     >
       <Note x={214} y={74} text="MEASURES (facts)" color={C.lime} size={10} bold />
-      <Box x={24} y={86} w={380} h={112} title="ADDITIVE" sub="sab dimensions par sum ho sakta hai" color={C.green} delay={60}
-        lines={['sales amount, quantity sold', 'discount given, units returned', 'SUM() har group by par safe']} />
-      <Box x={24} y={212} w={380} h={112} title="SEMI-ADDITIVE" sub="kuch dimensions par sum, time par nahi" color={C.yellow} delay={120}
-        lines={['closing balance, stock on hand', 'headcount, account balance', 'time par SUM nahi - last / avg']} />
-      <Box x={24} y={338} w={380} h={112} title="NON-ADDITIVE" sub="kisi bhi dimension par sum nahi" color={C.red} delay={180}
-        lines={['ratio %, margin %, unit price', 'average ticket size, KPI index', 'pehle components jodo, phir ratio']} />
+      <Box x={24} y={86} w={380} h={112} title="ADDITIVE" sub="can be summed over every dimension" color={C.green} delay={60}
+        lines={['sales amount, quantity sold', 'discount given, units returned', 'SUM() is safe on every group by']} />
+      <Box x={24} y={212} w={380} h={112} title="SEMI-ADDITIVE" sub="sums over some dimensions, not over time" color={C.yellow} delay={120}
+        lines={['closing balance, stock on hand', 'headcount, account balance', 'no SUM over time - last value or average']} />
+      <Box x={24} y={338} w={380} h={112} title="NON-ADDITIVE" sub="cannot be summed over any dimension" color={C.red} delay={180}
+        lines={['ratio %, margin %, unit price', 'average ticket size, KPI index', 'add the components first, then take the ratio']} />
 
       <Note x={690} y={74} text="DIMENSION anatomy (dim_product)" color={C.cyan} size={10} bold />
       <g className="diagram-pop" style={{ animationDelay: '240ms' }}>
@@ -280,7 +280,7 @@ export function OlMeasuresDiagram() {
           ['CATEGORY', 'Food, Home care', C.blue],
           ['SUBCATEGORY', 'Biscuits, Detergent', C.cyan],
           ['BRAND', 'Brand A, Brand B', C.teal],
-          ['ITEM', 'Aata 5kg, Soap 100g', C.green],
+          ['ITEM', 'Flour 5kg, Soap 100g', C.green],
         ].map(([lv, eg, col], i) => (
           <g key={lv}>
             <rect x={494} y={130 + i * 62} width={376} height="46" rx="9" fill={col} fillOpacity="0.07" stroke={col} strokeWidth="1.3" strokeOpacity="0.7" />
@@ -291,17 +291,17 @@ export function OlMeasuresDiagram() {
           </g>
         ))}
         <text x={682} y={398} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>attributes: size, colour, pack, launch date, tax rate</text>
-        <text x={682} y={418} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>hierarchy level se roll-up aur drill-down decide hota hai</text>
-        <text x={682} y={438} textAnchor="middle" fill={C.yellow} fontSize="8.4" fontFamily={FONT}>dimension = &quot;by kis hisaab se&quot; ka jawab</text>
+        <text x={682} y={418} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>the hierarchy level decides roll-up and drill-down</text>
+        <text x={682} y={438} textAnchor="middle" fill={C.yellow} fontSize="8.4" fontFamily={FONT}>dimension = the answer to &quot;by what&quot;</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x={24} y={462} width={870} height={44} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={459} y={480} textAnchor="middle" fill={C.lime} fontSize="9.2" fontWeight="800" fontFamily={FONT}>
-          exam check: sales sum kar sakte ho, balance sirf date par nahi, margin % kabhi nahi - pehle jodo phir divide karo
+          exam check: sales can be summed, a balance not across dates, a margin % never - add first, then divide
         </text>
         <text x={459} y={498} textAnchor="middle" fill={C.dim} fontSize="8.4" fontFamily={FONT}>
-          ratio ko store karne se average-of-averages ka galat answer aata hai, isliye numerator aur denominator alag store karo
+          storing a ratio produces the average-of-averages error, so store numerator and denominator separately
         </text>
       </g>
     </Frame>
@@ -315,8 +315,8 @@ export function OlStarSchemaDiagram() {
   return (
     <Frame
       id="ol-star"
-      title="Star schema - ek fact, flat dimensions"
-      sub="har dimension ek join, analyst ke liye sabse simple model"
+      title="Star schema - one fact, flat dimensions"
+      sub="one join per dimension, the simplest model for an analyst"
       label="A central fact sales table with five flat dimension tables around it for date product store customer and promotion, arrows showing one join per dimension, and a bottom query strip showing a group by over the joined star with rows kept in third normal form only for dimensions"
     >
       <Box x={340} y={196} w={240} h={126} title="FACT_SALES" sub="grain: line item" color={C.lime} delay={100}
@@ -341,7 +341,7 @@ export function OlStarSchemaDiagram() {
         </text>
       </g>
       <Note x={118} y={190} text="1 join per dimension" color={C.lime} size={8.8} anchor="start" bold delay={440} />
-      <Note x={460} y={82} text="star: fact centre mein, dimensions kinaare par" color={C.dim} size={8.8} delay={460} />
+      <Note x={460} y={82} text="star: the fact in the centre, dimensions at the edges" color={C.dim} size={8.8} delay={460} />
     </Frame>
   );
 }
@@ -353,8 +353,8 @@ export function OlSnowflakeDiagram() {
   return (
     <Frame
       id="ol-snowflake"
-      title="Snowflake schema - dimensions ko normalize karo"
-      sub="star jaisa hi, par har dimension apni hierarchy tables mein toota hua"
+      title="Snowflake schema - normalise the dimensions"
+      sub="like a star, but every dimension is split into its hierarchy tables"
       label="A fact table on the left with dimension tables branching into normalized hierarchy tables: product to subcategory to category across the top row, store to city to state to region across the middle row, plus a date dimension and a customer dimension, with the extra join path highlighted and a note that one dimension can cost three joins"
     >
       <Box x={48} y={186} w={214} h={142} title="FACT_SALES" sub="grain: line item" color={C.lime} delay={80}
@@ -386,14 +386,14 @@ export function OlSnowflakeDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={24} y={436} width={506} height={74} rx="11" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={277} y={456} textAnchor="middle" fill={C.green} fontSize="9.6" fontWeight="800" fontFamily={FONT}>KYUN NORMALIZE KARTE HAIN</text>
-        <text x={42} y={476} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- redundancy kam: category ka naam ek hi jagah</text>
-        <text x={42} y={492} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- storage bachta hai, update anomaly nahi</text>
+        <text x={277} y={456} textAnchor="middle" fill={C.green} fontSize="9.6" fontWeight="800" fontFamily={FONT}>WHY WE NORMALISE</text>
+        <text x={42} y={476} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- less redundancy: the category name in one place</text>
+        <text x={42} y={492} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- saves storage, avoids update anomalies</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={548} y={436} width={348} height={74} rx="11" fill="rgba(255,82,82,0.05)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={722} y={456} textAnchor="middle" fill={C.red} fontSize="9.6" fontWeight="800" fontFamily={FONT}>KIMAT</text>
-        <text x={566} y={476} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- store se region tak 4 joins</text>
+        <text x={566} y={476} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- four joins from store to region</text>
         <text x={566} y={492} fill={C.dim} fontSize="8.4" fontFamily={FONT}>- query slow, model complex</text>
       </g>
     </Frame>
@@ -407,8 +407,8 @@ export function OlStarVsSnowDiagram() {
   return (
     <Frame
       id="ol-star-vs-snow"
-      title="Star vs snowflake - kaunsa kab"
-      sub="ek hi fact model, do normal forms, do trade-offs"
+      title="Star vs snowflake - which one, and when"
+      sub="one fact model, two normal forms, two trade-offs"
       label="Left half a small star with one fact and four flat dimension boxes, right half a snowflake where dimension boxes branch into further normalized boxes, and a bottom band of decision criteria: choose star for speed and simplicity, choose snowflake for storage and hierarchy discipline, with the hybrid galaxy pattern noted"
     >
       <Note x={230} y={74} text="STAR - denormalized" color={C.cyan} size={10} bold />
@@ -472,25 +472,25 @@ export function OlStarVsSnowDiagram() {
         <Arrow x1={668} y1={196} x2={688} y2={196} color={C.orange} delay={360} />
         <Arrow x1={776} y1={196} x2={796} y2={196} color={C.orange} delay={400} />
         <Arrow x1={840} y1={216} x2={840} y2={240} color={C.orange} delay={440} />
-        <text x={688} y={288} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>hierarchy = alag table, isliye joins zyada</text>
+        <text x={688} y={288} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>a hierarchy becomes its own table, so there are more joins</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '260ms' }}>
         <rect x={24} y={310} width={870} height={98} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
         <text x={459} y={330} textAnchor="middle" fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>DECISION CRITERIA</text>
-        <text x={44} y={352} fill={C.cyan} fontSize="8.6" fontFamily={FONT}>STAR chuno jab:</text>
-        <text x={44} y={368} fill={C.dim} fontSize="8.4" fontFamily={FONT}>speed chahiye, BI tool simple, team chhoti, dims badal rahe</text>
-        <text x={44} y={384} fill={C.dim} fontSize="8.4" fontFamily={FONT}>dimension rows kam (under ~1 lakh), ETL simple rakhna hai</text>
-        <text x={478} y={352} fill={C.orange} fontSize="8.6" fontFamily={FONT}>SNOWFLAKE chuno jab:</text>
-        <text x={478} y={368} fill={C.dim} fontSize="8.4" fontFamily={FONT}>storage sensitive, hierarchy bade aur reuse hote hain</text>
-        <text x={478} y={384} fill={C.dim} fontSize="8.4" fontFamily={FONT}>conformed dims multiple marts mein share hote hain</text>
-        <text x={459} y={400} textAnchor="middle" fill={C.purple} fontSize="8.2" fontFamily={FONT}>hybrid: galaxy schema (multiple facts) + selective snowflaking (sirf bade dims ko toda)</text>
+        <text x={44} y={352} fill={C.cyan} fontSize="8.6" fontFamily={FONT}>CHOOSE A STAR WHEN:</text>
+        <text x={44} y={368} fill={C.dim} fontSize="8.4" fontFamily={FONT}>you need speed, a simple BI tool, a small team, changing dimensions</text>
+        <text x={44} y={384} fill={C.dim} fontSize="8.4" fontFamily={FONT}>dimension rows are few (under about 1 lakh) and ETL should stay simple</text>
+        <text x={478} y={352} fill={C.orange} fontSize="8.6" fontFamily={FONT}>CHOOSE A SNOWFLAKE WHEN:</text>
+        <text x={478} y={368} fill={C.dim} fontSize="8.4" fontFamily={FONT}>storage is tight, hierarchies are large and reused</text>
+        <text x={478} y={384} fill={C.dim} fontSize="8.4" fontFamily={FONT}>conformed dimensions are shared across several marts</text>
+        <text x={459} y={400} textAnchor="middle" fill={C.purple} fontSize="8.2" fontFamily={FONT}>hybrid: a galaxy schema (several facts) plus selective snowflaking (only the large dimensions)</text>
       </g>
 
-      <Note x={459} y={430} text="exam one-liner: star read ke liye, snowflake storage ke liye" color={C.yellow} size={9.2} bold />
-      <Note x={459} y={452} text="real projects mein star + selective snowflaking hi sabse common hai" color={C.dim} size={8.6} />
-      <Note x={459} y={474} text="normalization se update anomaly kam, par query mein join badh jaate hain" color={C.faint} size={8.4} />
-      <Note x={459} y={496} text="dimension ka size aur query latency - yahi do numbers decision lete hain" color={C.faint} size={8.4} />
+      <Note x={459} y={430} text="exam one-liner: star for reading, snowflake for storage" color={C.yellow} size={9.2} bold />
+      <Note x={459} y={452} text="real projects use a star with selective snowflaking most often" color={C.dim} size={8.6} />
+      <Note x={459} y={474} text="normalisation reduces update anomalies but adds joins to the query" color={C.faint} size={8.4} />
+      <Note x={459} y={496} text="dimension size and query latency - these two numbers take the decision" color={C.faint} size={8.4} />
     </Frame>
   );
 }
@@ -503,7 +503,7 @@ export function OlOlapArchDiagram() {
     <Frame
       id="ol-olap-arch"
       title="OLAP architecture - teen layers"
-      sub="warehouse ka data OLAP server se hokar client tools tak pahunchta hai"
+      sub="warehouse data reaches client tools through the OLAP server"
       label="Four stacked layers: source systems feeding a data warehouse and marts through ETL, then an OLAP server with an aggregation engine cube cache MDX and SQL layer plus security and metadata, then client tools such as Excel Power BI and Tableau, with a FASMI criteria strip at the bottom"
     >
       {[
@@ -572,12 +572,12 @@ export function OlOlapArchDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={24} y={432} width={860} height={72} rx="11" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={454} y={452} textAnchor="middle" fill={C.lime} fontSize="9.8" fontWeight="800" fontFamily={FONT}>FASMI - achha OLAP system in paanch cheezon par judge hota hai</text>
+        <text x={454} y={452} textAnchor="middle" fill={C.lime} fontSize="9.8" fontWeight="800" fontFamily={FONT}>FASMI - a good OLAP system is judged on these five things</text>
         {[
-          'FAST: 1-5 second mein jawab, bade data par bhi',
+          'FAST: an answer in 1-5 seconds, even on large data',
           'ANALYSIS: business logic + statistics support',
-          'SHARED: multi-user, security aur concurrency',
-          'MULTIDIMENSIONAL: dimensions ka view',
+          'SHARED: multi-user, security and concurrency',
+          'MULTIDIMENSIONAL: a view by dimensions',
           'INFORMATION: itna data jo decision le sake',
         ].map((s, i) => (
           <text key={s} x={i % 2 === 0 ? 44 : 470} y={466 + Math.floor(i / 2) * 13} fill={C.dim} fontSize="8" fontFamily={FONT}>{`- ${s}`}</text>
@@ -594,35 +594,35 @@ export function OlOlapTypesDiagram() {
   return (
     <Frame
       id="ol-olap-types"
-      title="ROLAP, MOLAP aur HOLAP"
-      sub="storage kahan rahega - yahi teen types ka poora farq hai"
+      title="ROLAP, MOLAP and HOLAP"
+      sub="where the storage sits - that is the whole difference between the three"
       label="Three columns comparing ROLAP which queries the relational star schema directly, MOLAP which pre-builds a multidimensional cube array, and HOLAP which keeps summary aggregates in a cube and detail in the relational store, each listing storage speed freshness and drill-down behaviour, with DOLAP WOLAP and RTOLAP variants below"
     >
       <Box x={24} y={76} w={278} h={286} title="ROLAP" sub="relational OLAP" color={C.blue} delay={60}
-        lines={['data: star schema, no cube', 'engine: SQL generated on the fly', 'storage: same RDBMS / MPP', 'speed: depends on indexes + summary tables', 'freshness: near real time', 'drill-down: full detail available', 'scale: rows ke saath badhta hai', 'pros: volume + freshness + SQL', 'cons: slow ad-hoc aggregation']} />
+        lines={['data: star schema, no cube', 'engine: SQL generated on the fly', 'storage: same RDBMS / MPP', 'speed: depends on indexes + summary tables', 'freshness: near real time', 'drill-down: full detail available', 'scale: grows with the number of rows', 'pros: volume + freshness + SQL', 'cons: slow ad-hoc aggregation']} />
 
       <Box x={320} y={76} w={278} h={286} title="MOLAP" sub="multidimensional OLAP" color={C.purple} delay={140}
-        lines={['data: proprietary n-dim array / cube', 'engine: pre-computed + bitmap index', 'storage: cube files (compressed, sparse)', 'speed: fastest, sub-second', 'freshness: nightly batch refresh', 'drill-down: cube ke andar tak', 'scale: cube size limit (build time)', 'pros: speed + complex calc + slicing', 'cons: build cost, detail aksar chhoot jata']} />
+        lines={['data: proprietary n-dim array / cube', 'engine: pre-computed + bitmap index', 'storage: cube files (compressed, sparse)', 'speed: fastest, sub-second', 'freshness: nightly batch refresh', 'drill-down: inside the cube', 'scale: cube size limit (build time)', 'pros: speed + complex calc + slicing', 'cons: build cost, detail is often missed']} />
 
       <Box x={616} y={76} w={280} h={286} title="HOLAP" sub="hybrid OLAP" color={C.green} delay={220}
-        lines={['data: summary cube + relational detail', 'engine: cube for aggregates, SQL for rows', 'storage: dono jagah', 'speed: summary fast, detail thoda slow', 'freshness: cube batch, detail live', 'drill-down: cube se detail table tak', 'scale: bade detail + fast summary', 'pros: best of both', 'cons: design + maintenance complex']} />
+        lines={['data: summary cube + relational detail', 'engine: cube for aggregates, SQL for rows', 'storage: both places', 'speed: summary fast, detail a little slow', 'freshness: cube batch, detail live', 'drill-down: out of the cube into detail tables', 'scale: large detail plus fast summary', 'pros: best of both', 'cons: design + maintenance complex']} />
 
       <g className="diagram-pop" style={{ animationDelay: '320ms' }}>
         <rect x={24} y={378} width={872} height={62} rx="11" fill="rgba(0,188,212,0.05)" stroke={C.teal} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={460} y={398} textAnchor="middle" fill={C.teal} fontSize="9.6" fontWeight="800" fontFamily={FONT}>BAKI VARIANTS - exam mein ek line kaafi hai</text>
-        <text x={44} y={418} fill={C.dim} fontSize="8.4" fontFamily={FONT}>DOLAP: desktop OLAP, laptop par chhota cube (offline analyst)</text>
-        <text x={44} y={434} fill={C.dim} fontSize="8.4" fontFamily={FONT}>WOLAP: web OLAP, browser se same engine (SaaS dashboards)</text>
+        <text x={460} y={398} textAnchor="middle" fill={C.teal} fontSize="9.6" fontWeight="800" fontFamily={FONT}>OTHER VARIANTS - one line is enough in the exam</text>
+        <text x={44} y={418} fill={C.dim} fontSize="8.4" fontFamily={FONT}>DOLAP: desktop OLAP, a small cube on a laptop (offline analyst)</text>
+        <text x={44} y={434} fill={C.dim} fontSize="8.4" fontFamily={FONT}>WOLAP: web OLAP, the same engine from a browser (SaaS dashboards)</text>
         <text x={470} y={418} fill={C.dim} fontSize="8.4" fontFamily={FONT}>RTOLAP: real-time OLAP, streaming updates (fraud, ops)</text>
-        <text x={470} y={434} fill={C.dim} fontSize="8.4" fontFamily={FONT}>MOLAP+ROLAP dono = HOLAP (summary cube, detail relational)</text>
+        <text x={470} y={434} fill={C.dim} fontSize="8.4" fontFamily={FONT}>MOLAP plus ROLAP = HOLAP (summary cube, relational detail)</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '400ms' }}>
         <rect x={24} y={452} width={872} height={52} rx="10" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={460} y={472} textAnchor="middle" fill={C.lime} fontSize="9.2" fontWeight="800" fontFamily={FONT}>
-          selection: detail + freshness chahiye to ROLAP, speed chahiye to MOLAP, dono chahiye to HOLAP
+          selection: detail and freshness need ROLAP, speed needs MOLAP, both need HOLAP
         </text>
         <text x={460} y={490} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>
-          sparsity zyada ho (bade dimension combos) to MOLAP cube mehnge padega, wahan ROLAP sasta rehta hai
+          when sparsity is high (large dimension combinations) a MOLAP cube turns expensive, and ROLAP is cheaper there
         </text>
       </g>
     </Frame>
@@ -643,7 +643,7 @@ export function OlCubeDiagram() {
     <Frame
       id="ol-cube"
       title="OLAP cube - pre-computed cells + sparsity handling"
-      sub="3-D box dikhta hai, andar n-dimensional array hota hai"
+      sub="a 3-D box is drawn, an n-dimensional array is inside"
       label="An isometric cube on the left with one highlighted cell showing sales quantity and margin, aggregate levels for all year and quarter stacked above it, and on the right the sparsity calculation of 3000 products times 400 stores times 1100 days times 2 channels giving 2.64 billion possible cells against about 40 million actual, with partitioning and non-empty storage strategy"
     >
       {/* aggregate levels */}
@@ -682,19 +682,19 @@ export function OlCubeDiagram() {
         <text x={653} y={102} textAnchor="middle" fill={C.orange} fontSize="9.8" fontWeight="800" fontFamily={FONT}>SPARSITY - asli problem</text>
         <text x={430} y={124} fill={C.dim} fontSize="8.4" fontFamily={FONT}>possible cells = 3,000 products x 400 stores x 1,100 days x 2 channels</text>
         <text x={430} y={146} fill={C.red} fontSize="9.4" fontWeight="700" fontFamily={FONT}>= 2.64 arab cells (2.64 billion)</text>
-        <text x={430} y={168} fill={C.dim} fontSize="8.4" fontFamily={FONT}>actual combinations jo roz bikte hain = ~4 crore</text>
+        <text x={430} y={168} fill={C.dim} fontSize="8.4" fontFamily={FONT}>the actual combinations sold every day = about 4 crore</text>
         <text x={430} y={190} fill={C.green} fontSize="9.4" fontWeight="700" fontFamily={FONT}>= 1.5% dense - 98.5% cells khaali</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '480ms' }}>
         <rect x={410} y={222} width={486} height={118} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.7" />
-        <text x={653} y={244} textAnchor="middle" fill={C.lime} fontSize="9.6" fontWeight="800" fontFamily={FONT}>CUBE KO CHHOTA RAKHNE KE TAREEKE</text>
+        <text x={653} y={244} textAnchor="middle" fill={C.lime} fontSize="9.6" fontWeight="800" fontFamily={FONT}>WAYS TO KEEP THE CUBE SMALL</text>
         {[
-          'sirf non-empty cells store karo (sparse array + offset)',
-          'partition: har saal ya region ka alag cube chunk',
-          'aggregate only: detail rows relational mein chhod do',
-          'dimension pruning: jin dims par kabhi query nahi, hata do',
-          'bitmap index: har dimension member ke liye bitset',
+          'store only non-empty cells (sparse array plus offset)',
+          'partition: a separate cube chunk per year or region',
+          'aggregates only: leave the detail rows in the relational store',
+          'dimension pruning: drop the dimensions nobody queries',
+          'bitmap index: a bitset per dimension member',
         ].map((s, i) => (
           <text key={s} x={430} y={264 + i * 15} fill={C.dim} fontSize="8.2" fontFamily={FONT}>{`- ${s}`}</text>
         ))}
@@ -702,21 +702,21 @@ export function OlCubeDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '540ms' }}>
         <rect x={410} y={352} width={486} height={66} rx="11" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.2" strokeOpacity="0.7" />
-        <text x={653} y={372} textAnchor="middle" fill={C.cyan} fontSize="9" fontWeight="800" fontFamily={FONT}>PARTITION STRATEGY (partition = chhota cube)</text>
-        <text x={430} y={390} fill={C.dim} fontSize="8.2" fontFamily={FONT}>- time partition: FY24, FY25 alag (purana read-only)</text>
-        <text x={430} y={408} fill={C.dim} fontSize="8.2" fontFamily={FONT}>- sirf naye partition ka rebuild - poora cube nahi</text>
+        <text x={653} y={372} textAnchor="middle" fill={C.cyan} fontSize="9" fontWeight="800" fontFamily={FONT}>PARTITION STRATEGY (a partition is a small cube)</text>
+        <text x={430} y={390} fill={C.dim} fontSize="8.2" fontFamily={FONT}>- time partition: FY24 and FY25 apart (the old one read-only)</text>
+        <text x={430} y={408} fill={C.dim} fontSize="8.2" fontFamily={FONT}>- rebuild only the new partition, not the whole cube</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={24} y={432} width={872} height={66} rx="11" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={460} y={452} textAnchor="middle" fill={C.purple} fontSize="9.4" fontWeight="800" fontFamily={FONT}>
-          cell = ek measure ka value, ek member per dimension par (measures: sales, qty, margin, cost)
+          cell = one measure value at one member per dimension (measures: sales, qty, margin, cost)
         </text>
         <text x={460} y={470} textAnchor="middle" fill={C.dim} fontSize="8.2" fontFamily={FONT}>
-          dimensions badhne par cells multiplicative badhte hain - isliye cube design ka pehla kaam grain aur dimension count fix karna hai
+          cells grow multiplicatively as dimensions are added - so the first design job is to fix the grain and the dimension count
         </text>
         <text x={460} y={488} textAnchor="middle" fill={C.yellow} fontSize="8.2" fontFamily={FONT}>
-          exam line: cube = pre-aggregated multidimensional view, sparsity management iska core design problem hai
+          exam line: a cube is a pre-aggregated multidimensional view; sparsity management is its core design problem
         </text>
       </g>
     </Frame>
@@ -770,46 +770,46 @@ export function OlOperationsDiagram() {
   return (
     <Frame
       id="ol-operations"
-      title="OLAP operations - cube par paanch basic moves"
+      title="OLAP operations - five basic moves on a cube"
       sub="roll-up, drill-down, slice, dice, pivot (+ drill-through)"
       label="Six panels: roll-up aggregating months into quarters and years, drill-down going from year to month, slice fixing one dimension value, dice selecting ranges on two dimensions, pivot swapping rows and columns, and drill-through jumping from a cube cell to the detail rows"
     >
       <OpPanel x={24} y={68} title="1. ROLL-UP" sub="zoom out - aggregate up" color={C.blue} delay={60}>
         {levels(60, 112, 'up')}
         <text x={44} y={222} fill={C.dim} fontSize="8" fontFamily={FONT}>- day to month to quarter to year</text>
-        <text x={44} y={238} fill={C.dim} fontSize="8" fontFamily={FONT}>- cells kam, level upar (SUM)</text>
-        <text x={44} y={254} fill={C.yellow} fontSize="8" fontFamily={FONT}>- question: saal ka total kitna?</text>
+        <text x={44} y={238} fill={C.dim} fontSize="8" fontFamily={FONT}>- fewer cells, one level up (SUM)</text>
+        <text x={44} y={254} fill={C.yellow} fontSize="8" fontFamily={FONT}>- question: what is the total for the year?</text>
       </OpPanel>
 
-      <OpPanel x={320} y={68} title="2. DRILL-DOWN" sub="zoom in - detail mein jao" color={C.cyan} delay={140}>
+      <OpPanel x={320} y={68} title="2. DRILL-DOWN" sub="zoom in - go to the detail" color={C.cyan} delay={140}>
         {levels(356, 112, 'down')}
-        <text x={340} y={222} fill={C.dim} fontSize="8" fontFamily={FONT}>- year se quarter se month se day</text>
-        <text x={340} y={238} fill={C.dim} fontSize="8" fontFamily={FONT}>- roll-up ka ulta, naya detail</text>
-        <text x={340} y={254} fill={C.yellow} fontSize="8" fontFamily={FONT}>- question: kaunsa mahina gira?</text>
+        <text x={340} y={222} fill={C.dim} fontSize="8" fontFamily={FONT}>- year to quarter to month to day</text>
+        <text x={340} y={238} fill={C.dim} fontSize="8" fontFamily={FONT}>- the reverse of roll-up, new detail</text>
+        <text x={340} y={254} fill={C.yellow} fontSize="8" fontFamily={FONT}>- question: which month fell?</text>
       </OpPanel>
 
-      <OpPanel x={616} y={68} title="3. SLICE" sub="ek dimension fix karo" color={C.green} delay={220}>
+      <OpPanel x={616} y={68} title="3. SLICE" sub="fix one dimension" color={C.green} delay={220}>
         <polygon points="680,140 760,112 860,112 780,140" fill="rgba(0,230,118,0.04)" stroke={C.green} strokeWidth="1.2" strokeOpacity="0.55" />
         <polygon points="780,140 860,112 860,196 780,224" fill="rgba(0,230,118,0.04)" stroke={C.green} strokeWidth="1.2" strokeOpacity="0.45" />
         <rect x={680} y={140} width={100} height={84} fill={C.lime} fillOpacity="0.20" stroke={C.lime} strokeWidth="1.8" />
         <line x1={780} y1={140} x2={860} y2={112} stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.7" />
         <text x={730} y={188} textAnchor="middle" fill={C.lime} fontSize="8.4" fontWeight="700" fontFamily={FONT}>FY 2024</text>
-        <text x={636} y={238} fill={C.dim} fontSize="8" fontFamily={FONT}>- ek dimension ki ek value fix</text>
+        <text x={636} y={238} fill={C.dim} fontSize="8" fontFamily={FONT}>- fix one value of one dimension</text>
         <text x={636} y={254} fill={C.dim} fontSize="8" fontFamily={FONT}>- slice = 2-D sub-cube (baaki dims)</text>
       </OpPanel>
 
-      <OpPanel x={24} y={278} title="4. DICE" sub="do ya zyada ranges se sub-cube" color={C.orange} delay={300}>
+      <OpPanel x={24} y={278} title="4. DICE" sub="a sub-cube from two or more ranges" color={C.orange} delay={300}>
         <polygon points="90,348 166,322 260,322 184,348" fill="rgba(255,136,0,0.10)" stroke={C.orange} strokeWidth="1.2" strokeOpacity="0.7" />
         <polygon points="184,348 260,322 260,402 184,428" fill="rgba(255,136,0,0.05)" stroke={C.orange} strokeWidth="1.2" strokeOpacity="0.5" />
         <rect x={90} y={348} width={94} height={80} fill="rgba(255,136,0,0.07)" stroke={C.orange} strokeWidth="1.3" strokeOpacity="0.6" />
         <rect x={110} y={368} width={54} height={40} fill={C.lime} fillOpacity="0.18" stroke={C.lime} strokeWidth="1.6" />
         <text x={137} y={393} textAnchor="middle" fill={C.lime} fontSize="7.6" fontWeight="700" fontFamily={FONT}>dice</text>
         <text x={44} y={440} fill={C.dim} fontSize="8" fontFamily={FONT}>- product list + city range + Q1-Q2</text>
-        <text x={44} y={456} fill={C.dim} fontSize="8" fontFamily={FONT}>- slice ek value, dice range/multi</text>
-        <text x={44} y={472} fill={C.yellow} fontSize="8" fontFamily={FONT}>- dice se naya chhota sub-cube</text>
+        <text x={44} y={456} fill={C.dim} fontSize="8" fontFamily={FONT}>- slice one value, dice a range</text>
+        <text x={44} y={472} fill={C.yellow} fontSize="8" fontFamily={FONT}>- a new, smaller sub-cube from a dice</text>
       </OpPanel>
 
-      <OpPanel x={320} y={278} title="5. PIVOT (ROTATION)" sub="rows aur columns swap" color={C.purple} delay={380}>
+      <OpPanel x={320} y={278} title="5. PIVOT (ROTATION)" sub="swap rows and columns" color={C.purple} delay={380}>
         <g>
           <rect x={344} y={330} width={104} height={72} rx="7" fill="rgba(170,0,255,0.06)" stroke={C.purple} strokeWidth="1.2" strokeOpacity="0.7" />
           <text x={396} y={344} textAnchor="middle" fill={C.purple} fontSize="7.4" fontFamily={FONT}>rows: product</text>
@@ -825,11 +825,11 @@ export function OlOperationsDiagram() {
             <line key={i} x1={494} y1={362 + i * 14} x2={598} y2={362 + i * 14} stroke={C.purple} strokeWidth="0.7" strokeOpacity="0.4" />
           ))}
         </g>
-        <text x={340} y={432} fill={C.dim} fontSize="8" fontFamily={FONT}>- axes badal kar naya view, data same</text>
-        <text x={340} y={448} fill={C.yellow} fontSize="8" fontFamily={FONT}>- pivot = rotation, koi aggregation nahi</text>
+        <text x={340} y={432} fill={C.dim} fontSize="8" fontFamily={FONT}>- swap the axes for a new view, same data</text>
+        <text x={340} y={448} fill={C.yellow} fontSize="8" fontFamily={FONT}>- pivot is rotation, no aggregation</text>
       </OpPanel>
 
-      <OpPanel x={616} y={278} title="6. DRILL-THROUGH" sub="cube se detail rows tak" color={C.pink} delay={460}>
+      <OpPanel x={616} y={278} title="6. DRILL-THROUGH" sub="from the cube to the detail rows" color={C.pink} delay={460}>
         <rect x={636} y={326} width={76} height={54} rx="7" fill="rgba(255,122,178,0.08)" stroke={C.pink} strokeWidth="1.3" />
         <text x={674} y={352} textAnchor="middle" fill={C.pink} fontSize="8" fontWeight="700" fontFamily={FONT}>cell</text>
         <text x={674} y={366} textAnchor="middle" fill={C.dim} fontSize="7.2" fontFamily={FONT}>1.2 lakh</text>
@@ -839,12 +839,12 @@ export function OlOperationsDiagram() {
         {[0, 1, 2, 3].map((i) => (
           <line key={i} x1={756} y1={342 + i * 13} x2={872} y2={342 + i * 13} stroke={C.faint} strokeWidth="0.8" strokeOpacity="0.6" />
         ))}
-        <text x={636} y={416} fill={C.dim} fontSize="8" fontFamily={FONT}>- cube ke number se source rows tak</text>
-        <text x={636} y={432} fill={C.dim} fontSize="8" fontFamily={FONT}>- MOLAP mein relational fallback</text>
-        <text x={636} y={448} fill={C.yellow} fontSize="8" fontFamily={FONT}>- audit / root cause ke liye zaroori</text>
+        <text x={636} y={416} fill={C.dim} fontSize="8" fontFamily={FONT}>- from a cube number to the source rows</text>
+        <text x={636} y={432} fill={C.dim} fontSize="8" fontFamily={FONT}>- the relational fallback in MOLAP</text>
+        <text x={636} y={448} fill={C.yellow} fontSize="8" fontFamily={FONT}>- needed for audit and root cause</text>
       </OpPanel>
 
-      <Note x={460} y={500} text="yaad rakho: roll-up aur drill-down hierarchy par chalte hain, slice/dice selection par, pivot sirf presentation par" color={C.yellow} size={8.8} bold />
+      <Note x={460} y={500} text="remember: roll-up and drill-down follow a hierarchy, slice and dice select, pivot is presentation only" color={C.yellow} size={8.8} bold />
     </Frame>
   );
 }
@@ -870,7 +870,7 @@ export function OlVsOltpDiagram() {
     <Frame
       id="ol-vs-oltp"
       title="OLTP vs OLAP"
-      sub="ek system roz ka kaam, doosra analysis - isliye alag systems"
+      sub="one system does the daily work, the other the analysis - hence separate systems"
       label="A two column comparison table with eleven rows covering purpose users workload queries data schema size indexing response concurrency and metric, showing OLTP as short concurrent transactions on normalized tables and OLAP as long aggregate queries on a star schema, with an ETL and CDC pipeline note at the bottom and HTAP as the exception"
     >
       <g className="diagram-pop">
@@ -892,10 +892,10 @@ export function OlVsOltpDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x={24} y={478} width={848} height={34} rx="9" fill="rgba(170,0,255,0.05)" stroke={C.purple} strokeWidth="1.2" strokeOpacity="0.7" />
         <text x={448} y={493} textAnchor="middle" fill={C.purple} fontSize="8.6" fontWeight="700" fontFamily={FONT}>
-          link: ETL (nightly batch) ya CDC (streaming) - OLTP se OLAP tak data, kabhi ulata nahi
+          link: ETL (nightly batch) or CDC (streaming) - data flows from OLTP to OLAP, never back
         </text>
         <text x={448} y={506} textAnchor="middle" fill={C.faint} fontSize="7.8" fontFamily={FONT}>
-          exception: HTAP systems dono ek engine par chalate hain (row store + column store, memory mein)
+          exception: HTAP systems run both on one engine (row store plus column store, in memory)
         </text>
       </g>
     </Frame>
@@ -909,8 +909,8 @@ export function OlAppsDiagram() {
   return (
     <Frame
       id="ol-apps"
-      title="OLAP ke applications - business analysis mein"
-      sub="har domain mein: measures + dimensions se ek decision"
+      title="OLAP applications - in business analysis"
+      sub="in every domain: a decision from measures and dimensions"
       label="A three by three grid of OLAP application cards for retail sales, finance, supply chain, HR, banking, telecom, healthcare, education and manufacturing, each listing the key measures the dimensions used and the decision it supports, with a bottom band on benefits and limitations"
     >
       {[

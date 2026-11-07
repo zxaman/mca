@@ -128,9 +128,9 @@ export function AspNetRequestDiagram() {
       sub="browser → IIS → ASP.NET worker → Page object → HTML + ViewState"
       label="ASP.NET request flow: browser sends request to IIS, ASP.NET worker compiles the page, page lifecycle runs and HTML with view state is returned"
     >
-      <Box x={24} y={80} w={190} h={112} title="BROWSER" sub="Chrome / Edge" lines={['GET /Default.aspx', 'form postback bhejta hai']} color={C.cyan} delay={60} />
+      <Box x={24} y={80} w={190} h={112} title="BROWSER" sub="Chrome / Edge" lines={['GET /Default.aspx', 'the form posts back']} color={C.cyan} delay={60} />
       <Arrow x1={214} y1={136} x2={252} y2={136} color={C.cyan} delay={180} label="HTTP" />
-      <Box x={252} y={80} w={190} h={112} title="IIS" sub="web server" lines={['.aspx ko ASP.NET ko', 'de deta hai (.html static']} color={C.blue} delay={220} />
+      <Box x={252} y={80} w={190} h={112} title="IIS" sub="web server" lines={['.aspx to ASP.NET', 'hands it on (.html static']} color={C.blue} delay={220} />
       <Arrow x1={442} y1={136} x2={480} y2={136} color={C.blue} delay={320} label="route" />
       <Box x={480} y={80} w={200} h={112} title="ASP.NET WORKER" sub="w3wp.exe + CLR" lines={['page compile ya cache', 'se MSIL → JIT → code']} color={C.lime} delay={360} />
       <Arrow x1={680} y1={136} x2={718} y2={136} color={C.lime} delay={460} label="run" />
@@ -145,8 +145,8 @@ export function AspNetRequestDiagram() {
         </text>
         {[
           ['aspx + code-behind', 'mark-up + .aspx.cs', C.cyan],
-          ['compiled once', 'baad ke requests cache se', C.lime],
-          ['HTML + __VIEWSTATE', 'browser ko sirf HTML milta hai', C.orange],
+          ['compiled once', 'later requests come from cache', C.lime],
+          ['HTML + __VIEWSTATE', 'the browser receives only HTML', C.orange],
         ].map(([t, s, col], i) => (
           <g key={t}>
             <text x={60 + i * 300} y={288} fill={col} fontSize="9.8" fontWeight="700" fontFamily={FONT}>{t}</text>
@@ -157,10 +157,10 @@ export function AspNetRequestDiagram() {
 
       <Arrow x1={460} y1={332} x2={460} y2={366} color={C.green} dashed delay={720} label="response" labelDx={46} labelDy={4} />
 
-      <Box x={230} y={366} w={460} h={74} title="BROWSER KO HTML MILTA HAI" sub="CSS, JS, table, form + hidden field" color={C.green} delay={760} />
+      <Box x={230} y={366} w={460} h={74} title="THE BROWSER GETS HTML" sub="CSS, JS, table, form + hidden field" color={C.green} delay={760} />
 
-      <Note x={460} y={470} text="C# / VB code server par hi chalta hai — client ko kabhi nahi bhejta" color={C.dim} size={10} />
-      <Note x={460} y={492} text='Exam line: "ASP.NET = server-side compiled framework jo dynamic web pages banata hai"' color={C.lime} size={10} bold />
+      <Note x={460} y={470} text="C# / VB code runs only on the server — never sent to the client" color={C.dim} size={10} />
+      <Note x={460} y={492} text='Exam line: "ASP.NET = a server-side compiled framework that builds dynamic web pages"' color={C.lime} size={10} bold />
     </Frame>
   );
 }
@@ -190,7 +190,7 @@ export function AspNetSetupDiagram() {
       <Arrow x1={224} y1={132} x2={262} y2={132} color={C.cyan} delay={160} />
       <Box x={262} y={80} w={210} h={104} title="2. NEW PROJECT" sub="ASP.NET Web Application" lines={['(.NET Framework)', 'template: Web Forms']} color={C.lime} delay={200} />
       <Arrow x1={472} y1={132} x2={510} y2={132} color={C.lime} delay={300} />
-      <Box x={510} y={80} w={180} h={104} title="3. HOST" sub="IIS Express" lines={['Ctrl+F5 se chalta hai', 'localhost:44300']} color={C.orange} delay={340} />
+      <Box x={510} y={80} w={180} h={104} title="3. HOST" sub="IIS Express" lines={['runs on Ctrl+F5', 'localhost:44300']} color={C.orange} delay={340} />
       <Arrow x1={690} y1={132} x2={728} y2={132} color={C.orange} delay={440} />
       <Box x={728} y={80} w={168} h={104} title="4. BROWSER" sub="rendered page" lines={['HTML output', 'debug breakpoint']} color={C.green} delay={480} />
 
@@ -208,10 +208,10 @@ export function AspNetSetupDiagram() {
       </g>
 
       <Box x={468} y={216} w={428} h={104} title="WEB.CONFIG — site ka control panel" sub="XML configuration file" lines={['connectionStrings, appSettings, system.web (auth, session, errors)']} color={C.cyan} delay={600} />
-      <Box x={468} y={340} w={428} h={104} title="LOCAL IIS (production jaisa)" sub="Windows feature: Internet Information Services" lines={['application pool + site binding banayo', 'phir http://localhost/MyApp chalta hai']} color={C.orange} delay={660} />
+      <Box x={468} y={340} w={428} h={104} title="LOCAL IIS (like production)" sub="Windows feature: Internet Information Services" lines={['application pool + site binding banayo', 'then open http://localhost/MyApp']} color={C.orange} delay={660} />
 
-      <Note x={460} y={478} text="Zaroori: .NET Framework 4.x SDK, IIS feature (optional), SQL Server (database topics ke liye)" color={C.dim} size={9.6} />
-      <Note x={460} y={500} text="Web Forms sirf .NET Framework par chalta hai — ASP.NET Core mein MVC / Razor Pages / Blazor hain" color={C.pink} size={9.6} bold />
+      <Note x={460} y={478} text="Required: .NET Framework 4.x SDK, the IIS feature (optional), SQL Server (for the database topics)" color={C.dim} size={9.6} />
+      <Note x={460} y={500} text="Web Forms runs only on .NET Framework — ASP.NET Core has MVC, Razor Pages and Blazor" color={C.pink} size={9.6} bold />
     </Frame>
   );
 }
@@ -224,8 +224,8 @@ export function WebFormsDiagram() {
     <Frame
       id="wt4-webforms"
       h={520}
-      title="Web Forms — page, code-behind aur postback"
-      sub=".aspx mark-up + .aspx.cs class ko @Page directive jodta hai"
+      title="Web Forms — page, code-behind and postback"
+      sub=".aspx markup and the .aspx.cs class are joined by the @Page directive"
       label="ASP.NET Web Forms structure: aspx mark-up and code-behind class joined by the Page directive, with first request and postback flows"
     >
       <Box x={40} y={78} w={330} h={150} title="Register.aspx (mark-up)" sub="HTML + server controls" lines={['<asp:TextBox ID="txtName" />', '<asp:Button OnClick="btnSave_Click" />', 'runat="server" har control par']} color={C.cyan} delay={60} />
@@ -236,7 +236,7 @@ export function WebFormsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '460ms' }}>
         <rect x={40} y={256} width={840} height={70} rx="12" fill="rgba(0,212,255,0.06)" stroke={C.cyan} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={60} y={282} fill={C.cyan} fontSize="10" fontWeight="800" fontFamily={FONT}>FIRST REQUEST — GET /Register.aspx</text>
-        <text x={60} y={306} fill={C.dim} fontSize="9.4" fontFamily={FONT}>IsPostBack = false → defaults set karo, data bind karo → HTML + khaali ViewState</text>
+        <text x={60} y={306} fill={C.dim} fontSize="9.4" fontFamily={FONT}>IsPostBack = false → set defaults, bind data → HTML + empty ViewState</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '560ms' }}>
@@ -245,7 +245,7 @@ export function WebFormsDiagram() {
         <text x={60} y={390} fill={C.dim} fontSize="9.4" fontFamily={FONT}>IsPostBack = true → ViewState restore → Page_Load → btnSave_Click → naya HTML</text>
       </g>
 
-      <Note x={460} y={438} text="Event-driven model: developer sirf handler likhta hai, baaki framework karta hai" color={C.dim} size={9.8} />
+      <Note x={460} y={438} text="Event-driven model: the developer writes only the handler, the framework does the rest" color={C.dim} size={9.8} />
       <Note x={460} y={462} text="AutoPostBack=false (default) · CausesValidation=false (cancel button) · PostBackUrl (cross-page)" color={C.faint} size={9.4} />
       <Note x={460} y={488} text="Web Forms vs MVC: state (ViewState) + server controls + RAD vs stateless + routes + testable" color={C.lime} size={9.8} bold />
     </Frame>
@@ -259,12 +259,12 @@ export function PageLifecycleDiagram() {
   const stages = [
     ['PreInit', 'master page, theme, IsPostBack'],
     ['Init', 'control tree, UniqueID'],
-    ['InitComplete', 'sab controls initialise'],
+    ['InitComplete', 'all controls initialised'],
     ['PreLoad', 'ViewState + post data load'],
-    ['Load', 'Page_Load chalta hai'],
+    ['Load', 'Page_Load runs'],
     ['Control events', 'Click, TextChanged'],
-    ['LoadComplete', 'load poora'],
-    ['PreRender', 'render se pehle aakhri change'],
+    ['LoadComplete', 'load complete'],
+    ['PreRender', 'the last change before render'],
     ['SaveState', 'ViewState serialize'],
     ['Render', 'HTML response'],
     ['Unload', 'cleanup, response ja chuka'],
@@ -274,7 +274,7 @@ export function PageLifecycleDiagram() {
       id="wt4-lifecycle"
       h={560}
       title="ASP.NET Page Life Cycle"
-      sub="har request par same order · postback mein control events Load ke baad aate hain"
+      sub="same order on every request · in a postback, control events come after Load"
       label="ASP.NET page life cycle timeline from PreInit, Init, PreLoad, Load, control events, PreRender, SaveState, Render to Unload"
     >
       <line x1={132} y1={82} x2={132} y2={508} stroke={C.faint} strokeWidth="2" strokeOpacity="0.6" />
@@ -296,7 +296,7 @@ export function PageLifecycleDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x={620} y={82} width={276} height={188} rx="12" fill="rgba(0,212,255,0.06)" stroke={C.cyan} strokeWidth="1.4" strokeOpacity="0.65" />
         <text x={758} y={106} textAnchor="middle" fill={C.cyan} fontSize="10" fontWeight="800" fontFamily={FONT}>FIRST REQUEST</text>
-        {['IsPostBack = false', 'koi ViewState nahi', 'koi control event nahi', 'Load mein bind karo'].map((t, i) => (
+        {['IsPostBack = false', 'no ViewState', 'no control event', 'bind in Load'].map((t, i) => (
           <text key={t} x={642} y={132 + i * 22} fill={C.dim} fontSize="9.3" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
@@ -304,14 +304,14 @@ export function PageLifecycleDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '780ms' }}>
         <rect x={620} y={288} width={276} height={188} rx="12" fill="rgba(255,136,0,0.07)" stroke={C.orange} strokeWidth="1.4" strokeOpacity="0.65" />
         <text x={758} y={312} textAnchor="middle" fill={C.orange} fontSize="10" fontWeight="800" fontFamily={FONT}>POSTBACK</text>
-        {['IsPostBack = true', 'ViewState restore (PreLoad)', 'post data load', 'control event Load ke baad'].map((t, i) => (
+        {['IsPostBack = true', 'ViewState restore (PreLoad)', 'post data load', 'control event after Load'].map((t, i) => (
           <text key={t} x={642} y={338 + i * 22} fill={C.dim} fontSize="9.3" fontFamily={FONT}>• {t}</text>
         ))}
         <text x={642} y={438} fill={C.pink} fontSize="9" fontFamily={FONT}>Dynamic control? Init mein har baar banao</text>
-        <text x={642} y={458} fill={C.pink} fontSize="9" fontFamily={FONT}>Redirect? Render se pehle karo</text>
+        <text x={642} y={458} fill={C.pink} fontSize="9" fontFamily={FONT}>Redirect? Do it before render</text>
       </g>
 
-      <Note x={460} y={534} text="Exam tip: Load ke baad control event — isliye Page_Load mein user ka selection overwrite na karo" color={C.lime} size={9.8} bold />
+      <Note x={460} y={534} text="Exam tip: the control event comes after Load — so do not overwrite the user's selection in Page_Load" color={C.lime} size={9.8} bold />
     </Frame>
   );
 }
@@ -325,7 +325,7 @@ export function ServerControlsDiagram() {
     { t: 'WEB CONTROLS', s: 'WebControls (asp:)', ex: ['TextBox, Label', 'Button, DropDownList'], c: C.lime, x: 322, y: 84 },
     { t: 'VALIDATION', s: 'input check', ex: ['RequiredField', 'Range, Compare'], c: C.orange, x: 620, y: 84 },
     { t: 'DATA CONTROLS', s: 'data se bind', ex: ['GridView, Repeater', 'FormView, DataList'], c: C.purple, x: 24, y: 268 },
-    { t: 'USER CONTROLS', s: '.ascx + @Register', ex: ['reusable UI block', 'project ke andar'], c: C.pink, x: 322, y: 268 },
+    { t: 'USER CONTROLS', s: '.ascx + @Register', ex: ['reusable UI block', 'inside the project'], c: C.pink, x: 322, y: 268 },
     { t: 'CUSTOM CONTROLS', s: 'compiled DLL', ex: ['WebControl se derive', 'toolbox mein add'], c: C.teal, x: 620, y: 268 },
   ];
   return (
@@ -333,7 +333,7 @@ export function ServerControlsDiagram() {
       id="wt4-controls"
       h={500}
       title="ASP.NET server controls ke 6 type"
-      sub="sab server par chalte hain, sab HTML render karte hain — farq ownership aur kaam ka hai"
+      sub="all run on the server, all render HTML — the difference is ownership and job"
       label="Six families of ASP.NET server controls: HTML, Web, validation, data, user and custom controls with examples"
     >
       {groups.map((g, i) => (
@@ -354,7 +354,7 @@ export function ServerControlsDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '660ms' }}>
         <rect x={24} y={432} width={872} height={46} rx="10" fill="rgba(196,255,0,0.07)" stroke={C.lime} strokeWidth="1.3" strokeOpacity="0.6" />
         <text x={460} y={460} textAnchor="middle" fill={C.lime} fontSize="9.8" fontWeight="700" fontFamily={FONT}>
-          runat="server" + ID = code-behind se access · har control ViewState se value yaad rakhta hai
+          runat="server" + ID = reachable from code-behind · each control keeps its value in ViewState
         </text>
       </g>
     </Frame>
@@ -370,19 +370,19 @@ export function StateManagementDiagram() {
       id="wt4-state"
       h={520}
       title="ASP.NET state management"
-      sub="HTTP stateless hai — data kahan rakhein?"
+      sub="HTTP is stateless — where do we keep the data?"
       label="ASP.NET state management split into client-side techniques such as view state, cookies and query strings, and server-side techniques such as session and application state"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
         <rect x={24} y={76} width={424} height={356} rx="12" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.5" strokeOpacity="0.7" />
         <text x={236} y={102} textAnchor="middle" fill={C.cyan} fontSize="11" fontWeight="800" fontFamily={FONT}>CLIENT-SIDE</text>
-        <text x={236} y={122} textAnchor="middle" fill={C.dim} fontSize="9.3" fontFamily={FONT}>data browser ke paas · page/URL/cookie mein</text>
+        <text x={236} y={122} textAnchor="middle" fill={C.dim} fontSize="9.3" fontFamily={FONT}>data with the browser · in the page, URL or cookie</text>
       </g>
       {[
         ['ViewState', 'page ka hidden field', 'postback values'],
-        ['Hidden Field', 'plain text field', 'chhota data'],
+        ['Hidden Field', 'plain text field', 'small data'],
         ['Cookie', '~4 KB browser file', 'theme, remember-me'],
-        ['Query String', 'URL ke ? ke baad', 'id, filter, paging'],
+        ['Query String', 'after the ? in the URL', 'id, filter, paging'],
       ].map(([t, s1, s2], i) => (
         <g key={t} className="diagram-pop" style={{ animationDelay: `${140 + i * 90}ms` }}>
           <rect x={44} y={140 + i * 70} width={384} height={56} rx="9" fill="rgba(255,255,255,0.03)" stroke={C.cyan} strokeWidth="1.2" strokeOpacity="0.45" />
@@ -394,12 +394,12 @@ export function StateManagementDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '160ms' }}>
         <rect x={472} y={76} width={424} height={356} rx="12" fill="rgba(0,230,118,0.05)" stroke={C.green} strokeWidth="1.5" strokeOpacity="0.7" />
         <text x={684} y={102} textAnchor="middle" fill={C.green} fontSize="11" fontWeight="800" fontFamily={FONT}>SERVER-SIDE</text>
-        <text x={684} y={122} textAnchor="middle" fill={C.dim} fontSize="9.3" fontFamily={FONT}>data server par · client ko sirf SessionId</text>
+        <text x={684} y={122} textAnchor="middle" fill={C.dim} fontSize="9.3" fontFamily={FONT}>data on the server · the client gets only the SessionId</text>
       </g>
       {[
         ['Session', 'per user · 20 min timeout', 'login, cart, profile'],
-        ['Application', 'sab users · app restart tak', 'counter, config'],
-        ['Cache', 'expiry / dependency', 'mehnga data'],
+        ['Application', 'all users · until the app restarts', 'counter, config'],
+        ['Cache', 'expiry / dependency', 'expensive data'],
       ].map(([t, s1, s2], i) => (
         <g key={t} className="diagram-pop" style={{ animationDelay: `${220 + i * 90}ms` }}>
           <rect x={492} y={140 + i * 92} width={384} height={76} rx="9" fill="rgba(255,255,255,0.03)" stroke={C.green} strokeWidth="1.2" strokeOpacity="0.45" />
@@ -412,7 +412,7 @@ export function StateManagementDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
         <rect x={24} y={452} width={872} height={46} rx="10" fill="rgba(255,136,0,0.07)" stroke={C.orange} strokeWidth="1.3" strokeOpacity="0.6" />
         <text x={460} y={480} textAnchor="middle" fill={C.orange} fontSize="9.8" fontWeight="700" fontFamily={FONT}>
-          Chunne ke paimane: size · lifetime · security · web farm / restart · per-user ya global
+          Choosing criteria: size · lifetime · security · web farm / restart · per user or global
         </text>
       </g>
     </Frame>
@@ -431,23 +431,23 @@ export function ViewStateDiagram() {
       sub="server → Base64 hidden field → browser POST → restore → naya HTML"
       label="View state round trip: control values are serialised into the hidden view state field, posted back by the browser and restored before page load"
     >
-      <Box x={24} y={84} w={200} h={116} title="1. CONTROL VALUES" sub="page render se pehle" lines={['txtName.Text = "Riya"', 'ddlCity = "PNQ"']} color={C.cyan} delay={60} />
+      <Box x={24} y={84} w={200} h={116} title="1. CONTROL VALUES" sub="before the page renders" lines={['txtName.Text = "Riya"', 'ddlCity = "PNQ"']} color={C.cyan} delay={60} />
       <Arrow x1={224} y1={142} x2={282} y2={142} color={C.cyan} delay={160} label="serialise" />
       <Box x={282} y={84} w={196} h={116} title="2. BASE64 STRING" sub="LosFormatter" lines={['machine key se MAC', 'chaho to encrypt']} color={C.purple} delay={200} />
       <Arrow x1={478} y1={142} x2={536} y2={142} color={C.purple} delay={300} label="embed" />
-      <Box x={536} y={84} w={200} h={116} title="3. HIDDEN FIELD" sub="naam: __VIEWSTATE" lines={['page ke HTML mein', 'user ko dikhta hai']} color={C.orange} delay={340} />
+      <Box x={536} y={84} w={200} h={116} title="3. HIDDEN FIELD" sub="name: __VIEWSTATE" lines={['in the page HTML', 'the user can see it']} color={C.orange} delay={340} />
       <Arrow x1={736} y1={142} x2={794} y2={142} color={C.orange} delay={440} label="HTML" />
-      <Box x={794} y={84} w={102} h={116} title="4. BROWSER" sub="page dekhta hai" lines={['hidden field', 'bhejta hai']} color={C.green} delay={480} />
+      <Box x={794} y={84} w={102} h={116} title="4. BROWSER" sub="the page reads it" lines={['hidden field', 'sends it']} color={C.green} delay={480} />
 
       <Arrow x1={845} y1={200} x2={845} y2={244} color={C.green} delay={560} />
 
       <g className="diagram-pop" style={{ animationDelay: '600ms' }}>
         <rect x={24} y={244} width={872} height={64} rx="12" fill="rgba(0,230,118,0.06)" stroke={C.green} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={460} y={270} textAnchor="middle" fill={C.green} fontSize="10.2" fontWeight="800" fontFamily={FONT}>
-          POSTBACK — button click par browser wahi __VIEWSTATE wapas POST karta hai
+          POSTBACK — on a button click the browser POSTs that same __VIEWSTATE back
         </text>
         <text x={460} y={292} textAnchor="middle" fill={C.dim} fontSize="9.4" fontFamily={FONT}>
-          server decode + MAC verify karta hai → control values restore (PreLoad) → Page_Load
+          the server decodes and verifies the MAC → restores control values (PreLoad) → Page_Load
         </text>
       </g>
 
@@ -456,19 +456,19 @@ export function ViewStateDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '740ms' }}>
         <rect x={24} y={352} width={424} height={104} rx="12" fill="rgba(196,255,0,0.06)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.65" />
         <text x={44} y={376} fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>FAYDE</text>
-        {['automatic — koi code nahi likhna', 'server memory nahi lagti', 'MAC se tamper-proof'].map((t, i) => (
+        {['automatic — no code to write', 'no server memory used', 'MAC se tamper-proof'].map((t, i) => (
           <text key={t} x={44} y={396 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
       <g className="diagram-pop" style={{ animationDelay: '800ms' }}>
         <rect x={472} y={352} width={424} height={104} rx="12" fill="rgba(255,82,82,0.07)" stroke={C.red} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={492} y={376} fill={C.red} fontSize="10" fontWeight="800" fontFamily={FONT}>NUKSAAN</text>
-        {['page size badhta hai (bandwidth)', 'client decode karke dekh sakta hai', 'secret data ke liye kabhi nahi'].map((t, i) => (
+        {['the page grows (bandwidth)', 'the client can decode and read it', 'never for secret data'].map((t, i) => (
           <text key={t} x={492} y={396 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
 
-      <Note x={460} y={486} text="Kam karne ke tarike: EnableViewState=false · ViewStateMode=Disabled · SessionPageStatePersister" color={C.orange} size={9.6} bold />
+      <Note x={460} y={486} text="Ways to reduce it: EnableViewState=false · ViewStateMode=Disabled · SessionPageStatePersister" color={C.orange} size={9.6} bold />
     </Frame>
   );
 }
@@ -487,7 +487,7 @@ export function SessionApplicationDiagram() {
       id="wt4-session"
       h={520}
       title="Session vs Application state"
-      sub="Session = har user ka apna box · Application = sabke liye ek global box"
+      sub="Session = a box per user · Application = one global box for everyone"
       label="Session state keeps one data box per user keyed by session id, while application state is a single global box shared by all users"
     >
       <text x={150} y={82} textAnchor="middle" fill={C.dim} fontSize="9.6" fontWeight="700" fontFamily={FONT}>USERS (browsers)</text>
@@ -499,10 +499,10 @@ export function SessionApplicationDiagram() {
           <rect x={30} y={100 + i * 96} width={240} height={72} rx="10" fill={u.c} fillOpacity="0.07" stroke={u.c} strokeWidth="1.4" strokeOpacity="0.7" />
           <text x={150} y={126 + i * 96} textAnchor="middle" fill={C.white} fontSize="10" fontWeight="700" fontFamily={FONT}>{u.n}</text>
           <text x={150} y={146 + i * 96} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>{u.sid}</text>
-          <text x={150} y={162 + i * 96} textAnchor="middle" fill={C.faint} fontSize="8.6" fontFamily={FONT}>cookie mein sirf ID</text>
+          <text x={150} y={162 + i * 96} textAnchor="middle" fill={C.faint} fontSize="8.6" fontFamily={FONT}>only the ID in the cookie</text>
           <Arrow x1={270} y1={136 + i * 96} x2={330} y2={136 + i * 96} color={u.c} delay={140 + i * 110} />
           <rect x={330} y={112 + i * 96} width={250} height={48} rx="9" fill={u.c} fillOpacity="0.1" stroke={u.c} strokeWidth="1.3" strokeOpacity="0.6" />
-          <text x={455} y={133 + i * 96} textAnchor="middle" fill={u.c} fontSize="9.4" fontWeight="700" fontFamily={FONT}>Session[{i + 1}] alag box</text>
+          <text x={455} y={133 + i * 96} textAnchor="middle" fill={u.c} fontSize="9.4" fontWeight="700" fontFamily={FONT}>Session[{i + 1}] own box</text>
           <text x={455} y={150 + i * 96} textAnchor="middle" fill={C.dim} fontSize="8.8" fontFamily={FONT}>{u.d}</text>
           <Arrow x1={580} y1={136 + i * 96} x2={640} y2={136 + i * 96} color={u.c} dashed delay={180 + i * 110} />
         </g>
@@ -511,14 +511,14 @@ export function SessionApplicationDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '440ms' }}>
         <rect x={640} y={100} width={250} height={260} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.5" strokeOpacity="0.7" />
         <text x={765} y={126} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>APPLICATION (global)</text>
-        {['Application["visits"] = 12', 'Application["startTime"]', 'Lock() / UnLock() zaroori'].map((t, i) => (
+        {['Application["visits"] = 12', 'Application["startTime"]', 'Lock() / UnLock() are required'].map((t, i) => (
           <text key={t} x={660} y={152 + i * 22} fill={C.dim} fontSize="9" fontFamily={FONT}>• {t}</text>
         ))}
-        <text x={660} y={232} fill={C.faint} fontSize="8.8" fontFamily={FONT}>sab users same value dekhte hain</text>
+        <text x={660} y={232} fill={C.faint} fontSize="8.8" fontFamily={FONT}>every user sees the same value</text>
         <text x={660} y={254} fill={C.faint} fontSize="8.8" fontFamily={FONT}>app pool restart = data gone</text>
         <text x={660} y={276} fill={C.faint} fontSize="8.8" fontFamily={FONT}>Application_Start / End</text>
         <text x={660} y={304} fill={C.pink} fontSize="8.8" fontFamily={FONT}>web farm = per server copy</text>
-        <text x={660} y={326} fill={C.pink} fontSize="8.8" fontFamily={FONT}>global counter ke liye DB better</text>
+        <text x={660} y={326} fill={C.pink} fontSize="8.8" fontFamily={FONT}>a DB is better for a global counter</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
@@ -527,7 +527,7 @@ export function SessionApplicationDiagram() {
           Session modes: InProc (default, fast) · StateServer (restart survive) · SQLServer (farm + reliable) · Off
         </text>
       </g>
-      <Note x={460} y={472} text="Session timeout 20 min (sliding) · Abandon() khatam · Clear() khaali · Session_End sirf InProc" color={C.dim} size={9.4} />
+      <Note x={460} y={472} text="Session timeout 20 min (sliding) · Abandon() ends it · Clear() empties it · Session_End only InProc" color={C.dim} size={9.4} />
       <Note x={460} y={496} text="Per-user data → Session · site-wide counter/config → Application/Cache" color={C.lime} size={9.6} bold />
     </Frame>
   );
@@ -542,12 +542,12 @@ export function CookiesQueryStringDiagram() {
       id="wt4-cookies"
       h={520}
       title="Cookies vs query string"
-      sub="dono client-side — dono user ke haath mein, isliye sensitive data nahi"
+      sub="both are client-side — both in the user hands, so no sensitive data"
       label="Cookie round trip through Set-Cookie and Cookie headers compared with a query string carried inside the URL"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
         <rect x={24} y={76} width={424} height={228} rx="12" fill="rgba(255,136,0,0.05)" stroke={C.orange} strokeWidth="1.5" strokeOpacity="0.7" />
-        <text x={236} y={100} textAnchor="middle" fill={C.orange} fontSize="10.5" fontWeight="800" fontFamily={FONT}>COOKIE — browser ki chhoti file (~4 KB)</text>
+        <text x={236} y={100} textAnchor="middle" fill={C.orange} fontSize="10.5" fontWeight="800" fontFamily={FONT}>COOKIE — a small file in the browser (~4 KB)</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '140ms' }}>
         <rect x={44} y={116} width={150} height={54} rx="8" fill="rgba(255,255,255,0.04)" stroke={C.orange} strokeWidth="1.2" strokeOpacity="0.5" />
@@ -559,10 +559,10 @@ export function CookiesQueryStringDiagram() {
         <text x={357} y={138} textAnchor="middle" fill={C.cyan} fontSize="9.4" fontWeight="700" fontFamily={FONT}>BROWSER</text>
         <text x={357} y={156} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>Request.Cookies</text>
       </g>
-      {['Persistent: Expires set (disk par)', 'Session cookie: browser band = delete', 'HttpOnly · Secure · SameSite flags'].map((t, i) => (
+      {['Persistent: Expires set (on disk)', 'Session cookie: browser closed = deleted', 'HttpOnly · Secure · SameSite flags'].map((t, i) => (
         <text key={t} x={44} y={196 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT} className="diagram-pop" style={{ animationDelay: `${340 + i * 60}ms` }}>• {t}</text>
       ))}
-      <text x={44} y={262} fill={C.pink} fontSize="9" fontFamily={FONT}>Delete = same naam + past expiry</text>
+      <text x={44} y={262} fill={C.pink} fontSize="9" fontFamily={FONT}>Delete = same name + a past expiry</text>
 
       <g className="diagram-pop" style={{ animationDelay: '100ms' }}>
         <rect x={472} y={76} width={424} height={228} rx="12" fill="rgba(0,212,255,0.05)" stroke={C.cyan} strokeWidth="1.5" strokeOpacity="0.7" />
@@ -573,31 +573,31 @@ export function CookiesQueryStringDiagram() {
         <text x={684} y={140} textAnchor="middle" fill={C.white} fontSize="9.6" fontFamily={FONT}>Result.aspx?roll=21&amp;sem=3</text>
         <text x={684} y={160} textAnchor="middle" fill={C.faint} fontSize="8.6" fontFamily={FONT}>path · ? · key=value · &amp; · key=value</text>
       </g>
-      {['Request.QueryString["roll"] → "21"', 'bookmark / share / email ho sakta hai', 'URL length limit (~2 KB practical)'].map((t, i) => (
+      {['Request.QueryString["roll"] → "21"', 'can be bookmarked, shared or emailed', 'URL length limit (~2 KB practical)'].map((t, i) => (
         <text key={t} x={492} y={196 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT} className="diagram-pop" style={{ animationDelay: `${340 + i * 60}ms` }}>• {t}</text>
       ))}
-      <text x={492} y={262} fill={C.pink} fontSize="9" fontFamily={FONT}>int.TryParse + parameterised query zaroori</text>
+      <text x={492} y={262} fill={C.pink} fontSize="9" fontFamily={FONT}>int.TryParse + a parameterised query are required</text>
 
       <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
         <rect x={24} y={324} width={872} height={136} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.5" strokeOpacity="0.6" />
         <text x={460} y={350} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>SENSITIVE DATA NEVER — the user can change it and it reaches the logs too</text>
         {[
           'password / token / role / price',
-          'har value validate karo (type, length, allowed)',
-          'SQL ke liye parameterised query',
+          'validate every value (type, length, allowed)',
+          'a parameterised query for SQL',
         ].map((t, i) => (
           <text key={t} x={60} y={374 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT}>• {t}</text>
         ))}
         {[
-          'chhota payload encrypt karo (MachineKey.Protect)',
-          'output encode karo (XSS se bachav)',
+          'encrypt a small payload (MachineKey.Protect)',
+          'encode the output (XSS defence)',
           'cookie: HttpOnly + Secure lagao',
         ].map((t, i) => (
           <text key={t} x={492} y={374 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
 
-      <Note x={460} y={492} text="Share karna hai → query string · browser ko yaad rakhna hai → cookie" color={C.lime} size={9.8} bold />
+      <Note x={460} y={492} text="to share it → query string · to remember it in the browser → cookie" color={C.lime} size={9.8} bold />
     </Frame>
   );
 }
@@ -611,7 +611,7 @@ export function RedirectTransferDiagram() {
       id="wt4-transfer"
       h={520}
       title="Response.Redirect vs Server.Transfer"
-      sub="redirect browser ko bolta hai · transfer server ke andar hota hai"
+      sub="redirect tells the browser · transfer happens inside the server"
       label="Response.Redirect sends a 302 to the browser which makes a fresh request and changes the URL, while Server.Transfer executes another page on the same request keeping the URL"
     >
       <g className="diagram-pop" style={{ animationDelay: '60ms' }}>
@@ -629,17 +629,17 @@ export function RedirectTransferDiagram() {
         <Arrow x1={406} y1={146} x2={478} y2={146} color={C.orange} delay={300} label="2. 302" labelDy={16} />
         <rect x={478} y={118} width={150} height={56} rx="8" fill="rgba(255,136,0,0.08)" stroke={C.orange} strokeWidth="1.2" strokeOpacity="0.6" />
         <text x={553} y={142} textAnchor="middle" fill={C.orange} fontSize="9.4" fontWeight="700" fontFamily={FONT}>BROWSER</text>
-        <text x={553} y={160} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>naya URL kholta hai</text>
+        <text x={553} y={160} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>opens a new URL</text>
         <Arrow x1={628} y1={132} x2={700} y2={132} color={C.green} delay={380} label="3. GET" labelDy={-6} />
         <rect x={700} y={118} width={176} height={56} rx="8" fill="rgba(0,230,118,0.07)" stroke={C.green} strokeWidth="1.2" strokeOpacity="0.6" />
         <text x={788} y={142} textAnchor="middle" fill={C.green} fontSize="9.4" fontWeight="700" fontFamily={FONT}>Dashboard.aspx</text>
-        <text x={788} y={160} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>URL bar badal gaya</text>
+        <text x={788} y={160} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>the URL bar changed</text>
       </g>
-      <text x={44} y={212} fill={C.faint} fontSize="9" fontFamily={FONT}>koi bhi site · SEO theek · refresh safe · ThreadAbortException dhyan</text>
+      <text x={44} y={212} fill={C.faint} fontSize="9" fontFamily={FONT}>any site · good SEO · refresh safe · mind ThreadAbortException</text>
 
       <g className="diagram-pop" style={{ animationDelay: '80ms' }}>
         <rect x={24} y={248} width={872} height={160} rx="12" fill="rgba(255,136,0,0.05)" stroke={C.orange} strokeWidth="1.5" strokeOpacity="0.7" />
-        <text x={44} y={274} fill={C.orange} fontSize="10.4" fontWeight="800" fontFamily={FONT}>SERVER.TRANSFER — 1 request, server ke andar</text>
+        <text x={44} y={274} fill={C.orange} fontSize="10.4" fontWeight="800" fontFamily={FONT}>SERVER.TRANSFER — 1 request, inside the server</text>
       </g>
       <g className="diagram-pop" style={{ animationDelay: '180ms' }}>
         <rect x={44} y={290} width={140} height={56} rx="8" fill="rgba(255,255,255,0.04)" stroke={C.orange} strokeWidth="1.2" strokeOpacity="0.5" />
@@ -653,9 +653,9 @@ export function RedirectTransferDiagram() {
         <Arrow x1={586} y1={318} x2={658} y2={318} color={C.green} delay={320} label="HTML" labelDy={-6} />
         <rect x={658} y={290} width={218} height={56} rx="8" fill="rgba(0,230,118,0.07)" stroke={C.green} strokeWidth="1.2" strokeOpacity="0.6" />
         <text x={767} y={314} textAnchor="middle" fill={C.green} fontSize="9.4" fontWeight="700" fontFamily={FONT}>Welcome.aspx ka HTML</text>
-        <text x={767} y={332} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>URL bar wahi rehta hai</text>
+        <text x={767} y={332} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>the URL bar stays the same</text>
       </g>
-      <text x={44} y={384} fill={C.faint} fontSize="9" fontFamily={FONT}>sirf same server · Server.Execute = chala kar wapas (include jaisa)</text>
+      <text x={44} y={384} fill={C.faint} fontSize="9" fontFamily={FONT}>same server only · Server.Execute = run it and come back (like an include)</text>
 
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={24} y={420} width={872} height={58} rx="10" fill="rgba(186,0,255,0.07)" stroke={C.purple} strokeWidth="1.4" strokeOpacity="0.6" />
@@ -663,7 +663,7 @@ export function RedirectTransferDiagram() {
           Data bhejne ke tarike: Session · Context.Items · query string (redirect) · PreviousPage (cross-page post)
         </text>
         <text x={460} y={466} textAnchor="middle" fill={C.dim} fontSize="9" fontFamily={FONT}>
-          Redirect ke baad return karo ya endResponse=false do — warna ThreadAbortException
+          return after Redirect or pass endResponse=false — else ThreadAbortException
         </text>
       </g>
       <Note x={460} y={500} text="Public navigation → Redirect · internal page switch / URL chhupana → Transfer" color={C.lime} size={9.6} bold />
@@ -680,7 +680,7 @@ export function AdoNetDiagram() {
       id="wt4-adonet"
       h={520}
       title="ADO.NET architecture"
-      sub="connected (DataReader) aur disconnected (DataSet) — dono ek hi provider ke upar"
+      sub="connected (DataReader) and disconnected (DataSet) — both on one provider"
       label="ADO.NET architecture: application talks to a data provider made of connection and command, which feeds either a data reader in the connected model or a data adapter and data set in the disconnected model"
     >
       <Box x={24} y={80} w={180} h={92} title="ASP.NET PAGE" sub="GridView / code-behind" color={C.cyan} delay={60} />
@@ -710,14 +710,14 @@ export function AdoNetDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x={24} y={372} width={424} height={104} rx="12" fill="rgba(0,212,255,0.06)" stroke={C.cyan} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={44} y={396} fill={C.cyan} fontSize="10" fontWeight="800" fontFamily={FONT}>CONNECTED</text>
-        {['connection khula rehta hai', 'fast, kam memory', 'ExecuteReader() → while(rd.Read())'].map((t, i) => (
+        {['the connection stays open', 'fast, low memory', 'ExecuteReader() → while(rd.Read())'].map((t, i) => (
           <text key={t} x={44} y={416 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
       <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
         <rect x={472} y={372} width={424} height={104} rx="12" fill="rgba(255,136,0,0.06)" stroke={C.orange} strokeWidth="1.4" strokeOpacity="0.6" />
         <text x={492} y={396} fill={C.orange} fontSize="10" fontWeight="800" fontFamily={FONT}>DISCONNECTED</text>
-        {['Fill() ke baad connection band', 'multiple tables, offline edit', 'web apps ke liye pasandida'].map((t, i) => (
+        {['connection closed after Fill()', 'several tables, offline edit', 'the favourite for web apps'].map((t, i) => (
           <text key={t} x={492} y={416 + i * 20} fill={C.dim} fontSize="9.2" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
@@ -734,7 +734,7 @@ export function DbConnectivityDiagram() {
     ['1', 'using System.Data.SqlClient', 'namespace import'],
     ['2', 'Web.config connectionString', 'server + database + login'],
     ['3', 'SqlConnection(cs)', 'connection object'],
-    ['4', 'SqlCommand(sql, con)', 'parameters ke saath query'],
+    ['4', 'SqlCommand(sql, con)', 'the query with parameters'],
     ['5', 'con.Open() + Execute...', 'NonQuery / Scalar / Reader'],
     ['6', 'close (using block)', 'pool free + error safe'],
   ];
@@ -742,7 +742,7 @@ export function DbConnectivityDiagram() {
     <Frame
       id="wt4-dbconnect"
       h={520}
-      title="ASP.NET se database tak — 6 steps"
+      title="ASP.NET to the database — 6 steps"
       sub="connection string → connection → command → execute → bind → close"
       label="Six steps of ASP.NET database connectivity from namespace and connection string to connection, command, execution and closing the connection"
     >
@@ -763,22 +763,22 @@ export function DbConnectivityDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={534} y={80} width={362} height={148} rx="12" fill="rgba(255,82,82,0.06)" stroke={C.red} strokeWidth="1.5" strokeOpacity="0.65" />
-        <text x={715} y={104} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>GALAT — SQL injection</text>
+        <text x={715} y={104} textAnchor="middle" fill={C.red} fontSize="10.2" fontWeight="800" fontFamily={FONT}>WRONG — SQL injection</text>
         <text x={554} y={128} fill={C.dim} fontSize="8.8" fontFamily={FONT}>"SELECT * FROM Student</text>
         <text x={554} y={146} fill={C.dim} fontSize="8.8" fontFamily={FONT}> WHERE Name='" + txtName.Text + "'"</text>
-        <text x={554} y={172} fill={C.faint} fontSize="8.6" fontFamily={FONT}>user: ' OR '1'='1  → poora table</text>
+        <text x={554} y={172} fill={C.faint} fontSize="8.6" fontFamily={FONT}>user: ' OR '1'='1  → the whole table</text>
         <text x={554} y={196} fill={C.faint} fontSize="8.6" fontFamily={FONT}>user: '; DROP TABLE ... → data gone</text>
-        <text x={554} y={216} fill={C.red} fontSize="8.6" fontFamily={FONT}>string concat = dushman ko SQL likhne do</text>
+        <text x={554} y={216} fill={C.red} fontSize="8.6" fontFamily={FONT}>string concat = let the attacker write SQL</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '700ms' }}>
         <rect x={534} y={240} width={362} height={148} rx="12" fill="rgba(0,230,118,0.06)" stroke={C.green} strokeWidth="1.5" strokeOpacity="0.65" />
-        <text x={715} y={264} textAnchor="middle" fill={C.green} fontSize="10.2" fontWeight="800" fontFamily={FONT}>SAHI — parameterised</text>
+        <text x={715} y={264} textAnchor="middle" fill={C.green} fontSize="10.2" fontWeight="800" fontFamily={FONT}>RIGHT — parameterised</text>
         <text x={554} y={288} fill={C.dim} fontSize="8.8" fontFamily={FONT}>"SELECT * FROM Student</text>
         <text x={554} y={306} fill={C.dim} fontSize="8.8" fontFamily={FONT}> WHERE Name = @name"</text>
         <text x={554} y={330} fill={C.dim} fontSize="8.8" fontFamily={FONT}>cmd.Parameters.AddWithValue(</text>
         <text x={554} y={348} fill={C.dim} fontSize="8.8" fontFamily={FONT}>  "@name", txtName.Text);</text>
-        <text x={554} y={372} fill={C.green} fontSize="8.6" fontFamily={FONT}>value = data, code nahi — injection band</text>
+        <text x={554} y={372} fill={C.green} fontSize="8.6" fontFamily={FONT}>the value is data, not code — injection blocked</text>
       </g>
 
       <g className="diagram-pop" style={{ animationDelay: '760ms' }}>
@@ -800,14 +800,14 @@ export function ValidationDiagram() {
     ['Range', 'min–max + Type', C.orange],
     ['Compare', 'do value + Operator', C.cyan],
     ['RegularExpression', 'pattern (email)', C.purple],
-    ['Custom', 'apna logic', C.pink],
+    ['Custom', 'its own logic', C.pink],
   ];
   return (
     <Frame
       id="wt4-validation"
       h={520}
       title="Validation controls ka flow"
-      sub="client-side JavaScript + server-side Page.IsValid — dono zaroori"
+      sub="client-side JavaScript + server-side Page.IsValid — both are required"
       label="Validation flow: user input checked by client-side validators, then again on the server with Page.IsValid before the record is saved, with five validator types listed"
     >
       <Box x={24} y={80} w={190} h={80} title="USER INPUT" sub="textbox, dropdown" color={C.white} delay={60} />
@@ -822,7 +822,7 @@ export function ValidationDiagram() {
       <g className="diagram-pop" style={{ animationDelay: '500ms' }}>
         <rect x={272} y={196} width={210} height={46} rx="9" fill="rgba(255,82,82,0.08)" stroke={C.red} strokeWidth="1.3" strokeOpacity="0.6" />
         <text x={377} y={216} textAnchor="middle" fill={C.red} fontSize="9.2" fontWeight="700" fontFamily={FONT}>ErrorMessage + Text</text>
-        <text x={377} y={232} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>page submit nahi hota</text>
+        <text x={377} y={232} textAnchor="middle" fill={C.dim} fontSize="8.6" fontFamily={FONT}>the page is not submitted</text>
       </g>
 
       <text x={158} y={286} textAnchor="middle" fill={C.dim} fontSize="9.6" fontWeight="700" fontFamily={FONT}>VALIDATION CONTROLS</text>
@@ -836,21 +836,21 @@ export function ValidationDiagram() {
 
       <g className="diagram-pop" style={{ animationDelay: '640ms' }}>
         <rect x={320} y={300} width={576} height={170} rx="12" fill="rgba(196,255,0,0.05)" stroke={C.lime} strokeWidth="1.4" strokeOpacity="0.6" />
-        <text x={340} y={324} fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>YAAD RAKHNE WALI BAATEIN</text>
+        <text x={340} y={324} fill={C.lime} fontSize="10" fontWeight="800" fontFamily={FONT}>POINTS TO REMEMBER</text>
         {[
-          'ControlToValidate — kaun sa input check karna hai',
-          'Text control ke paas · ErrorMessage summary mein',
+          'ControlToValidate — which input to check',
+          'next to the text control · ErrorMessage in the summary',
           'Display: Static / Dynamic / None',
-          'ValidationGroup — sirf ek button ke controls',
+          'ValidationGroup — only the controls of one button',
           'CausesValidation=false — cancel button',
-          'Range/Compare khaali field pass karte hain → RequiredField alag lagao',
-          'Operator=DataTypeCheck — sirf type check',
-          'Server par Page.IsValid — client script bypass ho sakta hai',
+          'Range/Compare pass an empty field → add RequiredField separately',
+          'Operator=DataTypeCheck — type check only',
+          'Page.IsValid on the server — client script can be bypassed',
         ].map((t, i) => (
           <text key={t} x={340} y={348 + i * 16} fill={C.dim} fontSize="8.8" fontFamily={FONT}>• {t}</text>
         ))}
       </g>
-      <Note x={460} y={500} text="ValidationSummary = saare errors ek jagah (list ya popup, ShowMessageBox)" color={C.orange} size={9.4} />
+      <Note x={460} y={500} text="ValidationSummary = all errors in one place (a list or popup, ShowMessageBox)" color={C.orange} size={9.4} />
     </Frame>
   );
 }
@@ -864,14 +864,14 @@ export function SecurityDiagram() {
       id="wt4-security"
       h={520}
       title="ASP.NET security — authentication + authorisation"
-      sub="pehle 'kaun ho', phir 'kya kar sakte ho'"
+      sub="first who are you, then what may you do"
       label="ASP.NET security flow: request hits authentication which proves identity, then authorization decides access, and the resource returns the page, 401 or 403; modes and attacks are listed"
     >
-      <Box x={24} y={80} w={180} h={86} title="REQUEST" sub="browser se" color={C.white} delay={60} />
+      <Box x={24} y={80} w={180} h={86} title="REQUEST" sub="from the browser" color={C.white} delay={60} />
       <Arrow x1={204} y1={123} x2={252} y2={123} color={C.white} delay={140} />
-      <Box x={252} y={80} w={220} h={86} title="AUTHENTICATION" sub="kaun ho?" lines={['Windows · Forms · Passport · None']} color={C.cyan} delay={180} />
+      <Box x={252} y={80} w={220} h={86} title="AUTHENTICATION" sub="who are you?" lines={['Windows · Forms · Passport · None']} color={C.cyan} delay={180} />
       <Arrow x1={472} y1={123} x2={520} y2={123} color={C.cyan} delay={260} label="identity" />
-      <Box x={520} y={80} w={220} h={86} title="AUTHORIZATION" sub="kya kar sakte ho?" lines={['rules + roles (IsInRole)']} color={C.orange} delay={300} />
+      <Box x={520} y={80} w={220} h={86} title="AUTHORIZATION" sub="what may you do?" lines={['rules + roles (IsInRole)']} color={C.orange} delay={300} />
       <Arrow x1={740} y1={123} x2={788} y2={123} color={C.orange} delay={380} />
       <Box x={788} y={80} w={108} h={86} title="RESOURCE" sub="page" color={C.green} delay={420} radius={10} />
 
