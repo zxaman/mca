@@ -4048,3 +4048,109 @@ svg.diagram-svg, svg.diagram-pop {
     text-align: left;
   }
 }
+
+/* ---------- Aasan bhasha + real example blocks ---------- */
+
+.os-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0 18px;
+  padding: 14px 16px 15px;
+  border-radius: 12px;
+  background: rgba(196, 255, 0, 0.09);
+  border: 1px solid rgba(196, 255, 0, 0.28);
+  border-left: 4px solid var(--lime);
+}
+
+.os-simple-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 4px 10px;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0a0e1a;
+  background: var(--lime);
+  border-radius: 999px;
+}
+
+.os-simple p {
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 600;
+  color: #fff;
+}
+
+.os-example {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: rgba(0, 71, 255, 0.1);
+  border: 1px dashed rgba(100, 140, 255, 0.45);
+}
+
+.os-example-label {
+  align-self: flex-start;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ab0e0;
+}
+
+.os-example p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(238, 242, 255, 0.92);
+}
+
+@media (max-width: 720px) {
+  .os-simple p {
+    font-size: 14.5px;
+  }
+  .os-example p {
+    font-size: 14px;
+  }
+}
+
+/* ---------- Unit overview ("poora picture") ---------- */
+
+.os-overview {
+  margin: 26px 0 0;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: linear-gradient(140deg, rgba(0, 71, 255, 0.16), rgba(0, 71, 255, 0.05));
+  border: 1px solid rgba(100, 140, 255, 0.32);
+}
+
+.os-overview-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.os-overview p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: rgba(238, 242, 255, 0.94);
+}
+
+@media (max-width: 720px) {
+  .os-overview {
+    padding: 16px 16px;
+  }
+  .os-overview p {
+    font-size: 14.5px;
+  }
+}

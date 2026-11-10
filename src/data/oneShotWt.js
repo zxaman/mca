@@ -11,10 +11,13 @@ export const wtOneShot = {
       number: '1',
       name: 'HTML and XML',
       tagline: 'Document structure se forms, CSS aur XML/XSLT tak',
+      overview: 'Web ka base: page ka dhaancha (HTML), uska look (CSS), aur data ka format (XML). Ye teeno aage ke saare units ka foundation hain.',
       minutes: 20,
       sections: [
         {
           title: '1.1–1.4 · Web technology, internet vs WWW, web server, planning',
+          simple: 'Simple mein: internet sadak hai, WWW us sadak par chalti bus hai.',
+          example: 'Chrome mein flipkart.com khola, request server gayi, server ne HTML bheja, browser ne dikhaya — yahi poora system web technology hai.',
           text: `- **Web technology:** client + server + unke beech communication ka poora system (browser → request → server → response).
 - **Internet vs WWW:** internet = infrastructure (hardware + protocols, TCP/IP); WWW = us par chalti service (documents + HTTP). **WWW ⊂ Internet** — internet ke bina WWW nahi, ulta possible (email, FTP).
 - **Web server:** static page par file bhejta hai; dynamic page par application server HTML generate karta hai (PHP/ASP.NET/Node).
@@ -25,6 +28,8 @@ export const wtOneShot = {
         },
         {
           title: '1.5–1.9 · HTML document, elements, fonts, links, frames',
+          simple: 'Simple mein: HTML page ka skeleton hai; tags batate hain kaunsa part heading hai, kaunsa paragraph, kaunsa link.',
+          example: 'h1 se heading, a href se link, img se photo, div se dabba. Browser inhi tags ko design mein badal deta hai.',
           text: `- **Structure:** \`<!DOCTYPE html> → <html> → <head> (meta, title, css) + <body> (visible content)\`.
 - **Elements:** h1–h6 (ek hi h1 per page), p, br (empty tag), hr, pre, div, span, \`&amp;nbsp;\` (entity).
 - **Attributes:** id (unique), class (multiple), style, title, alt, src, href, target.
@@ -38,6 +43,8 @@ export const wtOneShot = {
         },
         {
           title: '1.10–1.13 · Lists, tables, images, forms',
+          simple: 'Simple mein: form page ka wo hissa hai jahan user likhta hai aur data server ko jaata hai.',
+          example: 'Login form: email aur password POST se server gaye, server ne check kiya, phir dashboard ya error. Table marks dikhane ke liye, list menu ke liye.',
           text: `- **Lists:** ul (bullet), ol (numbered, type/start), dl (term + definition), nesting allowed.
 - **Tables:** table > caption, thead, tbody, tr, th, td; attributes colspan, rowspan; aaj styling CSS se.
 - **Forms:** \`<form action method>\`; inputs — text, password, email, number, radio, checkbox, file, date, submit, reset; select/option, textarea, label, fieldset, button.
@@ -48,6 +55,8 @@ export const wtOneShot = {
         },
         {
           title: '1.14–1.15 · HTML vs HTML5, CSS basics',
+          simple: 'Simple mein: HTML structure hai, CSS kapde — color, size aur layout.',
+          example: 'Same HTML par ek CSS dark theme, doosri light theme bana deti hai. .price { color: red } har price ko laal kar deta hai.',
           text: `| Point | HTML | HTML5 |
 |---|---|---|
 | Doctype | long SGML | \`<!DOCTYPE html>\` |
@@ -64,6 +73,8 @@ export const wtOneShot = {
         },
         {
           title: '1.16–1.19 · XML, components, DTD/Schema, namespaces + XSLT',
+          simple: 'Simple mein: HTML dikhane ke liye hai, XML data rakhne aur samajhne ke liye — dono tag use karte hain par maksad alag.',
+          example: 'student, name aur marks wale XML ko koi app padh ke table bana sakti hai; XSLT se usi XML ko HTML bana dete hain.',
           text: `- **XML:** data rakhta hai (structure + meaning), HTML page dikhata hai (presentation). Case-sensitive, tags band karna zaroori, ek root.
 - **Components:** prolog (\`<?xml version=\\"1.0\\"?>\`), elements, attributes, text, comments, CDATA, entities.
 - **Well-formed vs valid:** well-formed = syntax sahi; valid = DTD/Schema ke according bhi sahi.
@@ -89,10 +100,13 @@ export const wtOneShot = {
       number: '2',
       name: 'JavaScript',
       tagline: 'Variables se async tak — jo bhi JS mein poocha jaata hai',
+      overview: 'Browser ke andar ki language JavaScript: variables se logic, loops, functions, objects aur arrays, aur aakhir mein async ka event loop. Yahi client-side interactivity ka engine hai.',
       minutes: 22,
       sections: [
         {
           title: '2.1–2.3 · Role, inclusion, variables & types',
+          simple: 'Simple mein: JavaScript browser ke andar chalne wali language hai jo page ko zinda karti hai.',
+          example: 'Button click par dropdown khulna ya galat email par laal message aana JS hai. const naam = Aman se variable banta hai.',
           text: `- **JS kya karta hai:** client-side scripting — DOM change, validation, events, async calls; browser mein chalti hai, server call har baar nahi.
 - **3 tarike:** inline (\`onclick\`), embedded (\`<script>\`), external (\`<script src>\`) — external best (cache + clean HTML).
 - **Variables:** \`let\` (reassign), \`const\` (no reassign), \`var\` (function-scoped, avoid).
@@ -110,6 +124,8 @@ export const wtOneShot = {
         },
         {
           title: '2.4–2.5 · Control structures + loops',
+          simple: 'Simple mein: condition se faisla hota hai, loop se kaam repeat hota hai.',
+          example: 'if (marks >= 40) pass else fail. for loop se 10 students ke marks print — code 10 baar likhna nahi padta.',
           text: `- **if / else if / else**, ternary (\`cond ? a : b\`), \`switch\` (strict ===, break warna fall-through, default).
 - **Loops:** for (count known), while (condition pehle), do…while (kam se kam ek baar), for…of (values), for…in (keys), forEach/map (array methods).
 - **break** loop se bahar, **continue** current iteration skip.
@@ -119,6 +135,8 @@ export const wtOneShot = {
         },
         {
           title: '2.6–2.9 · Functions, dialogs, cookies, events',
+          simple: 'Simple mein: function kaam ka dabba hai jise naam se bulate hain, event ka matlab jab ye ho tab ye karo.',
+          example: 'function total(a,b){return a+b} ko kahin bhi total(2,3) se chala lo. Button par click event lagaya to click par function chalta hai.',
           text: `- **Function:** declaration, expression, arrow, parameters + return; default aur rest parameters.
 - **Dialogs:** alert (OK), confirm (true/false), prompt (text ya null).
 - **Redirect:** \`window.location.href = \\"url\\"\` (history mein rehta) vs \`location.replace()\` (back button hataata).
@@ -131,6 +149,8 @@ export const wtOneShot = {
         },
         {
           title: '2.10–2.13 · Objects, Number/Math, String, Array, Date',
+          simple: 'Simple mein: object ek insaan ki poori detail ek jagah rakhta hai, array list rakhta hai, string text hota hai.',
+          example: 'let user = {name: Aman, age: 21} me user.age se age milegi. prices = [100, 250] me reduce se total 350.',
           text: `- **Object:** key: value collection + methods; access dot/bracket; \`this\`; \`new\`; Object.keys/values/entries, spread.
 - **Number:** toFixed(n), parseInt/parseFloat, Number.isInteger, MAX_SAFE_INTEGER; NaN.
 - **Math:** round, floor, ceil, abs, pow, sqrt, min, max, random (\`Math.floor(Math.random()*n)+1\`), PI.
@@ -142,6 +162,8 @@ export const wtOneShot = {
         },
         {
           title: '2.14–2.15 · Async + Bootstrap',
+          simple: 'Simple mein: async ka matlab lambi cheez background mein chale, page freeze na ho.',
+          example: 'Weather API se jawab 2 second mein aata hai, tab tak loader dikhta hai, phir then se data page par aa jaata hai. Bootstrap ready-made button aur card deta hai.',
           text: `- **Sync vs async:** JS single-threaded, browser background mein kaam karwa leta hai (event loop).
 - **Event loop:** call stack khaali → microtask (promise) → macrotask (setTimeout) — isliye promise callback setTimeout se pehle chalta hai.
 - **setTimeout/setInterval**, callback hell → **Promise** (then/catch/finally) → **async/await** (try/catch ke saath).
@@ -162,10 +184,13 @@ export const wtOneShot = {
       number: '3',
       name: 'PHP',
       tagline: 'Server-side basics se sessions, forms aur CodeIgniter tak',
+      overview: 'Ab server side PHP: kaise chalti hai, strings aur arrays, OOP, file handling, cookies aur sessions, form validation, aur CodeIgniter ka MVC flow.',
       minutes: 22,
       sections: [
         {
           title: '3.1–3.4 · PHP kya hai, variables, operators, input/output',
+          simple: 'Simple mein: PHP server par chalti hai, browser tak sirf uska output (HTML) pahunchta hai.',
+          example: 'Login ka password check server par hota hai; View Source karne par PHP code nahi, sirf HTML dikhta hai.',
           text: `- **PHP:** server-side scripting — server par chalti hai, browser ko sirf HTML milta hai (View Source mein code nahi).
 - **File:** \`.php\` — \`<?php ... ?>\` ke beech code, baaki HTML seedha.
 - **Variables:** \`$name\` se shuru, type automatically, no declaration; case-sensitive; naming a-z A-Z 0-9 _ (number se shuru nahi).
@@ -178,6 +203,8 @@ export const wtOneShot = {
         },
         {
           title: '3.5–3.9 · Formatting, strings, arrays',
+          simple: 'Simple mein: PHP array do tarah ke hote hain — numbered list (indexed) aur naam wali list (associative).',
+          example: 'marks = [78, 85] me index se value; student = [name => Aman] me naam se. explode se a,b,c ka array ban jaata hai.',
           text: `- **printf specifiers:** %s (string), %d (int), %f (float), %x (hex), %.2f (2 decimals), %-10s (left align); sprintf string return karta hai.
 - **String functions:** strlen, strtoupper/lower, ucfirst, ucwords, trim/ltrim/rtrim, substr, strpos, str_replace, str_repeat, strrev, explode, implode, nl2br, htmlspecialchars, md5/sha1/password_hash.
 - **Indexed array:** \`$a = [10, 20, 30]\` — keys 0,1,2; count, sort/rsort, array_push/pop, array_merge.
@@ -189,6 +216,8 @@ export const wtOneShot = {
         },
         {
           title: '3.10–3.13 · Date/time, functions, OOP, file handling',
+          simple: 'Simple mein: file handling ka pattern fixed hai — kholo, kaam karo, band karo.',
+          example: 'fopen se log.txt khola, fwrite se login likha, fclose se band kiya — har login ka record file mein judta jaata hai.',
           text: `- **Date:** \`date(\\"d-m-Y H:i:s\\")\`, \`time()\` (Unix seconds), \`mktime()\`, \`strtotime()\`, \`DateTime\` class; \`date_default_timezone_set(\\"Asia/Kolkata\\")\` pehle.
 - **Functions:** user-defined, parameters (default, by reference &), return, variable scope (local/global/static), \`global $x\` ya \`$GLOBALS\`.
 - **OOP:** class, object, constructor (__construct ), properties, methods, public/private/protected, inheritance (extends), interface, abstract, static, trait, magic methods (__get, __set, __toString).
@@ -199,6 +228,8 @@ export const wtOneShot = {
         },
         {
           title: '3.14–3.16 · Cookies/sessions, forms + validation, CodeIgniter',
+          simple: 'Simple mein: cookie browser mein rehta hai aur user dekh sakta hai, session server par rehta hai aur user sirf ID jaanta hai.',
+          example: 'Login ke baad SESSION me user ka naam; browser ke paas sirf PHPSESSID — isliye session zyada safe hai.',
           text: `| Point | Cookie | Session |
 |---|---|---|
 | Data kahan | browser | server (file/DB) |
@@ -227,10 +258,13 @@ export const wtOneShot = {
       number: '4',
       name: 'ASP.NET',
       tagline: 'Web Forms, page life cycle, state management aur ADO.NET',
+      overview: 'Microsoft ka stack: ASP.NET Web Forms ka page life cycle, ViewState aur session se state yaad rakhna, ADO.NET se database, validation aur security.',
       minutes: 20,
       sections: [
         {
           title: '4.1–4.4 · ASP.NET intro, setup, Web Forms, life cycle',
+          simple: 'Simple mein: ASP.NET page pehli baar load hota hai, phir har button click par wahi page dobara chalta hai (postback).',
+          example: 'Button dabaya to page Init se Render tak dobara chala, sirf badla hua part screen par aaya. IsPostBack se pehla aur doosra load alag handle karte hain.',
           text: `- **ASP.NET:** Microsoft ka server-side framework — compiled (C#/VB), server controls, event-driven, IIS par hosted.
 - **Setup:** Visual Studio → new project → IIS Express → run (\`http://localhost:port\`); web.config = configuration (connection string, auth mode, session mode).
 - **Web Forms:** \`.aspx\` (markup) + \`.aspx.cs\` (code-behind), \`<%@ Page %>\` directive, \`runat=\\"server\\"\`, postback model.
@@ -242,6 +276,8 @@ export const wtOneShot = {
         },
         {
           title: '4.5–4.9 · Server controls, state management, ViewState, session/application, cookies/query string',
+          simple: 'Simple mein: ViewState page ki apni yaaddasht hai, session user ki yaaddasht hai jo server par rehti hai.',
+          example: 'Grid ka page 2 khola to ViewState ne page 1 ki state yaad rakhi. Login user ka naam session mein 20 minute tak zinda rehta hai.',
           text: `- **Server controls (6 types):** HTML controls, Web (standard) controls, validation controls, rich controls (Calendar, AdRotator), data controls (GridView, Repeater), custom/user controls.
 - **State management:**
   - Client-side: ViewState, hidden field, cookies, query string, control state.
@@ -262,6 +298,8 @@ export const wtOneShot = {
         },
         {
           title: '4.10–4.14 · Redirect/Transfer, ADO.NET, DB connectivity, validation, security',
+          simple: 'Simple mein: Redirect naye page par naya request bhejta hai, Transfer server ke andar hi doosra page kholta hai.',
+          example: 'Login ke baad Response.Redirect se URL badal ke dashboard khula. ADO.NET se SELECT chala ke GridView bhar diya.',
           text: `- **Response.Redirect:** browser ko naya URL (new request, URL badalta hai, koi bhi site).
 - **Server.Transfer:** server ke andar (same request, URL wahi, sirf same app); \`Server.Execute\` = chala ke wapas.
 - **ADO.NET:** Connection → Command → DataReader (connected, fast) ya DataAdapter + DataSet (disconnected, offline); \`SqlConnection\`, \`SqlCommand\`, \`ExecuteReader/ExecuteNonQuery/ExecuteScalar\`.
@@ -284,10 +322,13 @@ export const wtOneShot = {
       number: '5',
       name: 'AngularJS and Next.js',
       tagline: 'Framework concepts, two-way binding, validation aur Next.js features',
+      overview: 'Framework-level soch: AngularJS ka MVC aur two-way binding, phir Next.js ka rendering model (SSG, SSR, ISR, CSR). Yahan asli sawaal ye hai ki browser aur server kaam kaise baantte hain.',
       minutes: 16,
       sections: [
         {
           title: '5.1–5.6 · Frameworks, AngularJS overview/features/advantages/applications, MVC',
+          simple: 'Simple mein: framework ghar ka ready structure hai, aap sirf apna saamaan rakhte ho.',
+          example: 'ng-app likha, module banaya, controller mein data diya — HTML khud update hone laga. Do jagah change karne ki zaroorat nahi.',
           text: `- **Library vs framework:** library ko aap call karte ho; framework aapke code ko call karta hai (inversion of control).
 - **SPA flow:** pehla HTML + JS download → router se view change → server sirf JSON.
 - **AngularJS (2010, Google):** JS framework for SPA — MVC/MVVM, declarative HTML, DI.
@@ -300,6 +341,8 @@ export const wtOneShot = {
         },
         {
           title: '5.7–5.10 · Expressions, directives, modules, controllers, forms, validation',
+          simple: 'Simple mein: directive HTML ko nayi taakat dene wala attribute hai, jaise ng-model ya ng-repeat.',
+          example: 'ng-repeat se 50 products ki list ek line mein ban gayi. ng-model se input box aur variable aapas mein jud jaate hain.',
           text: `- **Expression:** \`{{ }}\` — scope par evaluate, filters ke saath (\`{{ name | uppercase }}\`); statements/loops allowed nahi.
 - **Directives:** ng-app, ng-model, ng-bind, ng-init, ng-repeat, ng-if, ng-show/hide, ng-class, ng-click, ng-submit, ng-include, custom directives.
 - **Module:** \`angular.module(\\"app\\", [])\` — controllers/services/directives ka container; **controller** = \`$scope\` ko data + functions deta hai.
@@ -312,6 +355,8 @@ export const wtOneShot = {
         },
         {
           title: '5.11–5.12 · Next.js',
+          simple: 'Simple mein: Next.js React ka ready-made dhaancha hai — routing, SEO aur speed pehle se bane hue.',
+          example: 'Blog page build ke waqt HTML ban jaata hai (SSG) to fast hai aur Google ko bhi dikhta hai; dashboard browser mein banta hai (CSR).',
           text: `- **Next.js:** React ke upar production framework — routing, data fetching, performance built-in.
 - **Key features:**
   - File-based routing (\`pages/\` ya \`app/\`), nested layouts.
