@@ -1,0 +1,348 @@
+// One Shot revision notes — Data Science.
+
+export const dsOneShot = {
+  subjectId: 'data-science',
+  code: 'DS',
+  accent: '#00d4ff',
+  blurb: 'Data science fundamentals se clustering, association aur dashboards tak',
+  units: [
+    {
+      id: 'unit-1',
+      number: '1',
+      name: 'Fundamentals of Data Science',
+      tagline: 'Data ke types aur scales se life cycle, CRISP-DM aur roles tak',
+      minutes: 18,
+      sections: [
+        {
+          title: '1.1–1.4 · Importance, data types, scales, formats',
+          text: `- **Data science:** data se insight nikaalne ka multidisciplinary process — statistics + programming + domain.
+- **Data types:**
+  - Structured: table rows/columns (SQL, CSV).
+  - Semi-structured: tags/keys hain par fixed schema nahi (JSON, XML, logs).
+  - Unstructured: text, image, audio, video.
+- **Scales of measurement:**
+
+| Scale | Property | Example | Allowed ops |
+|---|---|---|---|
+| Nominal | naam/label | gender, city | count, mode |
+| Ordinal | order | grade A/B/C, rating | + median, rank |
+| Interval | order + equal gap, no true zero | temperature °C | + mean, difference |
+| Ratio | order + gap + true zero | height, income | + ratio, multiply |
+
+- **Formats:** CSV (plain, header row), JSON (key-value, nested), XML (tags, strict), SQL table (schema + constraints).`,
+          diagram: 'data-types',
+          caption: 'Data ke teen types — structured, semi-structured, unstructured, example ke saath.',
+        },
+        {
+          title: '1.5–1.7 · Big data vs DS, life cycle, process models',
+          text: `- **Big data:** 3 V — volume, velocity, variety (+ veracity, value). Data science us data se method nikaalti hai; big data infra deta hai.
+- **DS life cycle:** problem define → data collect → clean → explore (EDA) → model → evaluate → deploy → monitor.
+- **CRISP-DM (6 phases):** business understanding → data understanding → data preparation → modelling → evaluation → deployment (iterative).
+- **SEMMA (SAS):** Sample → Explore → Modify → Model → Assess.
+- **TDSP (Microsoft):** business understanding → data acquisition → modelling → deployment, with team roles + versioning.
+
+**Exam line:** CRISP-DM ki 6 phases yaad rakho — sabse zyada poocha jaata hai.`,
+          diagram: 'crisp-dm',
+          caption: 'CRISP-DM ke 6 phases — business understanding se deployment tak ka cycle.',
+        },
+        {
+          title: '1.8–1.10 · Applications, DS vs BI vs stats vs ML vs AI',
+          text: `- **Applications:** healthcare (diagnosis, readmission), finance (fraud, credit), retail (recommendation, demand), manufacturing (predictive maintenance), telecom (churn), transport (route), education (dropout).
+- **Farq (table form):**
+
+| Field | Focus | Output |
+|---|---|---|
+| Statistics | inference, sampling | confidence, significance |
+| BI | past kya hua | dashboards, reports |
+| Data science | end-to-end insight | model + story |
+| ML | algorithm se pattern | prediction |
+| AI | machine se intelligent behaviour | decision/automation |
+
+- **ML and AI:** AI broader; ML subset (data se seekhna); deep learning ML ka subset (neural networks).
+- **ML types:** supervised (labelled), unsupervised (unlabelled), semi-supervised, reinforcement (reward se seekhna).`,
+        },
+        {
+          title: '1.11–1.12 · Roles + mathematical statistics',
+          text: `- **Roles:** data analyst, data scientist, ML engineer, data engineer, BI developer, domain expert, data steward/architect.
+- **Statistics kyun:** central tendency (mean/median/mode), dispersion (variance, SD, IQR), distribution (normal, skew), probability, sampling, hypothesis testing (p-value, t-test), correlation vs causation.
+- **Outlier rule:** z-score > 3 ya IQR ke 1.5× bahar.
+- **Correlation:** Pearson (linear, −1..1), Spearman (rank).
+
+**Exam line:** data science ki neev statistics hai — bina distribution samjhe model ka result bharosa layak nahi.`,
+          diagram: 'stats-foundation',
+          caption: 'Statistics ke basic building blocks — central tendency, dispersion aur distribution.',
+        },
+      ],
+      lastMinute: [
+        '4 scales of measurement + allowed operations — table form.',
+        'CRISP-DM ke 6 phases aur SEMMA ke 5.',
+        'DS vs BI vs ML vs AI — ek-ek line.',
+        'Structured/semi/unstructured ke 2 example each.',
+      ],
+    },
+    {
+      id: 'unit-2',
+      number: '2',
+      name: 'Data Pre-processing and Data Warehouse',
+      tagline: 'Cleaning, integration, reduction se DW architecture aur OLAP tak',
+      minutes: 20,
+      sections: [
+        {
+          title: '2.1–2.2 · Pre-processing kya aur kyun',
+          text: `- **Pre-processing =** raw data ko model-ready banana — 4 steps: cleaning, integration, transformation, reduction.
+- **Kyun:** real data ganda hota hai — missing, noisy, inconsistent, duplicate, wrong scale.
+- **Garbage in, garbage out:** model ki quality data ki quality se upar nahi ja sakti.
+- **Rule of thumb:** project ka 60–80% time pre-processing mein jaata hai.`,
+          diagram: 'ds-preprocessing',
+          caption: 'Pre-processing ke chaar steps aur unka kaam.',
+        },
+        {
+          title: '2.3–2.6 · Cleaning, integration, transformation, reduction',
+          text: `- **Cleaning:**
+  - Missing: drop, mean/median, group mean, model-based, ya flag karke impute.
+  - Noisy: binning, regression smoothing, clustering.
+  - Outliers: z-score/IQR par detect, remove ya cap (reason ke saath).
+  - Duplicate: dedupe on key + fuzzy matching.
+- **Integration:** multiple sources ko ek mein — schema matching, entity resolution, redundancy/ correlation handle karna.
+- **Transformation:**
+  - Normalisation (min-max: \`(x−min)/(max−min)\` → 0–1).
+  - Standardisation (z-score: \`(x−μ)/σ\`).
+  - Encoding (one-hot, label), discretisation (bins), aggregation, log transform.
+- **Reduction:** dimension (PCA, feature selection), numerosity (sampling, binning), compression.
+- **Kis par kaunsa:** distance-based models (KNN, k-means) ke liye **scaling zaroori**; tree models ko scaling ki zaroorat nahi.`,
+          diagram: 'ds-cleaning',
+          caption: 'Data cleaning ke techniques — missing values, noise, outliers aur duplicates.',
+        },
+        {
+          title: '2.7–2.9 · Data warehouse + architecture + ETL',
+          text: `- **DW characteristics (SITN):** subject-oriented, integrated, time-variant, non-volatile.
+- **Architecture:** source → staging → warehouse (integrated store) → data marts → BI tools; metadata har layer mein.
+- **ETL:** extract (full/incremental) → transform (clean, conform, derive) → load (full/append/MERGE).
+- **ELT:** raw load + warehouse compute se transform (cloud DW).
+- **OLTP vs DW:** OLTP current + normalised + write-heavy; DW historical + dimensional + read-heavy.`,
+          diagram: 'ds-dw-architecture',
+          caption: 'Data warehouse architecture — sources, staging, warehouse, marts aur metadata.',
+        },
+        {
+          title: '2.10–2.13 · Fact/dimension, star, snowflake, OLAP vs OLTP',
+          text: `- **Fact table:** foreign keys + numeric measures, grain par ek row (sales line).
+- **Dimension table:** descriptive attributes (product, customer, date, store).
+- **Star schema:** ek fact + flat dimensions — kam joins, fast.
+- **Snowflake schema:** dimensions normalised — storage bachta, joins badhte.
+- **Cube/OLAP:** dimensions = address, measures = value; operations — roll-up, drill-down, slice, dice, pivot.
+- **OLAP vs OLTP table:**
+
+| Point | OLTP | OLAP |
+|---|---|---|
+| Data | current | historical |
+| Design | normalised | star/cube |
+| Query | simple, many | complex, few |
+| Metric | throughput | analysis speed |`,
+          diagram: 'ds-star-schema',
+          caption: 'Star schema — fact table centre mein, dimension tables chaaron taraf.',
+        },
+      ],
+      lastMinute: [
+        'Pre-processing ke 4 steps aur missing value ke 4 treatments.',
+        'Normalisation vs standardisation ka formula.',
+        'DW ke SITN characteristics + architecture ke layers.',
+        'Star vs snowflake ke 4 farq + OLAP vs OLTP table.',
+      ],
+    },
+    {
+      id: 'unit-3',
+      number: '3',
+      name: 'Classification',
+      tagline: 'Regression se SVM tak, aur confusion matrix + metrics',
+      minutes: 24,
+      sections: [
+        {
+          title: '3.1–3.2 · Classification applications + ML types',
+          text: `- **Classification:** labelled data par model, output = class (spam/not, fraud/not, disease/yes-no).
+- **Applications:** spam filter, credit scoring, churn, disease diagnosis, sentiment, image recognition.
+- **ML types:** supervised (classification + regression), unsupervised (clustering, association), semi-supervised, reinforcement (reward).
+- **Training/testing split:** 70/30 ya 80/20; cross-validation (k-fold) se reliable estimate.
+- **Overfitting:** train par achha, test par kharab — fix: more data, regularisation, simpler model, cross-validation.
+| ML type | Data | Example |
+|---|---|---|
+| Supervised | labelled | spam detect, house price |
+| Unsupervised | unlabelled | customer segments, apriori |
+| Reinforcement | reward + penalty | game, robot |
+`,
+          diagram: 'ds3-ml-types',
+          caption: 'Machine learning ke types — supervised, unsupervised, semi-supervised, reinforcement.',
+        },
+        {
+          title: '3.3–3.4 · Linear aur logistic regression',
+          text: `- **Linear regression:** continuous output — \`y = b0 + b1x1 + … + bnxn\`; least squares se fit; R² se fit quality.
+- **Logistic regression:** binary output — sigmoid se probability, \`p = 1/(1+e^-z)\`, threshold (0.5) par class.
+- **Log-odds:** \`log(p/(1−p)) = b0 + b1x\`.
+- **Kab:** linear — price/demand forecast; logistic — churn/fraud/yes-no.
+- **Assumption to mention:** linearity, independence, no multicollinearity (linear), large sample (logistic).`,
+          diagram: 'ds3-logistic-reg',
+          caption: 'Logistic regression — sigmoid curve se probability, phir threshold par class.',
+        },
+        {
+          title: '3.5–3.8 · Naive Bayes, KNN, decision tree, SVM',
+          text: `- **Naive Bayes:** Bayes theorem + feature independence assumption; text/spam ke liye strong, fast, small data par bhi.
+- **KNN:** k nearest points ka majority vote; distance (Euclidean/Manhattan); scaling zaroori; k odd rakho; slow on large data.
+- **Decision tree:** recursive split (Gini/Entropy/Information gain); interpretable; overfit hone par pruning.
+  - \`Entropy = −Σ p log2 p\`, \`Information gain = entropy(parent) − weighted entropy(children)\`.
+- **SVM:** maximum margin hyperplane; kernel trick (linear, polynomial, RBF) se non-linear; high dimension mein strong, slow on huge data.
+- **Model choice one-liner:** text → NB; small numeric → KNN; explainable rules → tree; high-dim boundary → SVM.`,
+          diagram: 'ds3-decision-tree',
+          caption: 'Decision tree — root se leaf tak splits aur entropy/information gain.',
+        },
+        {
+          title: '3.9–3.11 · Confusion matrix, precision/recall/F1, ROC-AUC',
+          text: `- **Confusion matrix:** TP, FP, FN, TN.
+- **Formulas:**
+  - \`Accuracy = (TP+TN)/total\`
+  - \`Precision = TP/(TP+FP)\` — "jo positive bola, kitne sahi"
+  - \`Recall/Sensitivity = TP/(TP+FN)\` — "jo actually positive the, kitne pakde"
+  - \`Specificity = TN/(TN+FP)\`
+  - \`F1 = 2 × (P × R)/(P + R)\`
+- **Kab kya:** fraud/rare disease → recall important; spam filter → precision important; imbalance → accuracy dhokha deti hai, F1 use karo.
+- **ROC curve:** TPR vs FPR; **AUC** 1 = perfect, 0.5 = random.`,
+          diagram: 'ds3-confusion-matrix',
+          caption: 'Confusion matrix — TP, FP, FN, TN aur unse nikalne wale metrics.',
+        },
+        {
+          title: '3.12 · Regression metrics: MAE, MSE, RMSE, R²',
+          text: `- \`MAE = (1/n) Σ |y − ŷ|\` — same unit, outlier ke prati soft.
+- \`MSE = (1/n) Σ (y − ŷ)²\` — outlier ko zyada punish karta hai.
+- \`RMSE = √MSE\` — same unit, MSE se interpretable.
+- \`R² = 1 − SSres/SStot\` — 1 perfect, 0 mean-model jitna; negative = worse than mean.
+- **Adjusted R²:** extra features ka penalty — feature compare karte waqt use karo.
+- **Exam line:** MAE/RMSE tab jab error ka matlab samajhna ho; MSE tab jab bade error ko zyada weight dena ho.`,
+          diagram: 'ds3-regression-metrics',
+          caption: 'Regression metrics — MAE, MSE, RMSE aur R² ka matlab.',
+        },
+      ],
+      lastMinute: [
+        'Precision, recall, F1 ke formula + kab kaunsa important.',
+        'ROC-AUC ka matlab (1 perfect, 0.5 random).',
+        'Naive Bayes ka assumption aur KNN mein k odd kyun.',
+        'Decision tree ka entropy + information gain formula.',
+      ],
+    },
+    {
+      id: 'unit-4',
+      number: '4',
+      name: 'Clustering and Association Rule Mining',
+      tagline: 'K-means se apriori tak — unsupervised ka poora unit',
+      minutes: 18,
+      sections: [
+        {
+          title: '4.1 · Distance based models',
+          text: `- **Euclidean:** \`√Σ(xi − yi)²\` — straight line, scaling zaroori.
+- **Manhattan:** \`Σ|xi − yi|\` — grid distance, outlier ke prati robust.
+- **Cosine:** angle based — text/high-dim ke liye.
+- **Minkowski:** \`(Σ|xi − yi|^p)^(1/p)\` — p=1 Manhattan, p=2 Euclidean.
+- **Chebyshev:** max coordinate difference.
+- **Rule:** distance-based algorithms ke liye features **normalise** karo warna bada scale dominate karega.
+| Distance | Formula ka matlab | Kab use |
+|---|---|---|
+| Euclidean | seedhi line ki doori | normal numeric data |
+| Manhattan | grid/block ki doori | outliers, city routes |
+| Cosine | angle (direction) | text similarity |
+| Jaccard | intersection / union | sets, binary data |
+`,
+          diagram: 'ds4-distances',
+          caption: 'Distance measures — Euclidean, Manhattan, cosine aur Minkowski.',
+        },
+        {
+          title: '4.2–4.5 · K-means, k-medoid, hierarchical, elbow',
+          text: `- **K-means:** k centroids, assign → recompute loop, SSE minimise.
+  - Steps: k chuno → centroid init → assign → update → repeat till stable.
+  - Limitation: k manual, sensitive to init (k-means++), outliers, sirf spherical clusters.
+- **K-medoid (PAM):** actual point medoid — outlier ke prati robust, O(k(n−k)²) slower.
+- **Hierarchical:** agglomerative (bottom-up merge) ya divisive (top-down split); dendrogram se cut; distance linkage: single, complete, average, Ward.
+- **Elbow method:** k ke against SSE plot — jahan curve "kohni" bane wahi k.
+- **Silhouette score:** \`(b − a)/max(a,b)\` — 1 best, 0 overlap, negative galat cluster.`,
+          diagram: 'ds4-kmeans',
+          caption: 'K-means ka loop — assign, update centroid, repeat, aur elbow method se k.',
+        },
+        {
+          title: '4.6–4.9 · Association rules, apriori, FP-growth, support & confidence',
+          text: `- **Market basket:** "jo saath kharida gaya" — association rules.
+- **Terms:** itemset, \`Support(A) = freq(A)/N\`, \`Confidence(A→B) = support(A∪B)/support(A)\`, \`Lift = confidence/support(B)\`.
+  - Lift > 1 = positive association, = 1 independent, < 1 negative.
+- **Apriori:** level-wise candidate generation; **apriori property** = frequent itemset ke sab subsets frequent; candidate pruning se speed.
+- **FP-growth:** FP-tree banao (compressed), conditional patterns — candidate generation nahi, isliye faster on dense data.
+- **Example:** 100 transactions, bread 40, butter 30, dono 25 → support 0.25, confidence 25/40 = 0.625, lift = 0.625/0.30 ≈ 2.08 → strong rule.`,
+          diagram: 'ds4-apriori',
+          caption: 'Apriori algorithm — candidate generation, pruning aur frequent itemsets.',
+        },
+      ],
+      lastMinute: [
+        'K-means ke steps + 3 limitations.',
+        'Elbow method kya batata hai; silhouette ka range.',
+        'Support, confidence, lift ke formula + ek numeric example.',
+        'Apriori vs FP-growth — ek-ek line.',
+      ],
+    },
+    {
+      id: 'unit-5',
+      number: '5',
+      name: 'Data Visualization and Emerging Trends',
+      tagline: 'Dashboard, charts, tools aur RL/generative AI ka quick revision',
+      minutes: 16,
+      sections: [
+        {
+          title: '5.1–5.4 · Visualization intro, challenges, dashboard types, evolution',
+          text: `- **Visualization ka kaam:** pattern, trend, outlier, comparison — jo table mein nahi dikhta.
+- **Challenges:** data quality, over-plotting, misleading scale, accessibility, tool choice, big data performance.
+- **Dashboard types:** strategic (executive, KPI), operational (daily monitoring), analytical (explore/drill).
+- **Evolution:** static reports → interactive dashboards → self-service → real-time/streaming → AI-assisted narrative dashboards.
+- **Display media:** desktop, mobile, big screen/wall, embedded in app, print/PDF.`,
+          diagram: 'ds5-dashboard-types',
+          caption: 'Dashboard ke types — strategic, operational, analytical, aur unka audience.',
+        },
+        {
+          title: '5.5–5.6 · Design principles + display media',
+          text: `- **Principles:** ek screen ek message, 5–9 KPI, hierarchy (KPI band → trend → detail), zero baseline, consistent colour, filter + refresh visible.
+- **Layout:** F/Z reading pattern, most important top-left, grouping, white space.
+- **Colour:** status ke liye red/amber/green, categorical ke liye 6 colours, colour-blind safe.
+- **Display media:** choose by decision cycle — desktop for analysis, mobile for alert, wall for monitoring.`,
+          diagram: 'ds5-dashboard-design',
+          caption: 'Dashboard design — layout bands, KPI limit aur colour discipline.',
+        },
+        {
+          title: '5.7–5.10 · Charts + tools',
+          text: `- **Bar / stacked bar / pie / doughnut:** comparison, composition (pie sirf 2–3 slices).
+- **Line / area / treemap / heatmap:** trend, cumulative, hierarchy, matrix intensity.
+- **Waterfall / scatter / histogram / box plot:** contribution, relationship, distribution, spread+outliers.
+- **Rule:** position > length > angle > area > colour; truncate mat karo.
+- **Tools:** Tableau (visual exploration, VizQL), Power BI (Microsoft stack, DAX, cheaper), plus Looker, Qlik, Python (matplotlib/seaborn/plotly).
+| Chart | Kab use karo | Avoid |
+|---|---|---|
+| Bar | category compare | 30+ categories |
+| Line | trend over time | unordered categories |
+| Pie | 2–4 part of whole | 6+ slices |
+| Scatter | do variable ka relation | time series |
+`,
+          diagram: 'ds5-charts-basic',
+          caption: 'Basic chart types aur kis sawaal ke liye kaunsa chart.',
+        },
+        {
+          title: '5.11–5.12 · Reinforcement learning, generative/deep learning, XAI',
+          text: `- **RL elements:** agent, environment, state, action, reward, policy, value function.
+- **RL steps:** observe state → choose action → receive reward → update policy → repeat; exploration vs exploitation.
+- **RL types:** model-free (Q-learning, DQN) vs model-based; on-policy (SARSA) vs off-policy (Q-learning).
+- **Deep learning:** multi-layer neural networks — CNN (image), RNN/LSTM (sequence), Transformer (text).
+- **Generative AI:** data se naya content (text/image/code) — GAN, diffusion, LLM.
+- **XAI:** model ka decision explain karna — LIME, SHAP, feature importance, rules; regulated domains mein zaroori.`,
+          diagram: 'ds5-reinforcement-learning',
+          caption: 'Reinforcement learning ka loop — agent, action, reward, policy update.',
+        },
+      ],
+      lastMinute: [
+        'Dashboard ke 3 types + audience.',
+        'Chart selection table — question se chart.',
+        'RL ke 6 elements (agent, environment, state, action, reward, policy).',
+        'Generative AI vs discriminative, aur XAI ke 2 tools (LIME, SHAP).',
+      ],
+    },
+  ],
+};

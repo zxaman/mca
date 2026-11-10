@@ -3,6 +3,8 @@ import { subjects, units } from './data/topics';
 import TopicPage from './components/TopicPage';
 import ImportantExamQuestions from './components/ImportantExamQuestions';
 import { QuestionPapersHome, QuestionPaperView, QuestionPapersSidebar } from './components/QuestionPapers';
+import { OneShotHome, OneShotPage, OneShotSidebar } from './components/OneShot';
+import { oneShotNotes } from './data/oneShotNotes';
 import { questionPapers } from './data/questionPapers';
 import Sidebar from './components/Sidebar';
 import { Icon } from './components/Icons';
@@ -35,6 +37,10 @@ function parseRoute() {
   const hash = window.location.hash.replace(/^#/, '') || '/';
   const parts = hash.split('/').filter(Boolean);
   if (parts.length === 0) return { level: 'home' };
+  if (parts[0] === 'one-shot') {
+    if (parts[1]) return { level: 'oneshot', subjectId: parts[1], unitId: parts[2] || null };
+    return { level: 'oneshot-home' };
+  }
   if (parts[0] === 'question-papers') {
     if (parts[1] && parts[2]) {
       return { level: 'paper', qpSubjectId: parts[1], paperId: parts[2] };
@@ -47,6 +53,9 @@ function parseRoute() {
     }
     if (parts[2] === 'exam') {
       return { level: 'exam', subjectId: parts[1] };
+    }
+    if (parts[2] === 'one-shot') {
+      return { level: 'oneshot', subjectId: parts[1], unitId: parts[3] || null };
     }
     return { level: 'units', subjectId: parts[1] };
   }
@@ -153,8 +162,15 @@ function UnitPage({ subject, onBack }) {
           ))}
         </div>
 
-        {/* Important Questions Link */}
-        <div style={{ marginTop: '32px', textAlign: 'center' }}>
+        {/* One Shot + Important Questions links */}
+        <div className="unit-cta-row">
+          <button
+            className="btn primary exam-cta os-cta"
+            onClick={() => goTo(`#/one-shot/${subject.id}`)}
+          >
+            <Icon name="zap" size={20} color="#0a0e1a" />
+            ⚡ One Shot Revision Notes
+          </button>
           <button
             className="btn primary exam-cta"
             onClick={() => goTo(`#/subject/${subject.id}/exam`)}
@@ -192,6 +208,41 @@ function QuestionPapersCard() {
         onClick={() => goTo('#/question-papers')}
       >
         Open Paper Sets <Icon name="arrow" size={16} color="#c4ff00" />
+      </button>
+    </article>
+  );
+}
+
+// ---------- One Shot card (sits in the subjects grid) ----------
+function OneShotCard() {
+  const withNotes = subjects.filter((subject) => oneShotNotes[subject.id]);
+  const unitCount = withNotes.reduce((n, s) => n + oneShotNotes[s.id].units.length, 0);
+  const figures = withNotes.reduce(
+    (n, s) => n + oneShotNotes[s.id].units.reduce(
+      (m, unit) => m + unit.sections.filter((section) => section.diagram).length,
+      0,
+    ),
+    0,
+  );
+  return (
+    <article className="subject-card qp-card os-card" style={{ '--accent': '#c4ff00' }}>
+      <div className="subject-card-head">
+        <span className="subject-card-icon"><Icon name="zap" size={30} color="#c4ff00" /></span>
+        <span className="subject-card-code">OS</span>
+      </div>
+      <h2 className="subject-card-title">One Shot Notes</h2>
+      <p className="subject-card-desc">
+        Exam se pehle ka final revision — har subject ke saare units, Hinglish notes format mein:
+        keywords, comparison tables aur diagrams. Lambi theory nahi.
+      </p>
+      <p className="subject-progress">
+        ⚡ {unitCount} units across {withNotes.length} subjects · {figures} diagrams
+      </p>
+      <button
+        className="subject-card-cta"
+        onClick={() => goTo('#/one-shot')}
+      >
+        Open One Shot <Icon name="arrow" size={16} color="#c4ff00" />
       </button>
     </article>
   );
@@ -260,6 +311,7 @@ function Home() {
             <SubjectCard key={subject.id} subject={subject} />
           ))}
           <QuestionPapersCard />
+          <OneShotCard />
         </div>
       </main>
     </div>
@@ -337,7 +389,17 @@ export default function App() {
   );
 
   const renderContent = () => {
-    if (route.level === 'papers') {
+    if (route.level === 'oneshot-home') {
+      return <OneShotHome />;
+    } else if (route.level === 'oneshot') {
+      return (
+        <OneShotPage
+          subjectId={route.subjectId}
+          unitId={route.unitId || (oneShotNotes[route.subjectId] || { units: [] }).units[0]?.id}
+          onBack={() => openSubject(route.subjectId || 'business-intelligence')}
+        />
+      );
+    } else if (route.level === 'papers') {
       return <QuestionPapersHome />;
     } else if (route.level === 'paper') {
       return <QuestionPaperView subjectId={route.qpSubjectId} paperId={route.paperId} />;
@@ -365,6 +427,10 @@ export default function App() {
   };
 
   const isPaperSection = route.level === 'papers' || route.level === 'paper';
+  const isOneShotSection = route.level === 'oneshot' || route.level === 'oneshot-home';
+  const oneShotUnitId = route.level === 'oneshot'
+    ? route.unitId || (oneShotNotes[route.subjectId] || { units: [] }).units[0]?.id
+    : null;
 
   return (
     <div className="app-with-sidebar">
@@ -386,8 +452,18 @@ export default function App() {
         />
       )}
 
+      {/* One Shot section has its own unit-wise sidebar */}
+      {isOneShotSection && (
+        <OneShotSidebar
+          subjectId={route.subjectId}
+          unitId={oneShotUnitId}
+          onClose={() => setSidebarOpen(false)}
+          mobileOpen={sidebarOpen}
+        />
+      )}
+
       {/* Sidebar - Common across ALL pages */}
-      {!isPaperSection && <Sidebar
+      {!isPaperSection && !isOneShotSection && <Sidebar
         currentSubjectId={route.subjectId}
         currentUnitId={currentUnit ? currentUnit.id : null}
         currentTopicId={route.topicId}
@@ -412,6 +488,9 @@ export default function App() {
               <button className="nav-home" onClick={goHome}>Home</button>
               <button className="nav-home nav-papers" onClick={() => goTo('#/question-papers')}>
                 Question Papers
+              </button>
+              <button className="nav-home nav-oneshot" onClick={() => goTo('#/one-shot')}>
+                One Shot
               </button>
             </div>
           </div>
