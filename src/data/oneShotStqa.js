@@ -12,6 +12,13 @@ export const stqaOneShot = {
       name: 'Fundamentals of Software Quality Assurance',
       tagline: 'Quality ke definitions, SQA components, metrics aur COQ — unit 1 ka poora saar',
       overview: 'Poore unit ka ek hi sawaal hai: quality ka matlab kya hai aur usse naap kaise karein. Pehle definition aur SQA system, phir models aur 7 QC tools, phir metrics (complexity, availability, DRE), aur aakhir mein FMEA, QFD, Taguchi aur COQ — sab ka maksad ek: galti jitni pehle pakdi jaaye, utna sasta padta hai.',
+      flow: [
+        { title: 'Quality kya hai', hint: 'customer ki nazar se definition' },
+        { title: 'SQA system', hint: 'plan, standard, review, record' },
+        { title: 'Models aur 7 QC tools', hint: 'process fix, tools se naap' },
+        { title: 'Metrics', hint: 'DRE, availability, defect density' },
+        { title: 'Cost of quality', hint: 'FMEA, QFD, Taguchi, COQ' },
+      ],
       minutes: 22,
       sections: [
         {
@@ -97,6 +104,13 @@ export const stqaOneShot = {
       name: 'Essentials of Software Testing',
       tagline: 'Testing basics, test plan/cases, defect life cycle aur V & W model',
       overview: 'Yahan testing ki ABCD hai — test kya hai, test plan aur test case kaise likhe jaate hain, defect ka poora safar (galti se failure tak), aur kitne levels par test hota hai (unit se acceptance tak). V aur W model bas yeh dikhate hain ki har development step ke saamne ek test step hota hai.',
+      flow: [
+        { title: 'Testing kya hai', hint: 'verify karna, bug dhoondhna nahi' },
+        { title: 'Test plan aur case', hint: 'kya, kaise, expected output' },
+        { title: 'Defect ka safar', hint: 'error se defect se failure' },
+        { title: 'Levels of testing', hint: 'unit se acceptance tak' },
+        { title: 'V aur W model', hint: 'har build step ka test step' },
+      ],
       minutes: 16,
       sections: [
         {
@@ -170,6 +184,13 @@ export const stqaOneShot = {
       name: 'Software Testing Techniques',
       tagline: 'Static se domain testing tak — black box, white box aur coverage',
       overview: 'Ye unit “kaise test karein” ka jawab deta hai. Static testing (code padh ke) se shuru, phir structural/coverage aur mutation, phir black-box techniques jaise BVA aur equivalence partitioning. Har technique ka apna use case hai, isliye dono taraf ki soch zaroori hai.',
+      flow: [
+        { title: 'Static testing', hint: 'code chalaye bina padhna' },
+        { title: 'Structural + coverage', hint: 'raaste aur branches cover' },
+        { title: 'Mutation', hint: 'jaan-boojh ke bug daal ke test' },
+        { title: 'Black-box', hint: 'BVA aur equivalence partitioning' },
+        { title: 'Special techniques', hint: 'state, domain, compatibility' },
+      ],
       minutes: 24,
       sections: [
         {
@@ -240,6 +261,13 @@ export const stqaOneShot = {
       name: 'Testing Strategies',
       tagline: 'Integration se performance, regression, usability aur web/DB testing',
       overview: 'Ab strategy ka sawaal: kis order mein aur kis scale par test karna hai. Integration, system aur acceptance se shuru, phir performance, regression aur usability jaisi special testing, aur end mein GUI, web aur database jaise domains.',
+      flow: [
+        { title: 'Integration', hint: 'modules jod ke dekhna' },
+        { title: 'System aur acceptance', hint: 'poora app, phir client ki haan' },
+        { title: 'Performance', hint: 'load aur speed' },
+        { title: 'Regression', hint: 'purana kaam na toote' },
+        { title: 'Domain testing', hint: 'GUI, web, database, OO' },
+      ],
       minutes: 20,
       sections: [
         {
@@ -300,6 +328,13 @@ export const stqaOneShot = {
       name: 'Software Test Automation',
       tagline: 'Automation kab, kaise, kaun se tools — aur Selenium ka poora suite',
       overview: 'Aakhri unit automation ka poora picture deta hai — kab automate karna chahiye, tool kaise chunte hain, kya challenges aate hain, manual vs automation ka farq, aur Selenium suite andar se kaise kaam karta hai.',
+      flow: [
+        { title: 'Kyun automate', hint: 'repeat aur speed' },
+        { title: 'Tool kaise chuno', hint: 'requirement, cost, skill' },
+        { title: 'Architecture', hint: 'framework, data, reports' },
+        { title: 'Manual vs auto', hint: 'kahan insaan, kahan machine' },
+        { title: 'Selenium suite', hint: 'WebDriver, Grid, IDE' },
+      ],
       minutes: 20,
       sections: [
         {

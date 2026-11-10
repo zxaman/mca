@@ -12,6 +12,13 @@ export const wtOneShot = {
       name: 'HTML and XML',
       tagline: 'Document structure se forms, CSS aur XML/XSLT tak',
       overview: 'Web ka base: page ka dhaancha (HTML), uska look (CSS), aur data ka format (XML). Ye teeno aage ke saare units ka foundation hain.',
+      flow: [
+        { title: 'HTML skeleton', hint: 'tags, elements, links' },
+        { title: 'Forms aur tables', hint: 'user input ka raasta' },
+        { title: 'CSS', hint: 'structure ko look dena' },
+        { title: 'HTML5', hint: 'naye semantic tags aur media' },
+        { title: 'XML aur XSLT', hint: 'data alag, presentation alag' },
+      ],
       minutes: 20,
       sections: [
         {
@@ -101,6 +108,13 @@ export const wtOneShot = {
       name: 'JavaScript',
       tagline: 'Variables se async tak — jo bhi JS mein poocha jaata hai',
       overview: 'Browser ke andar ki language JavaScript: variables se logic, loops, functions, objects aur arrays, aur aakhir mein async ka event loop. Yahi client-side interactivity ka engine hai.',
+      flow: [
+        { title: 'JS kahan chalti', hint: 'browser ke andar' },
+        { title: 'Variables aur logic', hint: 'if, switch, loops' },
+        { title: 'Functions aur events', hint: 'click par kaam' },
+        { title: 'Objects aur arrays', hint: 'data ek jagah' },
+        { title: 'Async', hint: 'event loop aur promises' },
+      ],
       minutes: 22,
       sections: [
         {
@@ -185,6 +199,13 @@ export const wtOneShot = {
       name: 'PHP',
       tagline: 'Server-side basics se sessions, forms aur CodeIgniter tak',
       overview: 'Ab server side PHP: kaise chalti hai, strings aur arrays, OOP, file handling, cookies aur sessions, form validation, aur CodeIgniter ka MVC flow.',
+      flow: [
+        { title: 'PHP basics', hint: 'server par chalti hai' },
+        { title: 'Strings aur arrays', hint: 'text aur list' },
+        { title: 'Files aur OOP', hint: 'data save, code organise' },
+        { title: 'Cookies aur sessions', hint: 'user yaad rakhna' },
+        { title: 'Validation aur MVC', hint: 'galat input rokna, CodeIgniter' },
+      ],
       minutes: 22,
       sections: [
         {
@@ -259,6 +280,13 @@ export const wtOneShot = {
       name: 'ASP.NET',
       tagline: 'Web Forms, page life cycle, state management aur ADO.NET',
       overview: 'Microsoft ka stack: ASP.NET Web Forms ka page life cycle, ViewState aur session se state yaad rakhna, ADO.NET se database, validation aur security.',
+      flow: [
+        { title: 'Web Forms', hint: 'aspx aur code-behind' },
+        { title: 'Page life cycle', hint: 'Init se Unload tak' },
+        { title: 'State management', hint: 'ViewState, session, cookie' },
+        { title: 'ADO.NET', hint: 'database se data' },
+        { title: 'Validation aur security', hint: 'controls aur auth' },
+      ],
       minutes: 20,
       sections: [
         {
@@ -323,6 +351,13 @@ export const wtOneShot = {
       name: 'AngularJS and Next.js',
       tagline: 'Framework concepts, two-way binding, validation aur Next.js features',
       overview: 'Framework-level soch: AngularJS ka MVC aur two-way binding, phir Next.js ka rendering model (SSG, SSR, ISR, CSR). Yahan asli sawaal ye hai ki browser aur server kaam kaise baantte hain.',
+      flow: [
+        { title: 'Framework kya', hint: 'ready dhaancha' },
+        { title: 'AngularJS MVC', hint: 'model, view, controller' },
+        { title: 'Binding aur forms', hint: 'ng-model, validation' },
+        { title: 'Next.js rendering', hint: 'SSG, SSR, ISR, CSR' },
+        { title: 'Kab kya use', hint: 'site vs dashboard' },
+      ],
       minutes: 16,
       sections: [
         {

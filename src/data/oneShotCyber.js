@@ -12,6 +12,13 @@ export const cyberOneShot = {
       name: 'Introduction to Cyber Security',
       tagline: 'Need, threats, CIA triad, laws aur policy',
       overview: 'Security ki neev: kyun zaroori hai, cyberspace ki layers, CIA triad, aur kanoon (IT Act). Iske baad kisi bhi attack ko samajhna aasan ho jaata hai.',
+      flow: [
+        { title: 'Kyun zaroori hai', hint: 'nuksan, compliance, reputation' },
+        { title: 'Cyberspace', hint: '4 layers ka naksha' },
+        { title: 'CIA triad', hint: 'confidentiality, integrity, availability' },
+        { title: 'Kanoon', hint: 'IT Act 2000 aur amendments' },
+        { title: 'Policy aur governance', hint: 'nodal authority, conventions' },
+      ],
       minutes: 20,
       sections: [
         {
@@ -72,6 +79,13 @@ export const cyberOneShot = {
       name: 'Cybercrimes and Hacking',
       tagline: 'Attacks, malware, hacking steps aur hacker ke types',
       overview: 'Attacker ki nazar se ek safar: jaankari jama karna, ghusna, adhikaar badhana, nishaan mitana — aur malware, phishing, salami jaise hathiyar.',
+      flow: [
+        { title: 'Recon', hint: 'jaankari jama karna' },
+        { title: 'Ghusna', hint: 'access lena, privilege badhana' },
+        { title: 'Nishaan mitana', hint: 'hiding files, covering tracks' },
+        { title: 'Malware', hint: 'virus, worm, trojan, backdoor' },
+        { title: 'Frauds aur hackers', hint: 'phishing, salami, DoS, hat ke rang' },
+      ],
       minutes: 24,
       sections: [
         {
@@ -157,6 +171,13 @@ export const cyberOneShot = {
       name: 'Cyber Forensics',
       tagline: 'Investigation process, digital evidence, web/database/network forensics',
       overview: 'Ab doosri taraf — attack ke baad ki jaanch. Investigation process, evidence, logs, malware analysis aur email headers se poori kahani jodna.',
+      flow: [
+        { title: 'Forensics kya', hint: 'evidence ko court-ready banana' },
+        { title: 'Investigation process', hint: 'identify se report tak' },
+        { title: 'Evidence aur chain', hint: 'hash, write blocker' },
+        { title: 'Web, DB, network forensics', hint: 'logs aur packets se kahani' },
+        { title: 'Anti-forensics', hint: 'chhupane ki koshish aur pakad' },
+      ],
       minutes: 22,
       sections: [
         {
@@ -224,6 +245,13 @@ export const cyberOneShot = {
       name: 'Digital Forensics',
       tagline: 'Cyber vs digital forensics, evidence properties, tools aur validation',
       overview: 'Cyber forensics se thoda bada scope: har digital device ka evidence, uski properties (admissible, authentic), tools aur validation — taaki cheez court mein tik sake.',
+      flow: [
+        { title: 'Cyber vs digital', hint: 'scope ka farq' },
+        { title: 'Tools aur hardware', hint: 'write blocker, imaging' },
+        { title: 'Evidence properties', hint: 'admissible, authentic, complete' },
+        { title: 'Recovery aur preservation', hint: 'deleted data wapas' },
+        { title: 'Validation', hint: 'doosre tool se confirm' },
+      ],
       minutes: 18,
       sections: [
         {
@@ -281,6 +309,13 @@ export const cyberOneShot = {
       name: 'Social Engineering',
       tagline: 'Phases, spiral model, phishing, insider aur bachav',
       overview: 'Sabse insaani hissa: insaan ka bharosa todna. Phases, attack spiral, phishing, insider attack, aur end mein practical bachav ke steps.',
+      flow: [
+        { title: 'SE kya hai', hint: 'insaan ka bharosa hack' },
+        { title: 'Categories', hint: 'human, computer, mobile, socio-technical' },
+        { title: 'Phases aur spiral', hint: 'recon se exit tak' },
+        { title: 'Phishing aur insider', hint: 'sabse common do khatre' },
+        { title: 'Bachav', hint: 'people, process, technology' },
+      ],
       minutes: 18,
       sections: [
         {
