@@ -303,11 +303,18 @@ export function OneShotPage({ subjectId, unitId, onBack }) {
       </div>
 
       <main className="container os-main">
+        {unit.overview && (
+          <div className="os-overview">
+            <span className="os-overview-label">Unit ka poora picture</span>
+            <p>{unit.overview}</p>
+          </div>
+        )}
+
         <div className="os-note-strip">
           <Icon name="bulb" size={16} color="#ffd600" />
           <span>
-            Notes format — keywords, tables aur diagrams. Pehle poora unit padho, phir
-            <strong> Last minute</strong> box se final revision karo.
+            Har section mein pehle <strong>aasan bhasha</strong>, phir notes, phir{' '}
+            <strong>real example</strong>. Ant mein <strong>Last minute</strong> box se final revision.
           </span>
         </div>
 
@@ -317,7 +324,25 @@ export function OneShotPage({ subjectId, unitId, onBack }) {
               <span className="os-section-index">{String(i + 1).padStart(2, '0')}</span>
               {section.title}
             </h2>
+
+            {section.simple && (
+              <div className="os-simple">
+                <span className="os-simple-label">
+                  <Icon name="bulb" size={14} color="#0a0e1a" /> Aasan bhasha mein
+                </span>
+                <p>{renderInline(section.simple, `s${i}`)}</p>
+              </div>
+            )}
+
             <NotesBody text={section.text} />
+
+            {section.example && (
+              <div className="os-example">
+                <span className="os-example-label">Real example</span>
+                <p>{renderInline(section.example, `e${i}`)}</p>
+              </div>
+            )}
+
             {section.diagram && (
               <NotesFigure type={section.diagram} caption={section.caption} />
             )}
@@ -365,78 +390,113 @@ export function OneShotPage({ subjectId, unitId, onBack }) {
 }
 
 // ---------- Sidebar for the One Shot section ----------
+// Same structure/behaviour as the site-wide Sidebar (brand, Home, subject rows
+// with a caret, then a unit list) so the section feels like the rest of the app —
+// only the leaf is different: a unit opens its One Shot notes, not a topic.
+
+function Slide({ open, children }) {
+  return (
+    <div className={`sidebar-slide ${open ? 'open' : ''}`} aria-hidden={!open}>
+      <div className="sidebar-slide-inner">{children}</div>
+    </div>
+  );
+}
+
 export function OneShotSidebar({ subjectId, unitId, onClose, mobileOpen }) {
-  const [expanded, setExpanded] = useState({});
-  const isOpen = (id) => (expanded[id] !== undefined ? expanded[id] : subjectId === id);
+  // Explicit user choices only; everything else follows the current route.
+  const [expandedSubjects, setExpandedSubjects] = useState({});
+
+  const isSubjectOpen = (id) => (
+    expandedSubjects[id] !== undefined ? expandedSubjects[id] : subjectId === id
+  );
+
+  const toggleSubject = (id) => {
+    setExpandedSubjects((prev) => ({ ...prev, [id]: !isSubjectOpen(id) }));
+  };
+
+  const goNotes = (subject, unit) => {
+    goTo(`#/one-shot/${subject}/${unit}`);
+    if (onClose) onClose();
+  };
+
+  const openSubject = (id) => {
+    setExpandedSubjects((prev) => ({ ...prev, [id]: true }));
+    goTo(`#/one-shot/${id}`);
+    if (onClose) onClose();
+  };
 
   return (
     <aside className={`sidebar ${mobileOpen ? 'active' : ''}`}>
       <div className="sidebar-header">
         <span className="brand">
-          <span className="brand-dot" /> One Shot
+          <span className="brand-dot" /> MCA · Hinglish
         </span>
-        <button className="sidebar-close" onClick={onClose} style={{ display: 'block' }}>✕</button>
+        <button className="sidebar-close" onClick={onClose} style={{ display: onClose ? 'block' : 'none' }}>
+          ✕
+        </button>
       </div>
 
       <div className="sidebar-content">
         <div className="sidebar-section">
-          <div className="sidebar-section-title">Revision Notes</div>
-          <button className="qp-sidebar-home" onClick={() => goTo('#/one-shot')}>
-            <Icon name="book" size={16} color="#c4ff00" />
-            <span>All one shot notes</span>
+          <button
+            className={`sidebar-home-btn ${!subjectId ? 'active' : ''}`}
+            onClick={() => {
+              goTo('#/one-shot');
+              if (onClose) onClose();
+            }}
+          >
+            <Icon name="globe" size={18} color={!subjectId ? '#c4ff00' : '#8a95ad'} />
+            <span>One Shot</span>
+            <span className="sidebar-home-hint">all subjects</span>
           </button>
+          <div className="sidebar-section-title">Subjects</div>
 
           {subjects.map((subject) => {
             const notes = subjectNotes(subject.id);
-            const open = isOpen(subject.id);
-            const active = subjectId === subject.id;
+            const open = isSubjectOpen(subject.id);
+            const isActive = subjectId === subject.id;
+
             return (
-              <div key={subject.id} className={`sidebar-subject ${active ? 'active' : ''} ${open ? 'open' : ''}`}>
+              <div key={subject.id} className={`sidebar-subject ${isActive ? 'active' : ''} ${open ? 'open' : ''}`}>
                 <div className="sidebar-subject-row">
                   <button
                     className="sidebar-subject-btn"
-                    onClick={() => {
-                      if (!notes) return;
-                      setExpanded((prev) => ({ ...prev, [subject.id]: !open }));
-                    }}
-                    title={notes ? `Units of ${subject.name}` : 'Notes coming soon'}
+                    onClick={() => openSubject(subject.id)}
+                    title={`One Shot · ${subject.name}`}
                   >
-                    <span className={`sidebar-subject-code ${notes ? '' : 'muted'}`}>
-                      {notes ? notes.units.length : '—'}
-                    </span>
+                    <Icon name="book" size={18} color={subject.color} />
+                    <span className="sidebar-subject-code">{subject.code}</span>
                     <span className="sidebar-subject-name">{subject.name}</span>
                   </button>
-                  {notes && (
-                    <button
-                      className={`sidebar-subject-caret ${open ? 'open' : ''}`}
-                      onClick={() => setExpanded((prev) => ({ ...prev, [subject.id]: !open }))}
-                      aria-expanded={open}
-                      aria-label={`${open ? 'Hide' : 'Show'} units of ${subject.name}`}
-                    >
-                      <Icon name="chevron" size={14} color={open ? '#c4ff00' : '#666'} />
-                    </button>
-                  )}
+                  <button
+                    className={`sidebar-subject-caret ${open ? 'open' : ''}`}
+                    onClick={() => toggleSubject(subject.id)}
+                    aria-expanded={open}
+                    aria-label={`${open ? 'Hide' : 'Show'} units of ${subject.name}`}
+                  >
+                    <Icon name="chevron" size={14} color={open ? '#c4ff00' : '#666'} />
+                  </button>
                 </div>
 
-                <div className={`sidebar-slide ${open ? 'open' : ''}`}>
-                  <div className="sidebar-slide-inner">
-                    <div className="sidebar-topics">
-                      {(notes ? notes.units : []).map((u) => (
-                        <button
-                          key={u.id}
-                          className={`sidebar-topic ${unitId === u.id ? 'active' : ''}`}
-                          onClick={() => {
-                            goTo(`#/one-shot/${subject.id}/${u.id}`);
-                            if (onClose) onClose();
-                          }}
-                        >
-                          <span className="sidebar-topic-num">{u.number}</span>
-                          <span className="sidebar-topic-title">{u.name}</span>
-                        </button>
-                      ))}
-                    </div>
+                <Slide open={open && Boolean(notes)}>
+                  <div className="sidebar-units">
+                    {(notes ? notes.units : []).map((unit) => {
+                      const unitActive = isActive && unitId === unit.id;
+                      return (
+                        <div key={unit.id} className={`sidebar-unit ${unitActive ? 'active' : ''}`}>
+                          <button
+                            className="sidebar-unit-btn"
+                            onClick={() => goNotes(subject.id, unit.id)}
+                          >
+                            <span className="sidebar-unit-num">Unit {unit.number}</span>
+                            <span className="sidebar-unit-name">{unit.name}</span>
+                            <span className="sidebar-unit-count">{unit.sections.length}</span>
+                          </button>
+                        </div>
+                      );
+                    })}
                   </div>
-                </div>
+                </Slide>
               </div>
             );
           })}
@@ -444,7 +504,7 @@ export function OneShotSidebar({ subjectId, unitId, onClose, mobileOpen }) {
       </div>
 
       <div className="sidebar-footer">
-        <span>Hinglish notes · diagrams included</span>
+        <span>{subjects.length} Subjects · One Shot Notes</span>
       </div>
     </aside>
   );

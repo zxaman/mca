@@ -11,10 +11,13 @@ export const cyberOneShot = {
       number: '1',
       name: 'Introduction to Cyber Security',
       tagline: 'Need, threats, CIA triad, laws aur policy',
+      overview: 'Security ki neev: kyun zaroori hai, cyberspace ki layers, CIA triad, aur kanoon (IT Act). Iske baad kisi bhi attack ko samajhna aasan ho jaata hai.',
       minutes: 20,
       sections: [
         {
           title: '1.1–1.6 · Cyber security, need, cyberspace, threats, warfare',
+          simple: 'Simple mein: cyber security ghar ki security jaisi hai, bas digital duniya mein — darwaze, taale aur guard.',
+          example: 'Bank app mein OTP, strong password aur firewall — teeno milke account safe rakhte hain. Ek weak password poora system khol deta hai.',
           text: `- **Cyber security:** people, process aur technology se cyberspace ki confidentiality, integrity aur availability protect karna.
 - **Need:** data ki value, aarthik nuksan, reputation, legal/regulatory compliance, national security — ek breach ka cost lakhs-crore.
 - **Challenges:** attacker ko ek hole chahiye, defender ko sab cover; fast-changing attacks; shortage of skilled staff; budget; legacy systems; user awareness; cross-border jurisdiction.
@@ -26,6 +29,8 @@ export const cyberOneShot = {
         },
         {
           title: '1.7–1.12 · CIA triad, cyber terrorism, critical infrastructure, governance, nodal authority',
+          simple: 'Simple mein: CIA ka matlab sirf sahi aadmi dekhe, data na badle, aur jab chahiye tab mile.',
+          example: 'Salary slip: sirf aap dekh sake (C), koi number na badle (I), month end par app khule (A).',
           text: `| Pillar | Meaning | Today ke liye |
 |---|---|---|
 | Confidentiality | sirf authorised access | encryption, access control |
@@ -42,6 +47,8 @@ export const cyberOneShot = {
         },
         {
           title: '1.13–1.19 · Cyber laws, IT Act 2000, amendments',
+          simple: 'Simple mein: cyber law digital duniya ka rulebook hai — kaunsa kaam crime hai aur sazaa kya hai.',
+          example: 'Kisi ne aapki photo bina permission profile par lagayi to IT Act ke privacy aur obscenity sections lag sakte hain.',
           text: `- **Cyber law kya:** cyberspace mein act/omission ko legal meaning dena — e-contracts, digital signatures, cyber crime, privacy, jurisdiction.
 - **Principles:** technology-neutral, no over-restriction, clarity, in-built safeguards, privacy respect.
 - **IT Act 2000:** India ka pehla cyber law (based on UNCITRAL model) — legal recognition of e-records/e-contracts, **digital signature**, **Cyber Appellate Tribunal**, offences aur penalties.
@@ -64,10 +71,13 @@ export const cyberOneShot = {
       number: '2',
       name: 'Cybercrimes and Hacking',
       tagline: 'Attacks, malware, hacking steps aur hacker ke types',
+      overview: 'Attacker ki nazar se ek safar: jaankari jama karna, ghusna, adhikaar badhana, nishaan mitana — aur malware, phishing, salami jaise hathiyar.',
       minutes: 24,
       sections: [
         {
           title: '2.1–2.7 · Attacks, threats, hacking steps',
+          simple: 'Simple mein: hacker pehle jaankari leta hai, phir darwaza dhoondhta hai, ghus ke apna adhikaar badhata hai aur nishaan mitaata hai.',
+          example: 'Pehle LinkedIn se employee names (recon), phir kamzor VPN dhoonda, ghus ke admin bana, phir logs delete kiye.',
           text: `- **Hacking phases (5–7):** footprinting/reconnaissance → scanning & enumeration → **gaining access** → **escalating privileges** → **executing applications** → **hiding files** (rootkit) → **covering tracks** (log clear).
 - **Gaining access:** password crack, exploit, phishing; **privilege escalation** vertical (user→admin) ya horizontal (user→similar user).
 - **Hiding files:** alternate data streams, hidden attributes, rootkit; **covering tracks:** log deletion, timestomping.
@@ -78,6 +88,8 @@ export const cyberOneShot = {
         },
         {
           title: '2.8–2.12 · Worms, trojans, viruses, backdoors',
+          simple: 'Simple mein: virus file ke saath chipakta hai, worm khud bhaagta hai, trojan tohfa dikh ke darwaza kholta hai.',
+          example: 'WannaCry worm network mein khud fael gaya; free PDF converter ban ke trojan install hua aur backdoor khol diya.',
           text: `| Malware | Akele phailta? | Host chahiye? | Note |
 |---|---|---|---|
 | Virus | nahi | haan | file/infection ke saath chalta |
@@ -93,6 +105,8 @@ export const cyberOneShot = {
         },
         {
           title: '2.13–2.21 · Social attacks — stalking, piracy, phishing, XSS, spam',
+          simple: 'Simple mein: phishing jaal hai — nakli page par password daala aur phans gaye.',
+          example: 'SBI account block ka mail aaya, link sbi-verify.net par login kiya, password chori. XSS mein comment box ki script cookie chura leti hai.',
           text: `- **Cyber stalking:** kisi ko online follow, harass, dhamkana (repeated unwanted contact) — BNS + IT Act 67/72 lagu.
 - **Software piracy:** licensed software ka illegal copy/distribute — types: softlifting, hard disk loading, renting, counterfeiting, OEM bundling.
 - **Phishing:** fake mail/site se credentials — types: spear, whaling, vishing (voice), smishing (SMS), pharming (DNS), clone/evil twin.
@@ -104,6 +118,8 @@ export const cyberOneShot = {
         },
         {
           title: '2.22–2.27 · Fraud types: auction, logic bomb, web jacking, DoS, salami, data diddling',
+          simple: 'Simple mein: salami attack har account se 10 paisa nikaalta hai — kisi ko farq nahi padta, chor lakhon kama leta hai.',
+          example: 'Bank software har interest calculation ka 0.01 paisa chor ke account mein daal deta hai. Logic bomb employee ke exit par data wipe karta hai.',
           text: `- **Online auction fraud:** auction site par fake listing, shill bidding, ya payment ke baad delivery nahi.
 - **Logic bomb:** code mein condition wala bomb — "agar employee salary list mein na ho to data wipe" (insider ka favourite, time-triggered).
 - **Web jacking:** original site ka page modify karke attacker ka page dikhana (link/JS se milta-julta domain).
@@ -116,6 +132,8 @@ export const cyberOneShot = {
         },
         {
           title: '2.28–2.33 · Hackers ke types, hacking vs cracking, ethics',
+          simple: 'Simple mein: white hat doctor jaisa hai jo permission se check karta hai, black hat chor, grey hat bina permission check karke batane wala.',
+          example: 'Company ne pen test karaya to white hat ne report di. Kisi ne bina permission bug dhoonda aur paise maange to wo criminal hai.',
           text: `- **White hat:** authorisation ke saath testing, report karta hai.
 - **Black hat:** illegal, self-gain.
 - **Grey hat:** bina permission test karta hai, phir report/blackmail.
@@ -138,10 +156,13 @@ export const cyberOneShot = {
       number: '3',
       name: 'Cyber Forensics',
       tagline: 'Investigation process, digital evidence, web/database/network forensics',
+      overview: 'Ab doosri taraf — attack ke baad ki jaanch. Investigation process, evidence, logs, malware analysis aur email headers se poori kahani jodna.',
       minutes: 22,
       sections: [
         {
           title: '3.1–3.4 · Cyber forensics, investigation process, evidence, challenges',
+          simple: 'Simple mein: forensics crime scene ki jaanch hai, bas laptop aur mobile ke andar — sab kuch record aur lock karke.',
+          example: 'Server hack hua to disk aur RAM ki copy li, hash note kiya, phir logs se entry ka time aur IP nikala.',
           text: `- **Cyber forensics:** digital evidence ko scientifically identify, preserve, analyse aur present karna — court ke liye acceptable form mein.
 - **Process (steps):** identification → acquisition/preservation (hash + write blocker) → **chain of custody** → examination → analysis → documentation → reporting/presentation.
 - **Digital evidence ke sources:** disk, RAM, mobile, logs, network packets, email, cloud, CCTV/ATM.
@@ -152,6 +173,8 @@ export const cyberOneShot = {
         },
         {
           title: '3.5–3.7 · Web attack/intrusion, database forensics, preventive forensics',
+          simple: 'Simple mein: logs digital CCTV hain — kaun, kab, kahan aaya, sab likha hota hai.',
+          example: 'Web log mein raat 2 baje ka unusual upload.php request mila, wahi se attack shuru hua. DB audit log ne bataya admin ne 300 rows badli.',
           text: `- **Web attack forensics:** server logs (access/error), WAF logs, application logs, timestamps, IP + user-agent, uploaded shell, DB queries — attack timeline banao.
 - **Intrusion forensics:** IDS/IPS alerts, netflow, memory dump, malware sample, lateral movement trace.
 - **Database forensics:** logs (audit, redo/undo), table/row timestamps, deleted row recovery, transaction analysis, insider DB access; **trap** — DB time zone + clock skew.
@@ -161,6 +184,8 @@ export const cyberOneShot = {
         },
         {
           title: '3.8–3.10 · Anti-forensics + detection',
+          simple: 'Simple mein: chor nishaan mitaata hai, par mitaane ki koshish khud nishaan ban jaati hai.',
+          example: 'Attacker ne event log clear kiya to log ka gap hi evidence ban gaya; encryption se file ka entropy high dikha.',
           text: `- **Anti-forensics:** evidence ko chhupana/destroy karna — data wiping (overwrite), encryption, steganography, log tampering, timestomping, slack/ADS hiding, VM/cloud shifting.
 - **Detection techniques:** file-system timeline anomalies, MFT/\`$UsnJrnl\` artifacts, entropy check (encrypted/zipped area), signature scan, memory analysis, log gap analysis, cross-tool validation.
 - **Reality:** anti-forensics bhi traces chhodta hai — "absence of evidence bhi evidence hai" (deleted log = red flag).`,
@@ -169,6 +194,8 @@ export const cyberOneShot = {
         },
         {
           title: '3.11–3.14 · Network tools, malware forensics, email forensics',
+          simple: 'Simple mein: email header envelope par lagi mohar jaisa hai — asli bhejne wala kaun tha, wahan se pata chalta hai.',
+          example: 'Mail CEO ke naam se aaya par Received header mein alag IP tha — spoofing pakdi gayi. Wireshark mein lakhon DNS request = malware beaconing.',
           text: `- **Network forensics tools:** Wireshark (packet capture/decode), tcpdump, NetFlow, Zeek/Bro, Snort (IDS), NetworkMiner, ntopng, SIEM (Splunk/ELK); pcaps se conversation, DNS/HTTP, exfiltration detect.
 - **Malware types (forensics lens):** virus, worm, trojan, ransomware, rootkit, spyware, botnet, fileless (memory/PowerShell), polymorphic.
 - **Malware analysis:** **static** (strings, PE header, hashes — safe) vs **dynamic** (sandbox mein chala ke behaviour/network dekho); tools — IDA/Ghidra, PEiD, Procmon, Wireshark, VirusTotal, Cuckoo.
@@ -196,10 +223,13 @@ export const cyberOneShot = {
       number: '4',
       name: 'Digital Forensics',
       tagline: 'Cyber vs digital forensics, evidence properties, tools aur validation',
+      overview: 'Cyber forensics se thoda bada scope: har digital device ka evidence, uski properties (admissible, authentic), tools aur validation — taaki cheez court mein tik sake.',
       minutes: 18,
       sections: [
         {
           title: '4.1–4.3 · Digital forensics intro, cyber vs digital, role & environment',
+          simple: 'Simple mein: digital forensics har device ka ho sakta hai, cyber forensics sirf cyber crime par focus karta hai.',
+          example: 'Chori ke case mein mila mobile bhi digital forensics se check hota hai — calls, location aur deleted photos.',
           text: `- **Digital forensics:** digital devices se legally admissible evidence nikaalna — computer, mobile, network, cloud, IoT.
 - **Cyber vs digital forensics:** cyber forensics ka focus **cyber crime** (network/hacking/web) par; digital forensics broader — kisi bhi digital device se evidence (fraud, murder case ka mobile, HR investigation).
   - Practically dono same tools use karte hain, scope ka farq hai.
@@ -216,6 +246,8 @@ export const cyberOneShot = {
         },
         {
           title: '4.4–4.6 · Software/hardware, evidence properties, recovery & preservation',
+          simple: 'Simple mein: write blocker evidence ki seal hai — us par likhne ka raasta band, sirf padhne ka.',
+          example: 'Disk write blocker se jodi, image banayi, hash A0F3 nikala; 3 mahine baad wahi hash mila to evidence par sawaal nahi uthta.',
           text: `- **Forensic software:** EnCase, FTK, Autopsy/Sleuth Kit, Volatility (RAM), Cellebrite/UFED (mobile), X-Ways, Magnet AXIOM.
 - **Forensic hardware:** write blocker, disk duplicator, Faraday bag (mobile signal block), faraday tent, UPS, hash appliance, imaging dock.
 - **Digital evidence ke properties:** **admissible** (court accept kare), **authentic** (real, verified), **complete** (poora picture), **reliable**, **believable**, **accurate**, **timely**.
@@ -225,6 +257,8 @@ export const cyberOneShot = {
         },
         {
           title: '4.7–4.10 · Tools, selecting/analysing, validation, technology & practices',
+          simple: 'Simple mein: ek tool ka result kaafi nahi — doosre tool se same jawab aaye tab court mein tikta hai.',
+          example: 'Autopsy ne 120 deleted files dikhayi, FTK ne bhi wahi 120, hash bhi same — report mein dono ki version likhi gayi.',
           text: `- **Advanced tools:** registry/log analysis, timeline (Plaso), carving (PhotoRec/Scalpel), stego detection, malware sandbox, cloud/EDR export.
 - **Evidence select karna:** case relevance, data volatility (RAM pehle), legal authority, hash, time window, source reliability.
 - **Analysis:** timeline banao (file system + logs + network), correlation, keyword/regex search, communication map, "kya, kab, kaise" — hypothesis ko evidence se test karo.
@@ -246,10 +280,13 @@ export const cyberOneShot = {
       number: '5',
       name: 'Social Engineering',
       tagline: 'Phases, spiral model, phishing, insider aur bachav',
+      overview: 'Sabse insaani hissa: insaan ka bharosa todna. Phases, attack spiral, phishing, insider attack, aur end mein practical bachav ke steps.',
       minutes: 18,
       sections: [
         {
           title: '5.1–5.3 · Intro, evolution, categories',
+          simple: 'Simple mein: social engineering insaan ka password nahi, insaan ka bharosa hack karti hai.',
+          example: 'Main IT se bol raha hoon, OTP bata do warna account band — ye vishing hai, koi technology nahi.',
           text: `- **Social engineering:** technology ko nahi, **insaan** ko hack karna — trust, fear, urgency, authority ka use.
 - **Evolution:** phone call (1970s phone phreaking) → email (phishing) → social media (OSINT) → mobile/vishing → AI deepfake + spear phishing (aaj).
 - **Categories (4):**
@@ -270,6 +307,8 @@ export const cyberOneShot = {
         },
         {
           title: '5.4–5.7 · Phases, attack spiral, vendors, advanced attacks',
+          simple: 'Simple mein: pehle jaankari, phir bharosa, phir kaam — fail ho to naya bahana, spiral mein neeche.',
+          example: 'LinkedIn se manager ka naam liya, HR ko manager ke naam se mail kiya, salary file maangi aur mil gayi.',
           text: `- **Phases (SE attack):**
   1. **Information gathering** (OSINT — LinkedIn, website, dumpster diving).
   2. **Developing relationship / pretext** (fake identity, believable story).
@@ -284,6 +323,8 @@ export const cyberOneShot = {
         },
         {
           title: '5.8–5.10 · Phishing, insider attack, identity theft',
+          simple: 'Simple mein: insider ke paas pehle se chaabi hoti hai, isliye wahi sabse khatarnaak hota hai.',
+          example: 'Resign karne wale employee ne 5 minute mein 4000 customer records download kiye — DLP ne alert diya.',
           text: `- **Phishing attack flow:** fake domain + urgent mail → click link → credential capture → account misuse (ya malware install).
   - Pahchaan: sender address, spelling, urgency/threat, generic greeting, link hover ka mismatch, attachment.
 - **Insider attack:** legitimate access ka misuse — types: **negligent** (accidental leak), **malicious** (disgruntled employee, data theft/sabotage), **compromised** (credential stolen). Indicator: unusual access hours, mass download, USB use, resignation ke baad data.
@@ -294,6 +335,8 @@ export const cyberOneShot = {
         },
         {
           title: '5.11 · Targets + defence strategies',
+          simple: 'Simple mein: bachav ka ek hi rule hai — urgency, secrecy aur authority dikhe to red flag, alag channel se verify karo.',
+          example: 'Call par aaj hi payment karo bola gaya, official number par wapas call kar ke confirm kiya aur fraud pakda gaya.',
           text: `- **Targets:** helpdesk, receptionist, HR, new joinee, executives (whaling), third-party vendor staff — jahan bhi information/access ka gate hai.
 - **Defence:**
   - **People:** security awareness + regular phishing simulation, verify-before-trust rule, clear reporting channel.
