@@ -175,6 +175,34 @@ function NotesFigure({ type, caption }) {
   );
 }
 
+// "Ek go" map: the whole unit as numbered steps, so the reader sees the
+// journey before starting the details.
+function UnitFlow({ steps }) {
+  if (!steps || steps.length === 0) return null;
+  return (
+    <div className="os-flow">
+      <div className="os-flow-head">
+        <span className="os-flow-title">
+          <Icon name="layers" size={15} color="#c4ff00" /> Is unit ka naksha
+        </span>
+        <span className="os-flow-sub">{steps.length} steps · ek go mein poora unit</span>
+      </div>
+      <div className="os-flow-track">
+        {steps.map((step, i) => (
+          <div className="os-flow-step" key={step.title}>
+            <span className="os-flow-num">{String(i + 1).padStart(2, '0')}</span>
+            <span className="os-flow-body">
+              <strong className="os-flow-name">{step.title}</strong>
+              <span className="os-flow-hint">{step.hint}</span>
+            </span>
+            {i < steps.length - 1 && <span className="os-flow-arrow" aria-hidden="true">→</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function subjectNotes(subjectId) {
   return oneShotNotes[subjectId] || null;
 }
@@ -309,6 +337,8 @@ export function OneShotPage({ subjectId, unitId, onBack }) {
             <p>{unit.overview}</p>
           </div>
         )}
+
+        {unit.flow && <UnitFlow steps={unit.flow} />}
 
         <div className="os-note-strip">
           <Icon name="bulb" size={16} color="#ffd600" />

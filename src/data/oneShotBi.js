@@ -14,6 +14,13 @@ export const biOneShot = {
       name: 'Introduction to Business Intelligence',
       tagline: 'BI kya hai, kaise chalta hai, aur business mein kahan use hota hai',
       overview: 'BI kya hai aur kyun zaroori hai — evolution, data-driven decision making ke 4 types, architecture aur real applications. Ye unit poore subject ka frame bana deta hai.',
+      flow: [
+        { title: 'BI kya hai', hint: 'data se faisla' },
+        { title: 'Evolution', hint: 'MIS se GenAI tak' },
+        { title: 'Decision ke 4 types', hint: 'descriptive se prescriptive' },
+        { title: 'Architecture', hint: 'source se dashboard' },
+        { title: 'Applications', hint: 'retail, bank, health' },
+      ],
       minutes: 18,
       sections: [
         {
@@ -117,6 +124,13 @@ export const biOneShot = {
       name: 'Data Warehousing and Data Preparation',
       tagline: 'OLTP vs DW se ETL, cleaning, metadata aur data quality tak',
       overview: 'Data kahan se aata hai: OLTP vs warehouse, uske 4 characteristics, 3-tier architecture, ETL, cleaning, metadata aur data quality.',
+      flow: [
+        { title: 'OLTP vs DW', hint: 'counter vs godown' },
+        { title: '4 characteristics', hint: 'subject, integrated, time, non-volatile' },
+        { title: '3-tier architecture', hint: 'data, warehouse, tools' },
+        { title: 'ETL', hint: 'extract, transform, load' },
+        { title: 'Metadata aur quality', hint: 'data ke bare mein data' },
+      ],
       minutes: 20,
       sections: [
         {
@@ -216,6 +230,13 @@ export const biOneShot = {
       name: 'Multidimensional Modeling and OLAP',
       tagline: 'Fact-dimension, star/snowflake, cube aur paanch OLAP operations',
       overview: 'Analysis ka engine: cube, fact aur dimension, star vs snowflake, OLAP operations (slice, dice, drill) aur OLTP se farak.',
+      flow: [
+        { title: 'Cube', hint: 'product x month x store' },
+        { title: 'Fact aur dimension', hint: 'numbers aur unki detail' },
+        { title: 'Star vs snowflake', hint: 'seedha ya toda hua' },
+        { title: 'OLAP operations', hint: 'slice, dice, drill, roll-up' },
+        { title: 'OLAP vs OLTP', hint: 'analysis vs transaction' },
+      ],
       minutes: 22,
       sections: [
         {
@@ -313,6 +334,13 @@ export const biOneShot = {
       name: 'Business Analytics and Temporal Data',
       tagline: 'Metric vs KPI, scorecard, valid/transaction time aur trend',
       overview: 'Numbers ko decision mein badalna: metric vs KPI, performance reporting, temporal data (valid vs transaction time) aur trend analysis.',
+      flow: [
+        { title: 'Metric vs KPI', hint: 'number vs target wala number' },
+        { title: 'KPI tree', hint: 'revenue = orders x AOV' },
+        { title: 'Reporting', hint: 'naapo, compare karo, report karo' },
+        { title: 'Temporal data', hint: 'valid time vs transaction time' },
+        { title: 'Trend analysis', hint: 'YoY, MoM, trend line' },
+      ],
       minutes: 18,
       sections: [
         {
@@ -390,6 +418,13 @@ export const biOneShot = {
       name: 'Data Visualization and BI Tools',
       tagline: 'Chart kaise chunein, dashboard kaise banayein, tools aur AI reporting',
       overview: 'Aakhir mein dikhana: visualization ke principles, chart ka chunav, dashboard design, tools, aur AI-assisted reporting ka naya trend.',
+      flow: [
+        { title: 'Visualization kyun', hint: '5 second mein samajh' },
+        { title: 'Principles', hint: 'clear, simple, honest' },
+        { title: 'Chart choice', hint: 'sawaal se chart' },
+        { title: 'Dashboard', hint: 'ek page, ek kahani' },
+        { title: 'AI reporting', hint: 'sawaal poocho, chart milta hai' },
+      ],
       minutes: 16,
       sections: [
         {

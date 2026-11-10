@@ -12,6 +12,13 @@ export const dsOneShot = {
       name: 'Fundamentals of Data Science',
       tagline: 'Data ke types aur scales se life cycle, CRISP-DM aur roles tak',
       overview: 'Data science ki entry point: data kya hota hai (types aur scales), project ka life cycle, aur DS kis-kis se alag hai (BI, statistics, ML, AI). Ye unit baaki chaar units ka base hai.',
+      flow: [
+        { title: 'Data kya hai', hint: 'types, scales, formats' },
+        { title: 'Big data vs DS', hint: 'volume se insight tak' },
+        { title: 'Life cycle', hint: 'CRISP-DM aur process models' },
+        { title: 'DS vs BI vs ML vs AI', hint: 'kaun kya karta hai' },
+        { title: 'Roles aur statistics', hint: 'team ka kaam, math ka base' },
+      ],
       minutes: 18,
       sections: [
         {
@@ -95,6 +102,13 @@ export const dsOneShot = {
       name: 'Data Pre-processing and Data Warehouse',
       tagline: 'Cleaning, integration, reduction se DW architecture aur OLAP tak',
       overview: 'Yahan data ko model ke laayak banaya jaata hai — cleaning, integration, transformation, reduction — aur phir warehouse, ETL aur star schema, jahan se analysis ke liye saaf data aata hai.',
+      flow: [
+        { title: 'Pre-processing kyun', hint: 'garbage in, garbage out' },
+        { title: 'Cleaning', hint: 'missing, duplicate, outlier' },
+        { title: 'Integration aur transformation', hint: 'jodo aur badlo' },
+        { title: 'Reduction', hint: 'kam data, same matlab' },
+        { title: 'Warehouse aur ETL', hint: 'godown aur pipeline' },
+      ],
       minutes: 20,
       sections: [
         {
@@ -173,6 +187,13 @@ export const dsOneShot = {
       name: 'Classification',
       tagline: 'Regression se SVM tak, aur confusion matrix + metrics',
       overview: 'Classification ka poora safar: problem kya hai, kaunse algorithms (regression, Naive Bayes, KNN, tree, SVM), aur model ko judge kaise karein (confusion matrix, precision/recall, R2).',
+      flow: [
+        { title: 'Classification kya', hint: 'category predict karna' },
+        { title: 'Regression models', hint: 'linear aur logistic' },
+        { title: 'Algorithms', hint: 'Naive Bayes, KNN, tree, SVM' },
+        { title: 'Confusion matrix', hint: 'chaar dabbe ka scorecard' },
+        { title: 'Precision, recall, R2', hint: 'model kitna sahi hai' },
+      ],
       minutes: 24,
       sections: [
         {
@@ -261,6 +282,13 @@ export const dsOneShot = {
       name: 'Clustering and Association Rule Mining',
       tagline: 'K-means se apriori tak — unsupervised ka poora unit',
       overview: 'Is unit mein labels nahi hote, sirf data hota hai. Distance se similarity nikaalna, K-means aur hierarchical clustering se group banana, aur apriori se “saath kharide jaane wale” rules.',
+      flow: [
+        { title: 'Distance', hint: 'similarity ka paimana' },
+        { title: 'K-means aur k-medoid', hint: 'group banao, centre sudhaaro' },
+        { title: 'Hierarchical aur elbow', hint: 'tree banao, k chuno' },
+        { title: 'Association rules', hint: 'saath kharidi jaane wali cheezein' },
+        { title: 'Apriori aur FP-growth', hint: 'support, confidence, lift' },
+      ],
       minutes: 18,
       sections: [
         {
@@ -324,6 +352,13 @@ export const dsOneShot = {
       name: 'Data Visualization and Emerging Trends',
       tagline: 'Dashboard, charts, tools aur RL/generative AI ka quick revision',
       overview: 'Aakhir mein result dikhana aur naye trends: visualization ke principles, sahi chart ka chunav, dashboard design, aur RL, generative AI aur XAI jaise naye vishay.',
+      flow: [
+        { title: 'Visualization kyun', hint: 'aankh numbers se fast' },
+        { title: 'Principles', hint: 'kam ink, zyada meaning' },
+        { title: 'Chart choice', hint: 'sawaal se chart tak' },
+        { title: 'Dashboard design', hint: 'ek page, ek kahani' },
+        { title: 'Naye trends', hint: 'RL, generative AI, XAI' },
+      ],
       minutes: 16,
       sections: [
         {
